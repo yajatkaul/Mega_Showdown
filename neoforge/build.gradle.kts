@@ -14,8 +14,17 @@ architectury {
     neoForge()
 }
 
+val generatedResources = file("src/generated")
+
 loom {
     silentMojangMappingsLicense()
+    runs {
+        register("data") {
+            data()
+            programArgs("--all", "--mod", "megamons")
+            programArgs("--output", generatedResources.absolutePath)
+        }
+    }
 }
 
 repositories {
@@ -52,3 +61,7 @@ tasks.processResources {
         expand(project.properties)
     }
 }
+
+
+
+

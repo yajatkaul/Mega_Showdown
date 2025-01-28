@@ -1,0 +1,4 @@
+// 1.21.1	2025-01-29T01:37:41.1739855	Registries
+d66f7c8f90f1c2a106e10080102aea13ae4cf6b6 data/megamons/neoforge/biome_modifier/add_charizardite_x_ore.json
+f1e00f48026211d8591ad1c40496287b52d932e0 data/megamons/worldgen/configured_feature/charizardite_x_ore.json
+bf46068b9c8bf78b390478dd286a623b9408de39 data/megamons/worldgen/placed_feature/charizardite_x_ore_placed.json
