@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:metagross",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

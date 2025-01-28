@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "froslass-1",
+      "pokemon": "froslass",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "42-55",
+      "weight": 7.0,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": ["#cobblemon:is_snowy"]
+      }
+    }
+  ]
+}

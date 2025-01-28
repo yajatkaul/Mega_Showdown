@@ -1,0 +1,6 @@
+{
+  "keys": ["mega-y"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}

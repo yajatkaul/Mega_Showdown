@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    " l ",
+    " f "
+  ],
+  "key": {
+    "f": {
+      "item": "cobblemon:dragon_gem"
+    },
+    "l": {
+      "item": "cobblemon:iron_ball"
+    }
+  },
+  "result": {
+    "id": "minecraft:paper",
+    "components": {
+      "minecraft:custom_model_data": 28,
+      "minecraft:item_name": "{\"extra\":[{\"color\":\"light_purple\",\"italic\":false,\"text\": \"Latiosite\"}],\"italic\":false,\"text\":\"\"}",
+      "minecraft:lore": [
+        "{\"color\":\"gray\",\"text\":\"Held item to Mega Evolve latios.\"}"
+      ],
+      "flourish:showdown_item": "latiosite"
+
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "species": "cobblemon:sharpedo",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["mega"],
+      "model": "cobblemon:sharpedomega.geo",
+      "texture": "cobblemon:textures/pokemon/0319_sharpedo/sharpedomega.png"
+    },
+    {
+      "aspects": ["mega", "shiny"],
+      "model": "cobblemon:sharpedomega.geo",
+      "texture": "cobblemon:textures/pokemon/0319_sharpedo/sharpedomega_shiny.png"
+    }
+  ]
+}

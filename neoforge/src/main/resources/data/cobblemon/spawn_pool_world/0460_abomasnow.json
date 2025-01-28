@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "abomasnow-1",
+      "pokemon": "abomasnow",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "42-55",
+      "weight": 7.0,
+      "condition": {
+        "biomes": ["#cobblemon:is_snowy_taiga","#cobblemon:is_snowy_forest"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:slowbro",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["mega"],
+      "model": "cobblemon:slowbro_mega.geo",
+      "poser": "cobblemon:slowbro_mega",
+      "texture": "cobblemon:textures/pokemon/0080_slowbro/slowbro_mega.png",
+      "layers": []
+    },
+    {
+      "aspects": ["mega", "shiny"],
+      "model": "cobblemon:slowbro_mega.geo",
+      "poser": "cobblemon:slowbro_mega",
+      "texture": "cobblemon:textures/pokemon/0080_slowbro/slowbro_mega_shiny.png"
+    }
+  ]
+}

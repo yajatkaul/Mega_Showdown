@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " f ",
+    " l ",
+    "   "
+  ],
+  "key": {
+    "f": {
+      "item": "cobblemon:kings_rock"
+    },
+    "l": {
+      "item": "cobblemon:iron_ball"
+    }
+  },
+  "result": {
+    "id": "minecraft:paper",
+    "components": {
+      "minecraft:custom_model_data": 48,
+      "minecraft:item_name": "{\"extra\":[{\"color\":\"light_purple\",\"italic\":false,\"text\": \"Slowbronite\"}],\"italic\":false,\"text\":\"\"}",
+      "minecraft:lore": [
+        "{\"color\":\"gray\",\"text\":\"Held item to Mega Evolve Slowbro.\"}"
+      ],
+      "flourish:showdown_item": "slowbronite"
+
+    }
+  }
+}

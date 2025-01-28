@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " f ",
+    " l ",
+    "   "
+  ],
+  "key": {
+    "f": {
+      "item": "minecraft:rabbit_hide"
+    },
+    "l": {
+      "item": "cobblemon:iron_ball"
+    }
+  },
+  "result": {
+    "id": "minecraft:paper",
+    "components": {
+      "minecraft:custom_model_data": 33,
+      "minecraft:item_name": "{\"extra\":[{\"color\":\"light_purple\",\"italic\":false,\"text\": \"Medichamite\"}],\"italic\":false,\"text\":\"\"}",
+      "minecraft:lore": [
+        "{\"color\":\"gray\",\"text\":\"Held item to Mega Evolve Medicham.\"}"
+      ],
+      "flourish:showdown_item": "medichamite"
+
+    }
+  }
+}

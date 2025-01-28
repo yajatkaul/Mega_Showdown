@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "electrike-1",
+      "pokemon": "electrike",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "common",
+      "level": "7-23",
+      "weight": 5.9,
+      "condition": {
+        "biomes": ["#cobblemon:is_plains"]
+      }
+    }
+  ]
+}

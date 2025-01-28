@@ -1,0 +1,77 @@
+{
+  "head": "head",
+  "portraitScale": 2.65,
+  "portraitTranslation": [ 0, 2.7, 0 ],
+  "profileScale": 0.71,
+  "profileTranslation": [ 0, 0.8, 0 ],
+  "cry":  "bedrock(kangaskhan2, cry)",
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "transformTicks": 10,
+      "poseTypes": [
+      "STAND",
+      "NONE",
+      "PORTRAIT",
+      "PROFILE"
+      ],	  
+      "animations": [
+        "look",
+        "bedrock(kangaskhan2, ground_idle)"
+      ],
+      "quirks": [
+        {
+          "name": "blink1",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(kangaskhan2, blink1)"]
+        },
+		{
+          "name": "blink2",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(kangaskhan2, blink2)"]
+        },
+		{
+          "name": "baby",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 60,
+          "maxSecondsBetweenOccurrences": 80,
+          "animations": ["bedrock(kangaskhan2, baby_quirk)"]
+        }
+
+      ]
+    },
+    "walking": {
+      "poseName": "walking",
+      "transformTicks": 10,
+      "poseTypes": [ "WALK" ],
+      "isTouchingWater": false,
+      "animations": [ "bedrock(kangaskhan2, ground_walk)" ],
+      "quirks": [
+        {
+          "name": "blink1",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(kangaskhan2, blink1)"]
+        },
+		{
+          "name": "blink2",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(kangaskhan2, blink2)"]
+        }
+      ]
+    },
+    "sleeping": {
+      "poseName": "sleeping",
+      "transformTicks": 10,
+      "poseTypes": [ "SLEEP" ],
+      "animations": [ "bedrock(kangaskhan2, sleep)" ]
+    }
+  }
+}

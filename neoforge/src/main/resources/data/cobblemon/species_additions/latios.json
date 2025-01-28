@@ -1,0 +1,9 @@
+{
+  "target": "cobblemon:latios",
+  "baseScale": 1.3,
+  "hitbox": {
+   "width": 3.5,
+   "height": 3,
+   "fixed": false
+  }
+}

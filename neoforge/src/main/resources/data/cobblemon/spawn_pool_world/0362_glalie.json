@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "glalie-1",
+      "pokemon": "glalie",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "42-55",
+      "weight": 7.0,
+      "condition": {
+        "biomes": ["#cobblemon:is_snowy"]
+      }
+    }
+  ]
+}

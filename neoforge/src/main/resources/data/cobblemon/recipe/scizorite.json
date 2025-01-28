@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " f ",
+    " l ",
+    "   "
+  ],
+  "key": {
+    "f": {
+      "item": "cobblemon:metal_coat"
+    },
+    "l": {
+      "item": "cobblemon:iron_ball"
+    }
+  },
+  "result": {
+    "id": "minecraft:paper",
+    "components": {
+      "minecraft:custom_model_data": 46,
+      "minecraft:item_name": "{\"extra\":[{\"color\":\"light_purple\",\"italic\":false,\"text\": \"Scizorite\"}],\"italic\":false,\"text\":\"\"}",
+      "minecraft:lore": [
+        "{\"color\":\"gray\",\"text\":\"Held item to Mega Evolve Scizor.\"}"
+      ],
+      "flourish:showdown_item": "scizorite"
+
+    }
+  }
+}

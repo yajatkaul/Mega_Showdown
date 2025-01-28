@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " f ",
+    " l ",
+    "   "
+  ],
+  "key": {
+    "f": {
+      "item": "minecraft:fern"
+    },
+    "l": {
+      "item": "cobblemon:iron_ball"
+    }
+  },
+  "result": {
+    "id": "minecraft:paper",
+    "components": {
+      "minecraft:custom_model_data": 45,
+      "minecraft:item_name": "{\"extra\":[{\"color\":\"light_purple\",\"italic\":false,\"text\": \"Sceptilite\"}],\"italic\":false,\"text\":\"\"}",
+      "minecraft:lore": [
+        "{\"color\":\"gray\",\"text\":\"Held item to Mega Evolve Pidgeot.\"}"
+      ],
+      "flourish:showdown_item": "sceptilite"
+
+    }
+  }
+}

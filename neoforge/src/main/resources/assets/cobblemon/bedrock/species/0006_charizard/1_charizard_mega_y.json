@@ -1,0 +1,44 @@
+{
+  "species": "cobblemon:charizard",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["mega-y"],
+      "model": "cobblemon:charizard_mega_y.geo",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_y.png",
+      "layers": [
+        {
+          "name": "flame",
+          "texture": "cobblemon:textures/pokemon/blank.png",
+          "emissive": true,
+          "translucent": true
+        },
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0006_charizard/y_glow.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [ "mega-y", "shiny" ],
+      "model": "cobblemon:charizard_mega_y.geo",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_y_shiny.png",
+      "layers": [
+        {
+          "name": "flame",
+          "texture": "cobblemon:textures/pokemon/blank.png",
+          "emissive": true,
+          "translucent": true
+        },
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0006_charizard/y_glow.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
+    }
+  ]
+}

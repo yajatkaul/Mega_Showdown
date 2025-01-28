@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "megamons:meteorid",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 300,
+    "separation": 35,
+    "salt": 816448540,
+    "frequency": 1
+  }
+}

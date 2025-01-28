@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:rayquaza",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

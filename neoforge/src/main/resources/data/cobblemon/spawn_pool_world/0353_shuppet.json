@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "shuppet-1",
+      "pokemon": "shuppet",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 7.0,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": ["#cobblemon:is_deep_dark","#cobblemon:is_spooky"]
+      }
+    }
+  ]
+}

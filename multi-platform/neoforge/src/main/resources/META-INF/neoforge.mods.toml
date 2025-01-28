@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+#issueTrackerURL = "A valid URL to your issue tracker where people can open bug tickets"
+license = "MIT License"
+
+[[mods]]
+modId = "cobblemon_multiplatform_mdk"
+version = "${version}"
+displayName = "Cobblemon Multiplatform-NeoForge Template Sidemod"
+authors = "Me!"
+description = '''
+A very cool multi-line description!
+'''
+#logoFile = ""
+
+[[dependencies.cobblemon_multiplatform_mdk]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cobblemon_multiplatform_mdk]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[21.1.66,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cobblemon_multiplatform_mdk]]
+modId = "cobblemon"
+mandatory = true
+versionRange = "[1.6,)"
+ordering = "AFTER"
+side = "BOTH"

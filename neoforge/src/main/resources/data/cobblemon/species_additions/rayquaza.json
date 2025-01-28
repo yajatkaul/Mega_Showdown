@@ -1,0 +1,9 @@
+{
+  "target": "cobblemon:rayquaza",
+  "baseScale": 0.8,
+  "hitbox": {
+   "width": 6,
+   "height": 8.5,
+   "fixed": false
+  }
+}

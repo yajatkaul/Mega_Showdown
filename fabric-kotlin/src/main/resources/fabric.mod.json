@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon_fabric_mdk",
+  "version": "${version}",
+  "name": "Cobblemon Fabric MDK",
+  "description": "A MDK useful for Fabric Development",
+  "authors": [
+    "The Cobblemon Team"
+  ],
+  "license": "MIT License",
+  "icon": "assets/example/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "com.cobblemon.mdks.fabric.FabricMod"
+      }
+    ]
+  },
+  "depends": {
+    "minecraft": "1.21.1",
+    "fabric-language-kotlin": ">=1.12.3+kotlin.2.0.21",
+    "cobblemon": ">=1.6.0"
+  }
+}

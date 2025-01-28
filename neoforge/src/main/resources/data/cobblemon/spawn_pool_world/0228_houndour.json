@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "houndour-1",
+      "pokemon": "houndour",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "common",
+      "level": "7-24",
+      "weight": 9.9,
+      "condition": {
+        "biomes": ["#minecraft:is_nether"]
+      }
+    },
+    {
+      "id": "houndour-2",
+      "pokemon": "houndour",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 9.9,
+      "condition": {
+        "biomes": ["#cobblemon:is_plains"],
+        "timeRange": "night"
+      }
+    }
+  ]
+}

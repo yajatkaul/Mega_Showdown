@@ -1,0 +1,614 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "minecraft:item/paper"
+  },
+  "overrides": [
+    {
+      "model": "flourish:item/abomasite",
+      "predicate": {
+        "custom_model_data": 1
+      }
+    },
+    {
+      "model": "flourish:item/absolite",
+      "predicate": {
+        "custom_model_data": 2
+      }
+    },
+    {
+      "model": "flourish:item/aerodactylite",
+      "predicate": {
+        "custom_model_data": 3
+      }
+    },
+    {
+      "model": "flourish:item/alakazite",
+      "predicate": {
+        "custom_model_data": 4
+      }
+    },
+    {
+      "model": "flourish:item/altarianite",
+      "predicate": {
+        "custom_model_data": 5
+      }
+    },
+    {
+      "model": "flourish:item/ampharosite",
+      "predicate": {
+        "custom_model_data": 6
+      }
+    },
+    {
+      "model": "flourish:item/audinite",
+      "predicate": {
+        "custom_model_data": 7
+      }
+    },
+    {
+      "model": "flourish:item/banettite",
+      "predicate": {
+        "custom_model_data": 8
+      }
+    },
+    {
+      "model": "flourish:item/beedrillite",
+      "predicate": {
+        "custom_model_data": 9
+      }
+    },
+    {
+      "model": "flourish:item/blastoisinite",
+      "predicate": {
+        "custom_model_data": 10
+      }
+    },
+    {
+      "model": "flourish:item/blazikenite",
+      "predicate": {
+        "custom_model_data": 11
+      }
+    },
+    {
+      "model": "flourish:item/cameruptite",
+      "predicate": {
+        "custom_model_data": 12
+      }
+    },
+    {
+      "model": "flourish:item/charizardite_x",
+      "predicate": {
+        "custom_model_data": 13
+      }
+    },
+    {
+      "model": "flourish:item/charizardite_y",
+      "predicate": {
+        "custom_model_data": 14
+      }
+    },
+    {
+      "model": "flourish:item/diancite",
+      "predicate": {
+        "custom_model_data": 15
+      }
+    },
+    {
+      "model": "flourish:item/galladite",
+      "predicate": {
+        "custom_model_data": 16
+      }
+    },
+    {
+      "model": "flourish:item/garchompite",
+      "predicate": {
+        "custom_model_data": 17
+      }
+    },
+    {
+      "model": "flourish:item/gardevoirite",
+      "predicate": {
+        "custom_model_data": 18
+      }
+    },
+    {
+      "model": "flourish:item/gengarite",
+      "predicate": {
+        "custom_model_data": 19
+      }
+    },
+    {
+      "model": "flourish:item/glalitite",
+      "predicate": {
+        "custom_model_data": 20
+      }
+    },
+    {
+      "model": "flourish:item/gyaradosite",
+      "predicate": {
+        "custom_model_data": 21
+      }
+    },
+    {
+      "model": "flourish:item/heracronite",
+      "predicate": {
+        "custom_model_data": 22
+      }
+    },
+    {
+      "model": "flourish:item/houndoominite",
+      "predicate": {
+        "custom_model_data": 23
+      }
+    },
+    {
+      "model": "flourish:item/kangaskhanite",
+      "predicate": {
+        "custom_model_data": 24
+      }
+    },
+    {
+      "model": "flourish:item/keystonelg",
+      "predicate": {
+        "custom_model_data": 25
+      }
+    },
+    {
+      "model": "flourish:item/keystonesm",
+      "predicate": {
+        "custom_model_data": 26
+      }
+    },
+    {
+      "model": "flourish:item/latiasite",
+      "predicate": {
+        "custom_model_data": 27
+      }
+    },
+    {
+      "model": "flourish:item/latiosite",
+      "predicate": {
+        "custom_model_data": 28
+      }
+    },
+    {
+      "model": "flourish:item/lopunnite",
+      "predicate": {
+        "custom_model_data": 29
+      }
+    },
+    {
+      "model": "flourish:item/lucarionite",
+      "predicate": {
+        "custom_model_data": 30
+      }
+    },
+    {
+      "model": "flourish:item/manectite",
+      "predicate": {
+        "custom_model_data": 31
+      }
+    },
+    {
+      "model": "flourish:item/mawilite",
+      "predicate": {
+        "custom_model_data": 32
+      }
+    },
+    {
+      "model": "flourish:item/medichamite",
+      "predicate": {
+        "custom_model_data": 33
+      }
+    },
+    {
+      "model": "flourish:item/megabracelet",
+      "predicate": {
+        "custom_model_data": 34
+      }
+    },
+    {
+      "model": "flourish:item/megacharm",
+      "predicate": {
+        "custom_model_data": 35
+      }
+    },
+    {
+      "model": "flourish:item/megacuff",
+      "predicate": {
+        "custom_model_data": 36
+      }
+    },
+    {
+      "model": "flourish:item/megaring",
+      "predicate": {
+        "custom_model_data": 37
+      }
+    },
+    {
+      "model": "flourish:item/metagrossite",
+      "predicate": {
+        "custom_model_data": 38
+      }
+    },
+    {
+      "model": "flourish:item/mewtwonite_x",
+      "predicate": {
+        "custom_model_data": 39
+      }
+    },
+    {
+      "model": "flourish:item/mewtwonite_y",
+      "predicate": {
+        "custom_model_data": 40
+      }
+    },
+    {
+      "model": "flourish:item/pidgeotite",
+      "predicate": {
+        "custom_model_data": 41
+      }
+    },
+    {
+      "model": "flourish:item/pinsirite",
+      "predicate": {
+        "custom_model_data": 42
+      }
+    },
+    {
+      "model": "flourish:item/sablenite",
+      "predicate": {
+        "custom_model_data": 43
+      }
+    },
+    {
+      "model": "flourish:item/salamencite",
+      "predicate": {
+        "custom_model_data": 44
+      }
+    },
+    {
+      "model": "flourish:item/sceptilite",
+      "predicate": {
+        "custom_model_data": 45
+      }
+    },
+    {
+      "model": "flourish:item/scizorite",
+      "predicate": {
+        "custom_model_data": 46
+      }
+    },
+    {
+      "model": "flourish:item/sharpedonite",
+      "predicate": {
+        "custom_model_data": 47
+      }
+    },
+    {
+      "model": "flourish:item/slowbronite",
+      "predicate": {
+        "custom_model_data": 48
+      }
+    },
+    {
+      "model": "flourish:item/steelixite",
+      "predicate": {
+        "custom_model_data": 49
+      }
+    },
+    {
+      "model": "flourish:item/swampertite",
+      "predicate": {
+        "custom_model_data": 50
+      }
+    },
+    {
+      "model": "flourish:item/tyranitarite",
+      "predicate": {
+        "custom_model_data": 51
+      }
+    },
+    {
+      "model": "flourish:item/venusaurite",
+      "predicate": {
+        "custom_model_data": 52
+      }
+    },
+    {
+      "model": "flourish:item/adamantorb",
+      "predicate": {
+        "custom_model_data": 53
+      }
+    },
+    {
+      "model": "flourish:item/blueorb",
+      "predicate": {
+        "custom_model_data": 54
+      }
+    },
+    {
+      "model": "flourish:item/bugmemory",
+      "predicate": {
+        "custom_model_data": 55
+      }
+    },
+    {
+      "model": "flourish:item/burndrive",
+      "predicate": {
+        "custom_model_data": 56
+      }
+    },
+    {
+      "model": "flourish:item/chilldrive",
+      "predicate": {
+        "custom_model_data": 57
+      }
+    },
+    {
+      "model": "flourish:item/darkmemory",
+      "predicate": {
+        "custom_model_data": 58
+      }
+    },
+    {
+      "model": "flourish:item/dousedrive",
+      "predicate": {
+        "custom_model_data": 59
+      }
+    },
+    {
+      "model": "flourish:item/dracoplate",
+      "predicate": {
+        "custom_model_data": 60
+      }
+    },
+    {
+      "model": "flourish:item/dragonmemory",
+      "predicate": {
+        "custom_model_data": 61
+      }
+    },
+    {
+      "model": "flourish:item/dreadplate",
+      "predicate": {
+        "custom_model_data": 62
+      }
+    },
+    {
+      "model": "flourish:item/earthplate",
+      "predicate": {
+        "custom_model_data": 63
+      }
+    },
+    {
+      "model": "flourish:item/electricmemory",
+      "predicate": {
+        "custom_model_data": 64
+      }
+    },
+    {
+      "model": "flourish:item/fairymemory",
+      "predicate": {
+        "custom_model_data": 65
+      }
+    },
+    {
+      "model": "flourish:item/fightingmemory",
+      "predicate": {
+        "custom_model_data": 66
+      }
+    },
+    {
+      "model": "flourish:item/firememory",
+      "predicate": {
+        "custom_model_data": 67
+      }
+    },
+    {
+      "model": "flourish:item/fistplate",
+      "predicate": {
+        "custom_model_data": 68
+      }
+    },
+    {
+      "model": "flourish:item/flameplate",
+      "predicate": {
+        "custom_model_data": 69
+      }
+    },
+    {
+      "model": "flourish:item/flyingmemory",
+      "predicate": {
+        "custom_model_data": 70
+      }
+    },
+    {
+      "model": "flourish:item/ghostmemory",
+      "predicate": {
+        "custom_model_data": 71
+      }
+    },
+    {
+      "model": "flourish:item/grassmemory",
+      "predicate": {
+        "custom_model_data": 72
+      }
+    },
+    {
+      "model": "flourish:item/griseousorb",
+      "predicate": {
+        "custom_model_data": 73
+      }
+    },
+    {
+      "model": "flourish:item/groundmemory",
+      "predicate": {
+        "custom_model_data": 74
+      }
+    },
+    {
+      "model": "flourish:item/icememory",
+      "predicate": {
+        "custom_model_data": 75
+      }
+    },
+    {
+      "model": "flourish:item/icicleplate",
+      "predicate": {
+        "custom_model_data": 76
+      }
+    },
+    {
+      "model": "flourish:item/insectplate",
+      "predicate": {
+        "custom_model_data": 77
+      }
+    },
+    {
+      "model": "flourish:item/ironplate",
+      "predicate": {
+        "custom_model_data": 78
+      }
+    },
+    {
+      "model": "flourish:item/lustrousorb",
+      "predicate": {
+        "custom_model_data": 79
+      }
+    },
+    {
+      "model": "flourish:item/meadowplate",
+      "predicate": {
+        "custom_model_data": 80
+      }
+    },
+    {
+      "model": "flourish:item/mindplate",
+      "predicate": {
+        "custom_model_data": 81
+      }
+    },
+    {
+      "model": "flourish:item/pixieplate",
+      "predicate": {
+        "custom_model_data": 82
+      }
+    },
+    {
+      "model": "flourish:item/poisonmemory",
+      "predicate": {
+        "custom_model_data": 83
+      }
+    },
+    {
+      "model": "flourish:item/psychicmemory",
+      "predicate": {
+        "custom_model_data": 84
+      }
+    },
+    {
+      "model": "flourish:item/redorb",
+      "predicate": {
+        "custom_model_data": 85
+      }
+    },
+    {
+      "model": "flourish:item/rockmemory",
+      "predicate": {
+        "custom_model_data": 86
+      }
+    },
+    {
+      "model": "flourish:item/shockdrive",
+      "predicate": {
+        "custom_model_data": 87
+      }
+    },
+    {
+      "model": "flourish:item/skyplate",
+      "predicate": {
+        "custom_model_data": 88
+      }
+    },
+    {
+      "model": "flourish:item/splashplate",
+      "predicate": {
+        "custom_model_data": 89
+      }
+    },
+    {
+      "model": "flourish:item/spookyplate",
+      "predicate": {
+        "custom_model_data": 90
+      }
+    },
+    {
+      "model": "flourish:item/steelmemory",
+      "predicate": {
+        "custom_model_data": 91
+      }
+    },
+    {
+      "model": "flourish:item/stoneplate",
+      "predicate": {
+        "custom_model_data": 92
+      }
+    },
+    {
+      "model": "flourish:item/toxicplate",
+      "predicate": {
+        "custom_model_data": 93
+      }
+    },
+    {
+      "model": "flourish:item/watermemory",
+      "predicate": {
+        "custom_model_data": 94
+      }
+    },
+    {
+      "model": "flourish:item/zapplate",
+      "predicate": {
+        "custom_model_data": 95
+      }
+    },
+    {
+      "model": "flourish:item/wellspringmask",
+      "predicate": {
+        "custom_model_data": 96
+      }
+    },
+    {
+      "model": "flourish:item/hearthflamemask",
+      "predicate": {
+        "custom_model_data": 97
+      }
+    },
+    {
+      "model": "flourish:item/cornerstonemask",
+      "predicate": {
+        "custom_model_data": 98
+      }
+    },
+    {
+      "model": "flourish:item/rustedsword",
+      "predicate": {
+        "custom_model_data": 99
+      }
+    },
+    {
+      "model": "flourish:item/rustedshield",
+      "predicate": {
+        "custom_model_data": 100
+      }
+    },
+    {
+      "model": "flourish:item/aggronite",
+      "predicate": {
+        "custom_model_data": 101
+      }
+    }
+  ]
+}

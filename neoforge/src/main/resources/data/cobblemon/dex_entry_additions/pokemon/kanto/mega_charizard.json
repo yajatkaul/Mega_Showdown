@@ -1,0 +1,13 @@
+{
+  "entryId": "cobblemon:charizard",
+  "forms": [
+    {
+      "displayForm": "Mega-Y",
+      "unlockForms": ["Mega-Y"]
+    },
+    {
+      "displayForm": "Mega-X",
+      "unlockForms": ["Mega-X"]
+    }
+  ]
+}

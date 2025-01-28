@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:lucario",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["mega"],
+      "model": "cobblemon:lucario_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0448_lucario/lucario_mega.png",
+      "layers": []
+    },
+    {
+      "aspects": ["mega", "shiny"],
+      "model": "cobblemon:lucario_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0448_lucario/lucario_mega_shiny.png",
+      "layers": []
+    }
+  ]
+}
