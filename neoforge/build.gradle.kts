@@ -6,7 +6,7 @@ plugins {
 }
 
 
-group = "org.example"
+group = "com.github.yajatkaul"
 version = "1.0-SNAPSHOT"
 
 architectury {

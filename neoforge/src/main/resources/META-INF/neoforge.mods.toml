@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Cobblemon: Mega Showdown"
 authors = "YajatKaul"
 description = '''
-A very cool multi-line description!
+Adding all the megas to the game
 '''
 #logoFile = ""
 
@@ -31,12 +31,5 @@ side = "BOTH"
 modId = "cobblemon"
 mandatory = true
 versionRange = "[1.6.0,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.mega_showdown]]
-modId = "worldedit"
-mandatory = true
-versionRange = "[7.3.8,)"
 ordering = "AFTER"
 side = "BOTH"

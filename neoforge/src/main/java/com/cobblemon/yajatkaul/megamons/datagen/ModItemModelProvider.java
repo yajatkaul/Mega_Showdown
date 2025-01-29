@@ -13,7 +13,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicItem(ModItems.ABOMASNOW.get());
+        basicItem(ModItems.ABOMASITE.get());
         basicItem(ModItems.CHARIZARDITE_X.get());
         basicItem(ModItems.MEGA_BRACELET.get());
         basicItem(ModItems.ABSOLITE.get());
@@ -68,6 +68,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SABLENITE.get());
         basicItem(ModItems.SALAMENCITE.get());
         basicItem(ModItems.SCIZORITE.get());
+        basicItem(ModItems.SCEPTILITE.get());
         basicItem(ModItems.SHARPEDONITE.get());
         basicItem(ModItems.SLOWBRONITE.get());
         basicItem(ModItems.STEELIXITE.get());

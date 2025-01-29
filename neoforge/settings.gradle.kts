@@ -1,4 +1,4 @@
-rootProject.name = "NeoForge" //By default, this is how your built jar is called
+rootProject.name = "Cobblemon_MegaShowdown" //By default, this is how your built jar is called
 
 pluginManagement {
     repositories {

@@ -20,7 +20,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativeTab.mega_showdown.megamons_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         // Stones
-                        output.accept(ModItems.ABOMASNOW);
+                        output.accept(ModItems.ABOMASITE);
                         output.accept(ModItems.ABSOLITE);
                         output.accept(ModItems.AERODACTYLITE);
                         output.accept(ModItems.AGGRONITE);
@@ -60,6 +60,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SALAMENCITE);
                         output.accept(ModItems.SCIZORITE);
                         output.accept(ModItems.SHARPEDONITE);
+                        output.accept(ModItems.SCEPTILITE);
                         output.accept(ModItems.SLOWBRONITE);
                         output.accept(ModItems.STEELIXITE);
                         output.accept(ModItems.SWAMPERTITE);

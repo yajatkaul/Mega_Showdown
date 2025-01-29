@@ -11,7 +11,7 @@ public class ModItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MegaShowdown.MOD_ID);
 
-    public static final DeferredItem<Item> ABOMASNOW = ITEMS.register("abomasite",
+    public static final DeferredItem<Item> ABOMASITE = ITEMS.register("abomasite",
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> MEGA_BRACELET = ITEMS.register("megabracelet",
@@ -174,6 +174,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> SCIZORITE = ITEMS.register("scizorite",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SCEPTILITE = ITEMS.register("sceptilite",
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> SHARPEDONITE = ITEMS.register("sharpedonite",
