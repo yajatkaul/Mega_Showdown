@@ -1,8 +1,10 @@
 {
   "item.mega_showdown.abomasite": "Abomasite",
-  "item.mega_showdown.charizardite_x": "Charizardite X",
+  "item.mega_showdown.charizardite-x": "Charizardite X",
   "item.mega_showdown.megabracelet": "Mega Bracelet",
-  "creativeTab.mega_showdown.megamons_tab": "Megamons",
+  "creativeTab.mega_showdown.megamons_tab": "Mega Showdown",
 
-  "block.mega_showdown.charizardite_x_ore": "Charizardite X"
+  "block.mega_showdown.charizardite_x_ore": "Charizardite X ore",
+  "block.mega_showdown.mega_meteorid_block": "Mega Meteorid"
+
 }

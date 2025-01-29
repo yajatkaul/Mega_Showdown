@@ -15,16 +15,21 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MegaShowdown.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> MEGAMONS_TAB = CREATIVE_MODE_TAB.register("megamons_tab",
+    public static final Supplier<CreativeModeTab> MEGA_SHOWDOWN_TAB = CREATIVE_MODE_TAB.register("mega_showdown_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CHARIZARDITE_X.get()))
-                    .title(Component.translatable("creativeTab.megamons.megamons_tab"))
+                    .title(Component.translatable("creativeTab.mega_showdown.megamons_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        // Stones
                         output.accept(ModItems.CHARIZARDITE_X);
                         output.accept(ModItems.ABOMASNOW);
+                        output.accept(ModItems.ABSOLITE);
+
+                        // Device
                         output.accept(ModItems.MEGA_BRACELET);
 
-                        //Blocks
+                        // Blocks
                         output.accept(ModBlocks.CHARIZARDITE_X_ORE);
+                        output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
                     })
                     .build());
 

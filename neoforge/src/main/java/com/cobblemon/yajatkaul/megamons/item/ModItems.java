@@ -12,9 +12,23 @@ public class ModItems {
 
     public static final DeferredItem<Item> ABOMASNOW = ITEMS.register("abomasite",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> CHARIZARDITE_X = ITEMS.register("charizardite_x",
+
+    public static final DeferredItem<Item> CHARIZARDITE_X = ITEMS.register("charizardite-x",
             () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> MEGA_BRACELET = ITEMS.register("megabracelet",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ABSOLITE = ITEMS.register("absolite",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ADAMANTORB = ITEMS.register("adamantorb",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ABSOLITE = ITEMS.register("absolite",
+            () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ABSOLITE = ITEMS.register("absolite",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
