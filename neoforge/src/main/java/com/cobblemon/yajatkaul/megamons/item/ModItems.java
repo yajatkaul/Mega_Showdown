@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.megamons.item;
 
 import com.cobblemon.yajatkaul.megamons.MegaShowdown;
+import com.cobblemon.yajatkaul.megamons.item.custom.MegaBraceletItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -14,7 +15,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> MEGA_BRACELET = ITEMS.register("megabracelet",
-            () -> new Item(new Item.Properties()));
+            () -> new MegaBraceletItem(new Item.Properties()));
 
     public static final DeferredItem<Item> ABSOLITE = ITEMS.register("absolite",
             () -> new Item(new Item.Properties()));

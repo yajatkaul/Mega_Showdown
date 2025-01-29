@@ -8,7 +8,7 @@
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
         "location": "mega_showdown:mega_site",
-        "processors": "minecraft:empty",
+        "processors": "mega_showdown:mega_site",
         "override_liquid_settings": "ignore_waterlogging"
       }
     }
