@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.megamons.datagen;
 
-import com.cobblemon.yajatkaul.megamons.MegaMons;
+import com.cobblemon.yajatkaul.megamons.MegaShowdown;
 import com.cobblemon.yajatkaul.megamons.worldgen.ModBiomeModifiers;
 import com.cobblemon.yajatkaul.megamons.worldgen.ModConfiguredFeatures;
 import com.cobblemon.yajatkaul.megamons.worldgen.ModPlacedFeatures;
@@ -22,6 +22,6 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
 
     public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(MegaMons.MOD_ID));
+        super(output, registries, BUILDER, Set.of(MegaShowdown.MOD_ID));
     }
 }

@@ -15,14 +15,21 @@ architectury {
 }
 
 val generatedResources = file("src/generated")
+val defaultResources = file("src/main/resources")
+
+sourceSets {
+    main {
+        resources.srcDir(generatedResources)
+    }
+}
 
 loom {
     silentMojangMappingsLicense()
     runs {
         register("data") {
             data()
-            programArgs("--all", "--mod", "megamons")
-            programArgs("--output", generatedResources.absolutePath)
+            programArgs("--all", "--mod", "mega_showdown")
+            programArgs("--output", generatedResources.absolutePath, "--existing", defaultResources.absolutePath)
         }
     }
 }

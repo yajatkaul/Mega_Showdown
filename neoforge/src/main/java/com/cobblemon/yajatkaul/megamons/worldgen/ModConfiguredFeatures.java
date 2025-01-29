@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.megamons.worldgen;
 
-import com.cobblemon.yajatkaul.megamons.MegaMons;
+import com.cobblemon.yajatkaul.megamons.MegaShowdown;
 import com.cobblemon.yajatkaul.megamons.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -32,7 +32,7 @@ public class ModConfiguredFeatures {
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(MegaMons.MOD_ID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name));
     }
 
     private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context,

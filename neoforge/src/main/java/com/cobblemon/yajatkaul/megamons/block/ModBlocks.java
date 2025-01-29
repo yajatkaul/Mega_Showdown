@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.megamons.block;
 
-import com.cobblemon.yajatkaul.megamons.MegaMons;
+import com.cobblemon.yajatkaul.megamons.MegaShowdown;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -14,7 +14,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MegaMons.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MegaShowdown.MOD_ID);
 
     public static final DeferredBlock<Block> CHARIZARDITE_X_ORE = registerBlock("charizardite_x_ore",
             () -> new Block(BlockBehaviour

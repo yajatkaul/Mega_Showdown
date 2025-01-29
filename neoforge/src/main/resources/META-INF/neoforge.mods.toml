@@ -4,37 +4,37 @@ loaderVersion = "[1,)"
 license = "MIT License"
 
 [[mods]]
-modId = "megamons"
+modId = "mega_showdown"
 version = "${version}"
-displayName = "Cobblemon NeoForge Template Sidemod"
-authors = "Me!"
+displayName = "Cobblemon: Mega Showdown"
+authors = "YajatKaul"
 description = '''
 A very cool multi-line description!
 '''
 #logoFile = ""
 
-[[dependencies.megamons]]
+[[dependencies.mega_showdown]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.21.1]"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.megamons]]
+[[dependencies.mega_showdown]]
 modId = "neoforge"
 mandatory = true
 versionRange = "[21.1.66,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.megamons]]
+[[dependencies.mega_showdown]]
 modId = "cobblemon"
 mandatory = true
 versionRange = "[1.6.0,)"
 ordering = "AFTER"
 side = "BOTH"
 
-[[dependencies.megamons]]
+[[dependencies.mega_showdown]]
 modId = "worldedit"
 mandatory = true
 versionRange = "[7.3.8,)"

@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.megamons.item;
 
-import com.cobblemon.yajatkaul.megamons.MegaMons;
+import com.cobblemon.yajatkaul.megamons.MegaShowdown;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -8,7 +8,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
 
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MegaMons.MOD_ID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MegaShowdown.MOD_ID);
 
     public static final DeferredItem<Item> ABOMASNOW = ITEMS.register("abomasite",
             () -> new Item(new Item.Properties()));
