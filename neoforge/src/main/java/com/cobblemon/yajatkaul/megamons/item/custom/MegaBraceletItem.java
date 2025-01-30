@@ -6,14 +6,18 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import com.cobblemon.yajatkaul.megamons.showdown.ShowdownUtils;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 
 public class MegaBraceletItem extends Item {
@@ -55,5 +59,11 @@ public class MegaBraceletItem extends Item {
         }
 
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack arg, TooltipContext arg2, List<Component> tooltipComponents, TooltipFlag arg3) {
+        tooltipComponents.add(Component.translatable("tooltip.mega_showdown.megabracelet.tooltip"));
+        super.appendHoverText(arg, arg2, tooltipComponents, arg3);
     }
 }

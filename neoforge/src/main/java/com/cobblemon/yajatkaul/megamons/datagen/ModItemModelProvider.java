@@ -15,9 +15,9 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.ABOMASITE.get());
         basicItem(ModItems.CHARIZARDITE_X.get());
-        basicItem(ModItems.MEGA_BRACELET.get());
+        //basicItem(ModItems.MEGA_BRACELET.get());
         basicItem(ModItems.ABSOLITE.get());
-        basicItem(ModItems.ADAMANTORB.get());
+        //basicItem(ModItems.ADAMANTORB.get());
         basicItem(ModItems.AERODACTYLITE.get());
         basicItem(ModItems.AGGRONITE.get());
         basicItem(ModItems.ALAKAZITE.get());
@@ -28,22 +28,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.BEEDRILLITE.get());
         basicItem(ModItems.BLASTOISINITE.get());
         basicItem(ModItems.BLAZIKENITE.get());
-        basicItem(ModItems.BLUEORB.get());
-        basicItem(ModItems.BUGMEMORY.get());
-        basicItem(ModItems.BURNDRIVE.get());
+        //basicItem(ModItems.BLUEORB.get());
+        //basicItem(ModItems.BUGMEMORY.get());
+        //basicItem(ModItems.BURNDRIVE.get());
         basicItem(ModItems.CAMERUPTITE.get());
         basicItem(ModItems.CHARIZARDITE_Y.get());
-        basicItem(ModItems.CHILLDRIVE.get());
-        basicItem(ModItems.CORNERSTONEMASK.get());
-        basicItem(ModItems.DARKMEMORY.get());
+        //basicItem(ModItems.CHILLDRIVE.get());
+        //basicItem(ModItems.CORNERSTONEMASK.get());
+        //basicItem(ModItems.DARKMEMORY.get());
         basicItem(ModItems.DIANCITE.get());
-        basicItem(ModItems.DNASPLICERS.get());
-        basicItem(ModItems.DOUSEDRIVE.get());
-        basicItem(ModItems.DRACOPLATE.get());
-        basicItem(ModItems.DRAGONMEMORY.get());
-        basicItem(ModItems.DREADPLATE.get());
-        basicItem(ModItems.EARTHPLATE.get());
-        basicItem(ModItems.ELECTRICMEMORY.get());
+//        basicItem(ModItems.DNASPLICERS.get());
+//        basicItem(ModItems.DOUSEDRIVE.get());
+//        basicItem(ModItems.DRACOPLATE.get());
+//        basicItem(ModItems.DRAGONMEMORY.get());
+//        basicItem(ModItems.DREADPLATE.get());
+//        basicItem(ModItems.EARTHPLATE.get());
+//        basicItem(ModItems.ELECTRICMEMORY.get());
         basicItem(ModItems.GLALITITE.get());
         basicItem(ModItems.GARCHOMPITE.get());
         basicItem(ModItems.GARDEVOIRITE.get());
@@ -75,5 +75,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SWAMPERTITE.get());
         basicItem(ModItems.TYRANITARITE.get());
         basicItem(ModItems.VENUSAURITE.get());
+
+        basicItem(ModItems.KEYSTONE.get());
+
     }
 }

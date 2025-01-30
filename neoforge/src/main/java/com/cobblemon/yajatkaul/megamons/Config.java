@@ -1,8 +1,6 @@
 package com.cobblemon.yajatkaul.megamons;
 
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -32,9 +30,9 @@ public class Config
             .define("magicNumberIntroduction", "The magic number is... ");
 
     // a list of strings that are treated as resource locations for items
-    private static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-            .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
+//    private static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
+//            .comment("A list of items to log on common setup.")
+//            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -56,8 +54,8 @@ public class Config
         magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
 
         // convert the list of strings into a set of items
-        items = ITEM_STRINGS.get().stream()
-                .map(itemName -> BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemName)))
-                .collect(Collectors.toSet());
+//        items = ITEM_STRINGS.get().stream()
+//                .map(itemName -> BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemName)))
+//                .collect(Collectors.toSet());
     }
 }
