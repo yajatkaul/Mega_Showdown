@@ -46,15 +46,6 @@ public class ModItems {
                 }
             });
 
-//    public static final DeferredItem<Item> ADAMANTORB = ITEMS.register("adamantorb",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.adamantorb.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-
     public static final DeferredItem<Item> AERODACTYLITE = ITEMS.register("aerodactylite",
             () -> new Item(new Item.Properties()) {
                 @Override
@@ -145,33 +136,6 @@ public class ModItems {
                 }
             });
 
-//    public static final DeferredItem<Item> BLUEORB = ITEMS.register("blueorb",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.blueorb.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> BUGMEMORY = ITEMS.register("bugmemory",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> BURNDRIVE = ITEMS.register("burndrive",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.burndrive.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-
     public static final DeferredItem<Item> CAMERUPTITE = ITEMS.register("cameruptite",
             () -> new Item(new Item.Properties()) {
                 @Override
@@ -199,32 +163,7 @@ public class ModItems {
                 }
             });
 
-//    public static final DeferredItem<Item> CHILLDRIVE = ITEMS.register("chilldrive",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.chilldrive.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> CORNERSTONEMASK = ITEMS.register("cornerstonemask",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.cornerstonemask.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> DARKMEMORY = ITEMS.register("darkmemory",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
+
 
     public static final DeferredItem<Item> DIANCITE = ITEMS.register("diancite",
             () -> new Item(new Item.Properties()) {
@@ -234,69 +173,6 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
-
-//    public static final DeferredItem<Item> DNASPLICERS = ITEMS.register("dnasplicers",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dnasplicers.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> DOUSEDRIVE = ITEMS.register("dousedrive",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dousedrive.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> DRACOPLATE = ITEMS.register("dracoplate",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dracoplate.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> DRAGONMEMORY = ITEMS.register("dragonmemory",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> DREADPLATE = ITEMS.register("dreadplate",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dreadplate.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> EARTHPLATE = ITEMS.register("earthplate",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.earthplate.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
-//
-//    public static final DeferredItem<Item> ELECTRICMEMORY = ITEMS.register("electricmemory",
-//            () -> new Item(new Item.Properties()) {
-//                @Override
-//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
-//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-//                }
-//            });
 
     public static final DeferredItem<Item> GALLADITE = ITEMS.register("galladite",
             () -> new Item(new Item.Properties()) {
@@ -576,6 +452,132 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
+    //    public static final DeferredItem<Item> ADAMANTORB = ITEMS.register("adamantorb",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.adamantorb.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+
+//    public static final DeferredItem<Item> BLUEORB = ITEMS.register("blueorb",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.blueorb.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> BUGMEMORY = ITEMS.register("bugmemory",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> BURNDRIVE = ITEMS.register("burndrive",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.burndrive.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+
+//    public static final DeferredItem<Item> CHILLDRIVE = ITEMS.register("chilldrive",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.chilldrive.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> CORNERSTONEMASK = ITEMS.register("cornerstonemask",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.cornerstonemask.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> DARKMEMORY = ITEMS.register("darkmemory",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+
+//    public static final DeferredItem<Item> DNASPLICERS = ITEMS.register("dnasplicers",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dnasplicers.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> DOUSEDRIVE = ITEMS.register("dousedrive",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dousedrive.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> DRACOPLATE = ITEMS.register("dracoplate",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dracoplate.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> DRAGONMEMORY = ITEMS.register("dragonmemory",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> DREADPLATE = ITEMS.register("dreadplate",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dreadplate.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> EARTHPLATE = ITEMS.register("earthplate",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.earthplate.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
+//
+//    public static final DeferredItem<Item> ELECTRICMEMORY = ITEMS.register("electricmemory",
+//            () -> new Item(new Item.Properties()) {
+//                @Override
+//                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+//                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
+//                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+//                }
+//            });
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

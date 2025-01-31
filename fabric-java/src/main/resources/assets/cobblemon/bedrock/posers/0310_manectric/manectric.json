@@ -1,0 +1,23 @@
+{
+  "portraitScale": 1.41,
+  "portraitTranslation": [-0.56, 1.1, 0],
+  "profileScale": 0.56,
+  "profileTranslation": [0, 0.85, 0],
+  "rootBone": "manectric",
+  "animations": {
+    "cry": "q.bedrock_stateful('manectric', 'cry')"
+  },
+  "poses": {
+    "standing": {
+      "poseTypes": ["STAND", "FLOAT", "PORTRAIT", "PROFILE", "NONE"],
+      "animations": ["q.bedrock('manectric', 'ground_idle')"],
+      "quirks": ["q.bedrock_quirk('manectric', 'blink')"]
+    },
+    "walking": {
+      "poseTypes": ["WALK", "SWIM"],
+      "animations": [
+        "q.bedrock('manectric', 'ground_walk')"
+      ]
+    }
+  }
+}

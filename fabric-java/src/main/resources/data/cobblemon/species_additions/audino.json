@@ -1,0 +1,40 @@
+{
+	"target": "cobblemon:audino",
+	"implemented": true,
+	"baseScale": 0.8,
+    "hitbox": {
+      "width": 0.8,
+      "height": 1.8,
+      "fixed": false
+	},
+	"behaviour": {
+		"moving": {
+			"walk": {
+			"walkSpeed": 0.25
+			},
+		"swim": {
+			"swimSpeed": 0.15,
+			"canSwimInWater": true,
+			"canBreatheUnderwater": false,
+			"canWalkOnWater": false
+			}
+		}
+	},
+	"drops": {
+	  "amount": 2,
+	  "entries": [
+        {
+          "item": "cobblemon:oran_berry",
+          "percentage": 50.0
+        },
+        {
+          "item": "cobblemon:sitrus_berry",
+          "percentage": 5.0
+        },
+        {
+          "item": "cobblemon:fairy_feather",
+          "percentage": 10.0
+        }
+      ]
+	}
+}

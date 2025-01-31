@@ -1,0 +1,103 @@
+{
+	"format_version": "1.10.0",
+	"particle_effect": {
+		"description": {
+			"identifier": "cobblemon:mega_evolution_particles",
+			"basic_render_parameters": {
+				"material": "particles_alpha",
+				"texture": "textures/particles/invisible"
+			}
+		},
+		"events": {
+			"event_buildup": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_buildup",
+					"type": "emitter_bound"
+				}
+			},
+			"event_disperse": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_obscure_disperse",
+					"type": "emitter_bound"
+				}
+			},
+			"event_godrays": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_godrays",
+					"type": "particle"
+				}
+			},
+			"event_icon": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_icon",
+					"type": "emitter_bound"
+				}
+			},
+			"event_dust": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_dust",
+					"type": "emitter_bound"
+				}
+			},
+			"event_obscure2": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_obscure2",
+					"type": "emitter_bound"
+				}
+			},
+			"event_obscure3": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_obscure3",
+					"type": "emitter_bound"
+				}
+			},
+			"event_obscure": {
+				"particle_effect": {
+					"effect": "cobblemon:mega_evolution_obscure",
+					"type": "emitter_bound"
+				}
+			}
+		},
+		"components": {
+			"minecraft:emitter_local_space": {
+				"position": true,
+				"rotation": true
+			},
+			"minecraft:emitter_rate_instant": {
+				"num_particles": 1
+			},
+			"minecraft:emitter_lifetime_once": {
+				"active_time": 5
+			},
+			"minecraft:emitter_lifetime_events": {
+				"creation_event": "event_buildup",
+				"timeline": {
+					"0.90": "event_godrays",
+					"1.19": "event_aura",
+					"1.20": "event_obscure",
+					"1.21": "event_obscure2",
+					"1.22": "event_obscure3",
+					"3.00": "event_dust",
+					"3.25": "event_disperse",
+					"3.70": "event_icon"
+				}
+			},
+			"minecraft:emitter_shape_point": {},
+			"minecraft:particle_lifetime_expression": {
+				"max_lifetime": "0.7 * math.max(q.entity_size, 1)"
+			},
+			"minecraft:particle_initial_speed": 0,
+			"minecraft:particle_motion_dynamic": {},
+			"minecraft:particle_appearance_billboard": {
+				"size": [0.2, 0.2],
+				"facing_camera_mode": "rotate_xyz",
+				"uv": {
+					"texture_width": 16,
+					"texture_height": 16,
+					"uv": [0, 0],
+					"uv_size": [16, 16]
+				}
+			}
+		}
+	}
+}

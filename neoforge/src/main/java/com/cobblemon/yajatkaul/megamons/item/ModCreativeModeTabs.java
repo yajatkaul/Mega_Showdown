@@ -139,6 +139,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.KEYSTONE_ORE);
 
+                        //output.accept(ModBlocks.MEGA_STONE_CRYSTAL);
+
                         output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
                     })
                     .build());

@@ -43,11 +43,11 @@ public final class MegaShowdown {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
-        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, this::example);
+        //CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, this::example);
     }
 
     private Unit example(BattleStartedPostEvent battleStartedPostEvent) {
-        LOGGER.info(String.valueOf(battleStartedPostEvent.getBattle().getBattleLog()));
+        LOGGER.info(String.valueOf(battleStartedPostEvent.getBattle().getMajorBattleActions()));
         //if()
         return Unit.INSTANCE;
     }

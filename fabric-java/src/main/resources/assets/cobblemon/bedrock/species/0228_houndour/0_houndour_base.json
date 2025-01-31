@@ -1,0 +1,17 @@
+{
+  "species": "cobblemon:houndour",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:houndour",
+      "model": "cobblemon:houndour.geo",
+      "texture": "cobblemon:textures/pokemon/0228_houndour/houndour.png",
+      "layers": []
+    },
+    {
+      "aspects": ["shiny"],
+      "texture": "cobblemon:textures/pokemon/0228_houndour/houndour_shiny.png"
+    }
+  ]
+}

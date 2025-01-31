@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "altaria-1",
+      "pokemon": "altaria",
+      "presets": ["natural", "treetop"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "27-43",
+      "weight": 7.0,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": ["#cobblemon:is_overworld"],
+        "minY": 150
+      }
+    }
+  ]
+}

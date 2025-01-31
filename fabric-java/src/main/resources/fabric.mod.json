@@ -1,22 +1,26 @@
 {
   "schemaVersion": 1,
-  "id": "cobblemon_fabric_mdk",
+  "id": "mega_showdown",
   "version": "${version}",
-  "name": "Cobblemon Fabric MDK",
-  "description": "A MDK useful for Fabric Development",
+  "name": "Cobblemon: Mega Showdown",
+  "description": "Adding all the megas to the game",
   "authors": [
-    "The Cobblemon Team"
+    "YajatKaul"
   ],
   "license": "MIT License",
-  "icon": "assets/example/icon.png",
+  "icon": "assets/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cobblemon.mdks.fabric.FabricMod"
+      "com.cobblemon.yajatkaul.megamons.MegaShowdown"
     ]
   },
+  "mixins": [
+    "mega_showdown.mixins.json"
+  ],
   "depends": {
     "minecraft": "1.21.1",
-    "cobblemon": ">=1.6.0"
+    "cobblemon": ">=1.6.0",
+    "fabric-api": "*"
   }
 }

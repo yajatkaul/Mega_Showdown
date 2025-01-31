@@ -1,0 +1,98 @@
+{
+  "head": "head_pivot",
+  "portraitScale": 1.60,
+  "portraitTranslation": [ -0.2, 2.40, 0 ],
+  "profileScale": 0.5,
+  "profileTranslation": [ -0.1, 1.1, 0 ],
+  "cry":  "bedrock(scizor_mega, cry)",
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "transformTicks": 10,
+      "poseTypes": [
+      "STAND",
+      "NONE",
+      "PORTRAIT"
+      ], 
+      "isTouchingWater": false,
+      "animations": [
+        "look",
+        "bedrock(scizor_mega, ground_idle)"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(scizor_mega, blink)"]
+        }
+      ]
+    },
+  "walking": {
+      "poseName": "walking",
+      "transformTicks": 10,
+      "poseTypes": [ "WALK" ],
+      "animations": [
+        "bedrock(scizor_mega, air_fly)"
+      ],
+		"quirks": [
+        {
+          "name": "blink",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(scizor_mega, blink)"]
+        }
+		]
+   },
+    "hovering": {
+      "poseName": "hovering",
+      "transformTicks": 10,
+      "poseTypes": [ "HOVER","PROFILE" ],
+      "animations": [   
+        "bedrock(scizor_mega, air_idle)" ],
+		"quirks": [
+        {
+          "name": "blink",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(scizor_mega, blink)"]
+        }
+		]
+    },
+    "flying": {
+      "poseName": "flying",
+      "transformTicks": 10,
+      "poseTypes": [ "FLY" ],
+      "animations": [   
+        "bedrock(scizor_mega, air_fly)" ],
+		"quirks": [
+        {
+          "name": "blink",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(scizor_mega, blink)"]
+        }
+		]
+    },
+    "floating": {
+      "poseName": "floating",
+      "transformTicks": 10,
+      "poseTypes": [ "FLOAT" ],
+      "animations": [   
+        "bedrock(scizor_mega, air_fly)" ],
+		"quirks": [
+        {
+          "name": "blink",
+          "loopTimes": 1,
+          "minSecondsBetweenOccurrences": 8,
+          "maxSecondsBetweenOccurrences": 20,
+          "animations": ["bedrock(scizor_mega, blink)"]
+        }
+		]
+    }
+  }
+}

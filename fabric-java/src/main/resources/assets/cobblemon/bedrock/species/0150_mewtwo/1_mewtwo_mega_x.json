@@ -1,0 +1,21 @@
+{
+  "species": "cobblemon:mewtwo",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["mega-x"],
+      "model": "cobblemon:mewtwo_mega_x.geo",
+      "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_mega_x.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mega-x",
+        "shiny"
+      ],
+      "model": "cobblemon:mewtwo_mega_x.geo",
+      "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_mega_x_shiny.png",
+      "layers": []
+    }
+  ]
+}

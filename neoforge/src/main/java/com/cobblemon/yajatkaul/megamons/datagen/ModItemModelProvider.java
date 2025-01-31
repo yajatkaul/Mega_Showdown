@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.megamons.datagen;
 
 import com.cobblemon.yajatkaul.megamons.MegaShowdown;
+import com.cobblemon.yajatkaul.megamons.block.ModBlocks;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -77,6 +78,5 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.VENUSAURITE.get());
 
         basicItem(ModItems.KEYSTONE.get());
-
     }
 }

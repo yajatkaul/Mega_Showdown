@@ -5,10 +5,9 @@ import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -409,6 +408,15 @@ public class ModBlocks {
                             .strength(3f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
+
+    //Testing
+//    public static final DeferredBlock<AmethystClusterBlock> MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
+//            () -> new AmethystClusterBlock(4, 3,
+//                    BlockBehaviour.Properties.of()
+//                            .strength(1.5f)
+//                            .sound(SoundType.MEDIUM_AMETHYST_BUD)
+//                            .noOcclusion()
+//                            .lightLevel((state) -> 2)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

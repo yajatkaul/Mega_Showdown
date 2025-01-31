@@ -1,0 +1,33 @@
+{
+  "species": "cobblemon:houndoom",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:houndoom",
+      "model": "cobblemon:houndoom.geo",
+      "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom.png",
+      "layers": []
+    },
+    {
+      "aspects": ["shiny"],
+      "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_shiny.png"
+    },
+    {
+      "aspects": ["mega"],
+      "poser": "cobblemon:houndoom_mega",
+      "model": "cobblemon:houndoom_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_mega.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "poser": "cobblemon:houndoom_mega",
+      "model": "cobblemon:houndoom_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_mega_shiny.png"
+    }
+  ]
+}

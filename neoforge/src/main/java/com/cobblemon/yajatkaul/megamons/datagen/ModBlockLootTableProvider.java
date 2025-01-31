@@ -6,7 +6,13 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.Set;
 
@@ -116,6 +122,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.KEYSTONE_ORE.get(), ModItems.KEYSTONE.get()));
 
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
+
+//        add(ModBlocks.MEGA_STONE_CRYSTAL.get(), LootTable.lootTable()
+//                .withPool(LootPool.lootPool()
+//                        .setRolls(ConstantValue.exactly(1.0f))
+//                        .add(AlternativesEntry.alternatives(
+//                                LootItem.lootTableItem(ModItems.VENUSAURITE.get()).setWeight(1),
+//                                LootItem.lootTableItem(ModItems.KEYSTONE.get()).setWeight(1),
+//                                LootItem.lootTableItem(Items.DIAMOND).setWeight(1),
+//                                LootItem.lootTableItem(Items.EMERALD).setWeight(1)
+//                        ))
+//                )
+//        );
     }
 
     @Override

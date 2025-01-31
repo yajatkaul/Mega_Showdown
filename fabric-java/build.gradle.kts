@@ -5,8 +5,8 @@ plugins {
     kotlin("jvm") version "1.9.23"
 }
 
-group = "org.example"
-version = "1.0.0-SNAPSHOT"
+group = "com.github.yajatkaul"
+version = "1.4-SNAPSHOT-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -30,10 +30,10 @@ repositories {
 
 dependencies {
     minecraft("net.minecraft:minecraft:1.21.1")
-    mappings(loom.officialMojangMappings())
+    mappings("net.fabricmc:yarn:1.21+build.9:v2")
     modImplementation("net.fabricmc:fabric-loader:0.16.5")
 
-    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.104.0+1.21.1")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.104.0+1.21.1")
     modImplementation(fabricApi.module("fabric-command-api-v2", "0.104.0+1.21.1"))
 
     modImplementation("net.fabricmc:fabric-language-kotlin:1.12.3+kotlin.2.0.21")

@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:manectric",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

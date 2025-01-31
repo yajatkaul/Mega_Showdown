@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "banette-1",
+      "pokemon": "banette",
+      "presets": ["natural"],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "40-53",
+      "weight": 7.0,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": ["#cobblemon:is_deep_dark","#cobblemon:is_spooky"]
+      }
+    }
+  ]
+}

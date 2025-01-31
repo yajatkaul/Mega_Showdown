@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:blaziken",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

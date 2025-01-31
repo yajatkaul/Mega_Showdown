@@ -2,7 +2,10 @@ package com.cobblemon.yajatkaul.megamons.datagen;
 
 import com.cobblemon.yajatkaul.megamons.MegaShowdown;
 import com.cobblemon.yajatkaul.megamons.block.ModBlocks;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -65,7 +68,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.KEYSTONE_ORE);
 
         blockWithItem(ModBlocks.MEGA_METEOROID_BLOCK);
+
+        //Testing
+//        directionalBlock(ModBlocks.MEGA_STONE_CRYSTAL.get(),
+//                models().cross(getPath(ModBlocks.MEGA_STONE_CRYSTAL.get()),
+//                        blockTexture(ModBlocks.MEGA_STONE_CRYSTAL.get())));
     }
+
+    private String getPath(Block block) {
+        return BuiltInRegistries.BLOCK.getKey(block).getPath();
+    }
+
+
 
     private void blockWithItem(DeferredBlock<?> deferredBlock){
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));

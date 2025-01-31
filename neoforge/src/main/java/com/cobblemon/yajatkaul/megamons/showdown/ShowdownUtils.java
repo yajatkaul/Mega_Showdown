@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.megamons.MegaShowdown;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import kotlin.Unit;
 import net.minecraft.world.item.Item;

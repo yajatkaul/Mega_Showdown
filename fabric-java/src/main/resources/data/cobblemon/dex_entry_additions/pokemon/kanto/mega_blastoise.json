@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:blastoise",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

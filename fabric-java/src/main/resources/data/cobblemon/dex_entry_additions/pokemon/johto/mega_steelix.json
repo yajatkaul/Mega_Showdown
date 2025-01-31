@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:steelix",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

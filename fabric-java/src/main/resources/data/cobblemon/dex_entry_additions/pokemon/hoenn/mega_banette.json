@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:banette",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}

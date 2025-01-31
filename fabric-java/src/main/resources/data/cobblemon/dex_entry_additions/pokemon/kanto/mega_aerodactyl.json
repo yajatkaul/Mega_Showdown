@@ -1,0 +1,9 @@
+{
+  "entryId": "cobblemon:aerodactyl",
+  "forms": [
+    {
+      "displayForm": "Mega",
+      "unlockForms": ["Mega"]
+    }
+  ]
+}
