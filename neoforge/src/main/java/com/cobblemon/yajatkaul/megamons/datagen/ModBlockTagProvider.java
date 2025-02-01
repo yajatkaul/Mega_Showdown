@@ -66,6 +66,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.SWAMPERTITE_ORE.get(),
                         ModBlocks.TYRANITARITE_ORE.get(),
                         ModBlocks.VENUSAURITE_ORE.get(),
+                        ModBlocks.KEYSTONE_ORE.get(),
+                        //ModBlocks.MEGA_STONE_CRYSTAL.get(),
                         ModBlocks.MEGA_METEOROID_BLOCK.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -115,7 +117,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.STEELIXITE_ORE.get(),
                         ModBlocks.SWAMPERTITE_ORE.get(),
                         ModBlocks.TYRANITARITE_ORE.get(),
-                        ModBlocks.VENUSAURITE_ORE.get()
+                        ModBlocks.VENUSAURITE_ORE.get(),
+                        //ModBlocks.MEGA_STONE_CRYSTAL.get(),
+                        ModBlocks.KEYSTONE_ORE.get()
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)

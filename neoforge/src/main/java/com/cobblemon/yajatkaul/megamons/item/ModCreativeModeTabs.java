@@ -35,6 +35,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CAMERUPTITE);
                         output.accept(ModItems.CHARIZARDITE_X);
                         output.accept(ModItems.CHARIZARDITE_Y);
+                        output.accept(ModItems.DIANCITE);
                         output.accept(ModItems.GALLADITE);
                         output.accept(ModItems.GARCHOMPITE);
                         output.accept(ModItems.GARDEVOIRITE);

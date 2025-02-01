@@ -31,6 +31,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CAMERUPTITE);
                         entries.add(ModItems.CHARIZARDITE_X);
                         entries.add(ModItems.CHARIZARDITE_Y);
+                        entries.add(ModItems.DIANCITE);
                         entries.add(ModItems.GALLADITE);
                         entries.add(ModItems.GARCHOMPITE);
                         entries.add(ModItems.GARDEVOIRITE);

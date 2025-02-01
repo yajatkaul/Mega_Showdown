@@ -15,13 +15,13 @@
       {
         "aspects": ["mega"],
         "model": "cobblemon:audino_mega.geo",
-        "texture": "cobblemon:textures/pokemon/0531_audino/audino_mega.png",
+        "texture": "cobblemon:textures/pokemon/0531_audino/megaaudino.png",
         "layers": []
       },
       {
         "aspects": [ "mega", "shiny" ],
         "model": "cobblemon:audino_mega.geo",
-        "texture": "cobblemon:textures/pokemon/0531_audino/audino_mega_shiny.png"
+        "texture": "cobblemon:textures/pokemon/0531_audino/megaaudino_shiny.png"
       }
     ]
   }

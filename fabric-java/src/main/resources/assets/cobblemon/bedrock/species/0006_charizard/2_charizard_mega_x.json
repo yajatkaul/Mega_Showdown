@@ -5,7 +5,7 @@
     {
       "aspects": ["mega-x"],
       "model": "cobblemon:charizard_mega_x.geo",
-      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_x.png",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardx.png",
       "layers": [
         {
           "name": "flame",
@@ -24,7 +24,7 @@
     {
       "aspects": [ "mega-x", "shiny" ],
       "model": "cobblemon:charizard_mega_x.geo",
-      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_mega_x_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardx_shiny.png",
       "layers": [
             {
               "name": "flame",
@@ -39,6 +39,44 @@
               "translucent": true
             }
           ]
-    }
+    },
+	{
+      "aspects": ["mega_x"],
+      "model": "cobblemon:charizard_mega_x.geo",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardx.png",
+      "layers": [
+        {
+          "name": "flame",
+          "texture": "cobblemon:textures/pokemon/blank.png",
+          "emissive": true,
+          "translucent": true
+        },
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0006_charizard/x_glow.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [ "mega_x", "shiny" ],
+      "model": "cobblemon:charizard_mega_x.geo",
+      "texture": "cobblemon:textures/pokemon/0006_charizard/megacharizardx_shiny.png",
+      "layers": [
+            {
+              "name": "flame",
+              "texture": "cobblemon:textures/pokemon/blank.png",
+              "emissive": true,
+              "translucent": true
+            },
+            {
+              "name": "glow",
+              "texture": "cobblemon:textures/pokemon/0006_charizard/x_glow.png",
+              "emissive": true,
+              "translucent": true
+            }
+          ]
+    }  
   ]
 }

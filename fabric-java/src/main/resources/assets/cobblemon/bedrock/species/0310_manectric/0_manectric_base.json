@@ -18,14 +18,14 @@
       "aspects": ["mega"],
       "poser": "cobblemon:manectric_mega",
       "model": "cobblemon:manectric_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0310_manectric/manectric_mega.png",
+      "texture": "cobblemon:textures/pokemon/0310_manectric/megamanectric.png",
       "layers": []
     },
     {
       "aspects": [ "mega", "shiny" ],
       "poser": "cobblemon:manectric_mega",
       "model": "cobblemon:manectric_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0310_manectric/manectric_mega_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0310_manectric/megamanectric_shiny.png"
     }
   ]
 }

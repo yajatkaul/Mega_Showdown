@@ -32,7 +32,7 @@
       "aspects": ["mega"],
       "poser": "cobblemon:banette_mega",
       "model": "cobblemon:banette_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0354_banette/banette_mega.png",
+      "texture": "cobblemon:textures/pokemon/0354_banette/megabanette.png",
       "layers": [
         {
           "name": "glow",
@@ -45,7 +45,7 @@
       "aspects": [ "mega", "shiny" ],
       "poser": "cobblemon:banette_mega",
       "model": "cobblemon:banette_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0354_banette/banette_mega_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0354_banette/megabanette_shiny.png",
       "layers": [
         {
           "name": "glow",

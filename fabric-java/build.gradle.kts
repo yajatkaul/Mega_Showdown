@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "1.4-SNAPSHOT-fabric"
+version = "1.5-SNAPSHOT-fabric"
 
 architectury {
     platformSetupLoomIde()

@@ -1,8 +1,8 @@
 {
     "portraitScale": 3,
-    "portraitTranslation": [ 0.10, 0.50, 0 ],
+    "portraitTranslation": [ 0.21, 0.35, 0 ],
     "profileScale": 0.5,
-    "profileTranslation": [ 0.05, 1.0, 0 ],
+    "profileTranslation": [ 0.05, 0.75, 0 ],
     "faint": "bedrock(altaria, sleep)",
     "poses": {
 

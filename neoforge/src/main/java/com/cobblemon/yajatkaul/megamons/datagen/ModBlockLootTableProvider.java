@@ -123,6 +123,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
 
+//        dropSelf(ModBlocks.MEGA_STONE_CRYSTAL.get());
+
 //        add(ModBlocks.MEGA_STONE_CRYSTAL.get(), LootTable.lootTable()
 //                .withPool(LootPool.lootPool()
 //                        .setRolls(ConstantValue.exactly(1.0f))

@@ -6,6 +6,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -70,18 +72,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.MEGA_METEOROID_BLOCK);
 
         //Testing
-//        directionalBlock(ModBlocks.MEGA_STONE_CRYSTAL.get(),
-//                models().cross(getPath(ModBlocks.MEGA_STONE_CRYSTAL.get()),
-//                        blockTexture(ModBlocks.MEGA_STONE_CRYSTAL.get())));
+        //blockWithItemCutOut(ModBlocks.MEGA_STONE_CRYSTAL);
     }
-
-    private String getPath(Block block) {
-        return BuiltInRegistries.BLOCK.getKey(block).getPath();
-    }
-
-
 
     private void blockWithItem(DeferredBlock<?> deferredBlock){
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
+    }
+
+    private void blockWithItemCutOut(DeferredBlock<?> deferredBlock) {
+        directionalBlock(deferredBlock.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath(),
+                        blockTexture(deferredBlock.get())).renderType("cutout"));
+
     }
 }
