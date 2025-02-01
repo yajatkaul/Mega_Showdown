@@ -3,8 +3,10 @@ package com.cobblemon.yajatkaul.megamons;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
-import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.cobblemon.yajatkaul.megamons.block.ModBlocks;
+import com.cobblemon.yajatkaul.megamons.datamanage.DataManage;
 import com.cobblemon.yajatkaul.megamons.showdown.ShowdownUtils;
 import com.cobblemon.yajatkaul.megamons.item.ModCreativeModeTabs;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
@@ -21,13 +23,12 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Mod(MegaShowdown.MOD_ID)
 public final class MegaShowdown {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Mega Showdown");
+    public static final Logger LOGGER = LoggerFactory.getLogger("Mega Showdown");
     public static final String MOD_ID = "mega_showdown";
+
     public MegaShowdown(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
@@ -35,6 +36,8 @@ public final class MegaShowdown {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        DataManage.register(modEventBus);
 
         ModCreativeModeTabs.register(modEventBus);
 

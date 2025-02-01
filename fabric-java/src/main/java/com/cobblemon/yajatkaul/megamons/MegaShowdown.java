@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.megamons;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.yajatkaul.megamons.block.ModBlocks;
+import com.cobblemon.yajatkaul.megamons.datamanage.DataManage;
 import com.cobblemon.yajatkaul.megamons.item.ModItemGroups;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import com.cobblemon.yajatkaul.megamons.showdown.ShowdownUtils;
@@ -21,6 +22,10 @@ public class MegaShowdown implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItem();
         ModBlocks.registerModBlocks();
+
+        DataManage.registerDataComponentTypes();
+
+        Config.load();
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);

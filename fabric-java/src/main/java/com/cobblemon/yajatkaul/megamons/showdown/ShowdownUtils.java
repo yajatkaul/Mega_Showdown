@@ -3,29 +3,53 @@ package com.cobblemon.yajatkaul.megamons.showdown;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.megamons.datamanage.DataManage;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import kotlin.Unit;
 import net.minecraft.item.Item;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ShowdownUtils {
-    //    private static final Logger LOGGER = LoggerFactory.getLogger("Mega Showdown");
     public static final Map<Item, Species> MEGA_STONE_IDS = new HashMap<>();
 
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
         Pokemon pokemon = event.getPokemon();
         Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
-
-        if(species != pokemon.getSpecies() || event.getReceived() != event.getReturned()){
-            new FlagSpeciesFeature("mega", false).apply(pokemon);
-            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+        if(pokemon.getEntity().getWorld().isClient){
+            return Unit.INSTANCE;
         }
-//        LOGGER.info(String.valueOf(pokemon.heldItem().getItem()));
+
+        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+        for (String key : megaKeys) {
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+            ServerPlayerEntity player = pokemon.getOwnerPlayer();
+
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
+                    player.setAttached(DataManage.MEGA_DATA, false);
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+
+                }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
+                    player.setAttached(DataManage.MEGA_DATA, false);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+
+                } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
+                    player.setAttached(DataManage.MEGA_DATA, false);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }
+        }
 
         return Unit.INSTANCE;
     }

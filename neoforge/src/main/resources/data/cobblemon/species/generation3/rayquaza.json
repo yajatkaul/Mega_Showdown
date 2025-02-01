@@ -94,23 +94,6 @@
       "weight": 3920,
       "cannotDynamax": false,
       "battleOnly": false,
-      "requiredMove": "Dragon Ascent",
-	  "evolutions": [
-		  {
-                "id": "megarayquaza_rayquaza",
-                "variant": "item_interact",
-                "result": "rayquaza mega_evolution=mega_x",
-                "consumeHeldItem": false,
-                "learnableMoves": [],
-                "requirements": [
-                    {
-                        "variant": "has_move",
-                        "move": "dragonascent"
-                      }          
-                ],
-                "requiredContext": "mega_showdown:megabracelet"
-              }
-	  ],
 	  "baseScale": 0.8,
         "hitbox": {
           "width": 6,
@@ -307,23 +290,7 @@
               "depth": "normal",
               "light": "0-4"
             }
-          },	
-  "evolutions": [
-	  {
-            "id": "rayquaza_megarayquaza",
-            "variant": "item_interact",
-            "result": "rayquaza mega_evolution=mega",
-            "consumeHeldItem": false,
-            "learnableMoves": [],
-            "requirements": [
-                {
-                    "variant": "has_move",
-                    "move": "dragonascent"
-                  }          
-            ],
-             "requiredContext": "mega_showdown:megabracelet"
-          }
-  ],
+          },
   "baseScale": 0.8,
   "hitbox": {
     "width": 6,
