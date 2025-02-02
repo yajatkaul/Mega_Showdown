@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.cobblemon.yajatkaul.megamons.mixin",
+  "package": "com.cobblemon.yajatkaul.mega_showdown.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ExampleMixin"

@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-01T01:16:24.9618271	Block States: mega_showdown
+// 1.21.1	2025-02-02T18:37:09.9030273	Block States: mega_showdown
 43998113717108672477eed1c6ea8ba2abe109ce assets/mega_showdown/blockstates/abomasite_ore.json
 d560d60509a29b82d220b23259dc6abf13c4e3c9 assets/mega_showdown/blockstates/absolite_ore.json
 ba6fac7fe0a7a34662869d722408a7efd95d37d5 assets/mega_showdown/blockstates/aerodactylite_ore.json
@@ -33,6 +33,7 @@ a7b7e6f87c61d72a1f2c70aa44f32e47ad0779cd assets/mega_showdown/blockstates/lopunn
 f6c00aecd48b910505778cc25ba88535bc27cb93 assets/mega_showdown/blockstates/mawilite_ore.json
 5dff47f21161f2c9b6db11971972d45de5720c00 assets/mega_showdown/blockstates/medichamite_ore.json
 13ff99594752779ecd90cd7ebb6c4eacf1367446 assets/mega_showdown/blockstates/mega_meteorid_block.json
+67ba1c67b6c3f275097836b17ef98d1ce080eef2 assets/mega_showdown/blockstates/mega_stone_crystal.json
 1bb6f6aa384e4d3d783be8fa453a9dfa0bfb285c assets/mega_showdown/blockstates/metagrossite_ore.json
 d92d9a4e05b3fad7a97212a44167dc97408c9d8d assets/mega_showdown/blockstates/mewtwonite_x_ore.json
 036bac42a73fe8f05ae975d23db9108d8a363027 assets/mega_showdown/blockstates/mewtwonite_y_ore.json
@@ -82,6 +83,7 @@ eeaedeee7caeb56b82c02fd54ffe2aa3a42f77e3 assets/mega_showdown/models/block/lucar
 fe7664ed93a8ecd8c2a745b340608b96e25dc2a2 assets/mega_showdown/models/block/mawilite_ore.json
 be94b7a057dae4cde571cd118f7b8d7ed381bd6d assets/mega_showdown/models/block/medichamite_ore.json
 0a732a34017c74b9d771c5f8d38684308b5f698b assets/mega_showdown/models/block/mega_meteorid_block.json
+f3bcc5fa586e502385b6c694568c420bbf505aff assets/mega_showdown/models/block/mega_stone_crystal.json
 7e13f03a658923a85aafba0b6ac29e1870206804 assets/mega_showdown/models/block/metagrossite_ore.json
 8222d514c7a3764c5d2d607746519f7075a2f9dd assets/mega_showdown/models/block/mewtwonite_x_ore.json
 08abf9c12727a3df62c1de6470d5a1680f94702a assets/mega_showdown/models/block/mewtwonite_y_ore.json
@@ -131,6 +133,7 @@ c06f05c882c258f549b06408d2659aceab4628bd assets/mega_showdown/models/item/latios
 15b73698742203595f064c4d50e1121fa16ce191 assets/mega_showdown/models/item/mawilite_ore.json
 f80abf055b06677ab5e51f2d3559653d8d78da98 assets/mega_showdown/models/item/medichamite_ore.json
 5fa16413b465aabf6239fe4f63764beac53bf556 assets/mega_showdown/models/item/mega_meteorid_block.json
+f2e69d96d213e98ba02137155a64b0dd6608293d assets/mega_showdown/models/item/mega_stone_crystal.json
 6ec6ba8f6415496f5c56010a40c7086506539d91 assets/mega_showdown/models/item/metagrossite_ore.json
 df945304161ddb11b65312d976c59ec30a7d6d6f assets/mega_showdown/models/item/mewtwonite_x_ore.json
 d5d5f4f99df0937d71b6faa7703d9c08102698aa assets/mega_showdown/models/item/mewtwonite_y_ore.json

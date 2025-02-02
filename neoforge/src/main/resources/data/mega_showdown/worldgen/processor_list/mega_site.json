@@ -7,7 +7,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -20,7 +20,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -33,7 +33,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -46,7 +46,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -59,7 +59,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -72,7 +72,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -85,7 +85,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -98,7 +98,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -111,7 +111,7 @@
           "input_predicate": {
             "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.1111
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -122,425 +122,9 @@
         },
         {
           "input_predicate": {
-            "block": "minecraft:cobblestone",
+            "block": "minecraft:stone",
             "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:abomasite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:absolite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:aerodactylite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:aggronite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:alakazite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:altarianite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:ampharosite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:audinite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:banettite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:beedrillite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:blastoisinite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:blazikenite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:cameruptite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:charizardite_x_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:charizardite_y_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:diancite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:galladite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:garchompite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:gardevoirite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:gengarite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:glalitite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:gyaradosite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:heracronite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:houndoominite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:kangaskhanite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:latiasite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:latiosite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:lopunnite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:lucarionite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:manectite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:mawilite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:medichamite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
+            "probability": 0.0909090909090909
           },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
@@ -550,198 +134,15 @@
           }
         },
         {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           },
-          "output_state": {
-            "Name": "mega_showdown:metagrossite_ore"
-          }
-        },
-        {
           "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
+            "predicate_type": "minecraft:block_match",
+            "block": "minecraft:stone"
           },
           "output_state": {
-            "Name": "mega_showdown:mewtwonite_x_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:mewtwonite_y_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:pidgeotite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:pinsirite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:sablenite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:salamencite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:sceptilite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:scizorite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:sharpedonite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:slowbronite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:steelixite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:swampertite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:tyranitarite_ore"
-          }
-        },
-        {
-          "input_predicate": {
-            "block": "minecraft:cobblestone",
-            "predicate_type": "minecraft:random_block_match",
-            "probability": 0.0212766
-          },
-          "location_predicate": {
-            "predicate_type": "minecraft:always_true"
-          },
-          "output_state": {
-            "Name": "mega_showdown:venusaurite_ore"
+            "Name": "mega_showdown:mega_meteorid_block"
           }
         }
       ]

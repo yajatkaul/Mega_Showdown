@@ -12,7 +12,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cobblemon.yajatkaul.megamons.MegaShowdown"
+      "com.cobblemon.yajatkaul.mega_showdown.MegaShowdown"
+    ],
+    "client": [
+      "com.cobblemon.yajatkaul.mega_showdown.MegaShowdownClient"
     ]
   },
   "mixins": [
