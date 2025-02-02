@@ -1,5 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
+import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.mod.common.item.CobblemonItem;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.core.Holder;
@@ -176,6 +178,37 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                 .add(LootItem.lootTableItem(ModItems.VENUSAURITE).setWeight(1))
                         )
         );
+
+        add(ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_DAWN_ORE.get(), CobblemonItems.DAWN_STONE));
+
+        add(ModBlocks.MEGA_METEORID_DUSK_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_DUSK_ORE.get(), CobblemonItems.DUSK_STONE));
+
+        add(ModBlocks.MEGA_METEORID_FIRE_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_FIRE_ORE.get(), CobblemonItems.FIRE_STONE));
+
+        add(ModBlocks.MEGA_METEORID_ICE_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_ICE_ORE.get(), CobblemonItems.ICE_STONE));
+
+        add(ModBlocks.MEGA_METEORID_LEAF_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_LEAF_ORE.get(), CobblemonItems.LEAF_STONE));
+
+        add(ModBlocks.MEGA_METEORID_MOON_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_MOON_ORE.get(), CobblemonItems.MOON_STONE));
+
+        add(ModBlocks.MEGA_METEORID_SHINY_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_SHINY_ORE.get(), CobblemonItems.SHINY_STONE));
+
+        add(ModBlocks.MEGA_METEORID_SUN_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_SUN_ORE.get(), CobblemonItems.SUN_STONE));
+
+        add(ModBlocks.MEGA_METEORID_THUNDER_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_THUNDER_ORE.get(), CobblemonItems.THUNDER_STONE));
+
+        add(ModBlocks.MEGA_METEORID_WATER_ORE.get(),
+                block -> createOreDrop(ModBlocks.MEGA_METEORID_WATER_ORE.get(), CobblemonItems.WATER_STONE));
+
     }
 
     @Override

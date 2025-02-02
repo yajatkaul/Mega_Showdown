@@ -409,7 +409,6 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
-    //Testing
     public static final DeferredBlock<AmethystClusterBlock> MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
             () -> new MegaCrystalBlock(4, 3,
                     BlockBehaviour.Properties.of()
@@ -418,6 +417,77 @@ public class ModBlocks {
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
                             .lightLevel((state) -> 15)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_WATER_ORE = registerBlock("mega_meteorid_water_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_DAWN_ORE = registerBlock("mega_meteorid_dawn_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_DUSK_ORE = registerBlock("mega_meteorid_dusk_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_FIRE_ORE = registerBlock("mega_meteorid_fire_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_ICE_ORE = registerBlock("mega_meteorid_ice_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_LEAF_ORE = registerBlock("mega_meteorid_leaf_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_MOON_ORE = registerBlock("mega_meteorid_moon_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_SHINY_ORE = registerBlock("mega_meteorid_shiny_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_SUN_ORE = registerBlock("mega_meteorid_sun_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_METEORID_THUNDER_ORE = registerBlock("mega_meteorid_thunder_ore",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

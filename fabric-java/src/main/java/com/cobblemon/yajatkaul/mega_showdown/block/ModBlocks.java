@@ -318,6 +318,67 @@ public class ModBlocks {
                             .requiresTool()
                             .luminance((state) -> 15)));
 
+    public static final Block MEGA_METEORID_DAWN_ORE = registerBlock("mega_meteorid_dawn_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_DUSK_ORE = registerBlock("mega_meteorid_dusk_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_FIRE_ORE = registerBlock("mega_meteorid_fire_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_ICE_ORE = registerBlock("mega_meteorid_ice_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_LEAF_ORE = registerBlock("mega_meteorid_leaf_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_MOON_ORE = registerBlock("mega_meteorid_moon_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_SHINY_ORE = registerBlock("mega_meteorid_shiny_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_SUN_ORE = registerBlock("mega_meteorid_sun_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_THUNDER_ORE = registerBlock("mega_meteorid_thunder_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MEGA_METEORID_WATER_ORE = registerBlock("mega_meteorid_water_ore",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
+
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);

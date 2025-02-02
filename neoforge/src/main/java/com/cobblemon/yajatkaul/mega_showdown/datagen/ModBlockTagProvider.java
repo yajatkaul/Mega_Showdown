@@ -68,7 +68,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.VENUSAURITE_ORE.get(),
                         ModBlocks.KEYSTONE_ORE.get(),
                         ModBlocks.MEGA_STONE_CRYSTAL.get(),
-                        ModBlocks.MEGA_METEOROID_BLOCK.get());
+                        ModBlocks.MEGA_METEOROID_BLOCK.get(),
+                        ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
+                        ModBlocks.MEGA_METEORID_DUSK_ORE.get(),
+                        ModBlocks.MEGA_METEORID_FIRE_ORE.get(),
+                        ModBlocks.MEGA_METEORID_ICE_ORE.get(),
+                        ModBlocks.MEGA_METEORID_LEAF_ORE.get(),
+                        ModBlocks.MEGA_METEORID_MOON_ORE.get(),
+                        ModBlocks.MEGA_METEORID_SHINY_ORE.get(),
+                        ModBlocks.MEGA_METEORID_SUN_ORE.get(),
+                        ModBlocks.MEGA_METEORID_THUNDER_ORE.get(),
+                        ModBlocks.MEGA_METEORID_WATER_ORE.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ABOMASITE_ORE.get(),
@@ -123,6 +133,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(ModBlocks.MEGA_METEOROID_BLOCK.get());
+                .add(ModBlocks.MEGA_METEOROID_BLOCK.get(),
+                        ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
+                        ModBlocks.MEGA_METEORID_DUSK_ORE.get(),
+                        ModBlocks.MEGA_METEORID_FIRE_ORE.get(),
+                        ModBlocks.MEGA_METEORID_ICE_ORE.get(),
+                        ModBlocks.MEGA_METEORID_LEAF_ORE.get(),
+                        ModBlocks.MEGA_METEORID_MOON_ORE.get(),
+                        ModBlocks.MEGA_METEORID_SHINY_ORE.get(),
+                        ModBlocks.MEGA_METEORID_SUN_ORE.get(),
+                        ModBlocks.MEGA_METEORID_THUNDER_ORE.get(),
+                        ModBlocks.MEGA_METEORID_WATER_ORE.get());
     }
 }

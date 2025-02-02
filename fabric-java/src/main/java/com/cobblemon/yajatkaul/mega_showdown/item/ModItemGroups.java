@@ -120,6 +120,17 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.MEGA_METEOROID_BLOCK);
                         entries.add(ModItems.MEGA_STONE_CRYSTAL_ITEM);
+
+                        entries.add(ModBlocks.MEGA_METEORID_DAWN_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_DUSK_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_FIRE_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_ICE_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_LEAF_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_MOON_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_SHINY_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_SUN_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_THUNDER_ORE);
+                        entries.add(ModBlocks.MEGA_METEORID_WATER_ORE);
                     }))
                     .build());
 

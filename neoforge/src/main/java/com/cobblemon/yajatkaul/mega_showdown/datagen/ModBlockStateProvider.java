@@ -68,6 +68,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //Testing
         blockWithItemCutOut(ModBlocks.MEGA_STONE_CRYSTAL);
+
+        //Custom stones
+        blockWithItem(ModBlocks.MEGA_METEORID_DAWN_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_DUSK_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_FIRE_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_ICE_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_LEAF_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_MOON_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_SHINY_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_SUN_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_THUNDER_ORE);
+        blockWithItem(ModBlocks.MEGA_METEORID_WATER_ORE);
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock){

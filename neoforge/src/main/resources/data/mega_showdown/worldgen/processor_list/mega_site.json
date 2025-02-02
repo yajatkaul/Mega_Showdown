@@ -13,7 +13,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:fire_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_fire_ore"
           }
         },
         {
@@ -26,7 +26,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:thunder_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_thunder_ore"
           }
         },
         {
@@ -39,7 +39,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:water_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_water_ore"
           }
         },
         {
@@ -52,7 +52,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:leaf_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_leaf_ore"
           }
         },
         {
@@ -65,7 +65,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:moon_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_moon_ore"
           }
         },
         {
@@ -78,7 +78,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:sun_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_sun_ore"
           }
         },
         {
@@ -91,7 +91,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:dawn_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_dawn_ore"
           }
         },
         {
@@ -104,7 +104,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:shiny_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_shiny_ore"
           }
         },
         {
@@ -117,7 +117,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "cobblemon:ice_stone_ore"
+            "Name": "mega_showdown:mega_meteorid_ice_ore"
           }
         },
         {

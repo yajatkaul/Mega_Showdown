@@ -143,6 +143,17 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MEGA_STONE_CRYSTAL);
 
                         output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
+
+                        output.accept(ModBlocks.MEGA_METEORID_DAWN_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_DUSK_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_FIRE_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_ICE_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_LEAF_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_MOON_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_SHINY_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_SUN_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_THUNDER_ORE);
+                        output.accept(ModBlocks.MEGA_METEORID_WATER_ORE);
                     })
                     .build());
 

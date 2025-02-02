@@ -167,5 +167,16 @@
   "item.mega_showdown.chilldrive": "Chill Drive",
   "item.mega_showdown.adamantorb": "Adamant Orb",
 
-  "itemgroup.mega_showdown.mega_showdown_tab": "Mega Showdown"
+  "itemgroup.mega_showdown.mega_showdown_tab": "Mega Showdown",
+
+  "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
+  "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
+  "block.mega_showdown.mega_meteorid_fire_ore": "Mega Meteorid Fire Ore",
+  "block.mega_showdown.mega_meteorid_ice_ore": "Mega Meteorid Ice Ore",
+  "block.mega_showdown.mega_meteorid_leaf_ore": "Mega Meteorid Leaf Ore",
+  "block.mega_showdown.mega_meteorid_moon_ore": "Mega Meteorid Moon Ore",
+  "block.mega_showdown.mega_meteorid_shiny_ore": "Mega Meteorid Shiny Ore",
+  "block.mega_showdown.mega_meteorid_sun_ore": "Mega Meteorid Sun Ore",
+  "block.mega_showdown.mega_meteorid_thunder_ore": "Mega Meteorid Thunder Ore",
+  "block.mega_showdown.mega_meteorid_water_ore": "Mega Meteorid Water Ore"
 }
