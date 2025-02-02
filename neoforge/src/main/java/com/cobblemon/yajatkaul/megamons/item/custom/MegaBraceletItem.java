@@ -11,7 +11,6 @@ import com.cobblemon.yajatkaul.megamons.datamanage.DataManage;
 import com.cobblemon.yajatkaul.megamons.item.ModItems;
 import com.cobblemon.yajatkaul.megamons.showdown.ShowdownUtils;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -43,11 +42,14 @@ public class MegaBraceletItem extends Item {
                 if(species == ShowdownUtils.getSpecies("charizard")){
                     if(pokemon.heldItem().is(ModItems.CHARIZARDITE_X)){
                         player.setData(DataManage.MEGA_DATA, true);
+                        player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                         new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     }else if(pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)){
                         player.setData(DataManage.MEGA_DATA, true);
+                        player.setData(DataManage.MEGA_POKEMON, pokemon);
+
 
                         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                         new FlagSpeciesFeature("mega-y", true).apply(pokemon);
@@ -56,11 +58,13 @@ public class MegaBraceletItem extends Item {
                 else if(species == ShowdownUtils.getSpecies("mewtwo")){
                     if(pokemon.heldItem().is(ModItems.MEWTWONITE_X)){
                         player.setData(DataManage.MEGA_DATA, true);
+                        player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                         new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     }else if(pokemon.heldItem().is(ModItems.MEWTWONITE_Y)){
                         player.setData(DataManage.MEGA_DATA, true);
+                        player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                         new FlagSpeciesFeature("mega-y", true).apply(pokemon);
@@ -68,12 +72,16 @@ public class MegaBraceletItem extends Item {
                 }
                 else{
                     player.setData(DataManage.MEGA_DATA, true);
+                    player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
                 }
             }else if(pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")){
                 for (int i = 0; i < 4; i++){
                     if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
+                        player.setData(DataManage.MEGA_POKEMON, pokemon);
+                        player.setData(DataManage.MEGA_DATA, true);
+
                         new FlagSpeciesFeature("mega", true).apply(pokemon);
                     }
                 }
@@ -97,14 +105,20 @@ public class MegaBraceletItem extends Item {
 
                     if (enabled && feature.getName().equals("mega")) {
                         player.setData(DataManage.MEGA_DATA, false);
+                        player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
                         new FlagSpeciesFeature("mega", false).apply(pokemon);
 
                     }else if(enabled && feature.getName().equals("mega-x")){
                         player.setData(DataManage.MEGA_DATA, false);
+                        player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
                         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
 
                     } else if (enabled && feature.getName().equals("mega-y")) {
                         player.setData(DataManage.MEGA_DATA, false);
+                        player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
                         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     }
                 }

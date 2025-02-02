@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.megamons;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.cobblemon.yajatkaul.megamons.block.ModBlocks;
@@ -46,6 +47,7 @@ public final class MegaShowdown {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
+        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
         //CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, this::example);
     }
 
@@ -54,7 +56,6 @@ public final class MegaShowdown {
         //if()
         return Unit.INSTANCE;
     }
-
 
     private void commonSetup(final FMLCommonSetupEvent event) {
     }

@@ -29,6 +29,7 @@ public class MegaShowdown implements ModInitializer {
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
+        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
     }
 
     private void onServerStarted(MinecraftServer server) {

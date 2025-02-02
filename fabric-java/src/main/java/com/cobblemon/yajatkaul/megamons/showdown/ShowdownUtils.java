@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.megamons.showdown;
 
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
+import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
@@ -38,17 +39,36 @@ public class ShowdownUtils {
 
                 if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
                     player.setAttached(DataManage.MEGA_DATA, false);
+                    player.setAttached(DataManage.MEGA_POKEMON, null);
+
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
 
                 }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
                     player.setAttached(DataManage.MEGA_DATA, false);
+                    player.setAttached(DataManage.MEGA_POKEMON, null);
+
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
 
                 } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
                     player.setAttached(DataManage.MEGA_DATA, false);
+                    player.setAttached(DataManage.MEGA_POKEMON, null);
+
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
             }
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
+        if(post.getPlayer().getWorld().isClient){
+            return Unit.INSTANCE;
+        }
+
+        if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON) == post.getPokemon()){
+            post.getPlayer().setAttached(DataManage.MEGA_DATA, false);
+            post.getPlayer().setAttached(DataManage.MEGA_POKEMON, null);
         }
 
         return Unit.INSTANCE;
