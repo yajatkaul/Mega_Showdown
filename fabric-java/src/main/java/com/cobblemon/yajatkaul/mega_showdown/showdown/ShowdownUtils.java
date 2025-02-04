@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import kotlin.Unit;
@@ -21,11 +22,21 @@ public class ShowdownUtils {
     public static final Map<Item, Species> MEGA_STONE_IDS = new HashMap<>();
 
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
+        if(Config.getInstance().battleModeOnly){
+            return Unit.INSTANCE;
+        }
         Pokemon pokemon = event.getPokemon();
-        Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+
+        if(pokemon.getEntity() == null){
+            return Unit.INSTANCE;
+        }
+
         if(pokemon.getEntity().getWorld().isClient){
             return Unit.INSTANCE;
         }
+
+        Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+
 
         List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 

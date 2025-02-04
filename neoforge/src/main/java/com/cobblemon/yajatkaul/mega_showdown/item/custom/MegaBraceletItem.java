@@ -30,15 +30,17 @@ public class MegaBraceletItem extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand hand) {
+        if (!player.level().isClientSide && Config.battleMode){
+            player.sendSystemMessage(Component.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
+                    .withStyle(style -> style.withColor(0xFF0000)));
+            return InteractionResult.PASS;
+        }
 
         if(hand == InteractionHand.MAIN_HAND && context instanceof PokemonEntity && !context.level().isClientSide()){
             Pokemon pokemon = ((PokemonEntity) context).getPokemon();
             Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
             if(species == pokemon.getSpecies() && (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
-                MegaShowdown.LOGGER.info("Player mega data: {}", player.getData(DataManage.MEGA_DATA));
-                MegaShowdown.LOGGER.info("Config data: {}", Config.multipleMegas);
-
                 if(species == ShowdownUtils.getSpecies("charizard")){
                     if(pokemon.heldItem().is(ModItems.CHARIZARDITE_X)){
                         player.setData(DataManage.MEGA_DATA, true);
@@ -77,19 +79,25 @@ public class MegaBraceletItem extends Item {
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
                 }
             }else if(pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")){
+                boolean found = false;
                 for (int i = 0; i < 4; i++){
                     if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
                         player.setData(DataManage.MEGA_POKEMON, pokemon);
                         player.setData(DataManage.MEGA_DATA, true);
 
                         new FlagSpeciesFeature("mega", true).apply(pokemon);
+                        found = true;
                     }
+                }
+                if(!found){
+                    player.displayClientMessage(Component.literal("Rayquaza doesn't have dragonascent")
+                            .withColor(0xFF0000), true);
                 }
             }else if(species == pokemon.getSpecies() && player.getData(DataManage.MEGA_DATA)){
                     player.displayClientMessage(Component.literal("You can only have one mega at a time")
                         .withColor(0xFF0000), true);
             }else{
-                player.displayClientMessage(Component.literal("Don't have the correct stone/move")
+                player.displayClientMessage(Component.literal("Don't have the correct stone")
                         .withColor(0xFF0000), true);
             }
         } else if (hand == InteractionHand.OFF_HAND && !context.level().isClientSide()) {

@@ -15,6 +15,8 @@ public class Config {
 
     // Configuration fields
     public boolean multipleMegas = false;
+    public boolean battleModeOnly = false;
+    public boolean megaTurns = false;
 
     private static Config instance;
 
@@ -30,7 +32,7 @@ public class Config {
             try (FileReader reader = new FileReader(CONFIG_FILE)) {
                 instance = GSON.fromJson(reader, Config.class);
             } catch (IOException e) {
-                e.printStackTrace();
+                e.fillInStackTrace();
             }
         } else {
             instance = new Config(); // Load default values if no config exists
@@ -42,7 +44,7 @@ public class Config {
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             GSON.toJson(instance, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 }
