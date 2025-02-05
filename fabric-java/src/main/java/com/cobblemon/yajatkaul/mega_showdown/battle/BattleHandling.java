@@ -33,7 +33,6 @@ import net.minecraft.text.TextColor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class BattleHandling {
 
 // Calculate responsive size (you can adjust these ratios)
             int buttonWidth = (int)(screenWidth * 0.05);  // 5% of screen width
-            int buttonHeight = (int)(screenHeight * 0.098);
+            int buttonHeight = (int)(screenHeight * 0.095);
 
             ButtonWidget button = ButtonWidget.builder(Text.literal("M"), buttonWidget -> {
                 if(battle == null){
@@ -292,7 +291,7 @@ public class BattleHandling {
 
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             if (serverPlayer.getUuid().equals(clientPlayer.getUuid())) {
-                for (BattlePokemon battlePokemon : battle.getActor(clientPlayer.getUuid()).getPokemonList()) {
+                for (BattlePokemon battlePokemon : battleFledEvent.getBattle().getActor(clientPlayer.getUuid()).getPokemonList()) {
                     if (battlePokemon.getOriginalPokemon().getEntity() == null ||
                             battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
                         continue;

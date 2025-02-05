@@ -24,7 +24,7 @@ public class Config
             .comment("Makes it so that evolving during battle consumes one turn (Only works if battleMode is enabled)")
             .define("megaTurns", false);
 
-    private static final ModConfigSpec.BooleanValue BRACELET_NO_OFF_HAND = BUILDER
+    private static final ModConfigSpec.BooleanValue BRACELET_HAND_SENSITIVE = BUILDER
             .comment("Makes it so you can devolve and evolve the pokemon with mega bracelet in the same hand")
             .define("braceletHandSensitive", false);
 
@@ -41,6 +41,6 @@ public class Config
         multipleMegas = MULTIPLE_MEGAS.get();
         battleMode = BATTLE_MODE_ONLY.get();
         megaTurns = MEGA_TAKES_TURN.get();
-        braceletHandSensitive = BRACELET_NO_OFF_HAND.get();
+        braceletHandSensitive = BRACELET_HAND_SENSITIVE.get();
     }
 }

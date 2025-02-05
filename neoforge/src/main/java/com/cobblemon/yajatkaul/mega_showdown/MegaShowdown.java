@@ -53,10 +53,7 @@ public final class MegaShowdown {
             CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
             CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
-            NeoForge.EVENT_BUS.addListener(BattleHandling::megaEvoButton);
         }
-
-        CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
     }
 
 
@@ -65,7 +62,8 @@ public final class MegaShowdown {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
+            NeoForge.EVENT_BUS.addListener(BattleHandling::megaEvoButton);
         }
     }
 }

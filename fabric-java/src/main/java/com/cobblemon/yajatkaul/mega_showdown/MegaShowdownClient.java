@@ -1,5 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
+import com.cobblemon.mod.common.api.Priority;
+import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
@@ -14,5 +16,6 @@ public class MegaShowdownClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MEGA_STONE_CRYSTAL, RenderLayer.getCutout());
 
         ScreenEvents.AFTER_INIT.register(BattleHandling::megaEvoButton);
+        CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
     }
 }

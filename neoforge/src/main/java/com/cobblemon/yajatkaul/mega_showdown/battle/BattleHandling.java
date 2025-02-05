@@ -181,7 +181,7 @@ public class BattleHandling {
 
 // Calculate responsive size (you can adjust these ratios)
             int buttonWidth = (int)(screenWidth * 0.05);  // 5% of screen width
-            int buttonHeight = (int)(screenHeight * 0.098);
+            int buttonHeight = (int)(screenHeight * 0.095);
 
             Button button = Button.builder(Component.literal("M"), onPressAction)
                     .pos(xPos,yPos)
@@ -289,7 +289,7 @@ public class BattleHandling {
 
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             if (serverPlayer.getUUID().equals(clientPlayer.getUUID())) {
-                for (BattlePokemon battlePokemon : battle.getActor(clientPlayer.getUUID()).getPokemonList()) {
+                for (BattlePokemon battlePokemon : battleFledEvent.getBattle().getActor(clientPlayer.getUUID()).getPokemonList()) {
                     if (battlePokemon.getOriginalPokemon().getEntity() == null ||
                             battlePokemon.getOriginalPokemon().getEntity().level().isClientSide) {
                         continue;

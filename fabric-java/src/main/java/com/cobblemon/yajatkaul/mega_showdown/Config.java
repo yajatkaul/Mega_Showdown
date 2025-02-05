@@ -17,6 +17,7 @@ public class Config {
     public boolean multipleMegas = false;
     public boolean battleModeOnly = false;
     public boolean megaTurns = false;
+    public boolean braceletHandSensitive = false;
 
     private static Config instance;
 
