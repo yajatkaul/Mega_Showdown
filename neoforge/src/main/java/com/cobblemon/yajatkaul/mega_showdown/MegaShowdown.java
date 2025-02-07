@@ -37,7 +37,6 @@ public final class MegaShowdown {
     public static final String MOD_ID = "mega_showdown";
 
     public MegaShowdown(IEventBus modEventBus, ModContainer modContainer) {
-
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
@@ -48,6 +47,15 @@ public final class MegaShowdown {
         ModCreativeModeTabs.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
+
+
+    // You can use SubscribeEvent and let the Event Bus discover methods to call
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event) {
+        ShowdownUtils.loadMegaStoneIds();
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
+        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
@@ -60,22 +68,9 @@ public final class MegaShowdown {
     }
 
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        ShowdownUtils.loadMegaStoneIds();
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
-        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
-    }
-
-
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event){
-
         if(Config.battleMode){
-            if(event.getEntity().level().isClientSide){
-                return;
-            }
             if(event.getEntity() instanceof ServerPlayer player){
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 

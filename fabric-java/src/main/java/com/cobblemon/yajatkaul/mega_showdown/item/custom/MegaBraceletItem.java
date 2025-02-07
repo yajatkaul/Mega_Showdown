@@ -46,8 +46,26 @@ public class MegaBraceletItem extends Item {
 
         //Hand sensitive
         if(Config.getInstance().braceletHandSensitive){
-            if(hand == Hand.MAIN_HAND && context instanceof PokemonEntity && !context.getWorld().isClient){
-                Evolve(context, player);
+            if(hand == Hand.MAIN_HAND && context instanceof PokemonEntity pk && !context.getWorld().isClient){
+                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+                boolean end = false;
+                for (String key : megaKeys) {
+                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+                    FlagSpeciesFeature feature = featureProvider.get(pk.getPokemon());
+
+                    if(feature != null){
+                        boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
+
+                        if(enabled){
+                            end = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(!end){
+                    Evolve(context, player);
+                }
             } else if (hand == Hand.OFF_HAND && !context.getWorld().isClient) {
                 Devolve(context, player);
             }

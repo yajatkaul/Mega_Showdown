@@ -35,6 +35,18 @@ public class MegaShowdown implements ModInitializer {
         Config.load();
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
+    }
+
+    private void onServerStarted(MinecraftServer server) {
+        ShowdownUtils.loadMegaStoneIds();
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
+        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
+
+        if(Config.getInstance().battleModeOnly){
+            CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
+            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
+            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
+        }
 
         //Battle Only
         if(Config.getInstance().battleModeOnly){
@@ -51,18 +63,6 @@ public class MegaShowdown implements ModInitializer {
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
             });
-        }
-    }
-
-    private void onServerStarted(MinecraftServer server) {
-        ShowdownUtils.loadMegaStoneIds();
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
-        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
-
-        if(Config.getInstance().battleModeOnly){
-            CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
-            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
-            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
         }
     }
 
