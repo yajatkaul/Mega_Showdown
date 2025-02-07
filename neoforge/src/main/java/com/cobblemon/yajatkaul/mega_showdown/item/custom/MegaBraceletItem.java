@@ -39,8 +39,8 @@ public class MegaBraceletItem extends Item {
         }
 
         if (!player.level().isClientSide && Config.battleMode){
-            player.sendSystemMessage(Component.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
-                    .withStyle(style -> style.withColor(0xFF0000)));
+//            player.sendSystemMessage(Component.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
+//                    .withStyle(style -> style.withColor(0xFF0000)));
             return InteractionResult.PASS;
         }
 
@@ -79,7 +79,6 @@ public class MegaBraceletItem extends Item {
                 Evolve(context, player);
             }
         }
-
 
         return InteractionResult.PASS;
     }
@@ -151,36 +150,18 @@ public class MegaBraceletItem extends Item {
     }
 
     private void Devolve(LivingEntity context, Player player){
-        Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if (enabled && feature.getName().equals("mega")) {
-                    player.setData(DataManage.MEGA_DATA, false);
-                    player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-
-                }else if(enabled && feature.getName().equals("mega-x")){
-                    player.setData(DataManage.MEGA_DATA, false);
-                    player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
-                } else if (enabled && feature.getName().equals("mega-y")) {
-                    player.setData(DataManage.MEGA_DATA, false);
-                    player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            }
+        if(player.level().isClientSide){
+            return;
         }
+
+        Pokemon pokemon = ((PokemonEntity) context).getPokemon();
+
+        player.setData(DataManage.MEGA_DATA, false);
+        player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+        new FlagSpeciesFeature("mega", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
     }
 
     @Override

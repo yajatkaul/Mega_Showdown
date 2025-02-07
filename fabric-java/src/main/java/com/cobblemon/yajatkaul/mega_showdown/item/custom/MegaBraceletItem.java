@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
@@ -19,10 +18,10 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 
 import java.util.List;
+
 
 public class MegaBraceletItem extends Item {
 
@@ -38,12 +37,14 @@ public class MegaBraceletItem extends Item {
             }
         }
 
+        //Battle Mode only
         if (!player.getWorld().isClient && Config.getInstance().battleModeOnly){
-            player.sendMessage(Text.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
-                    .formatted(Formatting.RED));
+//            player.sendMessage(Text.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
+//                    .formatted(Formatting.RED));
             return ActionResult.PASS;
         }
 
+        //Hand sensitive
         if(Config.getInstance().braceletHandSensitive){
             if(hand == Hand.MAIN_HAND && context instanceof PokemonEntity && !context.getWorld().isClient){
                 Evolve(context, player);
@@ -92,6 +93,7 @@ public class MegaBraceletItem extends Item {
             playerData = false;
         }
 
+        //Multiple megas
         if(species == pokemon.getSpecies() && (!playerData || Config.getInstance().multipleMegas)){
 
             if(species == ShowdownUtils.getSpecies("charizard")){
@@ -162,35 +164,17 @@ public class MegaBraceletItem extends Item {
 
     private void Devolve(LivingEntity context, PlayerEntity player){
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if (enabled && feature.getName().equals("mega")) {
-                    player.setAttached(DataManage.MEGA_DATA, false);
-                    player.setAttached(DataManage.MEGA_POKEMON, null);
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-
-                }else if(enabled && feature.getName().equals("mega-x")){
-                    player.setAttached(DataManage.MEGA_DATA, false);
-                    player.setAttached(DataManage.MEGA_POKEMON, null);
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
-                } else if (enabled && feature.getName().equals("mega-y")) {
-                    player.setAttached(DataManage.MEGA_DATA, false);
-                    player.setAttached(DataManage.MEGA_POKEMON, null);
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            }
+        if(player.getWorld().isClient){
+            return;
         }
+
+        player.setAttached(DataManage.MEGA_DATA, false);
+        player.setAttached(DataManage.MEGA_POKEMON, null);
+
+        new FlagSpeciesFeature("mega", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
     }
 
     @Override

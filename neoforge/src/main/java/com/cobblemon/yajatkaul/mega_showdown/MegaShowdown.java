@@ -1,8 +1,17 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.platform.events.ServerPlayerEvent;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerPlayerConnection;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
@@ -47,12 +56,28 @@ public final class MegaShowdown {
         ShowdownUtils.loadMegaStoneIds();
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
+    }
 
-        // Battle mode only
+
+    @SubscribeEvent
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event){
+
         if(Config.battleMode){
-            CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
-            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
-            CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
+            if(event.getEntity().level().isClientSide){
+                return;
+            }
+            if(event.getEntity() instanceof ServerPlayer player){
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+                player.setData(DataManage.MEGA_DATA, false);
+                player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }
         }
     }
 
@@ -62,8 +87,15 @@ public final class MegaShowdown {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
             NeoForge.EVENT_BUS.addListener(BattleHandling::megaEvoButton);
+            CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
+
+            // Battle mode only
+            if(Config.battleMode){
+                CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
+                CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
+                CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
+            }
         }
     }
 }

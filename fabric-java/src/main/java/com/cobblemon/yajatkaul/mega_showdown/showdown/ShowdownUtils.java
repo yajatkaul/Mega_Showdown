@@ -18,10 +18,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class ShowdownUtils {
     public static final Map<Item, Species> MEGA_STONE_IDS = new HashMap<>();
 
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
+        // Battle mode only
         if(Config.getInstance().battleModeOnly){
             return Unit.INSTANCE;
         }

@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.ShowdownActionResponse;
 import com.cobblemon.mod.common.battles.ShowdownActionResponseType;
@@ -16,35 +15,76 @@ import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
-import com.mojang.authlib.minecraft.client.MinecraftClient;
 import kotlin.Unit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class BattleHandling {
     public static PokemonBattle battle = null;
+    public static List<Pokemon> battlePokemonUsed = new ArrayList<>();
 
     public static Unit getBattleInfo(BattleStartedPostEvent battleStartedPostEvent) {
         battle = battleStartedPostEvent.getBattle();
         return Unit.INSTANCE;
     }
 
+    private static void broadCastEvoMsg(BattlePokemon battlePokemon) {
+        MutableComponent message = Component.literal(battlePokemon.getName().getString())
+                .withStyle(style -> style.withColor(ChatFormatting.GOLD))
+                .append(" ")
+                .append(Component.literal(battlePokemon.getOriginalPokemon().getAbility().getName())
+                        .withStyle(style -> style.withColor(ChatFormatting.GOLD)))
+                .append(" activated!");
+
+        battle.broadcastChatMessage(message);
+
+        String translatedDescription = Component.translatable(battlePokemon.getOriginalPokemon().getAbility().getDescription()).getString();
+
+        battle.broadcastChatMessage(
+                Component.literal(translatedDescription)
+                        .withStyle(style -> style.withColor(ChatFormatting.WHITE))
+        );
+
+        clicked = true;
+    }
+
+    public static boolean clicked = false;
     public static void megaEvoButton(ScreenEvent.Init.Post event) {
-        if (event.getScreen() instanceof BattleGUI gui) {
+        if (event.getScreen() instanceof BattleGUI) {
             Player clientPlayer = Minecraft.getInstance().player;
+
+            List<ShowdownActionResponse> skipTurn = Collections.singletonList(new ShowdownActionResponse(ShowdownActionResponseType.FORCE_PASS) {
+                @NotNull
+                @Override
+                public String toShowdownString(@NotNull ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveset) {
+                    return "pass"; // Or whatever the correct format for passing is in your Showdown implementation
+                }
+
+                @Override
+                public boolean isValid(@NotNull ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveset, boolean forceSwitch) {
+                    return true; // This action should be valid when we want to force a pass
+                }
+            });
 
             Button.OnPress onPressAction = button -> {
                 if(battle == null){
@@ -59,28 +99,18 @@ public class BattleHandling {
                             }
 
                             Pokemon pokemon = battlePokemon.getOriginalPokemon();
+
+                            if(battlePokemonUsed.contains(pokemon)){
+                                serverPlayer.displayClientMessage(Component.literal("Pokemon already mega'ed")
+                                        .withColor(0xFF0000), true);
+                                continue;
+                            }
+
                             Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
                             if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
                                     (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
-
-                                if(Config.megaTurns){
-                                    List<ShowdownActionResponse> action = Collections.singletonList(new ShowdownActionResponse(ShowdownActionResponseType.FORCE_PASS) {
-                                        @NotNull
-                                        @Override
-                                        public String toShowdownString(@NotNull ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveset) {
-                                            return "pass"; // Or whatever the correct format for passing is in your Showdown implementation
-                                        }
-
-                                        @Override
-                                        public boolean isValid(@NotNull ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveset, boolean forceSwitch) {
-                                            return true; // This action should be valid when we want to force a pass
-                                        }
-                                    });
-
-                                    battle.getActor(serverPlayer).setActionResponses(action);
-                                }
-
+                                
                                 if (species == ShowdownUtils.getSpecies("charizard")) {
                                     if (pokemon.heldItem().is(ModItems.CHARIZARDITE_X)) {
                                         serverPlayer.setData(DataManage.MEGA_DATA, true);
@@ -88,6 +118,12 @@ public class BattleHandling {
 
                                         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                                         new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                                        event.removeListener(button);
+                                        if(Config.megaTurns){
+                                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                                        }
+                                        broadCastEvoMsg(battlePokemon);
+                                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                                         break;
                                     } else if (pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)) {
                                         serverPlayer.setData(DataManage.MEGA_DATA, true);
@@ -95,6 +131,12 @@ public class BattleHandling {
 
                                         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                                         new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                                        event.removeListener(button);
+                                        if(Config.megaTurns){
+                                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                                        }
+                                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                                        broadCastEvoMsg(battlePokemon);
                                         break;
                                     }
                                 } else if (species == ShowdownUtils.getSpecies("mewtwo")) {
@@ -104,6 +146,12 @@ public class BattleHandling {
 
                                         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                                         new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                                        event.removeListener(button);
+                                        if(Config.megaTurns){
+                                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                                        }
+                                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                                        broadCastEvoMsg(battlePokemon);
                                         break;
                                     } else if (pokemon.heldItem().is(ModItems.MEWTWONITE_Y)) {
                                         serverPlayer.setData(DataManage.MEGA_DATA, true);
@@ -111,6 +159,12 @@ public class BattleHandling {
 
                                         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                                         new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                                        event.removeListener(button);
+                                        if(Config.megaTurns){
+                                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                                        }
+                                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                                        broadCastEvoMsg(battlePokemon);
                                         break;
                                     }
                                 } else {
@@ -118,6 +172,13 @@ public class BattleHandling {
                                     serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
 
                                     new FlagSpeciesFeature("mega", true).apply(pokemon);
+                                    event.removeListener(button);
+
+                                    if(Config.megaTurns){
+                                        battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                                    }
+                                    battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                                    broadCastEvoMsg(battlePokemon);
                                     break;
                                 }
                             } else if (pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")) {
@@ -127,25 +188,15 @@ public class BattleHandling {
                                         serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
                                         serverPlayer.setData(DataManage.MEGA_DATA, true);
 
-                                        if(Config.megaTurns){
-                                            List<ShowdownActionResponse> action = Collections.singletonList(new ShowdownActionResponse(ShowdownActionResponseType.FORCE_PASS) {
-                                                @NotNull
-                                                @Override
-                                                public String toShowdownString(@NotNull ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveset) {
-                                                    return "pass"; // Or whatever the correct format for passing is in your Showdown implementation
-                                                }
-
-                                                @Override
-                                                public boolean isValid(@NotNull ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveset, boolean forceSwitch) {
-                                                    return true; // This action should be valid when we want to force a pass
-                                                }
-                                            });
-
-                                            battle.getActor(serverPlayer).setActionResponses(action);
-                                        }
-
                                         new FlagSpeciesFeature("mega", true).apply(pokemon);
                                         found = true;
+                                        event.removeListener(button);
+
+                                        if(Config.megaTurns){
+                                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                                        }
+                                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                                        broadCastEvoMsg(battlePokemon);
                                         break;
                                     }
                                 }
@@ -172,25 +223,30 @@ public class BattleHandling {
             int screenHeight = screen.height;
 
 // Calculate relative positions (as percentages of screen size)
-            double relativeX = 0.15;  // 15% from left
-            double relativeY = 0.88;  // 70% from top
+            double relativeX = 0.048;  // 5.5% from left
+            double relativeY = 0.948;  // 96.6% from top
 
 // Calculate actual position
             int xPos = (int)(screenWidth * relativeX);
             int yPos = (int)(screenHeight * relativeY);
 
 // Calculate responsive size (you can adjust these ratios)
-            int buttonWidth = (int)(screenWidth * 0.05);  // 5% of screen width
-            int buttonHeight = (int)(screenHeight * 0.095);
+            int buttonWidth = (int)(screenWidth * 0.028);  // 5% of screen width
+            int buttonHeight = (int)(screenHeight * 0.05);
 
-            Button button = Button.builder(Component.literal("M"), onPressAction)
-                    .pos(xPos,yPos)
-                    .size(buttonWidth,buttonHeight)
-                    .build();
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_btn");
+            ResourceLocation texture_hover = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_btn_hover");
 
+            WidgetSprites buttonTexture = new WidgetSprites(texture,texture,texture_hover,texture_hover);
+            ImageButton button = new ImageButton(xPos,yPos, buttonWidth, buttonHeight, buttonTexture,onPressAction );
 
-            if(clientPlayer != null && clientPlayer.getOffhandItem().is(ModItems.MEGA_BRACELET.asItem())){
-                event.addListener(button);
+            if(Config.battleMode && clientPlayer != null && clientPlayer.getOffhandItem().is(ModItems.MEGA_BRACELET.asItem())){
+                if(!clicked || Config.multipleMegas){
+                    event.addListener(button);
+                }
+                else{
+                    event.removeListener(button);
+                }
             }
         }
     }
@@ -208,39 +264,18 @@ public class BattleHandling {
 
                     Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                    List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+                    serverPlayer.setData(DataManage.MEGA_DATA, false);
+                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
 
-                    for (String key : megaKeys) {
-                        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-
-                        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-                        if(feature != null){
-                            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                            if (enabled && feature.getName().equals("mega")) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                                new FlagSpeciesFeature("mega", false).apply(pokemon);
-
-                            }else if(enabled && feature.getName().equals("mega-x")){
-                                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
-                            } else if (enabled && feature.getName().equals("mega-y")) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                            }
-                        }
-                    }
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
             }
         });
+
         battle = null;
+        clicked = false;
         return Unit.INSTANCE;
     }
 
@@ -248,38 +283,16 @@ public class BattleHandling {
         Pokemon pokemon = battleFaintedEvent.getKilled().getOriginalPokemon();
         ServerPlayer serverPlayer = battleFaintedEvent.getKilled().getOriginalPokemon().getOwnerPlayer();
 
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
         if(serverPlayer == null || serverPlayer.level().isClientSide){
             return Unit.INSTANCE;
         }
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
 
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
+        serverPlayer.setData(DataManage.MEGA_DATA, false);
+        serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
 
-                if (enabled && feature.getName().equals("mega")) {
-                    serverPlayer.setData(DataManage.MEGA_DATA, false);
-                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-
-                }else if(enabled && feature.getName().equals("mega-x")){
-                    serverPlayer.setData(DataManage.MEGA_DATA, false);
-                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
-                } else if (enabled && feature.getName().equals("mega-y")) {
-                    serverPlayer.setData(DataManage.MEGA_DATA, false);
-                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            }
-        }
+        new FlagSpeciesFeature("mega", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
 
         return Unit.INSTANCE;
     }
@@ -295,41 +308,19 @@ public class BattleHandling {
                         continue;
                     }
 
+                    serverPlayer.setData(DataManage.MEGA_DATA, false);
+                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
                     Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                    List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                    for (String key : megaKeys) {
-                        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-
-                        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-                        if(feature != null){
-                            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                            if (enabled && feature.getName().equals("mega")) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                                new FlagSpeciesFeature("mega", false).apply(pokemon);
-
-                            }else if(enabled && feature.getName().equals("mega-x")){
-                                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
-                            } else if (enabled && feature.getName().equals("mega-y")) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                            }
-                        }
-                    }
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
             }
         });
         battle = null;
+        clicked = false;
         return Unit.INSTANCE;
     }
 }
