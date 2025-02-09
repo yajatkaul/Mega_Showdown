@@ -26,8 +26,19 @@ repositories {
     maven(url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
     maven("https://maven.impactdev.net/repository/development/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
-}
 
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = uri("https://api.modrinth.com/maven")
+            }
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
+}
 dependencies {
     minecraft("net.minecraft:minecraft:1.21.1")
     mappings("net.fabricmc:yarn:1.21+build.9:v2")
@@ -41,11 +52,14 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+
+    modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
 }
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
+
 
 tasks.processResources {
     inputs.property("version", project.version)

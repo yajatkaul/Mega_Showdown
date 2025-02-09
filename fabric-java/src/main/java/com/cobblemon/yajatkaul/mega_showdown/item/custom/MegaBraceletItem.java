@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
@@ -32,7 +32,7 @@ public class MegaBraceletItem extends Item {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
         //Battle Mode only
-        if (player.getWorld().isClient || Config.getInstance().battleModeOnly){
+        if (player.getWorld().isClient || ShowdownConfig.battleModeOnly.get()){
 //            player.sendMessage(Text.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
 //                    .formatted(Formatting.RED));
             return ActionResult.PASS;
@@ -45,7 +45,7 @@ public class MegaBraceletItem extends Item {
         }
 
         //Hand sensitive
-        if(Config.getInstance().braceletHandSensitive){
+        if(ShowdownConfig.braceletHandSensitive.get()){
             if(hand == Hand.MAIN_HAND && context instanceof PokemonEntity pk && !context.getWorld().isClient){
                 List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
                 boolean end = false;
@@ -69,7 +69,7 @@ public class MegaBraceletItem extends Item {
             } else if (hand == Hand.OFF_HAND && !context.getWorld().isClient) {
                 Devolve(context, player);
             }
-        }else if(!Config.getInstance().braceletHandSensitive && context instanceof PokemonEntity pk){
+        }else if(!ShowdownConfig.braceletHandSensitive.get() && context instanceof PokemonEntity pk){
             Pokemon pokemon = pk.getPokemon();
             if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient){
                 return super.useOnEntity(stack, player, context, hand);
@@ -112,7 +112,7 @@ public class MegaBraceletItem extends Item {
         }
 
         //Multiple megas
-        if(species == pokemon.getSpecies() && (!playerData || Config.getInstance().multipleMegas)){
+        if(species == pokemon.getSpecies() && (!playerData || ShowdownConfig.megaTurns.get())){
 
             if(species == ShowdownUtils.getSpecies("charizard")){
                 if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)){

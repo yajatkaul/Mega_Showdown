@@ -1,13 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.client.gui.screen.Screen;
@@ -15,8 +13,6 @@ import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.Window;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
-
-import static com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling.*;
 
 public class ButtonLogic {
     public static void megaEvoButton(MinecraftClient minecraftClient, Screen screen, int j, int j1) {
@@ -57,7 +53,7 @@ public class ButtonLogic {
                     });
 
             //Battle mode only
-            if(Config.getInstance().battleModeOnly && clientPlayer != null && clientPlayer.getOffHandStack().isOf(ModItems.MEGA_BRACELET.asItem())){
+            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null && clientPlayer.getOffHandStack().isOf(ModItems.MEGA_BRACELET.asItem())){
                 Screens.getButtons(screen).add(texturedButtonWidget);
             }
         }

@@ -10,7 +10,7 @@ import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
@@ -92,7 +92,7 @@ public class BattleHandling {
 
             if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
                     // Multiple megas
-                    (!serverPlayer.getAttached(DataManage.MEGA_DATA) || Config.getInstance().multipleMegas)) {
+                    (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
 
                 if (species == ShowdownUtils.getSpecies("charizard")) {
                     if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)) {
@@ -104,7 +104,7 @@ public class BattleHandling {
 
 
                         //Mega turn
-                        if(Config.getInstance().megaTurns){
+                        if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
 
@@ -119,7 +119,7 @@ public class BattleHandling {
                         new FlagSpeciesFeature("mega-y", true).apply(pokemon);
 
                         //Mega turn
-                        if(Config.getInstance().megaTurns){
+                        if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
                         broadCastEvoMsg(battlePokemon, battle);
@@ -134,7 +134,7 @@ public class BattleHandling {
                         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                         new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                         //Mega turn
-                        if(Config.getInstance().megaTurns){
+                        if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
                         broadCastEvoMsg(battlePokemon, battle);
@@ -147,7 +147,7 @@ public class BattleHandling {
                         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                         new FlagSpeciesFeature("mega-y", true).apply(pokemon);
                         //Mega turn
-                        if(Config.getInstance().megaTurns){
+                        if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
                         broadCastEvoMsg(battlePokemon, battle);
@@ -161,7 +161,7 @@ public class BattleHandling {
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
 
                     //Mega turn
-                    if(Config.getInstance().megaTurns){
+                    if(ShowdownConfig.megaTurns.get()){
                         battle.getActor(serverPlayer).setActionResponses(skipTurn);
                     }
                     broadCastEvoMsg(battlePokemon, battle);
@@ -179,7 +179,7 @@ public class BattleHandling {
                         found = true;
 
                         //Mega turn
-                        if(Config.getInstance().megaTurns){
+                        if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
                         broadCastEvoMsg(battlePokemon, battle);

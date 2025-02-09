@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -31,6 +32,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> ABSOLITE_ORE = registerBlock("absolite_ore",
@@ -39,6 +41,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> AERODACTYLITE_ORE = registerBlock("aerodactylite_ore",
@@ -47,6 +50,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> AGGRONITE_ORE = registerBlock("aggronite_ore",
@@ -55,6 +59,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> ALAKAZITE_ORE = registerBlock("alakazite_ore",
@@ -63,6 +68,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> ALTARIANITE_ORE = registerBlock("altarianite_ore",
@@ -71,6 +77,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> AMPHAROSITE_ORE = registerBlock("ampharosite_ore",
@@ -79,6 +86,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> AUDINITE_ORE = registerBlock("audinite_ore",
@@ -87,6 +95,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> BANETTITE_ORE = registerBlock("banettite_ore",
@@ -95,6 +104,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> BEEDRILLITE_ORE = registerBlock("beedrillite_ore",
@@ -103,6 +113,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> BLASTOISINITE_ORE = registerBlock("blastoisinite_ore",
@@ -111,6 +122,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> BLAZIKENITE_ORE = registerBlock("blazikenite_ore",
@@ -119,6 +131,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> CAMERUPTITE_ORE = registerBlock("cameruptite_ore",
@@ -127,6 +140,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> CHARIZARDITE_X_ORE = registerBlock("charizardite_x_ore",
@@ -134,6 +148,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -142,6 +157,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -150,6 +166,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -158,6 +175,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -166,6 +184,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -174,6 +193,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -182,6 +202,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -190,6 +211,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -198,6 +220,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -206,6 +229,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -214,6 +238,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -222,6 +247,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -230,6 +256,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -238,6 +265,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -246,6 +274,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -254,6 +283,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -262,6 +292,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -270,6 +301,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -278,6 +310,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -286,6 +319,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -294,6 +328,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -302,6 +337,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -310,6 +346,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -318,6 +355,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -326,6 +364,7 @@ public class ModBlocks {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(DyeColor.BLUE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
@@ -335,6 +374,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> SCEPTILITE_ORE = registerBlock("sceptilite_ore",
@@ -343,6 +383,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> SCIZORITE_ORE = registerBlock("scizorite_ore",
@@ -351,6 +392,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> SHARPEDONITE_ORE = registerBlock("sharpedonite_ore",
@@ -359,6 +401,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> SLOWBRONITE_ORE = registerBlock("slowbronite_ore",
@@ -367,6 +410,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> STEELIXITE_ORE = registerBlock("steelixite_ore",
@@ -375,6 +419,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> SWAMPERTITE_ORE = registerBlock("swampertite_ore",
@@ -383,6 +428,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> TYRANITARITE_ORE = registerBlock("tyranitarite_ore",
@@ -391,6 +437,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> VENUSAURITE_ORE = registerBlock("venusaurite_ore",
@@ -399,6 +446,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
 
@@ -407,6 +455,7 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
+                            .mapColor(DyeColor.BLUE)
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<AmethystClusterBlock> MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
@@ -422,6 +471,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -429,6 +479,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -436,6 +487,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -443,6 +495,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -450,6 +503,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -457,6 +511,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -464,6 +519,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -471,6 +527,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -478,6 +535,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
@@ -485,6 +543,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
+                    .mapColor(DyeColor.BLUE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 

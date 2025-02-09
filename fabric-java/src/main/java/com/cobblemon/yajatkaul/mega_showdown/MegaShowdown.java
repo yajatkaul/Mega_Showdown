@@ -8,15 +8,15 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
+import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -37,7 +37,7 @@ public class MegaShowdown implements ModInitializer {
 
         BattleNetwork.registerC2SPackets();
 
-        Config.load();
+        Reflection.initialize(ShowdownConfig.class);
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
     }
@@ -48,14 +48,11 @@ public class MegaShowdown implements ModInitializer {
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
 
-        if(Config.getInstance().battleModeOnly){
+        if(ShowdownConfig.battleModeOnly.get()){
             CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
             CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
-        }
 
-        //Battle Only
-        if(Config.getInstance().battleModeOnly){
             ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
                 ServerPlayerEntity player = handler.player;
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
