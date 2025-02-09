@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
@@ -12,6 +13,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import static com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling.*;
 
@@ -22,7 +24,7 @@ public class ButtonLogic {
 
             Button.OnPress onPressAction = button -> {
                 event.removeListener(button);
-                handleMegaEvolution(battle);
+                PacketDistributor.sendToServer(new MegaEvo("packet", 1));
             };
 
             Screen screen = Minecraft.getInstance().screen;

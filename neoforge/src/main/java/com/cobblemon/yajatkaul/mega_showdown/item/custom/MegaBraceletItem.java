@@ -32,16 +32,16 @@ public class MegaBraceletItem extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if(context instanceof PokemonEntity pk){
-            if(!pk.getPokemon().isPlayerOwned()){
-                return InteractionResult.PASS;
-            }
-        }
-
-        if (!player.level().isClientSide && Config.battleMode){
+        if (player.level().isClientSide || Config.battleMode){
 //            player.sendSystemMessage(Component.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
 //                    .withStyle(style -> style.withColor(0xFF0000)));
             return InteractionResult.PASS;
+        }
+
+        if(context instanceof PokemonEntity pk){
+            if(pk.getPokemon().getOwnerPlayer() != player){
+                return InteractionResult.PASS;
+            }
         }
 
         if(Config.braceletHandSensitive){

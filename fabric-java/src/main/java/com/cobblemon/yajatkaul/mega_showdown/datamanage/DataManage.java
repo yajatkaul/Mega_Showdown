@@ -1,13 +1,20 @@
 package com.cobblemon.yajatkaul.mega_showdown.datamanage;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.mojang.serialization.Codec;
+import kotlin.uuid.Uuid;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.text.Style;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Uuids;
+import org.apache.logging.log4j.core.util.UuidUtil;
+
+import java.util.UUID;
 
 public class DataManage {
 
@@ -31,6 +38,18 @@ public class DataManage {
                     .persistent(Pokemon.getCODEC()) // How to save and load the data
                     .syncWith(
                             Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
+                            AttachmentSyncPredicate.all() // Who to send the data to
+                    )
+    );
+
+    public static final AttachmentType<UUID> BATTLE_ID = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "battle_id"),
+            builder -> builder // Using a builder chain to configure the attachment data type
+                    .copyOnDeath()
+                    .initializer(() -> null) // A default value to provide if none is supplied
+                    .persistent(Uuids.CODEC) // How to save and load the data
+                    .syncWith(
+                            Uuids.PACKET_CODEC,  // How to turn the data into a packet to send to players
                             AttachmentSyncPredicate.all() // Who to send the data to
                     )
     );

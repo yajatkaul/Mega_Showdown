@@ -31,17 +31,17 @@ public class MegaBraceletItem extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if(context instanceof PokemonEntity pk){
-            if(!pk.getPokemon().isPlayerOwned()){
-                return ActionResult.PASS;
-            }
-        }
-
         //Battle Mode only
-        if (!player.getWorld().isClient && Config.getInstance().battleModeOnly){
+        if (player.getWorld().isClient || Config.getInstance().battleModeOnly){
 //            player.sendMessage(Text.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
 //                    .formatted(Formatting.RED));
             return ActionResult.PASS;
+        }
+
+        if(context instanceof PokemonEntity pk){
+            if(pk.getPokemon().getOwnerPlayer() != player){
+                return ActionResult.PASS;
+            }
         }
 
         //Hand sensitive

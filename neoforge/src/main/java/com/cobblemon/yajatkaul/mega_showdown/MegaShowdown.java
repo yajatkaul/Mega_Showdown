@@ -9,10 +9,16 @@ import com.cobblemon.mod.common.platform.events.ServerPlayerEvent;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.battle.ButtonLogic;
+import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerPlayerConnection;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
+import net.neoforged.neoforge.network.registration.HandlerThread;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
@@ -31,6 +37,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
+import static net.minecraft.Util.NIL_UUID;
+
 @Mod(MegaShowdown.MOD_ID)
 public final class MegaShowdown {
     public static final Logger LOGGER = LoggerFactory.getLogger("Mega Showdown");
@@ -47,6 +55,8 @@ public final class MegaShowdown {
         ModCreativeModeTabs.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        modEventBus.addListener(NetworkHandler::register);
     }
 
 
@@ -67,7 +77,6 @@ public final class MegaShowdown {
         }
     }
 
-
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event){
         if(Config.battleMode){
@@ -76,6 +85,7 @@ public final class MegaShowdown {
 
                 player.setData(DataManage.MEGA_DATA, false);
                 player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+                player.setData(DataManage.BATTLE_ID, NIL_UUID);
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);

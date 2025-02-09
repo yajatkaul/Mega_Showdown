@@ -11,9 +11,12 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -32,12 +35,15 @@ public class MegaShowdown implements ModInitializer {
 
         DataManage.registerDataComponentTypes();
 
+        BattleNetwork.registerC2SPackets();
+
         Config.load();
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
     }
 
     private void onServerStarted(MinecraftServer server) {
+
         ShowdownUtils.loadMegaStoneIds();
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
@@ -56,6 +62,7 @@ public class MegaShowdown implements ModInitializer {
 
                 player.setAttached(DataManage.MEGA_DATA, false);
                 player.setAttached(DataManage.MEGA_POKEMON, null);
+                player.setAttached(DataManage.BATTLE_ID, null);
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);

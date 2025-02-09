@@ -6,10 +6,7 @@ import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
-import com.cobblemon.mod.common.battles.ShowdownActionResponse;
-import com.cobblemon.mod.common.battles.ShowdownActionResponseType;
-import com.cobblemon.mod.common.battles.ShowdownMoveset;
+import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
@@ -23,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,16 +28,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static net.minecraft.Util.NIL_UUID;
+
 public class BattleHandling {
-    public static PokemonBattle battle = null;
     public static List<Pokemon> battlePokemonUsed = new ArrayList<>();
 
     public static Unit getBattleInfo(BattleStartedPostEvent battleStartedPostEvent) {
-        battle = battleStartedPostEvent.getBattle();
+        PokemonBattle battle = battleStartedPostEvent.getBattle();
+        for (ServerPlayer player: battle.getPlayers()){
+            player.setData(DataManage.BATTLE_ID, battle.getBattleId());
+        }
         return Unit.INSTANCE;
     }
 
-    private static void broadCastEvoMsg(BattlePokemon battlePokemon) {
+    private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle) {
         MutableComponent message = Component.literal(battlePokemon.getName().getString())
                 .withStyle(style -> style.withColor(ChatFormatting.GOLD))
                 .append(" ")
@@ -59,10 +61,14 @@ public class BattleHandling {
         clicked = true;
     }
 
-    public static void handleMegaEvolution(PokemonBattle battle){
-        if(battle == null){
+    public static void handleMegaEvolution(IPayloadContext userContext){
+        ServerPlayer player = (ServerPlayer) userContext.player();
+
+        if(player.getData(DataManage.BATTLE_ID) == null){
             return;
         }
+
+        PokemonBattle battle = BattleRegistry.INSTANCE.getBattle(player.getData(DataManage.BATTLE_ID));
 
         List<ShowdownActionResponse> skipTurn = Collections.singletonList(new ShowdownActionResponse(ShowdownActionResponseType.FORCE_PASS) {
             @NotNull
@@ -107,7 +113,7 @@ public class BattleHandling {
                                 if(Config.megaTurns){
                                     battle.getActor(serverPlayer).setActionResponses(skipTurn);
                                 }
-                                broadCastEvoMsg(battlePokemon);
+                                broadCastEvoMsg(battlePokemon, battle);
                                 battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                                 break;
                             } else if (pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)) {
@@ -120,7 +126,7 @@ public class BattleHandling {
                                     battle.getActor(serverPlayer).setActionResponses(skipTurn);
                                 }
                                 battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon);
+                                broadCastEvoMsg(battlePokemon, battle);
                                 break;
                             }
                         } else if (species == ShowdownUtils.getSpecies("mewtwo")) {
@@ -134,7 +140,7 @@ public class BattleHandling {
                                     battle.getActor(serverPlayer).setActionResponses(skipTurn);
                                 }
                                 battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon);
+                                broadCastEvoMsg(battlePokemon, battle);
                                 break;
                             } else if (pokemon.heldItem().is(ModItems.MEWTWONITE_Y)) {
                                 serverPlayer.setData(DataManage.MEGA_DATA, true);
@@ -146,7 +152,7 @@ public class BattleHandling {
                                     battle.getActor(serverPlayer).setActionResponses(skipTurn);
                                 }
                                 battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon);
+                                broadCastEvoMsg(battlePokemon, battle);
                                 break;
                             }
                         } else {
@@ -159,7 +165,7 @@ public class BattleHandling {
                                 battle.getActor(serverPlayer).setActionResponses(skipTurn);
                             }
                             battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                            broadCastEvoMsg(battlePokemon);
+                            broadCastEvoMsg(battlePokemon, battle);
                             break;
                         }
                     } else if (pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")) {
@@ -176,7 +182,7 @@ public class BattleHandling {
                                     battle.getActor(serverPlayer).setActionResponses(skipTurn);
                                 }
                                 battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon);
+                                broadCastEvoMsg(battlePokemon, battle);
                                 break;
                             }
                         }
@@ -199,7 +205,7 @@ public class BattleHandling {
     public static boolean clicked = false;
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-                for (BattlePokemon battlePokemon : battle.getActor(serverPlayer.getUUID()).getPokemonList()) {
+                for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
                     if (battlePokemon.getOriginalPokemon().getEntity() == null) {
                         continue;
                     }
@@ -213,11 +219,11 @@ public class BattleHandling {
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
-
+                serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
         });
 
-        battle = null;
         clicked = false;
+        battlePokemonUsed.clear();
         return Unit.INSTANCE;
     }
 
@@ -256,9 +262,12 @@ public class BattleHandling {
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
+
+            serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
         });
-        battle = null;
+
         clicked = false;
+        battlePokemonUsed.clear();
         return Unit.INSTANCE;
     }
 }
