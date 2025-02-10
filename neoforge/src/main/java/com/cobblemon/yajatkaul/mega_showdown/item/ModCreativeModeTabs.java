@@ -72,6 +72,13 @@ public class ModCreativeModeTabs {
 
                         // Device
                         output.accept(ModItems.MEGA_BRACELET);
+                        output.accept(ModItems.MEGA_RED_BRACELET);
+                        output.accept(ModItems.MEGA_YELLOW_BRACELET);
+                        output.accept(ModItems.MEGA_PINK_BRACELET);
+                        output.accept(ModItems.MEGA_GREEN_BRACELET);
+                        output.accept(ModItems.MEGA_BLUE_BRACELET);
+                        output.accept(ModItems.MEGA_BLACK_BRACELET);
+                        output.accept(ModItems.MEGA_RING);
 
                         // Utils
 //                        output.accept(ModItems.DNASPLICERS);
@@ -143,6 +150,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MEGA_STONE_CRYSTAL);
 
                         output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
+                        output.accept(ModBlocks.MEGA_EVO_BLOCK);
 
                         output.accept(ModBlocks.MEGA_METEORID_DAWN_ORE);
                         output.accept(ModBlocks.MEGA_METEORID_DUSK_ORE);

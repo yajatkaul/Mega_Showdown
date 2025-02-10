@@ -9,6 +9,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -455,8 +456,16 @@ public class ModBlocks {
                             .Properties.of()
                             .strength(3f)
                             .requiresCorrectToolForDrops()
-                            .mapColor(DyeColor.BLUE)
-                            .sound(SoundType.AMETHYST)));
+                            .mapColor(MapColor.COLOR_PURPLE)
+                            .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> MEGA_EVO_BLOCK = registerBlock("mega_evo_block",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .mapColor(MapColor.COLOR_PURPLE)
+                    .sound(SoundType.STONE)));
 
     public static final DeferredBlock<AmethystClusterBlock> MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
             () -> new MegaCrystalBlock(4, 3,

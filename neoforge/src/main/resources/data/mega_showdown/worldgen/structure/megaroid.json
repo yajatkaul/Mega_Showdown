@@ -4,6 +4,7 @@
   "step": "underground_structures",
   "spawn_overrides": {},
   "start_pool": "mega_showdown:megaroid",
+  "terrain_adaptation": "beard_box",
   "size": 1,
   "start_height": {
     "absolute": 0

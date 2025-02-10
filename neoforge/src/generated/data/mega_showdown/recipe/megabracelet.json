@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "A": {
+      "item": "cobblemon:white_apricorn"
+    },
     "D": {
       "item": "minecraft:diamond"
     },
@@ -14,8 +17,8 @@
   },
   "pattern": [
     "IDI",
-    "IKI",
-    "IDI"
+    "AKA",
+    "III"
   ],
   "result": {
     "count": 1,

@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.MinecraftClient;
@@ -53,7 +54,7 @@ public class ButtonLogic {
                     });
 
             //Battle mode only
-            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null && clientPlayer.getOffHandStack().isOf(ModItems.MEGA_BRACELET.asItem())){
+            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null && clientPlayer.getOffHandStack().getItem() instanceof MegaBraceletItem){
                 Screens.getButtons(screen).add(texturedButtonWidget);
             }
         }

@@ -67,6 +67,13 @@ public class ModItemGroups {
                         entries.add(ModItems.KEYSTONE);
 
                         entries.add(ModItems.MEGA_BRACELET);
+                        entries.add(ModItems.MEGA_RED_BRACELET);
+                        entries.add(ModItems.MEGA_YELLOW_BRACELET);
+                        entries.add(ModItems.MEGA_PINK_BRACELET);
+                        entries.add(ModItems.MEGA_GREEN_BRACELET);
+                        entries.add(ModItems.MEGA_BLUE_BRACELET);
+                        entries.add(ModItems.MEGA_BLACK_BRACELET);
+                        entries.add(ModItems.MEGA_RING);
 
                         entries.add(ModBlocks.ABOMASITE_ORE);
                         entries.add(ModBlocks.ABSOLITE_ORE);
@@ -119,6 +126,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.KEYSTONE_ORE);
 
                         entries.add(ModBlocks.MEGA_METEOROID_BLOCK);
+                        entries.add(ModBlocks.MEGA_EVO_BLOCK);
                         entries.add(ModItems.MEGA_STONE_CRYSTAL_ITEM);
 
                         entries.add(ModBlocks.MEGA_METEORID_DAWN_ORE);

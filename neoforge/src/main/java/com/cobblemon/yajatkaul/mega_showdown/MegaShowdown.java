@@ -14,6 +14,8 @@ import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerPlayerConnection;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
@@ -78,14 +80,14 @@ public final class MegaShowdown {
     }
 
     @SubscribeEvent
-    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event){
+    private void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
         if(Config.battleMode){
-            if(event.getEntity() instanceof ServerPlayer player){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
+                player.removeData(DataManage.MEGA_DATA);
+                player.removeData(DataManage.MEGA_POKEMON);
+                player.removeData(DataManage.BATTLE_ID);
 
-                player.setData(DataManage.MEGA_DATA, false);
-                player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-                player.setData(DataManage.BATTLE_ID, NIL_UUID);
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
@@ -96,6 +98,25 @@ public final class MegaShowdown {
         }
     }
 
+
+//    @SubscribeEvent
+//    private void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
+//        if(Config.battleMode){
+//            if(event.getEntity() instanceof ServerPlayer player){
+//                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+//
+//                player.setData(DataManage.MEGA_DATA, false);
+//                player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+//                player.setData(DataManage.BATTLE_ID, NIL_UUID);
+//
+//                for (Pokemon pokemon : playerPartyStore) {
+//                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+//                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+//                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+//                }
+//            }
+//        }
+//    }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

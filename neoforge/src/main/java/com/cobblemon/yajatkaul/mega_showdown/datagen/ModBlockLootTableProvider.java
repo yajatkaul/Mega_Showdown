@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -120,10 +121,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.VENUSAURITE_ORE.get(),
                 block -> createOreDrop(ModBlocks.VENUSAURITE_ORE.get(), ModItems.VENUSAURITE.get()));
 
-        add(ModBlocks.KEYSTONE_ORE.get(),
-                block -> createOreDrop(ModBlocks.KEYSTONE_ORE.get(), ModItems.KEYSTONE.get()));
+        add(ModBlocks.KEYSTONE_ORE.get(), block ->
+                createSingleItemTable(ModItems.KEYSTONE.get()));
 
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
+        dropSelf(ModBlocks.MEGA_EVO_BLOCK.get());
 
         add(ModBlocks.MEGA_STONE_CRYSTAL.get(),
                 LootTable.lootTable()

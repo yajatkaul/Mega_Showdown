@@ -144,6 +144,8 @@
   "item.mega_showdown.diancite": "Diancite",
 
   "block.mega_showdown.mega_meteorid_block": "Mega Meteoroid Block",
+  "block.mega_showdown.mega_evo_block": "Evo Meteoroid Block",
+
   "block.mega_showdown.mega_stone_crystal": "Mega Crystal",
 
   "block.mega_showdown.keystone_ore": "Keystone Ore",
@@ -152,6 +154,20 @@
 
   "item.mega_showdown.megabracelet": "Mega Bracelet",
   "tooltip.mega_showdown.megabracelet.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megabracelet_red": "Red Mega Bracelet",
+  "tooltip.mega_showdown.megabracelet_red.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megabracelet_pink": "Pink Mega Bracelet",
+  "tooltip.mega_showdown.megabracelet_pink.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megabracelet_yellow": "Yellow Mega Bracelet",
+  "tooltip.mega_showdown.megabracelet_yellow.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megabracelet_green": "Green Mega Bracelet",
+  "tooltip.mega_showdown.megabracelet_green.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megabracelet_blue": "Blue Mega Bracelet",
+  "tooltip.mega_showdown.megabracelet_blue.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megabracelet_black": "Black Mega Bracelet",
+  "tooltip.mega_showdown.megabracelet_black.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.megaring": "Megaring",
+  "tooltip.mega_showdown.megaring.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
 
   "item.mega_showdown.dnasplicers": "DNA Splicers",
   "item.mega_showdown.dousedrive": "Douse Drive",

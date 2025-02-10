@@ -34,8 +34,31 @@ public class ModItems {
                 }
             });
 
+
     public static final DeferredItem<Item> MEGA_BRACELET = ITEMS.register("megabracelet",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_RED_BRACELET = ITEMS.register("megabracelet_red",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_YELLOW_BRACELET = ITEMS.register("megabracelet_yellow",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_PINK_BRACELET = ITEMS.register("megabracelet_pink",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_GREEN_BRACELET = ITEMS.register("megabracelet_green",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_BLUE_BRACELET = ITEMS.register("megabracelet_blue",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_BLACK_BRACELET = ITEMS.register("megabracelet_black",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MEGA_RING = ITEMS.register("megaring",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
 
     public static final DeferredItem<Item> ABSOLITE = ITEMS.register("absolite",
             () -> new Item(new Item.Properties()) {

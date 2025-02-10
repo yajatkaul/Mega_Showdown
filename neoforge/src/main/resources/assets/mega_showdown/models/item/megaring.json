@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "mega_showdown:item/megaring_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "mega_showdown:item/megaring_2d"
+    },
+    "ground": {
+      "parent": "mega_showdown:item/megaring_2d"
+    },
+    "fixed": {
+      "parent": "mega_showdown:item/megaring_2d"
+    }
+  }
+}

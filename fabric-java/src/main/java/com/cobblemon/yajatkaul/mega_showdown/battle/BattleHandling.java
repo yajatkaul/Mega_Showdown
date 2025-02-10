@@ -258,7 +258,6 @@ public class BattleHandling {
         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
 
-        battlePokemonUsed.clear();
         return Unit.INSTANCE;
     }
 

@@ -1,9 +1,0 @@
-{
-  "target": "cobblemon:houndoom",
-  "baseScale": 1,
-  "hitbox": {
-   "width": 2,
-   "height": 2.5,
-   "fixed": false
-  }
-}

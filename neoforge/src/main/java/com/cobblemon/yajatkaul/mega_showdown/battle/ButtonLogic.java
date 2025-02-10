@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -50,7 +51,7 @@ public class ButtonLogic {
             WidgetSprites buttonTexture = new WidgetSprites(texture,texture,texture_hover,texture);
             ImageButton button = new ImageButton(xPos,yPos, buttonWidth, buttonHeight, buttonTexture,onPressAction );
 
-            if(Config.battleMode && clientPlayer != null && clientPlayer.getOffhandItem().is(ModItems.MEGA_BRACELET.asItem())){
+            if(Config.battleMode && clientPlayer != null && clientPlayer.getOffhandItem().getItem() instanceof MegaBraceletItem){
                 if(!clicked || Config.multipleMegas){
                     event.addListener(button);
                 }

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "2.1.0-release-fabric"
+version = "3.0.0-release-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -53,6 +53,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 
+    include("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
     modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
 }
 

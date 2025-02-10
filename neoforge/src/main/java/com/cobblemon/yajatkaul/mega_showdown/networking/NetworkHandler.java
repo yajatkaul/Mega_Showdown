@@ -10,7 +10,11 @@ import net.neoforged.neoforge.network.registration.HandlerThread;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public class NetworkHandler {
-    public static void handleDataOnMain(final MegaEvo data, final IPayloadContext context) {
+    public static void handleDataOnClient(final MegaEvo data, final IPayloadContext context) {
+        //BattleHandling.handleMegaEvolution(context);
+    }
+
+    public static void handleDataOnServer(final MegaEvo data, final IPayloadContext context) {
         BattleHandling.handleMegaEvolution(context);
     }
 
@@ -22,8 +26,8 @@ public class NetworkHandler {
                 MegaEvo.TYPE,
                 MegaEvo.STREAM_CODEC,
                 new DirectionalPayloadHandler<>(
-                        NetworkHandler::handleDataOnMain,
-                        NetworkHandler::handleDataOnMain
+                        NetworkHandler::handleDataOnClient,
+                        NetworkHandler::handleDataOnServer
                 )
         );
     }

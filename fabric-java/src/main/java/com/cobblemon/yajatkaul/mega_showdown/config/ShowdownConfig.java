@@ -15,7 +15,7 @@ public class ShowdownConfig {
 
     static{
         // construct a new config builder
-        IConfigBuilder builder = ConfigBuilders.newTomlConfig(MegaShowdown.MOD_ID, "mega_showdown-common", false);
+        IConfigBuilder builder = ConfigBuilders.newTomlConfig(MegaShowdown.MOD_ID, "common", false);
 
 
         // a boolean value

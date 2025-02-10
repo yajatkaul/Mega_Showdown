@@ -70,7 +70,7 @@
       "isSubmergedInWater": true,
       "animations": [
         "q.look('head')",
-        "q.bedrock('gyarados_mega', 'water_idle')"
+        "q.bedrock('gyarados_mega', 'ground_idle')"
       ],
       "quirks": [
         "q.bedrock_quirk('gyarados_mega', 'blink')"
@@ -106,7 +106,7 @@
       "isSubmergedInWater": false,
       "animations": [
         "q.look('head')",
-        "q.bedrock('gyarados_mega', 'surfacewater_idle')"
+        "q.bedrock('gyarados_mega', 'ground_idle')"
       ],
       "quirks": [
         "q.bedrock_quirk('gyarados_mega', 'blink')"
@@ -120,7 +120,7 @@
       "isSubmergedInWater": false,
       "animations": [
         "q.look('head')",
-        "q.bedrock('gyarados_mega', 'surfacewater_swim')"
+        "q.bedrock('gyarados_mega', 'ground_idle')"
       ],
       "quirks": [
         "q.bedrock_quirk('gyarados_mega', 'blink')"

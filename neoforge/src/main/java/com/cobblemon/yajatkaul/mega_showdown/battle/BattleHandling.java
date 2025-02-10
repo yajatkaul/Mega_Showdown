@@ -11,6 +11,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
@@ -64,7 +65,7 @@ public class BattleHandling {
     public static void handleMegaEvolution(IPayloadContext userContext){
         ServerPlayer player = (ServerPlayer) userContext.player();
 
-        if(player.getData(DataManage.BATTLE_ID) == null){
+        if(player.getData(DataManage.BATTLE_ID) == NIL_UUID){
             return;
         }
 
@@ -205,6 +206,7 @@ public class BattleHandling {
     public static boolean clicked = false;
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
+            MegaShowdown.LOGGER.info("BattleEnded");
                 for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
                     if (battlePokemon.getOriginalPokemon().getEntity() == null) {
                         continue;

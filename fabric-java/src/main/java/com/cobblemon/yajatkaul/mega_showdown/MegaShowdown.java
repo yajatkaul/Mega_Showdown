@@ -16,6 +16,7 @@ import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
 import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
 import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
@@ -48,6 +49,8 @@ public class MegaShowdown implements ModInitializer {
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
 
+        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
+
         if(ShowdownConfig.battleModeOnly.get()){
             CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
@@ -55,6 +58,21 @@ public class MegaShowdown implements ModInitializer {
 
             ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
                 ServerPlayerEntity player = handler.player;
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+                player.setAttached(DataManage.MEGA_DATA, false);
+                player.setAttached(DataManage.MEGA_POKEMON, null);
+                player.setAttached(DataManage.BATTLE_ID, null);
+
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            });
+
+            ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+                ServerPlayerEntity player = newPlayer;
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 player.setAttached(DataManage.MEGA_DATA, false);

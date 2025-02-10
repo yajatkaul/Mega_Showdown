@@ -68,7 +68,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.VENUSAURITE_ORE.get(),
                         ModBlocks.KEYSTONE_ORE.get(),
                         ModBlocks.MEGA_STONE_CRYSTAL.get(),
+
                         ModBlocks.MEGA_METEOROID_BLOCK.get(),
+                        ModBlocks.MEGA_EVO_BLOCK.get(),
+
                         ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
                         ModBlocks.MEGA_METEORID_DUSK_ORE.get(),
                         ModBlocks.MEGA_METEORID_FIRE_ORE.get(),
@@ -134,6 +137,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.MEGA_METEOROID_BLOCK.get(),
+                        ModBlocks.MEGA_EVO_BLOCK.get(),
                         ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
                         ModBlocks.MEGA_METEORID_DUSK_ORE.get(),
                         ModBlocks.MEGA_METEORID_FIRE_ORE.get(),

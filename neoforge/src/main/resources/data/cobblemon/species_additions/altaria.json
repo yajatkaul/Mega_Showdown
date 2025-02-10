@@ -1,9 +1,0 @@
-{
-  "target": "cobblemon:altaria",
-  "baseScale": 1.2,
-  "hitbox": {
-   "width": 3,
-   "height": 2,
-   "fixed": false
-  }
-}

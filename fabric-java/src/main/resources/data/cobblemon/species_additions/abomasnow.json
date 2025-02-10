@@ -1,9 +1,0 @@
-{
-  "target": "cobblemon:abomasnow",
-  "baseScale": 1,
-  "hitbox": {
-   "width": 2,
-   "height": 3,
-   "fixed": false
-  }
-}

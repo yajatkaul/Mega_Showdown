@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-03T02:02:55.6559841	Loot Tables
+// 1.21.1	2025-02-09T21:52:03.5751995	Loot Tables
 71cf7b81ee8010ccfa329c846873b628a3f2ff8e data/mega_showdown/loot_table/blocks/abomasite_ore.json
 d76eaf7c9bdeb8c07164747a19e6a70913aa1e6c data/mega_showdown/loot_table/blocks/absolite_ore.json
 295361eebc004b3a9a23ac720232c83c41d5a325 data/mega_showdown/loot_table/blocks/aerodactylite_ore.json
@@ -24,7 +24,7 @@ b12c73d877c306bcde702acc6e46855be686fac9 data/mega_showdown/loot_table/blocks/gy
 1499d02da539b280c354517ff816bdc6e51180ce data/mega_showdown/loot_table/blocks/heracronite_ore.json
 a456be6eba6258928b8cfad4197cc97bb6c6ccd1 data/mega_showdown/loot_table/blocks/houndoominite_ore.json
 b094833f4f19cfddefcc4904777817abbe9226e6 data/mega_showdown/loot_table/blocks/kangaskhanite_ore.json
-84b6bc795733707f2a692d32f04487d082777cb7 data/mega_showdown/loot_table/blocks/keystone_ore.json
+674695504760309a26eb17f92743d4a1724712ab data/mega_showdown/loot_table/blocks/keystone_ore.json
 bc2ecec512c6a6ed0bf0f91a9bed93612bf1a5d8 data/mega_showdown/loot_table/blocks/latiasite_ore.json
 f597c5331662cf4dad61641819aa382d6ccb7a22 data/mega_showdown/loot_table/blocks/latiosite_ore.json
 b29aaa4ce2fe51b975f72ef37ce2901b9430316e data/mega_showdown/loot_table/blocks/lopunnite_ore.json
@@ -32,6 +32,7 @@ b29aaa4ce2fe51b975f72ef37ce2901b9430316e data/mega_showdown/loot_table/blocks/lo
 422c4f4387c6500ede2a2027041787076024a55e data/mega_showdown/loot_table/blocks/manectite_ore.json
 3dc1bde00d41fefef138259efb28e1963a850298 data/mega_showdown/loot_table/blocks/mawilite_ore.json
 331d887a3bc7532e004380e9422d0f833c8a277e data/mega_showdown/loot_table/blocks/medichamite_ore.json
+0d30abf9fe4beafd4dd394e4ac9579a49da458ce data/mega_showdown/loot_table/blocks/mega_evo_block.json
 4225ff0287ca94a0c8b52fa30d7b24bce3104afb data/mega_showdown/loot_table/blocks/mega_meteorid_block.json
 d4142784dbd0410675e265a98d2600e8d565b398 data/mega_showdown/loot_table/blocks/mega_meteorid_dawn_ore.json
 8759ecd33c5e59bc371aa681a82482fc19991961 data/mega_showdown/loot_table/blocks/mega_meteorid_dusk_ore.json

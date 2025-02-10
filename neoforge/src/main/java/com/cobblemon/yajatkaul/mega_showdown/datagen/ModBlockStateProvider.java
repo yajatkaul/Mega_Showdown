@@ -65,6 +65,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.KEYSTONE_ORE);
 
         blockWithItem(ModBlocks.MEGA_METEOROID_BLOCK);
+        blockWithItem(ModBlocks.MEGA_EVO_BLOCK);
 
         //Testing
         blockWithItemCutOut(ModBlocks.MEGA_STONE_CRYSTAL);

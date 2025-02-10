@@ -15,7 +15,6 @@ public class MegaShowdownClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MEGA_STONE_CRYSTAL, RenderLayer.getCutout());
-        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
         ScreenEvents.AFTER_INIT.register(ButtonLogic::megaEvoButton);
     }

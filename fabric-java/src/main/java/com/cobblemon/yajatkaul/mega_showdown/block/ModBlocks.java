@@ -307,6 +307,14 @@ public class ModBlocks {
             new Block(AbstractBlock.Settings.create()
                     .strength(3f)
                     .requiresTool()
+                    .mapColor(MapColor.PURPLE)
+                    .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+
+    public static final Block MEGA_EVO_BLOCK = registerBlock("mega_evo_block",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .mapColor(MapColor.PURPLE)
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
     public static final Block MEGA_STONE_CRYSTAL = Registry.register(Registries.BLOCK,
