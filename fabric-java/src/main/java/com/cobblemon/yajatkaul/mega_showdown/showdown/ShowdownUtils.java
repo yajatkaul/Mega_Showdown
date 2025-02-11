@@ -80,8 +80,8 @@ public class ShowdownUtils {
         }
 
         if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON) == post.getPokemon()){
-            post.getPlayer().setAttached(DataManage.MEGA_DATA, false);
-            post.getPlayer().setAttached(DataManage.MEGA_POKEMON, null);
+            post.getPlayer().removeAttached(DataManage.MEGA_DATA);
+            post.getPlayer().removeAttached(DataManage.MEGA_POKEMON);
         }
 
         return Unit.INSTANCE;

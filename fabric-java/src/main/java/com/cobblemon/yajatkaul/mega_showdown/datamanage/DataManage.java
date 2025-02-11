@@ -57,5 +57,6 @@ public class DataManage {
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();
+        BATTLE_ID.initializer();
     }
 }

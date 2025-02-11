@@ -112,7 +112,7 @@ public class MegaBraceletItem extends Item {
         }
 
         //Multiple megas
-        if(species == pokemon.getSpecies() && (!playerData || ShowdownConfig.megaTurns.get())){
+        if(species == pokemon.getSpecies() && (!playerData || ShowdownConfig.multipleMegas.get())){
 
             if(species == ShowdownUtils.getSpecies("charizard")){
                 if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)){

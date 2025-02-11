@@ -1,4 +1,5 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "mega_showdown:item/keystone_base",
 		"2": "mega_showdown:item/mega_bracelet"
@@ -29,8 +30,7 @@
 			"to": [0, 0.5, 3],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-5, 0, 2]},
 			"faces": {
-				"up": {"uv": [6, 8, 2, 6], "rotation": 270, "texture": "#1"},
-				"down": {"uv": [8, 4, 4, 8], "texture": "#1"}
+				"up": {"uv": [6, 8, 2, 6], "rotation": 270, "texture": "#1"}
 			}
 		},
 		{

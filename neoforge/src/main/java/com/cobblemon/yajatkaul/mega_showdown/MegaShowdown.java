@@ -83,11 +83,11 @@ public final class MegaShowdown {
     private void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
         if(Config.battleMode){
             if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
                 player.removeData(DataManage.MEGA_DATA);
                 player.removeData(DataManage.MEGA_POKEMON);
                 player.removeData(DataManage.BATTLE_ID);
-
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
@@ -99,24 +99,24 @@ public final class MegaShowdown {
     }
 
 
-//    @SubscribeEvent
-//    private void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-//        if(Config.battleMode){
-//            if(event.getEntity() instanceof ServerPlayer player){
-//                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-//
-//                player.setData(DataManage.MEGA_DATA, false);
-//                player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-//                player.setData(DataManage.BATTLE_ID, NIL_UUID);
-//
-//                for (Pokemon pokemon : playerPartyStore) {
-//                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-//                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-//                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-//                }
-//            }
-//        }
-//    }
+    @SubscribeEvent
+    private void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
+        if(Config.battleMode){
+            if(event.getEntity() instanceof ServerPlayer player){
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+                player.removeData(DataManage.MEGA_DATA);
+                player.removeData(DataManage.MEGA_POKEMON);
+                player.removeData(DataManage.BATTLE_ID);
+
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }
+        }
+    }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

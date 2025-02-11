@@ -144,8 +144,8 @@
   "item.mega_showdown.diancite": "Diancia",
 
   "block.mega_showdown.mega_meteorid_block": "Bloque de metoro mega",
+  "block.mega_showdown.mega_evo_block": "Bloque de meteoro evo",
   "block.mega_showdown.mega_stone_crystal": "Cristal mega",
-  "tooltip.mega_showdown.mega_stone_crystal.tooltip": "Te otorga una megapiedra aleatoria",
 
   "block.mega_showdown.keystone_ore": "Mena de piedra activadora",
   "item.mega_showdown.keystone": "Piedra activadora",
@@ -153,6 +153,20 @@
 
   "item.mega_showdown.megabracelet": "§l§fMegapulsera",
   "tooltip.mega_showdown.megabracelet.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megabracelet_red": "§l§fMegapulsera roja",
+  "tooltip.mega_showdown.megabracelet_red.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megabracelet_pink": "§l§fMegapulsera rosa",
+  "tooltip.mega_showdown.megabracelet_pink.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megabracelet_yellow": "§l§fMegapulsera amarilla",
+  "tooltip.mega_showdown.megabracelet_yellow.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megabracelet_green": "§l§fMegapulsera verde",
+  "tooltip.mega_showdown.megabracelet_green.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megabracelet_blue": "§l§fMegapulsera azúl",
+  "tooltip.mega_showdown.megabracelet_blue.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megabracelet_black": "§l§fMegapulsera negra",
+  "tooltip.mega_showdown.megabracelet_black.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.megaring": "Mega-aro",
+  "tooltip.mega_showdown.megaring.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
 
   "item.mega_showdown.dnasplicers": "Punta ADN",
   "item.mega_showdown.dousedrive": "HidroROM",

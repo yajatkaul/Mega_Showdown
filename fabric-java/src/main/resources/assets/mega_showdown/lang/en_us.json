@@ -145,6 +145,7 @@
 
   "block.mega_showdown.mega_meteorid_block": "Mega Meteoroid Block",
   "block.mega_showdown.mega_evo_block": "Evo Meteoroid Block",
+
   "block.mega_showdown.mega_stone_crystal": "Mega Crystal",
 
   "block.mega_showdown.keystone_ore": "Keystone Ore",
@@ -183,7 +184,7 @@
   "item.mega_showdown.chilldrive": "Chill Drive",
   "item.mega_showdown.adamantorb": "Adamant Orb",
 
-  "itemgroup.mega_showdown.mega_showdown_tab": "Mega Showdown",
+  "creativeTab.mega_showdown.megamons_tab": "Mega Showdown",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
