@@ -16,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import static com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling.*;
 
 public class ButtonLogic {
     public static void megaEvoButton(ScreenEvent.Init.Post event) {
@@ -52,12 +51,7 @@ public class ButtonLogic {
             ImageButton button = new ImageButton(xPos,yPos, buttonWidth, buttonHeight, buttonTexture,onPressAction );
 
             if(Config.battleMode && clientPlayer != null && clientPlayer.getOffhandItem().getItem() instanceof MegaBraceletItem){
-                if(!clicked || Config.multipleMegas){
-                    event.addListener(button);
-                }
-                else{
-                    event.removeListener(button);
-                }
+                event.addListener(button);
             }
         }
     }

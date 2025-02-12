@@ -47,6 +47,8 @@ public class MegaShowdown implements ModInitializer {
         ShowdownUtils.loadMegaStoneIds();
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
+        CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, ShowdownUtils::onMegaTraded);
+
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
@@ -60,8 +62,8 @@ public class MegaShowdown implements ModInitializer {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 player.removeAttached(DataManage.MEGA_DATA);
-                player.removeAttached(DataManage.MEGA_POKEMON);
                 player.removeAttached(DataManage.BATTLE_ID);
+                BattleHandling.battlePokemonUsed.clear();
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
@@ -75,14 +77,12 @@ public class MegaShowdown implements ModInitializer {
 
                 if(alive){
                     oldPlayer.removeAttached(DataManage.MEGA_DATA);
-                    oldPlayer.removeAttached(DataManage.MEGA_POKEMON);
                     oldPlayer.removeAttached(DataManage.BATTLE_ID);
                 }else{
                     newPlayer.removeAttached(DataManage.MEGA_DATA);
-                    newPlayer.removeAttached(DataManage.MEGA_POKEMON);
                     newPlayer.removeAttached(DataManage.BATTLE_ID);
                 }
-
+                BattleHandling.battlePokemonUsed.clear();
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);

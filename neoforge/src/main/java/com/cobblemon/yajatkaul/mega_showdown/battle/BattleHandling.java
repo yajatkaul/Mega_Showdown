@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.battles.runner.ShowdownService;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
@@ -36,6 +37,7 @@ public class BattleHandling {
 
     public static Unit getBattleInfo(BattleStartedPostEvent battleStartedPostEvent) {
         PokemonBattle battle = battleStartedPostEvent.getBattle();
+
         for (ServerPlayer player: battle.getPlayers()){
             player.setData(DataManage.BATTLE_ID, battle.getBattleId());
         }
@@ -43,6 +45,8 @@ public class BattleHandling {
     }
 
     private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle) {
+        battle.writeShowdownAction("activateAbility");
+
         MutableComponent message = Component.literal(battlePokemon.getName().getString())
                 .withStyle(style -> style.withColor(ChatFormatting.GOLD))
                 .append(" ")
@@ -85,82 +89,99 @@ public class BattleHandling {
         });
 
         battle.getPlayers().forEach(serverPlayer -> {
-                for (BattlePokemon battlePokemon : battle.getActor(serverPlayer.getUUID()).getPokemonList()) {
-                    if (battlePokemon.getOriginalPokemon().getEntity() == null) {
-                        continue; // Skip to the next iteration
-                    }
+            for (BattlePokemon battlePokemon : battle.getActor(serverPlayer.getUUID()).getPokemonList()) {
+                if (battlePokemon.getOriginalPokemon().getEntity() == null) {
+                    continue; // Skip to the next iteration
+                }
 
-                    Pokemon pokemon = battlePokemon.getOriginalPokemon();
+                Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                    if(battlePokemonUsed.contains(pokemon)){
-                        serverPlayer.displayClientMessage(Component.literal("Pokemon already mega'ed")
-                                .withColor(0xFF0000), true);
-                        continue;
-                    }
+                if(battlePokemonUsed.contains(pokemon)){
+                    serverPlayer.displayClientMessage(Component.literal("Pokemon already mega'ed")
+                            .withColor(0xFF0000), true);
+                    continue;
+                }
 
-                    Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+                Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
-                    if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
-                            (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
+                if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
+                        (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
 
-                        if (species == ShowdownUtils.getSpecies("charizard")) {
-                            if (pokemon.heldItem().is(ModItems.CHARIZARDITE_X)) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, true);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
-
-                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-x", true).apply(pokemon);
-
-                                if(Config.megaTurns){
-                                    battle.getActor(serverPlayer).setActionResponses(skipTurn);
-                                }
-                                broadCastEvoMsg(battlePokemon, battle);
-                                battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                break;
-                            } else if (pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, true);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
-
-                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-y", true).apply(pokemon);
-                                if(Config.megaTurns){
-                                    battle.getActor(serverPlayer).setActionResponses(skipTurn);
-                                }
-                                battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon, battle);
-                                break;
-                            }
-                        } else if (species == ShowdownUtils.getSpecies("mewtwo")) {
-                            if (pokemon.heldItem().is(ModItems.MEWTWONITE_X)) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, true);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
-
-                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-x", true).apply(pokemon);
-                                if(Config.megaTurns){
-                                    battle.getActor(serverPlayer).setActionResponses(skipTurn);
-                                }
-                                battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon, battle);
-                                break;
-                            } else if (pokemon.heldItem().is(ModItems.MEWTWONITE_Y)) {
-                                serverPlayer.setData(DataManage.MEGA_DATA, true);
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
-
-                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-y", true).apply(pokemon);
-                                if(Config.megaTurns){
-                                    battle.getActor(serverPlayer).setActionResponses(skipTurn);
-                                }
-                                battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon, battle);
-                                break;
-                            }
-                        } else {
+                    if (species == ShowdownUtils.getSpecies("charizard")) {
+                        if (pokemon.heldItem().is(ModItems.CHARIZARDITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
 
+                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+
+                            if(Config.megaTurns){
+                                battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                            }
+                            broadCastEvoMsg(battlePokemon, battle);
+                            battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                            break;
+                        } else if (pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)) {
+                            serverPlayer.setData(DataManage.MEGA_DATA, true);
+                            serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
+
+                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                            if(Config.megaTurns){
+                                battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                            }
+                            battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                            broadCastEvoMsg(battlePokemon, battle);
+                            break;
+                        }
+                    } else if (species == ShowdownUtils.getSpecies("mewtwo")) {
+                        if (pokemon.heldItem().is(ModItems.MEWTWONITE_X)) {
+                            serverPlayer.setData(DataManage.MEGA_DATA, true);
+                            serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
+
+                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                            if(Config.megaTurns){
+                                battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                            }
+                            battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                            broadCastEvoMsg(battlePokemon, battle);
+                            break;
+                        } else if (pokemon.heldItem().is(ModItems.MEWTWONITE_Y)) {
+                            serverPlayer.setData(DataManage.MEGA_DATA, true);
+                            serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
+
+                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                            if(Config.megaTurns){
+                                battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                            }
+                            battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                            broadCastEvoMsg(battlePokemon, battle);
+                            break;
+                        }
+                    } else {
+                        serverPlayer.setData(DataManage.MEGA_DATA, true);
+                        serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
+
+                        new FlagSpeciesFeature("mega", true).apply(pokemon);
+
+                        if(Config.megaTurns){
+                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                        }
+                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                        broadCastEvoMsg(battlePokemon, battle);
+                        break;
+                    }
+                } else if (pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")) {
+                    boolean found = false;
+                    for (int i = 0; i < 4; i++) {
+                        if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
+                            serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
+                            serverPlayer.setData(DataManage.MEGA_DATA, true);
+
                             new FlagSpeciesFeature("mega", true).apply(pokemon);
+                            found = true;
 
                             if(Config.megaTurns){
                                 battle.getActor(serverPlayer).setActionResponses(skipTurn);
@@ -169,36 +190,19 @@ public class BattleHandling {
                             broadCastEvoMsg(battlePokemon, battle);
                             break;
                         }
-                    } else if (pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")) {
-                        boolean found = false;
-                        for (int i = 0; i < 4; i++) {
-                            if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                                serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
-                                serverPlayer.setData(DataManage.MEGA_DATA, true);
-
-                                new FlagSpeciesFeature("mega", true).apply(pokemon);
-                                found = true;
-
-                                if(Config.megaTurns){
-                                    battle.getActor(serverPlayer).setActionResponses(skipTurn);
-                                }
-                                battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                                broadCastEvoMsg(battlePokemon, battle);
-                                break;
-                            }
-                        }
-                        if(!found){
-                            ((Player) serverPlayer).displayClientMessage(Component.literal("Rayquaza doesn't have dragonascent")
-                                    .withColor(0xFF0000), true);
-                        }
-                    } else if (species == pokemon.getSpecies() && serverPlayer.getData(DataManage.MEGA_DATA)) {
-                        ((Player) serverPlayer).displayClientMessage(Component.literal("You can only have one mega at a time")
-                                .withColor(0xFF0000), true);
-                    } else {
-                        ((Player) serverPlayer).displayClientMessage(Component.literal("Don't have the correct stone")
+                    }
+                    if(!found){
+                        ((Player) serverPlayer).displayClientMessage(Component.literal("Rayquaza doesn't have dragonascent")
                                 .withColor(0xFF0000), true);
                     }
+                } else if (species == pokemon.getSpecies() && serverPlayer.getData(DataManage.MEGA_DATA)) {
+                    ((Player) serverPlayer).displayClientMessage(Component.literal("You can only have one mega at a time")
+                            .withColor(0xFF0000), true);
+                } else {
+                    ((Player) serverPlayer).displayClientMessage(Component.literal("Don't have the correct stone")
+                            .withColor(0xFF0000), true);
                 }
+            }
 
         });
     }
@@ -207,21 +211,21 @@ public class BattleHandling {
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             MegaShowdown.LOGGER.info("BattleEnded");
-                for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
-                    if (battlePokemon.getOriginalPokemon().getEntity() == null) {
-                        continue;
-                    }
-
-                    Pokemon pokemon = battlePokemon.getOriginalPokemon();
-
-                    serverPlayer.setData(DataManage.MEGA_DATA, false);
-                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
+                if (battlePokemon.getOriginalPokemon().getEntity() == null) {
+                    continue;
                 }
-                serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
+
+                Pokemon pokemon = battlePokemon.getOriginalPokemon();
+
+                serverPlayer.setData(DataManage.MEGA_DATA, false);
+                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            }
+            serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
         });
 
         clicked = false;
@@ -249,21 +253,21 @@ public class BattleHandling {
 
     public static Unit deVolveFlee(BattleFledEvent battleFledEvent) {
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-                for (BattlePokemon battlePokemon : battleFledEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
-                    if (battlePokemon.getOriginalPokemon().getEntity() == null ||
-                            battlePokemon.getOriginalPokemon().getEntity().level().isClientSide) {
-                        continue;
-                    }
-
-                    serverPlayer.setData(DataManage.MEGA_DATA, false);
-                    serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    Pokemon pokemon = battlePokemon.getOriginalPokemon();
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            for (BattlePokemon battlePokemon : battleFledEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
+                if (battlePokemon.getOriginalPokemon().getEntity() == null ||
+                        battlePokemon.getOriginalPokemon().getEntity().level().isClientSide) {
+                    continue;
                 }
+
+                serverPlayer.setData(DataManage.MEGA_DATA, false);
+                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+                Pokemon pokemon = battlePokemon.getOriginalPokemon();
+
+                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            }
 
             serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
         });

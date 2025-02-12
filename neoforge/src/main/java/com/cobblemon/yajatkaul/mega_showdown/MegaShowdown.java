@@ -5,22 +5,14 @@ import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.platform.events.ServerPlayerEvent;
+import com.cobblemon.mod.common.battles.runner.ShowdownService;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.battle.ButtonLogic;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.network.ServerPlayerConnection;
-import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.Event;
-import net.neoforged.bus.api.EventPriority;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
-import net.neoforged.neoforge.network.registration.HandlerThread;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
@@ -39,14 +31,12 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import static net.minecraft.Util.NIL_UUID;
-
 @Mod(MegaShowdown.MOD_ID)
 public final class MegaShowdown {
     public static final Logger LOGGER = LoggerFactory.getLogger("Mega Showdown");
     public static final String MOD_ID = "mega_showdown";
 
-    public MegaShowdown(IEventBus modEventBus, ModContainer modContainer) {
+    public MegaShowdown(IEventBus modEventBus, @NotNull ModContainer modContainer) {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
@@ -70,6 +60,7 @@ public final class MegaShowdown {
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
+        CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, ShowdownUtils::onMegaTraded);
 
         // Battle mode only
         if(Config.battleMode){
@@ -86,8 +77,9 @@ public final class MegaShowdown {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 player.removeData(DataManage.MEGA_DATA);
-                player.removeData(DataManage.MEGA_POKEMON);
                 player.removeData(DataManage.BATTLE_ID);
+
+                BattleHandling.battlePokemonUsed.clear();
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
@@ -106,8 +98,9 @@ public final class MegaShowdown {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 player.removeData(DataManage.MEGA_DATA);
-                player.removeData(DataManage.MEGA_POKEMON);
                 player.removeData(DataManage.BATTLE_ID);
+
+                BattleHandling.battlePokemonUsed.clear();
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
