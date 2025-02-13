@@ -6,14 +6,12 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -66,10 +64,6 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.getPokemon().getOwnerPlayer() != player){
-                return;
-            }
-
             List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
             boolean end = false;
@@ -96,12 +90,19 @@ public class MegaLogic {
         }
     }
 
-    private static void Evolve(LivingEntity context, Player player){
+    public static void Evolve(LivingEntity context, Player player){
+        if(context instanceof PokemonEntity pk){
+            if(pk.getPokemon().getOwnerPlayer() != player){
+                return;
+            }
+        }
+
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-        Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+
 
         if(species == pokemon.getSpecies() && (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
-            if(species == ShowdownUtils.getSpecies("charizard")){
+            if(species == Utils.getSpecies("charizard")){
                 if(pokemon.heldItem().is(ModItems.CHARIZARDITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -117,7 +118,7 @@ public class MegaLogic {
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
                 }
             }
-            else if(species == ShowdownUtils.getSpecies("mewtwo")){
+            else if(species == Utils.getSpecies("mewtwo")){
                 if(pokemon.heldItem().is(ModItems.MEWTWONITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -138,7 +139,7 @@ public class MegaLogic {
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
             }
-        }else if(pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")){
+        }else if(pokemon.getSpecies() == Utils.getSpecies("rayquaza")){
             boolean found = false;
             for (int i = 0; i < 4; i++){
                 if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
@@ -162,9 +163,15 @@ public class MegaLogic {
         }
     }
 
-    private static void Devolve(LivingEntity context, Player player){
+    public static void Devolve(LivingEntity context, Player player){
         if(player.level().isClientSide){
             return;
+        }
+
+        if(context instanceof PokemonEntity pk){
+            if(pk.getPokemon().getOwnerPlayer() != player){
+                return;
+            }
         }
 
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();

@@ -1,32 +1,23 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
-import com.cobblemon.mod.common.api.abilities.AbilityTemplate;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.SynchronizedSpeciesFeature;
 import com.cobblemon.mod.common.battles.*;
-import com.cobblemon.mod.common.battles.interpreter.instructions.FormeChangeInstruction;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.mod.common.battles.runner.ShowdownService;
-import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
-import com.cobblemon.mod.common.net.messages.client.data.AbilityRegistrySyncPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.*;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -34,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -112,12 +102,12 @@ public class BattleHandling {
                     continue;
                 }
 
-                Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+                Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
                 if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
                         (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
 
-                    if (species == ShowdownUtils.getSpecies("charizard")) {
+                    if (species == Utils.getSpecies("charizard")) {
                         if (pokemon.heldItem().is(ModItems.CHARIZARDITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -144,7 +134,7 @@ public class BattleHandling {
                             broadCastEvoMsg(battlePokemon, battle);
                             break;
                         }
-                    } else if (species == ShowdownUtils.getSpecies("mewtwo")) {
+                    } else if (species == Utils.getSpecies("mewtwo")) {
                         if (pokemon.heldItem().is(ModItems.MEWTWONITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -183,7 +173,7 @@ public class BattleHandling {
                         broadCastEvoMsg(battlePokemon, battle);
                         break;
                     }
-                } else if (pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")) {
+                } else if (pokemon.getSpecies() == Utils.getSpecies("rayquaza")) {
                     boolean found = false;
                     for (int i = 0; i < 4; i++) {
                         if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {

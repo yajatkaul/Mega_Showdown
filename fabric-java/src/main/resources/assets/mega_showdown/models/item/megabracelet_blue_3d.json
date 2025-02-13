@@ -2,5 +2,6 @@
   "parent": "mega_showdown:item/megabracelet_3d",
   "textures": {
     "2": "mega_showdown:item/megabracelet_blue_3d"
-  }
+  },
+  "gui_light": "front"
 }

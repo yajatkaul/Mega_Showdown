@@ -3,6 +3,7 @@
 		"1": "mega_showdown:item/keystone_base",
 		"2": "mega_showdown:item/megaring_3d"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"name": "Stone",

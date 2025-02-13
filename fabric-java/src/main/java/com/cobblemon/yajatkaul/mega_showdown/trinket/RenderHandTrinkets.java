@@ -1,7 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown.trinket;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
+import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -14,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.RotationAxis;
 
-public class RenderTrinkets implements TrinketRenderer {
+public class RenderHandTrinkets implements TrinketRenderer {
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         boolean bl = entity.getMainArm() != Arm.RIGHT; //false if only right hand
@@ -39,5 +41,16 @@ public class RenderTrinkets implements TrinketRenderer {
                     , bl, matrices, vertexConsumers, entity.getWorld(), light, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformationMode.THIRD_PERSON_RIGHT_HAND.ordinal());
             matrices.pop();
         }
+    }
+
+    public static void register(){
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_RED_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLUE_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_YELLOW_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_RING, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLACK_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_GREEN_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_PINK_BRACELET, new RenderHandTrinkets());
     }
 }

@@ -62,10 +62,6 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.getPokemon().getOwnerPlayer() != player){
-                return;
-            }
-
             List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
             boolean end = false;
@@ -92,7 +88,13 @@ public class MegaLogic {
         }
     }
 
-    private static void Evolve(LivingEntity context, PlayerEntity player){
+    public static void Evolve(LivingEntity context, PlayerEntity player){
+        if(context instanceof PokemonEntity pk){
+            if(pk.getPokemon().getOwnerPlayer() != player){
+                return;
+            }
+        }
+
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
         Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
         Boolean playerData = player.getAttached(DataManage.MEGA_DATA);
@@ -169,7 +171,13 @@ public class MegaLogic {
         }
     }
 
-    private static void Devolve(LivingEntity context, PlayerEntity player){
+    public static void Devolve(LivingEntity context, PlayerEntity player){
+        if(context instanceof PokemonEntity pk){
+            if(pk.getPokemon().getOwnerPlayer() != player){
+                return;
+            }
+        }
+
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
 
         if(player.getWorld().isClient){

@@ -24,7 +24,7 @@ public class ButtonLogic {
 
             Button.OnPress onPressAction = button -> {
                 event.removeListener(button);
-                PacketDistributor.sendToServer(new MegaEvoBattle("packet", 1));
+                PacketDistributor.sendToServer(new MegaEvoBattle("mega_evo_battle"));
             };
 
             Screen screen = Minecraft.getInstance().screen;

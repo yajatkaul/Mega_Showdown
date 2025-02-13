@@ -12,13 +12,13 @@ import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 public class Register {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        CuriosRendererRegistry.register(ModItems.MEGA_BRACELET.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_RED_BRACELET.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_BLUE_BRACELET.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_YELLOW_BRACELET.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_RING.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_BLACK_BRACELET.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_GREEN_BRACELET.get(), CurioRenderer::new);
-        CuriosRendererRegistry.register(ModItems.MEGA_PINK_BRACELET.get(), CurioRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_RED_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_BLUE_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_YELLOW_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_RING.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_BLACK_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_GREEN_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MEGA_PINK_BRACELET.get(), CurioHandRenderer::new);
     }
 }
