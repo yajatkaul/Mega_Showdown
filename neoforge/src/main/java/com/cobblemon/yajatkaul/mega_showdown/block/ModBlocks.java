@@ -27,6 +27,14 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 
+    public static final DeferredBlock<Block> KEYSTONE_BLOCK = registerBlock("keystone_block",
+            () -> new Block(
+                    BlockBehaviour
+                            .Properties.of()
+                            .strength(3f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE)));
+
     public static final DeferredBlock<Block> ABOMASITE_ORE = registerBlock("abomasite_ore",
             () -> new DropExperienceBlock(UniformInt.of(3,6),
                     BlockBehaviour

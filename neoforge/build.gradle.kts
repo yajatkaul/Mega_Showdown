@@ -7,7 +7,7 @@ plugins {
 
 
 group = "com.github.yajatkaul"
-version = "3.0.4-release-neoforge"
+version = "3.1.2-release-neoforge"
 
 architectury {
     platformSetupLoomIde()
@@ -41,6 +41,10 @@ repositories {
     maven("https://hub.spigotmc.org/nexus/content/groups/public/")
     maven("https://thedarkcolour.github.io/KotlinForForge/")
     maven("https://maven.neoforged.net")
+    maven {
+        name = "Illusive Soulworks maven"
+        url = uri("https://maven.theillusivec4.top/")
+    }
 }
 
 dependencies {
@@ -55,6 +59,13 @@ dependencies {
     }
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+
+    // Compile against only the API artifact
+    compileOnly("top.theillusivec4.curios:curios-neoforge:${properties["curios_version"]}:api")
+
+    // Use the full Curios API jar at runtime
+    runtimeOnly("top.theillusivec4.curios:curios-neoforge:${properties["curios_version"]}")
+    include("top.theillusivec4.curios:curios-neoforge:${properties["curios_version"]}")
 }
 
 tasks.getByName<Test>("test") {

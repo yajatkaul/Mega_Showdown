@@ -1,0 +1,6 @@
+{
+  "parent": "mega_showdown:item/megabracelet_3d",
+  "textures": {
+    "2": "mega_showdown:item/megabracelet_green_3d"
+  }
+}

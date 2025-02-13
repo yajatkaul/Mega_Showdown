@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -87,6 +88,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('I', Items.IRON_INGOT)
                 .define('D', Items.DIAMOND)
                 .define('A', CobblemonItems.YELLOW_APRICORN)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.KEYSTONE_BLOCK.get())
+                .pattern("KKK")
+                .pattern("KKK")
+                .pattern("KKK")
+                .define('K', ModItems.KEYSTONE)
                 .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
 
     }

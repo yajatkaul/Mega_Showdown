@@ -3,9 +3,8 @@ package com.cobblemon.yajatkaul.mega_showdown.battle;
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvoBattle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
@@ -15,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
+import top.theillusivec4.curios.api.CuriosApi;
 
 
 public class ButtonLogic {
@@ -24,7 +24,7 @@ public class ButtonLogic {
 
             Button.OnPress onPressAction = button -> {
                 event.removeListener(button);
-                PacketDistributor.sendToServer(new MegaEvo("packet", 1));
+                PacketDistributor.sendToServer(new MegaEvoBattle("packet", 1));
             };
 
             Screen screen = Minecraft.getInstance().screen;
@@ -50,7 +50,10 @@ public class ButtonLogic {
             WidgetSprites buttonTexture = new WidgetSprites(texture,texture,texture_hover,texture);
             ImageButton button = new ImageButton(xPos,yPos, buttonWidth, buttonHeight, buttonTexture,onPressAction );
 
-            if(Config.battleMode && clientPlayer != null && clientPlayer.getOffhandItem().getItem() instanceof MegaBraceletItem){
+            boolean hasMegaItem = CuriosApi.getCuriosInventory(clientPlayer).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
+
+            if(Config.battleMode && clientPlayer != null && (clientPlayer.getOffhandItem().getItem() instanceof
+                    MegaBraceletItem || hasMegaItem)){
                 event.addListener(button);
             }
         }

@@ -151,6 +151,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
                         output.accept(ModBlocks.MEGA_EVO_BLOCK);
+                        output.accept(ModBlocks.KEYSTONE_BLOCK);
 
                         output.accept(ModBlocks.MEGA_METEORID_DAWN_ORE);
                         output.accept(ModBlocks.MEGA_METEORID_DUSK_ORE);

@@ -9,10 +9,20 @@ import com.cobblemon.mod.common.battles.runner.ShowdownService;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.battle.ButtonLogic;
+import com.cobblemon.yajatkaul.mega_showdown.curios.CurioRenderer;
+import com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.jarjar.nio.util.Lazy;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
@@ -30,6 +40,9 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
+
+import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
 
 @Mod(MegaShowdown.MOD_ID)
 public final class MegaShowdown {
@@ -76,11 +89,6 @@ public final class MegaShowdown {
             if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
-                player.removeData(DataManage.MEGA_DATA);
-                player.removeData(DataManage.BATTLE_ID);
-
-                BattleHandling.battlePokemonUsed.clear();
-
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
@@ -114,9 +122,25 @@ public final class MegaShowdown {
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             NeoForge.EVENT_BUS.addListener(ButtonLogic::megaEvoButton);
+            NeoForge.EVENT_BUS.addListener(ClientModEvents::onClientTick);
+        }
+
+        // Register the key binding
+        @SubscribeEvent
+        public static void registerBindings(RegisterKeyMappingsEvent event) {
+            event.register(MEGA_ITEM_KEY.get());
+        }
+
+        public static void onClientTick(ClientTickEvent.Post event) {
+            while (MEGA_ITEM_KEY.get().consumeClick()) {
+                PacketDistributor.sendToServer(new MegaEvo("mega_evo", 1));
+            }
         }
     }
+
+
 }

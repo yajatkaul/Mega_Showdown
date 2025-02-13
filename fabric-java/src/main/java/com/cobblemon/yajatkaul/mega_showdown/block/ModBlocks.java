@@ -21,6 +21,12 @@ public class ModBlocks {
                     .requiresTool()
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
+    public static final Block KEYSTONE_BLOCK = registerBlock("keystone_block",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(4f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
+
     public static final Block ABOMASITE_ORE = registerBlock("abomasite_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(3, 6), AbstractBlock.Settings.create()
                     .strength(3f)

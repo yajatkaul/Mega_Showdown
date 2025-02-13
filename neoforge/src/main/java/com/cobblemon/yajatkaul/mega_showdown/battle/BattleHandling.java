@@ -1,14 +1,21 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
+import com.cobblemon.mod.common.api.abilities.AbilityTemplate;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.SynchronizedSpeciesFeature;
 import com.cobblemon.mod.common.battles.*;
+import com.cobblemon.mod.common.battles.interpreter.instructions.FormeChangeInstruction;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.battles.runner.ShowdownService;
+import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.data.AbilityRegistrySyncPacket;
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.*;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
@@ -27,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,32 +46,34 @@ public class BattleHandling {
     public static Unit getBattleInfo(BattleStartedPostEvent battleStartedPostEvent) {
         PokemonBattle battle = battleStartedPostEvent.getBattle();
 
+        battlePokemonUsed.clear();
+
         for (ServerPlayer player: battle.getPlayers()){
             player.setData(DataManage.BATTLE_ID, battle.getBattleId());
+            player.removeData(DataManage.MEGA_DATA);
         }
         return Unit.INSTANCE;
     }
 
     private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle) {
-        battle.writeShowdownAction("activateAbility");
-
-        MutableComponent message = Component.literal(battlePokemon.getName().getString())
-                .withStyle(style -> style.withColor(ChatFormatting.GOLD))
-                .append(" ")
-                .append(Component.literal(battlePokemon.getOriginalPokemon().getAbility().getName())
-                        .withStyle(style -> style.withColor(ChatFormatting.GOLD)))
-                .append(" activated!");
-
-        battle.broadcastChatMessage(message);
-
-        String translatedDescription = Component.translatable(battlePokemon.getOriginalPokemon().getAbility().getDescription()).getString();
-
-        battle.broadcastChatMessage(
-                Component.literal(translatedDescription)
-                        .withStyle(style -> style.withColor(ChatFormatting.WHITE))
-        );
-
-        clicked = true;
+        battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, battlePokemon.getEffectedPokemon().getAbility().getTemplate()));
+        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(battlePokemon.getEffectedPokemon()));
+        
+//        MutableComponent message = Component.literal(battlePokemon.getName().getString())
+//                .withStyle(style -> style.withColor(ChatFormatting.GOLD))
+//                .append(" ")
+//                .append(Component.literal(battlePokemon.getOriginalPokemon().getAbility().getName())
+//                        .withStyle(style -> style.withColor(ChatFormatting.GOLD)))
+//                .append(" activated!");
+//
+//        battle.broadcastChatMessage(message);
+//
+//        String translatedDescription = Component.translatable(battlePokemon.getOriginalPokemon().getAbility().getDescription()).getString();
+//
+//        battle.broadcastChatMessage(
+//                Component.literal(translatedDescription)
+//                        .withStyle(style -> style.withColor(ChatFormatting.WHITE))
+//        );
     }
 
     public static void handleMegaEvolution(IPayloadContext userContext){
@@ -207,10 +217,8 @@ public class BattleHandling {
         });
     }
 
-    public static boolean clicked = false;
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-            MegaShowdown.LOGGER.info("BattleEnded");
             for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
                 if (battlePokemon.getOriginalPokemon().getEntity() == null) {
                     continue;
@@ -228,7 +236,6 @@ public class BattleHandling {
             serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
         });
 
-        clicked = false;
         battlePokemonUsed.clear();
         return Unit.INSTANCE;
     }
@@ -272,7 +279,6 @@ public class BattleHandling {
             serverPlayer.setData(DataManage.BATTLE_ID, NIL_UUID);
         });
 
-        clicked = false;
         battlePokemonUsed.clear();
         return Unit.INSTANCE;
     }

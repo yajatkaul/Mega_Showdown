@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -71,6 +72,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.MEGA_METEOROID_BLOCK.get(),
                         ModBlocks.MEGA_EVO_BLOCK.get(),
+                        ModBlocks.KEYSTONE_BLOCK.get(),
 
                         ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
                         ModBlocks.MEGA_METEORID_DUSK_ORE.get(),
@@ -132,7 +134,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.TYRANITARITE_ORE.get(),
                         ModBlocks.VENUSAURITE_ORE.get(),
                         ModBlocks.MEGA_STONE_CRYSTAL.get(),
-                        ModBlocks.KEYSTONE_ORE.get()
+                        ModBlocks.KEYSTONE_ORE.get(),
+                        ModBlocks.KEYSTONE_BLOCK.get()
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)

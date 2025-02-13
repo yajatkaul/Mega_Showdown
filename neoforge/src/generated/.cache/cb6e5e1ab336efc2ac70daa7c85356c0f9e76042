@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-09T21:29:19.4072755	Block States: mega_showdown
+// 1.21.1	2025-02-13T12:31:08.77114	Block States: mega_showdown
 43998113717108672477eed1c6ea8ba2abe109ce assets/mega_showdown/blockstates/abomasite_ore.json
 d560d60509a29b82d220b23259dc6abf13c4e3c9 assets/mega_showdown/blockstates/absolite_ore.json
 ba6fac7fe0a7a34662869d722408a7efd95d37d5 assets/mega_showdown/blockstates/aerodactylite_ore.json
@@ -24,6 +24,7 @@ a86c8c5fb3a19a08e82faeb5768bd5f6bca062f7 assets/mega_showdown/blockstates/glalit
 8f5b752ed4a06c3ea0d73d1adaddfefa87a2dd50 assets/mega_showdown/blockstates/heracronite_ore.json
 d868282f5ccf312d722722b59eaa6ab9be3161e0 assets/mega_showdown/blockstates/houndoominite_ore.json
 def1ae5f5fad83712219c16700edb7ab631ff5ed assets/mega_showdown/blockstates/kangaskhanite_ore.json
+03206172097eac6349d746add214165f2d5f684a assets/mega_showdown/blockstates/keystone_block.json
 b24c08f803f21165ac199cde96d4e912cdaa1150 assets/mega_showdown/blockstates/keystone_ore.json
 09ba41273901a0ca5969e6947dce169fb9f0b19d assets/mega_showdown/blockstates/latiasite_ore.json
 0938322c9266261ee0d8b39e885ddb92f134c364 assets/mega_showdown/blockstates/latiosite_ore.json
@@ -85,6 +86,7 @@ ff2d540fca512e714866e15cf4aeb1e7b5164d50 assets/mega_showdown/models/block/garch
 d5a6436fc4c5d3f2012471822ba3ad9fa3543cb8 assets/mega_showdown/models/block/heracronite_ore.json
 0e8da62e566e289e73bdb07d18ffece6fe625aa2 assets/mega_showdown/models/block/houndoominite_ore.json
 8f76300186c22a8a1850edfe5547e3180a40793e assets/mega_showdown/models/block/kangaskhanite_ore.json
+f33f398a93b982b01b3e57aae00599a26160ee89 assets/mega_showdown/models/block/keystone_block.json
 da005a100a0af5237afbb0798e7da711ca64e580 assets/mega_showdown/models/block/keystone_ore.json
 1e9131bcf070e3d9319780945fbb8461f9bbb389 assets/mega_showdown/models/block/latiasite_ore.json
 20ac01b78349a68cb1dfd09f5ce8808b3bb70688 assets/mega_showdown/models/block/latiosite_ore.json
@@ -146,6 +148,7 @@ ac23f6cef4f97f4000c5fc054eb734ca5881615d assets/mega_showdown/models/item/gyarad
 c2b9df1af748edbd8370c3221275aeb5661b213a assets/mega_showdown/models/item/heracronite_ore.json
 129e048b7bc036f09fa3afbd653144db2f46768a assets/mega_showdown/models/item/houndoominite_ore.json
 af96842d195a3e5fd081fc7c618d946df907d9a4 assets/mega_showdown/models/item/kangaskhanite_ore.json
+4379fec51327a07dbe0252e56b4e73aabcfc3ccf assets/mega_showdown/models/item/keystone_block.json
 c5e9dd9cc7b9a4c8e21c5884a680c523ef8de3a5 assets/mega_showdown/models/item/keystone_ore.json
 ae0a703d4a684970fcfab8979c9106aaa3423cac assets/mega_showdown/models/item/latiasite_ore.json
 c06f05c882c258f549b06408d2659aceab4628bd assets/mega_showdown/models/item/latiosite_ore.json

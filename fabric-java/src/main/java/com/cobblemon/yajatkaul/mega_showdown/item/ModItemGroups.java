@@ -124,6 +124,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.VENUSAURITE_ORE);
 
                         entries.add(ModBlocks.KEYSTONE_ORE);
+                        entries.add(ModBlocks.KEYSTONE_BLOCK);
 
                         entries.add(ModBlocks.MEGA_METEOROID_BLOCK);
                         entries.add(ModBlocks.MEGA_EVO_BLOCK);

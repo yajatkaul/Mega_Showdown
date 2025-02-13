@@ -49,7 +49,6 @@ public class MegaShowdown implements ModInitializer {
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
         CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, ShowdownUtils::onMegaTraded);
 
-
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
         if(ShowdownConfig.battleModeOnly.get()){
@@ -60,10 +59,6 @@ public class MegaShowdown implements ModInitializer {
             ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
                 ServerPlayerEntity player = handler.player;
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-                player.removeAttached(DataManage.MEGA_DATA);
-                player.removeAttached(DataManage.BATTLE_ID);
-                BattleHandling.battlePokemonUsed.clear();
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);

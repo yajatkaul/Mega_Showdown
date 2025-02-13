@@ -3,9 +3,9 @@ package com.cobblemon.yajatkaul.mega_showdown.battle;
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacketBattle;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ButtonTextures;
@@ -50,11 +50,15 @@ public class ButtonLogic {
                     buttonHeight,
                     buttonTextures,
                     buttonWidget -> {
-                        EvoPacket.send();
+                        EvoPacketBattle.send();
                     });
 
+            boolean hasMegaItem = TrinketsApi.getTrinketComponent(clientPlayer).map(trinkets ->
+                    trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
+
             //Battle mode only
-            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null && clientPlayer.getOffHandStack().getItem() instanceof MegaBraceletItem){
+            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null &&
+                    (clientPlayer.getOffHandStack().getItem() instanceof MegaBraceletItem || hasMegaItem)){
                 Screens.getButtons(screen).add(texturedButtonWidget);
             }
         }

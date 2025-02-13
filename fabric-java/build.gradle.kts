@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "3.0.4-release-fabric"
+version = "3.1.2-release-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -26,6 +26,17 @@ repositories {
     maven(url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
     maven("https://maven.impactdev.net/repository/development/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
+
+    repositories {
+        maven {
+            name = "TerraformersMC"
+            url = uri("https://maven.terraformersmc.com/")
+        }
+        maven {
+            name = "Ladysnake Libs"
+            url = uri("https://maven.ladysnake.org/releases")
+        }
+    }
 
     exclusiveContent {
         forRepository {
@@ -55,6 +66,9 @@ dependencies {
 
     include("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
     modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
+
+    modImplementation("dev.emi:trinkets:${properties["trinkets_version"]}")
+    include("dev.emi:trinkets:${properties["trinkets_version"]}")
 }
 
 tasks.getByName<Test>("test") {

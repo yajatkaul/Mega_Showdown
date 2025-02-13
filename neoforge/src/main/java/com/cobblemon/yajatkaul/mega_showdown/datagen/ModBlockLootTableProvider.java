@@ -126,6 +126,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
         dropSelf(ModBlocks.MEGA_EVO_BLOCK.get());
+        dropSelf(ModBlocks.KEYSTONE_BLOCK.get());
 
         add(ModBlocks.MEGA_STONE_CRYSTAL.get(),
                 LootTable.lootTable()

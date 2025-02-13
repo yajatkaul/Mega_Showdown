@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-09T21:52:03.5751995	Loot Tables
+// 1.21.1	2025-02-13T12:31:08.7776095	Loot Tables
 71cf7b81ee8010ccfa329c846873b628a3f2ff8e data/mega_showdown/loot_table/blocks/abomasite_ore.json
 d76eaf7c9bdeb8c07164747a19e6a70913aa1e6c data/mega_showdown/loot_table/blocks/absolite_ore.json
 295361eebc004b3a9a23ac720232c83c41d5a325 data/mega_showdown/loot_table/blocks/aerodactylite_ore.json
@@ -24,6 +24,7 @@ b12c73d877c306bcde702acc6e46855be686fac9 data/mega_showdown/loot_table/blocks/gy
 1499d02da539b280c354517ff816bdc6e51180ce data/mega_showdown/loot_table/blocks/heracronite_ore.json
 a456be6eba6258928b8cfad4197cc97bb6c6ccd1 data/mega_showdown/loot_table/blocks/houndoominite_ore.json
 b094833f4f19cfddefcc4904777817abbe9226e6 data/mega_showdown/loot_table/blocks/kangaskhanite_ore.json
+4749ea320dbbc925681377c758c144915d6227ff data/mega_showdown/loot_table/blocks/keystone_block.json
 674695504760309a26eb17f92743d4a1724712ab data/mega_showdown/loot_table/blocks/keystone_ore.json
 bc2ecec512c6a6ed0bf0f91a9bed93612bf1a5d8 data/mega_showdown/loot_table/blocks/latiasite_ore.json
 f597c5331662cf4dad61641819aa382d6ccb7a22 data/mega_showdown/loot_table/blocks/latiosite_ore.json

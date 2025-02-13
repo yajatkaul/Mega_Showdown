@@ -8,6 +8,8 @@ import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
@@ -30,6 +32,9 @@ public class BattleHandling {
     public static List<Pokemon> battlePokemonUsed = new ArrayList<>();
 
     private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle){
+        battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, battlePokemon.getEffectedPokemon().getAbility().getTemplate()));
+        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(battlePokemon.getEffectedPokemon()));
+
         battle.broadcastChatMessage(
                 Text.literal(battlePokemon.getName().getString())
                         .styled(style -> style.withColor(Formatting.GOLD))
@@ -211,6 +216,8 @@ public class BattleHandling {
         PokemonBattle battle = battleStartedPostEvent.getBattle();
         for (ServerPlayerEntity player: battle.getPlayers()){
             player.setAttached(DataManage.BATTLE_ID, battle.getBattleId());
+            player.removeAttached(DataManage.MEGA_DATA);
+            BattleHandling.battlePokemonUsed.clear();
         }
 
         return Unit.INSTANCE;
@@ -224,8 +231,6 @@ public class BattleHandling {
                         battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
                     continue;
                 }
-
-
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
