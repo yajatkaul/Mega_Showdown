@@ -83,7 +83,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.MEGA_METEORID_SHINY_ORE.get(),
                         ModBlocks.MEGA_METEORID_SUN_ORE.get(),
                         ModBlocks.MEGA_METEORID_THUNDER_ORE.get(),
-                        ModBlocks.MEGA_METEORID_WATER_ORE.get());
+                        ModBlocks.MEGA_METEORID_WATER_ORE.get(),
+
+                        //Decor
+                        ModBlocks.CHISELED_MEGA_EVO_BRICK.get(),
+                        ModBlocks.CHISELED_MEGA_EVO_BLOCK.get(),
+                        ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(),
+                        ModBlocks.MEGA_EVO_BRICK.get()
+                );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ABOMASITE_ORE.get(),
@@ -150,6 +157,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.MEGA_METEORID_SHINY_ORE.get(),
                         ModBlocks.MEGA_METEORID_SUN_ORE.get(),
                         ModBlocks.MEGA_METEORID_THUNDER_ORE.get(),
-                        ModBlocks.MEGA_METEORID_WATER_ORE.get());
+                        ModBlocks.MEGA_METEORID_WATER_ORE.get(),
+
+                        //Decor
+                        ModBlocks.CHISELED_MEGA_EVO_BRICK.get(),
+                        ModBlocks.CHISELED_MEGA_EVO_BLOCK.get(),
+                        ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(),
+                        ModBlocks.MEGA_EVO_BRICK.get()
+                );
     }
 }

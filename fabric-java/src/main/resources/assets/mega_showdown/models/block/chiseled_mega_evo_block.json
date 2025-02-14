@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "mega_showdown:block/chiseled_mega_evo_block_top",
+    "side": "mega_showdown:block/chiseled_mega_evo_block_side",
+    "top": "mega_showdown:block/chiseled_mega_evo_block_top"
+  }
+}

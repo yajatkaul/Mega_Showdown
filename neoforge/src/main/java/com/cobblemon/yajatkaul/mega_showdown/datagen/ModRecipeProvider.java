@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
 
 import java.util.concurrent.CompletableFuture;
@@ -95,5 +96,35 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('K', ModItems.KEYSTONE)
                 .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
 
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(ModBlocks.MEGA_EVO_BLOCK), // Input item (change this as needed)
+                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
+                        ModBlocks.MEGA_EVO_BRICK.get() // Output block
+                ).unlockedBy("has_mega_evo_block", has(ModBlocks.MEGA_EVO_BLOCK)) // Unlock condition
+                .save(recipeOutput);
+
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(ModBlocks.MEGA_EVO_BLOCK), // Input item (change this as needed)
+                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
+                        ModBlocks.CHISELED_MEGA_EVO_BLOCK.get() // Output block
+                ).unlockedBy("has_mega_evo_block", has(ModBlocks.MEGA_EVO_BLOCK)) // Unlock condition
+                .save(recipeOutput);
+
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(ModBlocks.MEGA_EVO_BLOCK), // Input item (change this as needed)
+                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
+                        ModBlocks.CHISELED_MEGA_EVO_BRICK.get() // Output block
+                ).unlockedBy("has_mega_evo_block", has(ModBlocks.MEGA_EVO_BLOCK)) // Unlock condition
+                .save(recipeOutput);
+
+
+        SimpleCookingRecipeBuilder.smelting(
+                        Ingredient.of(ModBlocks.MEGA_EVO_BLOCK), // Input item
+                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
+                        ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(), // Output item
+                        0.1f, // Experience gained
+                        200 // Cooking time in ticks (10 seconds)
+                ).unlockedBy("has_mega_evo_block", has(ModBlocks.MEGA_EVO_BLOCK))
+                .save(recipeOutput);
     }
 }

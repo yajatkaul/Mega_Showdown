@@ -21,7 +21,12 @@ public class CurioHandRenderer implements ICurioRenderer {
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
             , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)  {
 
-        boolean bl = slotContext.entity().getMainArm() != HumanoidArm.RIGHT; //false if only right hand
+        HumanoidArm arm = HumanoidArm.RIGHT;
+        if(slotContext.entity().getMainArm() != HumanoidArm.RIGHT){
+            arm = HumanoidArm.LEFT;
+        }
+        boolean bl = slotContext.entity().getMainArm() != arm; //false if only right hand
+
         if (!stack.isEmpty()) {
             matrixStack.pushPose();
             if (renderLayerParent.getModel().young) {

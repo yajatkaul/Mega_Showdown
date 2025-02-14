@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "3.1.2-release-fabric"
+version = "3.2.0-release-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -64,11 +64,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 
-    include("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
+    //include("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
     modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
 
     modImplementation("dev.emi:trinkets:${properties["trinkets_version"]}")
-    include("dev.emi:trinkets:${properties["trinkets_version"]}")
 }
 
 tasks.getByName<Test>("test") {

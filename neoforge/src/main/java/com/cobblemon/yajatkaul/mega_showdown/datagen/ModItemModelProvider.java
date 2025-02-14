@@ -13,6 +13,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        basicItem(ModItems.MEGA_STONE.get());
         basicItem(ModItems.ABOMASITE.get());
         basicItem(ModItems.CHARIZARDITE_X.get());
         basicItem(ModItems.ABSOLITE.get());
@@ -60,8 +61,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SWAMPERTITE.get());
         basicItem(ModItems.TYRANITARITE.get());
         basicItem(ModItems.VENUSAURITE.get());
-
         basicItem(ModItems.KEYSTONE.get());
-
     }
 }

@@ -33,3 +33,10 @@ mandatory = true
 versionRange = "[1.6.0,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.mega_showdown]]
+modId = "curios"
+mandatory = true
+versionRange = "[9.2.2+1.21.1,)"
+ordering = "AFTER"
+side = "BOTH"

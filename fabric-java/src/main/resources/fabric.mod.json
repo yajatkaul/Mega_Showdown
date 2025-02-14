@@ -24,6 +24,8 @@
   "depends": {
     "minecraft": "1.21.1",
     "cobblemon": ">=1.6.0",
-    "fabric-api": ">=0.115.0"
+    "fabric-api": ">=0.115.0",
+    "supermartijn642configlib": ">=1.1.8",
+    "trinkets": ">=3.10.0"
   }
 }

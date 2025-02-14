@@ -7,7 +7,7 @@ plugins {
 
 
 group = "com.github.yajatkaul"
-version = "3.1.2-release-neoforge"
+version = "3.2.0-release-neoforge"
 
 architectury {
     platformSetupLoomIde()
@@ -65,7 +65,6 @@ dependencies {
 
     // Use the full Curios API jar at runtime
     runtimeOnly("top.theillusivec4.curios:curios-neoforge:${properties["curios_version"]}")
-    include("top.theillusivec4.curios:curios-neoforge:${properties["curios_version"]}")
 }
 
 tasks.getByName<Test>("test") {

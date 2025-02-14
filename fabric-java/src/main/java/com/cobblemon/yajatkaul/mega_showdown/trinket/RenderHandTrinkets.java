@@ -19,7 +19,13 @@ import net.minecraft.util.math.RotationAxis;
 public class RenderHandTrinkets implements TrinketRenderer {
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        boolean bl = entity.getMainArm() != Arm.RIGHT; //false if only right hand
+
+        Arm arm = Arm.RIGHT;
+        if(entity.getMainArm() != Arm.RIGHT){
+            arm = Arm.LEFT;
+        }
+
+        boolean bl = entity.getMainArm() != arm; //false if only right hand
         if (!stack.isEmpty()) {
             matrices.push();
             if (contextModel.child) {

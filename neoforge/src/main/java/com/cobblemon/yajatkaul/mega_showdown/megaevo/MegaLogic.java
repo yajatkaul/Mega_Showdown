@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
@@ -100,9 +101,9 @@ public class MegaLogic {
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
         Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
-
-        if(species == pokemon.getSpecies() && (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
-            if(species == Utils.getSpecies("charizard")){
+        if(species.getName().equals(pokemon.getSpecies().getName()) &&
+                (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
+            if(species.getName().equals(Utils.getSpecies("charizard").getName())){
                 if(pokemon.heldItem().is(ModItems.CHARIZARDITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -118,7 +119,7 @@ public class MegaLogic {
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
                 }
             }
-            else if(species == Utils.getSpecies("mewtwo")){
+            else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
                 if(pokemon.heldItem().is(ModItems.MEWTWONITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -139,7 +140,8 @@ public class MegaLogic {
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
             }
-        }else if(pokemon.getSpecies() == Utils.getSpecies("rayquaza")){
+        }else if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
+                (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
             boolean found = false;
             for (int i = 0; i < 4; i++){
                 if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
@@ -154,12 +156,15 @@ public class MegaLogic {
                 player.displayClientMessage(Component.literal("Rayquaza doesn't have dragonascent")
                         .withColor(0xFF0000), true);
             }
-        }else if(species == pokemon.getSpecies() && player.getData(DataManage.MEGA_DATA)){
+        }else if(species.getName().equals(pokemon.getSpecies().getName()) && player.getData(DataManage.MEGA_DATA)){
             player.displayClientMessage(Component.literal("You can only have one mega at a time")
                     .withColor(0xFF0000), true);
         }else{
             player.displayClientMessage(Component.literal("Don't have the correct stone")
                     .withColor(0xFF0000), true);
+
+            MegaShowdown.LOGGER.info("-----\n MAP: {} \n ----", Utils.MEGA_STONE_IDS);
+            MegaShowdown.LOGGER.info("Species: {}, PokemonSpecies: {}", species, pokemon.getSpecies());
         }
     }
 

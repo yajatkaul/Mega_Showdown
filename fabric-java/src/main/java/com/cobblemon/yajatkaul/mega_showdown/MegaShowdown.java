@@ -8,12 +8,13 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
+import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
-import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -44,10 +45,11 @@ public class MegaShowdown implements ModInitializer {
     }
 
     private void onServerStarted(MinecraftServer server) {
-        ShowdownUtils.loadMegaStoneIds();
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, ShowdownUtils::onHeldItemChange);
-        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, ShowdownUtils::onReleasePokemon);
-        CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, ShowdownUtils::onMegaTraded);
+        Utils.loadMegaStoneIds();
+
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChange);
+        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onReleasePokemon);
+        CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventHandler::onMegaTraded);
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 

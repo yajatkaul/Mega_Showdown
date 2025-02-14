@@ -15,7 +15,7 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -92,14 +92,14 @@ public class BattleHandling {
             }
 
             Pokemon pokemon = battlePokemon.getOriginalPokemon();
-            Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+            Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
 
-            if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
+            if (pokemon.getEntity().isBattling() && species.getName().equals(pokemon.getSpecies().getName()) &&
                     // Multiple megas
                     (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
 
-                if (species == ShowdownUtils.getSpecies("charizard")) {
+                if (species.getName().equals(Utils.getSpecies("charizard").getName())) {
                     if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
@@ -131,7 +131,7 @@ public class BattleHandling {
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
                     }
-                } else if (species == ShowdownUtils.getSpecies("mewtwo")) {
+                } else if (species.getName().equals(Utils.getSpecies("mewtwo").getName())) {
                     if (pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
@@ -173,7 +173,8 @@ public class BattleHandling {
                     battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                     break;
                 }
-            } else if (pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")) {
+            } else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
+                    (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
                 boolean found = false;
                 for (int i = 0; i < 4; i++) {
                     if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
@@ -198,7 +199,7 @@ public class BattleHandling {
                             true
                     );
                 }
-            } else if (species == pokemon.getSpecies() && serverPlayer.getAttached(DataManage.MEGA_DATA)) {
+            } else if (species.getName().equals(pokemon.getSpecies().getName()) && serverPlayer.getAttached(DataManage.MEGA_DATA)) {
                 serverPlayer.sendMessage(
                         Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
@@ -214,10 +215,12 @@ public class BattleHandling {
 
     public static Unit getBattleInfo(BattleStartedPostEvent battleStartedPostEvent) {
         PokemonBattle battle = battleStartedPostEvent.getBattle();
+
+        battlePokemonUsed.clear();
+
         for (ServerPlayerEntity player: battle.getPlayers()){
             player.setAttached(DataManage.BATTLE_ID, battle.getBattleId());
             player.removeAttached(DataManage.MEGA_DATA);
-            BattleHandling.battlePokemonUsed.clear();
         }
 
         return Unit.INSTANCE;

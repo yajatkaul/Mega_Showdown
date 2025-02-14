@@ -34,7 +34,13 @@ public class ModItems {
     public static final Item MEGA_BLACK_BRACELET = registerItem("megabracelet_black", new MegaBraceletItem(new Item.Settings().maxCount(1)));
     public static final Item MEGA_RING = registerItem("megaring", new MegaBraceletItem(new Item.Settings().maxCount(1)));
 
-
+    public static final Item MEGA_STONE = registerItem("mega_stone", new Item(new Item.Settings()) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.mega_stone.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
 
     public static final Item ABOMASITE = registerItem("abomasite", new Item(new Item.Settings()) {
         @Override

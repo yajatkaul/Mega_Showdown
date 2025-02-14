@@ -20,6 +20,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativeTab.mega_showdown.megamons_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         // Stones
+                        output.accept(ModItems.MEGA_STONE);
                         output.accept(ModItems.ABOMASITE);
                         output.accept(ModItems.ABSOLITE);
                         output.accept(ModItems.AERODACTYLITE);
@@ -151,6 +152,11 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
                         output.accept(ModBlocks.MEGA_EVO_BLOCK);
+                        output.accept(ModBlocks.MEGA_EVO_BRICK);
+                        output.accept(ModBlocks.CHISELED_MEGA_EVO_BRICK);
+                        output.accept(ModBlocks.CHISELED_MEGA_EVO_BLOCK);
+                        output.accept(ModBlocks.POLISHED_MEGA_EVO_BLOCK);
+
                         output.accept(ModBlocks.KEYSTONE_BLOCK);
 
                         output.accept(ModBlocks.MEGA_METEORID_DAWN_ORE);

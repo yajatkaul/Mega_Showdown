@@ -3,6 +3,7 @@
 		"1": "mega_showdown:item/keystone_base",
 		"2": "mega_showdown:item/mega_bracelet"
 	},
+	"gui_light": "front",
 	"elements": [
 		{
 			"name": "Stone",

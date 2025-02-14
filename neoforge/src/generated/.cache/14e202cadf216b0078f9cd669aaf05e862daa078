@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-02T18:06:01.0412959	Item Models: mega_showdown
+// 1.21.1	2025-02-14T18:10:29.3218956	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -32,6 +32,7 @@ ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latios
 4486b99bdcd236c3154acf082002f4db131fe69f assets/mega_showdown/models/item/manectite.json
 ec2c865e072247419fef7cb4616214a948e7a463 assets/mega_showdown/models/item/mawilite.json
 bdef710f84d07b951d14be7f36eca22fd27023c6 assets/mega_showdown/models/item/medichamite.json
+d65c980c696ed90f0980a3b02449879da7b754c8 assets/mega_showdown/models/item/mega_stone.json
 40d70542c2f871e0c75ba250d47fdfe827baa254 assets/mega_showdown/models/item/metagrossite.json
 9e272ad7c2f465f1435b9b4af5f877d8da903bf6 assets/mega_showdown/models/item/mewtwonite_x.json
 557024f8b3f8b1924df0bd294cf3cd7342c844b6 assets/mega_showdown/models/item/mewtwonite_y.json

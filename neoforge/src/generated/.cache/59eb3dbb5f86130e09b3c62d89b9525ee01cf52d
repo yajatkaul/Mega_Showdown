@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-13T12:31:08.7776095	Loot Tables
+// 1.21.1	2025-02-14T20:16:49.5883962	Loot Tables
 71cf7b81ee8010ccfa329c846873b628a3f2ff8e data/mega_showdown/loot_table/blocks/abomasite_ore.json
 d76eaf7c9bdeb8c07164747a19e6a70913aa1e6c data/mega_showdown/loot_table/blocks/absolite_ore.json
 295361eebc004b3a9a23ac720232c83c41d5a325 data/mega_showdown/loot_table/blocks/aerodactylite_ore.json
@@ -14,6 +14,8 @@ ae592157cf6381ebd15be6897c9955b7a9358f3a data/mega_showdown/loot_table/blocks/ba
 ae109b22dea581501d78884b394c25fc4b622f90 data/mega_showdown/loot_table/blocks/cameruptite_ore.json
 1fd5236bc788871a07973e0b6c8e25c958c43708 data/mega_showdown/loot_table/blocks/charizardite_x_ore.json
 234874b57e4d913f264531b33533b354c909cedd data/mega_showdown/loot_table/blocks/charizardite_y_ore.json
+02272d6a35a0b3e68b101ef82262a029bda7f829 data/mega_showdown/loot_table/blocks/chiseled_mega_evo_block.json
+99881b86993e98c1fcd85d946bee00105fab82f4 data/mega_showdown/loot_table/blocks/chiseled_mega_evo_brick.json
 81f5f967c5f04c6c52c5eaf4e45d9d8314130c93 data/mega_showdown/loot_table/blocks/diancite_ore.json
 4ca8d3d9774188f234ebdd3e55d5038d15dd8624 data/mega_showdown/loot_table/blocks/galladite_ore.json
 1f26a635ba79127cfd167da33fb3fcc4721dc8e1 data/mega_showdown/loot_table/blocks/garchompite_ore.json
@@ -34,6 +36,7 @@ b29aaa4ce2fe51b975f72ef37ce2901b9430316e data/mega_showdown/loot_table/blocks/lo
 3dc1bde00d41fefef138259efb28e1963a850298 data/mega_showdown/loot_table/blocks/mawilite_ore.json
 331d887a3bc7532e004380e9422d0f833c8a277e data/mega_showdown/loot_table/blocks/medichamite_ore.json
 0d30abf9fe4beafd4dd394e4ac9579a49da458ce data/mega_showdown/loot_table/blocks/mega_evo_block.json
+1afd956b9ac3bcf27f60de7e59c8bf0dac8fbbf3 data/mega_showdown/loot_table/blocks/mega_evo_brick.json
 4225ff0287ca94a0c8b52fa30d7b24bce3104afb data/mega_showdown/loot_table/blocks/mega_meteorid_block.json
 d4142784dbd0410675e265a98d2600e8d565b398 data/mega_showdown/loot_table/blocks/mega_meteorid_dawn_ore.json
 8759ecd33c5e59bc371aa681a82482fc19991961 data/mega_showdown/loot_table/blocks/mega_meteorid_dusk_ore.json
@@ -51,6 +54,7 @@ aa0c4ecfd298b99050983fd886284119f6f424f2 data/mega_showdown/loot_table/blocks/me
 8117e4f47a3af9cdce4f6d2a8c5f57ff5942d697 data/mega_showdown/loot_table/blocks/mewtwonite_y_ore.json
 f9645f2d4e090f13e8bd55820912c84e7bd63879 data/mega_showdown/loot_table/blocks/pidgeotite_ore.json
 83e298e4ec5c9967c56eb1f98c78f2e962be5832 data/mega_showdown/loot_table/blocks/pinsirite_ore.json
+96749bc2baf4bf99cdff67e75d351bf171fa1646 data/mega_showdown/loot_table/blocks/polished_mega_evo_block.json
 8cf54ab73ce945f2538ef986c5e48d829eac9e6c data/mega_showdown/loot_table/blocks/sablenite_ore.json
 0429c4b109205908601f489c9c3669da7468c9da data/mega_showdown/loot_table/blocks/salamencite_ore.json
 3d030aeaec0c3b1900477be16b87fc32b9cbd304 data/mega_showdown/loot_table/blocks/sceptilite_ore.json

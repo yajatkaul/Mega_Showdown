@@ -183,7 +183,7 @@
   "item.mega_showdown.chilldrive": "CrioROM",
   "item.mega_showdown.adamantorb": "Diamansfera",
 
-  "itemgroup.mega_showdown.mega_showdown_tab": "Mega Showdown",
+  "creativeTab.mega_showdown.megamons_tab": "Mega Showdown",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mena de meteoro mega de piedra alba",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mena de meteoro mega de piedra noche",

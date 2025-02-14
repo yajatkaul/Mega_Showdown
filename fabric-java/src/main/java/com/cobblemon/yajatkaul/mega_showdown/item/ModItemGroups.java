@@ -16,6 +16,7 @@ public class ModItemGroups {
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.KEYSTONE))
                     .displayName(Text.translatable("itemgroup.mega_showdown.mega_showdown_tab"))
                     .entries(((displayContext, entries) -> {
+                        entries.add(ModItems.MEGA_STONE);
                         entries.add(ModItems.ABOMASITE);
                         entries.add(ModItems.ABSOLITE);
                         entries.add(ModItems.AERODACTYLITE);
@@ -128,6 +129,11 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.MEGA_METEOROID_BLOCK);
                         entries.add(ModBlocks.MEGA_EVO_BLOCK);
+                        entries.add(ModBlocks.MEGA_EVO_BRICK);
+                        entries.add(ModBlocks.CHISELED_MEGA_EVO_BRICK);
+                        entries.add(ModBlocks.CHISELED_MEGA_EVO_BLOCK);
+                        entries.add(ModBlocks.POLISHED_MEGA_EVO_BLOCK);
+
                         entries.add(ModItems.MEGA_STONE_CRYSTAL_ITEM);
 
                         entries.add(ModBlocks.MEGA_METEORID_DAWN_ORE);

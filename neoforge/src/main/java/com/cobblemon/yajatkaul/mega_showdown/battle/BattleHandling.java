@@ -17,7 +17,9 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -49,21 +51,21 @@ public class BattleHandling {
         battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, battlePokemon.getEffectedPokemon().getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(battlePokemon.getEffectedPokemon()));
         
-//        MutableComponent message = Component.literal(battlePokemon.getName().getString())
-//                .withStyle(style -> style.withColor(ChatFormatting.GOLD))
-//                .append(" ")
-//                .append(Component.literal(battlePokemon.getOriginalPokemon().getAbility().getName())
-//                        .withStyle(style -> style.withColor(ChatFormatting.GOLD)))
-//                .append(" activated!");
-//
-//        battle.broadcastChatMessage(message);
-//
-//        String translatedDescription = Component.translatable(battlePokemon.getOriginalPokemon().getAbility().getDescription()).getString();
-//
-//        battle.broadcastChatMessage(
-//                Component.literal(translatedDescription)
-//                        .withStyle(style -> style.withColor(ChatFormatting.WHITE))
-//        );
+        MutableComponent message = Component.literal(battlePokemon.getName().getString())
+                .withStyle(style -> style.withColor(ChatFormatting.GOLD))
+                .append(" ")
+                .append(Component.literal(battlePokemon.getOriginalPokemon().getAbility().getName())
+                        .withStyle(style -> style.withColor(ChatFormatting.GOLD)))
+                .append(" activated!");
+
+        battle.broadcastChatMessage(message);
+
+        String translatedDescription = Component.translatable(battlePokemon.getOriginalPokemon().getAbility().getDescription()).getString();
+
+        battle.broadcastChatMessage(
+                Component.literal(translatedDescription)
+                        .withStyle(style -> style.withColor(ChatFormatting.WHITE))
+        );
     }
 
     public static void handleMegaEvolution(IPayloadContext userContext){
@@ -104,10 +106,10 @@ public class BattleHandling {
 
                 Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
-                if (pokemon.getEntity().isBattling() && species == pokemon.getSpecies() &&
+                if (pokemon.getEntity().isBattling() && species.getName().equals(pokemon.getSpecies().getName()) &&
                         (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
 
-                    if (species == Utils.getSpecies("charizard")) {
+                    if (species.getName().equals(Utils.getSpecies("charizard").getName())) {
                         if (pokemon.heldItem().is(ModItems.CHARIZARDITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -134,7 +136,7 @@ public class BattleHandling {
                             broadCastEvoMsg(battlePokemon, battle);
                             break;
                         }
-                    } else if (species == Utils.getSpecies("mewtwo")) {
+                    } else if (species.getName().equals(Utils.getSpecies("mewtwo").getName())) {
                         if (pokemon.heldItem().is(ModItems.MEWTWONITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
@@ -173,7 +175,8 @@ public class BattleHandling {
                         broadCastEvoMsg(battlePokemon, battle);
                         break;
                     }
-                } else if (pokemon.getSpecies() == Utils.getSpecies("rayquaza")) {
+                } else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
+                        (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
                     boolean found = false;
                     for (int i = 0; i < 4; i++) {
                         if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
@@ -195,7 +198,7 @@ public class BattleHandling {
                         ((Player) serverPlayer).displayClientMessage(Component.literal("Rayquaza doesn't have dragonascent")
                                 .withColor(0xFF0000), true);
                     }
-                } else if (species == pokemon.getSpecies() && serverPlayer.getData(DataManage.MEGA_DATA)) {
+                } else if (species.getName().equals(pokemon.getSpecies().getName()) && serverPlayer.getData(DataManage.MEGA_DATA)) {
                     ((Player) serverPlayer).displayClientMessage(Component.literal("You can only have one mega at a time")
                             .withColor(0xFF0000), true);
                 } else {

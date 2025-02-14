@@ -5,11 +5,12 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import com.cobblemon.yajatkaul.mega_showdown.showdown.ShowdownUtils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +19,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
@@ -96,16 +96,15 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-        Species species = ShowdownUtils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
         Boolean playerData = player.getAttached(DataManage.MEGA_DATA);
         if(playerData == null){
             playerData = false;
         }
 
         //Multiple megas
-        if(species == pokemon.getSpecies() && (!playerData || ShowdownConfig.multipleMegas.get())){
-
-            if(species == ShowdownUtils.getSpecies("charizard")){
+        if(species.getName().equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
+            if(species.getName().equals(Utils.getSpecies("charizard").getName())){
                 if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
@@ -120,7 +119,7 @@ public class MegaLogic {
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
                 }
             }
-            else if(species == ShowdownUtils.getSpecies("mewtwo")){
+            else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
                 if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
@@ -141,7 +140,7 @@ public class MegaLogic {
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
             }
-        }else if(pokemon.getSpecies() == ShowdownUtils.getSpecies("rayquaza")){
+        }else if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
             boolean found = false;
             for (int i = 0; i < 4; i++){
                 if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
@@ -158,7 +157,7 @@ public class MegaLogic {
                         true
                 );
             }
-        }else if(species == pokemon.getSpecies() && playerData){
+        }else if(species.getName().equals(pokemon.getSpecies().getName()) && playerData){
             player.sendMessage(
                     Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
