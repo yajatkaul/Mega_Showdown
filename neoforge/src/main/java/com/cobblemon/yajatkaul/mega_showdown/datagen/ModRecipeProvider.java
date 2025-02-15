@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
 
 import java.util.concurrent.CompletableFuture;
@@ -125,6 +126,11 @@ public class ModRecipeProvider extends RecipeProvider {
                         0.1f, // Experience gained
                         200 // Cooking time in ticks (10 seconds)
                 ).unlockedBy("has_mega_evo_block", has(ModBlocks.MEGA_EVO_BLOCK))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.KEYSTONE, 9)
+                .requires(ModBlocks.KEYSTONE_BLOCK.get())
+                .unlockedBy("has_keystone_block", has(ModBlocks.KEYSTONE_BLOCK.get()))
                 .save(recipeOutput);
     }
 }

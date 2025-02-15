@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:mega_stone"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.find_keystone.title",
+      "fallback": "Showdown Gear"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.find_keystone.description",
+      "fallback": "Obtain the keystone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/root",
+  "criteria": {
+    "obtained_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": [
+              "#mega_showdown:mega_stones"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": false
+}

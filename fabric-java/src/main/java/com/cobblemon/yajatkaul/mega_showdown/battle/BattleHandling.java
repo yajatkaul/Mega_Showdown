@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
@@ -31,9 +32,11 @@ import java.util.*;
 public class BattleHandling {
     public static List<Pokemon> battlePokemonUsed = new ArrayList<>();
 
-    private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle){
+    private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle, ServerPlayerEntity player){
         battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, battlePokemon.getEffectedPokemon().getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(battlePokemon.getEffectedPokemon()));
+
+        AdvancementHelper.grantAdvancement(player, "mega_evolve");
 
         battle.broadcastChatMessage(
                 Text.literal(battlePokemon.getName().getString())
@@ -94,6 +97,40 @@ public class BattleHandling {
             Pokemon pokemon = battlePokemon.getOriginalPokemon();
             Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
+            if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
+                    (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
+                boolean found = false;
+                for (int i = 0; i < 4; i++) {
+                    if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
+                        serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
+                        serverPlayer.setAttached(DataManage.MEGA_DATA, true);
+
+                        new FlagSpeciesFeature("mega", true).apply(pokemon);
+                        found = true;
+
+                        //Mega turn
+                        if(ShowdownConfig.megaTurns.get()){
+                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
+                        }
+                        broadCastEvoMsg(battlePokemon, battle, serverPlayer);
+                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
+                        break;
+                    }
+                }
+                if(!found){
+                    serverPlayer.sendMessage(
+                            Text.literal("Rayquaza doesn't have dragonascent").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                }
+                return;
+            }else if (serverPlayer.getAttached(DataManage.MEGA_DATA)) {
+                serverPlayer.sendMessage(
+                        Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+                return;
+            }
 
             if (pokemon.getEntity().isBattling() && species.getName().equals(pokemon.getSpecies().getName()) &&
                     // Multiple megas
@@ -113,7 +150,7 @@ public class BattleHandling {
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
 
-                        broadCastEvoMsg(battlePokemon, battle);
+                        broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
                     } else if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_Y)) {
@@ -127,7 +164,7 @@ public class BattleHandling {
                         if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
-                        broadCastEvoMsg(battlePokemon, battle);
+                        broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
                     }
@@ -142,7 +179,7 @@ public class BattleHandling {
                         if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
-                        broadCastEvoMsg(battlePokemon, battle);
+                        broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
                     } else if (pokemon.heldItem().isOf(ModItems.MEWTWONITE_Y)) {
@@ -155,7 +192,7 @@ public class BattleHandling {
                         if(ShowdownConfig.megaTurns.get()){
                             battle.getActor(serverPlayer).setActionResponses(skipTurn);
                         }
-                        broadCastEvoMsg(battlePokemon, battle);
+                        broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
                     }
@@ -169,35 +206,9 @@ public class BattleHandling {
                     if(ShowdownConfig.megaTurns.get()){
                         battle.getActor(serverPlayer).setActionResponses(skipTurn);
                     }
-                    broadCastEvoMsg(battlePokemon, battle);
+                    broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                     battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                     break;
-                }
-            } else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
-                    (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
-                boolean found = false;
-                for (int i = 0; i < 4; i++) {
-                    if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                        serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
-                        serverPlayer.setAttached(DataManage.MEGA_DATA, true);
-
-                        new FlagSpeciesFeature("mega", true).apply(pokemon);
-                        found = true;
-
-                        //Mega turn
-                        if(ShowdownConfig.megaTurns.get()){
-                            battle.getActor(serverPlayer).setActionResponses(skipTurn);
-                        }
-                        broadCastEvoMsg(battlePokemon, battle);
-                        battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
-                        break;
-                    }
-                }
-                if(!found){
-                    serverPlayer.sendMessage(
-                            Text.literal("Rayquaza doesn't have dragonascent").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
                 }
             } else if (species.getName().equals(pokemon.getSpecies().getName()) && serverPlayer.getAttached(DataManage.MEGA_DATA)) {
                 serverPlayer.sendMessage(

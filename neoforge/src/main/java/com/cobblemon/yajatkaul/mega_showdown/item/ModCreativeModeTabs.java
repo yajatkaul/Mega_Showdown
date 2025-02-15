@@ -16,8 +16,8 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MegaShowdown.MOD_ID);
 
     public static final Supplier<CreativeModeTab> MEGA_SHOWDOWN_TAB = CREATIVE_MODE_TAB.register("mega_showdown_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CHARIZARDITE_X.get()))
-                    .title(Component.translatable("creativeTab.mega_showdown.megamons_tab"))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.KEYSTONE.get()))
+                    .title(Component.translatable("creativeTab.mega_showdown.mega_showdown_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         // Stones
                         output.accept(ModItems.MEGA_STONE);
@@ -80,6 +80,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MEGA_BLUE_BRACELET);
                         output.accept(ModItems.MEGA_BLACK_BRACELET);
                         output.accept(ModItems.MEGA_RING);
+                        output.accept(ModItems.BRENDAN_MEGA_CUFF);
 
                         // Utils
 //                        output.accept(ModItems.DNASPLICERS);

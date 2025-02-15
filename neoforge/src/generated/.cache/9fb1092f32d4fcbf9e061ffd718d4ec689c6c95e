@@ -1,8 +1,9 @@
-// 1.21.1	2025-02-14T20:16:49.5910629	Recipes
+// 1.21.1	2025-02-14T23:56:27.3740045	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
 60165589edadd63f42498fe8774ed7d20dbeda3d data/mega_showdown/advancement/recipes/building_blocks/polished_mega_evo_block.json
+f2e80378447f39916d8ee7ad38f036d6f02addcf data/mega_showdown/advancement/recipes/misc/keystone.json
 2d2a76785e79a7fb6210d9886b14536f38933934 data/mega_showdown/advancement/recipes/misc/keystone_block.json
 beb6b7d1a8f8fc9cd884ee4b2284f6bb4cc30768 data/mega_showdown/advancement/recipes/misc/megabracelet.json
 37df5af1d5e302e01c0d6bebab307d0fa2960878 data/mega_showdown/advancement/recipes/misc/megabracelet_black.json
@@ -13,6 +14,7 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 1226caa588833235fb9664b7326f6b993071fae2 data/mega_showdown/advancement/recipes/misc/megabracelet_yellow.json
 d4890cce7b9826d04c1b69111faba83da8f026ad data/mega_showdown/recipe/chiseled_mega_evo_block.json
 17aacd0eab9adcbc263ce83f49cbfabd03fda1a8 data/mega_showdown/recipe/chiseled_mega_evo_brick.json
+e3a1a98134371a4807d19c8c3d85f22cb051f7e6 data/mega_showdown/recipe/keystone.json
 f0f98aef0586578f3adad3d7fdf32274495398cc data/mega_showdown/recipe/keystone_block.json
 9d710c2a5f156c2867323fad6ed9216bbb987f6e data/mega_showdown/recipe/megabracelet.json
 3abb7de7b97d5dc95d1cf1f5dc99fb7ef42c5a31 data/mega_showdown/recipe/megabracelet_black.json

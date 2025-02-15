@@ -9,6 +9,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.battle.ButtonLogic;
 import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventsHandler;
+import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.server.level.ServerPlayer;
@@ -55,6 +56,8 @@ public final class MegaShowdown {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         modEventBus.addListener(NetworkHandler::register);
+
+        NeoForge.EVENT_BUS.addListener(MegaCommands::register);
     }
 
 

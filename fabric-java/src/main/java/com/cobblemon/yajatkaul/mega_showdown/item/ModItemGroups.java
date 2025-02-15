@@ -14,7 +14,7 @@ public class ModItemGroups {
     public static final ItemGroup MEGA_SHOWDOWN_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "mega_showdown_tab"),
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.KEYSTONE))
-                    .displayName(Text.translatable("itemgroup.mega_showdown.mega_showdown_tab"))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.mega_showdown_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ModItems.MEGA_STONE);
                         entries.add(ModItems.ABOMASITE);
@@ -75,6 +75,7 @@ public class ModItemGroups {
                         entries.add(ModItems.MEGA_BLUE_BRACELET);
                         entries.add(ModItems.MEGA_BLACK_BRACELET);
                         entries.add(ModItems.MEGA_RING);
+                        entries.add(ModItems.BRENDAN_MEGA_CUFF);
 
                         entries.add(ModBlocks.ABOMASITE_ORE);
                         entries.add(ModBlocks.ABSOLITE_ORE);

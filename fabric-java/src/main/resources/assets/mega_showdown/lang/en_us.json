@@ -175,6 +175,8 @@
   "tooltip.mega_showdown.megabracelet_black.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
   "item.mega_showdown.megaring": "Megaring",
   "tooltip.mega_showdown.megaring.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
+  "item.mega_showdown.brendan_mega_cuff": "Brendan's Mega Cuff",
+  "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "Brendan's Mega Cuff contains a Key Stone that allows Pokémon holding a Mega Stone",
 
   "item.mega_showdown.dnasplicers": "DNA Splicers",
   "item.mega_showdown.dousedrive": "Douse Drive",
@@ -191,8 +193,7 @@
   "item.mega_showdown.chilldrive": "Chill Drive",
   "item.mega_showdown.adamantorb": "Adamant Orb",
 
-  "creativeTab.mega_showdown.megamons_tab": "Mega Showdown",
-  "itemgroup.mega_showdown.mega_showdown_tab": "Mega Showdown",
+  "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
@@ -208,5 +209,15 @@
   "key.mega_showdown.mega_evo": "Mega Evolve",
   "key.categories.mega_showdown": "Mega Showdown",
 
-  "trinkets.slot.hand.bracelet": "Bracelet"
+  "trinkets.slot.hand.bracelet": "Bracelet",
+
+  "advancement.mega_showdown.root.title": "Showdown Time",
+  "advancement.mega_showdown.mega_evolve.title": "A Beast",
+  "advancement.mega_showdown.find_mega_stone.title": "Evolutionary Beings",
+  "advancement.mega_showdown.find_keystone.title": "Showdown Gear",
+
+  "advancement.mega_showdown.root.description": "World of showdown",
+  "advancement.mega_showdown.mega_evolve.description": "Mega evolve any Pokémon",
+  "advancement.mega_showdown.find_mega_stone.description": "Obtain any mega stone",
+  "advancement.mega_showdown.find_keystone.description": "Obtain the keystone"
 }

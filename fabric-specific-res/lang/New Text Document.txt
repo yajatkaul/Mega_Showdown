@@ -1,1 +1,0 @@
-  "trinkets.slot.hand.bracelet": "Bracelet"

@@ -9,6 +9,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventHandler;
+import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItemGroups;
@@ -42,6 +43,8 @@ public class MegaShowdown implements ModInitializer {
         Reflection.initialize(ShowdownConfig.class);
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
+
+        MegaCommands.register();
     }
 
     private void onServerStarted(MinecraftServer server) {

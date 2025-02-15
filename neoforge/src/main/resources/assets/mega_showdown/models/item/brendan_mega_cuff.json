@@ -1,0 +1,18 @@
+{
+	"parent": "minecraft:item/handheld",
+	"loader": "neoforge:separate_transforms",
+	"base": {
+		"parent": "mega_showdown:item/brendan_mega_cuff_3d"
+	},
+	"perspectives": {
+		"gui": {
+			"parent": "mega_showdown:item/brendan_mega_cuff_2d"
+		},
+		"ground": {
+			"parent": "mega_showdown:item/brendan_mega_cuff_2d"
+		},
+		"fixed": {
+			"parent": "mega_showdown:item/brendan_mega_cuff_2d"
+		}
+	}
+}

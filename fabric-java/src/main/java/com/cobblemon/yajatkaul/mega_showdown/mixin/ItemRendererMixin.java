@@ -56,6 +56,9 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ModItems.MEGA_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megaring")));
         }
+        else if (stack.getItem() == ModItems.BRENDAN_MEGA_CUFF && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "brendan_mega_cuff")));
+        }
 
         return bakedModel;
     }
@@ -90,6 +93,10 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ModItems.MEGA_RING) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megaring_3d")));
         }
+        else if (stack.getItem() == ModItems.BRENDAN_MEGA_CUFF) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "brendan_mega_cuff_3d")));
+        }
+
 
         return bakedModel;
     }

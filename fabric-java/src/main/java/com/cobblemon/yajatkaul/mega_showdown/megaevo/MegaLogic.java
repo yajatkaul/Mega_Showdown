@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
@@ -102,45 +103,7 @@ public class MegaLogic {
             playerData = false;
         }
 
-        //Multiple megas
-        if(species.getName().equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
-            if(species.getName().equals(Utils.getSpecies("charizard").getName())){
-                if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)){
-                    player.setAttached(DataManage.MEGA_DATA, true);
-                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", true).apply(pokemon);
-                }else if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_Y)){
-                    player.setAttached(DataManage.MEGA_DATA, true);
-                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", true).apply(pokemon);
-                }
-            }
-            else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
-                if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)){
-                    player.setAttached(DataManage.MEGA_DATA, true);
-                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", true).apply(pokemon);
-                }else if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_Y)){
-                    player.setAttached(DataManage.MEGA_DATA, true);
-                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", true).apply(pokemon);
-                }
-            }
-            else{
-                player.setAttached(DataManage.MEGA_DATA, true);
-                player.setAttached(DataManage.MEGA_POKEMON, pokemon);
-
-                new FlagSpeciesFeature("mega", true).apply(pokemon);
-            }
-        }else if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
+        if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
             boolean found = false;
             for (int i = 0; i < 4; i++){
                 if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
@@ -148,6 +111,7 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
 
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                     found = true;
                 }
             }
@@ -157,7 +121,59 @@ public class MegaLogic {
                         true
                 );
             }
-        }else if(species.getName().equals(pokemon.getSpecies().getName()) && playerData){
+            return;
+        } else if (playerData) {
+            player.sendMessage(
+                    Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
+        }
+
+        //Multiple megas
+        if(species.getName().equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
+            if(species.getName().equals(Utils.getSpecies("charizard").getName())){
+                if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)){
+                    player.setAttached(DataManage.MEGA_DATA, true);
+                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
+                }else if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_Y)){
+                    player.setAttached(DataManage.MEGA_DATA, true);
+                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
+                }
+            }
+            else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
+                if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)){
+                    player.setAttached(DataManage.MEGA_DATA, true);
+                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
+                }else if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_Y)){
+                    player.setAttached(DataManage.MEGA_DATA, true);
+                    player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
+                }
+            }
+            else{
+                player.setAttached(DataManage.MEGA_DATA, true);
+                player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                new FlagSpeciesFeature("mega", true).apply(pokemon);
+                AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
+            }
+        } else if(species.getName().equals(pokemon.getSpecies().getName()) && playerData){
             player.sendMessage(
                     Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true

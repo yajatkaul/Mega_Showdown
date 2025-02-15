@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:mega_stone"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.find_mega_stone.title",
+      "fallback": "Evolutionary Beings"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.find_mega_stone.description",
+      "fallback": "Obtain any mega stone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/root",
+  "criteria": {
+    "obtained_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:keystone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sends_telemetry_event": false
+}

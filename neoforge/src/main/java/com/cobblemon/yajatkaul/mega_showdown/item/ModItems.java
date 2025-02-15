@@ -59,6 +59,9 @@ public class ModItems {
     public static final DeferredItem<Item> MEGA_RING = ITEMS.register("megaring",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> BRENDAN_MEGA_CUFF = ITEMS.register("brendan_mega_cuff",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> MEGA_STONE = ITEMS.register("mega_stone",
             () -> new Item(new Item.Properties()) {
                 @Override
