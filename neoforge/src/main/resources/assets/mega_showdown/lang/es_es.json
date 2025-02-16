@@ -144,10 +144,15 @@
   "item.mega_showdown.diancite": "Diancia",
 
   "block.mega_showdown.mega_meteorid_block": "Bloque de metoro mega",
+  "block.mega_showdown.mega_evo_brick": "Ladrillos de meteoro evo",
+  "block.mega_showdown.chiseled_mega_evo_brick": "Ladrillos de meteoro evo cincelados",
+  "block.mega_showdown.chiseled_mega_evo_block": "Bloque de meteoro evo cincelado",
+  "block.mega_showdown.polished_mega_evo_block": "Bloque de meteoro evo pulido",
   "block.mega_showdown.mega_evo_block": "Bloque de meteoro evo",
   "block.mega_showdown.mega_stone_crystal": "Cristal mega",
 
   "block.mega_showdown.keystone_ore": "Mena de piedra activadora",
+  "block.mega_showdown.keystone_block": "Bloque arcoíris"
   "item.mega_showdown.keystone": "Piedra activadora",
   "tooltip.mega_showdown.keystone.tooltip": "Se usa para craftear la §l§fmegapulsera",
 
@@ -167,6 +172,8 @@
   "tooltip.mega_showdown.megabracelet_black.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
   "item.mega_showdown.megaring": "Mega-aro",
   "tooltip.mega_showdown.megaring.tooltip": "Contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
+  "item.mega_showdown.brendan_mega_cuff": "§l§fMegabrazalete de Bruno",
+  "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "El megabrazalete de Bruno contiene una Piedra Activadora que permite la megaevolución a los Pokémon que sostienen una Mega Piedra.",
 
   "item.mega_showdown.dnasplicers": "Punta ADN",
   "item.mega_showdown.dousedrive": "HidroROM",
@@ -185,14 +192,29 @@
 
   "creativeTab.mega_showdown.megamons_tab": "Mega Showdown",
 
-  "block.mega_showdown.mega_meteorid_dawn_ore": "Mena de meteoro mega de piedra alba",
-  "block.mega_showdown.mega_meteorid_dusk_ore": "Mena de meteoro mega de piedra noche",
-  "block.mega_showdown.mega_meteorid_fire_ore": "Mena de meteoro mega de piedra fuego",
-  "block.mega_showdown.mega_meteorid_ice_ore": "Mena de meteoro mega de piedra hielo",
-  "block.mega_showdown.mega_meteorid_leaf_ore": "Mena de meteoro mega de piedra hoja",
-  "block.mega_showdown.mega_meteorid_moon_ore": "Mena de meteoro mega de piedra lunar",
-  "block.mega_showdown.mega_meteorid_shiny_ore": "Mena de meteoro mega de piedra día",
-  "block.mega_showdown.mega_meteorid_sun_ore": "Mena de meteoro mega de piedra solar",
-  "block.mega_showdown.mega_meteorid_thunder_ore": "Mena de meteoro mega de piedra trueno ",
-  "block.mega_showdown.mega_meteorid_water_ore": "Mena de meteoro mega de piedra agua"
+  "block.mega_showdown.mega_meteorid_dawn_ore": "Mena de meteoro evo de piedra alba",
+  "block.mega_showdown.mega_meteorid_dusk_ore": "Mena de meteoro evo de piedra noche",
+  "block.mega_showdown.mega_meteorid_fire_ore": "Mena de meteoro evo de piedra fuego",
+  "block.mega_showdown.mega_meteorid_ice_ore": "Mena de meteoro evo de piedra hielo",
+  "block.mega_showdown.mega_meteorid_leaf_ore": "Mena de meteoro evo de piedra hoja",
+  "block.mega_showdown.mega_meteorid_moon_ore": "Mena de meteoro evo de piedra lunar",
+  "block.mega_showdown.mega_meteorid_shiny_ore": "Mena de meteoro evo de piedra día",
+  "block.mega_showdown.mega_meteorid_sun_ore": "Mena de meteoro evo de piedra solar",
+  "block.mega_showdown.mega_meteorid_thunder_ore": "Mena de meteoro evo de piedra trueno ",
+  "block.mega_showdown.mega_meteorid_water_ore": "Mena de meteoro evo de piedra agua"
+
+  "key.mega_showdown.mega_evo": "Megaevolución",
+  "key.categories.mega_showdown": "Mega Showdown",
+
+  "trinkets.slot.hand.bracelet": "Brazalete",
+
+  "advancement.mega_showdown.root.title": "Showdown Time",
+  "advancement.mega_showdown.mega_evolve.title": "Una bestial Evolución",
+  "advancement.mega_showdown.find_mega_stone.title": "Seres Evolutivos",
+  "advancement.mega_showdown.find_keystone.title": "Showdown Gear",
+
+  "advancement.mega_showdown.root.description": "Mundo showdown",
+  "advancement.mega_showdown.mega_evolve.description": "Megaevoluciona cualquier Pokémon",
+  "advancement.mega_showdown.find_mega_stone.description": "Obtén cualquier Megapiedra",
+  "advancement.mega_showdown.find_keystone.description": "Obtén la piedra activadora"
 }

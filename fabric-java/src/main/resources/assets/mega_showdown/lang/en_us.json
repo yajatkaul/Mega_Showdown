@@ -214,10 +214,12 @@
   "advancement.mega_showdown.root.title": "Showdown Time",
   "advancement.mega_showdown.mega_evolve.title": "A Beast",
   "advancement.mega_showdown.find_mega_stone.title": "Evolutionary Beings",
-  "advancement.mega_showdown.find_keystone.title": "Showdown Gear",
+  "advancement.mega_showdown.find_keystone.title": "Showdown beginning",
+  "advancement.mega_showdown.get_bracelet.title": "Showdown Gear",
 
   "advancement.mega_showdown.root.description": "World of showdown",
   "advancement.mega_showdown.mega_evolve.description": "Mega evolve any Pokémon",
   "advancement.mega_showdown.find_mega_stone.description": "Obtain any mega stone",
-  "advancement.mega_showdown.find_keystone.description": "Obtain the keystone"
+  "advancement.mega_showdown.find_keystone.description": "Find the keystone",
+  "advancement.mega_showdown.get_bracelet.description": "Obtain any mega bracelet"
 }

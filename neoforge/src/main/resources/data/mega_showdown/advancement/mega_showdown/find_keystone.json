@@ -1,15 +1,15 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:mega_stone"
+      "id": "mega_showdown:megabracelet"
     },
     "title": {
       "translate": "advancement.mega_showdown.find_keystone.title",
-      "fallback": "Showdown Gear"
+      "fallback": "Showdown beginning"
     },
     "description": {
       "translate": "advancement.mega_showdown.find_keystone.description",
-      "fallback": "Obtain the keystone"
+      "fallback": "Fine the keystone"
     },
     "frame": "task",
     "show_toast": true,
@@ -23,13 +23,12 @@
       "conditions": {
         "items": [
           {
-            "tag": [
-              "#mega_showdown:mega_stones"
-            ]
+            "items": ["mega_showdown:keystone"]
           }
         ]
       }
     }
   },
+  "requirements": [["obtained_item"]],
   "sends_telemetry_event": false
 }
