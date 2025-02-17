@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-15T20:50:50.4748513	Loot Tables
+// 1.21.1	2025-02-17T18:19:52.7725962	Loot Tables
 71cf7b81ee8010ccfa329c846873b628a3f2ff8e data/mega_showdown/loot_table/blocks/abomasite_ore.json
 d76eaf7c9bdeb8c07164747a19e6a70913aa1e6c data/mega_showdown/loot_table/blocks/absolite_ore.json
 295361eebc004b3a9a23ac720232c83c41d5a325 data/mega_showdown/loot_table/blocks/aerodactylite_ore.json
@@ -48,7 +48,7 @@ b3597bd55e0f49d51f5741c210750d67d75aad7c data/mega_showdown/loot_table/blocks/me
 9d8beb9d73883607170520718e9ce116a8abd54a data/mega_showdown/loot_table/blocks/mega_meteorid_sun_ore.json
 34207412312906bea7ecaaad954b38beb21b1ed6 data/mega_showdown/loot_table/blocks/mega_meteorid_thunder_ore.json
 ca15ac8b9548dc6369fb4cc32c69bbfc38b05296 data/mega_showdown/loot_table/blocks/mega_meteorid_water_ore.json
-8579159fdccedc3a2da16e868d605b1d43ea2ff6 data/mega_showdown/loot_table/blocks/mega_stone_crystal.json
+c7489131b956ff18d5a6a89fedabe987264219dd data/mega_showdown/loot_table/blocks/mega_stone_crystal.json
 7d1e68f25df7cf9bc349b6c4f0ab8a6417cee6e4 data/mega_showdown/loot_table/blocks/metagrossite_ore.json
 aa0c4ecfd298b99050983fd886284119f6f424f2 data/mega_showdown/loot_table/blocks/mewtwonite_x_ore.json
 8117e4f47a3af9cdce4f6d2a8c5f57ff5942d697 data/mega_showdown/loot_table/blocks/mewtwonite_y_ore.json

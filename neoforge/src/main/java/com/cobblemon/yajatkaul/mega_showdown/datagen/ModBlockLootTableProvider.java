@@ -1,21 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
-import com.cobblemon.mod.common.item.CobblemonItem;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.neoforged.fml.common.Mod;
 
 import java.util.Set;
 
@@ -124,6 +116,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.KEYSTONE_ORE.get(), block ->
                 createSingleItemTable(ModItems.KEYSTONE.get()));
 
+        add(ModBlocks.MEGA_STONE_CRYSTAL.get(), block ->
+                createSingleItemTable(ModItems.MEGA_STONE.get()));
+
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
         dropSelf(ModBlocks.MEGA_EVO_BLOCK.get());
         dropSelf(ModBlocks.KEYSTONE_BLOCK.get());
@@ -132,60 +127,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.MEGA_EVO_BRICK.get());
 
         dropSelf(ModBlocks.POLISHED_MEGA_EVO_BLOCK.get());
-
-        add(ModBlocks.MEGA_STONE_CRYSTAL.get(),
-                LootTable.lootTable()
-                        .withPool(LootPool.lootPool()
-                                .setRolls(ConstantValue.exactly(1))
-                                .add(LootItem.lootTableItem(ModItems.ABOMASITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.ABSOLITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.AERODACTYLITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.AGGRONITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.ALAKAZITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.ALTARIANITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.AMPHAROSITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.AUDINITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.BANETTITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.BEEDRILLITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.BLASTOISINITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.BLAZIKENITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.CAMERUPTITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.CHARIZARDITE_X).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.CHARIZARDITE_Y).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.DIANCITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.GALLADITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.GARCHOMPITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.GARDEVOIRITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.GENGARITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.GLALITITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.GYARADOSITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.HERACRONITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.HOUNDOOMINITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.KANGASKHANITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.LATIASITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.LATIOSITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.LOPUNNITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.LUCARIONITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.MANECTITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.MAWILITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.MEDICHAMITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.METAGROSSITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.MEWTWONITE_X).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.MEWTWONITE_Y).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.PIDGEOTITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.PINSIRITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SABLENITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SALAMENCITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SCEPTILITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SCIZORITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SHARPEDONITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SLOWBRONITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.STEELIXITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.SWAMPERTITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.TYRANITARITE).setWeight(1))
-                                .add(LootItem.lootTableItem(ModItems.VENUSAURITE).setWeight(1))
-                        )
-        );
 
         add(ModBlocks.MEGA_METEORID_DAWN_ORE.get(),
                 block -> createOreDrop(ModBlocks.MEGA_METEORID_DAWN_ORE.get(), CobblemonItems.DAWN_STONE));

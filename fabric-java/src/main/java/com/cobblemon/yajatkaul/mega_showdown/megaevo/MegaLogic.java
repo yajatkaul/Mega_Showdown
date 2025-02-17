@@ -122,7 +122,7 @@ public class MegaLogic {
                 );
             }
             return;
-        } else if (playerData) {
+        } else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && playerData) {
             player.sendMessage(
                     Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true

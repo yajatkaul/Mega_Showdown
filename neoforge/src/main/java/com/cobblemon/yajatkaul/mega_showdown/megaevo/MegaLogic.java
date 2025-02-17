@@ -120,7 +120,7 @@ public class MegaLogic {
                         .withColor(0xFF0000), true);
             }
             return;
-        }else if(player.getData(DataManage.MEGA_DATA)){
+        }else if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && player.getData(DataManage.MEGA_DATA)){
             player.displayClientMessage(Component.literal("You can only have one mega at a time")
                     .withColor(0xFF0000), true);
             return;

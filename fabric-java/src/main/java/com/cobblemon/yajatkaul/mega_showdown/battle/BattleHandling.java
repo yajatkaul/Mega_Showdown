@@ -124,7 +124,7 @@ public class BattleHandling {
                     );
                 }
                 return;
-            }else if (serverPlayer.getAttached(DataManage.MEGA_DATA)) {
+            }else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && serverPlayer.getAttached(DataManage.MEGA_DATA)) {
                 serverPlayer.sendMessage(
                         Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
