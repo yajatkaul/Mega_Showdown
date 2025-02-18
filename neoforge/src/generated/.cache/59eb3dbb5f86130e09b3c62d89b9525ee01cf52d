@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-17T18:19:52.7725962	Loot Tables
+// 1.21.1	2025-02-18T19:08:09.0204603	Loot Tables
 71cf7b81ee8010ccfa329c846873b628a3f2ff8e data/mega_showdown/loot_table/blocks/abomasite_ore.json
 d76eaf7c9bdeb8c07164747a19e6a70913aa1e6c data/mega_showdown/loot_table/blocks/absolite_ore.json
 295361eebc004b3a9a23ac720232c83c41d5a325 data/mega_showdown/loot_table/blocks/aerodactylite_ore.json
@@ -27,7 +27,7 @@ b12c73d877c306bcde702acc6e46855be686fac9 data/mega_showdown/loot_table/blocks/gy
 a456be6eba6258928b8cfad4197cc97bb6c6ccd1 data/mega_showdown/loot_table/blocks/houndoominite_ore.json
 b094833f4f19cfddefcc4904777817abbe9226e6 data/mega_showdown/loot_table/blocks/kangaskhanite_ore.json
 4749ea320dbbc925681377c758c144915d6227ff data/mega_showdown/loot_table/blocks/keystone_block.json
-674695504760309a26eb17f92743d4a1724712ab data/mega_showdown/loot_table/blocks/keystone_ore.json
+85b1c1f154dbf041c804d7ce3c6f291a0de9d23b data/mega_showdown/loot_table/blocks/keystone_ore.json
 bc2ecec512c6a6ed0bf0f91a9bed93612bf1a5d8 data/mega_showdown/loot_table/blocks/latiasite_ore.json
 f597c5331662cf4dad61641819aa382d6ccb7a22 data/mega_showdown/loot_table/blocks/latiosite_ore.json
 b29aaa4ce2fe51b975f72ef37ce2901b9430316e data/mega_showdown/loot_table/blocks/lopunnite_ore.json
@@ -48,7 +48,7 @@ b3597bd55e0f49d51f5741c210750d67d75aad7c data/mega_showdown/loot_table/blocks/me
 9d8beb9d73883607170520718e9ce116a8abd54a data/mega_showdown/loot_table/blocks/mega_meteorid_sun_ore.json
 34207412312906bea7ecaaad954b38beb21b1ed6 data/mega_showdown/loot_table/blocks/mega_meteorid_thunder_ore.json
 ca15ac8b9548dc6369fb4cc32c69bbfc38b05296 data/mega_showdown/loot_table/blocks/mega_meteorid_water_ore.json
-c7489131b956ff18d5a6a89fedabe987264219dd data/mega_showdown/loot_table/blocks/mega_stone_crystal.json
+e592b51796838e7c97628fb4f32e8a2b19577b08 data/mega_showdown/loot_table/blocks/mega_stone_crystal.json
 7d1e68f25df7cf9bc349b6c4f0ab8a6417cee6e4 data/mega_showdown/loot_table/blocks/metagrossite_ore.json
 aa0c4ecfd298b99050983fd886284119f6f424f2 data/mega_showdown/loot_table/blocks/mewtwonite_x_ore.json
 8117e4f47a3af9cdce4f6d2a8c5f57ff5942d697 data/mega_showdown/loot_table/blocks/mewtwonite_y_ore.json

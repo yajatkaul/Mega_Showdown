@@ -126,6 +126,12 @@ public class MegaLogic {
             return;
         }
 
+        if(species == null){
+            player.displayClientMessage(Component.literal("Don't have the correct stone")
+                    .withColor(0xFF0000), true);
+            return;
+        }
+
         if(species.getName().equals(pokemon.getSpecies().getName()) &&
                 (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
             if(species.getName().equals(Utils.getSpecies("charizard").getName())){

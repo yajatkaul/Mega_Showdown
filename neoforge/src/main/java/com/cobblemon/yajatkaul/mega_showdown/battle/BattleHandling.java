@@ -139,6 +139,12 @@ public class BattleHandling {
                     return;
                 }
 
+                if(species == null){
+                    ((Player) serverPlayer).displayClientMessage(Component.literal("Don't have the correct stone")
+                            .withColor(0xFF0000), true);
+                    return;
+                }
+
                 if (pokemon.getEntity().isBattling() && species.getName().equals(pokemon.getSpecies().getName()) &&
                         (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
 

@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.yajatkaul.mega_showdown.battle.ButtonLogic;
+import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls;
@@ -15,7 +16,7 @@ public class MegaShowdownClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MEGA_STONE_CRYSTAL, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MegaOres.MEGA_STONE_CRYSTAL, RenderLayer.getCutout());
 
         ScreenEvents.AFTER_INIT.register(ButtonLogic::megaEvoButton);
 

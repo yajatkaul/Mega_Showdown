@@ -114,10 +114,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.VENUSAURITE_ORE.get(), ModItems.VENUSAURITE.get()));
 
         add(ModBlocks.KEYSTONE_ORE.get(), block ->
-                createSingleItemTable(ModItems.KEYSTONE.get()));
+                createSingleItemTableWithSilkTouch(ModBlocks.KEYSTONE_ORE.get(), ModItems.KEYSTONE.get()));
 
         add(ModBlocks.MEGA_STONE_CRYSTAL.get(), block ->
-                createSingleItemTable(ModItems.MEGA_STONE.get()));
+                createSingleItemTableWithSilkTouch(ModBlocks.MEGA_STONE_CRYSTAL.get(), ModItems.MEGA_STONE.get()));
 
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
         dropSelf(ModBlocks.MEGA_EVO_BLOCK.get());

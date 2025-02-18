@@ -58,5 +58,6 @@ public class RenderHandTrinkets implements TrinketRenderer {
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLACK_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_GREEN_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_PINK_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.BRENDAN_MEGA_CUFF, new RenderHandTrinkets());
     }
 }

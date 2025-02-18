@@ -15,6 +15,7 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
@@ -132,12 +133,20 @@ public class BattleHandling {
                 return;
             }
 
+            if(species == null){
+                serverPlayer.sendMessage(
+                        Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+                return;
+            }
+
             if (pokemon.getEntity().isBattling() && species.getName().equals(pokemon.getSpecies().getName()) &&
                     // Multiple megas
                     (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
 
                 if (species.getName().equals(Utils.getSpecies("charizard").getName())) {
-                    if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)) {
+                    if (pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_X)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -153,7 +162,7 @@ public class BattleHandling {
                         broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
-                    } else if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_Y)) {
+                    } else if (pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_Y)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -169,7 +178,7 @@ public class BattleHandling {
                         break;
                     }
                 } else if (species.getName().equals(Utils.getSpecies("mewtwo").getName())) {
-                    if (pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)) {
+                    if (pokemon.heldItem().isOf(MegaStones.MEWTWONITE_X)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -182,7 +191,7 @@ public class BattleHandling {
                         broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
-                    } else if (pokemon.heldItem().isOf(ModItems.MEWTWONITE_Y)) {
+                    } else if (pokemon.heldItem().isOf(MegaStones.MEWTWONITE_Y)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
