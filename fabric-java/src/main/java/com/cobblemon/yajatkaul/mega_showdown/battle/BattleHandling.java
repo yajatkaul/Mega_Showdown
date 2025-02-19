@@ -1,11 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -238,9 +240,27 @@ public class BattleHandling {
 
         battlePokemonUsed.clear();
 
-        for (ServerPlayerEntity player: battle.getPlayers()){
+        for (ServerPlayerEntity player : battle.getPlayers()){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             player.setAttached(DataManage.BATTLE_ID, battle.getBattleId());
-            player.removeAttached(DataManage.MEGA_DATA);
+            if(ShowdownConfig.multipleMegas.get()){
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }else{
+                for (Pokemon pokemon : playerPartyStore) {
+                    if(pokemon == player.getAttached(DataManage.MEGA_POKEMON)){
+                        new FlagSpeciesFeature("mega", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+
+                        player.setAttached(DataManage.MEGA_DATA, false);
+                        break;
+                    }
+                }
+            }
         }
 
         return Unit.INSTANCE;

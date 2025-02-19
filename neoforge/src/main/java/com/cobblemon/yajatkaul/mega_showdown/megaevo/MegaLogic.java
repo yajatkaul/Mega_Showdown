@@ -28,13 +28,14 @@ public class MegaLogic {
     public static void EvoLogic(Player playerContext){
         ServerPlayer player = (ServerPlayer) playerContext;
 
-        if(Config.battleMode){
+        if(Config.battleModeOnly){
             return;
         }
 
         boolean hasMegaItem = CuriosApi.getCuriosInventory(player).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItem){
+        if(!hasMegaItem || player.getOffhandItem().getItem() instanceof MegaBraceletItem ||
+                player.getMainHandItem().getItem() instanceof MegaBraceletItem){
             return;
         }
 

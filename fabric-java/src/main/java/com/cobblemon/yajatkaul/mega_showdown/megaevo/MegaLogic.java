@@ -10,7 +10,6 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -36,7 +35,8 @@ public class MegaLogic {
         boolean hasMegaItem = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                 trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItem){
+        if(!hasMegaItem || player.getOffHandStack().getItem() instanceof MegaBraceletItem ||
+                player.getMainHandStack().getItem() instanceof MegaBraceletItem){
             return;
         }
 

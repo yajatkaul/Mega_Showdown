@@ -63,7 +63,7 @@ public class MegaShowdown implements ModInitializer {
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
-        if(ShowdownConfig.battleModeOnly.get()){
+        if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
             CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
             CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);

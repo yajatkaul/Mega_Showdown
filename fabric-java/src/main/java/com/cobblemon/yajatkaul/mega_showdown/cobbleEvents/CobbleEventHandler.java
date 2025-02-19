@@ -63,13 +63,13 @@ public class CobbleEventHandler {
             }
 
             if(mega1){
-                player1.removeAttached(DataManage.MEGA_DATA);
-                player1.removeAttached(DataManage.MEGA_POKEMON);
+                player1.setAttached(DataManage.MEGA_DATA, false);
+                player1.setAttached(DataManage.MEGA_POKEMON, new Pokemon());
                 DevolveOnTrade(pokemon1);
             }
             if(mega2){
-                player2.removeAttached(DataManage.MEGA_DATA);
-                player2.removeAttached(DataManage.MEGA_POKEMON);
+                player2.setAttached(DataManage.MEGA_DATA, false);
+                player2.setAttached(DataManage.MEGA_POKEMON, new Pokemon());
                 DevolveOnTrade(pokemon2);
             }
         }
@@ -136,7 +136,7 @@ public class CobbleEventHandler {
     }
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if(post.getPlayer().getWorld().isClient){
+        if(post.getPlayer().getWorld().isClient || !post.getPlayer().hasAttached(DataManage.MEGA_POKEMON)){
             return Unit.INSTANCE;
         }
 

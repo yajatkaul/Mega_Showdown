@@ -71,7 +71,7 @@ public final class MegaShowdown {
         CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventsHandler::onMegaTraded);
 
         // Battle mode only
-        if(Config.battleMode){
+        if(Config.battleModeOnly || Config.battleMode){
             CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
             CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
@@ -80,7 +80,7 @@ public final class MegaShowdown {
 
     @SubscribeEvent
     private void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
-        if(Config.battleMode){
+        if(Config.battleModeOnly){
             if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
@@ -96,7 +96,7 @@ public final class MegaShowdown {
 
     @SubscribeEvent
     private void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-        if(Config.battleMode){
+        if(Config.battleModeOnly){
             if(event.getEntity() instanceof ServerPlayer player){
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 

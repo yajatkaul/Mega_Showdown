@@ -1,11 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -13,6 +15,7 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.*;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
@@ -27,6 +30,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -41,10 +45,29 @@ public class BattleHandling {
 
         battlePokemonUsed.clear();
 
-        for (ServerPlayer player: battle.getPlayers()){
+        for (ServerPlayer player : battle.getPlayers()){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             player.setData(DataManage.BATTLE_ID, battle.getBattleId());
-            player.removeData(DataManage.MEGA_DATA);
+            if(Config.multipleMegas){
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }else{
+                for (Pokemon pokemon : playerPartyStore) {
+                    if(pokemon == player.getData(DataManage.MEGA_POKEMON)){
+                        new FlagSpeciesFeature("mega", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+
+                        player.setData(DataManage.MEGA_DATA, false);
+                        break;
+                    }
+                }
+            }
         }
+
         return Unit.INSTANCE;
     }
 
@@ -52,7 +75,7 @@ public class BattleHandling {
         battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, battlePokemon.getEffectedPokemon().getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(battlePokemon.getEffectedPokemon()));
 
-        AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
+        AdvancementHelper.grantAdvancement(player, "mega_evolve");
 
         MutableComponent message = Component.literal(battlePokemon.getName().getString())
                 .withStyle(style -> style.withColor(ChatFormatting.GOLD))
@@ -73,7 +96,6 @@ public class BattleHandling {
 
     public static void handleMegaEvolution(IPayloadContext userContext){
         ServerPlayer player = (ServerPlayer) userContext.player();
-
         if(player.getData(DataManage.BATTLE_ID) == NIL_UUID){
             return;
         }

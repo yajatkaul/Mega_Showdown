@@ -100,7 +100,7 @@ public class ButtonLogic {
                     trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
             //Battle mode only
-            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null &&
+            if((ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()) && clientPlayer != null &&
                     (clientPlayer.getOffHandStack().getItem() instanceof MegaBraceletItem || hasMegaItem)){
                 Screens.getButtons(screen).add(texturedButtonWidget);
             }
