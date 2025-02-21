@@ -21,11 +21,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ModTags.Items.MEGA_BRACELETS)
+                .add(ModItems.ARCHIE_ANCHOR.get())
+
+                .add(ModItems.MAXIE_GLASSES.get())
+
+                .add(ModItems.KORRINA_GLOVE.get())
                 .add(ModItems.MEGA_BRACELET.get())
                 .add(ModItems.MEGA_BLACK_BRACELET.get())
                 .add(ModItems.MEGA_PINK_BRACELET.get())
                 .add(ModItems.MEGA_GREEN_BRACELET.get())
                 .add(ModItems.MEGA_RING.get())
+                .add(ModItems.LYSANDRE_RING.get())
                 .add(ModItems.MEGA_RED_BRACELET.get())
                 .add(ModItems.MEGA_BLUE_BRACELET.get())
                 .add(ModItems.MEGA_YELLOW_BRACELET.get())

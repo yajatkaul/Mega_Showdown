@@ -9,7 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -35,7 +35,8 @@ public class MegaLogic {
         boolean hasMegaItem = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                 trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItem){
+        if(!hasMegaItem || player.getOffHandStack().getItem() instanceof MegaBraceletItem ||
+                player.getMainHandStack().getItem() instanceof MegaBraceletItem){
             return;
         }
 
@@ -122,9 +123,17 @@ public class MegaLogic {
                 );
             }
             return;
-        } else if (playerData) {
+        } else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && playerData) {
             player.sendMessage(
                     Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
+        }
+
+        if(species == null){
+            player.sendMessage(
+                    Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;
@@ -133,14 +142,14 @@ public class MegaLogic {
         //Multiple megas
         if(species.getName().equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
             if(species.getName().equals(Utils.getSpecies("charizard").getName())){
-                if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)){
+                if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
-                }else if(pokemon.heldItem().isOf(ModItems.CHARIZARDITE_Y)){
+                }else if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_Y)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -150,14 +159,14 @@ public class MegaLogic {
                 }
             }
             else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
-                if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)){
+                if(pokemon.heldItem().isOf(MegaStones.MEWTWONITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
-                }else if(pokemon.heldItem().isOf(ModItems.MEWTWONITE_Y)){
+                }else if(pokemon.heldItem().isOf(MegaStones.MEWTWONITE_Y)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
 

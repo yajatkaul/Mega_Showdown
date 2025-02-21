@@ -1,11 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -15,6 +17,7 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
@@ -124,9 +127,17 @@ public class BattleHandling {
                     );
                 }
                 return;
-            }else if (serverPlayer.getAttached(DataManage.MEGA_DATA)) {
+            }else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && serverPlayer.getAttached(DataManage.MEGA_DATA)) {
                 serverPlayer.sendMessage(
                         Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+                return;
+            }
+
+            if(species == null){
+                serverPlayer.sendMessage(
+                        Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
                 return;
@@ -137,7 +148,7 @@ public class BattleHandling {
                     (!serverPlayer.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get())) {
 
                 if (species.getName().equals(Utils.getSpecies("charizard").getName())) {
-                    if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_X)) {
+                    if (pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_X)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -153,7 +164,7 @@ public class BattleHandling {
                         broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
-                    } else if (pokemon.heldItem().isOf(ModItems.CHARIZARDITE_Y)) {
+                    } else if (pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_Y)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -169,7 +180,7 @@ public class BattleHandling {
                         break;
                     }
                 } else if (species.getName().equals(Utils.getSpecies("mewtwo").getName())) {
-                    if (pokemon.heldItem().isOf(ModItems.MEWTWONITE_X)) {
+                    if (pokemon.heldItem().isOf(MegaStones.MEWTWONITE_X)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -182,7 +193,7 @@ public class BattleHandling {
                         broadCastEvoMsg(battlePokemon, battle, serverPlayer);
                         battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                         break;
-                    } else if (pokemon.heldItem().isOf(ModItems.MEWTWONITE_Y)) {
+                    } else if (pokemon.heldItem().isOf(MegaStones.MEWTWONITE_Y)) {
                         serverPlayer.setAttached(DataManage.MEGA_DATA, true);
                         serverPlayer.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
@@ -229,9 +240,27 @@ public class BattleHandling {
 
         battlePokemonUsed.clear();
 
-        for (ServerPlayerEntity player: battle.getPlayers()){
+        for (ServerPlayerEntity player : battle.getPlayers()){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             player.setAttached(DataManage.BATTLE_ID, battle.getBattleId());
-            player.removeAttached(DataManage.MEGA_DATA);
+            if(ShowdownConfig.multipleMegas.get()){
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }else{
+                for (Pokemon pokemon : playerPartyStore) {
+                    if(pokemon == player.getAttached(DataManage.MEGA_POKEMON)){
+                        new FlagSpeciesFeature("mega", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+
+                        player.setAttached(DataManage.MEGA_DATA, false);
+                        break;
+                    }
+                }
+            }
         }
 
         return Unit.INSTANCE;

@@ -132,5 +132,64 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(ModBlocks.KEYSTONE_BLOCK.get())
                 .unlockedBy("has_keystone_block", has(ModBlocks.KEYSTONE_BLOCK.get()))
                 .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MAXIE_GLASSES.get())
+                .pattern("   ")
+                .pattern("DKD")
+                .pattern("IGI")
+                .define('K', ModItems.KEYSTONE)
+                .define('D', Items.DIAMOND)
+                .define('I', Items.IRON_INGOT)
+                .define('G', CobblemonItems.WISE_GLASSES)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ARCHIE_ANCHOR.get())
+                .pattern("GCG")
+                .pattern("GKG")
+                .pattern("DGD")
+                .define('K', ModItems.KEYSTONE)
+                .define('D', Items.DIAMOND)
+                .define('G', Items.GOLD_INGOT)
+                .define('C', Items.CHAIN)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.BRENDAN_MEGA_CUFF.get())
+                .pattern(" N ")
+                .pattern("AKA")
+                .pattern("ADA")
+                .define('K', ModItems.KEYSTONE)
+                .define('D', Items.DIAMOND)
+                .define('A', CobblemonItems.RED_APRICORN)
+                .define('N', Items.NETHERITE_INGOT)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LYSANDRE_RING.get())
+                .pattern("IDI")
+                .pattern("IKI")
+                .pattern("III")
+                .define('K', ModItems.KEYSTONE)
+                .define('D', Items.DIAMOND)
+                .define('I', Items.IRON_INGOT)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.KORRINA_GLOVE.get())
+                .pattern(" D ")
+                .pattern("IKI")
+                .pattern("AAA")
+                .define('K', ModItems.KEYSTONE)
+                .define('D', Items.DIAMOND)
+                .define('A', CobblemonItems.RED_APRICORN)
+                .define('I', Items.IRON_INGOT)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MEGA_RING.get())
+                .pattern("ADA")
+                .pattern("AKA")
+                .pattern("IAI")
+                .define('K', ModItems.KEYSTONE)
+                .define('D', Items.DIAMOND)
+                .define('A', CobblemonItems.BLACK_APRICORN)
+                .define('I', Items.IRON_INGOT)
+                .unlockedBy("has_keystone", has(ModItems.KEYSTONE)).save(recipeOutput);
     }
 }

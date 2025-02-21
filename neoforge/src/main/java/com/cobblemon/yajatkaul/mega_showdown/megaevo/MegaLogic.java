@@ -28,13 +28,14 @@ public class MegaLogic {
     public static void EvoLogic(Player playerContext){
         ServerPlayer player = (ServerPlayer) playerContext;
 
-        if(Config.battleMode){
+        if(Config.battleModeOnly){
             return;
         }
 
         boolean hasMegaItem = CuriosApi.getCuriosInventory(player).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItem){
+        if(!hasMegaItem || player.getOffhandItem().getItem() instanceof MegaBraceletItem ||
+                player.getMainHandItem().getItem() instanceof MegaBraceletItem){
             return;
         }
 
@@ -120,8 +121,14 @@ public class MegaLogic {
                         .withColor(0xFF0000), true);
             }
             return;
-        }else if(player.getData(DataManage.MEGA_DATA)){
+        }else if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && player.getData(DataManage.MEGA_DATA)){
             player.displayClientMessage(Component.literal("You can only have one mega at a time")
+                    .withColor(0xFF0000), true);
+            return;
+        }
+
+        if(species == null){
+            player.displayClientMessage(Component.literal("Don't have the correct stone")
                     .withColor(0xFF0000), true);
             return;
         }

@@ -5,192 +5,39 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "mega_showdown:abomasite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:absolite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:aerodactylite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:aggronite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:alakazite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:altarianite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:ampharosite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:audinite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:banettite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:beedrillite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:blastoisinite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:blazikenite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:cameruptite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:charizardite_x"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:charizardite_y"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:diancite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:galladite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:garchompite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:gardevoirite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:gengarite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:glalitite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:gyaradosite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:heracronite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:houndoominite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:kangaskhanite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:latiasite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:latiosite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:lopunnite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:lucarionite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:manectite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:mawilite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:medichamite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:metagrossite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:mewtwonite_x"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:mewtwonite_y"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:pidgeotite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:pinsirite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:sablenite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:salamencite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:sceptilite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:scizorite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:sharpedonite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:slowbronite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:steelixite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:swampertite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:tyranitarite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:venusaurite"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "name": "mega_showdown:mega_stone_crystal"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "mega_showdown:mega_stone"
+            }
+          ]
         }
       ],
       "rolls": 1.0

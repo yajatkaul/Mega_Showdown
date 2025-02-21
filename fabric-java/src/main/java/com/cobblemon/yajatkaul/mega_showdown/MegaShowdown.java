@@ -7,12 +7,15 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
+import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
+import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
 import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItemGroups;
+import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -34,7 +37,11 @@ public class MegaShowdown implements ModInitializer {
     public void onInitialize() {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItem();
-        ModBlocks.registerModBlocks();
+        MegaStones.registerModItem();
+
+        ModBlocks.registerBlocks();
+        PokemonStones.registerBlocks();
+        MegaOres.registerBlocks();
 
         DataManage.registerDataComponentTypes();
 
@@ -56,7 +63,7 @@ public class MegaShowdown implements ModInitializer {
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
-        if(ShowdownConfig.battleModeOnly.get()){
+        if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
             CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
             CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
@@ -92,6 +99,4 @@ public class MegaShowdown implements ModInitializer {
             });
         }
     }
-
-
 }

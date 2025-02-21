@@ -13,6 +13,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.server.level.ServerPlayer;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 public class CobbleEventsHandler {
@@ -63,13 +64,13 @@ public class CobbleEventsHandler {
             }
 
             if(mega1){
-                player1.removeData(DataManage.MEGA_DATA);
-                player1.removeData(DataManage.MEGA_POKEMON);
+                player1.setData(DataManage.MEGA_DATA, false);
+                player1.setData(DataManage.MEGA_POKEMON, new Pokemon());
                 DevolveOnTrade(pokemon1);
             }
             if(mega2){
-                player2.removeData(DataManage.MEGA_DATA);
-                player2.removeData(DataManage.MEGA_POKEMON);
+                player2.setData(DataManage.MEGA_DATA, false);
+                player2.setData(DataManage.MEGA_POKEMON, new Pokemon());
                 DevolveOnTrade(pokemon2);
             }
         }
@@ -84,7 +85,7 @@ public class CobbleEventsHandler {
     }
 
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
-        if(Config.battleMode){
+        if(Config.battleModeOnly){
             return Unit.INSTANCE;
         }
 
@@ -135,6 +136,9 @@ public class CobbleEventsHandler {
     }
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
+        if(!post.getPlayer().hasData(DataManage.MEGA_POKEMON) || post.getPlayer().level().isClientSide){
+            return Unit.INSTANCE;
+        }
         if(!post.getPlayer().level().isClientSide && post.getPlayer().getData(DataManage.MEGA_POKEMON) == post.getPokemon()){
             post.getPlayer().setData(DataManage.MEGA_DATA, false);
             post.getPlayer().setData(DataManage.MEGA_POKEMON, new Pokemon());

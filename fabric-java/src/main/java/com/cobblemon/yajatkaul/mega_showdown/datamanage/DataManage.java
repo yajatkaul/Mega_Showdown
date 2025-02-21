@@ -16,6 +16,8 @@ import org.apache.logging.log4j.core.util.UuidUtil;
 
 import java.util.UUID;
 
+import static net.minecraft.util.Util.NIL_UUID;
+
 public class DataManage {
 
     public static final AttachmentType<Boolean> MEGA_DATA = AttachmentRegistry.create(
@@ -34,7 +36,7 @@ public class DataManage {
             Identifier.of(MegaShowdown.MOD_ID, "mega_pokemon"),
             builder -> builder // Using a builder chain to configure the attachment data type
                     .copyOnDeath()
-                    .initializer(() -> null) // A default value to provide if none is supplied
+                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
                     .persistent(Pokemon.getCODEC()) // How to save and load the data
                     .syncWith(
                             Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
@@ -46,7 +48,7 @@ public class DataManage {
             Identifier.of(MegaShowdown.MOD_ID, "battle_id"),
             builder -> builder // Using a builder chain to configure the attachment data type
                     .copyOnDeath()
-                    .initializer(() -> null) // A default value to provide if none is supplied
+                    .initializer(() -> NIL_UUID) // A default value to provide if none is supplied
                     .persistent(Uuids.CODEC) // How to save and load the data
                     .syncWith(
                             Uuids.PACKET_CODEC,  // How to turn the data into a packet to send to players

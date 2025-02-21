@@ -71,7 +71,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.MEGA_EVO_BLOCK);
 
         //Testing
-        blockWithItemCutOut(ModBlocks.MEGA_STONE_CRYSTAL);
+        //blockWithItemCutOut(ModBlocks.MEGA_STONE_CRYSTAL);
 
         //Custom stones
         blockWithItem(ModBlocks.MEGA_METEORID_DAWN_ORE);
@@ -99,6 +99,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile(MegaShowdown.MOD_ID + ":block/" + deferredBlock.getId().getPath()));
     }
 
+    //For crystals
     private void blockWithItemCutOut(DeferredBlock<?> deferredBlock) {
         directionalBlock(deferredBlock.get(),
                 models().cross(deferredBlock.getId().getPath(),

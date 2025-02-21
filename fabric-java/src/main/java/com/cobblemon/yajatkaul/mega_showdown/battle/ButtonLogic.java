@@ -20,21 +20,22 @@ public class ButtonLogic {
         if (screen instanceof BattleGUI) {
             PlayerEntity clientPlayer = minecraftClient.player;
 
-            Window window = minecraftClient.getWindow();
-            int screenWidth = window.getScaledWidth();
-            int screenHeight = window.getScaledHeight();
+            Screen window = minecraftClient.currentScreen;
+            int guiScale = MinecraftClient.getInstance().options.getGuiScale().getValue();
+
+            if(window == null){
+                return;
+            }
+            int screenWidth = window.width;
+            int screenHeight = window.height;
 
 // Calculate relative positions (as percentages of screen size)
-            double relativeX = 0.048;  // 5.5% from left
-            double relativeY = 0.948;  // 96.6% from top
-
-// Calculate actual position
-            int xPos = (int)(screenWidth * relativeX);
-            int yPos = (int)(screenHeight * relativeY);
+            double relativeX;  // 5.5% from left
+            double relativeY;  // 96.6% from top
 
 // Calculate responsive size (you can adjust these ratios)
-            int buttonWidth = (int)(screenWidth * 0.028);  // 5% of screen width
-            int buttonHeight = (int)(screenHeight * 0.05);
+            int buttonWidth;  // 5% of screen width
+            int buttonHeight;
 
             ButtonTextures buttonTextures = new ButtonTextures(
                     Identifier.of(MegaShowdown.MOD_ID, "mega_btn"),
@@ -42,6 +43,48 @@ public class ButtonLogic {
                     Identifier.of(MegaShowdown.MOD_ID, "mega_btn_hover"),
                     Identifier.of(MegaShowdown.MOD_ID, "mega_btn")
             );
+
+            switch (guiScale){
+                case 1:
+                    relativeX = 0.030;  // 3% from left
+                    relativeY = 0.977;  // 97.7% from top
+                    // Calculate responsive size (you can adjust these ratios)
+                    buttonWidth = (int)(screenWidth * 0.01);  // 1% of screen width
+                    buttonHeight = (int)(screenHeight * 0.02);
+                    break;
+                case 2:
+                    relativeX = 0.048;
+                    relativeY = 0.948;
+                    // Calculate responsive size (you can adjust these ratios)
+                    buttonWidth = (int)(screenWidth * 0.028);  // 5% of screen width
+                    buttonHeight = (int)(screenHeight * 0.05);
+                    break;
+                case 3:
+                    relativeX = 0.070;
+                    relativeY = 0.920;
+                    // Calculate responsive size (you can adjust these ratios)
+                    buttonWidth = (int)(screenWidth * 0.040);  // 5% of screen width
+                    buttonHeight = (int)(screenHeight * 0.075);
+                    break;
+                case 4:
+                    relativeX = 0.085;
+                    relativeY = 0.910;
+                    // Calculate responsive size (you can adjust these ratios)
+                    buttonWidth = (int)(screenWidth * 0.040);  // 5% of screen width
+                    buttonHeight = (int)(screenHeight * 0.075);
+                    break;
+                default:
+                    relativeX = 0.048;  // 5.5% from left
+                    relativeY = 0.948;  // 96.6% from top
+                    // Calculate responsive size (you can adjust these ratios)
+                    buttonWidth = (int)(screenWidth * 0.028);  // 5% of screen width
+                    buttonHeight = (int)(screenHeight * 0.05);
+                    break;
+            }
+
+            // Calculate actual position
+            int xPos = (int)(screenWidth * relativeX);
+            int yPos = (int)(screenHeight * relativeY);
 
             TexturedButtonWidget texturedButtonWidget = new TexturedButtonWidget(
                     xPos,
@@ -57,7 +100,7 @@ public class ButtonLogic {
                     trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
             //Battle mode only
-            if(ShowdownConfig.battleModeOnly.get() && clientPlayer != null &&
+            if((ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()) && clientPlayer != null &&
                     (clientPlayer.getOffHandStack().getItem() instanceof MegaBraceletItem || hasMegaItem)){
                 Screens.getButtons(screen).add(texturedButtonWidget);
             }
