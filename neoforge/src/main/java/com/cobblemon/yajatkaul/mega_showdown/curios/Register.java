@@ -21,5 +21,9 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.MEGA_GREEN_BRACELET.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.MEGA_PINK_BRACELET.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.BRENDAN_MEGA_CUFF.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.KORRINA_GLOVE.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.LYSANDRE_RING.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MAXIE_GLASSES.get(), CurioHeadRenderer::new);
+        CuriosRendererRegistry.register(ModItems.ARCHIE_ANCHOR.get(), CurioChestRenderer::new);
     }
 }

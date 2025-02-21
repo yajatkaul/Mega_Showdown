@@ -80,6 +80,10 @@ public class ModItemGroups {
                         entries.add(ModItems.MEGA_BLACK_BRACELET);
                         entries.add(ModItems.MEGA_RING);
                         entries.add(ModItems.BRENDAN_MEGA_CUFF);
+                        entries.add(ModItems.LYSANDRE_RING);
+                        entries.add(ModItems.KORRINA_GLOVE);
+                        entries.add(ModItems.MAXIE_GLASSES);
+                        entries.add(ModItems.ARCHIE_ANCHOR);
 
                         entries.add(MegaOres.ABOMASITE_ORE);
                         entries.add(MegaOres.ABSOLITE_ORE);

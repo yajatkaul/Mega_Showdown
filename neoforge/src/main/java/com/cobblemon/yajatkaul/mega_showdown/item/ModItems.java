@@ -3,9 +3,9 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -59,7 +59,19 @@ public class ModItems {
     public static final DeferredItem<Item> MEGA_RING = ITEMS.register("megaring",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> LYSANDRE_RING = ITEMS.register("lysandre_ring",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> BRENDAN_MEGA_CUFF = ITEMS.register("brendan_mega_cuff",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> KORRINA_GLOVE = ITEMS.register("korrina_glove",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> MAXIE_GLASSES = ITEMS.register("maxie_glasses",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> ARCHIE_ANCHOR = ITEMS.register("archie_anchor",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> MEGA_STONE = ITEMS.register("mega_stone",

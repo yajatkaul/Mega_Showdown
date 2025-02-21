@@ -96,10 +96,10 @@ public class ButtonLogic {
 
             boolean hasMegaItem = CuriosApi.getCuriosInventory(clientPlayer).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-            if((Config.battleModeOnly || Config.battleMode) && clientPlayer != null && (clientPlayer.getOffhandItem().getItem() instanceof
-                    MegaBraceletItem || hasMegaItem)){
-                event.addListener(button);
-            }
+//            if((Config.battleModeOnly || Config.battleMode) && clientPlayer != null && (clientPlayer.getOffhandItem().getItem() instanceof
+//                    MegaBraceletItem || hasMegaItem)){
+//                event.addListener(button);
+//            }
         }
     }
 }

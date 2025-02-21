@@ -10,11 +10,21 @@ import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.battle.ButtonLogic;
 import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
+import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.Event;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
@@ -122,6 +132,8 @@ public final class MegaShowdown {
         public static void onClientSetup(FMLClientSetupEvent event) {
             NeoForge.EVENT_BUS.addListener(ButtonLogic::megaEvoButton);
             NeoForge.EVENT_BUS.addListener(ClientModEvents::onClientTick);
+
+            NeoForge.EVENT_BUS.addListener(ChestRenderer::onRenderPlayer);
         }
 
         // Register the key binding
@@ -136,6 +148,4 @@ public final class MegaShowdown {
             }
         }
     }
-
-
 }

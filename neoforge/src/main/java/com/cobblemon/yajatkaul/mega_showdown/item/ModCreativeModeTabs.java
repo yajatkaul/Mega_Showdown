@@ -80,7 +80,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MEGA_BLUE_BRACELET);
                         output.accept(ModItems.MEGA_BLACK_BRACELET);
                         output.accept(ModItems.MEGA_RING);
+                        output.accept(ModItems.LYSANDRE_RING);
                         output.accept(ModItems.BRENDAN_MEGA_CUFF);
+                        output.accept(ModItems.MAXIE_GLASSES);
+                        output.accept(ModItems.ARCHIE_ANCHOR);
+                        output.accept(ModItems.KORRINA_GLOVE);
 
                         // Utils
 //                        output.accept(ModItems.DNASPLICERS);

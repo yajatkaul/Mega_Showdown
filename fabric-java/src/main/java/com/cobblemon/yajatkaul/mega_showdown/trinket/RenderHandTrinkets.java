@@ -48,16 +48,4 @@ public class RenderHandTrinkets implements TrinketRenderer {
             matrices.pop();
         }
     }
-
-    public static void register(){
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_RED_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLUE_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_YELLOW_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_RING, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLACK_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_GREEN_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.MEGA_PINK_BRACELET, new RenderHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ModItems.BRENDAN_MEGA_CUFF, new RenderHandTrinkets());
-    }
 }

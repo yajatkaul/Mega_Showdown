@@ -99,6 +99,4 @@ public class MegaShowdown implements ModInitializer {
             });
         }
     }
-
-
 }
