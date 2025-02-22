@@ -139,6 +139,14 @@ public class MegaLogic {
             return;
         }
 
+        if(context instanceof PokemonEntity pk && pk.isBattling() && ShowdownConfig.battleMode.get()){
+            player.sendMessage(
+                    Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
+        }
+
         //Multiple megas
         if(species.getName().equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
             if(species.getName().equals(Utils.getSpecies("charizard").getName())){
@@ -198,6 +206,14 @@ public class MegaLogic {
     public static void Devolve(LivingEntity context, PlayerEntity player){
         if(context instanceof PokemonEntity pk){
             if(pk.getPokemon().getOwnerPlayer() != player){
+                return;
+            }
+
+            if(pk.isBattling() && ShowdownConfig.battleMode.get()){
+                player.sendMessage(
+                        Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
                 return;
             }
         }
