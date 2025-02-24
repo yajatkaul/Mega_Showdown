@@ -30,7 +30,7 @@ public class Config
 
     private static final ModConfigSpec.BooleanValue BATTLE_MODE = BUILDER
             .comment("Allows you to have outside megas but they devolve on battle and then you can have battle mode style theme")
-            .define("battleMode", true);
+            .define("battleMode", false);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
