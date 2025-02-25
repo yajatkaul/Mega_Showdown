@@ -139,7 +139,7 @@ public class MegaLogic {
             return;
         }
 
-        if(context instanceof PokemonEntity pk && pk.isBattling() && ShowdownConfig.battleMode.get()){
+        if(context instanceof PokemonEntity pk && pk.isBattling()){
             player.sendMessage(
                     Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -209,7 +209,7 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.isBattling() && ShowdownConfig.battleMode.get()){
+            if(pk.isBattling()){
                 player.sendMessage(
                         Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true

@@ -9,6 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -133,7 +134,7 @@ public class MegaLogic {
             return;
         }
 
-        if(context instanceof PokemonEntity pk && pk.isBattling() && Config.battleMode){
+        if(context instanceof PokemonEntity pk && pk.isBattling()){
             player.displayClientMessage(Component.literal("Not allowed in battle")
                     .withColor(0xFF0000), true);
             return;
@@ -142,14 +143,14 @@ public class MegaLogic {
         if(species.getName().equals(pokemon.getSpecies().getName()) &&
                 (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
             if(species.getName().equals(Utils.getSpecies("charizard").getName())){
-                if(pokemon.heldItem().is(ModItems.CHARIZARDITE_X)){
+                if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
-                }else if(pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)){
+                }else if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
 
@@ -159,14 +160,14 @@ public class MegaLogic {
                 }
             }
             else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
-                if(pokemon.heldItem().is(ModItems.MEWTWONITE_X)){
+                if(pokemon.heldItem().is(MegaStones.MEWTWONITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
-                }else if(pokemon.heldItem().is(ModItems.MEWTWONITE_Y)){
+                }else if(pokemon.heldItem().is(MegaStones.MEWTWONITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, pokemon);
 
@@ -202,7 +203,7 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.isBattling() && Config.battleMode){
+            if(pk.isBattling()){
                 player.displayClientMessage(Component.literal("Not allowed in battle")
                         .withColor(0xFF0000), true);
                 return;

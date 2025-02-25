@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.worldgen;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -24,7 +25,7 @@ public class ModConfiguredFeatures {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 
         List<OreConfiguration.TargetBlockState> overworldOres = List.of(
-                OreConfiguration.target(stoneReplaceables, ModBlocks.CHARIZARDITE_X_ORE.get().defaultBlockState())
+                OreConfiguration.target(stoneReplaceables, MegaOres.CHARIZARDITE_X_ORE.get().defaultBlockState())
         );
 
         register(context, OVERWORLD_CHARIZARDITE_X_ORE_KEY, Feature.ORE, new OreConfiguration(overworldOres, 3));

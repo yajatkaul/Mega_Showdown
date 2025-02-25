@@ -20,6 +20,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
@@ -177,7 +178,7 @@ public class BattleHandling {
                         (!serverPlayer.getData(DataManage.MEGA_DATA) || Config.multipleMegas)) {
 
                     if (species.getName().equals(Utils.getSpecies("charizard").getName())) {
-                        if (pokemon.heldItem().is(ModItems.CHARIZARDITE_X)) {
+                        if (pokemon.heldItem().is(MegaStones.CHARIZARDITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
 
@@ -190,7 +191,7 @@ public class BattleHandling {
                             broadCastEvoMsg(battlePokemon, battle, player);
                             battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                             break;
-                        } else if (pokemon.heldItem().is(ModItems.CHARIZARDITE_Y)) {
+                        } else if (pokemon.heldItem().is(MegaStones.CHARIZARDITE_Y)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
 
@@ -204,7 +205,7 @@ public class BattleHandling {
                             break;
                         }
                     } else if (species.getName().equals(Utils.getSpecies("mewtwo").getName())) {
-                        if (pokemon.heldItem().is(ModItems.MEWTWONITE_X)) {
+                        if (pokemon.heldItem().is(MegaStones.MEWTWONITE_X)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
 
@@ -216,7 +217,7 @@ public class BattleHandling {
                             battlePokemonUsed.add(battlePokemon.getOriginalPokemon());
                             broadCastEvoMsg(battlePokemon, battle, player);
                             break;
-                        } else if (pokemon.heldItem().is(ModItems.MEWTWONITE_Y)) {
+                        } else if (pokemon.heldItem().is(MegaStones.MEWTWONITE_Y)) {
                             serverPlayer.setData(DataManage.MEGA_DATA, true);
                             serverPlayer.setData(DataManage.MEGA_POKEMON, pokemon);
 
