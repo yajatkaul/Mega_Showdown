@@ -47,6 +47,12 @@
   "item.mega_showdown.tyranitarite": "Tyranitarite",
   "item.mega_showdown.venusaurite": "Venusaurite",
 
+  "item.mega_showdown.redorb": "Red Orb",
+  "item.mega_showdown.blueorb": "Blue Orb",
+
+  "tooltip.mega_showdown.redorb.tooltip": "Allows Groudon to turn into a Primal",
+  "tooltip.mega_showdown.blueorb.tooltip": "Allows Kyogre to turn into a Primal",
+
   "tooltip.mega_showdown.mega_stone.tooltip": "Raw Mega Stone",
   "tooltip.mega_showdown.abomasite.tooltip": "Allows Abomasnow to Mega Evolve into Mega Abomasnow",
   "tooltip.mega_showdown.absolite.tooltip": "Allows Absol to Mega Evolve into Mega Absol",
@@ -196,7 +202,6 @@
   "item.mega_showdown.electricmemory": "Electric Memory",
   "item.mega_showdown.darkmemory": "Dark Memory",
   "item.mega_showdown.cornerstonemask": "Cornerstone Mask",
-  "item.mega_showdown.blueorb": "Blue Orb",
   "item.mega_showdown.bugmemory": "Bug Memory",
   "item.mega_showdown.burndrive": "Burn Drive",
   "item.mega_showdown.chilldrive": "Chill Drive",

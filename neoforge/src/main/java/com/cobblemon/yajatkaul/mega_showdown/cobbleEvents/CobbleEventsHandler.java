@@ -5,12 +5,15 @@ import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 import javax.xml.crypto.Data;
@@ -136,12 +139,56 @@ public class CobbleEventsHandler {
     }
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if(!post.getPlayer().hasData(DataManage.MEGA_POKEMON) || post.getPlayer().level().isClientSide){
+        if(post.getPlayer().level().isClientSide){
             return Unit.INSTANCE;
         }
+
         if(!post.getPlayer().level().isClientSide && post.getPlayer().getData(DataManage.MEGA_POKEMON) == post.getPokemon()){
             post.getPlayer().setData(DataManage.MEGA_DATA, false);
             post.getPlayer().setData(DataManage.MEGA_POKEMON, new Pokemon());
+        }
+
+        if(!post.getPlayer().level().isClientSide && post.getPlayer().getData(DataManage.PRIMAL_POKEMON) == post.getPokemon()){
+            post.getPlayer().setData(DataManage.PRIMAL_DATA, false);
+            post.getPlayer().setData(DataManage.PRIMAL_POKEMON, new Pokemon());
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit primalEvent(HeldItemEvent.Post post) {
+        if(post.getReturned() == post.getReceived() || post.getPokemon().getOwnerPlayer() == null){
+            return Unit.INSTANCE;
+        }
+
+        ServerPlayer player = post.getPokemon().getOwnerPlayer();
+        Species species = post.getPokemon().getSpecies();
+
+        if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().is(MegaStones.BLUE_ORB)){
+            if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
+                player.displayClientMessage(Component.literal("You can only have one primal at a time")
+                        .withColor(0xFF0000), true);
+                return Unit.INSTANCE;
+            }
+            new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            player.setData(DataManage.PRIMAL_DATA, true);
+        }
+        else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().is(MegaStones.RED_ORB)){
+            if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
+                player.displayClientMessage(Component.literal("You can only have one primal at a time")
+                        .withColor(0xFF0000), true);
+                return Unit.INSTANCE;
+            }
+            new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            player.setData(DataManage.PRIMAL_DATA, true);
+        }else{
+            SpeciesFeature feature = post.getPokemon().getFeature("primal");
+            if(feature == null){
+                return Unit.INSTANCE;
+            }
+
+            new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
+            player.setData(DataManage.PRIMAL_DATA, false);
         }
 
         return Unit.INSTANCE;

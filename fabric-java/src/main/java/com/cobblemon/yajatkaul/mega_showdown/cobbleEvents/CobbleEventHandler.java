@@ -5,13 +5,18 @@ import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 
 import java.util.List;
 
@@ -136,8 +141,16 @@ public class CobbleEventHandler {
     }
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if(post.getPlayer().getWorld().isClient || !post.getPlayer().hasAttached(DataManage.MEGA_POKEMON)){
+        if(post.getPlayer().getWorld().isClient){
             return Unit.INSTANCE;
+        }
+
+        if(!post.getPlayer().hasAttached(DataManage.PRIMAL_POKEMON)){
+            post.getPlayer().setAttached(DataManage.PRIMAL_POKEMON, new Pokemon());
+        }
+
+        if(!post.getPlayer().hasAttached(DataManage.MEGA_POKEMON)){
+            post.getPlayer().setAttached(DataManage.MEGA_POKEMON, new Pokemon());
         }
 
         if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON) == post.getPokemon()){
@@ -145,7 +158,53 @@ public class CobbleEventHandler {
             post.getPlayer().removeAttached(DataManage.MEGA_POKEMON);
         }
 
+        if(post.getPlayer().getAttached(DataManage.PRIMAL_POKEMON) == post.getPokemon()){
+            post.getPlayer().setAttached(DataManage.PRIMAL_DATA, false);
+            post.getPlayer().setAttached(DataManage.PRIMAL_POKEMON, new Pokemon());
+        }
+
         return Unit.INSTANCE;
     }
 
+    public static Unit primalEvent(HeldItemEvent.Post post) {
+        if(post.getReturned() == post.getReceived() || post.getPokemon().getOwnerPlayer() == null){
+            return Unit.INSTANCE;
+        }
+
+        ServerPlayerEntity player = post.getPokemon().getOwnerPlayer();
+        Species species = post.getPokemon().getSpecies();
+
+        if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().isOf(MegaStones.BLUE_ORB)){
+            if(player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()){
+                player.sendMessage(
+                        Text.literal("You can only have one primal at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+                return Unit.INSTANCE;
+            }
+            new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            player.setAttached(DataManage.PRIMAL_DATA, true);
+        }
+        else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().isOf(MegaStones.RED_ORB)){
+            if(player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()){
+                player.sendMessage(
+                        Text.literal("You can only have one primal at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+                return Unit.INSTANCE;
+            }
+            new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            player.setAttached(DataManage.PRIMAL_DATA, true);
+        }else{
+            SpeciesFeature feature = post.getPokemon().getFeature("primal");
+            if(feature == null){
+                return Unit.INSTANCE;
+            }
+
+            new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
+            player.setAttached(DataManage.PRIMAL_DATA, false);
+        }
+
+        return Unit.INSTANCE;
+    }
 }

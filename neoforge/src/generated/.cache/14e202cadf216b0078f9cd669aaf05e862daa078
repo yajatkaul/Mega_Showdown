@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-21T18:04:55.1148397	Item Models: mega_showdown
+// 1.21.1	2025-02-26T19:51:47.2270614	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -11,6 +11,7 @@ be52d1ed0e0f18119a7ad55a64b4d11bbd7f951c assets/mega_showdown/models/item/amphar
 d7ba66a5617c1c9c36444e515157d1fad28ec9b6 assets/mega_showdown/models/item/beedrillite.json
 9699d5c9b5dc0caf7cbbb46eba82b6fc3c145969 assets/mega_showdown/models/item/blastoisinite.json
 77cd2d22fdfcbcad3883a7128081fe991fe97814 assets/mega_showdown/models/item/blazikenite.json
+0aa41d423acb9015e123a97819ce481b252ba49b assets/mega_showdown/models/item/blueorb.json
 6a11e887db03e4b976863b7e6d6bff4a0dd03089 assets/mega_showdown/models/item/cameruptite.json
 fa5da1e81f303a056fa14417ae82731c955d7b4f assets/mega_showdown/models/item/charizardite_x.json
 e3297ae4b723d9648a34f1df2798f73100356c0f assets/mega_showdown/models/item/charizardite_y.json
@@ -38,6 +39,7 @@ d65c980c696ed90f0980a3b02449879da7b754c8 assets/mega_showdown/models/item/mega_s
 557024f8b3f8b1924df0bd294cf3cd7342c844b6 assets/mega_showdown/models/item/mewtwonite_y.json
 6ad66abc876feb4cc03a562c7f1be7d24e02f4e2 assets/mega_showdown/models/item/pidgeotite.json
 ad8a4c1c0a0f2a782def736db0a29fd6dc0c8517 assets/mega_showdown/models/item/pinsirite.json
+da3b1f4be002ac09f90358f221be83387b0ad59d assets/mega_showdown/models/item/redorb.json
 85270323c61cc484737487f6c9ca596e9831c617 assets/mega_showdown/models/item/sablenite.json
 1d86c091cc0e36501a8529ac559c66e81c9e03e3 assets/mega_showdown/models/item/salamencite.json
 8cfa3284bac0eafceea3621700a0862c8c37fbb9 assets/mega_showdown/models/item/sceptilite.json

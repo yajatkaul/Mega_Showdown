@@ -14,14 +14,11 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
 
 public class MegaOres {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MegaShowdown.MOD_ID);
-
     public static final DeferredBlock<Block> KEYSTONE_ORE = registerBlock("keystone_ore",
             () -> new DropExperienceBlock(UniformInt.of(6,9),
                     BlockBehaviour
@@ -544,7 +541,7 @@ public class MegaOres {
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        DeferredBlock<T> toReturn = ModBlocks.BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return  toReturn;
     }
@@ -553,7 +550,6 @@ public class MegaOres {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void register(IEventBus eventBus){
-        BLOCKS.register(eventBus);
+    public static void register(){
     }
 }

@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.battle;
 
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.abilities.Ability;
+import com.cobblemon.mod.common.api.battles.interpreter.Effect;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
@@ -11,7 +13,10 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.*;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.battles.runner.ShowdownService;
+import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.data.AbilityRegistrySyncPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.*;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
@@ -81,7 +86,7 @@ public class BattleHandling {
     private static void broadCastEvoMsg(BattlePokemon battlePokemon, PokemonBattle battle, ServerPlayer player) {
         battle.sendUpdate(new AbilityUpdatePacket(battlePokemon::getEffectedPokemon, battlePokemon.getEffectedPokemon().getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(battlePokemon.getEffectedPokemon()));
-
+        
         AdvancementHelper.grantAdvancement(player, "mega_evolve");
 
         MutableComponent message = Component.literal(battlePokemon.getName().getString())

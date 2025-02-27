@@ -155,6 +155,9 @@ public class ModItemGroups {
                         entries.add(PokemonStones.MEGA_METEORID_SUN_ORE);
                         entries.add(PokemonStones.MEGA_METEORID_THUNDER_ORE);
                         entries.add(PokemonStones.MEGA_METEORID_WATER_ORE);
+
+                        entries.add(MegaStones.BLUE_ORB);
+                        entries.add(MegaStones.RED_ORB);
                     }))
                     .build());
 

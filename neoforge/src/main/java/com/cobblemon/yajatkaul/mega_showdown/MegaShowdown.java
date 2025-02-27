@@ -49,11 +49,11 @@ public final class MegaShowdown {
     public MegaShowdown(IEventBus modEventBus, @NotNull ModContainer modContainer) {
         NeoForge.EVENT_BUS.register(this);
 
-        ModItems.register(modEventBus);
-        MegaStones.register(modEventBus);
-
         ModBlocks.register(modEventBus);
-        MegaOres.register(modEventBus);
+        MegaOres.register();
+
+        ModItems.register(modEventBus);
+        MegaStones.register();
 
         DataManage.register(modEventBus);
 
@@ -75,6 +75,8 @@ public final class MegaShowdown {
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
         CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventsHandler::onMegaTraded);
+
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::primalEvent);
 
         // Battle mode only
         if(Config.battleModeOnly || Config.battleMode){

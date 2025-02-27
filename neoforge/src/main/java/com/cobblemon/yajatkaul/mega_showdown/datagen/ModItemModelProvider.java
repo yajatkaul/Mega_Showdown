@@ -63,5 +63,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaStones.TYRANITARITE.get());
         basicItem(MegaStones.VENUSAURITE.get());
         basicItem(MegaStones.KEYSTONE.get());
+
+        basicItem(MegaStones.BLUE_ORB.get());
+        basicItem(MegaStones.RED_ORB.get());
     }
 }

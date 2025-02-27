@@ -161,6 +161,9 @@ public class ModCreativeModeTabs {
                         output.accept(MegaOres.MEGA_METEORID_SUN_ORE);
                         output.accept(MegaOres.MEGA_METEORID_THUNDER_ORE);
                         output.accept(MegaOres.MEGA_METEORID_WATER_ORE);
+
+                        output.accept(MegaStones.BLUE_ORB);
+                        output.accept(MegaStones.RED_ORB);
                     })
                     .build());
 

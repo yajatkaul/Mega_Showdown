@@ -61,6 +61,8 @@ public class MegaShowdown implements ModInitializer {
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onReleasePokemon);
         CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventHandler::onMegaTraded);
 
+        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::primalEvent);
+
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
 
         if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){

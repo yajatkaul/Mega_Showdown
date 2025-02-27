@@ -1,0 +1,34 @@
+{
+  "species": "cobblemon:groudon",
+  "order": 2,
+  "variations": [
+    {
+      "aspects": ["primal"],
+      "poser": "cobblemon:groudonprimal",
+      "model": "cobblemon:groudonprimal.geo",
+      "texture": "cobblemon:textures/pokemon/groudonprimal/groudonprimal.png",
+      "layers": [
+        {
+              "name": "emissive",
+              "emissive": true,
+              "texture": "cobblemon:textures/pokemon/groudonprimal/groudonprimal_emissive.png",
+              "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny","primal"
+      ],
+      "texture": "cobblemon:textures/pokemon/groudonprimal/groudonprimal_shiny.png",
+      "layers": [
+        {
+              "name": "emissive",
+              "emissive": true,
+              "texture": "cobblemon:textures/pokemon/groudonprimal/groudonprimal_emissive_shiny.png",
+              "translucent": true
+        }
+      ]
+    }
+  ]
+}

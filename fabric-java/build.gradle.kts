@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "3.8.3-release-fabric"
+version = "4.0.0-release-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -15,7 +15,6 @@ architectury {
 
 loom {
     silentMojangMappingsLicense()
-
     mixin {
         defaultRefmapName.set("mixins.${project.name}.refmap.json")
     }
@@ -27,15 +26,13 @@ repositories {
     maven("https://maven.impactdev.net/repository/development/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 
-    repositories {
-        maven {
-            name = "TerraformersMC"
-            url = uri("https://maven.terraformersmc.com/")
-        }
-        maven {
-            name = "Ladysnake Libs"
-            url = uri("https://maven.ladysnake.org/releases")
-        }
+    maven {
+        name = "TerraformersMC"
+        url = uri("https://maven.terraformersmc.com/")
+    }
+    maven {
+        name = "Ladysnake Libs"
+        url = uri("https://maven.ladysnake.org/releases")
     }
 
     exclusiveContent {
@@ -64,7 +61,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 
-    //include("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
     modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
 
     modImplementation("dev.emi:trinkets:${properties["trinkets_version"]}")

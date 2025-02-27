@@ -394,6 +394,22 @@ public class MegaStones {
         }
     });
 
+    public static final Item BLUE_ORB = registerItem("blueorb", new Item(new Item.Settings()) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.blueorb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item RED_ORB = registerItem("redorb", new Item(new Item.Settings()) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.redorb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static void registerModItem(){
 
     }

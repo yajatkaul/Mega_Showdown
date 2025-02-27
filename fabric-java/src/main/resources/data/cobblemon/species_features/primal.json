@@ -1,0 +1,6 @@
+{
+  "keys": ["primal"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}

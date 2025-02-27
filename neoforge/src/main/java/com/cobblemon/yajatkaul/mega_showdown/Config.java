@@ -32,6 +32,10 @@ public class Config
             .comment("Allows you to have outside megas but they devolve on battle and then you can have battle mode style theme")
             .define("battleMode", true);
 
+    private static final ModConfigSpec.BooleanValue MULTIPLE_PRIMALS = BUILDER
+            .comment("Allows you to have multiple primals in your team")
+            .define("multiplePrimals", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -39,6 +43,7 @@ public class Config
     public static boolean megaTurns;
     public static boolean braceletHandSensitive;
     public static boolean battleMode;
+    public static boolean multiplePrimals;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -48,5 +53,6 @@ public class Config
         battleMode = BATTLE_MODE.get();
         megaTurns = MEGA_TAKES_TURN.get();
         braceletHandSensitive = BRACELET_HAND_SENSITIVE.get();
+        multiplePrimals = MULTIPLE_PRIMALS.get();
     }
 }

@@ -1,0 +1,19 @@
+{
+	"species": "cobblemon:groudon",
+	"order": 0,
+	"variations": [
+		{
+			"aspects": [],
+			"poser": "cobblemon:groudon",
+			"model": "cobblemon:groudon.geo",
+			"texture": "cobblemon:textures/pokemon/groudon/groudon.png",
+			"layers": [
+				
+			]
+		},
+		{
+			"aspects": [ "shiny" ],
+			"texture": "cobblemon:textures/pokemon/groudon/groudon_shiny.png"
+		}
+	]
+}

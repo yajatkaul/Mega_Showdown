@@ -4,8 +4,6 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
