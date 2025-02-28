@@ -1,0 +1,25 @@
+{
+   "enabled": true,
+   "neededInstalledMods": [],
+   "neededUninstalledMods": [],
+   "spawns": [
+       {
+           "id": "kyogre-1",
+           "pokemon": "kyogre",
+           "presets": [
+               "underwater"
+           ],
+           "type": "pokemon",
+           "context": "submerged",
+           "bucket": "ultra-rare",
+           "level": "70",
+           "weight": 3,
+           "condition": {
+               "isRaining": true,
+               "biomes": [
+                   "#cobblemon:is_ocean"
+               ]
+           }
+       }
+   ]
+}

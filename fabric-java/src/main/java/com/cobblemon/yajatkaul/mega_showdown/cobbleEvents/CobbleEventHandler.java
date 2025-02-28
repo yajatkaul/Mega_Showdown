@@ -21,6 +21,7 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -198,6 +199,7 @@ public class CobbleEventHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setAttached(DataManage.PRIMAL_DATA, true);
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().isOf(MegaStones.RED_ORB)){
@@ -209,6 +211,7 @@ public class CobbleEventHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setAttached(DataManage.PRIMAL_DATA, true);
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");

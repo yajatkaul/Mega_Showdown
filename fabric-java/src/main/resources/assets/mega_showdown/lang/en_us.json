@@ -230,10 +230,16 @@
   "advancement.mega_showdown.find_mega_stone.title": "Evolutionary Beings",
   "advancement.mega_showdown.find_keystone.title": "Showdown beginning",
   "advancement.mega_showdown.get_bracelet.title": "Showdown Gear",
+  "advancement.mega_showdown.find_blueorb.title": "Primal Blue",
+  "advancement.mega_showdown.find_redorb.title": "Primal Red",
+  "advancement.mega_showdown.primal_evolve.title": "Primal Reversion",
 
   "advancement.mega_showdown.root.description": "World of showdown",
   "advancement.mega_showdown.mega_evolve.description": "Mega evolve any Pokémon",
   "advancement.mega_showdown.find_mega_stone.description": "Obtain any mega stone",
   "advancement.mega_showdown.find_keystone.description": "Find the keystone",
-  "advancement.mega_showdown.get_bracelet.description": "Obtain any mega bracelet"
+  "advancement.mega_showdown.get_bracelet.description": "Obtain any mega bracelet",
+  "advancement.mega_showdown.find_blueorb.description": "Fine the blueorb",
+  "advancement.mega_showdown.find_redorb.description": "Fine the redorb",
+  "advancement.mega_showdown.primal_evolve.description": "Primal revert any Pokémon"
 }

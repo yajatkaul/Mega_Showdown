@@ -189,6 +189,7 @@ public class CobbleEventsHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setData(DataManage.PRIMAL_DATA, true);
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().is(MegaStones.RED_ORB)){
@@ -198,6 +199,7 @@ public class CobbleEventsHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setData(DataManage.PRIMAL_DATA, true);
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");

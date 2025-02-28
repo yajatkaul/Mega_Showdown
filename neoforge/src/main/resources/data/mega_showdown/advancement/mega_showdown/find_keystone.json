@@ -16,7 +16,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "mega_showdown:mega_showdown/root",
+  "parent": "mega_showdown:mega_showdown/find_megastone",
   "criteria": {
     "obtained_item": {
       "trigger": "minecraft:inventory_changed",

@@ -1,29 +1,29 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:megabracelet"
+      "id": "mega_showdown:redorb"
     },
     "title": {
-      "translate": "advancement.mega_showdown.find_keystone.title",
-      "fallback": "Showdown beginning"
+      "translate": "advancement.mega_showdown.find_redorb.title",
+      "fallback": "Primal Red"
     },
     "description": {
-      "translate": "advancement.mega_showdown.find_keystone.description",
-      "fallback": "Fine the keystone"
+      "translate": "advancement.mega_showdown.find_redorb.description",
+      "fallback": "Fine the redorb"
     },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "mega_showdown:mega_showdown/find_megastone",
+  "parent": "mega_showdown:mega_showdown/find_blueorb",
   "criteria": {
     "obtained_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": ["mega_showdown:keystone"]
+            "items": ["mega_showdown:redorb"]
           }
         ]
       }

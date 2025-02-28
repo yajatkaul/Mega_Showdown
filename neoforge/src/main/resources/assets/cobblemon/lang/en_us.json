@@ -49,5 +49,8 @@
 	"cobblemon.species.lucario-mega.desc":"Bathed in explosive energy, its combative instincts have awakened. For its enemies, it has no mercy whatsoever.",
 	"cobblemon.ui.pokedex.info.form.mega": "Mega",
 	"cobblemon.ui.pokedex.info.form.mega-x": "Mega X",
-	"cobblemon.ui.pokedex.info.form.mega-y": "Mega Y"
+	"cobblemon.ui.pokedex.info.form.mega-y": "Mega Y",
+
+	"cobblemon.battle.weather.desolateland.start": "The sunlight turned extremely harsh!",
+	"cobblemon.battle.weather.primordialsea.start": "A heavy rain began to fall!"
 }

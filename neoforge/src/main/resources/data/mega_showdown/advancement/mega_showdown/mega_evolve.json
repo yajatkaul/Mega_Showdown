@@ -16,7 +16,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "mega_showdown:mega_showdown/root",
+  "parent": "mega_showdown:mega_showdown/get_bracelet",
   "criteria": {
     "mega_evo_any": {
       "trigger": "minecraft:impossible"
