@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -31,8 +30,8 @@ public class MegaLogic {
         boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                 trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItemTrinkets || player.getOffHandStack().getItem() instanceof MegaBraceletItem ||
-                player.getMainHandStack().getItem() instanceof MegaBraceletItem){
+        if(!hasMegaItemTrinkets && !(player.getOffHandStack().getItem() instanceof MegaBraceletItem) &&
+                !(player.getMainHandStack().getItem() instanceof MegaBraceletItem)){
             return false;
         }
 
@@ -43,8 +42,6 @@ public class MegaLogic {
         if(ShowdownConfig.battleModeOnly.get()){
             return;
         }
-
-
 
         if(!Possible(player)){
             return;
