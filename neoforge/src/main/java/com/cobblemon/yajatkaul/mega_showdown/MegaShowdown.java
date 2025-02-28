@@ -83,7 +83,7 @@ public final class MegaShowdown {
 
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::primalEvent);
 
-        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::battleStarted);
+        CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::battleStarted);
 
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventsHandler::megaEvolution);
 

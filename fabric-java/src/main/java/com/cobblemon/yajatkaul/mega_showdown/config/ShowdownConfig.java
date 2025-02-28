@@ -11,16 +11,18 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> battleModeOnly;
     public static final Supplier<Boolean> battleMode;
     public static final Supplier<Boolean> multiplePrimals;
+    public static final Supplier<Boolean> scuffedMode;
 
     static{
         // construct a new config builder
         IConfigBuilder builder = ConfigBuilders.newTomlConfig(MegaShowdown.MOD_ID, "common", false);
 
         // a boolean value
-        multipleMegas = builder.comment("Enable multiple megas at one time").define("multipleMegas", false);
+        multipleMegas = builder.comment("Enable multiple mega's at one time").define("multipleMegas", false);
         battleModeOnly = builder.comment("Enable mega evolution only for battles").define("battleModeOnly", false);
-        battleMode = builder.comment("Allows you to have outside megas but they devolve on battle and then you can have battle mode style theme").define("battleMode", true);
+        battleMode = builder.comment("Allows you to have outside mega's but they devolve on battle and then you can have battle mode style theme").define("battleMode", true);
         multiplePrimals = builder.comment("Allows you to have multiple primals at a time").define("multiplePrimals", true);
+        scuffedMode = builder.comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this").define("scuffedMode", false);
 
         builder.build();
     }

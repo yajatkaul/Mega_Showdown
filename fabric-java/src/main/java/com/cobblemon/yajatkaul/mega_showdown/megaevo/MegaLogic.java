@@ -30,8 +30,10 @@ public class MegaLogic {
         boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                 trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItemTrinkets && !(player.getOffHandStack().getItem() instanceof MegaBraceletItem) &&
-                !(player.getMainHandStack().getItem() instanceof MegaBraceletItem)){
+        boolean hasOffhandMegaItem = player.getOffHandStack().getItem() instanceof MegaBraceletItem;
+        boolean hasMainhandMegaItem = player.getMainHandStack().getItem() instanceof MegaBraceletItem;
+
+        if (!hasMegaItemTrinkets && hasOffhandMegaItem && hasMainhandMegaItem) {
             return false;
         }
 

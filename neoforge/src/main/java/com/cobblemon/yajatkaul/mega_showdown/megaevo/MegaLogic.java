@@ -21,16 +21,20 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.fml.ModList;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.List;
 
 public class MegaLogic {
-    public static boolean Possible(ServerPlayer player){
-        boolean hasMegaItemCurios = CuriosApi.getCuriosInventory(player).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
-        if(!hasMegaItemCurios && !(player.getOffhandItem().getItem() instanceof MegaBraceletItem) &&
-                !(player.getMainHandItem().getItem() instanceof MegaBraceletItem)){
+    public static boolean Possible(ServerPlayer player) {
+        boolean hasMegaItemCurios = CuriosApi.getCuriosInventory(player)
+                .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem))
+                .orElse(false);
+
+        boolean hasOffhandMegaItem = player.getOffhandItem().getItem() instanceof MegaBraceletItem;
+        boolean hasMainhandMegaItem = player.getMainHandItem().getItem() instanceof MegaBraceletItem;
+
+        if (!hasMegaItemCurios && hasOffhandMegaItem && hasMainhandMegaItem) {
             return false;
         }
 

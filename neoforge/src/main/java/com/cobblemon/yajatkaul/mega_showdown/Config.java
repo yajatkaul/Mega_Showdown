@@ -28,12 +28,17 @@ public class Config
             .comment("Allows you to have multiple primals in your team")
             .define("multiplePrimals", true);
 
+    private static final ModConfigSpec.BooleanValue SCUFFED_MODE = BUILDER
+            .comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this")
+            .define("scuffedMode", false);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
     public static boolean battleModeOnly;
     public static boolean battleMode;
     public static boolean multiplePrimals;
+    public static boolean scuffedMode;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -42,5 +47,6 @@ public class Config
         battleModeOnly = BATTLE_MODE_ONLY.get();
         battleMode = BATTLE_MODE.get();
         multiplePrimals = MULTIPLE_PRIMALS.get();
+        scuffedMode = SCUFFED_MODE.get();
     }
 }

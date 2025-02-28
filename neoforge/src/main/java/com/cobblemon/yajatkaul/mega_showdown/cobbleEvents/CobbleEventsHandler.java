@@ -2,10 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
-import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
+import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
@@ -214,15 +211,8 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit battleStarted(BattleStartedPostEvent battleStartedPostEvent) {
-        for(ServerPlayer player: battleStartedPostEvent.getBattle().getPlayers()){
-            GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
-            if(MegaLogic.Possible(player) && !player.getData(DataManage.MEGA_DATA)){
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
-            }else{
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
-            }
-
+    public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
+        for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
             if(Config.battleMode){
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
@@ -230,10 +220,35 @@ public class CobbleEventsHandler {
                     if(pokemon.getSpecies().getName().equals("rayquaza")){
                         continue;
                     }
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+                    for (String key : megaKeys) {
+                        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+                        FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+                        if(feature != null){
+                            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                            if(enabled){
+                                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                                player.setData(DataManage.MEGA_DATA, false);
+                                player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+                                break;
+                            }
+                        }
+                    }
                 }
+            }
+
+            GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
+
+            if((Config.battleMode || Config.scuffedMode) && MegaLogic.Possible(player) && !player.getData(DataManage.MEGA_DATA)){
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
+            }else{
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }
         }
 
@@ -267,12 +282,26 @@ public class CobbleEventsHandler {
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
-                new FlagSpeciesFeature("mega", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                for (String key : megaKeys) {
+                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+                    FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+                    if(feature != null){
+                        boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                        if(enabled){
+                            new FlagSpeciesFeature("mega", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                            serverPlayer.setData(DataManage.MEGA_DATA, false);
+                            serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+                            break;
+                        }
+                    }
+                }
             }
         });
 
@@ -305,14 +334,28 @@ public class CobbleEventsHandler {
                     continue;
                 }
 
-                serverPlayer.setData(DataManage.MEGA_DATA, false);
-                serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                new FlagSpeciesFeature("mega", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+                for (String key : megaKeys) {
+                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+                    FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+                    if(feature != null){
+                        boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                        if(enabled){
+                            new FlagSpeciesFeature("mega", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                            serverPlayer.setData(DataManage.MEGA_DATA, false);
+                            serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+                            break;
+                        }
+                    }
+                }
             }
         });
 

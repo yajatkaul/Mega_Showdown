@@ -67,7 +67,7 @@ public class MegaShowdown implements ModInitializer {
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, CobbleEventHandler::devolveFainted);
 
-        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, CobbleEventHandler::battleStarted);
+        CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEventHandler::battleStarted);
 
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventHandler::megaEvolution);
 
