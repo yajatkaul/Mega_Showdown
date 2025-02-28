@@ -7,7 +7,7 @@ plugins {
 
 
 group = "com.github.yajatkaul"
-version = "4.0.0-release-neoforge"
+version = "4.1.0-release-neoforge"
 
 architectury {
     platformSetupLoomIde()
@@ -52,7 +52,7 @@ dependencies {
     mappings(loom.officialMojangMappings())
     neoForge("net.neoforged:neoforge:21.1.66")
 
-    modImplementation("com.cobblemon:neoforge:1.6.0+1.21.1-SNAPSHOT")
+    modImplementation("com.cobblemon:neoforge:1.6.1+1.21.1-SNAPSHOT")
     //Needed for cobblemon
     implementation("thedarkcolour:kotlinforforge-neoforge:5.3.0") {
         exclude("net.neoforged.fancymodloader", "loader")

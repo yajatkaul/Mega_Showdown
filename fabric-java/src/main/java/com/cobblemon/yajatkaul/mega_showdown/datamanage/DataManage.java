@@ -68,22 +68,9 @@ public class DataManage {
                     )
     );
 
-    public static final AttachmentType<UUID> BATTLE_ID = AttachmentRegistry.create(
-            Identifier.of(MegaShowdown.MOD_ID, "battle_id"),
-            builder -> builder // Using a builder chain to configure the attachment data type
-                    .copyOnDeath()
-                    .initializer(() -> NIL_UUID) // A default value to provide if none is supplied
-                    .persistent(Uuids.CODEC) // How to save and load the data
-                    .syncWith(
-                            Uuids.PACKET_CODEC,  // How to turn the data into a packet to send to players
-                            AttachmentSyncPredicate.all() // Who to send the data to
-                    )
-    );
-
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();
-        BATTLE_ID.initializer();
 
         PRIMAL_DATA.initializer();
         PRIMAL_POKEMON.initializer();

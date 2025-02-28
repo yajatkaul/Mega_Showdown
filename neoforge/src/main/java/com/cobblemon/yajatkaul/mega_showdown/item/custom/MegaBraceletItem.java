@@ -33,31 +33,7 @@ public class MegaBraceletItem extends Item {
             return InteractionResult.PASS;
         }
 
-        if(Config.braceletHandSensitive){
-            if(hand == InteractionHand.MAIN_HAND && context instanceof PokemonEntity pk && !context.level().isClientSide()){
-                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-                boolean end = false;
-                for (String key : megaKeys) {
-                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                    FlagSpeciesFeature feature = featureProvider.get(pk.getPokemon());
-
-                    if(feature != null){
-                        boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
-
-                        if(enabled){
-                            end = true;
-                            break;
-                        }
-                    }
-                }
-
-                if(!end){
-                    MegaLogic.Evolve(context, player);
-                }
-            } else if (hand == InteractionHand.OFF_HAND && context instanceof PokemonEntity && !context.level().isClientSide()) {
-                MegaLogic.Devolve(context, player);
-            }
-        }else if(!Config.braceletHandSensitive && context instanceof PokemonEntity pk){
+        if(context instanceof PokemonEntity pk){
             Pokemon pokemon = pk.getPokemon();
             if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide){
                 return InteractionResult.PASS;
@@ -83,7 +59,7 @@ public class MegaBraceletItem extends Item {
                 }
             }
             if(end){
-                MegaLogic.Evolve(context, player);
+                MegaLogic.Evolve(context, player, false);
             }
         }
 

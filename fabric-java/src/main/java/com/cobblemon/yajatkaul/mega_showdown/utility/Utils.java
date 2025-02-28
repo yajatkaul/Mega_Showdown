@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import net.minecraft.item.Item;
 
@@ -64,5 +65,50 @@ public class Utils {
         MEGA_STONE_IDS.put(MegaStones.GALLADITE.asItem(), getSpecies("gallade"));
         MEGA_STONE_IDS.put(MegaStones.AUDINITE.asItem(), getSpecies("audino"));
         MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), getSpecies("diancie"));
+    }
+
+    public static void registerRemapping(){
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABOMASITE.asItem(), "Abomasite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.AERODACTYLITE.asItem(), "Aerodactylite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.AMPHAROSITE.asItem(), "Ampharosite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.BANETTITE.asItem(), "Banettite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.BEEDRILLITE.asItem(), "Beedrillite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.BLASTOISINITE.asItem(), "Blastoisinite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.BLAZIKENITE.asItem(), "Blazikenite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.CAMERUPTITE.asItem(), "Cameruptite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.CHARIZARDITE_X.asItem(), "Charizardite X");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.CHARIZARDITE_Y.asItem(), "Charizardite Y");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.DIANCITE.asItem(), "Diancite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.GALLADITE.asItem(), "Galladite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.GARCHOMPITE.asItem(), "Garchompite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.GARDEVOIRITE.asItem(), "Gardevoirite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.GENGARITE.asItem(), "Gengarite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.GLALITITE.asItem(), "Glalitite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.GYARADOSITE.asItem(), "Gyaradosite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.HERACRONITE.asItem(), "Heracronite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.HOUNDOOMINITE.asItem(), "Houndoominite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.KANGASKHANITE.asItem(), "Kangaskhanite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.LATIASITE.asItem(), "Latiasite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.LATIOSITE.asItem(), "Latiosite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.LOPUNNITE.asItem(), "Lopunnite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.LUCARIONITE.asItem(), "Lucarionite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.MANECTITE.asItem(), "Manectite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.MAWILITE.asItem(), "Mawilite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.MEDICHAMITE.asItem(), "Medichamite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.METAGROSSITE.asItem(), "Metagrossite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.MEWTWONITE_X.asItem(), "Mewtwonite X");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.MEWTWONITE_Y.asItem(), "Mewtwonite Y");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.PIDGEOTITE.asItem(), "Pidgeotite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.PINSIRITE.asItem(), "Pinsirite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SABLENITE.asItem(), "Sablenite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SALAMENCITE.asItem(), "Salamencite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SCEPTILITE.asItem(), "Sceptilite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SCIZORITE.asItem(), "Scizorite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SHARPEDONITE.asItem(), "Sharpedonite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SLOWBRONITE.asItem(), "Slowbronite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.STEELIXITE.asItem(), "Steelixite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SWAMPERTITE.asItem(), "Swampertite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.TYRANITARITE.asItem(), "Tyranitarite");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.VENUSAURITE.asItem(), "Venusaurite");
     }
 }

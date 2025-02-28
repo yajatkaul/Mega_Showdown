@@ -26,6 +26,17 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.List;
 
 public class MegaLogic {
+    public static boolean Possible(ServerPlayer player){
+        boolean hasMegaItemCurios = CuriosApi.getCuriosInventory(player).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
+
+        if(!hasMegaItemCurios || player.getOffhandItem().getItem() instanceof MegaBraceletItem ||
+                player.getMainHandItem().getItem() instanceof MegaBraceletItem){
+            return false;
+        }
+
+        return true;
+    }
+
     public static void EvoLogic(Player playerContext){
         ServerPlayer player = (ServerPlayer) playerContext;
 
@@ -33,10 +44,7 @@ public class MegaLogic {
             return;
         }
 
-        boolean hasMegaItem = CuriosApi.getCuriosInventory(player).map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem)).orElse(false);
-
-        if(!hasMegaItem || player.getOffhandItem().getItem() instanceof MegaBraceletItem ||
-                player.getMainHandItem().getItem() instanceof MegaBraceletItem){
+        if(!Possible(player)){
             return;
         }
 
@@ -89,12 +97,12 @@ public class MegaLogic {
                 }
             }
             if(end){
-                Evolve(pk, player);
+                Evolve(pk, player, false);
             }
         }
     }
 
-    public static void Evolve(LivingEntity context, Player player){
+    public static void Evolve(LivingEntity context, Player player, Boolean fromBattle){
         if(context instanceof PokemonEntity pk){
             if(pk.getPokemon().getOwnerPlayer() != player){
                 return;
@@ -103,6 +111,12 @@ public class MegaLogic {
 
         Pokemon pokemon = ((PokemonEntity) context).getPokemon();
         Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+
+        if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
+            player.displayClientMessage(Component.literal("Not allowed in battle")
+                    .withColor(0xFF0000), true);
+            return;
+        }
         
         if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
                 (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
@@ -130,12 +144,6 @@ public class MegaLogic {
 
         if(species == null){
             player.displayClientMessage(Component.literal("Don't have the correct stone")
-                    .withColor(0xFF0000), true);
-            return;
-        }
-
-        if(context instanceof PokemonEntity pk && pk.isBattling()){
-            player.displayClientMessage(Component.literal("Not allowed in battle")
                     .withColor(0xFF0000), true);
             return;
         }

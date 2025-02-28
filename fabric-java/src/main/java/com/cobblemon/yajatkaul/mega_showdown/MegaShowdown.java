@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.battle.BattleHandling;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
@@ -56,19 +55,25 @@ public class MegaShowdown implements ModInitializer {
 
     private void onServerStarted(MinecraftServer server) {
         Utils.loadMegaStoneIds();
+        Utils.registerRemapping();
 
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChange);
+
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onReleasePokemon);
+
         CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventHandler::onMegaTraded);
 
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::primalEvent);
 
-        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleHandling::devolveFainted);
+        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, CobbleEventHandler::devolveFainted);
+
+        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, CobbleEventHandler::battleStarted);
+
+        CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventHandler::megaEvolution);
 
         if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
-            CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, BattleHandling::getBattleInfo);
-            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, BattleHandling::getBattleEndInfo);
-            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, BattleHandling::deVolveFlee);
+            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventHandler::getBattleEndInfo);
+            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, CobbleEventHandler::deVolveFlee);
 
             ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
                 ServerPlayerEntity player = handler.player;
@@ -86,12 +91,9 @@ public class MegaShowdown implements ModInitializer {
 
                 if(alive){
                     oldPlayer.removeAttached(DataManage.MEGA_DATA);
-                    oldPlayer.removeAttached(DataManage.BATTLE_ID);
                 }else{
                     newPlayer.removeAttached(DataManage.MEGA_DATA);
-                    newPlayer.removeAttached(DataManage.BATTLE_ID);
                 }
-                BattleHandling.battlePokemonUsed.clear();
 
                 for (Pokemon pokemon : playerPartyStore) {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);

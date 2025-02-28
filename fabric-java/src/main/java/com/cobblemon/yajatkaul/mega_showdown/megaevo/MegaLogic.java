@@ -27,16 +27,26 @@ import java.util.List;
 
 
 public class MegaLogic {
+    public static boolean Possible(ServerPlayerEntity player){
+        boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
+
+        if(!hasMegaItemTrinkets || player.getOffHandStack().getItem() instanceof MegaBraceletItem ||
+                player.getMainHandStack().getItem() instanceof MegaBraceletItem){
+            return false;
+        }
+
+        return true;
+    }
+
     public static void EvoLogic(ServerPlayerEntity player){
         if(ShowdownConfig.battleModeOnly.get()){
             return;
         }
 
-        boolean hasMegaItem = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
-        if(!hasMegaItem || player.getOffHandStack().getItem() instanceof MegaBraceletItem ||
-                player.getMainHandStack().getItem() instanceof MegaBraceletItem){
+
+        if(!Possible(player)){
             return;
         }
 
@@ -85,12 +95,12 @@ public class MegaLogic {
                 }
             }
             if(end){
-                Evolve(pk, player);
+                Evolve(pk, player, false);
             }
         }
     }
 
-    public static void Evolve(LivingEntity context, PlayerEntity player){
+    public static void Evolve(LivingEntity context, PlayerEntity player, Boolean fromBattle){
         if(context instanceof PokemonEntity pk){
             if(pk.getPokemon().getOwnerPlayer() != player){
                 return;
@@ -102,6 +112,14 @@ public class MegaLogic {
         Boolean playerData = player.getAttached(DataManage.MEGA_DATA);
         if(playerData == null){
             playerData = false;
+        }
+
+        if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
+            player.sendMessage(
+                    Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
         }
 
         if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
@@ -134,14 +152,6 @@ public class MegaLogic {
         if(species == null){
             player.sendMessage(
                     Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
-            return;
-        }
-
-        if(context instanceof PokemonEntity pk && pk.isBattling()){
-            player.sendMessage(
-                    Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;

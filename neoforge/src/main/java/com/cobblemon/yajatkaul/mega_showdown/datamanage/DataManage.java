@@ -37,11 +37,6 @@ public class DataManage {
                     .serialize(Pokemon.getCODEC()).copyOnDeath().build()
     );
 
-    public static final Supplier<AttachmentType<UUID>> BATTLE_ID = ATTACHMENT_TYPES.register(
-            "battle_id", () -> AttachmentType.builder(() -> NIL_UUID)
-                    .serialize(UUIDUtil.CODEC).copyOnDeath().build()
-    );
-
 
     public static void register(IEventBus eventBus){
         ATTACHMENT_TYPES.register(eventBus);

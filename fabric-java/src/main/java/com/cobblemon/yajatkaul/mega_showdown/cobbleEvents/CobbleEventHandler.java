@@ -1,22 +1,37 @@
 package com.cobblemon.yajatkaul.mega_showdown.cobbleEvents;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
+import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
+import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
+import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 
@@ -204,6 +219,116 @@ public class CobbleEventHandler {
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
             player.setAttached(DataManage.PRIMAL_DATA, false);
         }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
+
+        battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
+            for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUuid()).getPokemonList()) {
+                if (battlePokemon.getOriginalPokemon().getEntity() == null ||
+                        battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
+                    continue;
+                }
+
+                Pokemon pokemon = battlePokemon.getOriginalPokemon();
+
+                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            }
+
+            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
+            serverPlayer.setAttached(DataManage.MEGA_POKEMON, null);
+        });
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit devolveFainted(BattleFaintedEvent battleFaintedEvent) {
+        Pokemon pokemon = battleFaintedEvent.getKilled().getOriginalPokemon();
+        ServerPlayerEntity serverPlayer = battleFaintedEvent.getKilled().getOriginalPokemon().getOwnerPlayer();
+
+        if(serverPlayer == null || serverPlayer.getWorld().isClient){
+            return Unit.INSTANCE;
+        }
+
+        serverPlayer.setAttached(DataManage.MEGA_DATA, false);
+        serverPlayer.setAttached(DataManage.MEGA_POKEMON, null);
+
+        new FlagSpeciesFeature("mega", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit deVolveFlee(BattleFledEvent battleFledEvent) {
+
+        battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
+            for (BattlePokemon battlePokemon : battleFledEvent.getBattle().getActor(serverPlayer.getUuid()).getPokemonList()) {
+                if (battlePokemon.getOriginalPokemon().getEntity() == null ||
+                        battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
+                    continue;
+                }
+
+                serverPlayer.setAttached(DataManage.MEGA_DATA, false);
+                serverPlayer.setAttached(DataManage.MEGA_POKEMON, null);
+
+                Pokemon pokemon = battlePokemon.getOriginalPokemon();
+
+                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            }
+
+        });
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit battleStarted(BattleStartedPostEvent battleStartedPostEvent) {
+        for(ServerPlayerEntity player: battleStartedPostEvent.getBattle().getPlayers()){
+            GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
+
+            if(MegaLogic.Possible(player) && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
+                data.getKeyItems().add(Identifier.of("cobblemon","key_stone"));
+            }else{
+                data.getKeyItems().remove(Identifier.of("cobblemon","key_stone"));
+            }
+
+            if(ShowdownConfig.battleMode.get()){
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+                for (Pokemon pokemon : playerPartyStore) {
+                    if(pokemon.getSpecies().getName().equals("rayquaza")){
+                        continue;
+                    }
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit megaEvolution(MegaEvolutionEvent megaEvolutionEvent) {
+        PokemonBattle battle = megaEvolutionEvent.getBattle();
+        Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
+
+        ServerPlayerEntity player = megaEvolutionEvent.getPokemon().getOriginalPokemon().getOwnerPlayer();
+
+        if(player == null){
+            return Unit.INSTANCE;
+        }
+
+        MegaLogic.Evolve(pokemon.getEntity(), player, true);
+
+        battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
         return Unit.INSTANCE;
     }

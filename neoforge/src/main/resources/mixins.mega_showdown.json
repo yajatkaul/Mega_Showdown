@@ -1,13 +1,10 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "com.cobblemon.yajatkaul.mega_showdown.mixin",
   "compatibilityLevel": "JAVA_21",
-  "server": [
+  "mixins": [
     "ShowdownSpeciesMixin"
-  ],
-  "client": [
-    "ItemRendererMixin",
-    "ModelLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
