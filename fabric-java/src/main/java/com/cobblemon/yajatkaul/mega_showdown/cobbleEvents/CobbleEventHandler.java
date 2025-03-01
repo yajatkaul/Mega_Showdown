@@ -25,11 +25,18 @@ import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
@@ -196,6 +203,7 @@ public class CobbleEventHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setAttached(DataManage.PRIMAL_DATA, true);
         }
@@ -208,6 +216,7 @@ public class CobbleEventHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setAttached(DataManage.PRIMAL_DATA, true);
         }else{
@@ -217,10 +226,54 @@ public class CobbleEventHandler {
             }
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
             player.setAttached(DataManage.PRIMAL_DATA, false);
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 1.2; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_BEACON_ACTIVATE, // Change this if needed
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverWorld.spawnParticles(
+                        particleType,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
     }
 
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
@@ -243,13 +296,11 @@ public class CobbleEventHandler {
                         boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                         if(enabled){
-                            new FlagSpeciesFeature("mega", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
-                            serverPlayer.setAttached(DataManage.MEGA_POKEMON, new Pokemon());
+                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
-                            break;
+                            if(!ShowdownConfig.multipleMegas.get()){
+                                break;
+                            }
                         }
                     }
                 }
@@ -267,12 +318,7 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
-        serverPlayer.setAttached(DataManage.MEGA_DATA, false);
-        serverPlayer.setAttached(DataManage.MEGA_POKEMON, null);
-
-        new FlagSpeciesFeature("mega", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+        MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
         return Unit.INSTANCE;
     }
@@ -297,13 +343,11 @@ public class CobbleEventHandler {
                         boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                         if(enabled){
-                            new FlagSpeciesFeature("mega", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
-                            serverPlayer.setAttached(DataManage.MEGA_POKEMON, new Pokemon());
+                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
-                            break;
+                            if(!ShowdownConfig.multipleMegas.get()){
+                                break;
+                            }
                         }
                     }
                 }
@@ -333,13 +377,11 @@ public class CobbleEventHandler {
                             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                             if(enabled){
-                                new FlagSpeciesFeature("mega", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                                player.setAttached(DataManage.MEGA_DATA, false);
-                                player.setAttached(DataManage.MEGA_POKEMON, new Pokemon());
+                                MegaLogic.Devolve(pokemon.getEntity(), player, true);
 
-                                break;
+                                if(!ShowdownConfig.multipleMegas.get()){
+                                    break;
+                                }
                             }
                         }
                     }
@@ -348,7 +390,7 @@ public class CobbleEventHandler {
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
-            if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get()) && MegaLogic.Possible(player) && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
+            if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get()) && MegaLogic.Possible(player, true) && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
                 data.getKeyItems().add(Identifier.of("cobblemon","key_stone"));
             }else{
                 data.getKeyItems().remove(Identifier.of("cobblemon","key_stone"));

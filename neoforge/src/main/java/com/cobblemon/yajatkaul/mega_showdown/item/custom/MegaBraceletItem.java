@@ -93,7 +93,7 @@ public class MegaBraceletItem extends Item {
                     boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                     if(enabled){
-                        MegaLogic.Devolve(context, player);
+                        MegaLogic.Devolve(context, player, false);
                         end = false;
                         break;
                     }else{

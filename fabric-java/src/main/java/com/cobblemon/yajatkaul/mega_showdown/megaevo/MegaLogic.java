@@ -15,18 +15,39 @@ import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 
 public class MegaLogic {
-    public static boolean Possible(ServerPlayerEntity player){
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final long COOLDOWN_TIME = 2000; // 2 sec
+
+    public static boolean Possible(ServerPlayerEntity player, Boolean fromBattle){
+        UUID playerId = player.getUuid();
+        long currentTime = System.currentTimeMillis();
+
+        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId) && !fromBattle) {
+            player.sendMessage(
+                    Text.literal("Not so fast!").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return false;
+        }
+
         boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                 trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
 
@@ -37,15 +58,13 @@ public class MegaLogic {
             return false;
         }
 
+        // Apply cooldown
+        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
         return true;
     }
 
     public static void EvoLogic(ServerPlayerEntity player){
         if(ShowdownConfig.battleModeOnly.get()){
-            return;
-        }
-
-        if(!Possible(player)){
             return;
         }
 
@@ -73,6 +92,10 @@ public class MegaLogic {
                 return;
             }
 
+            if(pk.getPokemon().getOwnerPlayer() != player || !Possible(player, false)){
+                return;
+            }
+
             List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
             boolean end = false;
@@ -84,7 +107,7 @@ public class MegaLogic {
                     boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
 
                     if(enabled){
-                        Devolve(pk, player);
+                        Devolve(pk, player, false);
                         end = false;
                         break;
                     }else{
@@ -129,6 +152,9 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
 
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
+
+                    playEvolveAnimation(context);
+                    
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                     found = true;
                 }
@@ -163,12 +189,16 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
+                    playEvolveAnimation(context);
+
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                 }else if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_Y)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                    playEvolveAnimation(context);
 
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
@@ -180,12 +210,16 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
 
+                    playEvolveAnimation(context);
+
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                 }else if(pokemon.heldItem().isOf(MegaStones.MEWTWONITE_Y)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                    playEvolveAnimation(context);
 
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
@@ -195,6 +229,8 @@ public class MegaLogic {
             else{
                 player.setAttached(DataManage.MEGA_DATA, true);
                 player.setAttached(DataManage.MEGA_POKEMON, pokemon);
+
+                playEvolveAnimation(context);
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
                 AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
@@ -212,13 +248,13 @@ public class MegaLogic {
         }
     }
 
-    public static void Devolve(LivingEntity context, PlayerEntity player){
+    public static void Devolve(LivingEntity context, PlayerEntity player, Boolean fromBattle){
         if(context instanceof PokemonEntity pk){
             if(pk.getPokemon().getOwnerPlayer() != player){
                 return;
             }
 
-            if(pk.isBattling()){
+            if(pk.isBattling() && !fromBattle){
                 player.sendMessage(
                         Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
@@ -236,8 +272,86 @@ public class MegaLogic {
         player.setAttached(DataManage.MEGA_DATA, false);
         player.setAttached(DataManage.MEGA_POKEMON, null);
 
+        playDevolveAnimation(context);
+
         new FlagSpeciesFeature("mega", false).apply(pokemon);
         new FlagSpeciesFeature("mega-x", false).apply(pokemon);
         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+    }
+
+    public static void playEvolveAnimation(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_BEACON_ACTIVATE, // Yarn mapping for BEACON_ACTIVATE
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD, // Same particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+
+    public static void playDevolveAnimation(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_BEACON_DEACTIVATE, // Yarn mapping for BEACON_DEACTIVATE
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD, // Same particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
     }
 }

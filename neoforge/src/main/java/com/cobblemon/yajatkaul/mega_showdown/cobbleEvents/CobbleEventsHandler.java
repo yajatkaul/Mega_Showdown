@@ -25,9 +25,16 @@ import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.phys.Vec3;
 
 import javax.xml.crypto.Data;
 import java.util.List;
@@ -186,6 +193,7 @@ public class CobbleEventsHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setData(DataManage.PRIMAL_DATA, true);
         }
@@ -196,6 +204,7 @@ public class CobbleEventsHandler {
                 return Unit.INSTANCE;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setData(DataManage.PRIMAL_DATA, true);
         }else{
@@ -205,11 +214,56 @@ public class CobbleEventsHandler {
             }
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
             player.setData(DataManage.PRIMAL_DATA, false);
         }
 
         return Unit.INSTANCE;
     }
+
+    public static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 1.2; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BEACON_ACTIVATE, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverLevel.sendParticles(
+                        particleType,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+
 
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
         for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
@@ -230,13 +284,11 @@ public class CobbleEventsHandler {
                             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                             if(enabled){
-                                new FlagSpeciesFeature("mega", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                                player.setData(DataManage.MEGA_DATA, false);
-                                player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+                                MegaLogic.Devolve(pokemon.getEntity(), player, true);
 
-                                break;
+                                if(!Config.multipleMegas){
+                                    break;
+                                }
                             }
                         }
                     }
@@ -245,7 +297,7 @@ public class CobbleEventsHandler {
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
-            if((Config.battleMode || Config.scuffedMode) && MegaLogic.Possible(player) && !player.getData(DataManage.MEGA_DATA)){
+            if((Config.battleMode || Config.scuffedMode) && MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }else{
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
@@ -292,13 +344,11 @@ public class CobbleEventsHandler {
                         boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                         if(enabled){
-                            new FlagSpeciesFeature("mega", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                            serverPlayer.setData(DataManage.MEGA_DATA, false);
-                            serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
-                            break;
+                            if(!Config.multipleMegas){
+                                break;
+                            }
                         }
                     }
                 }
@@ -316,12 +366,7 @@ public class CobbleEventsHandler {
             return Unit.INSTANCE;
         }
 
-        serverPlayer.setData(DataManage.MEGA_DATA, false);
-        serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-        new FlagSpeciesFeature("mega", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+        MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
         return Unit.INSTANCE;
     }
@@ -346,13 +391,11 @@ public class CobbleEventsHandler {
                         boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                         if(enabled){
-                            new FlagSpeciesFeature("mega", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                            serverPlayer.setData(DataManage.MEGA_DATA, false);
-                            serverPlayer.setData(DataManage.MEGA_POKEMON, new Pokemon());
+                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
-                            break;
+                            if(!Config.multipleMegas){
+                                break;
+                            }
                         }
                     }
                 }

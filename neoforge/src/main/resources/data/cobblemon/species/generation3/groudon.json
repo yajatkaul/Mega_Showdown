@@ -63,22 +63,7 @@
       "weight": 9997,
       "cannotDynamax": false,
       "battleOnly": false,
-      "baseScale":1.5,
-      "evolutions": [
-        {
-          "id": "groudon_normal",
-          "variant": "level_up",
-          "result": "groudon primal=false",
-          "consumeHeldItem": false,
-          "learnableMoves": [],
-          "requirements": [
-            {
-              "variant": "held_item",
-              "itemCondition": "cobblemon:flame_orb"
-            }
-          ]
-        }
-      ]
+      "baseScale":1.5
     }
   ],
   "baseExperienceYield": 335,
@@ -264,21 +249,6 @@
       }
     }
   },
-  "evolutions": [
-    {
-      "id": "groudon_primal",
-      "variant": "level_up",
-      "result": "groudon primal",
-      "consumeHeldItem": false,
-      "learnableMoves": [],
-      "requirements": [
-        {
-          "variant": "held_item",
-          "itemCondition": "cobblemon:flame_orb"
-        }
-      ]
-    }
-  ],
   "baseScale": 1,
   "hitbox": {
     "width": 5.5,

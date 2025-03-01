@@ -62,22 +62,7 @@
       "weight": 4300,
       "cannotDynamax": false,
       "battleOnly": false,
-      "baseScale":1.5,
-      "evolutions": [
-        {
-          "id": "kyogre_normal",
-          "variant": "level_up",
-          "result": "kyogre primal=false",
-          "consumeHeldItem": false,
-          "learnableMoves": [],
-          "requirements": [
-            {
-              "variant": "held_item",
-              "itemCondition": "minecraft:heart_of_the_sea"
-            }
-          ]
-        }
-      ]
+      "baseScale":1.5
     }
   ],
   "baseExperienceYield": 335,
@@ -202,21 +187,6 @@
   ],
   "pokedex": [
     "cobblemon.species.kyogre.desc"
-  ],
-  "evolutions": [
-    {
-      "id": "kyogre_primal",
-      "variant": "level_up",
-      "result": "kyogre primal",
-      "consumeHeldItem": false,
-      "learnableMoves": [],
-      "requirements": [
-        {
-          "variant": "held_item",
-          "itemCondition": "minecraft:heart_of_the_sea"
-        }
-      ]
-    }
   ],
   "baseScale": 1,
   "hitbox": {

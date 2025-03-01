@@ -47,6 +47,13 @@
   "item.mega_showdown.tyranitarite": "班基拉斯进化石",
   "item.mega_showdown.venusaurite": "妙蛙花进化石",
 
+  "item.mega_showdown.redorb": "朱红色宝珠",
+  "item.mega_showdown.blueorb": "靛蓝色宝珠",
+
+  "tooltip.mega_showdown.redorb.tooltip": "使固拉多回归原始形态",
+  "tooltip.mega_showdown.blueorb.tooltip": "使盖欧卡回归原始形态",
+
+  "tooltip.mega_showdown.mega_stone.tooltip": "未加工的超级进化石",
   "tooltip.mega_showdown.abomasite.tooltip": "让暴雪王超级进化成超级暴雪王",
   "tooltip.mega_showdown.absolite.tooltip": "让阿勃梭鲁超级进化成超级阿勃梭鲁",
   "tooltip.mega_showdown.aerodactylite.tooltip": "让化石翼龙超级进化成超级化石翼龙",
@@ -142,15 +149,50 @@
   "block.mega_showdown.swampertite_ore": "巨沼怪进化石矿石",
   "block.mega_showdown.tyranitarite_ore": "班基拉斯进化石矿石",
   "block.mega_showdown.venusaurite_ore": "妙蛙花进化石矿石",
-  "block.mega_showdown.mega_meteorid_block": "超级陨石块",
 
-  "block.mega_showdown.mega_stone_crystal": "超级水晶",
+
+  "block.mega_showdown.mega_meteorid_block": "超级陨星方块",
+  "block.mega_showdown.mega_evo_brick": "进化陨星砖",
+  "block.mega_showdown.chiseled_mega_evo_brick": "雕刻进化陨星砖",
+  "block.mega_showdown.chiseled_mega_evo_block": "雕刻陨星方块",
+  "block.mega_showdown.polished_mega_evo_block": "抛光陨星方块",
+  "block.mega_showdown.mega_evo_block": "进化陨星方块",
+
+  "block.mega_showdown.mega_stone_crystal": "超级进化晶石",
+
   "block.mega_showdown.keystone_ore": "钥石矿石",
+  "block.mega_showdown.keystone_block": "钥石方块",
   "item.mega_showdown.keystone": "钥石",
-  "tooltip.mega_showdown.keystone.tooltip": "用于制作超级手环",
+  "tooltip.mega_showdown.keystone.tooltip": "用于打造超级进化手环",
+
 
   "item.mega_showdown.megabracelet": "超级手环",
   "tooltip.mega_showdown.megabracelet.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megabracelet_red": "红色超级手环",
+  "tooltip.mega_showdown.megabracelet_red.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megabracelet_pink": "粉色超级手环",
+  "tooltip.mega_showdown.megabracelet_pink.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megabracelet_yellow": "黄色超级手环",
+  "tooltip.mega_showdown.megabracelet_yellow.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megabracelet_green": "绿色超级手环",
+  "tooltip.mega_showdown.megabracelet_green.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megabracelet_blue": "蓝色超级手环",
+  "tooltip.mega_showdown.megabracelet_blue.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megabracelet_black": "黑色超级手环",
+  "tooltip.mega_showdown.megabracelet_black.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.megaring": "超级戒指",
+  "tooltip.mega_showdown.megaring.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.brendan_mega_cuff": "小悠的超级手镯",
+  "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+
+  "item.mega_showdown.lysandre_ring": "弗拉达利的超级戒指",
+  "tooltip.mega_showdown.lysandre_ring.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.maxie_glasses": "赤焰松的超级眼镜",
+  "tooltip.mega_showdown.maxie_glasses.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.korrina_glove": "可尔尼的超级手套",
+  "tooltip.mega_showdown.korrina_glove.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
+  "item.mega_showdown.archie_anchor": "水梧桐的超级锚项链",
+  "tooltip.mega_showdown.archie_anchor.tooltip": "它包含一个钥石，可让携带超级进化石的宝可梦超级进化",
 
   "item.mega_showdown.dnasplicers": "DNA 交换器",
   "item.mega_showdown.dousedrive": "水流模块",
@@ -161,7 +203,6 @@
   "item.mega_showdown.electricmemory": "电属性存储碟",
   "item.mega_showdown.darkmemory": "恶属性存储碟",
   "item.mega_showdown.cornerstonemask": "基石面具",
-  "item.mega_showdown.blueorb": "蓝色宝珠",
   "item.mega_showdown.bugmemory": "虫属性存储碟",
   "item.mega_showdown.burndrive": "火焰模块",
   "item.mega_showdown.chilldrive": "冰冻模块",
@@ -178,5 +219,22 @@
   "block.mega_showdown.mega_meteorid_shiny_ore": "超级陨石闪光矿石",
   "block.mega_showdown.mega_meteorid_sun_ore": "超级陨石太阳矿石",
   "block.mega_showdown.mega_meteorid_thunder_ore": "超级陨石雷电矿石",
-  "block.mega_showdown.mega_meteorid_water_ore": "超级陨石水流矿石"
+  "block.mega_showdown.mega_meteorid_water_ore": "超级陨石水流矿石",
+
+  "key.mega_showdown.mega_evo": "超级进化",
+  "key.categories.mega_showdown": "超级对决",
+
+  "trinkets.slot.hand.bracelet": "手环",
+
+  "advancement.mega_showdown.root.title": "对决时刻",
+  "advancement.mega_showdown.mega_evolve.title": "巨兽降临",
+  "advancement.mega_showdown.find_mega_stone.title": "进化之力",
+  "advancement.mega_showdown.find_keystone.title": "对决开启",
+  "advancement.mega_showdown.get_bracelet.title": "对决装备",
+
+  "advancement.mega_showdown.root.description": "进入对决世界",
+  "advancement.mega_showdown.mega_evolve.description": "让任意宝可梦进行超级进化",
+  "advancement.mega_showdown.find_mega_stone.description": "获得任意超级进化石",
+  "advancement.mega_showdown.find_keystone.description": "找到钥石",
+  "advancement.mega_showdown.get_bracelet.description": "获得任意超级进化手环"
 }
