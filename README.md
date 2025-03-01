@@ -50,7 +50,8 @@ These are also spheres found at y level 5 but these are hollow and contain some 
 
 Redorb and Blueorb can be used to get primal groudon and primal kyogre respectively, spawn chance of kyogre and groudon is ultra rare and you have a 0.3% to get the red/blue orb from desert pyramid/well and ocean\_ruin cold/warm respectively.
 
-## **Riding is officialy supported![](https://media.forgecdn.net/attachments/description/1189523/description_5bda5706-80c4-402c-adaf-e03ce445d26a.png)**
+## **Riding is officialy supported
+![](https://media.forgecdn.net/attachments/description/1189523/description_5bda5706-80c4-402c-adaf-e03ce445d26a.png)**
 
 # **Features-**
 
