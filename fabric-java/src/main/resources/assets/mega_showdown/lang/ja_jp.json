@@ -1,4 +1,5 @@
 {
+  "item.mega_showdown.mega_stone": "メガストーン",
   "item.mega_showdown.abomasite": "ユキノオナイト",
   "item.mega_showdown.absolite": "アブソルナイト",
   "item.mega_showdown.aerodactylite": "プテラナイト",
@@ -47,6 +48,13 @@
   "item.mega_showdown.tyranitarite": "バンギラスナイト",
   "item.mega_showdown.venusaurite": "フシギバナイト",
 
+  "item.mega_showdown.redorb": "べにいろのたま",
+  "item.mega_showdown.blueorb": "あいいろのたま",
+
+  "tooltip.mega_showdown.redorb.tooltip": "ホウエン地方に伝わる 伝説のポケモン グラードンを 本来の姿に戻す あかく かがやく たま。",
+  "tooltip.mega_showdown.blueorb.tooltip": "ホウエン地方に伝わる 伝説のポケモン カイオーガを 本来の姿に戻す あおく かがやく たま。",
+
+  "tooltip.mega_showdown.mega_stone.tooltip": "メガストーンの原石",
   "tooltip.mega_showdown.abomasite.tooltip": "ユキノオーを メガユキノオーに メガシンカできる 不思議な メガストーンの 一種。",
   "tooltip.mega_showdown.absolite.tooltip": "アブソルを メガアブソルに メガシンカできる 不思議な メガストーンの 一種。",
   "tooltip.mega_showdown.aerodactylite.tooltip": "プテラを メガプテラに メガシンカできる 不思議な メガストーンの 一種。",
@@ -145,13 +153,43 @@
 
   "block.mega_showdown.mega_meteorid_block": "メガ流星ブロック",
   "block.mega_showdown.mega_stone_crystal": "メガクリスタル",
+  "block.mega_showdown.mega_evo_brick": "シンカ流星ブロックレンガ",
+  "block.mega_showdown.chiseled_mega_evo_brick": "模様入りメガ流星ブロック",
+  "block.mega_showdown.chiseled_mega_evo_block": "メガ流星ブロックレンガ",
+  "block.mega_showdown.polished_mega_evo_block": "磨かれたメガ流星ブロック",
+  "block.mega_showdown.mega_evo_block": "シンカ流星ブロック",
 
   "block.mega_showdown.keystone_ore": "キーストーン鉱石",
   "item.mega_showdown.keystone": "キーストーン",
   "tooltip.mega_showdown.keystone.tooltip": "ポケモンを メガシンカ させる メガバングルの 素材となる 未知のパワーを 秘めた 石。",
+  "block.mega_showdown.keystone_block": "キーストーンブロック",
 
   "item.mega_showdown.megabracelet": "メガバングル",
   "tooltip.mega_showdown.megabracelet.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megabracelet_red": "赤のメガバングル",
+  "tooltip.mega_showdown.megabracelet_red.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megabracelet_pink": "桃のメガバングル",
+  "tooltip.mega_showdown.megabracelet_pink.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megabracelet_yellow": "黄のメガバングル",
+  "tooltip.mega_showdown.megabracelet_yellow.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megabracelet_green": "緑のメガバングル",
+  "tooltip.mega_showdown.megabracelet_green.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megabracelet_blue": "青のメガバングル",
+  "tooltip.mega_showdown.megabracelet_blue.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megabracelet_black": "黒のメガバングル",
+  "tooltip.mega_showdown.megabracelet_black.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた バングル。",
+  "item.mega_showdown.megaring": "メガリング",
+  "tooltip.mega_showdown.megaring.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた リング。",
+  "item.mega_showdown.brendan_mega_cuff": "ユウキのメガブレス",
+  "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた ブレスレット。",
+  "item.mega_showdown.lysandre_ring": "フラダリのメガリング",
+  "tooltip.mega_showdown.lysandre_ring.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた リング。",
+  "item.mega_showdown.maxie_glasses": "マツブサのメガメガネ",
+  "tooltip.mega_showdown.maxie_glasses.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた メガネ。",
+  "item.mega_showdown.korrina_glove": "コルニのメガグローブ",
+  "tooltip.mega_showdown.korrina_glove.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた グローブ。",
+  "item.mega_showdown.archie_anchor": "アオギリのメガイカリ",
+  "tooltip.mega_showdown.archie_anchor.tooltip": "メガストーンを 持った ポケモンを メガシンカさせる 未知のパワーを 秘めた イカリ。",
 
   "item.mega_showdown.dnasplicers": "いでんしのくさび",
   "item.mega_showdown.dousedrive": "アクアカセット",
@@ -162,7 +200,6 @@
   "item.mega_showdown.electricmemory": "エレクトロメモリ",
   "item.mega_showdown.darkmemory": "ダークメモリ",
   "item.mega_showdown.cornerstonemask": "いしずえのめん",
-  "item.mega_showdown.blueorb": "あいいろのたま",
   "item.mega_showdown.bugmemory": "バグメモリ",
   "item.mega_showdown.burndrive": "ブレイズカセット",
   "item.mega_showdown.chilldrive": "フリーズカセット",
@@ -179,5 +216,29 @@
   "block.mega_showdown.mega_meteorid_shiny_ore": "メガ流星ひかりの鉱石",
   "block.mega_showdown.mega_meteorid_sun_ore": "メガ流星たいようの鉱石",
   "block.mega_showdown.mega_meteorid_thunder_ore": "メガ流星かみなりの鉱石",
-  "block.mega_showdown.mega_meteorid_water_ore": "メガ流星みずの鉱石"
+  "block.mega_showdown.mega_meteorid_water_ore": "メガ流星みずの鉱石",
+
+  "key.mega_showdown.mega_evo": "メガシンカ",
+  "key.categories.mega_showdown": "Mega Showdown",
+
+  "trinkets.slot.hand.evowear": "メガシンカ装備",
+  "curios.identifier.evowear": "メガシンカ装備",
+
+  "advancement.mega_showdown.root.title": "Showdown Time",
+  "advancement.mega_showdown.mega_evolve.title": "カイブツ現る",
+  "advancement.mega_showdown.find_mega_stone.title": "シンカする存在",
+  "advancement.mega_showdown.find_keystone.title": "対決の幕開け",
+  "advancement.mega_showdown.get_bracelet.title": "対決の歯車",
+  "advancement.mega_showdown.find_blueorb.title": "タイダルストーム",
+  "advancement.mega_showdown.find_redorb.title": "ガイアボルケーノ",
+  "advancement.mega_showdown.primal_evolve.title": "原始回帰",
+
+  "advancement.mega_showdown.root.description": "showdownの世界",
+  "advancement.mega_showdown.mega_evolve.description": "ポケモンをメガシンカさせる",
+  "advancement.mega_showdown.find_mega_stone.description": "メガストーンを手に入れる",
+  "advancement.mega_showdown.find_keystone.description": "キーストーンを見つける",
+  "advancement.mega_showdown.get_bracelet.description": "メガバングルを手に入れる",
+  "advancement.mega_showdown.find_blueorb.description": "あいいろのたまを手に入れる",
+  "advancement.mega_showdown.find_redorb.description": "べにいろのたまを手に入れる",
+  "advancement.mega_showdown.primal_evolve.description": "ポケモンをゲンシカイキさせる"
 }

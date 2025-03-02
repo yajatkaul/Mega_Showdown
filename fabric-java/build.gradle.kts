@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "4.4.2-release-fabric"
+version = "4.5.1-release-fabric"
 
 architectury {
     platformSetupLoomIde()

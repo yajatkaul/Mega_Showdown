@@ -146,6 +146,12 @@ public class MegaLogic {
         
         if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
                 (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
+            if(Config.friendshipMode && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
+                player.displayClientMessage(Component.literal("You are not close enough with your pokemon to mega outside")
+                        .withColor(0xFF0000), true);
+                return;
+            }
+
             boolean found = false;
             for (int i = 0; i < 4; i++){
                 if(pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")){
@@ -172,6 +178,12 @@ public class MegaLogic {
 
         if(species == null){
             player.displayClientMessage(Component.literal("Don't have the correct stone")
+                    .withColor(0xFF0000), true);
+            return;
+        }
+
+        if(Config.friendshipMode && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
+            player.displayClientMessage(Component.literal("You are not close enough with your pokemon to mega outside")
                     .withColor(0xFF0000), true);
             return;
         }

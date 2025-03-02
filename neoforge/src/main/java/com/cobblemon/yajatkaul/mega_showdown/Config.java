@@ -32,6 +32,10 @@ public class Config
             .comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this")
             .define("scuffedMode", false);
 
+    private static final ModConfigSpec.BooleanValue FRIENDSHIP_MODE = BUILDER
+            .comment("Makes it so that you need to have 200+ friendship in order to mega outside")
+            .define("friendshipMode", false);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -39,6 +43,7 @@ public class Config
     public static boolean battleMode;
     public static boolean multiplePrimals;
     public static boolean scuffedMode;
+    public static boolean friendshipMode;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -48,5 +53,6 @@ public class Config
         battleMode = BATTLE_MODE.get();
         multiplePrimals = MULTIPLE_PRIMALS.get();
         scuffedMode = SCUFFED_MODE.get();
+        friendshipMode = FRIENDSHIP_MODE.get();
     }
 }

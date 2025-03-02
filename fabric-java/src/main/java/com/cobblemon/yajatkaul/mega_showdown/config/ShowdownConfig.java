@@ -12,6 +12,7 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> battleMode;
     public static final Supplier<Boolean> multiplePrimals;
     public static final Supplier<Boolean> scuffedMode;
+    public static final Supplier<Boolean> friendshipMode;
 
     static{
         // construct a new config builder
@@ -23,6 +24,7 @@ public class ShowdownConfig {
         battleMode = builder.comment("Allows you to have outside mega's but they devolve on battle and then you can have battle mode style theme").define("battleMode", true);
         multiplePrimals = builder.comment("Allows you to have multiple primals at a time").define("multiplePrimals", true);
         scuffedMode = builder.comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this").define("scuffedMode", false);
+        friendshipMode = builder.comment("Makes it so that you need to have 200+ friendship in order to mega outside").define("friendshipMode", false);
 
         builder.build();
     }
