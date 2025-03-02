@@ -4,7 +4,8 @@
   "package": "com.cobblemon.yajatkaul.mega_showdown.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ShowdownSpeciesMixin"
+    "ShowdownSpeciesMixin",
+    "LootPoolAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

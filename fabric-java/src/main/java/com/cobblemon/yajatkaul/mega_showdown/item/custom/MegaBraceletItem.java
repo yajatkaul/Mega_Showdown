@@ -49,8 +49,8 @@ public class MegaBraceletItem extends Item {
                 Map<String, TrinketInventory> handSlots = trinketComponent.getInventory().get("hand");
 
                 if (handSlots != null) {
-                    // Get the "bracelet" slot inside "hand" (hand/bracelet)
-                    TrinketInventory braceletInventory = handSlots.get("bracelet");
+                    // Get the "bracelet" slot inside "hand" (hand/evowear)
+                    TrinketInventory braceletInventory = handSlots.get("evowear");
 
                     if (braceletInventory != null) {
                         // Find an empty slot in "hand/bracelet"

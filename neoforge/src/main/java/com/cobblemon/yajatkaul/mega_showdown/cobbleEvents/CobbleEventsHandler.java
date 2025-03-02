@@ -271,7 +271,8 @@ public class CobbleEventsHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
-                    if(pokemon.getSpecies().getName().equals("rayquaza")){
+                    MegaShowdown.LOGGER.info(pokemon.getSpecies().getName());
+                    if(pokemon.getSpecies().getName().equals("Rayquaza")){
                         continue;
                     }
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
@@ -297,7 +298,7 @@ public class CobbleEventsHandler {
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
-            if((Config.battleMode || Config.scuffedMode) && MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
+            if((Config.battleMode || Config.scuffedMode || Config.battleModeOnly) && MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }else{
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
