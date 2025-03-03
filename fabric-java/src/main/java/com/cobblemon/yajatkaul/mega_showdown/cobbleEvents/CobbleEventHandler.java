@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
@@ -22,12 +23,21 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ServerScoreboard;
+import net.minecraft.scoreboard.Team;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -35,8 +45,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -395,6 +407,15 @@ public class CobbleEventHandler {
             }else{
                 data.getKeyItems().remove(Identifier.of("cobblemon","key_stone"));
             }
+
+            boolean hasZItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                    trinkets.isEquipped(item -> item.getItem() instanceof ZRingItem)).orElse(false);
+
+            if((player.getOffHandStack().isOf(ZMoves.Z_RING) || hasZItemTrinkets) && ShowdownConfig.zMoves.get()){
+                data.getKeyItems().add(Identifier.of("cobblemon","z_ring"));
+            }else{
+                data.getKeyItems().remove(Identifier.of("cobblemon","z_ring"));
+            }
         }
 
         return Unit.INSTANCE;
@@ -415,6 +436,26 @@ public class CobbleEventHandler {
         battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
+        return Unit.INSTANCE;
+    }
+
+    public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
+        LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
+
+        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200, 0,false, false));
+
+        World world = pokemon.getWorld();
+        Scoreboard scoreboard = world.getScoreboard();
+
+        // Create or get the yellow team
+        Team yellowTeam = scoreboard.getTeam("yellowGlow");
+        if (yellowTeam == null) {
+            yellowTeam = scoreboard.addTeam("yellowGlow");
+            yellowTeam.setColor(Formatting.YELLOW); // Using Formatting instead of TextFormatting
+        }
+
+        // Add the entity to the yellow team
+        scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), yellowTeam);
         return Unit.INSTANCE;
     }
 }

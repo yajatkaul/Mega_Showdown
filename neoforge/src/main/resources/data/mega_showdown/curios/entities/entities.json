@@ -1,4 +1,4 @@
 {
-  "entities": ["minecraft:player", "minecraft:zombie"],
-  "slots": ["evowear"]
+  "entities": ["minecraft:player"],
+  "slots": ["evowear","z_slot"]
 }

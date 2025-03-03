@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "flf",
+    "ere",
+    "fdf"
+  ],
+  "key": {
+    "f": {
+      "item": "minecraft:quartz"
+    },
+    "l": {
+      "item": "minecraft:glass_pane"
+    },
+    "d": {
+      "item": "minecraft:iron_ingot"
+    },
+    "e": {
+      "item": "minecraft:echo_shard"
+    },
+    "r": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:z-ring"
+  }
+}

@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.component.Component;
@@ -54,6 +55,14 @@ public class ModEvents {
             if (ruinColdLootTable.equals(key.getValue()) || ruinWarmLootTable.equals(key.getValue())) {
                 tableBuilder.modifyPools(poolBuilder -> {
                     poolBuilder.with(ItemEntry.builder(MegaStones.BLUE_ORB).weight(1));
+                });
+            }
+
+            Identifier trialChamberLootTable = Identifier.of("minecraft", "chests/trial_chambers/reward_ominous_unique");
+
+            if(trialChamberLootTable.equals(key.getValue())){
+                tableBuilder.modifyPools(poolBuilder -> {
+                    poolBuilder.with(ItemEntry.builder(ZMoves.BLANK_Z).weight(2));
                 });
             }
         });

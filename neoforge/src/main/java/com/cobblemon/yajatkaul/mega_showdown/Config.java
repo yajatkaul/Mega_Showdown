@@ -36,6 +36,10 @@ public class Config
             .comment("Makes it so that you need to have 200+ friendship in order to mega outside")
             .define("friendshipMode", false);
 
+    private static final ModConfigSpec.BooleanValue Z_MOVES = BUILDER
+            .comment("Enables/Disables zMoves in game")
+            .define("zMoves", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -44,6 +48,7 @@ public class Config
     public static boolean multiplePrimals;
     public static boolean scuffedMode;
     public static boolean friendshipMode;
+    public static boolean zMoves;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -54,5 +59,6 @@ public class Config
         multiplePrimals = MULTIPLE_PRIMALS.get();
         scuffedMode = SCUFFED_MODE.get();
         friendshipMode = FRIENDSHIP_MODE.get();
+        zMoves = Z_MOVES.get();
     }
 }

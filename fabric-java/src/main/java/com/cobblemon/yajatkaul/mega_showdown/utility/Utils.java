@@ -4,7 +4,9 @@ import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -115,5 +117,42 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SWAMPERTITE.asItem(), "Swampertite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.TYRANITARITE.asItem(), "Tyranitarite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.VENUSAURITE.asItem(), "Venusaurite");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ALORAICHIUM_Z.asItem(), "aloraichiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BLANK_Z.asItem(), "blankz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BUGINIUM_Z.asItem(), "buginiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.DARKINIUM_Z.asItem(), "darkiniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.DECIDIUM_Z.asItem(), "decidiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.DRAGONIUM_Z.asItem(), "dragoniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.EEVIVIUM_Z.asItem(), "eeviumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ELECTRIUM_Z.asItem(), "electriumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FAIRIUM_Z.asItem(), "fairiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FIGHTINIUM_Z.asItem(), "fightiniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FIRIUM_Z.asItem(), "firiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FLYINIUM_Z.asItem(), "flyiniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.GHOSTIUM_Z.asItem(), "ghostiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.GRASSIUM_Z.asItem(), "grassiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.GROUNDIUM_Z.asItem(), "groundiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ICIUM_Z.asItem(), "iciumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.INCINIUM_Z.asItem(), "inciniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.KOMMONIUM_Z.asItem(), "kommoniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.LUNALIUM_Z.asItem(), "lunaliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.LYCANIUM_Z.asItem(), "lycaniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.MARSHADIUM_Z.asItem(), "marshadiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.MEWNIUM_Z.asItem(), "mewniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.MIMIKIUM_Z.asItem(), "mimikiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.NORMALIUM_Z.asItem(), "normaliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PIKANIUM_Z.asItem(), "pikaniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PIKASHUNIUM_Z.asItem(), "pikashuniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.POISONIUM_Z.asItem(), "poisoniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PRIMARIUM_Z.asItem(), "primariumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PSYCHIUM_Z.asItem(), "psychiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ROCKIUM_Z.asItem(), "rockiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.SNORLIUM_Z.asItem(), "snorliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.SOLGANIUM_Z.asItem(), "solganiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.STEELIUM_Z.asItem(), "steeliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.TAPUNIUM_Z.asItem(), "tapuniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ULTRANECROZIUM_Z.asItem(), "ultranecroziumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.WATERIUM_Z.asItem(), "wateriumz");
     }
 }

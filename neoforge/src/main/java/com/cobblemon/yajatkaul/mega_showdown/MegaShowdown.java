@@ -13,6 +13,7 @@ import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import net.minecraft.resources.ResourceLocation;
@@ -55,6 +56,7 @@ public final class MegaShowdown {
 
         ModItems.register(modEventBus);
         MegaStones.register();
+        ZMoves.register();
 
         DataManage.register(modEventBus);
 
@@ -87,6 +89,7 @@ public final class MegaShowdown {
 
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventsHandler::megaEvolution);
 
+        CobblemonEvents.ZPOWER_USED.subscribe(Priority.NORMAL, CobbleEventsHandler::zMovesUsed);
         // Battle mode only
         if(Config.battleModeOnly || Config.battleMode){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventsHandler::battleEnded);

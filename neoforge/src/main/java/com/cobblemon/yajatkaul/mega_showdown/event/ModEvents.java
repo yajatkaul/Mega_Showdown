@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
@@ -48,6 +49,8 @@ public class ModEvents {
 
         ResourceLocation ruinWarmLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_warm_cold");
         ResourceLocation ruinColdLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
+
+        ResourceLocation trialChamberLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/trial_chambers/reward_ominous_unique");
 
         if (desertPyramidLootTable.equals(lootTableId) || desertWellLootTable.equals(lootTableId)) {
             LootTable table = event.getTable();
@@ -121,6 +124,46 @@ public class ModEvents {
                 // Add your new item
                 newPoolBuilder.add(LootItem.lootTableItem(MegaStones.BLUE_ORB)
                         .setWeight(1));
+
+                // Preserve the name
+                if (mainPool.getName() != null) {
+                    newPoolBuilder.name(mainPool.getName());
+                }
+
+                // Replace the old pool with the new one
+                table.removePool("main");
+                table.addPool(newPoolBuilder.build());
+            }
+        }else if (trialChamberLootTable.equals(lootTableId)) {
+            LootTable table = event.getTable();
+            LootPool mainPool = table.getPool("main");
+
+            if (mainPool != null && !mainPool.isFrozen()) {
+                // Cast to accessor interface
+                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
+
+                // Create new builder with existing properties
+                LootPool.Builder newPoolBuilder = LootPool.lootPool()
+                        .setRolls(mainPool.getRolls())
+                        .setBonusRolls(mainPool.getBonusRolls());
+
+                // Add all existing entries using the accessor
+                poolAccessor.getEntries().forEach(entry ->
+                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
+                            @Override
+                            protected LootPoolEntryContainer.Builder getThis() {
+                                return null;
+                            }
+
+                            @Override
+                            public LootPoolEntryContainer build() {
+                                return entry;
+                            }
+                        })
+                );
+
+                // Add your new item
+                newPoolBuilder.add(LootItem.lootTableItem(ZMoves.BLANK_Z).setWeight(2));
 
                 // Preserve the name
                 if (mainPool.getName() != null) {

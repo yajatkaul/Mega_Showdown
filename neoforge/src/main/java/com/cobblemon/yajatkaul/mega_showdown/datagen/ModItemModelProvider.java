@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -66,5 +67,42 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(MegaStones.BLUE_ORB.get());
         basicItem(MegaStones.RED_ORB.get());
+
+        basicItem(ZMoves.ALORAICHIUM_Z.get());
+        basicItem(ZMoves.BLANK_Z.get());
+        basicItem(ZMoves.BUGINIUM_Z.get());
+        basicItem(ZMoves.DARKINIUM_Z.get());
+        basicItem(ZMoves.DECIDIUM_Z.get());
+        basicItem(ZMoves.DRAGONIUM_Z.get());
+        basicItem(ZMoves.EEVIUM_Z.get());
+        basicItem(ZMoves.ELECTRIUM_Z.get());
+        basicItem(ZMoves.FAIRIUM_Z.get());
+        basicItem(ZMoves.FIGHTINIUM_Z.get());
+        basicItem(ZMoves.FIRIUM_Z.get());
+        basicItem(ZMoves.FLYINIUM_Z.get());
+        basicItem(ZMoves.GHOSTIUM_Z.get());
+        basicItem(ZMoves.GRASSIUM_Z.get());
+        basicItem(ZMoves.GROUNDIUM_Z.get());
+        basicItem(ZMoves.ICIUM_Z.get());
+        basicItem(ZMoves.INCINIUM_Z.get());
+        basicItem(ZMoves.KOMMONIUM_Z.get());
+        basicItem(ZMoves.LUNALIUM_Z.get());
+        basicItem(ZMoves.LYCANIUM_Z.get());
+        basicItem(ZMoves.MARSHADIUM_Z.get());
+        basicItem(ZMoves.MEWNIUM_Z.get());
+        basicItem(ZMoves.MIMIKIUM_Z.get());
+        basicItem(ZMoves.NORMALIUM_Z.get());
+        basicItem(ZMoves.PIKANIUM_Z.get());
+        basicItem(ZMoves.PIKASHUNIUM_Z.get());
+        basicItem(ZMoves.POISONIUM_Z.get());
+        basicItem(ZMoves.PRIMARIUM_Z.get());
+        basicItem(ZMoves.PSYCHIUM_Z.get());
+        basicItem(ZMoves.ROCKIUM_Z.get());
+        basicItem(ZMoves.SNORLIUM_Z.get());
+        basicItem(ZMoves.SOLGANIUM_Z.get());
+        basicItem(ZMoves.STEELIUM_Z.get());
+        basicItem(ZMoves.TAPUNIUM_Z.get());
+        basicItem(ZMoves.ULTRANECROZIUM_Z.get());
+        basicItem(ZMoves.WATERIUM_Z.get());
     }
 }

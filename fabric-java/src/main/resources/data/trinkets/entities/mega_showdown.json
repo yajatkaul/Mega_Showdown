@@ -3,6 +3,7 @@
     "player"
   ],
   "slots": [
-    "hand/evowear"
+    "hand/evowear",
+    "hand/z_slot"
   ]
 }

@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -164,6 +165,50 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaStones.BLUE_ORB);
                         output.accept(MegaStones.RED_ORB);
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> Z_MOVES_TAB = CREATIVE_MODE_TAB.register("z_moves_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ZMoves.BLANK_Z.get()))
+                    .title(Component.translatable("creativeTab.mega_showdown.z_moves_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ZMoves.Z_RING);
+                        output.accept(ZMoves.ALORAICHIUM_Z);
+                        output.accept(ZMoves.BLANK_Z);
+                        output.accept(ZMoves.BUGINIUM_Z);
+                        output.accept(ZMoves.DARKINIUM_Z);
+                        output.accept(ZMoves.DECIDIUM_Z);
+                        output.accept(ZMoves.DRAGONIUM_Z);
+                        output.accept(ZMoves.EEVIUM_Z);
+                        output.accept(ZMoves.ELECTRIUM_Z);
+                        output.accept(ZMoves.FAIRIUM_Z);
+                        output.accept(ZMoves.FIGHTINIUM_Z);
+                        output.accept(ZMoves.FIRIUM_Z);
+                        output.accept(ZMoves.FLYINIUM_Z);
+                        output.accept(ZMoves.GHOSTIUM_Z);
+                        output.accept(ZMoves.GRASSIUM_Z);
+                        output.accept(ZMoves.GROUNDIUM_Z);
+                        output.accept(ZMoves.ICIUM_Z);
+                        output.accept(ZMoves.INCINIUM_Z);
+                        output.accept(ZMoves.KOMMONIUM_Z);
+                        output.accept(ZMoves.LUNALIUM_Z);
+                        output.accept(ZMoves.LYCANIUM_Z);
+                        output.accept(ZMoves.MARSHADIUM_Z);
+                        output.accept(ZMoves.MEWNIUM_Z);
+                        output.accept(ZMoves.MIMIKIUM_Z);
+                        output.accept(ZMoves.NORMALIUM_Z);
+                        output.accept(ZMoves.PIKANIUM_Z);
+                        output.accept(ZMoves.PIKASHUNIUM_Z);
+                        output.accept(ZMoves.POISONIUM_Z);
+                        output.accept(ZMoves.PRIMARIUM_Z);
+                        output.accept(ZMoves.PSYCHIUM_Z);
+                        output.accept(ZMoves.ROCKIUM_Z);
+                        output.accept(ZMoves.SNORLIUM_Z);
+                        output.accept(ZMoves.SOLGANIUM_Z);
+                        output.accept(ZMoves.STEELIUM_Z);
+                        output.accept(ZMoves.TAPUNIUM_Z);
+                        output.accept(ZMoves.ULTRANECROZIUM_Z);
+                        output.accept(ZMoves.WATERIUM_Z);
                     })
                     .build());
 

@@ -6,6 +6,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -160,6 +161,52 @@ public class ModItemGroups {
                         entries.add(MegaStones.RED_ORB);
                     }))
                     .build());
+
+    public static final ItemGroup Z_MOVES_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "z_moves_tab"),
+            FabricItemGroup.builder().icon(() -> new ItemStack(ZMoves.BLANK_Z))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.z_moves_tab"))
+                    .entries(((displayContext, entries) -> {
+                        entries.add(ZMoves.Z_RING);
+                        entries.add(ZMoves.ALORAICHIUM_Z);
+                        entries.add(ZMoves.BLANK_Z);
+                        entries.add(ZMoves.BUGINIUM_Z);
+                        entries.add(ZMoves.DARKINIUM_Z);
+                        entries.add(ZMoves.DECIDIUM_Z);
+                        entries.add(ZMoves.DRAGONIUM_Z);
+                        entries.add(ZMoves.EEVIVIUM_Z);
+                        entries.add(ZMoves.ELECTRIUM_Z);
+                        entries.add(ZMoves.FAIRIUM_Z);
+                        entries.add(ZMoves.FIGHTINIUM_Z);
+                        entries.add(ZMoves.FIRIUM_Z);
+                        entries.add(ZMoves.FLYINIUM_Z);
+                        entries.add(ZMoves.GHOSTIUM_Z);
+                        entries.add(ZMoves.GRASSIUM_Z);
+                        entries.add(ZMoves.GROUNDIUM_Z);
+                        entries.add(ZMoves.ICIUM_Z);
+                        entries.add(ZMoves.INCINIUM_Z);
+                        entries.add(ZMoves.KOMMONIUM_Z);
+                        entries.add(ZMoves.LUNALIUM_Z);
+                        entries.add(ZMoves.LYCANIUM_Z);
+                        entries.add(ZMoves.MARSHADIUM_Z);
+                        entries.add(ZMoves.MEWNIUM_Z);
+                        entries.add(ZMoves.MIMIKIUM_Z);
+                        entries.add(ZMoves.NORMALIUM_Z);
+                        entries.add(ZMoves.PIKANIUM_Z);
+                        entries.add(ZMoves.PIKASHUNIUM_Z);
+                        entries.add(ZMoves.POISONIUM_Z);
+                        entries.add(ZMoves.PRIMARIUM_Z);
+                        entries.add(ZMoves.PSYCHIUM_Z);
+                        entries.add(ZMoves.ROCKIUM_Z);
+                        entries.add(ZMoves.SNORLIUM_Z);
+                        entries.add(ZMoves.SOLGANIUM_Z);
+                        entries.add(ZMoves.STEELIUM_Z);
+                        entries.add(ZMoves.TAPUNIUM_Z);
+                        entries.add(ZMoves.ULTRANECROZIUM_Z);
+                        entries.add(ZMoves.WATERIUM_Z);
+                    }))
+                    .build());
+
 
     public static void registerItemGroups(){
 

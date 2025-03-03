@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
@@ -22,19 +23,28 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.ServerScoreboard;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.scores.PlayerTeam;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.xml.crypto.Data;
 import java.util.List;
@@ -303,6 +313,16 @@ public class CobbleEventsHandler {
             }else{
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }
+
+            boolean hasZItemCurios = CuriosApi.getCuriosInventory(player)
+                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof ZRingItem))
+                    .orElse(false);
+
+            if((player.getOffhandItem().is(ZMoves.Z_RING) || hasZItemCurios) && Config.zMoves){
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
+            }else{
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
+            }
         }
 
         return Unit.INSTANCE;
@@ -402,6 +422,29 @@ public class CobbleEventsHandler {
                 }
             }
         });
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
+        LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
+
+        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 0,false, false));
+
+        if (pokemon.level() instanceof ServerLevel serverLevel) {
+            ServerScoreboard scoreboard = serverLevel.getScoreboard();
+            String teamName = "glow_yellow";
+
+            PlayerTeam team = scoreboard.getPlayerTeam(teamName);
+            if (team == null) {
+                team = scoreboard.addPlayerTeam(teamName);
+                team.setColor(ChatFormatting.YELLOW);
+                team.setSeeFriendlyInvisibles(false);
+                team.setAllowFriendlyFire(true);
+            }
+
+            scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
+        }
 
         return Unit.INSTANCE;
     }

@@ -19,6 +19,9 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> MEGA_BRACELETS = createTag("mega_bracelets");
         public static final TagKey<Item> MEGA_STONES = createTag("mega_stones");
+        public static final TagKey<Item> Z_CRYSTALS = createTag("z_crystals");
+        public static final TagKey<Item> Z_RINGS = createTag("z_rings");
+
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name));

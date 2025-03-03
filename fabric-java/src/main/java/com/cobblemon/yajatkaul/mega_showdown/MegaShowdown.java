@@ -17,6 +17,7 @@ import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.google.common.reflect.Reflection;
@@ -38,6 +39,7 @@ public class MegaShowdown implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItem();
         MegaStones.registerModItem();
+        ZMoves.registerModItem();
 
         ModBlocks.registerBlocks();
         PokemonStones.registerBlocks();
@@ -73,6 +75,8 @@ public class MegaShowdown implements ModInitializer {
         CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEventHandler::battleStarted);
 
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventHandler::megaEvolution);
+
+        CobblemonEvents.ZPOWER_USED.subscribe(Priority.NORMAL, CobbleEventHandler::zMovesUsed);
 
         if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventHandler::getBattleEndInfo);

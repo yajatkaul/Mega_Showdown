@@ -44,7 +44,7 @@ public class MegaBraceletItem extends Item {
             if (curios.isPresent()) {
                 ICuriosItemHandler handler = curios.get();
 
-                // Check if the "bracelet" slot exists
+                // Check if the "evowear" slot exists
                 handler.getStacksHandler("evowear").ifPresent(slotHandler -> {
                     IItemHandlerModifiable stacks = slotHandler.getStacks(); // Get modifiable stack handler
 
