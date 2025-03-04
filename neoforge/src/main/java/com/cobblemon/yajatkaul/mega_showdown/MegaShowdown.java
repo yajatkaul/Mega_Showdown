@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
+import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
@@ -63,8 +64,8 @@ public final class MegaShowdown {
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        Utils.loadMegaStoneIds();
         Utils.registerRemapping();
+        TeraTypeHelper.loadShardData();
         CobbleEvents.register();
     }
 

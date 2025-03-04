@@ -67,11 +67,6 @@ public class Utils {
         MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), getSpecies("diancie"));
     }
 
-    public static void registerRemapping(){
-        megaStonesRegister();
-        zMovesRegister();
-    }
-
     public static void megaStonesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABSOLITE.asItem(), "Absolite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.AGGRONITE.asItem(), "Aggronite");
@@ -159,5 +154,11 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.TAPUNIUM_Z.asItem(), "tapuniumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ULTRANECROZIUM_Z.asItem(), "ultranecroziumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.WATERIUM_Z.asItem(), "wateriumz");
+    }
+
+    public static void registerRemapping(){
+        megaStonesRegister();
+        zMovesRegister();
+        loadMegaStoneIds();
     }
 }

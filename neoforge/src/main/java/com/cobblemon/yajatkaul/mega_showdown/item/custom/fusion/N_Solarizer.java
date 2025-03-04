@@ -42,8 +42,7 @@ public class N_Solarizer extends Item {
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
         boolean currentValue = arg.getOrDefault(DataManage.N_SOLAR, false);
 
-        MegaShowdown.LOGGER.info(String.valueOf(pokemon.getForcedAspects()));
-        if (currentValue && pokemon.getSpecies().getName().equals("Necrozma")) {
+        if (currentValue && pokemon.getSpecies().getName().equals("Necrozma") && !player.getData(DataManage.N_SOLAR_POKEMON).equals(new Pokemon())) {
             arg.set(DataManage.N_SOLAR, false);
             pokemon.setForcedAspects(Set.of("dusk-fusion"));
             arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Solarizer (Inactive)"));

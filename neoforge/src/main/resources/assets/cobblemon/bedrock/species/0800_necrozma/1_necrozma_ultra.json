@@ -1,11 +1,11 @@
 {
   "species": "cobblemon:necrozma",
-  "order": 0,
+  "order": 1,
   "variations": [
     {
       "aspects": ["ultra"],
-      "poser": "cobblemon:ultranecrozma",
-      "model": "cobblemon:ultranecrozma.geo",
+      "poser": "cobblemon:necrozma_ultra",
+      "model": "cobblemon:necrozma_ultra.geo",
       "texture": "cobblemon:textures/pokemon/0800_necrozma/ultranecrozma.png",
       "layers": []
     },

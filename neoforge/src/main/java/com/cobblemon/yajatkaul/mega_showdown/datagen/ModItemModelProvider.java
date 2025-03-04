@@ -109,5 +109,25 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(TeraMoves.TERA_ORB.get());
         basicItem(ModItems.N_LUNARIZER.get());
         basicItem(ModItems.N_SOLARIZER.get());
+
+        basicItem(TeraMoves.BUG_TERA_SHARD.get());
+        basicItem(TeraMoves.DARK_TERA_SHARD.get());
+        basicItem(TeraMoves.DRAGON_TERA_SHARD.get());
+        basicItem(TeraMoves.ELECTRIC_TERA_SHARD.get());
+        basicItem(TeraMoves.FAIRY_TERA_SHARD.get());
+        basicItem(TeraMoves.FIGHTING_TERA_SHARD.get());
+        basicItem(TeraMoves.FIRE_TERA_SHARD.get());
+        basicItem(TeraMoves.FLYING_TERA_SHARD.get());
+        basicItem(TeraMoves.GHOST_TERA_SHARD.get());
+        basicItem(TeraMoves.GRASS_TERA_SHARD.get());
+        basicItem(TeraMoves.GROUND_TERA_SHARD.get());
+        basicItem(TeraMoves.ICE_TERA_SHARD.get());
+        basicItem(TeraMoves.NORMAL_TERA_SHARD.get());
+        basicItem(TeraMoves.POISON_TERA_SHARD.get());
+        basicItem(TeraMoves.PSYCHIC_TERA_SHARD.get());
+        basicItem(TeraMoves.ROCK_TERA_SHARD.get());
+        basicItem(TeraMoves.STEEL_TERA_SHARD.get());
+        basicItem(TeraMoves.STELLAR_TERA_SHARD.get());
+        basicItem(TeraMoves.WATER_TERA_SHARD.get());
     }
 }

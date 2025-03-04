@@ -215,6 +215,26 @@ public class ModCreativeModeTabs {
                         output.accept(ZMoves.WATERIUM_Z);
 
                         output.accept(TeraMoves.TERA_ORB);
+
+                        output.accept(TeraMoves.BUG_TERA_SHARD);
+                        output.accept(TeraMoves.DARK_TERA_SHARD);
+                        output.accept(TeraMoves.DRAGON_TERA_SHARD);
+                        output.accept(TeraMoves.ELECTRIC_TERA_SHARD);
+                        output.accept(TeraMoves.FAIRY_TERA_SHARD);
+                        output.accept(TeraMoves.FIGHTING_TERA_SHARD);
+                        output.accept(TeraMoves.FIRE_TERA_SHARD);
+                        output.accept(TeraMoves.FLYING_TERA_SHARD);
+                        output.accept(TeraMoves.GHOST_TERA_SHARD);
+                        output.accept(TeraMoves.GRASS_TERA_SHARD);
+                        output.accept(TeraMoves.GROUND_TERA_SHARD);
+                        output.accept(TeraMoves.ICE_TERA_SHARD);
+                        output.accept(TeraMoves.NORMAL_TERA_SHARD);
+                        output.accept(TeraMoves.POISON_TERA_SHARD);
+                        output.accept(TeraMoves.PSYCHIC_TERA_SHARD);
+                        output.accept(TeraMoves.ROCK_TERA_SHARD);
+                        output.accept(TeraMoves.STEEL_TERA_SHARD);
+                        output.accept(TeraMoves.STELLAR_TERA_SHARD);
+                        output.accept(TeraMoves.WATER_TERA_SHARD);
                     })
                     .build());
 

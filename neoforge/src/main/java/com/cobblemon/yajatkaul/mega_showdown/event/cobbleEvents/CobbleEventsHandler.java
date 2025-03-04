@@ -2,20 +2,25 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
+import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
+import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
+import com.cobblemon.mod.common.api.types.ElementalType;
+import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -35,6 +40,7 @@ import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerScoreboard;
@@ -45,11 +51,19 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
+import net.neoforged.neoforge.registries.DeferredItem;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.List;
+import java.util.Random;
+
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getGlowColorForType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTeraShardForType;
 
 public class CobbleEventsHandler {
     public static Unit onMegaTraded(TradeCompletedEvent tradeCompletedEvent) {
@@ -312,7 +326,16 @@ public class CobbleEventsHandler {
                     .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof TeraItem))
                     .orElse(false);
 
-            if((player.getOffhandItem().is(TeraMoves.TERA_ORB) || hasTeraItemCurios) && Config.teralization){
+            ItemStack teraOrb = CuriosApi.getCuriosInventory(player)
+                    .flatMap(curiosInventory -> curiosInventory.findFirstCurio(TeraMoves.TERA_ORB.get()))
+                    .map(SlotResult::stack)
+                    .orElse(null);
+
+            if(teraOrb != null && teraOrb.getDamageValue() >= 100){
+                hasTeraItemCurios = false;
+            }
+
+            if(hasTeraItemCurios && Config.teralization){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
             }else {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
@@ -469,7 +492,7 @@ public class CobbleEventsHandler {
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(ChatFormatting.YELLOW);
+                team.setColor(getGlowColorForType(zMoveUsedEvent.getPokemon().getOriginalPokemon()));
                 team.setSeeFriendlyInvisibles(false);
                 team.setAllowFriendlyFire(true);
             }
@@ -492,12 +515,58 @@ public class CobbleEventsHandler {
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(ChatFormatting.YELLOW);
+                team.setColor(getGlowColorForType(terastallizationEvent.getPokemon().getOriginalPokemon()));
                 team.setSeeFriendlyInvisibles(false);
                 team.setAllowFriendlyFire(true);
             }
 
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
+        }
+
+        ItemStack teraOrb = CuriosApi.getCuriosInventory(terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()).get().findFirstCurio(TeraMoves.TERA_ORB.get()).get().stack();
+
+        if (teraOrb != null) {
+            // Reduce durability by a specific amount (e.g., 10 points)
+            teraOrb.setDamageValue(teraOrb.getDamageValue() + 10);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit healedPokemons(PokemonHealedEvent pokemonHealedEvent) {
+        if(pokemonHealedEvent.getPokemon().getOwnerPlayer() == null){
+            return Unit.INSTANCE;
+        }
+
+        ItemStack teraOrb = CuriosApi.getCuriosInventory(pokemonHealedEvent.getPokemon().getOwnerPlayer())
+                .flatMap(curiosInventory -> curiosInventory.findFirstCurio(TeraMoves.TERA_ORB.get()))
+                .map(SlotResult::stack)  // Safely extract the stack if present
+                .orElse(null);
+
+        if (teraOrb != null) {
+            teraOrb.setDamageValue(0);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit dropShardPokemon(LootDroppedEvent lootDroppedEvent) {
+        if (!(lootDroppedEvent.getEntity() instanceof PokemonEntity)){
+            return Unit.INSTANCE;
+        }
+        Pokemon pokemon = ((PokemonEntity) lootDroppedEvent.getEntity()).getPokemon();
+
+        DeferredItem<Item> correspondingTeraShard = getTeraShardForType(pokemon.getTypes());
+
+        ItemDropEntry teraShardDropEntry = new ItemDropEntry();
+        teraShardDropEntry.setItem(BuiltInRegistries.ITEM.getKey(correspondingTeraShard.get()));
+
+        int randomValue = new Random().nextInt(101);
+        if(randomValue >= 10 && randomValue <= 20){
+            lootDroppedEvent.getDrops().add(teraShardDropEntry);
+        } else if (randomValue == 33) {
+            teraShardDropEntry.setItem(BuiltInRegistries.ITEM.getKey(TeraMoves.STELLAR_TERA_SHARD.get()));
+            lootDroppedEvent.getDrops().add(teraShardDropEntry);
         }
 
         return Unit.INSTANCE;

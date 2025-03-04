@@ -47,7 +47,7 @@ public class N_Lunarizer extends Item {
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
         boolean currentValue = arg.getOrDefault(DataManage.N_LUNAR, false);
 
-        if (currentValue && pokemon.getSpecies().getName().equals("Necrozma")) {
+        if (currentValue && pokemon.getSpecies().getName().equals("Necrozma") && !player.getData(DataManage.N_LUNAR_POKEMON).equals(new Pokemon())) {
             arg.set(DataManage.N_LUNAR, false);
             pokemon.setForcedAspects(Set.of("dawn-fusion"));
             arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Lunarizer (Inactive)"));
