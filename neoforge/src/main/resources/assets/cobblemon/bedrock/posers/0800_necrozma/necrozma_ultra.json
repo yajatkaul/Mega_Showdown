@@ -16,7 +16,7 @@
         ],
         "animations": [
           "look",
-          "bedrock(ultranecrozma, ground_idle)"
+          "bedrock(necrozma_ultra, ground_idle)"
         ]
       },
 
@@ -26,7 +26,7 @@
         "poseTypes": [ "WALK" ],
         "animations": [ 
           "look",
-          "bedrock(ultranecrozma, ground_walk)"
+          "bedrock(necrozma_ultra, ground_walk)"
         ]
       }
     }

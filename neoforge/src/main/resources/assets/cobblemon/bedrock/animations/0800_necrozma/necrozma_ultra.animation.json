@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.ultranecrozma.ground_idle": {
+		"animation.necrozma_ultra.ground_idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -110,7 +110,7 @@
 				}
 			}
 		},
-		"animation.ultranecrozma.ground_walk": {
+		"animation.necrozma_ultra.ground_walk": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
