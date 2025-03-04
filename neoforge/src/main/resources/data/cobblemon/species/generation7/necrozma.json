@@ -159,7 +159,7 @@
       "height": 75,
       "weight": 2300,
       "cannotDynamax": false,
-      "battleOnly": true
+      "battleOnly": false
     }
   ],
   "baseExperienceYield": 300,
