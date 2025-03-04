@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
@@ -64,6 +66,45 @@ public class ZRingItem extends Item{
         }
 
         return super.use(world, player, hand);
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
+        if (player.level().isClientSide || Config.battleModeOnly){
+            return InteractionResult.PASS;
+        }
+
+        if(context instanceof PokemonEntity pk){
+            Pokemon pokemon = pk.getPokemon();
+            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide){
+                return InteractionResult.PASS;
+            }
+
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if(enabled) {
+                    if(!MegaLogic.Possible((ServerPlayer) player, false)){
+                        return InteractionResult.PASS;
+                    }
+
+                    MegaLogic.Devolve(context, player, false);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+
+
+            if(!MegaLogic.Possible((ServerPlayer) player, false)){
+                return InteractionResult.PASS;
+            }
+            MegaLogic.Evolve(context, player, false);
+            return InteractionResult.SUCCESS;
+        }
+
+        return InteractionResult.PASS;
     }
 
     @Override

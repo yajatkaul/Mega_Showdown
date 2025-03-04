@@ -54,7 +54,7 @@ public class MegaLogic {
         boolean hasOffhandMegaItem = player.getOffhandItem().getItem() instanceof MegaBraceletItem;
         boolean hasMainhandMegaItem = player.getMainHandItem().getItem() instanceof MegaBraceletItem;
 
-        if (!hasMegaItemCurios && hasOffhandMegaItem && hasMainhandMegaItem) {
+        if (!hasMegaItemCurios && !hasOffhandMegaItem && !hasMainhandMegaItem) {
             return false;
         }
 

@@ -290,6 +290,13 @@ public class CobbleEventHandler {
 
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+            for (Pokemon pokemon: playerPartyStore){
+                if(pokemon.getEntity() != null){
+                    pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
+                }
+            }
+
             for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUuid()).getPokemonList()) {
                 if (battlePokemon.getOriginalPokemon().getEntity() == null ||
                         battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
@@ -442,7 +449,7 @@ public class CobbleEventHandler {
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
 
-        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200, 0,false, false));
+        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         World world = pokemon.getWorld();
         Scoreboard scoreboard = world.getScoreboard();

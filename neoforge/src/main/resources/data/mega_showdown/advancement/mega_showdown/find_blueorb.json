@@ -9,7 +9,7 @@
     },
     "description": {
       "translate": "advancement.mega_showdown.find_blueorb.description",
-      "fallback": "Fine the blueorb"
+      "fallback": "Find the blueorb"
     },
     "frame": "task",
     "show_toast": true,

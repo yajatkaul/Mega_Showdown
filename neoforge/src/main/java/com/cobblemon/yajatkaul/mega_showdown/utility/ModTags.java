@@ -21,6 +21,7 @@ public class ModTags {
         public static final TagKey<Item> MEGA_STONES = createTag("mega_stones");
         public static final TagKey<Item> Z_CRYSTALS = createTag("z_crystals");
         public static final TagKey<Item> Z_RINGS = createTag("z_rings");
+        public static final TagKey<Item> TERA_ITEMS = createTag("tera_items");
 
 
         private static TagKey<Item> createTag(String name) {

@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -165,6 +166,9 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaStones.BLUE_ORB);
                         output.accept(MegaStones.RED_ORB);
+
+                        output.accept(ModItems.N_LUNARIZER);
+                        output.accept(ModItems.N_SOLARIZER);
                     })
                     .build());
 
@@ -209,6 +213,8 @@ public class ModCreativeModeTabs {
                         output.accept(ZMoves.TAPUNIUM_Z);
                         output.accept(ZMoves.ULTRANECROZIUM_Z);
                         output.accept(ZMoves.WATERIUM_Z);
+
+                        output.accept(TeraMoves.TERA_ORB);
                     })
                     .build());
 

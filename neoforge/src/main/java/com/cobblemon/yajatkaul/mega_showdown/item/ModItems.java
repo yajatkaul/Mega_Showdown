@@ -1,7 +1,10 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -50,6 +53,12 @@ public class ModItems {
 
     public static final DeferredItem<Item> ARCHIE_ANCHOR = ITEMS.register("archie_anchor",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> N_LUNARIZER = ITEMS.register("n_lunarizer",
+            () -> new N_Lunarizer(new Item.Properties().stacksTo(1).component(DataManage.N_LUNAR,false)));
+
+    public static final DeferredItem<Item> N_SOLARIZER = ITEMS.register("n_solarizer",
+            () -> new N_Solarizer(new Item.Properties().stacksTo(1).component(DataManage.N_SOLAR, false)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

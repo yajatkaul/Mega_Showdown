@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -104,5 +105,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ZMoves.TAPUNIUM_Z.get());
         basicItem(ZMoves.ULTRANECROZIUM_Z.get());
         basicItem(ZMoves.WATERIUM_Z.get());
+
+        basicItem(TeraMoves.TERA_ORB.get());
+        basicItem(ModItems.N_LUNARIZER.get());
+        basicItem(ModItems.N_SOLARIZER.get());
     }
 }

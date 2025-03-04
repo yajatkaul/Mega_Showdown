@@ -9,7 +9,7 @@
     },
     "description": {
       "translate": "advancement.mega_showdown.find_keystone.description",
-      "fallback": "Fine the keystone"
+      "fallback": "Find the keystone"
     },
     "frame": "task",
     "show_toast": true,

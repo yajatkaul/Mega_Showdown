@@ -1,22 +1,16 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.Priority;
-import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
-import com.cobblemon.yajatkaul.mega_showdown.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
@@ -29,7 +23,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.creativeTab.ModCreativeModeTabs;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -54,9 +47,7 @@ public final class MegaShowdown {
         ModBlocks.register(modEventBus);
         MegaOres.register();
 
-        ModItems.register(modEventBus);
-        MegaStones.register();
-        ZMoves.register();
+        ItemsRegistration.register(modEventBus);
 
         DataManage.register(modEventBus);
 
@@ -74,27 +65,7 @@ public final class MegaShowdown {
     public void onServerStarting(ServerStartingEvent event) {
         Utils.loadMegaStoneIds();
         Utils.registerRemapping();
-
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChange);
-
-        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onReleasePokemon);
-
-        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, CobbleEventsHandler::devolveFainted);
-
-        CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventsHandler::onMegaTraded);
-
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::primalEvent);
-
-        CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::battleStarted);
-
-        CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventsHandler::megaEvolution);
-
-        CobblemonEvents.ZPOWER_USED.subscribe(Priority.NORMAL, CobbleEventsHandler::zMovesUsed);
-        // Battle mode only
-        if(Config.battleModeOnly || Config.battleMode){
-            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventsHandler::battleEnded);
-            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, CobbleEventsHandler::deVolveFlee);
-        }
+        CobbleEvents.register();
     }
 
     @SubscribeEvent

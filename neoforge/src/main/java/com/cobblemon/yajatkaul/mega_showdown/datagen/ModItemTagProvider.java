@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -129,5 +130,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         tag(ModTags.Items.Z_RINGS)
                 .add(ZMoves.Z_RING.get());
+
+        tag(ModTags.Items.TERA_ITEMS)
+                .add(TeraMoves.TERA_ORB.get());
     }
 }

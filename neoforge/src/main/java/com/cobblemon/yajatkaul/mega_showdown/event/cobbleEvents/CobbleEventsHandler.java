@@ -1,9 +1,10 @@
-package com.cobblemon.yajatkaul.mega_showdown.cobbleEvents;
+package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
@@ -12,6 +13,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -23,8 +25,9 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -46,10 +49,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import javax.xml.crypto.Data;
 import java.util.List;
-
-import static net.minecraft.Util.NIL_UUID;
 
 public class CobbleEventsHandler {
     public static Unit onMegaTraded(TradeCompletedEvent tradeCompletedEvent) {
@@ -274,7 +274,6 @@ public class CobbleEventsHandler {
         }
     }
 
-
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
         for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
             if(Config.battleMode){
@@ -285,6 +284,7 @@ public class CobbleEventsHandler {
                     if(pokemon.getSpecies().getName().equals("Rayquaza")){
                         continue;
                     }
+
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
                     for (String key : megaKeys) {
@@ -307,6 +307,16 @@ public class CobbleEventsHandler {
             }
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
+
+            boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
+                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof TeraItem))
+                    .orElse(false);
+
+            if((player.getOffhandItem().is(TeraMoves.TERA_ORB) || hasTeraItemCurios) && Config.teralization){
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
+            }else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
+            }
 
             if((Config.battleMode || Config.scuffedMode || Config.battleModeOnly) && MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
@@ -348,6 +358,13 @@ public class CobbleEventsHandler {
 
     public static Unit battleEnded(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+            for (Pokemon pokemon: playerPartyStore){
+                if(pokemon.getEntity() != null){
+                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                }
+            }
+
             for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
                 if (battlePokemon.getOriginalPokemon().getEntity() == null) {
                     continue;
@@ -387,7 +404,21 @@ public class CobbleEventsHandler {
             return Unit.INSTANCE;
         }
 
-        MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+        for (String key : megaKeys) {
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if(enabled){
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    break;
+                }
+            }
+        }
 
         return Unit.INSTANCE;
     }
@@ -429,7 +460,30 @@ public class CobbleEventsHandler {
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
 
-        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 0,false, false));
+        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
+
+        if (pokemon.level() instanceof ServerLevel serverLevel) {
+            ServerScoreboard scoreboard = serverLevel.getScoreboard();
+            String teamName = "glow_yellow";
+
+            PlayerTeam team = scoreboard.getPlayerTeam(teamName);
+            if (team == null) {
+                team = scoreboard.addPlayerTeam(teamName);
+                team.setColor(ChatFormatting.YELLOW);
+                team.setSeeFriendlyInvisibles(false);
+                team.setAllowFriendlyFire(true);
+            }
+
+            scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit terrastallizationUsed(TerastallizationEvent terastallizationEvent) {
+        LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
+
+        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();

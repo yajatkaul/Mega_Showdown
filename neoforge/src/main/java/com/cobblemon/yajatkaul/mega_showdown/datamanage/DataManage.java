@@ -4,6 +4,10 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.UUIDUtil;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -37,8 +41,34 @@ public class DataManage {
                     .serialize(Pokemon.getCODEC()).copyOnDeath().build()
     );
 
+    public static final DeferredRegister.DataComponents REGISTRAR = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, "mega_showdown");
+
+    public static final Supplier<DataComponentType<Boolean>> N_LUNAR = REGISTRAR.registerComponentType(
+            "n_lunar",
+            builder -> builder
+                    .persistent(Codec.BOOL)
+                    .networkSynchronized(ByteBufCodecs.BOOL)
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> N_SOLAR = REGISTRAR.registerComponentType(
+            "n_solar",
+            builder -> builder
+                    .persistent(Codec.BOOL)
+                    .networkSynchronized(ByteBufCodecs.BOOL)
+    );
+
+    public static final Supplier<AttachmentType<Pokemon>> N_LUNAR_POKEMON = ATTACHMENT_TYPES.register(
+            "n_lunar_pokemon", () -> AttachmentType.builder(Pokemon::new)
+                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    );
+
+    public static final Supplier<AttachmentType<Pokemon>> N_SOLAR_POKEMON = ATTACHMENT_TYPES.register(
+            "n_solar_pokemon", () -> AttachmentType.builder(Pokemon::new)
+                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    );
 
     public static void register(IEventBus eventBus){
         ATTACHMENT_TYPES.register(eventBus);
+        REGISTRAR.register(eventBus);
     }
 }

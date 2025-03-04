@@ -40,6 +40,10 @@ public class Config
             .comment("Enables/Disables zMoves in game")
             .define("zMoves", true);
 
+    private static final ModConfigSpec.BooleanValue TERA_EVO = BUILDER
+            .comment("Enables/Disables teralization in game")
+            .define("teralization", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -49,6 +53,7 @@ public class Config
     public static boolean scuffedMode;
     public static boolean friendshipMode;
     public static boolean zMoves;
+    public static boolean teralization;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -60,5 +65,6 @@ public class Config
         scuffedMode = SCUFFED_MODE.get();
         friendshipMode = FRIENDSHIP_MODE.get();
         zMoves = Z_MOVES.get();
+        teralization = TERA_EVO.get();
     }
 }

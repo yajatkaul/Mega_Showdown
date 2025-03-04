@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-03T11:47:16.1120513	Item Models: mega_showdown
+// 1.21.1	2025-03-03T23:35:11.9936974	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -61,6 +61,8 @@ e67ecc2371f0734f5722d475c5ac4a05a88b0485 assets/mega_showdown/models/item/mewniu
 557024f8b3f8b1924df0bd294cf3cd7342c844b6 assets/mega_showdown/models/item/mewtwonite_y.json
 cb24da0818462d6c21ccbbca35f068c4d6a26ffd assets/mega_showdown/models/item/mimikium-z.json
 188d5c224cdddc5924610473239aa83130930196 assets/mega_showdown/models/item/normalium-z.json
+bca43824bec988010f300e55d01c1a25af93ddfe assets/mega_showdown/models/item/n_lunarizer.json
+f15c42022126b60b6e788ff251edcdba6f1d0baa assets/mega_showdown/models/item/n_solarizer.json
 6ad66abc876feb4cc03a562c7f1be7d24e02f4e2 assets/mega_showdown/models/item/pidgeotite.json
 09054ce39dd29db659a9e9f8dae2bb25d690a9a2 assets/mega_showdown/models/item/pikanium-z.json
 df20cc318724f28fa3a85b6f519342e94585766a assets/mega_showdown/models/item/pikashunium-z.json
@@ -82,6 +84,7 @@ fb2cca4bcdc5b5f7690deefd6aed74b82d4eac0d assets/mega_showdown/models/item/steeli
 1f4c9bfcfcc039d110a7a7bfcab2d52cfd008ced assets/mega_showdown/models/item/steelixite.json
 0fc7661c905aa5186d26bb80f7f377f1260267ff assets/mega_showdown/models/item/swampertite.json
 f572eb6b0a0b567461cf06bc31be2ff329ce0e0d assets/mega_showdown/models/item/tapunium-z.json
+65ccb212f959b0fb11bfae70427f7f5ff0b2922a assets/mega_showdown/models/item/tera_orb.json
 1d2ffc5d91809537d52730ee8447312bcf83ae88 assets/mega_showdown/models/item/tyranitarite.json
 1d05f09907e360047116463e89a3e84cbd42ac79 assets/mega_showdown/models/item/ultranecrozium-z.json
 aeaad222d1c904e6bb2f5429e4d5f851316176c7 assets/mega_showdown/models/item/venusaurite.json

@@ -68,6 +68,11 @@ public class Utils {
     }
 
     public static void registerRemapping(){
+        megaStonesRegister();
+        zMovesRegister();
+    }
+
+    public static void megaStonesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABSOLITE.asItem(), "Absolite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.AGGRONITE.asItem(), "Aggronite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ALAKAZITE.asItem(), "Alakazite");
@@ -115,7 +120,9 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SWAMPERTITE.get(), "Swampertite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.TYRANITARITE.get(), "Tyranitarite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.VENUSAURITE.get(), "Venusaurite");
+    }
 
+    public static void zMovesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ALORAICHIUM_Z.asItem(), "aloraichiumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BLANK_Z.asItem(), "blankz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BUGINIUM_Z.asItem(), "buginiumz");

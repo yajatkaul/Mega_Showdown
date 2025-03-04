@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -72,8 +73,6 @@ public class MegaBraceletItem extends Item {
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
         if (player.level().isClientSide || Config.battleModeOnly){
-//            player.sendSystemMessage(Component.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
-//                    .withStyle(style -> style.withColor(0xFF0000)));
             return InteractionResult.PASS;
         }
 
@@ -84,7 +83,6 @@ public class MegaBraceletItem extends Item {
             }
             List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
-            boolean end = false;
             for (String key : megaKeys) {
                 FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
                 FlagSpeciesFeature feature = featureProvider.get(pokemon);
@@ -92,19 +90,22 @@ public class MegaBraceletItem extends Item {
                 if(feature != null){
                     boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-                    if(enabled){
-                        MegaLogic.Devolve(context, player, false);
-                        end = false;
-                        break;
-                    }else{
-                        end = true;
-                    }
+                    if(enabled) {
+                        if(!MegaLogic.Possible((ServerPlayer) player, false)){
+                            return InteractionResult.PASS;
+                        }
 
+                        MegaLogic.Devolve(context, player, false);
+                        return InteractionResult.SUCCESS;
+                    }
                 }
             }
-            if(end){
-                MegaLogic.Evolve(context, player, false);
+
+            if(!MegaLogic.Possible((ServerPlayer) player, false)){
+                return InteractionResult.PASS;
             }
+            MegaLogic.Evolve(context, player, false);
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
