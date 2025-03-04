@@ -6,12 +6,12 @@
       "aspects": [],
       "poser": "cobblemon:necrozma",
       "model": "cobblemon:necrozma.geo",
-      "texture": "cobblemon:textures/pokemon/necrozma/necrozma.png",
+      "texture": "cobblemon:textures/pokemon/0800_necrozma/necrozma.png",
       "layers": []
     },
     {
       "aspects": [ "shiny" ],
-      "texture": "cobblemon:textures/pokemon/necrozma/necrozma_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0800_necrozma/necrozma_shiny.png"
     }
   ]
 }
