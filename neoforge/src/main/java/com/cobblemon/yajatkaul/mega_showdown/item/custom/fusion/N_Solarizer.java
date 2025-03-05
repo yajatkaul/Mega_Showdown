@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -48,12 +49,15 @@ public class N_Solarizer extends Item {
         if (currentValue && pokemon.getSpecies().getName().equals("Necrozma") && !player.getData(DataManage.N_SOLAR_POKEMON).equals(new Pokemon())) {
             arg.set(DataManage.N_SOLAR, false);
             pokemon.setForcedAspects(Set.of("dusk-fusion"));
-            arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Solarizer (Inactive)"));
+
+            AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
+
+            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else if (!currentValue && pokemon.getSpecies().getName().equals("Solgaleo")) {
             arg.set(DataManage.N_SOLAR, true);
             player.setData(DataManage.N_SOLAR_POKEMON, pk.getPokemon());
             playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Solarizer (Charged)"));
+            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.charged"));
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getForcedAspects().contains("dusk-fusion")) {
             FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
             FlagSpeciesFeature feature = featureProvider.get(pokemon);
@@ -69,7 +73,7 @@ public class N_Solarizer extends Item {
             playerPartyStore.add(player.getData(DataManage.N_SOLAR_POKEMON));
             player.setData(DataManage.N_SOLAR_POKEMON, new Pokemon());
             pokemon.setForcedAspects(Set.of());
-            arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Solarizer (Inactive)"));
+            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else {
             return InteractionResult.PASS;
         }

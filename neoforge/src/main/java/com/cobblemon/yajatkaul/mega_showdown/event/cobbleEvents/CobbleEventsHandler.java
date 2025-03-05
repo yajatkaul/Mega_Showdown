@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEven
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
+import com.cobblemon.mod.common.api.events.entity.SpawnEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
@@ -17,6 +18,9 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
+import com.cobblemon.mod.common.api.types.ElementalTypes;
+import com.cobblemon.mod.common.api.types.tera.TeraType;
+import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -47,9 +51,11 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -60,8 +66,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getGlowColorForType;
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTeraShardForType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
 
 public class CobbleEventsHandler {
     public static Unit onMegaTraded(TradeCompletedEvent tradeCompletedEvent) {
@@ -475,10 +480,12 @@ public class CobbleEventsHandler {
 
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
+        Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
         pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
             String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
@@ -498,16 +505,20 @@ public class CobbleEventsHandler {
 
     public static Unit terrastallizationUsed(TerastallizationEvent terastallizationEvent) {
         LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
+        Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
 
         pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "terastallized");
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
             String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
 
-            ChatFormatting color = getGlowColorForType(terastallizationEvent.getPokemon().getEffectedPokemon());
+            TeraType teraType = terastallizationEvent.getPokemon().getEffectedPokemon().getTeraType();
+
+            ChatFormatting color = getGlowColorForTeraType(teraType);
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
                 team.setColor(color);

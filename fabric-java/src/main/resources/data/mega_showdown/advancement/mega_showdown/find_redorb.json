@@ -9,7 +9,7 @@
     },
     "description": {
       "translate": "advancement.mega_showdown.find_redorb.description",
-      "fallback": "Fine the redorb"
+      "fallback": "Find the redorb"
     },
     "frame": "task",
     "show_toast": true,

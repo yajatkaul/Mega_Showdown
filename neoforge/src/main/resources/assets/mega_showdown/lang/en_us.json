@@ -242,6 +242,15 @@
   "advancement.mega_showdown.find_blueorb.title": "Primal Blue",
   "advancement.mega_showdown.find_redorb.title": "Primal Red",
   "advancement.mega_showdown.primal_evolve.title": "Primal Reversion",
+  "advancement.mega_showdown.change_tera.title": "Tera Changer",
+  "advancement.mega_showdown.fusion.title": "Fusion",
+  "advancement.mega_showdown.get_blank_move.title": "Blank Move?",
+  "advancement.mega_showdown.get_fusors.title": "Fusors",
+  "advancement.mega_showdown.get_tera_orb.title": "Tera Showdown",
+  "advancement.mega_showdown.get_z_move.title": "Z-Moves!",
+  "advancement.mega_showdown.terastallized.title": "Terastallized",
+  "advancement.mega_showdown.ultra_necrom.title": "Radiant, powerful, majestic.",
+  "advancement.mega_showdown.z_moves.title": "Unleash the Z-Power!",
 
   "advancement.mega_showdown.root.description": "World of showdown",
   "advancement.mega_showdown.mega_evolve.description": "Mega evolve any Pokémon",
@@ -251,6 +260,15 @@
   "advancement.mega_showdown.find_blueorb.description": "Find the blueorb",
   "advancement.mega_showdown.find_redorb.description": "Find the redorb",
   "advancement.mega_showdown.primal_evolve.description": "Primal revert any Pokémon",
+  "advancement.mega_showdown.change_tera.description": "Look out, its Tera Type Changed!",
+  "advancement.mega_showdown.fusion.description": "Fuse any Pokémon!",
+  "advancement.mega_showdown.get_blank_move.description": "Obtain the blank-z",
+  "advancement.mega_showdown.get_fusors.description": "Obtain any of the fusors",
+  "advancement.mega_showdown.get_tera_orb.description": "Obtain the TeraOrb",
+  "advancement.mega_showdown.get_z_move.description": "Obtain any z move!",
+  "advancement.mega_showdown.terastallized.description": "Terastallize any Pokémon",
+  "advancement.mega_showdown.ultra_necrom.description": "Get Ultra Necromza",
+  "advancement.mega_showdown.z_moves.description": "Power up with a Z-Move!",
 
   "item.mega_showdown.aloraichium-z": "Aloraichium-Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "Z-Crystal associated with Alolan Raichu and allows it to upgrade its Thunderbolt into the special Z-Move Stoked Sparksurfer.",
@@ -350,7 +368,11 @@
   "item.mega_showdown.water_tera_shard": "Water Tera Shard",
 
   "item.mega_showdown.n_lunarizer": "N Lunarizer",
+  "item.mega_showdown.n_lunarizer.inactive": "N Lunarizer (Inactive)",
+  "item.mega_showdown.n_lunarizer.charged": "N Lunarizer (Charged)",
   "tooltip.mega_showdown.n_lunarizer.tooltip": "Used to fuse Lunala with a mysterious being",
   "item.mega_showdown.n_solarizer": "N Solarizer",
+  "item.mega_showdown.n_solarizer.inactive": "N Solarizer (Inactive)",
+  "item.mega_showdown.n_solarizer.charged": "N Solarizer (Charged)",
   "tooltip.mega_showdown.n_solarizer.tooltip": "Used to fuse Solgaleo with a mysterious being"
 }

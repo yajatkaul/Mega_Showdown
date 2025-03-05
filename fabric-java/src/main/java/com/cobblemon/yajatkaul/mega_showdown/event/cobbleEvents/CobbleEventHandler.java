@@ -62,8 +62,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getGlowColorForType;
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTeraShardForType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
 
 public class CobbleEventHandler {
     public static Unit onMegaTraded(TradeCompletedEvent tradeCompletedEvent) {
@@ -480,10 +479,12 @@ public class CobbleEventHandler {
 
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
+        Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
         pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
             String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
@@ -500,16 +501,18 @@ public class CobbleEventHandler {
 
     public static Unit terrastallizationUsed(TerastallizationEvent terastallizationEvent) {
         LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
+        Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
 
         pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "terastallized");
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
             String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
             Team team = scoreboard.getTeam(teamName);
 
-            Formatting color = getGlowColorForType(terastallizationEvent.getPokemon().getEffectedPokemon());
+            Formatting color = getGlowColorForTeraType(terastallizationEvent.getPokemon().getEffectedPokemon().getTeraType());
             if (team == null) {
                 team = scoreboard.addTeam(teamName);
                 team.setColor(color);

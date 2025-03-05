@@ -42,7 +42,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         tag(ModTags.Items.Z_CRYSTALS)
                 .add(ZMoves.ALORAICHIUM_Z.get())
-                .add(ZMoves.BLANK_Z.get())
                 .add(ZMoves.BUGINIUM_Z.get())
                 .add(ZMoves.DARKINIUM_Z.get())
                 .add(ZMoves.DECIDIUM_Z.get())

@@ -3,7 +3,10 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,12 +37,16 @@ public class TeraShard extends Item {
             Item shard = arg.getItem().asItem();
 
             if(pokemon.getOwnerPlayer() == player && arg.getCount() == 50){
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "change_tera");
                 arg.shrink(50);
                 if(arg.getItem() != TeraMoves.STELLAR_TERA_SHARD.get()){
                     pokemon.setTeraType(getType(shard));
                 }else{
                     pokemon.setTeraType(TeraTypes.getSTELLAR());
                 }
+            } else if (pokemon.getOwnerPlayer() == player && arg.getCount() != 50) {
+                player.displayClientMessage(Component.literal("You need 50 of these to be used")
+                        .withColor(0xFF0000), true);
             }
 
             return InteractionResult.SUCCESS;

@@ -90,4 +90,27 @@ public class TeraTypeHelper {
         }
         throw new IllegalArgumentException("Unknown Pokémon types: " + types);
     }
+
+    public static Formatting getGlowColorForTeraType(TeraType teraType) {
+        if (teraType.equals(TeraTypes.getBUG())) return Formatting.DARK_GREEN;
+        if (teraType.equals(TeraTypes.getDARK())) return Formatting.BLACK;
+        if (teraType.equals(TeraTypes.getDRAGON())) return Formatting.DARK_BLUE;
+        if (teraType.equals(TeraTypes.getELECTRIC())) return Formatting.YELLOW;
+        if (teraType.equals(TeraTypes.getFAIRY())) return Formatting.LIGHT_PURPLE;
+        if (teraType.equals(TeraTypes.getFIGHTING())) return Formatting.DARK_RED;
+        if (teraType.equals(TeraTypes.getFIRE())) return Formatting.RED;
+        if (teraType.equals(TeraTypes.getFLYING())) return Formatting.GRAY;
+        if (teraType.equals(TeraTypes.getGHOST())) return Formatting.DARK_PURPLE;
+        if (teraType.equals(TeraTypes.getGRASS())) return Formatting.GREEN;
+        if (teraType.equals(TeraTypes.getGROUND())) return Formatting.DARK_RED;
+        if (teraType.equals(TeraTypes.getICE())) return Formatting.BLUE;
+        if (teraType.equals(TeraTypes.getNORMAL())) return Formatting.WHITE;
+        if (teraType.equals(TeraTypes.getPOISON())) return Formatting.DARK_PURPLE;
+        if (teraType.equals(TeraTypes.getPSYCHIC())) return Formatting.LIGHT_PURPLE;
+        if (teraType.equals(TeraTypes.getROCK())) return Formatting.DARK_GRAY;
+        if (teraType.equals(TeraTypes.getSTEEL())) return Formatting.GRAY;
+        if (teraType.equals(TeraTypes.getWATER())) return Formatting.BLUE;
+
+        throw new IllegalArgumentException("Unknown TeraType: " + teraType);
+    }
 }

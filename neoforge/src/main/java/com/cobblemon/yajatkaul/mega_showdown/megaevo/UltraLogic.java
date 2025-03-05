@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
@@ -91,7 +92,7 @@ public class UltraLogic {
             }
 
             if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZMoves.ULTRANECROZIUM_Z) && (pokemon.getForcedAspects().contains("dawn-fusion") || pokemon.getForcedAspects().contains("dusk-fusion"))){
-                if(!Possible((ServerPlayer) player)){
+                if(!Possible(player)){
                     return;
                 }
 
@@ -109,6 +110,7 @@ public class UltraLogic {
                 }
 
                 new FlagSpeciesFeature("ultra", true).apply(pokemon);
+                AdvancementHelper.grantAdvancement(player, "ultra_necrom");
                 ultraAnimation(pokemon.getEntity());
             }
         }

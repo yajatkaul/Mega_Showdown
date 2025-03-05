@@ -1,15 +1,15 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:blueorb"
+      "id": "mega_showdown:blank-z"
     },
     "title": {
-      "translate": "advancement.mega_showdown.find_blueorb.title",
-      "fallback": "Primal Blue"
+      "translate": "advancement.mega_showdown.get_blank_move.title",
+      "fallback": "Blank Move?"
     },
     "description": {
-      "translate": "advancement.mega_showdown.find_blueorb.description",
-      "fallback": "Find the blueorb"
+      "translate": "advancement.mega_showdown.get_blank_move.description",
+      "fallback": "Obtain the blank-z"
     },
     "frame": "task",
     "show_toast": true,
@@ -18,17 +18,17 @@
   },
   "parent": "mega_showdown:mega_showdown/root",
   "criteria": {
-    "obtained_item": {
+    "obtained_blank_z": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": ["mega_showdown:blueorb"]
+            "items": "mega_showdown:blank-z"
           }
         ]
       }
     }
   },
-  "requirements": [["obtained_item"]],
+  "requirements": [["obtained_blank_z"]],
   "sends_telemetry_event": false
 }

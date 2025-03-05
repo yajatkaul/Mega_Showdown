@@ -10,6 +10,7 @@ import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -52,12 +53,14 @@ public class N_Lunarizer extends Item {
         if (currentValue && pokemon.getSpecies().getName().equals("Necrozma") && !player.getData(DataManage.N_LUNAR_POKEMON).equals(new Pokemon())) {
             arg.set(DataManage.N_LUNAR, false);
             pokemon.setForcedAspects(Set.of("dawn-fusion"));
-            arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Lunarizer (Inactive)"));
+
+            AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
+            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));
         } else if (!currentValue && pokemon.getSpecies().getName().equals("Lunala")) {
             arg.set(DataManage.N_LUNAR, true);
             player.setData(DataManage.N_LUNAR_POKEMON, pk.getPokemon());
             playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Lunarizer (Charged)"));
+            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.charged"));
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getForcedAspects().contains("dawn-fusion")) {
             FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
             FlagSpeciesFeature feature = featureProvider.get(pokemon);
@@ -73,7 +76,7 @@ public class N_Lunarizer extends Item {
             playerPartyStore.add(player.getData(DataManage.N_LUNAR_POKEMON));
             player.setData(DataManage.N_LUNAR_POKEMON, new Pokemon());
             pokemon.setForcedAspects(Set.of());
-            arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Lunarizer (Inactive)"));
+            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));
         } else {
             return InteractionResult.PASS;
         }
