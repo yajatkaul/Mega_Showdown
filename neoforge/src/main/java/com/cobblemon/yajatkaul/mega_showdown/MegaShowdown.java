@@ -1,18 +1,23 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.battles.BattleRegistry;
+import com.cobblemon.mod.common.particle.CobblemonParticles;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
@@ -35,6 +40,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.event.CurioChangeEvent;
 
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
@@ -69,6 +76,22 @@ public final class MegaShowdown {
         Utils.registerRemapping();
         TeraTypeHelper.loadShardData();
         CobbleEvents.register();
+    }
+
+    @SubscribeEvent
+    public void onCurioChange(CurioChangeEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
+                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof TeraItem))
+                    .orElse(false);
+
+            PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
+            if(!hasTeraItemCurios && battle != null){
+                player.displayClientMessage(Component.literal("Bro thought he could get away with it")
+                        .withColor(0xFF0000), true);
+                battle.end();
+            }
+        }
     }
 
     @SubscribeEvent

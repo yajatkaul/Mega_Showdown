@@ -7,6 +7,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
+import com.cobblemon.yajatkaul.mega_showdown.event.TrinketEvent;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
@@ -46,5 +47,6 @@ public class MegaShowdown implements ModInitializer {
         TeraTypeHelper.loadShardData();
 
         CobbleEvents.register();
+        TrinketEvent.register();
     }
 }

@@ -265,6 +265,10 @@ public class MegaLogic {
     }
 
     public static void Devolve(LivingEntity context, PlayerEntity player, Boolean fromBattle){
+        if(player.getWorld().isClient || context == null){
+            return;
+        }
+
         if(context instanceof PokemonEntity pk){
             if(pk.getPokemon().getOwnerPlayer() != player){
                 return;
@@ -277,22 +281,23 @@ public class MegaLogic {
                 );
                 return;
             }
+
+            Pokemon pokemon = ((PokemonEntity) context).getPokemon();
+
+            if(player.getWorld().isClient){
+                return;
+            }
+
+            player.setAttached(DataManage.MEGA_DATA, false);
+            player.setAttached(DataManage.MEGA_POKEMON, null);
+
+            playDevolveAnimation(context);
+
+            new FlagSpeciesFeature("mega", false).apply(pokemon);
+            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+
         }
-
-        Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-
-        if(player.getWorld().isClient){
-            return;
-        }
-
-        player.setAttached(DataManage.MEGA_DATA, false);
-        player.setAttached(DataManage.MEGA_POKEMON, null);
-
-        playDevolveAnimation(context);
-
-        new FlagSpeciesFeature("mega", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
     }
 
     public static void playEvolveAnimation(LivingEntity context) {

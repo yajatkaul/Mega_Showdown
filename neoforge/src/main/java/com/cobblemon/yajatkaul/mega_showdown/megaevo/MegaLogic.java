@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.particle.CobblemonParticles;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
@@ -250,7 +251,7 @@ public class MegaLogic {
     }
 
     public static void Devolve(LivingEntity context, Player player, Boolean fromBattle){
-        if(player.level().isClientSide){
+        if(player.level().isClientSide || context == null){
             return;
         }
 
@@ -264,18 +265,18 @@ public class MegaLogic {
                         .withColor(0xFF0000), true);
                 return;
             }
+
+            Pokemon pokemon = ((PokemonEntity) context).getPokemon();
+
+            player.setData(DataManage.MEGA_DATA, false);
+            player.setData(DataManage.MEGA_POKEMON, new Pokemon());
+
+            playDevolveAnimation(context);
+
+            new FlagSpeciesFeature("mega", false).apply(pokemon);
+            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
         }
-
-        Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-
-        player.setData(DataManage.MEGA_DATA, false);
-        player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-        playDevolveAnimation(context);
-
-        new FlagSpeciesFeature("mega", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
     }
 
     public static void playEvolveAnimation(LivingEntity context) {
