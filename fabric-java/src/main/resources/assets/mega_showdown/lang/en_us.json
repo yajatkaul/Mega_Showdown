@@ -208,7 +208,7 @@
   "item.mega_showdown.adamantorb": "Adamant Orb",
 
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
-  "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
+  "creativeTab.mega_showdown.z_moves_tab": "Showdown",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
@@ -230,6 +230,9 @@
   "trinkets.slot.hand.z_slot": "Z Wear",
   "curios.identifier.z_slot": "Z Wear",
 
+  "trinkets.slot.hand.tera_slot": "Tera Wear",
+  "curios.identifier.tera_slot": "Tera Wear",
+
   "advancement.mega_showdown.root.title": "Showdown Time",
   "advancement.mega_showdown.mega_evolve.title": "A Beast",
   "advancement.mega_showdown.find_mega_stone.title": "Evolutionary Beings",
@@ -244,8 +247,8 @@
   "advancement.mega_showdown.find_mega_stone.description": "Obtain any mega stone",
   "advancement.mega_showdown.find_keystone.description": "Find the keystone",
   "advancement.mega_showdown.get_bracelet.description": "Obtain any mega bracelet",
-  "advancement.mega_showdown.find_blueorb.description": "Fine the blueorb",
-  "advancement.mega_showdown.find_redorb.description": "Fine the redorb",
+  "advancement.mega_showdown.find_blueorb.description": "Find the blueorb",
+  "advancement.mega_showdown.find_redorb.description": "Find the redorb",
   "advancement.mega_showdown.primal_evolve.description": "Primal revert any Pokémon",
 
   "item.mega_showdown.aloraichium-z": "Aloraichium-Z",
@@ -321,5 +324,32 @@
   "item.mega_showdown.waterium-z": "Waterium-Z",
   "tooltip.mega_showdown.waterium-z.tooltip": "Z-Crystal associated with the Water type and allows Pokémon to upgrade their Water-type moves to Z-Moves.",
   "item.mega_showdown.z-ring": "Z-Ring",
-  "tooltip.mega_showdown.z-ring.tooltip": "Bracelet that allows a Trainer and their Pokémon to gather the Z-Power required to perform Z-Moves."
+  "tooltip.mega_showdown.z-ring.tooltip": "Bracelet that allows a Trainer and their Pokémon to gather the Z-Power required to perform Z-Moves.",
+  "item.mega_showdown.tera_orb": "Tera Orb",
+  "tooltip.mega_showdown.tera_item.tooltip": "Orb that allows a Trainer to Terastallize their Pokémon, temporarily changing its type and boosting its moves.",
+
+  "item.mega_showdown.bug_tera_shard": "Bug Tera Shard",
+  "item.mega_showdown.dark_tera_shard": "Dark tera Shard",
+  "item.mega_showdown.dragon_tera_shard": "Dragon Tera Shard",
+  "item.mega_showdown.electric_tera_shard": "Electric Tera Shard",
+  "item.mega_showdown.fairy_tera_shard": "Fairy Tera Shard",
+  "item.mega_showdown.fighting_tera_shard": "Fighting Tera Shard",
+  "item.mega_showdown.fire_tera_shard": "Fire Tera Shard",
+  "item.mega_showdown.flying_tera_shard": "Flying Tera Shard",
+  "item.mega_showdown.ghost_tera_shard": "Ghost Tera Shard",
+  "item.mega_showdown.grass_tera_shard": "Grass Tera Shard",
+  "item.mega_showdown.ground_tera_shard": "Ground Tera Shard",
+  "item.mega_showdown.ice_tera_shard": "Ice Tera Shard",
+  "item.mega_showdown.normal_tera_shard": "Normal Tera Shard",
+  "item.mega_showdown.poison_tera_shard": "Poison Tera Shard",
+  "item.mega_showdown.psychic_tera_shard": "Psychic Tera Shard",
+  "item.mega_showdown.rock_tera_shard": "Rock Tera Shard",
+  "item.mega_showdown.steel_tera_shard": "Steel Tera Shard",
+  "item.mega_showdown.stellar_tera_shard": "Stellar Tera Shard",
+  "item.mega_showdown.water_tera_shard": "Water Tera Shard",
+
+  "item.mega_showdown.n_lunarizer": "N Lunarizer",
+  "tooltip.mega_showdown.n_lunarizer.tooltip": "Used to fuse Lunala with a mysterious being",
+  "item.mega_showdown.n_solarizer": "N Solarizer",
+  "tooltip.mega_showdown.n_solarizer.tooltip": "Used to fuse Solgaleo with a mysterious being"
 }

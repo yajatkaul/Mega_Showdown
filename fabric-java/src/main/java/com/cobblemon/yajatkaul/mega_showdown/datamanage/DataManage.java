@@ -8,7 +8,10 @@ import kotlin.uuid.Uuid;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.minecraft.component.ComponentType;
 import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.text.Style;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Uuids;
@@ -68,11 +71,52 @@ public class DataManage {
                     )
     );
 
+    //Data Component
+
+    public static final ComponentType<Boolean> N_LUNAR = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "n_lunar"),
+            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+    );
+
+    public static final ComponentType<Boolean> N_SOLAR = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "n_solar"),
+            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+    );
+
+    public static final AttachmentType<Pokemon> N_LUNAR_POKEMON = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "n_lunar_pokemon"),
+            builder -> builder // Using a builder chain to configure the attachment data type
+                    .copyOnDeath()
+                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
+                    .persistent(Pokemon.getCODEC()) // How to save and load the data
+                    .syncWith(
+                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
+                            AttachmentSyncPredicate.all() // Who to send the data to
+                    )
+    );
+
+    public static final AttachmentType<Pokemon> N_SOLAR_POKEMON = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "n_solar_pokemon"),
+            builder -> builder // Using a builder chain to configure the attachment data type
+                    .copyOnDeath()
+                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
+                    .persistent(Pokemon.getCODEC()) // How to save and load the data
+                    .syncWith(
+                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
+                            AttachmentSyncPredicate.all() // Who to send the data to
+                    )
+    );
+
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();
 
         PRIMAL_DATA.initializer();
         PRIMAL_POKEMON.initializer();
+
+        N_LUNAR_POKEMON.initializer();
+        N_SOLAR_POKEMON.initializer();
     }
 }

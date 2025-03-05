@@ -14,6 +14,7 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> scuffedMode;
     public static final Supplier<Boolean> friendshipMode;
     public static final Supplier<Boolean> zMoves;
+    public static final Supplier<Boolean> teralization;
 
     static{
         // construct a new config builder
@@ -27,6 +28,7 @@ public class ShowdownConfig {
         scuffedMode = builder.comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this").define("scuffedMode", false);
         friendshipMode = builder.comment("Makes it so that you need to have 200+ friendship in order to mega outside").define("friendshipMode", false);
         zMoves = builder.comment("Enables/Disables zMoves in game").define("zMoves", true);
+        teralization = builder.comment("Enables/Disables teralization in game").define("teralization", true);
 
         builder.build();
     }

@@ -17,8 +17,10 @@ import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
+import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
@@ -40,6 +42,7 @@ public class MegaShowdown implements ModInitializer {
         ModItems.registerModItem();
         MegaStones.registerModItem();
         ZMoves.registerModItem();
+        TeraMoves.registerModItem();
 
         ModBlocks.registerBlocks();
         PokemonStones.registerBlocks();
@@ -61,6 +64,7 @@ public class MegaShowdown implements ModInitializer {
     private void onServerStarted(MinecraftServer server) {
         Utils.loadMegaStoneIds();
         Utils.registerRemapping();
+        TeraTypeHelper.loadShardData();
 
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChange);
 
@@ -78,6 +82,11 @@ public class MegaShowdown implements ModInitializer {
 
         CobblemonEvents.ZPOWER_USED.subscribe(Priority.NORMAL, CobbleEventHandler::zMovesUsed);
 
+        CobblemonEvents.TERASTALLIZATION.subscribe(Priority.NORMAL, CobbleEventHandler::terrastallizationUsed);
+
+        CobblemonEvents.LOOT_DROPPED.subscribe(Priority.NORMAL, CobbleEventHandler::dropShardPokemon);
+
+        CobblemonEvents.POKEMON_HEALED.subscribe(Priority.NORMAL, CobbleEventHandler::healedPokemons);
         if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventHandler::getBattleEndInfo);
             CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, CobbleEventHandler::deVolveFlee);

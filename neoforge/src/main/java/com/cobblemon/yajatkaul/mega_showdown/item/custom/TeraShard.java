@@ -31,10 +31,12 @@ public class TeraShard extends Item {
                 return InteractionResult.PASS;
             }
 
+            Item shard = arg.getItem().asItem();
+
             if(pokemon.getOwnerPlayer() == player && arg.getCount() == 50){
                 arg.shrink(50);
                 if(arg.getItem() != TeraMoves.STELLAR_TERA_SHARD.get()){
-                    pokemon.setTeraType(getType(arg.getItem()));
+                    pokemon.setTeraType(getType(shard));
                 }else{
                     pokemon.setTeraType(TeraTypes.getSTELLAR());
                 }

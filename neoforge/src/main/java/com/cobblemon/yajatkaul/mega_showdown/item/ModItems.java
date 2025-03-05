@@ -5,10 +5,13 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
 
 
 public class ModItems {
@@ -55,10 +58,22 @@ public class ModItems {
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> N_LUNARIZER = ITEMS.register("n_lunarizer",
-            () -> new N_Lunarizer(new Item.Properties().stacksTo(1).component(DataManage.N_LUNAR,false)));
+            () -> new N_Lunarizer(new Item.Properties().stacksTo(1).component(DataManage.N_LUNAR,false)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.n_lunarizer.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
     public static final DeferredItem<Item> N_SOLARIZER = ITEMS.register("n_solarizer",
-            () -> new N_Solarizer(new Item.Properties().stacksTo(1).component(DataManage.N_SOLAR, false)));
+            () -> new N_Solarizer(new Item.Properties().stacksTo(1).component(DataManage.N_SOLAR, false)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.n_solarizer.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

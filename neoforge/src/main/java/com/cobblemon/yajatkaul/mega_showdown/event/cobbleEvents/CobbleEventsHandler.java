@@ -17,8 +17,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
-import com.cobblemon.mod.common.api.types.ElementalType;
-import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -26,7 +24,6 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -61,6 +58,7 @@ import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getGlowColorForType;
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTeraShardForType;
@@ -294,7 +292,6 @@ public class CobbleEventsHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
-                    MegaShowdown.LOGGER.info(pokemon.getSpecies().getName());
                     if(pokemon.getSpecies().getName().equals("Rayquaza")){
                         continue;
                     }
@@ -454,6 +451,13 @@ public class CobbleEventsHandler {
                     continue;
                 }
 
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+                for (Pokemon pokemon: playerPartyStore){
+                    if(pokemon.getEntity() != null){
+                        pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                    }
+                }
+
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
                 List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
@@ -487,7 +491,7 @@ public class CobbleEventsHandler {
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_yellow";
+            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
             if (team == null) {
@@ -510,12 +514,14 @@ public class CobbleEventsHandler {
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_yellow";
+            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
+
+            ChatFormatting color = getGlowColorForType(terastallizationEvent.getPokemon().getEffectedPokemon());
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(getGlowColorForType(terastallizationEvent.getPokemon().getOriginalPokemon()));
+                team.setColor(color);
                 team.setSeeFriendlyInvisibles(false);
                 team.setAllowFriendlyFire(true);
             }

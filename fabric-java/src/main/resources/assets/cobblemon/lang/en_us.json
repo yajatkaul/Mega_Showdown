@@ -144,7 +144,7 @@
 	"cobblemon.move.zkinesis": "Z Kinesis",
 	"cobblemon.move.zkinesis.desc": "Raises the user's evasiveness by 1.",
 	"cobblemon.move.zsoftboiled": "Z Soft-Boiled",
-	"cobblemon.move.zsoftboiled.desc": "Fully restores user's HP.",
+	"cobblemon.move.zsoftboiled.desc": "Resets user's lowered stats.",
 	"cobblemon.move.zglare": "Z Glare",
 	"cobblemon.move.zglare.desc": "Raises Special Defense by 1 stage.",
 	"cobblemon.move.zpoisongas": "Z Poison Gas",

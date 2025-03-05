@@ -4,6 +4,7 @@
   ],
   "slots": [
     "hand/evowear",
-    "hand/z_slot"
+    "hand/z_slot",
+    "hand/tera_slot"
   ]
 }

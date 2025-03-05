@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -192,5 +193,36 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('A', CobblemonItems.BLACK_APRICORN)
                 .define('I', Items.IRON_INGOT)
                 .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.N_LUNARIZER.get())
+                .pattern("IWI")
+                .pattern("ISI")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('W', Items.LIGHT_BLUE_WOOL)
+                .define('S', CobblemonItems.MOON_STONE)
+                .define('R', Items.REDSTONE)
+                .unlockedBy("has_moonstone", has(CobblemonItems.MOON_STONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.N_SOLARIZER.get())
+                .pattern("IWI")
+                .pattern("ISI")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('W', Items.ORANGE_WOOL)
+                .define('S', CobblemonItems.SUN_STONE)
+                .define('R', Items.REDSTONE)
+                .unlockedBy("has_sunstone", has(CobblemonItems.SUN_STONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TeraMoves.TERA_ORB.get())
+                .pattern("SES")
+                .pattern("GDG")
+                .pattern("SBS")
+                .define('S', Items.AMETHYST_SHARD)
+                .define('G', Items.GLOWSTONE_DUST)
+                .define('B', Items.BLAZE_POWDER)
+                .define('D', Items.DIAMOND)
+                .define('E', Items.ENDER_PEARL)
+                .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD)).save(recipeOutput);
     }
 }

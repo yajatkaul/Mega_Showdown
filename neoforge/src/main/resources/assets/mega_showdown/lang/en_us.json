@@ -326,5 +326,30 @@
   "item.mega_showdown.z-ring": "Z-Ring",
   "tooltip.mega_showdown.z-ring.tooltip": "Bracelet that allows a Trainer and their Pokémon to gather the Z-Power required to perform Z-Moves.",
   "item.mega_showdown.tera_orb": "Tera Orb",
-  "tooltip.mega_showdown.tera_item.tooltip": "Orb that allows a Trainer to Terastallize their Pokémon, temporarily changing its type and boosting its moves."
+  "tooltip.mega_showdown.tera_item.tooltip": "Orb that allows a Trainer to Terastallize their Pokémon, temporarily changing its type and boosting its moves.",
+
+  "item.mega_showdown.bug_tera_shard": "Bug Tera Shard",
+  "item.mega_showdown.dark_tera_shard": "Dark tera Shard",
+  "item.mega_showdown.dragon_tera_shard": "Dragon Tera Shard",
+  "item.mega_showdown.electric_tera_shard": "Electric Tera Shard",
+  "item.mega_showdown.fairy_tera_shard": "Fairy Tera Shard",
+  "item.mega_showdown.fighting_tera_shard": "Fighting Tera Shard",
+  "item.mega_showdown.fire_tera_shard": "Fire Tera Shard",
+  "item.mega_showdown.flying_tera_shard": "Flying Tera Shard",
+  "item.mega_showdown.ghost_tera_shard": "Ghost Tera Shard",
+  "item.mega_showdown.grass_tera_shard": "Grass Tera Shard",
+  "item.mega_showdown.ground_tera_shard": "Ground Tera Shard",
+  "item.mega_showdown.ice_tera_shard": "Ice Tera Shard",
+  "item.mega_showdown.normal_tera_shard": "Normal Tera Shard",
+  "item.mega_showdown.poison_tera_shard": "Poison Tera Shard",
+  "item.mega_showdown.psychic_tera_shard": "Psychic Tera Shard",
+  "item.mega_showdown.rock_tera_shard": "Rock Tera Shard",
+  "item.mega_showdown.steel_tera_shard": "Steel Tera Shard",
+  "item.mega_showdown.stellar_tera_shard": "Stellar Tera Shard",
+  "item.mega_showdown.water_tera_shard": "Water Tera Shard",
+
+  "item.mega_showdown.n_lunarizer": "N Lunarizer",
+  "tooltip.mega_showdown.n_lunarizer.tooltip": "Used to fuse Lunala with a mysterious being",
+  "item.mega_showdown.n_solarizer": "N Solarizer",
+  "tooltip.mega_showdown.n_solarizer.tooltip": "Used to fuse Solgaleo with a mysterious being"
 }

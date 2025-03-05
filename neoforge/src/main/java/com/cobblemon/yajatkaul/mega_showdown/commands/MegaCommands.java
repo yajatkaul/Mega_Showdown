@@ -22,7 +22,7 @@ public class MegaCommands {
                         .executes(context -> executeReset(EntityArgument.getPlayer(context, "player"))))); // Execute on specified player
 
         event.getDispatcher().register(Commands.literal("megaresetcommon")
-                .requires(source -> source.hasPermission(0)) // Requires OP permission level (2)
+                .requires(source -> source.hasPermission(0)) // Requires no OP permission level (0)
                 .executes(context -> executeResetCommon(context.getSource().getPlayer()))); // Self execution
     }
 

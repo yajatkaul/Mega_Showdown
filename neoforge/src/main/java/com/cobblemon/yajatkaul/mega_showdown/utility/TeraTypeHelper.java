@@ -39,7 +39,7 @@ public class TeraTypeHelper {
     }
 
     public static TeraType getType(Item item) {
-        return ITEM_TO_TERA_MAP.getOrDefault(item, TeraTypes.getNORMAL()); // Default to NORMAL if not found
+        return ITEM_TO_TERA_MAP.getOrDefault(item, TeraTypes.getNORMAL());
     }
 
     public static DeferredItem<Item> getTeraShardForType(Iterable<ElementalType> types) {

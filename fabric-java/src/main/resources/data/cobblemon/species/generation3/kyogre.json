@@ -202,16 +202,16 @@
         "canWalk": true,
         "avoidsLand": false
       },
-      "fly": {
-        "canFly": false
-      },
-      "swim": {
-        "swimSpeed": 0.5,
-        "canSwimInWater": true,
-        "canBreatheUnderwater": true
-      }
+    "fly": {
+      "canFly": false
+    },
+    "swim": {
+      "swimSpeed": 0.5,
+      "canSwimInWater": true,
+      "canBreatheUnderwater": true
     }
-  },
+  }
+},
   "baseFriendship": 0,
   "evYield": {
     "hp": 0,

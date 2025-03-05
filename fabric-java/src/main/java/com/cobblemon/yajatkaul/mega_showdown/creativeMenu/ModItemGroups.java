@@ -6,6 +6,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -159,6 +160,9 @@ public class ModItemGroups {
 
                         entries.add(MegaStones.BLUE_ORB);
                         entries.add(MegaStones.RED_ORB);
+
+                        entries.add(ModItems.N_LUNARIZER);
+                        entries.add(ModItems.N_SOLARIZER);
                     }))
                     .build());
 
@@ -204,6 +208,27 @@ public class ModItemGroups {
                         entries.add(ZMoves.TAPUNIUM_Z);
                         entries.add(ZMoves.ULTRANECROZIUM_Z);
                         entries.add(ZMoves.WATERIUM_Z);
+
+                        entries.add(TeraMoves.TERA_ORB);
+                        entries.add(TeraMoves.BUG_TERA_SHARD);
+                        entries.add(TeraMoves.DARK_TERA_SHARD);
+                        entries.add(TeraMoves.DRAGON_TERA_SHARD);
+                        entries.add(TeraMoves.ELECTRIC_TERA_SHARD);
+                        entries.add(TeraMoves.FAIRY_TERA_SHARD);
+                        entries.add(TeraMoves.FIGHTING_TERA_SHARD);
+                        entries.add(TeraMoves.FIRE_TERA_SHARD);
+                        entries.add(TeraMoves.FLYING_TERA_SHARD);
+                        entries.add(TeraMoves.GHOST_TERA_SHARD);
+                        entries.add(TeraMoves.GRASS_TERA_SHARD);
+                        entries.add(TeraMoves.GROUND_TERA_SHARD);
+                        entries.add(TeraMoves.ICE_TERA_SHARD);
+                        entries.add(TeraMoves.NORMAL_TERA_SHARD);
+                        entries.add(TeraMoves.POISON_TERA_SHARD);
+                        entries.add(TeraMoves.PSYCHIC_TERA_SHARD);
+                        entries.add(TeraMoves.ROCK_TERA_SHARD);
+                        entries.add(TeraMoves.STEEL_TERA_SHARD);
+                        entries.add(TeraMoves.STELLAR_TERA_SHARD);
+                        entries.add(TeraMoves.WATER_TERA_SHARD);
                     }))
                     .build());
 

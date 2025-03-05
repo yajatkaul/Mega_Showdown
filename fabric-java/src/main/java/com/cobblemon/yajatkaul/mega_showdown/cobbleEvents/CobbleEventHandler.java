@@ -2,11 +2,15 @@ package com.cobblemon.yajatkaul.mega_showdown.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
+import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
+import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
@@ -14,17 +18,18 @@ import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -33,9 +38,12 @@ import kotlin.Unit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.registry.Registries;
 import net.minecraft.scoreboard.ServerScoreboard;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -48,9 +56,14 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getGlowColorForType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTeraShardForType;
 
 public class CobbleEventHandler {
     public static Unit onMegaTraded(TradeCompletedEvent tradeCompletedEvent) {
@@ -409,6 +422,15 @@ public class CobbleEventHandler {
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
+            boolean hasTeraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                    trinkets.isEquipped(item -> item.getItem() instanceof TeraItem)).orElse(false);
+
+            if(hasTeraItemTrinkets && ShowdownConfig.teralization.get()){
+                data.getKeyItems().add(Identifier.of("cobblemon","tera_orb"));
+            }else{
+                data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
+            }
+
             if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get() || ShowdownConfig.battleModeOnly.get()) && MegaLogic.Possible(player, true) && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
                 data.getKeyItems().add(Identifier.of("cobblemon","key_stone"));
             }else{
@@ -451,18 +473,104 @@ public class CobbleEventHandler {
 
         pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
-        World world = pokemon.getWorld();
-        Scoreboard scoreboard = world.getScoreboard();
+        if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
+            ServerScoreboard scoreboard = serverLevel.getScoreboard();
+            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
-        // Create or get the yellow team
-        Team yellowTeam = scoreboard.getTeam("yellowGlow");
-        if (yellowTeam == null) {
-            yellowTeam = scoreboard.addTeam("yellowGlow");
-            yellowTeam.setColor(Formatting.YELLOW); // Using Formatting instead of TextFormatting
+            Team team = scoreboard.getTeam(teamName);
+            if (team == null) {
+                team = scoreboard.addTeam(teamName);
+                team.setColor(getGlowColorForType(zMoveUsedEvent.getPokemon().getOriginalPokemon()));
+            }
+
+            scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);
+        }
+        return Unit.INSTANCE;
+    }
+
+    public static Unit terrastallizationUsed(TerastallizationEvent terastallizationEvent) {
+        LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
+
+        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
+
+        if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
+            ServerScoreboard scoreboard = serverLevel.getScoreboard();
+            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
+
+            Team team = scoreboard.getTeam(teamName);
+
+            Formatting color = getGlowColorForType(terastallizationEvent.getPokemon().getEffectedPokemon());
+            if (team == null) {
+                team = scoreboard.addTeam(teamName);
+                team.setColor(color);
+            }
+
+            scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);
         }
 
-        // Add the entity to the yellow team
-        scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), yellowTeam);
+        PlayerEntity player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
+        AtomicReference<ItemStack> teraOrb = new AtomicReference<>(ItemStack.EMPTY); // Default to empty stack if not found
+
+        TrinketsApi.getTrinketComponent(player).ifPresent(trinketComponent -> {
+            trinketComponent.getEquipped(TeraMoves.TERA_ORB).forEach(pair -> {
+                ItemStack stack = pair.getRight(); // The ItemStack of the equipped trinket
+                if (!stack.isEmpty()) {
+                    teraOrb.set(stack); // Assign the found stack
+                }
+            });
+        });
+
+        if (teraOrb.get() != null) {
+            // Reduce durability by a specific amount (e.g., 10 points)
+            teraOrb.get().setDamage(teraOrb.get().getDamage() + 10);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit dropShardPokemon(LootDroppedEvent lootDroppedEvent) {
+        if (!(lootDroppedEvent.getEntity() instanceof PokemonEntity)){
+            return Unit.INSTANCE;
+        }
+        Pokemon pokemon = ((PokemonEntity) lootDroppedEvent.getEntity()).getPokemon();
+
+        Item correspondingTeraShard = getTeraShardForType(pokemon.getTypes());
+
+        ItemDropEntry teraShardDropEntry = new ItemDropEntry();
+        teraShardDropEntry.setItem(Registries.ITEM.getId(correspondingTeraShard));
+
+        int randomValue = new Random().nextInt(101);
+        if(randomValue >= 10 && randomValue <= 20){
+            lootDroppedEvent.getDrops().add(teraShardDropEntry);
+        } else if (randomValue == 33) {
+            teraShardDropEntry.setItem(Registries.ITEM.getId(TeraMoves.STELLAR_TERA_SHARD));
+            lootDroppedEvent.getDrops().add(teraShardDropEntry);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit healedPokemons(PokemonHealedEvent pokemonHealedEvent) {
+        if(pokemonHealedEvent.getPokemon().getOwnerPlayer() == null){
+            return Unit.INSTANCE;
+        }
+
+        PlayerEntity player = pokemonHealedEvent.getPokemon().getOwnerPlayer();
+        AtomicReference<ItemStack> teraOrb = new AtomicReference<>(ItemStack.EMPTY); // Default to empty stack if not found
+
+        TrinketsApi.getTrinketComponent(player).ifPresent(trinketComponent -> {
+            trinketComponent.getEquipped(TeraMoves.TERA_ORB).forEach(pair -> {
+                ItemStack stack = pair.getRight(); // The ItemStack of the equipped trinket
+                if (!stack.isEmpty()) {
+                    teraOrb.set(stack); // Assign the found stack
+                }
+            });
+        });
+
+        if (teraOrb != null) {
+            teraOrb.get().setDamage(0);
+        }
+
         return Unit.INSTANCE;
     }
 }

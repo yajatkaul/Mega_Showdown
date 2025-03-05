@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-03T22:59:50.7558789	Recipes
+// 1.21.1	2025-03-05T10:56:40.8772812	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -18,6 +18,9 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 131387fb75ddf0acd626e38c5de03ef61d294e7f data/mega_showdown/advancement/recipes/misc/megabracelet_red.json
 1226caa588833235fb9664b7326f6b993071fae2 data/mega_showdown/advancement/recipes/misc/megabracelet_yellow.json
 080f0dbf9ff7aaa6f7f94f090ae27106db717a4a data/mega_showdown/advancement/recipes/misc/megaring.json
+17a61387448421f434ef34db0ca7fdcda94c94dd data/mega_showdown/advancement/recipes/misc/n_lunarizer.json
+5c7d37bd6f363dc1ffbbb5e55de384d07750916e data/mega_showdown/advancement/recipes/misc/n_solarizer.json
+08602e7c34b11bd06840b4956f7b7f31fb6e1201 data/mega_showdown/advancement/recipes/misc/tera_orb.json
 a8914e50df935068a9275d9ad066f3a7cefd2e96 data/mega_showdown/recipe/archie_anchor.json
 8f1e9dc4761a416377ac5db39a1736fc8b5b0c25 data/mega_showdown/recipe/brendan_mega_cuff.json
 d4890cce7b9826d04c1b69111faba83da8f026ad data/mega_showdown/recipe/chiseled_mega_evo_block.json
@@ -36,4 +39,7 @@ c4492313967e35095d6881fd802843597dc65a66 data/mega_showdown/recipe/maxie_glasses
 9a60a3db1919899b6f8e0e80ac07fc146200e9c7 data/mega_showdown/recipe/megabracelet_yellow.json
 3ae1cde6e036cc6f1eff8799214e1a44b5c88403 data/mega_showdown/recipe/megaring.json
 7ad9ceb7d2e027bf79783be4f41877b1dc189a9f data/mega_showdown/recipe/mega_evo_brick.json
+dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.json
+3573a93f54ee2b0e480adb16216ac318323ee4b0 data/mega_showdown/recipe/n_solarizer.json
 665e6e446b8e72bc520ebfdc82503da2b561dc52 data/mega_showdown/recipe/polished_mega_evo_block.json
+372ee1bc63995b76e1d0432d371e58b100e27f3e data/mega_showdown/recipe/tera_orb.json
