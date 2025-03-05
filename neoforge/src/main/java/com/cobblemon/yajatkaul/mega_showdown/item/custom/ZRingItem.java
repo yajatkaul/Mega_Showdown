@@ -8,6 +8,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
@@ -26,17 +27,20 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ZRingItem extends Item{
     public ZRingItem(Properties arg) {
         super(arg);
     }
+
+
+
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
@@ -81,78 +85,13 @@ public class ZRingItem extends Item{
         }
 
         if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player){
-            Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
-                return InteractionResult.PASS;
-            }
-
-            MegaShowdown.LOGGER.info(String.valueOf(pokemon.getForcedAspects()));
-            MegaShowdown.LOGGER.info(pokemon.getSpecies().getName());
-
-            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZMoves.ULTRANECROZIUM_Z) && (pokemon.getForcedAspects().contains("dawn-fusion") || pokemon.getForcedAspects().contains("dusk-fusion"))){
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                if(feature != null){
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if(enabled) {
-                        new FlagSpeciesFeature("ultra", false).apply(pokemon);
-                        ultraAnimation(pokemon.getEntity());
-                        return InteractionResult.SUCCESS;
-                    }
-                }
-
-                new FlagSpeciesFeature("ultra", true).apply(pokemon);
-                ultraAnimation(pokemon.getEntity());
-                return InteractionResult.SUCCESS;
-            }
+            PacketDistributor.sendToServer(new UltraTrans("ultra_trans"));
         }
 
         return InteractionResult.PASS;
     }
 
-    public static void ultraAnimation(LivingEntity context) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
 
-            // Get entity's size
-            double entityWidth = context.getBbWidth();
-            double entityHeight = context.getBbHeight();
-
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1.2; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityWidth * scaleFactor;
-
-            // Play sound effect
-            serverLevel.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BEACON_ACTIVATE, // Change this if needed
-                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverLevel.sendParticles(
-                        ParticleTypes.GLOW,
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
-    }
 
     @Override
     public void appendHoverText(ItemStack arg, Item.TooltipContext arg2, List<Component> tooltipComponents, TooltipFlag arg3) {

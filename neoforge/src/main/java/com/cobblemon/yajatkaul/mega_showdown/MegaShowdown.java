@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -36,6 +37,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
+import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
 
 @Mod(MegaShowdown.MOD_ID)
 public final class MegaShowdown {
@@ -113,11 +115,15 @@ public final class MegaShowdown {
         @SubscribeEvent
         public static void registerBindings(RegisterKeyMappingsEvent event) {
             event.register(MEGA_ITEM_KEY.get());
+            event.register(ULTRA_KEY.get());
         }
 
         public static void onClientTick(ClientTickEvent.Post event) {
             while (MEGA_ITEM_KEY.get().consumeClick()) {
                 PacketDistributor.sendToServer(new MegaEvo("mega_evo"));
+            }
+            while (ULTRA_KEY.get().consumeClick()) {
+                PacketDistributor.sendToServer(new UltraTrans("ultra_trans"));
             }
         }
     }

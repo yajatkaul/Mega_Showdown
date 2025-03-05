@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.cobbleEvents;
+package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
@@ -162,22 +162,11 @@ public class CobbleEventHandler {
                 boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                 if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    player.setAttached(DataManage.MEGA_DATA, false);
-                    player.setAttached(DataManage.MEGA_POKEMON, null);
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    player.setAttached(DataManage.MEGA_DATA, false);
-                    player.setAttached(DataManage.MEGA_POKEMON, null);
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    player.setAttached(DataManage.MEGA_DATA, false);
-                    player.setAttached(DataManage.MEGA_POKEMON, null);
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }
             }
         }
@@ -350,7 +339,21 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
-        MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+        for (String key : megaKeys) {
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if(enabled){
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    break;
+                }
+            }
+        }
 
         return Unit.INSTANCE;
     }
@@ -361,6 +364,13 @@ public class CobbleEventHandler {
                 if (battlePokemon.getOriginalPokemon().getEntity() == null ||
                         battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
                     continue;
+                }
+
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+                for (Pokemon pokemon: playerPartyStore){
+                    if(pokemon.getEntity() != null){
+                        pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
+                    }
                 }
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();

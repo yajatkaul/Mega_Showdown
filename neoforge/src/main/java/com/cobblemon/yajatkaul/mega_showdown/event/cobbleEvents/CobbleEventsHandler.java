@@ -158,22 +158,11 @@ public class CobbleEventsHandler {
                 boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                 if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    player.setData(DataManage.MEGA_DATA, false);
-                    player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    player.setData(DataManage.MEGA_DATA, false);
-                    player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    player.setData(DataManage.MEGA_DATA, false);
-                    player.setData(DataManage.MEGA_POKEMON, new Pokemon());
-
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }
             }
         }

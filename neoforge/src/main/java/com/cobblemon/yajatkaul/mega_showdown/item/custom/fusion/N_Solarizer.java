@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Set;
 
 public class N_Solarizer extends Item {
@@ -52,6 +55,17 @@ public class N_Solarizer extends Item {
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.literal("N-Solarizer (Charged)"));
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getForcedAspects().contains("dusk-fusion")) {
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if(enabled) {
+                    return InteractionResult.PASS;
+                }
+            }
+
             playerPartyStore.add(player.getData(DataManage.N_SOLAR_POKEMON));
             player.setData(DataManage.N_SOLAR_POKEMON, new Pokemon());
             pokemon.setForcedAspects(Set.of());
