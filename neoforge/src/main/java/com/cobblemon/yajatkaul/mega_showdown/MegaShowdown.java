@@ -21,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
@@ -41,6 +42,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
 import top.theillusivec4.curios.api.event.CurioChangeEvent;
 
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
@@ -79,17 +81,12 @@ public final class MegaShowdown {
     }
 
     @SubscribeEvent
-    public void onCurioChange(CurioChangeEvent event) {
+    public void onCurioChange(CurioCanUnequipEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
-                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof TeraItem))
-                    .orElse(false);
-
             PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
-            if(!hasTeraItemCurios && battle != null){
-                player.displayClientMessage(Component.literal("Bro thought he could get away with it")
-                        .withColor(0xFF0000), true);
-                battle.end();
+
+            if(battle != null && event.getStack().is(TeraMoves.TERA_ORB)){
+                event.setUnequipResult(TriState.FALSE);
             }
         }
     }
