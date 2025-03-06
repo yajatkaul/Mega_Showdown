@@ -208,7 +208,14 @@ public class ModItemGroups {
                         entries.add(ZMoves.TAPUNIUM_Z);
                         entries.add(ZMoves.ULTRANECROZIUM_Z);
                         entries.add(ZMoves.WATERIUM_Z);
+                    }))
+                    .build());
 
+    public static final ItemGroup TERA_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "tera_tab"),
+            FabricItemGroup.builder().icon(() -> new ItemStack(TeraMoves.TERA_ORB))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.tera_tab"))
+                    .entries(((displayContext, entries) -> {
                         entries.add(TeraMoves.TERA_ORB);
                         entries.add(TeraMoves.BUG_TERA_SHARD);
                         entries.add(TeraMoves.DARK_TERA_SHARD);
@@ -231,7 +238,6 @@ public class ModItemGroups {
                         entries.add(TeraMoves.WATER_TERA_SHARD);
                     }))
                     .build());
-
 
     public static void registerItemGroups(){
 

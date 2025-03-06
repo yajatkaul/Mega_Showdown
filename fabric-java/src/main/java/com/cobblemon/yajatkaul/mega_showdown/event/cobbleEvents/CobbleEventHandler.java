@@ -405,9 +405,6 @@ public class CobbleEventHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
-                    if(pokemon.getSpecies().getName().equals("Rayquaza")){
-                        continue;
-                    }
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
                     for (String key : megaKeys) {

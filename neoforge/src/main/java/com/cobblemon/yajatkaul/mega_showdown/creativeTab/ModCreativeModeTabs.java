@@ -9,6 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
@@ -166,14 +167,12 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaStones.BLUE_ORB);
                         output.accept(MegaStones.RED_ORB);
-
-                        output.accept(ModItems.N_LUNARIZER);
-                        output.accept(ModItems.N_SOLARIZER);
                     })
                     .build());
 
     public static final Supplier<CreativeModeTab> Z_MOVES_TAB = CREATIVE_MODE_TAB.register("z_moves_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ZMoves.BLANK_Z.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_showdown_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ZMoves.Z_RING);
@@ -214,8 +213,17 @@ public class ModCreativeModeTabs {
                         output.accept(ZMoves.ULTRANECROZIUM_Z);
                         output.accept(ZMoves.WATERIUM_Z);
 
-                        output.accept(TeraMoves.TERA_ORB);
+                        output.accept(ModItems.N_LUNARIZER);
+                        output.accept(ModItems.N_SOLARIZER);
+                    })
+                    .build());
 
+    public static final Supplier<CreativeModeTab> TERA_TAB = CREATIVE_MODE_TAB.register("tera_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(TeraMoves.TERA_ORB.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "z_moves_tab"))
+                    .title(Component.translatable("creativeTab.mega_showdown.tera_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(TeraMoves.TERA_ORB);
                         output.accept(TeraMoves.BUG_TERA_SHARD);
                         output.accept(TeraMoves.DARK_TERA_SHARD);
                         output.accept(TeraMoves.DRAGON_TERA_SHARD);
