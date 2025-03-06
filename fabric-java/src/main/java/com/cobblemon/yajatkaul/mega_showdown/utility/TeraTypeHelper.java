@@ -110,6 +110,7 @@ public class TeraTypeHelper {
         if (teraType.equals(TeraTypes.getROCK())) return Formatting.DARK_GRAY;
         if (teraType.equals(TeraTypes.getSTEEL())) return Formatting.GRAY;
         if (teraType.equals(TeraTypes.getWATER())) return Formatting.BLUE;
+        if(teraType.equals(TeraTypes.getSTELLAR())) return Formatting.WHITE;
 
         throw new IllegalArgumentException("Unknown TeraType: " + teraType);
     }

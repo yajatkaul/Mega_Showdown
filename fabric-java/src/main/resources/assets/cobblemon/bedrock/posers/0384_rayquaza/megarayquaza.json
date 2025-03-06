@@ -1,9 +1,9 @@
 {
   "head": "head",
   "portraitScale": 0.6,
-  "portraitTranslation": [-2.55, 5.54, 0],
-  "profileScale": 0.17,
-  "profileTranslation": [-0.1, 1.5, -20],
+  "portraitTranslation": [-2.7, 3.8, 0],
+  "profileScale": 0.2,
+  "profileTranslation": [-0.3, 1.9, 0],
   "animations": {
     "faint": "q.bedrock_primary('megarayquaza', 'faint', q.curve('one'))",
     "cry": "q.bedrock_primary('megarayquaza', 'cry', q.curve('symmetrical_wide'))",

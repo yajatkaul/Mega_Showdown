@@ -482,7 +482,7 @@ public class CobbleEventsHandler {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
-        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
+        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 115, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");

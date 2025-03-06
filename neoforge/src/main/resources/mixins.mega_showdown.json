@@ -7,6 +7,9 @@
     "ShowdownSpeciesMixin",
     "LootPoolAccessor"
   ],
+  "client": [
+    "TeraPacketExceptionNeoForgeMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

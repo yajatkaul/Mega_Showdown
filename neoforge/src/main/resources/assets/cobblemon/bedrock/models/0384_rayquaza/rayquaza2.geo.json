@@ -6,9 +6,9 @@
 				"identifier": "geometry.unknown",
 				"texture_width": 512,
 				"texture_height": 512,
-				"visible_bounds_width": 25,
-				"visible_bounds_height": 7.5,
-				"visible_bounds_offset": [0, 3.25, 0]
+				"visible_bounds_width": 30,
+				"visible_bounds_height": 9.5,
+				"visible_bounds_offset": [0, 4.25, 0]
 			},
 			"bones": [
 				{

@@ -111,6 +111,7 @@ public class TeraTypeHelper {
         if (teraType.equals(TeraTypes.getROCK())) return ChatFormatting.DARK_GRAY;
         if (teraType.equals(TeraTypes.getSTEEL())) return ChatFormatting.GRAY;
         if (teraType.equals(TeraTypes.getWATER())) return ChatFormatting.BLUE;
+        if(teraType.equals(TeraTypes.getSTELLAR())) return ChatFormatting.WHITE;
 
         throw new IllegalArgumentException("Unknown TeraType: " + teraType);
     }
