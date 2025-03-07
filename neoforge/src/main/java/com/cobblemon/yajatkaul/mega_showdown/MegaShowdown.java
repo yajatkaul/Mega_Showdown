@@ -42,10 +42,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
 

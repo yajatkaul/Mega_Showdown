@@ -6,7 +6,8 @@
   "mixins": [
     "ShowdownSpeciesMixin",
     "LootPoolAccessor",
-    "TeraPacketExceptionNeoForgeMixin"
+    "TeraPacketExceptionNeoForgeMixin",
+    "EarlyLoader"
   ],
   "injectors": {
     "defaultRequire": 1
