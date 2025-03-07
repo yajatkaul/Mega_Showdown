@@ -3,12 +3,12 @@
   "package": "com.cobblemon.yajatkaul.mega_showdown.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ShowdownSpeciesMixin"
+    "ShowdownSpeciesMixin",
+    "TeraPacketExceptionMixin"
   ],
   "client": [
     "ItemRendererMixin",
-    "ModelLoaderMixin",
-    "TeraPacketExceptionMixin"
+    "ModelLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

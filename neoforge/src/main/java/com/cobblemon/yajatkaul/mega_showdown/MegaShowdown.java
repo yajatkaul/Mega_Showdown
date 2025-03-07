@@ -41,9 +41,10 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
-import top.theillusivec4.curios.api.event.CurioChangeEvent;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
@@ -72,53 +73,11 @@ public final class MegaShowdown {
         NeoForge.EVENT_BUS.addListener(MegaCommands::register);
     }
 
-
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         Utils.registerRemapping();
         TeraTypeHelper.loadShardData();
         CobbleEvents.register();
-    }
-
-    @SubscribeEvent
-    public void onCurioChange(CurioCanUnequipEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
-
-            if(battle != null && event.getStack().is(TeraMoves.TERA_ORB)){
-                event.setUnequipResult(TriState.FALSE);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    private void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
-        if(Config.battleModeOnly){
-            if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-                for (Pokemon pokemon : playerPartyStore) {
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    private void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-        if(Config.battleModeOnly){
-            if(event.getEntity() instanceof ServerPlayer player){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-                for (Pokemon pokemon : playerPartyStore) {
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            }
-        }
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

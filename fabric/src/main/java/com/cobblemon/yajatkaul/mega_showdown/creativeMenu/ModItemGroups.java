@@ -160,9 +160,6 @@ public class ModItemGroups {
 
                         entries.add(MegaStones.BLUE_ORB);
                         entries.add(MegaStones.RED_ORB);
-
-                        entries.add(ModItems.N_LUNARIZER);
-                        entries.add(ModItems.N_SOLARIZER);
                     }))
                     .build());
 
@@ -208,6 +205,9 @@ public class ModItemGroups {
                         entries.add(ZMoves.TAPUNIUM_Z);
                         entries.add(ZMoves.ULTRANECROZIUM_Z);
                         entries.add(ZMoves.WATERIUM_Z);
+
+                        entries.add(ModItems.N_LUNARIZER);
+                        entries.add(ModItems.N_SOLARIZER);
                     }))
                     .build());
 

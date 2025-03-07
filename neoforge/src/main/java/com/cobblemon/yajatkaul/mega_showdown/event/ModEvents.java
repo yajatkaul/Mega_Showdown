@@ -1,7 +1,15 @@
 package com.cobblemon.yajatkaul.mega_showdown.event;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.battles.BattleRegistry;
+import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -11,6 +19,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -33,8 +42,11 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
 
 import java.util.List;
 import java.util.Optional;
@@ -232,5 +244,46 @@ public class ModEvents {
         mapStack.set(DataComponents.LORE, new ItemLore(loreLines));
 
         return mapStack;
+    }
+
+    @SubscribeEvent
+    public static void onCurioChange(CurioCanUnequipEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
+
+            if(battle != null && event.getStack().is(TeraMoves.TERA_ORB)){
+                event.setUnequipResult(TriState.FALSE);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    private static void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
+        if(Config.battleModeOnly){
+            if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
+        if(Config.battleModeOnly){
+            if(event.getEntity() instanceof ServerPlayer player){
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+                for (Pokemon pokemon : playerPartyStore) {
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
+            }
+        }
     }
 }
