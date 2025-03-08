@@ -106,7 +106,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ZMoves.ULTRANECROZIUM_Z.get());
         basicItem(ZMoves.WATERIUM_Z.get());
 
-        basicItem(TeraMoves.TERA_ORB.get());
         basicItem(ModItems.N_LUNARIZER.get());
         basicItem(ModItems.N_SOLARIZER.get());
 

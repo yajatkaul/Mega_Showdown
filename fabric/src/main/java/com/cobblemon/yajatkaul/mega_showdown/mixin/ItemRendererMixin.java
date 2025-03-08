@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.render.item.ItemModels;
@@ -78,6 +79,9 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ZMoves.Z_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring")));
         }
+        else if (stack.getItem() == TeraMoves.TERA_ORB && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "tera_orb")));
+        }
 
         return bakedModel;
     }
@@ -132,6 +136,9 @@ public abstract class ItemRendererMixin {
         }
         else if (stack.getItem() == ZMoves.Z_RING) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_3d")));
+        }
+        else if (stack.getItem() == TeraMoves.TERA_ORB) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "tera_orb_3d")));
         }
 
         return bakedModel;

@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.curios;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -29,5 +30,6 @@ public class Register {
 
         CuriosRendererRegistry.register(ZMoves.Z_RING.get(), CurioOffHandRenderer::new);
 
+        CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
     }
 }

@@ -1563,7 +1563,6 @@ class BattleActions {
       if (isSTAB) {
         stab = 1.5;
       }
-	  console.log(`STAB Value After Check: ${stab}`);
       if (pokemon.terastallized === "Stellar") {
         if (!pokemon.stellarBoostedTypes.includes(type) || move.stellarBoosted) {
           stab = isSTAB ? 2 : [4915, 4096];

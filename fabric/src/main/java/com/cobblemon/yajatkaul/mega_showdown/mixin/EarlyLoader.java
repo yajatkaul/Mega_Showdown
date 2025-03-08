@@ -17,7 +17,7 @@ import java.nio.file.StandardCopyOption;
 @Mixin(ShowdownThread.class)
 public class EarlyLoader {
 
-    @Inject(method = "run", at = @At("HEAD"))
+    @Inject(method = "run", at = @At("HEAD"), remap = false)
     private void beforeShowdownStarts(CallbackInfo ci) {
         Path showdown_sim = Path.of("./showdown/sim");
         Path showdown_data = Path.of("./showdown/data");

@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.trinket;
 
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 
@@ -21,5 +22,7 @@ public class TrinketsRegisteration {
         TrinketRendererRegistry.registerRenderer(ModItems.ARCHIE_ANCHOR, new RenderChestTrinkets());
 
         TrinketRendererRegistry.registerRenderer(ZMoves.Z_RING, new RenderOffHandTrinkets());
+
+        TrinketRendererRegistry.registerRenderer(TeraMoves.TERA_ORB, new RenderBeltTrinkets());
     }
 }

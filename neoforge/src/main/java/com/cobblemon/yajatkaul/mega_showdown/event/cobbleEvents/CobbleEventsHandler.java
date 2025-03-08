@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.*;
+import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
