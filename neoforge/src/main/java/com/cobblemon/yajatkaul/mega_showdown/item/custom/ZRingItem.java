@@ -39,9 +39,6 @@ public class ZRingItem extends Item{
         super(arg);
     }
 
-
-
-
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         if (!world.isClientSide) {
@@ -90,7 +87,6 @@ public class ZRingItem extends Item{
 
         return InteractionResult.PASS;
     }
-
 
 
     @Override
