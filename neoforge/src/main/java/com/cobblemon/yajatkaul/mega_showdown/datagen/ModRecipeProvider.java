@@ -224,5 +224,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('D', Items.DIAMOND)
                 .define('E', Items.ENDER_PEARL)
                 .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DNA_SPLICER.get())
+                .pattern(" BN")
+                .pattern("BIB")
+                .pattern("IB ")
+                .define('B', Items.BLAZE_ROD)
+                .define('I', Items.IRON_INGOT)
+                .define('N', Items.NETHERITE_INGOT)
+                .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
     }
 }

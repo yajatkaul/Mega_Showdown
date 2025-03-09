@@ -15,8 +15,6 @@ public class CobbleEvents {
 
         CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventsHandler::onMegaTraded);
 
-        CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::primalEvent);
-
         CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::battleStarted);
 
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventsHandler::megaEvolution);

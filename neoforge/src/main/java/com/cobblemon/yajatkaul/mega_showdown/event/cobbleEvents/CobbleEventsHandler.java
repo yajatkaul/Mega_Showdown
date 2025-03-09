@@ -38,6 +38,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import kotlin.UInt;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
@@ -138,41 +139,17 @@ public class CobbleEventsHandler {
     }
 
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
+        if(event.getReturned() == event.getReceived() || event.getPokemon().getOwnerPlayer() == null){
+            return Unit.INSTANCE;
+        }
+
+        primalEvent(event);
+
         if(Config.battleModeOnly){
             return Unit.INSTANCE;
         }
 
-        Pokemon pokemon = event.getPokemon();
-
-        if(pokemon.getEntity() == null){
-            return Unit.INSTANCE;
-        }
-
-        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
-        if(pokemon.getEntity().level().isClientSide){
-            return Unit.INSTANCE;
-        }
-
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-            ServerPlayer player = pokemon.getOwnerPlayer();
-
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                }
-            }
-        }
-
+        megaEvent(event);
 
         return Unit.INSTANCE;
     }
@@ -195,11 +172,7 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit primalEvent(HeldItemEvent.Post post) {
-        if(post.getReturned() == post.getReceived() || post.getPokemon().getOwnerPlayer() == null){
-            return Unit.INSTANCE;
-        }
-
+    public static void primalEvent(HeldItemEvent.Post post) {
         ServerPlayer player = post.getPokemon().getOwnerPlayer();
         Species species = post.getPokemon().getSpecies();
 
@@ -207,7 +180,7 @@ public class CobbleEventsHandler {
             if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
                 player.displayClientMessage(Component.literal("You can only have one primal at a time")
                         .withColor(0xFF0000), true);
-                return Unit.INSTANCE;
+                return;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
@@ -218,7 +191,7 @@ public class CobbleEventsHandler {
             if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
                 player.displayClientMessage(Component.literal("You can only have one primal at a time")
                         .withColor(0xFF0000), true);
-                return Unit.INSTANCE;
+                return;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
@@ -227,7 +200,7 @@ public class CobbleEventsHandler {
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
             if(feature == null){
-                return Unit.INSTANCE;
+                return;
             }
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
@@ -235,10 +208,42 @@ public class CobbleEventsHandler {
             player.setData(DataManage.PRIMAL_DATA, false);
         }
 
-        return Unit.INSTANCE;
+        return;
+    }
+    public static void megaEvent(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
+
+        if(pokemon.getEntity() == null){
+            return;
+        }
+
+        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+        if(pokemon.getEntity().level().isClientSide){
+            return;
+        }
+
+        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+        for (String key : megaKeys) {
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+            ServerPlayer player = pokemon.getOwnerPlayer();
+
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                }
+            }
+        }
     }
 
-    public static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
+    private static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
 

@@ -41,6 +41,7 @@ public class DataManage {
                     .serialize(Pokemon.getCODEC()).copyOnDeath().build()
     );
 
+
     public static final DeferredRegister.DataComponents REGISTRAR = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, "mega_showdown");
 
     public static final Supplier<DataComponentType<Boolean>> N_LUNAR = REGISTRAR.registerComponentType(
@@ -65,6 +66,18 @@ public class DataManage {
     public static final Supplier<AttachmentType<Pokemon>> N_SOLAR_POKEMON = ATTACHMENT_TYPES.register(
             "n_solar_pokemon", () -> AttachmentType.builder(Pokemon::new)
                     .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    );
+
+    public static final Supplier<AttachmentType<Pokemon>> KYUREM_FUSION = ATTACHMENT_TYPES.register(
+            "kyurem_fusion", () -> AttachmentType.builder(Pokemon::new)
+                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> KYUREM_DATA = REGISTRAR.registerComponentType(
+            "kyurem_data",
+            builder -> builder
+                    .persistent(Codec.BOOL)
+                    .networkSynchronized(ByteBufCodecs.BOOL)
     );
 
     public static void register(IEventBus eventBus){

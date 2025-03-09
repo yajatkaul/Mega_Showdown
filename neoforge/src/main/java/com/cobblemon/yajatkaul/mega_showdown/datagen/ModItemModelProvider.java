@@ -6,6 +6,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.data.PackOutput;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -108,6 +109,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.N_LUNARIZER.get());
         basicItem(ModItems.N_SOLARIZER.get());
+
+        basicItem(ModItems.DNA_SPLICER.get());
 
         basicItem(TeraMoves.BUG_TERA_SHARD.get());
         basicItem(TeraMoves.DARK_TERA_SHARD.get());

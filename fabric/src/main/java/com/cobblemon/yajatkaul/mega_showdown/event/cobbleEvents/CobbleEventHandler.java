@@ -132,43 +132,18 @@ public class CobbleEventHandler {
         new FlagSpeciesFeature("mega-y", false).apply(pokemon);
     }
 
-    public static Unit onHeldItemChange(HeldItemEvent.Post event) {
+    public static Unit onHeldItemChange(HeldItemEvent.Post post) {
+        if(post.getReturned() == post.getReceived() || post.getPokemon().getOwnerPlayer() == null){
+            return Unit.INSTANCE;
+        }
+
+        primalEvent(post);
         // Battle mode only
         if(ShowdownConfig.battleModeOnly.get()){
             return Unit.INSTANCE;
         }
-        Pokemon pokemon = event.getPokemon();
 
-        if(pokemon.getEntity() == null){
-            return Unit.INSTANCE;
-        }
-
-        if(pokemon.getEntity().getWorld().isClient){
-            return Unit.INSTANCE;
-        }
-
-        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
-
-
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-            ServerPlayerEntity player = pokemon.getOwnerPlayer();
-
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                }
-            }
-        }
+        megaEvent(post);
 
         return Unit.INSTANCE;
     }
@@ -199,11 +174,7 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit primalEvent(HeldItemEvent.Post post) {
-        if(post.getReturned() == post.getReceived() || post.getPokemon().getOwnerPlayer() == null){
-            return Unit.INSTANCE;
-        }
-
+    public static void primalEvent(HeldItemEvent.Post post) {
         ServerPlayerEntity player = post.getPokemon().getOwnerPlayer();
         Species species = post.getPokemon().getSpecies();
 
@@ -213,7 +184,7 @@ public class CobbleEventHandler {
                         Text.literal("You can only have one primal at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
-                return Unit.INSTANCE;
+                return;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
@@ -226,7 +197,7 @@ public class CobbleEventHandler {
                         Text.literal("You can only have one primal at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
-                return Unit.INSTANCE;
+                return;
             }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
@@ -235,7 +206,7 @@ public class CobbleEventHandler {
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
             if(feature == null){
-                return Unit.INSTANCE;
+                return;
             }
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
@@ -243,7 +214,41 @@ public class CobbleEventHandler {
             player.setAttached(DataManage.PRIMAL_DATA, false);
         }
 
-        return Unit.INSTANCE;
+        return;
+    }
+    public static void megaEvent(HeldItemEvent.Post event) {
+        Pokemon pokemon = event.getPokemon();
+
+        if(pokemon.getEntity() == null){
+            return;
+        }
+
+        if(pokemon.getEntity().getWorld().isClient){
+            return;
+        }
+
+        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+
+
+        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
+
+        for (String key : megaKeys) {
+            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
+            ServerPlayerEntity player = pokemon.getOwnerPlayer();
+
+            FlagSpeciesFeature feature = featureProvider.get(pokemon);
+            if(feature != null){
+                boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                }
+            }
+        }
     }
 
     public static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {

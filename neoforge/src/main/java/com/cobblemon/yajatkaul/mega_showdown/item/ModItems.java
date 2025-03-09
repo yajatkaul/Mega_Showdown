@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import net.minecraft.network.chat.Component;
@@ -71,6 +72,15 @@ public class ModItems {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.n_solarizer.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> DNA_SPLICER = ITEMS.register("dna_splicer",
+            () -> new DNA_Splicer(new Item.Properties().stacksTo(1).component(DataManage.KYUREM_DATA, false)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dna_splicer.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });

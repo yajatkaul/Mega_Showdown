@@ -208,6 +208,8 @@ public class ModItemGroups {
 
                         entries.add(ModItems.N_LUNARIZER);
                         entries.add(ModItems.N_SOLARIZER);
+
+                        entries.add(ModItems.DNA_SPLICER);
                     }))
                     .build());
 

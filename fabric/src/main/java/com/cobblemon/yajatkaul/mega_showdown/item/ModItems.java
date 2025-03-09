@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import net.minecraft.item.BlockItem;
@@ -52,6 +53,13 @@ public class ModItems {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.n_solarizer.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+    public static final Item DNA_SPLICER = registerItem("dna_splicer", new DNA_Splicer(new Item.Settings().maxCount(1).component(DataManage.KYUREM_DATA, false)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.dna_splicer.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });

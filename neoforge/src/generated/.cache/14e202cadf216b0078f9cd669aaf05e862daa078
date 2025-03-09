@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-07T18:51:34.1406223	Item Models: mega_showdown
+// 1.21.1	2025-03-08T19:22:43.4281859	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -23,6 +23,7 @@ c3f936650210788ca59963e5fa5289524d2fc6b5 assets/mega_showdown/models/item/darkin
 5c549a62e1854b937e8d0c5b928a593680779fef assets/mega_showdown/models/item/dark_tera_shard.json
 a75f4047ad27107cf48f5aac2fd390f3578be4eb assets/mega_showdown/models/item/decidium-z.json
 8e53f610132573504ebc6795e063c336e44f086c assets/mega_showdown/models/item/diancite.json
+b0371e72b888fbaa1b3b680b412cc3ad14abddc7 assets/mega_showdown/models/item/dna_splicer.json
 77e9c0702d4a1d8c110c2f32c6e4610c36eca35a assets/mega_showdown/models/item/dragonium-z.json
 b0bc40f3f9331cf8b3f523486bb3d39513751445 assets/mega_showdown/models/item/dragon_tera_shard.json
 167f6b08b27be48a94a8142ff3511d5c3ff637ad assets/mega_showdown/models/item/eevium-z.json

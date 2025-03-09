@@ -215,6 +215,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.N_LUNARIZER);
                         output.accept(ModItems.N_SOLARIZER);
+
+                        output.accept(ModItems.DNA_SPLICER);
                     })
                     .build());
 
