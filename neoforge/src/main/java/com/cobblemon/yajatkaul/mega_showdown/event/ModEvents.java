@@ -9,6 +9,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.LootPoolAccessor;
@@ -64,9 +65,15 @@ public class ModEvents {
 
         ResourceLocation trialChamberLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/trial_chambers/reward_ominous_unique");
 
+        ResourceLocation luna_ruins = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/luna_henge_ruins");
+        ResourceLocation mossy_ruins = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/mossy_oubliette_ruins");
+
+        LootTable table = event.getTable();
+        LootPool mainPool = table.getPool("main");
+
         if (desertPyramidLootTable.equals(lootTableId) || desertWellLootTable.equals(lootTableId)) {
-            LootTable table = event.getTable();
-            LootPool mainPool = table.getPool("main");
+            table = event.getTable();
+            mainPool = table.getPool("main");
 
             if (mainPool != null && !mainPool.isFrozen()) {
                 // Cast to accessor interface
@@ -106,8 +113,7 @@ public class ModEvents {
                 table.addPool(newPoolBuilder.build());
             }
         }else if (ruinColdLootTable.equals(lootTableId) || ruinWarmLootTable.equals(lootTableId)) {
-            LootTable table = event.getTable();
-            LootPool mainPool = table.getPool("main");
+
 
             if (mainPool != null && !mainPool.isFrozen()) {
                 // Cast to accessor interface
@@ -147,9 +153,6 @@ public class ModEvents {
                 table.addPool(newPoolBuilder.build());
             }
         }else if (trialChamberLootTable.equals(lootTableId)) {
-            LootTable table = event.getTable();
-            LootPool mainPool = table.getPool("main");
-
             if (mainPool != null && !mainPool.isFrozen()) {
                 // Cast to accessor interface
                 LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
@@ -183,6 +186,68 @@ public class ModEvents {
                 }
 
                 // Replace the old pool with the new one
+                table.removePool("main");
+                table.addPool(newPoolBuilder.build());
+            }
+        } else if (luna_ruins.equals(lootTableId)) {
+            if (mainPool != null && !mainPool.isFrozen()) {
+                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
+
+                LootPool.Builder newPoolBuilder = LootPool.lootPool()
+                        .setRolls(mainPool.getRolls())
+                        .setBonusRolls(mainPool.getBonusRolls());
+
+                poolAccessor.getEntries().forEach(entry ->
+                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
+                            @Override
+                            protected LootPoolEntryContainer.Builder getThis() {
+                                return null;
+                            }
+
+                            @Override
+                            public LootPoolEntryContainer build() {
+                                return entry;
+                            }
+                        })
+                );
+
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SWORD).setWeight(8));
+
+                if (mainPool.getName() != null) {
+                    newPoolBuilder.name(mainPool.getName());
+                }
+
+                table.removePool("main");
+                table.addPool(newPoolBuilder.build());
+            }
+        }else if (mossy_ruins.equals(lootTableId)) {
+            if (mainPool != null && !mainPool.isFrozen()) {
+                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
+
+                LootPool.Builder newPoolBuilder = LootPool.lootPool()
+                        .setRolls(mainPool.getRolls())
+                        .setBonusRolls(mainPool.getBonusRolls());
+
+                poolAccessor.getEntries().forEach(entry ->
+                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
+                            @Override
+                            protected LootPoolEntryContainer.Builder getThis() {
+                                return null;
+                            }
+
+                            @Override
+                            public LootPoolEntryContainer build() {
+                                return entry;
+                            }
+                        })
+                );
+
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SHIELD).setWeight(8));
+
+                if (mainPool.getName() != null) {
+                    newPoolBuilder.name(mainPool.getName());
+                }
+
                 table.removePool("main");
                 table.addPool(newPoolBuilder.build());
             }

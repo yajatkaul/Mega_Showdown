@@ -65,6 +65,22 @@ public class ModItems {
         }
     });
 
+    public static final Item RUSTED_SWORD = registerItem("rusted_sword", new Item(new Item.Settings().maxCount(1).component(DataManage.KYUREM_DATA, false)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.rusted_sword.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item RUSTED_SHIELD = registerItem("rusted_shield", new Item(new Item.Settings().maxCount(1).component(DataManage.KYUREM_DATA, false)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.rusted_shield.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
 
     public static final Item MEGA_STONE_CRYSTAL_ITEM = Registry.register(Registries.ITEM,
             Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),

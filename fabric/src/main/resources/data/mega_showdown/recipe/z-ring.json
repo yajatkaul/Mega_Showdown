@@ -1,29 +1,30 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": [
-    "flf",
-    "ere",
-    "fdf"
-  ],
   "key": {
-    "f": {
-      "item": "minecraft:quartz"
-    },
-    "l": {
-      "item": "minecraft:glass_pane"
-    },
-    "d": {
+    "D": {
       "item": "minecraft:iron_ingot"
     },
-    "e": {
-      "item": "minecraft:echo_shard"
+    "F": {
+      "item": "minecraft:quartz"
     },
-    "r": {
+    "L": {
+      "item": "minecraft:glass_pane"
+    },
+    "R": {
       "item": "minecraft:diamond"
+    },
+    "W": {
+      "item": "cobblemon:white_apricorn"
     }
   },
+  "pattern": [
+    "FLF",
+    "WRW",
+    "FDF"
+  ],
   "result": {
+    "count": 1,
     "id": "mega_showdown:z-ring"
   }
 }

@@ -131,5 +131,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(TeraMoves.STEEL_TERA_SHARD.get());
         basicItem(TeraMoves.STELLAR_TERA_SHARD.get());
         basicItem(TeraMoves.WATER_TERA_SHARD.get());
+
+        basicItem(ModItems.RUSTED_SWORD.get());
+        basicItem(ModItems.RUSTED_SHIELD.get());
     }
 }

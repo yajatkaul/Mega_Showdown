@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -233,5 +234,51 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('I', Items.IRON_INGOT)
                 .define('N', Items.NETHERITE_INGOT)
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZMoves.Z_RING.get())
+                .pattern("FLF")
+                .pattern("WRW")
+                .pattern("FDF")
+                .define('F', Items.QUARTZ)
+                .define('L', Items.GLASS_PANE)
+                .define('W', CobblemonItems.WHITE_APRICORN)
+                .define('R', Items.DIAMOND)
+                .define('D', Items.IRON_INGOT)
+
+                .unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZMoves.Z_RING_BLACK.get())
+                .pattern("FLF")
+                .pattern("BRB")
+                .pattern("FDF")
+                .define('F', Items.QUARTZ)
+                .define('L', Items.GLASS_PANE)
+                .define('B', CobblemonItems.BLACK_APRICORN)
+                .define('R', Items.DIAMOND)
+                .define('D', Items.IRON_INGOT)
+
+                .unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZMoves.Z_RING_POWER.get())
+                .pattern("FLF")
+                .pattern("BNB")
+                .pattern("FDF")
+                .define('F', Items.QUARTZ)
+                .define('L', Items.GLASS_PANE)
+                .define('B', CobblemonItems.BLACK_APRICORN)
+                .define('N', Items.NETHERITE_INGOT)
+                .define('D', Items.IRON_INGOT)
+                .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MAY_BRACELET.get())
+                .pattern("YSY")
+                .pattern("IKI")
+                .pattern("YPY")
+                .define('S', Items.NAUTILUS_SHELL)
+                .define('P', CobblemonItems.PINK_APRICORN)
+                .define('I', Items.IRON_INGOT)
+                .define('K', MegaStones.KEYSTONE)
+                .define('Y', CobblemonItems.YELLOW_APRICORN)
+                .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
     }
 }

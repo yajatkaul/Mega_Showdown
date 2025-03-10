@@ -1,0 +1,9 @@
+{
+  "target": "cobblemon:zekrom",
+  "baseScale": 1.5,
+  "hitbox": {
+    "width": 4,
+    "height": 6,
+    "fixed": false
+  }
+}

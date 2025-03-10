@@ -1,0 +1,212 @@
+{
+  "name": "Zamazenta",
+  "nationalPokedexNumber": 889,
+  "primaryType": "fighting",
+  "abilities": [
+    "dauntlessshield"
+  ],
+  "baseStats": {
+    "hp": 92,
+    "attack": 120,
+    "defence": 115,
+    "special_attack": 80,
+    "special_defence": 115,
+    "speed": 138
+  },
+  "catchRate": 10,
+  "maleRatio": -1,
+  "shoulderMountable": false,
+  "forms": [
+    {
+      "name": "Crowned",
+      "primaryType": "fighting",
+      "secondaryType": "steel",
+      "abilities": [
+        "dauntlessshield"
+      ],
+      "baseStats": {
+        "hp": 92,
+        "attack": 120,
+        "defence": 140,
+        "special_attack": 80,
+        "special_defence": 140,
+        "speed": 128
+      },
+      "baseScale": 0.8,
+      "catchRate": 10,
+      "maleRatio": -1,
+      "baseExperienceYield": 335,
+      "baseFriendship": 0,
+      "evYield": {
+        "hp": 0,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 3
+      },
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "moves": [
+        "form_change:behemothbash"
+      ],
+      "labels": [
+        "gen8",
+        "legendary"
+      ],
+      "aspects": [
+        "crowned"
+      ],
+      "height": 29,
+      "weight": 7850,
+      "cannotDynamax": true,
+      "battleOnly": true,
+      "drops": {
+        "amount": 1,
+        "entries": [
+          {
+            "item": "cobblemon:ability_shield"
+          }
+        ]
+      }
+    }
+  ],
+  "baseExperienceYield": 335,
+  "experienceGroup": "slow",
+  "eggCycles": 120,
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "moves": [
+    "1:bite",
+    "1:howl",
+    "1:metalclaw",
+    "1:quickattack",
+    "1:wideguard",
+    "11:slash",
+    "22:irondefense",
+    "33:ironhead",
+    "44:laserfocus",
+    "44:metalburst",
+    "55:crunch",
+    "66:moonblast",
+    "77:closecombat",
+    "88:gigaimpact",
+    "tm:agility",
+    "tm:bodypress",
+    "tm:bodyslam",
+    "tm:brickbreak",
+    "tm:closecombat",
+    "tm:coaching",
+    "tm:crunch",
+    "tm:dazzlinggleam",
+    "tm:dig",
+    "tm:endure",
+    "tm:facade",
+    "tm:firefang",
+    "tm:flashcannon",
+    "tm:focusblast",
+    "tm:focusenergy",
+    "tm:gigaimpact",
+    "tm:guardswap",
+    "tm:heavyslam",
+    "tm:helpinghand",
+    "tm:hyperbeam",
+    "tm:hypervoice",
+    "tm:icefang",
+    "tm:imprison",
+    "tm:irondefense",
+    "tm:ironhead",
+    "tm:irontail",
+    "tm:lightscreen",
+    "tm:metalclaw",
+    "tm:payback",
+    "tm:playrough",
+    "tm:powerswap",
+    "tm:protect",
+    "tm:psychicfangs",
+    "tm:raindance",
+    "tm:reflect",
+    "tm:rest",
+    "tm:retaliate",
+    "tm:revenge",
+    "tm:reversal",
+    "tm:roar",
+    "tm:round",
+    "tm:safeguard",
+    "tm:sandstorm",
+    "tm:scaryface",
+    "tm:sleeptalk",
+    "tm:snarl",
+    "tm:snore",
+    "tm:solarbeam",
+    "tm:steelbeam",
+    "tm:stoneedge",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:swift",
+    "tm:tailslap",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:thunderfang",
+    "tm:trailblaze",
+    "tm:wildcharge",
+    "tm:workup",
+    "tutor:closecombat",
+    "tutor:coaching",
+    "tutor:crunch",
+    "tutor:irondefense",
+    "tutor:ironhead",
+    "tutor:slash",
+    "tutor:steelbeam",
+    "tutor:wideguard"
+  ],
+  "labels": [
+    "gen8",
+    "legendary"
+  ],
+  "pokedex": [
+    "cobblemon.species.zamazenta.desc"
+  ],
+  "baseScale": 0.8,
+  "hitbox": {
+    "width": 2,
+    "height": 3,
+    "fixed": false
+  },
+  "baseFriendship": 0,
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 3
+  },
+  "behaviour": {
+    "moving": {
+      "canLook": false,
+      "walk": {
+        "walkSpeed": 0.5,
+        "canWalk": true,
+        "avoidsLand": false
+      },
+    "fly": {
+      "canFly": false
+    },
+    "swim": {
+      "swimSpeed": 0.5,
+      "canSwimInWater": false,
+      "canBreatheUnderwater": false
+    }
+  }
+},
+  "height": 29,
+  "weight": 2100,
+  "dynamaxBlocked": true,
+  "aspects": [],
+  "cannotDynamax": true
+}

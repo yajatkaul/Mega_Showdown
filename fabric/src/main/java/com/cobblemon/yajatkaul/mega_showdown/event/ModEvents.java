@@ -65,6 +65,21 @@ public class ModEvents {
                     poolBuilder.with(ItemEntry.builder(ZMoves.BLANK_Z).weight(2));
                 });
             }
+
+            Identifier luna_ruins = Identifier.of("cobblemon", "ruins/common/luna_henge_ruins");
+            Identifier mossy_ruins = Identifier.of("cobblemon", "ruins/common/mossy_oubliette_ruins");
+
+            if(luna_ruins.equals(key.getValue())){
+                tableBuilder.modifyPools(poolBuilder -> {
+                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SWORD).weight(8));
+                });
+            }
+
+            if(mossy_ruins.equals(key.getValue())){
+                tableBuilder.modifyPools(poolBuilder -> {
+                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SHIELD).weight(8));
+                });
+            }
         });
 
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.CARTOGRAPHER, 3, factories -> {

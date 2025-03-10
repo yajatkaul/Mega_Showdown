@@ -12,6 +12,8 @@ import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
+import com.cobblemon.mod.common.api.moves.Move;
+import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
@@ -27,6 +29,7 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
@@ -35,6 +38,8 @@ import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -43,6 +48,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.predicate.entity.LightningBoltPredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.scoreboard.ServerScoreboard;
 import net.minecraft.scoreboard.Team;
@@ -55,6 +61,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
@@ -138,6 +145,7 @@ public class CobbleEventHandler {
         }
 
         primalEvent(post);
+        crownedEvent(post);
         // Battle mode only
         if(ShowdownConfig.battleModeOnly.get()){
             return Unit.INSTANCE;
@@ -247,6 +255,68 @@ public class CobbleEventHandler {
                 } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
                     MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }
+            }
+        }
+    }
+    public static void crownedEvent(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Zacian") ||
+                pokemon.getSpecies().getName().equals("Zamazenta")){
+            if(event.getReceived().isOf(ModItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")){
+                crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
+                new FlagSpeciesFeature("crowned", true).apply(pokemon);
+            } else if (event.getReceived().isOf(ModItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
+                crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
+                new FlagSpeciesFeature("crowned", true).apply(pokemon);
+            } else{
+                new FlagSpeciesFeature("crowned", false).apply(pokemon);
+            }
+        }
+    }
+    private static void crownAnimation(ServerWorld level, BlockPos pos, LivingEntity context) {
+        LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(level);
+        if (lightning != null) {
+            lightning.setPosition(Vec3d.ofBottomCenter(pos));
+            lightning.setCosmetic(true);
+            level.spawnEntity(lightning);
+            playEvolveAnimation(context);
+        }
+    }
+    public static void playEvolveAnimation(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Yarn mapping for BEACON_ACTIVATE
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD, // Same particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
             }
         }
     }
@@ -404,11 +474,43 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
+    public static void checkKeldeo(PlayerPartyStore pokemons){
+        for(Pokemon pokemon: pokemons){
+            if(pokemon.getSpecies().getName().equals("Keldeo")){
+                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("resolute"));
+                FlagSpeciesFeature feature = featureProvider.get(pokemon);
+                boolean hasMove = false;
+
+                for(Move move: pokemon.getMoveSet().getMoves()){
+                    if(move.getName().equals(Moves.INSTANCE.getByName("secretsword").getName())){
+                        hasMove = true;
+                    }
+                }
+
+                if(feature != null){
+                    boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                    if(!enabled){
+                        if(hasMove){
+                            new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                            playEvolveAnimation(pokemon.getEntity());
+                        }
+                    }else{
+                        if(!hasMove){
+                            new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                            playEvolveAnimation(pokemon.getEntity());
+                        }
+                    }
+                }
+            }
+        }
+    }
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
         for(ServerPlayerEntity player: battleEvent.getBattle().getPlayers()){
-            if(ShowdownConfig.battleMode.get()){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
+            checkKeldeo(playerPartyStore);
+            if(ShowdownConfig.battleMode.get()){
                 for (Pokemon pokemon : playerPartyStore) {
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 

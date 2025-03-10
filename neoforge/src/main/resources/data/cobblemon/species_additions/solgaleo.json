@@ -1,0 +1,9 @@
+{
+  "target": "cobblemon:solgaleo",
+  "baseScale": 1.5,
+  "hitbox": {
+    "width": 3,
+    "height": 3,
+    "fixed": false
+  }
+}

@@ -168,6 +168,9 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaStones.BLUE_ORB);
                         output.accept(MegaStones.RED_ORB);
+
+                        output.accept(ModItems.RUSTED_SWORD);
+                        output.accept(ModItems.RUSTED_SHIELD);
                     })
                     .build());
 

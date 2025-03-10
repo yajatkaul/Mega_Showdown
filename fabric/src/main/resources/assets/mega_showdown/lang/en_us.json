@@ -379,5 +379,13 @@
   "item.mega_showdown.dna_splicer": "DNA Splicers",
   "item.mega_showdown.dna_splicer.inactive": "DNA Splicer (Inactive)",
   "item.mega_showdown.dna_splicer.charged": "DNA Splicer (Inactive)",
-  "tooltip.mega_showdown.dna_splicer.tooltip": "Used to fuse Reshiram/Zekrom with a mysterious being"
+  "tooltip.mega_showdown.dna_splicer.tooltip": "Used to fuse Reshiram/Zekrom with a mysterious being",
+
+  "item.mega_showdown.z-ring_black": "Z-Ring Black",
+  "item.mega_showdown.z-power_ring": "Z-Power Ring",
+  "item.mega_showdown.may_bracelet": "May's bracelet",
+  "item.mega_showdown.rusted_sword": "Rusted Sword",
+  "tooltip.mega_showdown.rusted_sword.tooltip": "It is said that a hero used this sword to halt a terrible disaster in ancient times.",
+  "item.mega_showdown.rusted_shield": "Rusted Shield",
+  "tooltip.mega_showdown.rusted_shield.tooltip": "It is said that a hero used this shield to halt a terrible disaster in ancient times.\n"
 }

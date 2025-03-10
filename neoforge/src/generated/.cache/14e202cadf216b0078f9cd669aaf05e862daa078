@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-08T19:22:43.4281859	Item Models: mega_showdown
+// 1.21.1	2025-03-10T23:31:48.7787762	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -89,6 +89,8 @@ db7d50db0d8d42fe8e0bb673c56d29c2a936630a assets/mega_showdown/models/item/psychi
 da3b1f4be002ac09f90358f221be83387b0ad59d assets/mega_showdown/models/item/redorb.json
 8a94794b9d829168efb489a3fb9285f2c153ee26 assets/mega_showdown/models/item/rockium-z.json
 e1ebf73b84517b9a9d418d7a5852305bedacdb07 assets/mega_showdown/models/item/rock_tera_shard.json
+4ef5a56420a6e56ad2b7e0ac79909f80f557f698 assets/mega_showdown/models/item/rusted_shield.json
+4af02ad6f1e06fbcbc675736bc3979fed2667422 assets/mega_showdown/models/item/rusted_sword.json
 85270323c61cc484737487f6c9ca596e9831c617 assets/mega_showdown/models/item/sablenite.json
 1d86c091cc0e36501a8529ac559c66e81c9e03e3 assets/mega_showdown/models/item/salamencite.json
 8cfa3284bac0eafceea3621700a0862c8c37fbb9 assets/mega_showdown/models/item/sceptilite.json

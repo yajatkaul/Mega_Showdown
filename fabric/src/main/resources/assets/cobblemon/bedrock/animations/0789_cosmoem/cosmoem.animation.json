@@ -1,0 +1,90 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.cosmoem.faint": {
+			"loop": true
+		},
+		"animation.cosmoem.ground_walk": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"full_body": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.7917": [-10, 0, 0],
+						"1.625": [10, 0, 0],
+						"2.0": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 4, 0],
+						"2.0": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.cosmoem.ground_idle": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"full_body": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.7917": [-10, 0, 0],
+						"1.625": [10, 0, 0],
+						"2.0": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 4, 0],
+						"2.0": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.cosmoem.shoulder_left": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"full_body": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.7917": [-10, 0, 0],
+						"1.625": [10, 0, 0],
+						"2.0": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 4, 0],
+						"2.0": [0, 0, 0]
+					}
+				},
+				"cosmoem": {
+					"position": [0, 56, 0]
+				}
+			}
+		},
+		"animation.cosmoem.shoulder_right": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"full_body": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.7917": [-10, 0, 0],
+						"1.625": [10, 0, 0],
+						"2.0": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 4, 0],
+						"2.0": [0, 0, 0]
+					}
+				},
+				"cosmoem": {
+					"position": [0, 68, 0]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,74 @@
+{
+  "name": "Cosmog",
+  "nationalPokedexNumber": 789,
+  "primaryType": "psychic",
+  "abilities": [
+    "unaware"
+  ],
+  "baseStats": {
+    "hp": 43,
+    "attack": 29,
+    "defence": 31,
+    "special_attack": 29,
+    "special_defence": 31,
+    "speed": 37
+  },
+  "catchRate": 45,
+  "maleRatio": -1,
+  "shoulderMountable": false,
+  "baseExperienceYield": 40,
+  "experienceGroup": "slow",
+  "eggCycles": 120,
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "moves": [
+    "1:splash",
+    "1:teleport",
+    "tutor:splash",
+    "tutor:teleport"
+  ],
+  "labels": [
+    "gen7",
+    "legendary"
+  ],
+  "pokedex": [
+    "cobblemon.species.cosmog.desc"
+  ],
+  "evolutions": [
+    {
+      "id": "cosmog_cosmoem",
+      "variant": "level_up",
+      "result": "cosmoem",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "cosmicpower"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 43
+        }
+      ]
+    }
+  ],
+  "baseScale": 0.4,
+  "hitbox": {
+    "width": 1,
+    "height": 0.5,
+    "fixed": false
+  },
+  "baseFriendship": 0,
+  "evYield": {
+    "hp": 1,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "height": 2,
+  "weight": 1,
+  "aspects": [],
+  "cannotDynamax": false
+}

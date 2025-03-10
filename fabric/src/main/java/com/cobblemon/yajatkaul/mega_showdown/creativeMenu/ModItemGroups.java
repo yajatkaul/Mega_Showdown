@@ -161,6 +161,9 @@ public class ModItemGroups {
 
                         entries.add(MegaStones.BLUE_ORB);
                         entries.add(MegaStones.RED_ORB);
+
+                        entries.add(ModItems.RUSTED_SWORD);
+                        entries.add(ModItems.RUSTED_SHIELD);
                     }))
                     .build());
 

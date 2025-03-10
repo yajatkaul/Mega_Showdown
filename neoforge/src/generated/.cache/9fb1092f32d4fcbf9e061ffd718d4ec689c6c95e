@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-09T02:35:09.3764328	Recipes
+// 1.21.1	2025-03-10T23:31:48.7971804	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -11,6 +11,7 @@ f2e80378447f39916d8ee7ad38f036d6f02addcf data/mega_showdown/advancement/recipes/
 5c4003b1303f09f729c225e1a82de896cbf06111 data/mega_showdown/advancement/recipes/misc/korrina_glove.json
 00ff0db2b6ad9cd3833f974f11efb532c189f515 data/mega_showdown/advancement/recipes/misc/lysandre_ring.json
 4f93ee3f25b24f8b675e051d3b59245670a30228 data/mega_showdown/advancement/recipes/misc/maxie_glasses.json
+a7171ddeed4200dfe87cab2d4bcf917b9befa5b4 data/mega_showdown/advancement/recipes/misc/may_bracelet.json
 beb6b7d1a8f8fc9cd884ee4b2284f6bb4cc30768 data/mega_showdown/advancement/recipes/misc/megabracelet.json
 37df5af1d5e302e01c0d6bebab307d0fa2960878 data/mega_showdown/advancement/recipes/misc/megabracelet_black.json
 98c1a5baeb8957f87efe08055066e6814f70c828 data/mega_showdown/advancement/recipes/misc/megabracelet_blue.json
@@ -22,6 +23,9 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 17a61387448421f434ef34db0ca7fdcda94c94dd data/mega_showdown/advancement/recipes/misc/n_lunarizer.json
 5c7d37bd6f363dc1ffbbb5e55de384d07750916e data/mega_showdown/advancement/recipes/misc/n_solarizer.json
 08602e7c34b11bd06840b4956f7b7f31fb6e1201 data/mega_showdown/advancement/recipes/misc/tera_orb.json
+8315990c6cbe8003bc620613275ad6d92ac8f2cd data/mega_showdown/advancement/recipes/misc/z-power_ring.json
+6946b8de2ec5fecb3902c15e6e89acfeb86eb361 data/mega_showdown/advancement/recipes/misc/z-ring.json
+480637e9b2f912edb31ac9523b11af3632afe8be data/mega_showdown/advancement/recipes/misc/z-ring_black.json
 a8914e50df935068a9275d9ad066f3a7cefd2e96 data/mega_showdown/recipe/archie_anchor.json
 8f1e9dc4761a416377ac5db39a1736fc8b5b0c25 data/mega_showdown/recipe/brendan_mega_cuff.json
 d4890cce7b9826d04c1b69111faba83da8f026ad data/mega_showdown/recipe/chiseled_mega_evo_block.json
@@ -32,6 +36,7 @@ f0f98aef0586578f3adad3d7fdf32274495398cc data/mega_showdown/recipe/keystone_bloc
 78a6479617a6777d284ae1711990765f7e14cb47 data/mega_showdown/recipe/korrina_glove.json
 7bf561163615f2ef16a7e866ec10b43548284377 data/mega_showdown/recipe/lysandre_ring.json
 c4492313967e35095d6881fd802843597dc65a66 data/mega_showdown/recipe/maxie_glasses.json
+149373bf1b635fcaf09f18a8f8319839206d0ff6 data/mega_showdown/recipe/may_bracelet.json
 9d710c2a5f156c2867323fad6ed9216bbb987f6e data/mega_showdown/recipe/megabracelet.json
 3abb7de7b97d5dc95d1cf1f5dc99fb7ef42c5a31 data/mega_showdown/recipe/megabracelet_black.json
 622718abfbad140e526613f9b94edc78b98b2376 data/mega_showdown/recipe/megabracelet_blue.json
@@ -45,3 +50,6 @@ dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.j
 3573a93f54ee2b0e480adb16216ac318323ee4b0 data/mega_showdown/recipe/n_solarizer.json
 665e6e446b8e72bc520ebfdc82503da2b561dc52 data/mega_showdown/recipe/polished_mega_evo_block.json
 372ee1bc63995b76e1d0432d371e58b100e27f3e data/mega_showdown/recipe/tera_orb.json
+d84ae3a6b6fbcaccd7f2c5166598cf503df62521 data/mega_showdown/recipe/z-power_ring.json
+f10c3fc50f8ef2e41720bf8fdb4fee2883c4d0ef data/mega_showdown/recipe/z-ring.json
+6a359905d226b633de23a72009a6f769dc4f8987 data/mega_showdown/recipe/z-ring_black.json

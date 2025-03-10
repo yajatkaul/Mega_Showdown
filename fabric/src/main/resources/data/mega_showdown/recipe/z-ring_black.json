@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "cobblemon:black_apricorn"
+    },
+    "D": {
+      "item": "minecraft:iron_ingot"
+    },
+    "F": {
+      "item": "minecraft:quartz"
+    },
+    "L": {
+      "item": "minecraft:glass_pane"
+    },
+    "R": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "FLF",
+    "BRB",
+    "FDF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:z-ring_black"
+  }
+}

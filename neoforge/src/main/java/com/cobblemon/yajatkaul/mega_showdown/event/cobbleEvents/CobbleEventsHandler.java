@@ -14,6 +14,8 @@ import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
+import com.cobblemon.mod.common.api.moves.Move;
+import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
@@ -33,6 +35,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
@@ -42,6 +45,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.UInt;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -54,7 +58,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -145,6 +151,7 @@ public class CobbleEventsHandler {
         }
 
         primalEvent(event);
+        crownedEvent(event);
 
         if(Config.battleModeOnly){
             return Unit.INSTANCE;
@@ -243,6 +250,22 @@ public class CobbleEventsHandler {
             }
         }
     }
+    public static void crownedEvent(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Zacian") ||
+                pokemon.getSpecies().getName().equals("Zamazenta")){
+            if(event.getReceived().is(ModItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")){
+                crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
+                new FlagSpeciesFeature("crowned", true).apply(pokemon);
+            } else if (event.getReceived().is(ModItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
+                crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
+                new FlagSpeciesFeature("crowned", true).apply(pokemon);
+            } else{
+                new FlagSpeciesFeature("crowned", false).apply(pokemon);
+            }
+        }
+    }
 
     private static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
         if (context.level() instanceof ServerLevel serverLevel) {
@@ -286,12 +309,90 @@ public class CobbleEventsHandler {
             }
         }
     }
+    private static void crownAnimation(ServerLevel level, BlockPos pos, LivingEntity context) {
+        LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
+        if (lightning != null) {
+            lightning.moveTo(Vec3.atBottomCenterOf(pos));
+            lightning.setVisualOnly(true);
+            level.addFreshEntity(lightning);
+            playEvolveAnimation(context);
+        }
+    }
+    public static void playEvolveAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
 
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverLevel.sendParticles(
+                        ParticleTypes.END_ROD, // Change this to any particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+
+    public static void checkKeldeo(PlayerPartyStore pokemons){
+        for(Pokemon pokemon: pokemons){
+            if(pokemon.getSpecies().getName().equals("Keldeo")){
+                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("resolute"));
+                FlagSpeciesFeature feature = featureProvider.get(pokemon);
+                boolean hasMove = false;
+
+                for(Move move: pokemon.getMoveSet().getMoves()){
+                    if(move.getName().equals(Moves.INSTANCE.getByName("secretsword").getName())){
+                        hasMove = true;
+                    }
+                }
+
+                if(feature != null){
+                    boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                    if(!enabled){
+                        if(hasMove){
+                            new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                            playEvolveAnimation(pokemon.getEntity());
+                        }
+                    }else{
+                        if(!hasMove){
+                            new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                            playEvolveAnimation(pokemon.getEntity());
+                        }
+                    }
+                }
+            }
+        }
+    }
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
         for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
-            if(Config.battleMode){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            checkKeldeo(playerPartyStore);
 
+            if(Config.battleMode){
                 for (Pokemon pokemon : playerPartyStore) {
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
