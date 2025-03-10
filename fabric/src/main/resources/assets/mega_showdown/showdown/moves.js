@@ -20302,7 +20302,7 @@ const Moves = {
     accuracy: 100,
     basePower: 80,
     basePowerCallback(pokemon, target, move) {
-      if (pokemon.terastallized === "Stellar") {
+      if (pokemon.terastallized === "stellar") {
         return 100;
       }
       return move.basePower;
@@ -20326,7 +20326,7 @@ const Moves = {
       if (pokemon.terastallized && pokemon.getStat("atk", false, true) > pokemon.getStat("spa", false, true)) {
         move.category = "Physical";
       }
-      if (pokemon.terastallized === "Stellar") {
+      if (pokemon.terastallized === "stellar") {
         move.self = { boosts: { atk: -1, spa: -1 } };
       }
     },

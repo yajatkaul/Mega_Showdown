@@ -1559,24 +1559,42 @@ class BattleActions {
     baseDamage = this.battle.randomizer(baseDamage);
     if (type !== "???") {
       let stab = 1;
-      const isSTAB = move.forceSTAB || pokemon.hasType(type) || pokemon.getTypes(false, true).includes(type) || (pokemon.terastallized && pokemon.teraType.toLowerCase());
+	  console.log(`Move Type: ${type}`);
+      console.log(`STAB Multiplier Before: ${stab}`);
+	  console.log(`Pokemon's Tera Type: ${pokemon.teraType}`);
+      console.log(`Pokemon's Current Type(s): ${pokemon.getTypes(false, true).join(", ")}`);
+	  // Ensure stellarBoostedTypes is initialized
+      if (!pokemon.stellarBoostedTypes) {
+        pokemon.stellarBoostedTypes = [];
+	  }
+      const isSTAB = move.forceSTAB || pokemon.hasType(type) || pokemon.getTypes(false, true).includes(type) || (pokemon.terastallized && pokemon.teraType.toLowerCase() === type.toLowerCase());
+	  console.log(`Is STAB Before Stellar Check? ${isSTAB}`);
       if (isSTAB) {
         stab = 1.5;
       }
-      if (pokemon.terastallized === "Stellar") {
-        if (!pokemon.stellarBoostedTypes.includes(type) || move.stellarBoosted) {
-          stab = isSTAB ? 2 : [4915, 4096];
-          move.stellarBoosted = true;
-          if (pokemon.species.name !== "Terapagos-Stellar") {
-            pokemon.stellarBoostedTypes.push(type);
-          }
-        }
-      } else {
-        if ((pokemon.terastallized && pokemon.teraType.toLowerCase() === type.toLowerCase()) && pokemon.getTypes(false, true).includes(type)) {
-          stab = 2;
-        }
-        stab = this.battle.runEvent("ModifySTAB", pokemon, target, move, stab);
+      if (pokemon.terastallized && pokemon.teraType.toLowerCase() === "stellar") {
+		console.log(`Checking Stellar Boost: Already Boosted Types -> ${pokemon.stellarBoostedTypes}`);  
+        if (!pokemon.stellarBoostedTypes.includes(type)) {
+			if (isSTAB) {
+				console.log(`Applying Stellar Boost to ${type}`);	
+				stab = 2;  // First-time Stellar Boost (2x STAB)
+				pokemon.stellarBoostedTypes.push(type);
+			} else {
+				console.log(`Stellar Boost already applied to ${type}, keeping 1.2x STAB`);
+				stab = 1.2;
+				pokemon.stellarBoostedTypes.push(type);
+				// Do NOT change `stab = 1.5` here, keep the previous STAB value
+				//move.stellarBoosted = true;
+			}
+		}
+	  }
+	  if (pokemon.terastallized && (pokemon.teraType.toLowerCase() === type.toLowerCase())) {
+        stab = 2;
       }
+	  stab = this.battle.runEvent("ModifySTAB", pokemon, target, move, stab);
+	  console.log(`STAB Multiplier After: ${stab}`);
+      console.log(`Current Tera Type: ${pokemon.teraType}`);
+	  console.log(`Move Used: ${move.name} | Base Power: ${move.basePower}`);
       baseDamage = this.battle.modify(baseDamage, stab);
     }
     let typeMod = target.runEffectiveness(move);
@@ -1681,12 +1699,18 @@ class BattleActions {
     if (pokemon.illusion && ["Ogerpon", "Terapagos"].includes(pokemon.illusion.species.baseSpecies)) {
       this.battle.singleEvent("End", this.dex.abilities.get("Illusion"), pokemon.abilityState, pokemon);
     }
-    const type = pokemon.teraType;
-    this.battle.add("-terastallize", pokemon, type);
+	const type = pokemon.teraType;
+	this.battle.add("-terastallize", pokemon, type);
     pokemon.terastallized = type;
     for (const ally of pokemon.side.pokemon) {
       ally.canTerastallize = null;
     }
+	
+	// Debug: Check initial typing before terastallization
+    console.log(`Before Terastallization: ${pokemon.species.name}`);
+    console.log(`Original Types: ${pokemon.getTypes(false, true).join(", ")}`);
+    console.log(`Tera Type: ${type}`);
+	
     pokemon.addedType = "";
     pokemon.knownType = true;
     pokemon.apparentType = type;
@@ -1704,6 +1728,13 @@ class BattleActions {
       pokemon.maxhp = newMaxHP;
       this.battle.add("-heal", pokemon, pokemon.getHealth, "[silent]");
     }
+	// Debug: Log final status after terastallization
+	console.log("========================================");
+    console.log(`After Terastallization: ${pokemon.species.name}`);
+    console.log(`Is ${pokemon.species.name} terastallized?`, pokemon.terastallized ? "Yes" : "No");
+    console.log(`Final Types: ${pokemon.getTypes(false, true).join(", ")}`);
+	console.log("========================================");
+	
     this.battle.runEvent("AfterTerastallization", pokemon);
   }
   // #endregion
