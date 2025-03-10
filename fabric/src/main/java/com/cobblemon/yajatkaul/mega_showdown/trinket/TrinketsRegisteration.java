@@ -15,6 +15,7 @@ public class TrinketsRegisteration {
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLACK_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_GREEN_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_PINK_BRACELET, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.MAY_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.BRENDAN_MEGA_CUFF, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.KORRINA_GLOVE, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.LYSANDRE_RING, new RenderHandTrinkets());
@@ -22,6 +23,8 @@ public class TrinketsRegisteration {
         TrinketRendererRegistry.registerRenderer(ModItems.ARCHIE_ANCHOR, new RenderChestTrinkets());
 
         TrinketRendererRegistry.registerRenderer(ZMoves.Z_RING, new RenderOffHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZMoves.Z_RING_BLACK, new RenderOffHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZMoves.Z_RING_POWER, new RenderOffHandTrinkets());
 
         TrinketRendererRegistry.registerRenderer(TeraMoves.TERA_ORB, new RenderBeltTrinkets());
     }

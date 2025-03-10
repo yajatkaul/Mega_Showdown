@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Supplier;

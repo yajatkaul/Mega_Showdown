@@ -339,6 +339,12 @@ public class ZMoves {
     public static final DeferredItem<Item> Z_RING = ITEMS.register("z-ring",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> Z_RING_BLACK = ITEMS.register("z-ring_black",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> Z_RING_POWER = ITEMS.register("z-power_ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+
     public static void register(){
     }
 }

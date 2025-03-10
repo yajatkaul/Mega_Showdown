@@ -91,6 +91,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MAXIE_GLASSES);
                         output.accept(ModItems.ARCHIE_ANCHOR);
                         output.accept(ModItems.KORRINA_GLOVE);
+                        output.accept(ModItems.MAY_BRACELET);
 
                         // Blocks
                         output.accept(MegaOres.ABOMASITE_ORE);
@@ -176,6 +177,8 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ZMoves.Z_RING);
+                        output.accept(ZMoves.Z_RING_BLACK);
+                        output.accept(ZMoves.Z_RING_POWER);
                         output.accept(ZMoves.ALORAICHIUM_Z);
                         output.accept(ZMoves.BLANK_Z);
                         output.accept(ZMoves.BUGINIUM_Z);

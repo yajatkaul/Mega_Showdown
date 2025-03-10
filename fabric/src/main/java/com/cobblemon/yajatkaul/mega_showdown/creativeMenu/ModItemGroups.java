@@ -86,6 +86,7 @@ public class ModItemGroups {
                         entries.add(ModItems.KORRINA_GLOVE);
                         entries.add(ModItems.MAXIE_GLASSES);
                         entries.add(ModItems.ARCHIE_ANCHOR);
+                        entries.add(ModItems.MAY_BRACELET);
 
                         entries.add(MegaOres.ABOMASITE_ORE);
                         entries.add(MegaOres.ABSOLITE_ORE);
@@ -169,6 +170,8 @@ public class ModItemGroups {
                     .displayName(Text.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ZMoves.Z_RING);
+                        entries.add(ZMoves.Z_RING_BLACK);
+                        entries.add(ZMoves.Z_RING_POWER);
                         entries.add(ZMoves.ALORAICHIUM_Z);
                         entries.add(ZMoves.BLANK_Z);
                         entries.add(ZMoves.BUGINIUM_Z);

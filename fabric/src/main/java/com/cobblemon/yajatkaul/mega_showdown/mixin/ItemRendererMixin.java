@@ -82,7 +82,15 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == TeraMoves.TERA_ORB && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "tera_orb")));
         }
-
+        else if (stack.getItem() == ModItems.MAY_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "may_bracelet")));
+        }
+        else if (stack.getItem() == ZMoves.Z_RING_BLACK && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_black")));
+        }
+        else if (stack.getItem() == ZMoves.Z_RING_POWER && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring")));
+        }
         return bakedModel;
     }
 
@@ -139,6 +147,15 @@ public abstract class ItemRendererMixin {
         }
         else if (stack.getItem() == TeraMoves.TERA_ORB) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "tera_orb_3d")));
+        }
+        else if (stack.getItem() == ModItems.MAY_BRACELET) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "may_bracelet_3d")));
+        }
+        else if (stack.getItem() == ZMoves.Z_RING_BLACK) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_black_3d")));
+        }
+        else if (stack.getItem() == ZMoves.Z_RING_POWER) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring_3d")));
         }
 
         return bakedModel;

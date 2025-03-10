@@ -22,6 +22,7 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.MEGA_BLACK_BRACELET.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.MEGA_GREEN_BRACELET.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.MEGA_PINK_BRACELET.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ModItems.MAY_BRACELET.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.BRENDAN_MEGA_CUFF.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.KORRINA_GLOVE.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.LYSANDRE_RING.get(), CurioHandRenderer::new);
@@ -29,6 +30,8 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.ARCHIE_ANCHOR.get(), CurioChestRenderer::new);
 
         CuriosRendererRegistry.register(ZMoves.Z_RING.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZMoves.Z_RING_BLACK.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZMoves.Z_RING_POWER.get(), CurioOffHandRenderer::new);
 
         CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
     }

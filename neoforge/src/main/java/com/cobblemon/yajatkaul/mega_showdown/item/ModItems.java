@@ -40,6 +40,9 @@ public class ModItems {
     public static final DeferredItem<Item> MEGA_BLACK_BRACELET = ITEMS.register("megabracelet_black",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> MAY_BRACELET = ITEMS.register("may_bracelet",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> MEGA_RING = ITEMS.register("megaring",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 

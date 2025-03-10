@@ -30,6 +30,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
                 .add(ModItems.KORRINA_GLOVE.get())
                 .add(ModItems.MEGA_BRACELET.get())
+                .add(ModItems.MAY_BRACELET.get())
                 .add(ModItems.MEGA_BLACK_BRACELET.get())
                 .add(ModItems.MEGA_PINK_BRACELET.get())
                 .add(ModItems.MEGA_GREEN_BRACELET.get())
@@ -128,7 +129,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaStones.VENUSAURITE.get());
 
         tag(ModTags.Items.Z_RINGS)
-                .add(ZMoves.Z_RING.get());
+                .add(ZMoves.Z_RING.get())
+                .add(ZMoves.Z_RING_POWER.get())
+                .add(ZMoves.Z_RING_BLACK.get());
 
         tag(ModTags.Items.TERA_ITEMS)
                 .add(TeraMoves.TERA_ORB.get());

@@ -63,6 +63,35 @@
         "q.bedrock_quirk('gyarados_mega', 'blink')"
       ]
     },
+    "flying": {
+      "poseTypes": [
+        "FLY"
+      ],
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'air_fly')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "hover": {
+      "poseTypes": [
+        "FLOAT",
+        "HOVER",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'air_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
     "float": {
       "poseTypes": [
         "FLOAT"
