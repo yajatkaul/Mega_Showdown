@@ -3,30 +3,19 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:metagross_mega",
       "model": "cobblemon:metagross_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0376_metagross/megametagross.png",
-      "layers": [
-        {
-          "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/0376_metagross/megametagross_emissive.png",
-          "emissive": true
-        }
-      ]
+      "texture": "cobblemon:textures/pokemon/0376_metagross/metagross_mega.png"
     },
     {
-      "aspects": ["shiny","mega"],
-      "poser": "cobblemon:metagross_mega",
-      "model": "cobblemon:metagross_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0376_metagross/megametagross_shiny.png",
-      "layers": [
-        {
-          "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/0376_metagross/megametagross_shiny_emissive.png",
-          "emissive": true
-        }
-      ]
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0376_metagross/metagross_mega_shiny.png"
     }
   ]
 }

@@ -421,10 +421,6 @@ public class CobbleEventHandler {
 
                             if(enabled){
                                 MegaLogic.Devolve(pokemon.getEntity(), player, true);
-
-                                if(!ShowdownConfig.multipleMegas.get()){
-                                    break;
-                                }
                             }
                         }
                     }

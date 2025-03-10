@@ -29,6 +29,7 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -303,10 +304,6 @@ public class CobbleEventsHandler {
 
                             if(enabled){
                                 MegaLogic.Devolve(pokemon.getEntity(), player, true);
-
-                                if(!Config.multipleMegas){
-                                    break;
-                                }
                             }
                         }
                     }
