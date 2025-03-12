@@ -1,0 +1,11 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.calyrex.ground_walk": {
+			"loop": true
+		},
+		"animation.calyrex.ground_idle": {
+			"loop": true
+		}
+	}
+}

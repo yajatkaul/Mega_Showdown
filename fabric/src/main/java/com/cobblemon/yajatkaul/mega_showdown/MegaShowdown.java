@@ -15,7 +15,12 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +44,13 @@ public class MegaShowdown implements ModInitializer {
 
         MegaCommands.register();
         ModEvents.register();
+
+        ResourceManagerHelper.registerBuiltinResourcePack(
+                Identifier.of(MOD_ID, "gyaradosjumpingmega"),
+                FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
+                Text.literal("Gyrados Jumping Mega"),
+                ResourcePackActivationType.NORMAL
+        );
     }
 
     private void onServerStarted(MinecraftServer server) {

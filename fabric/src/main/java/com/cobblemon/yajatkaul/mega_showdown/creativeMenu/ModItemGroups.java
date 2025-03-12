@@ -164,6 +164,10 @@ public class ModItemGroups {
 
                         entries.add(ModItems.RUSTED_SWORD);
                         entries.add(ModItems.RUSTED_SHIELD);
+
+                        entries.add(ModItems.PRISON_BOTTLE);
+
+                        entries.add(ModItems.REINS_OF_UNITY);
                     }))
                     .build());
 

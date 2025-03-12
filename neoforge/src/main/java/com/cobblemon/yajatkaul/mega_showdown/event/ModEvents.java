@@ -68,6 +68,8 @@ public class ModEvents {
         ResourceLocation luna_ruins = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/luna_henge_ruins");
         ResourceLocation mossy_ruins = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/mossy_oubliette_ruins");
 
+        ResourceLocation ancient_city = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/ancient_city");
+
         LootTable table = event.getTable();
         LootPool mainPool = table.getPool("main");
 
@@ -211,7 +213,7 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SWORD).setWeight(8));
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SWORD).setWeight(4));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());
@@ -242,13 +244,44 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SHIELD).setWeight(8));
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SHIELD).setWeight(4));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());
                 }
 
                 table.removePool("main");
+                table.addPool(newPoolBuilder.build());
+            }
+        }else if (ancient_city.equals(lootTableId)) {
+            mainPool = table.getPool("pool0");
+            if (mainPool != null && !mainPool.isFrozen()) {
+                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
+                LootPool.Builder newPoolBuilder = LootPool.lootPool()
+                        .setRolls(mainPool.getRolls())
+                        .setBonusRolls(mainPool.getBonusRolls());
+
+                poolAccessor.getEntries().forEach(entry ->
+                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
+                            @Override
+                            protected LootPoolEntryContainer.Builder getThis() {
+                                return null;
+                            }
+
+                            @Override
+                            public LootPoolEntryContainer build() {
+                                return entry;
+                            }
+                        })
+                );
+
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.PRISON_BOTTLE).setWeight(3));
+
+                if (mainPool.getName() != null) {
+                    newPoolBuilder.name(mainPool.getName());
+                }
+
+                table.removePool("pool0");
                 table.addPool(newPoolBuilder.build());
             }
         }

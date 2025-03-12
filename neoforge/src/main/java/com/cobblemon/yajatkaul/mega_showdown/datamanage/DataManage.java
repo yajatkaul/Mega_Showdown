@@ -80,6 +80,18 @@ public class DataManage {
                     .networkSynchronized(ByteBufCodecs.BOOL)
     );
 
+    public static final Supplier<AttachmentType<Pokemon>> CALYREX_FUSION = ATTACHMENT_TYPES.register(
+            "calyrex_fusion", () -> AttachmentType.builder(Pokemon::new)
+                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> CALYREX_DATA = REGISTRAR.registerComponentType(
+            "calyrex_data",
+            builder -> builder
+                    .persistent(Codec.BOOL)
+                    .networkSynchronized(ByteBufCodecs.BOOL)
+    );
+
     public static void register(IEventBus eventBus){
         ATTACHMENT_TYPES.register(eventBus);
         REGISTRAR.register(eventBus);

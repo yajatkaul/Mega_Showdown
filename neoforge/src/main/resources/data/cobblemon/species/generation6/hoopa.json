@@ -1,0 +1,260 @@
+{
+  "implemented": true,
+  "name": "Hoopa",
+  "nationalPokedexNumber": 720,
+  "primaryType": "psychic",
+  "secondaryType": "ghost",
+  "abilities": [
+    "magician"
+  ],
+  "baseStats": {
+    "hp": 80,
+    "attack": 110,
+    "defence": 60,
+    "special_attack": 150,
+    "special_defence": 130,
+    "speed": 70
+  },
+  "catchRate": 3,
+  "maleRatio": -1,
+  "shoulderMountable": false,
+  "features": ["unbound"],
+  "forms": [
+    {
+      "name": "Hoopa-Unbound",
+      "nationalPokedexNumber": 720,
+      "primaryType": "psychic",
+      "secondaryType": "dark",
+      "abilities": [
+        "magician"
+      ],
+      "baseStats": {
+        "hp": 80,
+        "attack": 160,
+        "defence": 60,
+        "special_attack": 170,
+        "special_defence": 130,
+        "speed": 80
+      },
+      "catchRate": 1,
+      "maleRatio": -1,
+      "shoulderMountable": false,
+      "baseExperienceYield": 340,
+      "experienceGroup": "slow",
+      "eggCycles": 120,
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "evYield": {
+        "hp": 0,
+        "attack": 3,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "labels": [
+        "gen6",
+        "primal",
+        "legendary"
+      ],
+      "aspects": [
+        "unbound"
+      ],
+      "height": 65,
+      "weight": 4900,
+      "cannotDynamax": false,
+      "behaviour": {
+        "moving": {
+          "walk": {
+            "canWalk": true,
+            "walkSpeed": 0.3
+          },
+          "fly": {
+            "canFly": true
+          }
+        },
+        "resting": {
+          "canSleep": true,
+          "willSleepOnBed": true,
+          "depth": "normal",
+          "light": "0-4"
+        }
+      },
+      "baseScale": 0.5,
+      "hitbox": {
+        "width": 6,
+        "height": 12,
+        "fixed": false
+      }
+    }
+  ],
+
+  "baseExperienceYield": 300,
+  "experienceGroup": "slow",
+  "eggCycles": 120,
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "moves": [
+    "1:shadowball",
+    "1:confusion",
+    "1:destinybond",
+    "6:astonish",
+    "10:magiccoat",
+    "10:trick",
+    "15:lightscreen",
+    "19:psybeam",
+    "25:skillswap",
+    "29:guardsplit",
+    "29:powersplit",
+    "35:phantomforce",
+    "46:knockoff",
+    "46:zenheadbutt",
+    "50:trickroom",
+    "50:wonderroom",
+    "55:shadowball",
+    "68:nastyplot",
+    "75:psychic",
+    "85:hyperspacehole",
+    "tm:brickbreak",
+    "tm:calmmind",
+    "tm:chargebeam",
+    "tm:confide",
+    "tm:darkpulse",
+    "tm:doubleteam",
+    "tm:drainpunch",
+    "tm:dreameater",
+    "tm:embargo",
+    "tm:endure",
+    "tm:energyball",
+    "tm:facade",
+    "tm:firepunch",
+    "tm:fling",
+    "tm:focusblast",
+    "tm:foulplay",
+    "tm:frustration",
+    "tm:gigaimpact",
+    "tm:grassknot",
+    "tm:gunkshot",
+    "tm:hiddenpower",
+    "tm:hyperbeam",
+    "tm:icepunch",
+    "tm:lightscreen",
+    "tm:nastyplot",
+    "tm:phantomforce",
+    "tm:protect",
+    "tm:psybeam",
+    "tm:psychic",
+    "tm:psychicterrain",
+    "tm:psychup",
+    "tm:psyshock",
+    "tm:quash",
+    "tm:raindance",
+    "tm:reflect",
+    "tm:rest",
+    "tm:return",
+    "tm:rocktomb",
+    "tm:safeguard",
+    "tm:sandstorm",
+    "tm:scaryface",
+    "tm:shadowball",
+    "tm:skillswap",
+    "tm:sleeptalk",
+    "tm:sunnyday",
+    "tm:swift",
+    "tm:takedown",
+    "tm:taunt",
+    "tm:terablast",
+    "tm:thief",
+    "tm:thunderbolt",
+    "tm:thunderpunch",
+    "tm:thunderwave",
+    "tm:torment",
+    "tm:toxic",
+    "tm:trick",
+    "tm:zenheadbutt",
+    "tm:substitute",
+    "tm:flash",
+    "tm:secretpower",
+    "tm:poweruppunch",
+    "tutor:allyswitch",
+    "tutor:astonish",
+    "tutor:block",
+    "tutor:covet",
+    "tutor:drainpunch",
+    "tutor:dualchop",
+    "tutor:firepunch",
+    "tutor:focuspunch",
+    "tutor:foulplay",
+    "tutor:gravity",
+    "tutor:gunkshot",
+    "tutor:icepunch",
+    "tutor:knockoff",
+    "tutor:laserfocus",
+    "tutor:lastresort",
+    "tutor:magiccoat",
+    "tutor:magicroom",
+    "tutor:nastyplot",
+    "tutor:psychic",
+    "tutor:recycle",
+    "tutor:roleplay",
+    "tutor:shadowball",
+    "tutor:shockwave",
+    "tutor:signalbeam",
+    "tutor:skillswap",
+    "tutor:snatch",
+    "tutor:snore",
+    "tutor:telekinesis",
+    "tutor:throatchop",
+    "tutor:thunderpunch",
+    "tutor:trick",
+    "tutor:uproar",
+    "tutor:wonderroom",
+    "tutor:zenheadbutt"
+  ],
+  "labels": [
+    "gen6",
+    "mythical",
+    "legendary"
+  ],
+  "pokedex": [
+    "cobblemon.species.hoopa.desc"
+  ],
+ "behaviour": {
+   "moving": {
+     "walk": {
+       "canWalk": true,
+       "walkSpeed": 0.6
+     },
+     "fly": {
+       "canFly": true
+     }
+   },
+   "resting": {
+     "canSleep": true,
+     "willSleepOnBed": true,
+     "depth": "normal",
+     "light": "0-4"
+   }
+ },
+ "baseScale": 1,
+ "hitbox": {
+   "width": 1,
+   "height": 2,
+   "fixed": false
+ },
+  "baseFriendship": 100,
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 3,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "height": 5,
+  "weight": 90,
+  "aspects": [],
+  "cannotDynamax": false
+}

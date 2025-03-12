@@ -280,5 +280,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('K', MegaStones.KEYSTONE)
                 .define('Y', CobblemonItems.YELLOW_APRICORN)
                 .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.REINS_OF_UNITY.get())
+                .pattern("SGS")
+                .pattern("C  ")
+                .pattern("SIS")
+                .define('C', Items.IRON_INGOT)
+                .define('S', Items.STRING)
+                .define('I', CobblemonItems.ICE_GEM)
+                .define('G', CobblemonItems.GHOST_GEM)
+                .unlockedBy("has_gem", has(CobblemonItems.GHOST_GEM)).save(recipeOutput);
     }
 }

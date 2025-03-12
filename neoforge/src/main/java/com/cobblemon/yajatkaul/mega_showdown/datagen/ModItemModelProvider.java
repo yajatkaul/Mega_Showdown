@@ -134,5 +134,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.RUSTED_SWORD.get());
         basicItem(ModItems.RUSTED_SHIELD.get());
+
+        basicItem(ModItems.PRISON_BOTTLE.get());
+
+        basicItem(ModItems.REINS_OF_UNITY.get());
     }
 }

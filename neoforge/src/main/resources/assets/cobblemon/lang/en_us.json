@@ -52,10 +52,13 @@
 	"cobblemon.ui.pokedex.info.form.mega-y": "Mega Y",
 
 	"cobblemon.battle.weather.desolateland.start": "The sunlight turned extremely harsh!",
+	"cobblemon.battle.weather.desolateland": "The sunlight turned extremely harsh!",
 	"cobblemon.battle.weather.desolateland.end": "The harsh sunlight faded away.",
 	"cobblemon.battle.weather.primordialsea.start": "A heavy rain began to fall!",
+	"cobblemon.battle.weather.primordialsea": "A heavy rain began to fall!",
 	"cobblemon.battle.weather.primordialsea.end": "The heavy rain subsided.",
 	"cobblemon.battle.weather.deltastream.start": "Strong winds began to blow!",
+	"cobblemon.battle.weather.deltastream": "Strong winds began to blow!",
 	"cobblemon.battle.weather.deltastream.upkeep": "The strong winds are protecting Flying-type Pokémon!",
 	"cobblemon.battle.weather.deltastream.end": "The strong winds dissipated!",
 
@@ -536,5 +539,17 @@
 	"cobblemon.move.zauroraveil": "Z Aurora Veil",
 	"cobblemon.move.zauroraveil.desc": "Raises Speed by 1 stage.",
 	"cobblemon.move.ztearfullook": "Z Tearful Look",
-	"cobblemon.move.ztearfullook.desc": "Raises Defense by 1 stage."
+	"cobblemon.move.ztearfullook.desc": "Raises Defense by 1 stage.",
+
+	"cobblemon.ui.pokedex.info.form.crowned": "Crowned",
+	"cobblemon.ui.pokedex.info.form.black": "Black",
+	"cobblemon.ui.pokedex.info.form.dusk": "Dusk",
+	"cobblemon.ui.pokedex.info.form.midnight": "Midnight",
+	"cobblemon.ui.pokedex.info.form.primal": "Primal",
+	"cobblemon.ui.pokedex.info.form.resolute": "Resolute",
+	"cobblemon.ui.pokedex.info.form.ultra": "Ultra",
+	"cobblemon.ui.pokedex.info.form.unbound": "Unbound",
+	"cobblemon.ui.pokedex.info.form.white": "White",
+	"cobblemon.ui.pokedex.info.form.ice": "Ice",
+	"cobblemon.ui.pokedex.info.form.shadow": "Shadow"
 }

@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.particle.CobblemonParticles;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
@@ -33,7 +32,7 @@ import java.util.UUID;
 
 public class MegaLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_TIME = 2000; // 2 sec
+    private static final long COOLDOWN_TIME = 1000; // 1 sec
 
     public static boolean Possible(ServerPlayer player, boolean fromBattle) {
         UUID playerId = player.getUUID();

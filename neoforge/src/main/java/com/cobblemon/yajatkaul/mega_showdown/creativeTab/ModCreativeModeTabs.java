@@ -171,6 +171,10 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.RUSTED_SWORD);
                         output.accept(ModItems.RUSTED_SHIELD);
+
+                        output.accept(ModItems.PRISON_BOTTLE);
+
+                        output.accept(ModItems.REINS_OF_UNITY);
                     })
                     .build());
 

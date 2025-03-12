@@ -71,13 +71,21 @@ public class ModEvents {
 
             if(luna_ruins.equals(key.getValue())){
                 tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SWORD).weight(8));
+                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SWORD).weight(4));
                 });
             }
 
             if(mossy_ruins.equals(key.getValue())){
                 tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SHIELD).weight(8));
+                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SHIELD).weight(4));
+                });
+            }
+
+            Identifier ancient_city = Identifier.of("minecraft", "chests/ancient_city");
+
+            if(ancient_city.equals(key.getValue())){
+                tableBuilder.modifyPools(poolBuilder -> {
+                    poolBuilder.with(ItemEntry.builder(ModItems.PRISON_BOTTLE).weight(3));
                 });
             }
         });

@@ -1,0 +1,11 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.spectrier.ground_idle": {
+			"loop": true
+		},
+		"animation.spectrier.ground_walk": {
+			"loop": true
+		}
+	}
+}

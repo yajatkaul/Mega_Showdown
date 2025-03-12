@@ -5,9 +5,11 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Unbound;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -65,7 +67,7 @@ public class ModItems {
         }
     });
 
-    public static final Item RUSTED_SWORD = registerItem("rusted_sword", new Item(new Item.Settings().maxCount(1).component(DataManage.KYUREM_DATA, false)){
+    public static final Item RUSTED_SWORD = registerItem("rusted_sword", new Item(new Item.Settings().maxCount(1)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rusted_sword.tooltip"));
@@ -73,10 +75,26 @@ public class ModItems {
         }
     });
 
-    public static final Item RUSTED_SHIELD = registerItem("rusted_shield", new Item(new Item.Settings().maxCount(1).component(DataManage.KYUREM_DATA, false)){
+    public static final Item RUSTED_SHIELD = registerItem("rusted_shield", new Item(new Item.Settings().maxCount(1)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rusted_shield.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item PRISON_BOTTLE = registerItem("prison_bottle", new Unbound(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.prison_bottle.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item REINS_OF_UNITY = registerItem("reins_of_unity", new Unity(new Item.Settings().maxCount(1).component(DataManage.CALYREX_DATA, false)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });

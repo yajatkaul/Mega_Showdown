@@ -269,11 +269,16 @@ public class CobbleEventHandler {
             } else if (event.getReceived().isOf(ModItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
                 crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
-            } else{
+            } else if(pokemon.getSpecies().getName().equals("Zacian") && event.getReturned().isOf(ModItems.RUSTED_SWORD)){
+                playEvolveAnimation(pokemon.getEntity());
+                new FlagSpeciesFeature("crowned", false).apply(pokemon);
+            }else if(pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturned().isOf(ModItems.RUSTED_SHIELD)){
+                playEvolveAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
             }
         }
     }
+
     private static void crownAnimation(ServerWorld level, BlockPos pos, LivingEntity context) {
         LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(level);
         if (lightning != null) {
@@ -320,7 +325,6 @@ public class CobbleEventHandler {
             }
         }
     }
-
     public static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position

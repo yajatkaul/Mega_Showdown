@@ -3,6 +3,8 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Unity;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unbound;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
@@ -105,6 +107,25 @@ public class ModItems {
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
+
+    public static final DeferredItem<Item> PRISON_BOTTLE = ITEMS.register("prison_bottle",
+            () -> new Unbound(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.prison_bottle.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> REINS_OF_UNITY = ITEMS.register("reins_of_unity",
+            () -> new Unity(new Item.Properties().stacksTo(1).component(DataManage.CALYREX_DATA, false)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

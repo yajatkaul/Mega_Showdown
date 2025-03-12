@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-10T23:31:48.7971804	Recipes
+// 1.21.1	2025-03-12T19:06:51.2481697	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -22,6 +22,7 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 080f0dbf9ff7aaa6f7f94f090ae27106db717a4a data/mega_showdown/advancement/recipes/misc/megaring.json
 17a61387448421f434ef34db0ca7fdcda94c94dd data/mega_showdown/advancement/recipes/misc/n_lunarizer.json
 5c7d37bd6f363dc1ffbbb5e55de384d07750916e data/mega_showdown/advancement/recipes/misc/n_solarizer.json
+dbe0634f607157ebb47122dbfa0e88858aa0e172 data/mega_showdown/advancement/recipes/misc/reins_of_unity.json
 08602e7c34b11bd06840b4956f7b7f31fb6e1201 data/mega_showdown/advancement/recipes/misc/tera_orb.json
 8315990c6cbe8003bc620613275ad6d92ac8f2cd data/mega_showdown/advancement/recipes/misc/z-power_ring.json
 6946b8de2ec5fecb3902c15e6e89acfeb86eb361 data/mega_showdown/advancement/recipes/misc/z-ring.json
@@ -49,6 +50,7 @@ c4492313967e35095d6881fd802843597dc65a66 data/mega_showdown/recipe/maxie_glasses
 dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.json
 3573a93f54ee2b0e480adb16216ac318323ee4b0 data/mega_showdown/recipe/n_solarizer.json
 665e6e446b8e72bc520ebfdc82503da2b561dc52 data/mega_showdown/recipe/polished_mega_evo_block.json
+6411873bf113d78315b381edc65fa60019a65d75 data/mega_showdown/recipe/reins_of_unity.json
 372ee1bc63995b76e1d0432d371e58b100e27f3e data/mega_showdown/recipe/tera_orb.json
 d84ae3a6b6fbcaccd7f2c5166598cf503df62521 data/mega_showdown/recipe/z-power_ring.json
 f10c3fc50f8ef2e41720bf8fdb4fee2883c4d0ef data/mega_showdown/recipe/z-ring.json

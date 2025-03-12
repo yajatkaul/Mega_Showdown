@@ -7,7 +7,7 @@ plugins {
 
 
 group = "com.github.yajatkaul"
-version = "6.4.2-release-neoforge"
+version = "6.5.0-beta-neoforge"
 
 architectury {
     platformSetupLoomIde()
@@ -50,7 +50,7 @@ repositories {
 dependencies {
     minecraft("net.minecraft:minecraft:1.21.1")
     mappings(loom.officialMojangMappings())
-    neoForge("net.neoforged:neoforge:21.1.66")
+    neoForge("net.neoforged:neoforge:21.1.130")
 
     modImplementation("com.cobblemon:neoforge:1.6.1+1.21.1")
     //Needed for cobblemon

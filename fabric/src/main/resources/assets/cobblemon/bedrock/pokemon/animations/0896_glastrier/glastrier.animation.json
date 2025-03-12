@@ -1,0 +1,11 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.glastrier.ground_idle": {
+			"loop": true
+		},
+		"animation.glastrier.ground_walk": {
+			"loop": true
+		}
+	}
+}

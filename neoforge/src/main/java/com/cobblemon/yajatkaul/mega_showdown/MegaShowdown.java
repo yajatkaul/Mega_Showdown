@@ -1,28 +1,18 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
-import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.battles.BattleRegistry;
-import com.cobblemon.mod.common.particle.CobblemonParticles;
-import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
+import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.common.util.TriState;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -84,6 +74,11 @@ public final class MegaShowdown {
         public static void onClientSetup(FMLClientSetupEvent event) {
             NeoForge.EVENT_BUS.addListener(ClientModEvents::onClientTick);
             NeoForge.EVENT_BUS.addListener(ChestRenderer::onRenderPlayer);
+        }
+
+        @SubscribeEvent
+        public static void onAddPackFinders(AddPackFindersEvent event) {
+            PackRegister.register(event);
         }
 
         // Register the key binding

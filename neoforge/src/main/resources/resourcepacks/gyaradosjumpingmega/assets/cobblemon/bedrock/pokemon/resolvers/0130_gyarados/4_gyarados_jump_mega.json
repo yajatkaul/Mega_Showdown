@@ -1,0 +1,134 @@
+{
+  "species": "cobblemon:gyarados",
+  "order": 4,
+  "variations": [
+    {
+      "aspects": ["magikarp-jump-apricot-stripes", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_apricot_stripes_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-apricot-tiger", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_apricot_tiger_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-apricot-zebra", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_apricot_zebra_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-black-forehead", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_black_forehead_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-black-mask", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_black_mask_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-blue-raindrops", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_blue_raindrops_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-blue-saucy", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_blue_saucy_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-brown-stripes", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_brown_stripes_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-brown-tiger", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_brown_tiger_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-brown-zebra", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_brown_zebra_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-calico-orange-gold", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_calico_orange_gold_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-calico-orange-white", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_calico_orange_white_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-calico-orange-white-black", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_calico_orange_white_black_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-calico-white-orange", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_calico_white_orange_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-gray-bubbles", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_gray_bubbles_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-gray-diamonds", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_gray_diamonds_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-gray-patches", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_gray_patches_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-orange-dapples", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_orange_dapples_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-orange-forehead", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_orange_forehead_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-orange-mask", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_orange_mask_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-orange-orca", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_orange_orca_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-orange-two-tone", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_orange_two_tone_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-pink-dapples", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_pink_dapples_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-pink-orca", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_pink_orca_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-pink-two-tone", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_pink_two_tone_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-purple-bubbles", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_purple_bubbles_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-purple-diamonds", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_purple_diamonds_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-purple-patches", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_purple_patches_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-skelly", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_skelly_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-violet-raindrops", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_violet_raindrops_mega.png"
+    },
+    {
+      "aspects": ["magikarp-jump-violet-saucy", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_violet_saucy_mega.png"
+    },
+    {
+      "aspects": ["shiny", "mega"],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/magikarp_jump/gyarados_mega_shiny.png"
+    }
+  ]
+}

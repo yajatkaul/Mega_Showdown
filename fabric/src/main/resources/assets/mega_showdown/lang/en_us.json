@@ -252,6 +252,8 @@
   "advancement.mega_showdown.terastallized.title": "Terastallized",
   "advancement.mega_showdown.ultra_necrom.title": "Radiant, powerful, majestic.",
   "advancement.mega_showdown.z_moves.title": "Unleash the Z-Power!",
+  "advancement.mega_showdown.find_prison_bottle.title": "Mysterious Bottle?",
+  "advancement.mega_showdown.prison_escape.title": "Prison Escape!",
 
   "advancement.mega_showdown.root.description": "World of showdown",
   "advancement.mega_showdown.mega_evolve.description": "Mega evolve any Pokémon",
@@ -270,6 +272,8 @@
   "advancement.mega_showdown.terastallized.description": "Terastallize any Pokémon",
   "advancement.mega_showdown.ultra_necrom.description": "Get Ultra Necromza",
   "advancement.mega_showdown.z_moves.description": "Power up with a Z-Move!",
+  "advancement.mega_showdown.find_prison_bottle.description": "Find the Prison Bottle",
+  "advancement.mega_showdown.prison_escape.description": "Unbound your hoopa",
 
   "item.mega_showdown.aloraichium-z": "Aloraichium-Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "Z-Crystal associated with Alolan Raichu and allows it to upgrade its Thunderbolt into the special Z-Move Stoked Sparksurfer.",
@@ -377,9 +381,13 @@
   "item.mega_showdown.n_solarizer.charged": "N Solarizer (Charged)",
   "tooltip.mega_showdown.n_solarizer.tooltip": "Used to fuse Solgaleo with a mysterious being",
   "item.mega_showdown.dna_splicer": "DNA Splicers",
-  "item.mega_showdown.dna_splicer.inactive": "DNA Splicer (Inactive)",
-  "item.mega_showdown.dna_splicer.charged": "DNA Splicer (Inactive)",
+  "item.mega_showdown.dna_splicer.inactive": "DNA Splicers (Inactive)",
+  "item.mega_showdown.dna_splicer.charged": "DNA Splicers (Charged)",
   "tooltip.mega_showdown.dna_splicer.tooltip": "Used to fuse Reshiram/Zekrom with a mysterious being",
+  "item.mega_showdown.reins_of_unity": "Reins of Unity",
+  "item.mega_showdown.reins_of_unity.inactive": "Reins of Unity (Inactive)",
+  "item.mega_showdown.reins_of_unity.charged": "Reins of Unity (Charged)",
+  "tooltip.mega_showdown.reins_of_unity.tooltip": "Used to fuse Spectrier/Glastrier with a mysterious being",
 
   "item.mega_showdown.z-ring_black": "Z-Ring Black",
   "item.mega_showdown.z-power_ring": "Z-Power Ring",
@@ -387,5 +395,7 @@
   "item.mega_showdown.rusted_sword": "Rusted Sword",
   "tooltip.mega_showdown.rusted_sword.tooltip": "It is said that a hero used this sword to halt a terrible disaster in ancient times.",
   "item.mega_showdown.rusted_shield": "Rusted Shield",
-  "tooltip.mega_showdown.rusted_shield.tooltip": "It is said that a hero used this shield to halt a terrible disaster in ancient times.\n"
+  "tooltip.mega_showdown.rusted_shield.tooltip": "It is said that a hero used this shield to halt a terrible disaster in ancient times.",
+  "item.mega_showdown.prison_bottle": "Prison Bottle",
+  "tooltip.mega_showdown.prison_bottle.tooltip": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago."
 }

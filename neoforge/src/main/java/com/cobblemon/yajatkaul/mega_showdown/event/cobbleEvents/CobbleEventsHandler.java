@@ -65,12 +65,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.neoforged.neoforge.registries.DeferredItem;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -261,7 +263,11 @@ public class CobbleEventsHandler {
             } else if (event.getReceived().is(ModItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
-            } else{
+            } else if(pokemon.getSpecies().getName().equals("Zacian") && event.getReturned().is(ModItems.RUSTED_SWORD)){
+                playEvolveAnimation(pokemon.getEntity());
+                new FlagSpeciesFeature("crowned", false).apply(pokemon);
+            }else if(pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturned().is(ModItems.RUSTED_SHIELD)){
+                playEvolveAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
             }
         }

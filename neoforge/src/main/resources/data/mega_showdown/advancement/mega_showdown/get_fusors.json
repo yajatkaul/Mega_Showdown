@@ -23,7 +23,7 @@
       "conditions": {
         "items": [
           {
-            "items": ["mega_showdown:n_lunarizer", "mega_showdown:n_solarizer", "mega_showdown:dna_splicer"]
+            "items": ["mega_showdown:n_lunarizer", "mega_showdown:n_solarizer", "mega_showdown:dna_splicer", "mega_showdown:reins_of_unity"]
           }
         ]
       }

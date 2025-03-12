@@ -127,6 +127,24 @@ public class DataManage {
                     )
     );
 
+    public static final ComponentType<Boolean> CALYREX_DATA = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "calyrex_data"),
+            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+    );
+
+    public static final AttachmentType<Pokemon> CALYREX_FUSION = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "calyrex_fusion"),
+            builder -> builder // Using a builder chain to configure the attachment data type
+                    .copyOnDeath()
+                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
+                    .persistent(Pokemon.getCODEC()) // How to save and load the data
+                    .syncWith(
+                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
+                            AttachmentSyncPredicate.all() // Who to send the data to
+                    )
+    );
+
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();

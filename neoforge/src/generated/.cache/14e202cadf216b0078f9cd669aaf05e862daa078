@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-10T23:31:48.7787762	Item Models: mega_showdown
+// 1.21.1	2025-03-12T18:11:40.7384554	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -84,9 +84,11 @@ ad8a4c1c0a0f2a782def736db0a29fd6dc0c8517 assets/mega_showdown/models/item/pinsir
 476c693f88c3a4027073e227fecd61459f544216 assets/mega_showdown/models/item/poisonium-z.json
 ffb48734c11ae552d14f93430966be183db7b26c assets/mega_showdown/models/item/poison_tera_shard.json
 e785b3c7680fdf356f794dee7aeb882a2ecd08b4 assets/mega_showdown/models/item/primarium-z.json
+550eb7cd122615ea3f7621ca1d04187c1fca07d2 assets/mega_showdown/models/item/prison_bottle.json
 bfc4655c44ec41069a3f21e3249cebc81980bffb assets/mega_showdown/models/item/psychic_tera_shard.json
 db7d50db0d8d42fe8e0bb673c56d29c2a936630a assets/mega_showdown/models/item/psychium-z.json
 da3b1f4be002ac09f90358f221be83387b0ad59d assets/mega_showdown/models/item/redorb.json
+5876bf1095ab123be88755a7b577be789abf50af assets/mega_showdown/models/item/reins_of_unity.json
 8a94794b9d829168efb489a3fb9285f2c153ee26 assets/mega_showdown/models/item/rockium-z.json
 e1ebf73b84517b9a9d418d7a5852305bedacdb07 assets/mega_showdown/models/item/rock_tera_shard.json
 4ef5a56420a6e56ad2b7e0ac79909f80f557f698 assets/mega_showdown/models/item/rusted_shield.json
