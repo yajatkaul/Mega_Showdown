@@ -23,7 +23,7 @@ side = "BOTH"
 [[dependencies.mega_showdown]]
 modId = "neoforge"
 mandatory = true
-versionRange = "[21.1.66,)"
+versionRange = "[21.1.130,)"
 ordering = "NONE"
 side = "BOTH"
 

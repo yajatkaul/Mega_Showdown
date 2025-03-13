@@ -1,0 +1,6 @@
+{
+  "keys": ["dusk-fusion"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}

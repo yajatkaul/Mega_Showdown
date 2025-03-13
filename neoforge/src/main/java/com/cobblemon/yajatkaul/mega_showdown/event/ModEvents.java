@@ -213,7 +213,7 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SWORD).setWeight(4));
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SWORD).setWeight(6));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());
@@ -244,7 +244,7 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SHIELD).setWeight(4));
+                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SHIELD).setWeight(6));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());

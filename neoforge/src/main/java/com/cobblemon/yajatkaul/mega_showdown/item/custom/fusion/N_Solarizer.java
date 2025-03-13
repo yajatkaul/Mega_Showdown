@@ -9,12 +9,15 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -44,21 +47,33 @@ public class N_Solarizer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        boolean currentValue = arg.getOrDefault(DataManage.N_SOLAR, false);
+        PokemonRef refValue = arg.getOrDefault(DataManage.N_SOLAR, null);
+        Pokemon currentValue;
 
-        if (currentValue && pokemon.getSpecies().getName().equals("Necrozma") && !player.getData(DataManage.N_SOLAR_POKEMON).equals(new Pokemon())) {
-            arg.set(DataManage.N_SOLAR, false);
-            pokemon.setForcedAspects(Set.of("dusk-fusion"));
+        if(refValue == null){
+            currentValue = null;
+        }else{
+            currentValue = refValue.getPokemon();
+        }
+
+        if (currentValue != null && pokemon.getSpecies().getName().equals("Necrozma")) {
+            if (checkFused(pokemon)){
+                player.displayClientMessage(Component.literal("Already fused!")
+                        .withColor(0xFF0000), true);
+                return InteractionResult.PASS;
+            }
+
+            pk.setData(DataManage.N_SOLAR_POKEMON, currentValue);
+            arg.set(DataManage.N_SOLAR, null);
+            new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
 
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
-
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
-        } else if (!currentValue && pokemon.getSpecies().getName().equals("Solgaleo")) {
-            arg.set(DataManage.N_SOLAR, true);
-            player.setData(DataManage.N_SOLAR_POKEMON, pk.getPokemon());
-            playerPartyStore.remove(pk.getPokemon());
+        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
+            arg.set(DataManage.N_SOLAR, new PokemonRef(pokemon));
+            playerPartyStore.remove(pokemon);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.charged"));
-        } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getForcedAspects().contains("dusk-fusion")) {
+        } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
             FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
             FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
@@ -70,9 +85,9 @@ public class N_Solarizer extends Item {
                 }
             }
 
-            playerPartyStore.add(player.getData(DataManage.N_SOLAR_POKEMON));
-            player.setData(DataManage.N_SOLAR_POKEMON, new Pokemon());
-            pokemon.setForcedAspects(Set.of());
+            playerPartyStore.add(pk.getData(DataManage.N_SOLAR_POKEMON));
+            pk.removeData(DataManage.N_SOLAR_POKEMON);
+            new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else {
             return InteractionResult.PASS;
@@ -81,5 +96,65 @@ public class N_Solarizer extends Item {
         player.setItemInHand(hand, arg);
         player.getInventory().setChanged();
         return InteractionResult.SUCCESS;
+    }
+
+    private boolean checkEnabled(Pokemon pokemon){
+        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
+        FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            return featureProvider.get(pokemon).getEnabled();
+        }
+        return false;
+    }
+
+    private boolean checkFused(Pokemon pokemon){
+        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
+        FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+            if(enabled){
+                return true;
+            }
+        }
+
+        featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
+        feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+            if(enabled){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    @Override
+    public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
+        if(entity.getOwner() instanceof ServerPlayer player){
+            PokemonRef refValue = entity.getItem().getOrDefault(DataManage.N_SOLAR, null);
+            Pokemon currentValue;
+
+            if(refValue == null){
+                currentValue = null;
+            }else{
+                currentValue = refValue.getPokemon();
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+            if(currentValue != null){
+                playerPartyStore.add(currentValue);
+                entity.getItem().set(DataManage.N_SOLAR, null);
+            }
+        }
+
+        super.onDestroyed(entity, damageSource);
     }
 }

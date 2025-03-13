@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.properties.CustomPokemonProperty;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
@@ -160,6 +161,7 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
 
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
+                    pokemon.setTradeable(false);
 
                     playEvolveAnimation(context);
                     
@@ -209,6 +211,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                 }else if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_Y)){
                     player.setAttached(DataManage.MEGA_DATA, true);
@@ -218,6 +222,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                 }
             }
@@ -230,6 +236,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                 }else if(pokemon.heldItem().isOf(MegaStones.MEWTWONITE_Y)){
                     player.setAttached(DataManage.MEGA_DATA, true);
@@ -239,6 +247,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
                 }
             }
@@ -249,6 +259,8 @@ public class MegaLogic {
                 playEvolveAnimation(context);
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
+                pokemon.setTradeable(false);
+
                 AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
             }
         } else if(species.getName().equals(pokemon.getSpecies().getName()) && playerData){
@@ -289,13 +301,14 @@ public class MegaLogic {
             }
 
             player.setAttached(DataManage.MEGA_DATA, false);
-            player.setAttached(DataManage.MEGA_POKEMON, null);
+            player.removeAttached(DataManage.MEGA_POKEMON);
 
             playDevolveAnimation(context);
 
             new FlagSpeciesFeature("mega", false).apply(pokemon);
             new FlagSpeciesFeature("mega-x", false).apply(pokemon);
             new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            pokemon.setTradeable(true);
 
         }
     }

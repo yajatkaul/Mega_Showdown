@@ -6,8 +6,10 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -18,7 +20,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -33,12 +37,12 @@ public class DNA_Splicer extends Item {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
+    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity conComponent, InteractionHand hand) {
         if (player.level().isClientSide) {
             return InteractionResult.PASS;
         }
 
-        if (!(context instanceof PokemonEntity pk)) {
+        if (!(conComponent instanceof PokemonEntity pk)) {
             return InteractionResult.PASS;
         }
 
@@ -48,38 +52,50 @@ public class DNA_Splicer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        boolean currentValue = arg.getOrDefault(DataManage.KYUREM_DATA, false);
+        PokemonRef refValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
+        Pokemon currentValue;
+
+        if(refValue == null){
+            currentValue = null;
+        }else{
+            currentValue = refValue.getPokemon();
+        }
 
         if(pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)){
+            if(arg.get(DataManage.KYUREM_DATA) != null){
+                player.displayClientMessage(Component.literal("Already fused!")
+                        .withColor(0xFF0000), true);
+                return InteractionResult.PASS;
+            }
             particleEffect(pk, ParticleTypes.ASH);
             new FlagSpeciesFeature("white", false).apply(pokemon);
             new FlagSpeciesFeature("black", false).apply(pokemon);
-            playerPartyStore.add(player.getData(DataManage.KYUREM_FUSION));
+            pokemon.setTradeable(true);
 
-            arg.set(DataManage.KYUREM_DATA, false);
-            player.setData(DataManage.KYUREM_FUSION, new Pokemon());
+            playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH));
+            pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
+            arg.set(DataManage.KYUREM_DATA, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
-        }else if (currentValue && pokemon.getSpecies().getName().equals("Kyurem") && !player.getData(DataManage.KYUREM_FUSION).equals(new Pokemon())) {
-
-            if(player.getData(DataManage.KYUREM_FUSION).getSpecies().getName().equals("Reshiram")){
+        }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
+            if(currentValue.getSpecies().getName().equals("Reshiram")){
                 particleEffect(pk, ParticleTypes.END_ROD);
                 new FlagSpeciesFeature("white", true).apply(pokemon);
             }else{
                 particleEffect(pk, ParticleTypes.SMOKE);
                 new FlagSpeciesFeature("black", true).apply(pokemon);
             }
+            pokemon.setTradeable(false);
 
-            arg.set(DataManage.KYUREM_DATA, false);
+            pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, currentValue);
+            arg.set(DataManage.KYUREM_DATA, null);
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
-        } else if (!currentValue && pokemon.getSpecies().getName().equals("Reshiram")) {
-            arg.set(DataManage.KYUREM_DATA, true);
-            player.setData(DataManage.KYUREM_FUSION, pk.getPokemon());
+        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
+            arg.set(DataManage.KYUREM_DATA, new PokemonRef(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.charged"));
-        }else if (!currentValue && pokemon.getSpecies().getName().equals("Zekrom")) {
-            arg.set(DataManage.KYUREM_DATA, true);
-            player.setData(DataManage.KYUREM_FUSION, pk.getPokemon());
+        }else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
+            arg.set(DataManage.KYUREM_DATA, new PokemonRef(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.charged"));
         } else {
@@ -117,13 +133,13 @@ public class DNA_Splicer extends Item {
         return false;
     }
 
-    public static void particleEffect(LivingEntity context, SimpleParticleType particleType) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
+    public static void particleEffect(LivingEntity conComponent, SimpleParticleType particleType) {
+        if (conComponent.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = conComponent.position(); // Get entity position
 
             // Get entity's size
-            double entityWidth = context.getBbWidth();
-            double entityHeight = context.getBbHeight();
+            double entityWidth = conComponent.getBbWidth();
+            double entityHeight = conComponent.getBbHeight();
             double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
@@ -158,5 +174,28 @@ public class DNA_Splicer extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
+        if(entity.getOwner() instanceof ServerPlayer player){
+            PokemonRef refValue = entity.getItem().getOrDefault(DataManage.KYUREM_DATA, null);
+            Pokemon currentValue;
+
+            if(refValue == null){
+                currentValue = null;
+            }else{
+                currentValue = refValue.getPokemon();
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+            if(currentValue != null){
+                playerPartyStore.add(currentValue);
+                entity.getItem().set(DataManage.KYUREM_DATA, null);
+            }
+        }
+
+        super.onDestroyed(entity, damageSource);
     }
 }

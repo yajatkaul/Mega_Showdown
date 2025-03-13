@@ -158,6 +158,7 @@ public class MegaLogic {
                     playEvolveAnimation(context);
 
                     new FlagSpeciesFeature("mega", true).apply(pokemon);
+                    pokemon.setTradeable(false);
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                     found = true;
                 }
@@ -196,6 +197,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }else if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
@@ -205,6 +208,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }
             }
@@ -217,6 +222,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }else if(pokemon.heldItem().is(MegaStones.MEWTWONITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
@@ -226,6 +233,8 @@ public class MegaLogic {
 
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    pokemon.setTradeable(false);
+
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }
             }
@@ -234,6 +243,7 @@ public class MegaLogic {
                 player.setData(DataManage.MEGA_POKEMON, pokemon);
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
+                pokemon.setTradeable(false);
 
                 playEvolveAnimation(context);
 
@@ -275,6 +285,7 @@ public class MegaLogic {
             new FlagSpeciesFeature("mega", false).apply(pokemon);
             new FlagSpeciesFeature("mega-x", false).apply(pokemon);
             new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+            pokemon.setTradeable(true);
         }
     }
 

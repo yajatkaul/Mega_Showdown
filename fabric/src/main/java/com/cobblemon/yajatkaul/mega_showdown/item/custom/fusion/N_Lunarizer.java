@@ -9,12 +9,15 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
@@ -42,21 +45,27 @@ public class N_Lunarizer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
-        boolean currentValue = arg.getOrDefault(DataManage.N_LUNAR, false);
+        Pokemon currentValue = arg.getOrDefault(DataManage.N_LUNAR, null);
 
-        if (currentValue && pokemon.getSpecies().getName().equals("Necrozma") && !player.getAttached(DataManage.N_LUNAR_POKEMON).equals(new Pokemon())) {
-            arg.set(DataManage.N_LUNAR, false);
-            pokemon.setForcedAspects(Set.of("dawn-fusion"));
+        if (currentValue != null && pokemon.getSpecies().getName().equals("Necrozma")) {
+            if (checkFused(pokemon)){
+                player.sendMessage(
+                        Text.literal("Already fused!").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+                return ActionResult.PASS;
+            }
+            pk.setAttached(DataManage.N_LUNAR_POKEMON, currentValue);
+            arg.set(DataManage.N_LUNAR, null);
+            new FlagSpeciesFeature("dawn-fusion", true).apply(pokemon);
 
             AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "fusion");
-
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.inactive"));
-        } else if (!currentValue && pokemon.getSpecies().getName().equals("Lunala")) {
-            arg.set(DataManage.N_LUNAR, true);
-            player.setAttached(DataManage.N_LUNAR_POKEMON, pk.getPokemon());
-            playerPartyStore.remove(pk.getPokemon());
+        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Lunala")) {
+            arg.set(DataManage.N_LUNAR, pokemon);
+            playerPartyStore.remove(pokemon);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.charged"));
-        } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getForcedAspects().contains("dawn-fusion")) {
+        } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
             FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
             FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
@@ -68,9 +77,9 @@ public class N_Lunarizer extends Item {
                 }
             }
 
-            playerPartyStore.add(player.getAttached(DataManage.N_LUNAR_POKEMON));
-            player.setAttached(DataManage.N_LUNAR_POKEMON, new Pokemon());
-            pokemon.setForcedAspects(Set.of());
+            playerPartyStore.add(pk.getAttached(DataManage.N_LUNAR_POKEMON));
+            pk.removeAttached(DataManage.N_LUNAR_POKEMON);
+            new FlagSpeciesFeature("dawn-fusion", false).apply(pokemon);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.inactive"));
         } else {
             return ActionResult.PASS;
@@ -78,5 +87,56 @@ public class N_Lunarizer extends Item {
 
         player.setStackInHand(hand, arg);
         return ActionResult.SUCCESS;
+    }
+
+    private boolean checkEnabled(Pokemon pokemon){
+        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
+        FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            return featureProvider.get(pokemon).getEnabled();
+        }
+        return false;
+    }
+
+    private boolean checkFused(Pokemon pokemon){
+        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
+        FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+            if(enabled){
+                return true;
+            }
+        }
+
+        featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
+        feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+            if(enabled){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        if(entity.getOwner() instanceof ServerPlayerEntity player){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.N_LUNAR, null);
+
+            if(currentValue != null){
+                playerPartyStore.add(currentValue);
+                entity.getStack().set(DataManage.N_LUNAR, null);
+            }
+        }
+
+        super.onItemEntityDestroyed(entity);
     }
 }

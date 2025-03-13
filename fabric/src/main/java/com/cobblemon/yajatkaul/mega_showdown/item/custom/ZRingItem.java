@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraPacket;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -73,7 +75,7 @@ public class ZRingItem extends Item {
         }
 
         if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player){
-            UltraPacket.send();
+            UltraLogic.ultraTransform((ServerPlayerEntity) player);
         }
 
         return super.useOnEntity(arg, player, context, hand);

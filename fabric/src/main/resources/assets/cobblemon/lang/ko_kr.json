@@ -536,4 +536,16 @@
 	"cobblemon.move.zauroraveil.desc": "스피드가 1단계 증가합니다.",
 	"cobblemon.move.ztearfullook": "Z 눈물그렁그렁",
 	"cobblemon.move.ztearfullook.desc": "방어력이 1단계 증가합니다."
+
+	"cobblemon.ui.pokedex.info.form.crowned": "왕관을 쓴",
+	"cobblemon.ui.pokedex.info.form.black": "블랙",
+	"cobblemon.ui.pokedex.info.form.dusk": "황혼의",
+	"cobblemon.ui.pokedex.info.form.midnight": "한밤중의",
+	"cobblemon.ui.pokedex.info.form.primal": "원시회귀",
+	"cobblemon.ui.pokedex.info.form.resolute": "각오의 모습",
+	"cobblemon.ui.pokedex.info.form.ultra": "울트라",
+	"cobblemon.ui.pokedex.info.form.unbound": "굴레를 벗어난",
+	"cobblemon.ui.pokedex.info.form.white": "화이트",
+	"cobblemon.ui.pokedex.info.form.ice": "백마를 탄",
+	"cobblemon.ui.pokedex.info.form.shadow": "흑마를 탄"
 }

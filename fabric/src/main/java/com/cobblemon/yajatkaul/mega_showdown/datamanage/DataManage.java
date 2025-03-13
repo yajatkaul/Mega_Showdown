@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.datamanage;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
+import com.cobblemon.mod.common.item.components.PokemonItemComponent;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.mojang.serialization.Codec;
@@ -73,16 +75,16 @@ public class DataManage {
 
     //Data Component
 
-    public static final ComponentType<Boolean> N_LUNAR = Registry.register(
+    public static final ComponentType<Pokemon> N_LUNAR = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(MegaShowdown.MOD_ID, "n_lunar"),
-            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
-    public static final ComponentType<Boolean> N_SOLAR = Registry.register(
+    public static final ComponentType<Pokemon> N_SOLAR = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(MegaShowdown.MOD_ID, "n_solar"),
-            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
     public static final AttachmentType<Pokemon> N_LUNAR_POKEMON = AttachmentRegistry.create(
@@ -109,39 +111,39 @@ public class DataManage {
                     )
     );
 
-    public static final ComponentType<Boolean> KYUREM_DATA = Registry.register(
+    public static final ComponentType<Pokemon> KYUREM_DATA = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(MegaShowdown.MOD_ID, "kyurem_data"),
-            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
-    public static final AttachmentType<Pokemon> KYUREM_FUSION = AttachmentRegistry.create(
-            Identifier.of(MegaShowdown.MOD_ID, "kyurem_fusion"),
-            builder -> builder // Using a builder chain to configure the attachment data type
+    public static final AttachmentType<Pokemon> KYUREM_FUSED_WITH = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "kyurem_fused_with"),
+            builder -> builder
                     .copyOnDeath()
-                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
-                    .persistent(Pokemon.getCODEC()) // How to save and load the data
+                    .initializer(() -> new Pokemon())
+                    .persistent(Pokemon.getCODEC())
                     .syncWith(
-                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
-                            AttachmentSyncPredicate.all() // Who to send the data to
+                            Pokemon.getS2C_CODEC(),
+                            AttachmentSyncPredicate.all()
                     )
     );
 
-    public static final ComponentType<Boolean> CALYREX_DATA = Registry.register(
+    public static final ComponentType<Pokemon> CALYREX_DATA = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(MegaShowdown.MOD_ID, "calyrex_data"),
-            ComponentType.<Boolean>builder().codec(Codec.BOOL).build()
+            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
-    public static final AttachmentType<Pokemon> CALYREX_FUSION = AttachmentRegistry.create(
-            Identifier.of(MegaShowdown.MOD_ID, "calyrex_fusion"),
-            builder -> builder // Using a builder chain to configure the attachment data type
+    public static final AttachmentType<Pokemon> CALYREX_FUSED_WITH = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "calyrex_fused_with"),
+            builder -> builder
                     .copyOnDeath()
-                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
-                    .persistent(Pokemon.getCODEC()) // How to save and load the data
+                    .initializer(() -> new Pokemon())
+                    .persistent(Pokemon.getCODEC())
                     .syncWith(
-                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
-                            AttachmentSyncPredicate.all() // Who to send the data to
+                            Pokemon.getS2C_CODEC(),
+                            AttachmentSyncPredicate.all()
                     )
     );
 
@@ -155,6 +157,7 @@ public class DataManage {
         N_LUNAR_POKEMON.initializer();
         N_SOLAR_POKEMON.initializer();
 
-        KYUREM_FUSION.initializer();
+        CALYREX_FUSED_WITH.initializer();
+        KYUREM_FUSED_WITH.initializer();
     }
 }

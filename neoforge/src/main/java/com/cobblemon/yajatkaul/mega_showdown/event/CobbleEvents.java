@@ -13,8 +13,6 @@ public class CobbleEvents {
 
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, CobbleEventsHandler::devolveFainted);
 
-        CobblemonEvents.TRADE_COMPLETED.subscribe(Priority.NORMAL, CobbleEventsHandler::onMegaTraded);
-
         CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::battleStarted);
 
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEventsHandler::megaEvolution);

@@ -252,6 +252,8 @@
   "advancement.mega_showdown.terastallized.title": "테라스탈화",
   "advancement.mega_showdown.ultra_necrom.title": "빛나고, 강력하고, 위엄있음.",
   "advancement.mega_showdown.z_moves.title": "Z파워를 해방하라!",
+  "advancement.mega_showdown.find_prison_bottle.title": "신비한 병?",
+  "advancement.mega_showdown.prison_escape.title": "해방!!",
 
   "advancement.mega_showdown.root.description": "대결의 세계",
   "advancement.mega_showdown.mega_evolve.description": "포켓몬을 메가진화시키세요",
@@ -270,6 +272,8 @@
   "advancement.mega_showdown.terastallized.description": "포켓몬을 테라스탈화시키세요",
   "advancement.mega_showdown.ultra_necrom.description": "울트라네크로즈마를 얻으세요",
   "advancement.mega_showdown.z_moves.description": "Z-기술로 파워 업하세요!",
+  "advancement.mega_showdown.find_prison_bottle.description": "굴레의항아리를 찾으세요",
+  "advancement.mega_showdown.prison_escape.description": "후파를 해방시키세요",
 
   "item.mega_showdown.aloraichium-z": "알로라이Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "알로라 라이츄와 관련된 Z-크리스탈을 사용하면 10만볼트를 특수 Z 기술인 라이트닝서프라이드로 업그레이드할 수 있습니다.",
@@ -376,4 +380,22 @@
   "item.mega_showdown.n_solarizer.inactive": "N 솔라라이저 (비활성)",
   "item.mega_showdown.n_solarizer.charged": "N 솔라라이저 (활성화됨)",
   "tooltip.mega_showdown.n_solarizer.tooltip": "솔가레오와 신비한 존재를 융합시키는 데 사용됩니다"
+  "item.mega_showdown.dna_splicer": "유전자쐐기",
+  "item.mega_showdown.dna_splicer.inactive": "유전자쐐기 (비활성)",
+  "item.mega_showdown.dna_splicer.charged": "유전자쐐기 (활성화됨)",
+  "tooltip.mega_showdown.dna_splicer.tooltip": "레시라무/제크로무를 신비한 존재와 융합시키는 데 사용됩니다.",
+  "item.mega_showdown.reins_of_unity": "유대의고삐",
+  "item.mega_showdown.reins_of_unity.inactive": "유대의고삐 (비활성)",
+  "item.mega_showdown.reins_of_unity.charged": "유대의고삐 (활성화됨)",
+  "tooltip.mega_showdown.reins_of_unity.tooltip": "레이스포스/블리자포스를 신비한 존재와 융합하는 데 사용됩니다.",
+
+  "item.mega_showdown.z-ring_black": "검은색 Z-링",
+  "item.mega_showdown.z-power_ring": "Z-파워링",
+  "item.mega_showdown.may_bracelet": "봄이의 버클렛",
+  "item.mega_showdown.rusted_sword": "녹슨검",
+  "tooltip.mega_showdown.rusted_sword.tooltip": "먼 옛날의 영웅이 재앙을 막는 데 사용했다고 전해지는 검이지만 지금은 녹이 슬고 닳아버렸다.",
+  "item.mega_showdown.rusted_shield": "녹슨방패",
+  "tooltip.mega_showdown.rusted_shield.tooltip": "먼 옛날의 영웅이 재앙을 막는 데 사용했다고 전해지는 방패지만 지금은 녹이 슬고 닳아버렸다.",
+  "item.mega_showdown.prison_bottle": "굴레의항아리",
+  "tooltip.mega_showdown.prison_bottle.tooltip": "먼 옛날 어떤 포켓몬의 힘을 봉인했다고 여겨지는 항아리."
 }

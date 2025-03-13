@@ -58,8 +58,9 @@
 	"cobblemon.battle.weather.primordialsea": "A heavy rain began to fall!",
 	"cobblemon.battle.weather.primordialsea.end": "The heavy rain subsided.",
 	"cobblemon.battle.weather.deltastream.start": "Strong winds began to blow!",
-	"cobblemon.battle.weather.deltastream": "Strong winds began to blow!",
-	"cobblemon.battle.weather.deltastream.upkeep": "The strong winds are protecting Flying-type Pokémon!",
+	"cobblemon.battle.weather.deltastream": "Strong winds are blowing!",
+	"cobblemon.battle.fieldactivate.deltastream": "The strong winds are protecting Flying-type Pokémon!",
+	"cobblemon.battle.weather.deltastream.upkeep": "The strong winds continue to protect Flying-type Pokémon!",
 	"cobblemon.battle.weather.deltastream.end": "The strong winds dissipated!",
 
 	"cobblemon.move.zswordsdance": "Z Swords Dance",

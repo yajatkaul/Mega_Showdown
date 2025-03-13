@@ -1,0 +1,6 @@
+{
+  "keys": ["dawn-fusion"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}
