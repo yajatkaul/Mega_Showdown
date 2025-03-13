@@ -11,6 +11,8 @@ import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
 import com.cobblemon.mod.common.api.events.entity.SpawnEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
+import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
+import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPreEvent;
 import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
@@ -34,6 +36,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
@@ -72,10 +75,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
 

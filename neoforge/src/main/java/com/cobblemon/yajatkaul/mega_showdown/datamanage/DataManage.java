@@ -13,6 +13,7 @@ import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -41,6 +42,13 @@ public class DataManage {
                     .serialize(Pokemon.getCODEC()).copyOnDeath().build()
     );
 
+    public static final Supplier<AttachmentType<HashMap<UUID, Pokemon>>> DATA_MAP = ATTACHMENT_TYPES.register(
+            "data_map",
+            () -> AttachmentType.<HashMap<UUID, Pokemon>>builder(() -> new HashMap<>())
+                    .serialize(Codec.unboundedMap(UUIDUtil.CODEC, Pokemon.getCODEC()).xmap(HashMap::new, map -> map))
+                    .copyOnDeath()
+                    .build()
+    );
 
     public static final DeferredRegister.DataComponents REGISTRAR = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, "mega_showdown");
 

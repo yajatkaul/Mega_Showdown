@@ -26,8 +26,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 
 public class N_Lunarizer extends Item {
@@ -66,6 +68,11 @@ public class N_Lunarizer extends Item {
                         .withColor(0xFF0000), true);
                 return InteractionResult.PASS;
             }
+
+            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+            map.put(pokemon.getUuid(), currentValue);
+            player.setData(DataManage.DATA_MAP, map);
+
             pk.setData(DataManage.N_LUNAR_POKEMON, currentValue);
             arg.set(DataManage.N_LUNAR, null);
             new FlagSpeciesFeature("dawn-fusion", true).apply(pokemon);
@@ -88,8 +95,17 @@ public class N_Lunarizer extends Item {
                 }
             }
 
-            playerPartyStore.add(pk.getData(DataManage.N_LUNAR_POKEMON));
-            pk.removeData(DataManage.N_LUNAR_POKEMON);
+            if(!pokemon.getEntity().hasData(DataManage.N_LUNAR_POKEMON)){
+                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                Pokemon toAdd = map.get(pokemon.getUuid());
+                playerPartyStore.add(toAdd);
+                map.remove(pokemon.getUuid());
+                player.setData(DataManage.DATA_MAP, map);
+            }else{
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_LUNAR_POKEMON));
+                pk.removeData(DataManage.N_LUNAR_POKEMON);
+            }
+
             new FlagSpeciesFeature("dawn-fusion", false).apply(pokemon);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));
         } else {

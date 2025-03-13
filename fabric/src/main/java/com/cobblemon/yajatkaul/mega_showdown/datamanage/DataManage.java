@@ -11,6 +11,8 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.component.ComponentType;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -19,7 +21,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Uuids;
 import org.apache.logging.log4j.core.util.UuidUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import static net.minecraft.util.Util.NIL_UUID;
 
@@ -70,6 +75,39 @@ public class DataManage {
                     .syncWith(
                             Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
                             AttachmentSyncPredicate.all() // Who to send the data to
+                    )
+    );
+
+    // Define the Codec for HashMap<UUID, Pokemon>
+    public static final Codec<HashMap<UUID, Pokemon>> DATA_MAP_CODEC =
+            Codec.unboundedMap(
+                    Uuids.CODEC,         // UUID Codec (Fabric uses `Uuids.CODEC`)
+                    Pokemon.getCODEC()   // Codec for Pokemon (Ensure this exists)
+            ).xmap(HashMap::new, map -> map);
+
+
+    public static final AttachmentType<HashMap<UUID, Pokemon>> DATA_MAP = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "data_map"),
+            builder -> builder
+                    .initializer(() -> new HashMap<>()) // Default value
+                    .persistent(Codec.unboundedMap(Uuids.CODEC, Pokemon.getCODEC()).xmap(HashMap::new, map -> map)) // Serialization to disk
+                    .copyOnDeath() // Copy data on entity death
+                    .syncWith(
+                            PacketCodec.of(
+                                    (value, buf) -> {
+                                        buf.writeMap(
+                                                value,
+                                                PacketCodecs.codec(Uuids.CODEC), // Fallback for UUID
+                                                PacketCodecs.codec(Pokemon.getCODEC())
+                                        );
+                                    },
+                                    buf -> buf.readMap(
+                                            HashMap::new,
+                                            PacketCodecs.codec(Uuids.CODEC), // Fallback for UUID
+                                            PacketCodecs.codec(Pokemon.getCODEC())
+                                    )
+                            ),
+                            AttachmentSyncPredicate.all() // Sync to all players
                     )
     );
 
@@ -159,5 +197,7 @@ public class DataManage {
 
         CALYREX_FUSED_WITH.initializer();
         KYUREM_FUSED_WITH.initializer();
+
+        DATA_MAP.initializer();
     }
 }

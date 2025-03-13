@@ -10,6 +10,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventsHandler;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -29,7 +30,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Properties arg) {
@@ -72,8 +75,16 @@ public class DNA_Splicer extends Item {
             new FlagSpeciesFeature("black", false).apply(pokemon);
             pokemon.setTradeable(true);
 
-            playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH));
-            pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
+            if(!pokemon.getEntity().hasData(DataManage.KYUREM_FUSED_WITH)){
+                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                Pokemon toAdd = map.get(pokemon.getUuid());
+                playerPartyStore.add(toAdd);
+                map.remove(pokemon.getUuid());
+                player.setData(DataManage.DATA_MAP, map);
+            }else{
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH));
+                pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
+            }
             arg.set(DataManage.KYUREM_DATA, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
@@ -87,6 +98,11 @@ public class DNA_Splicer extends Item {
             pokemon.setTradeable(false);
 
             pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, currentValue);
+
+            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+            map.put(pokemon.getUuid(), currentValue);
+            player.setData(DataManage.DATA_MAP, map);
+
             arg.set(DataManage.KYUREM_DATA, null);
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));

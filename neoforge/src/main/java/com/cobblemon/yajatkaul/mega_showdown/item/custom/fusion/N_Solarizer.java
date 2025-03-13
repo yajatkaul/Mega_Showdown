@@ -23,8 +23,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class N_Solarizer extends Item {
     public N_Solarizer(Properties arg) {
@@ -63,6 +65,10 @@ public class N_Solarizer extends Item {
                 return InteractionResult.PASS;
             }
 
+            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+            map.put(pokemon.getUuid(), currentValue);
+            player.setData(DataManage.DATA_MAP, map);
+
             pk.setData(DataManage.N_SOLAR_POKEMON, currentValue);
             arg.set(DataManage.N_SOLAR, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
@@ -85,8 +91,17 @@ public class N_Solarizer extends Item {
                 }
             }
 
-            playerPartyStore.add(pk.getData(DataManage.N_SOLAR_POKEMON));
-            pk.removeData(DataManage.N_SOLAR_POKEMON);
+            if(!pokemon.getEntity().hasData(DataManage.N_SOLAR_POKEMON)){
+                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                Pokemon toAdd = map.get(pokemon.getUuid());
+                playerPartyStore.add(toAdd);
+                map.remove(pokemon.getUuid());
+                player.setData(DataManage.DATA_MAP, map);
+            }else{
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_SOLAR_POKEMON));
+                pk.removeData(DataManage.N_SOLAR_POKEMON);
+            }
+
             new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else {

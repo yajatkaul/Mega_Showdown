@@ -32,7 +32,9 @@ import net.minecraft.util.ClickType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Unity extends Item {
     public Unity(Settings settings) {
@@ -70,8 +72,17 @@ public class Unity extends Item {
             new FlagSpeciesFeature("ice", false).apply(pokemon);
             pokemon.setTradeable(true);
 
-            playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.CALYREX_FUSED_WITH));
-            pokemon.getEntity().removeAttached(DataManage.CALYREX_FUSED_WITH);
+            if(!pokemon.getEntity().hasAttached(DataManage.CALYREX_FUSED_WITH)){
+                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                Pokemon toAdd = map.get(pokemon.getUuid());
+                playerPartyStore.add(toAdd);
+                map.remove(pokemon.getUuid());
+                player.setAttached(DataManage.DATA_MAP, map);
+            }else{
+                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.CALYREX_FUSED_WITH));
+                pokemon.getEntity().removeAttached(DataManage.CALYREX_FUSED_WITH);
+            }
+
             arg.set(DataManage.CALYREX_DATA, null);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
@@ -85,6 +96,14 @@ public class Unity extends Item {
             pokemon.setTradeable(false);
 
             pokemon.getEntity().setAttached(DataManage.CALYREX_FUSED_WITH, currentValue);
+
+            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+            if(map == null){
+                map = new HashMap<>();
+            }
+            map.put(pokemon.getUuid(), currentValue);
+            player.setAttached(DataManage.DATA_MAP, map);
+
             arg.set(DataManage.CALYREX_DATA, null);
             AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "fusion");
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));

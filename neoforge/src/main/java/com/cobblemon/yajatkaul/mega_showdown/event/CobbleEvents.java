@@ -24,6 +24,7 @@ public class CobbleEvents {
         CobblemonEvents.POKEMON_HEALED.subscribe(Priority.NORMAL, CobbleEventsHandler::healedPokemons);
 
         CobblemonEvents.LOOT_DROPPED.subscribe(Priority.NORMAL, CobbleEventsHandler::dropShardPokemon);
+
         // Battle mode only
         if(Config.battleModeOnly || Config.battleMode){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventsHandler::battleEnded);

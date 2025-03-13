@@ -21,8 +21,10 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class N_Solarizer extends Item {
     public N_Solarizer(Settings settings) {
@@ -56,6 +58,13 @@ public class N_Solarizer extends Item {
                 return ActionResult.PASS;
             }
 
+            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+            if(map == null){
+                map = new HashMap<>();
+            }
+            map.put(pokemon.getUuid(), currentValue);
+            player.setAttached(DataManage.DATA_MAP, map);
+
             pk.setAttached(DataManage.N_SOLAR_POKEMON, currentValue);
             arg.set(DataManage.N_SOLAR, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
@@ -78,8 +87,17 @@ public class N_Solarizer extends Item {
                 }
             }
 
-            playerPartyStore.add(pk.getAttached(DataManage.N_SOLAR_POKEMON));
-            pk.removeAttached(DataManage.N_SOLAR_POKEMON);
+            if(!pokemon.getEntity().hasAttached(DataManage.N_LUNAR_POKEMON)){
+                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                Pokemon toAdd = map.get(pokemon.getUuid());
+                playerPartyStore.add(toAdd);
+                map.remove(pokemon.getUuid());
+                player.setAttached(DataManage.DATA_MAP, map);
+            }else{
+                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.N_LUNAR_POKEMON));
+                pk.removeAttached(DataManage.N_LUNAR_POKEMON);
+            }
+
             new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else {

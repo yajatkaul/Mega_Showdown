@@ -28,7 +28,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class Unity extends Item {
     public Unity(Properties arg) {
@@ -71,8 +73,16 @@ public class Unity extends Item {
             new FlagSpeciesFeature("ice", false).apply(pokemon);
             pokemon.setTradeable(true);
 
-            playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH));
-            pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
+            if(!pokemon.getEntity().hasData(DataManage.CALYREX_FUSED_WITH)){
+                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                Pokemon toAdd = map.get(pokemon.getUuid());
+                playerPartyStore.add(toAdd);
+                map.remove(pokemon.getUuid());
+                player.setData(DataManage.DATA_MAP, map);
+            }else{
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH));
+                pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
+            }
             arg.set(DataManage.CALYREX_DATA, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
@@ -86,6 +96,11 @@ public class Unity extends Item {
             pokemon.setTradeable(false);
 
             pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, currentValue);
+
+            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+            map.put(pokemon.getUuid(), currentValue);
+            player.setData(DataManage.DATA_MAP, map);
+
             arg.set(DataManage.CALYREX_DATA, null);
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
