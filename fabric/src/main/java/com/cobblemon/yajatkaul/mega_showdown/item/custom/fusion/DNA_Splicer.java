@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import net.minecraft.component.DataComponentTypes;

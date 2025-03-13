@@ -87,7 +87,7 @@ public class ModEvents {
                 final boolean[] canEdit = {true};
                 tableBuilder.modifyPools(poolBuilder -> {
                     if(canEdit[0]){
-                        poolBuilder.with(ItemEntry.builder(ModItems.PRISON_BOTTLE).weight(3));
+                        poolBuilder.with(ItemEntry.builder(ModItems.PRISON_BOTTLE).weight(1));
                         canEdit[0] = false;
                     }
                 });

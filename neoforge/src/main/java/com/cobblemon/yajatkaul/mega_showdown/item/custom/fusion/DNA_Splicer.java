@@ -85,6 +85,7 @@ public class DNA_Splicer extends Item {
                 playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH));
                 pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
             }
+
             arg.set(DataManage.KYUREM_DATA, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
@@ -95,6 +96,7 @@ public class DNA_Splicer extends Item {
                 particleEffect(pk, ParticleTypes.SMOKE);
                 new FlagSpeciesFeature("black", true).apply(pokemon);
             }
+
             pokemon.setTradeable(false);
 
             pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, currentValue);

@@ -83,6 +83,7 @@ public class Unity extends Item {
                 playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH));
                 pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
             }
+
             arg.set(DataManage.CALYREX_DATA, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
