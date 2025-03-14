@@ -165,16 +165,6 @@ public class ModCreativeModeTabs {
                         output.accept(MegaOres.MEGA_METEORID_SUN_ORE);
                         output.accept(MegaOres.MEGA_METEORID_THUNDER_ORE);
                         output.accept(MegaOres.MEGA_METEORID_WATER_ORE);
-
-                        output.accept(MegaStones.BLUE_ORB);
-                        output.accept(MegaStones.RED_ORB);
-
-                        output.accept(ModItems.RUSTED_SWORD);
-                        output.accept(ModItems.RUSTED_SHIELD);
-
-                        output.accept(ModItems.PRISON_BOTTLE);
-
-                        output.accept(ModItems.REINS_OF_UNITY);
                     })
                     .build());
 
@@ -222,11 +212,6 @@ public class ModCreativeModeTabs {
                         output.accept(ZMoves.TAPUNIUM_Z);
                         output.accept(ZMoves.ULTRANECROZIUM_Z);
                         output.accept(ZMoves.WATERIUM_Z);
-
-                        output.accept(ModItems.N_LUNARIZER);
-                        output.accept(ModItems.N_SOLARIZER);
-
-                        output.accept(ModItems.DNA_SPLICER);
                     })
                     .build());
 
@@ -255,6 +240,23 @@ public class ModCreativeModeTabs {
                         output.accept(TeraMoves.STEEL_TERA_SHARD);
                         output.accept(TeraMoves.STELLAR_TERA_SHARD);
                         output.accept(TeraMoves.WATER_TERA_SHARD);
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> FORMS_TAB = CREATIVE_MODE_TAB.register("forms_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DNA_SPLICER.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_tab"))
+                    .title(Component.translatable("creativeTab.mega_showdown.forms_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.N_LUNARIZER);
+                        output.accept(ModItems.N_SOLARIZER);
+                        output.accept(ModItems.DNA_SPLICER);
+                        output.accept(MegaStones.BLUE_ORB);
+                        output.accept(MegaStones.RED_ORB);
+                        output.accept(ModItems.RUSTED_SWORD);
+                        output.accept(ModItems.RUSTED_SHIELD);
+                        output.accept(ModItems.PRISON_BOTTLE);
+                        output.accept(ModItems.REINS_OF_UNITY);
                     })
                     .build());
 

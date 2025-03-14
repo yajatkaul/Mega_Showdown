@@ -158,16 +158,6 @@ public class ModItemGroups {
                         entries.add(PokemonStones.MEGA_METEORID_SUN_ORE);
                         entries.add(PokemonStones.MEGA_METEORID_THUNDER_ORE);
                         entries.add(PokemonStones.MEGA_METEORID_WATER_ORE);
-
-                        entries.add(MegaStones.BLUE_ORB);
-                        entries.add(MegaStones.RED_ORB);
-
-                        entries.add(ModItems.RUSTED_SWORD);
-                        entries.add(ModItems.RUSTED_SHIELD);
-
-                        entries.add(ModItems.PRISON_BOTTLE);
-
-                        entries.add(ModItems.REINS_OF_UNITY);
                     }))
                     .build());
 
@@ -215,11 +205,6 @@ public class ModItemGroups {
                         entries.add(ZMoves.TAPUNIUM_Z);
                         entries.add(ZMoves.ULTRANECROZIUM_Z);
                         entries.add(ZMoves.WATERIUM_Z);
-
-                        entries.add(ModItems.N_LUNARIZER);
-                        entries.add(ModItems.N_SOLARIZER);
-
-                        entries.add(ModItems.DNA_SPLICER);
                     }))
                     .build());
 
@@ -248,6 +233,23 @@ public class ModItemGroups {
                         entries.add(TeraMoves.STEEL_TERA_SHARD);
                         entries.add(TeraMoves.STELLAR_TERA_SHARD);
                         entries.add(TeraMoves.WATER_TERA_SHARD);
+                    }))
+                    .build());
+
+    public static final ItemGroup FORMS_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "forms_tab"),
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.DNA_SPLICER))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.forms_tab"))
+                    .entries(((displayContext, entries) -> {
+                        entries.add(ModItems.N_LUNARIZER);
+                        entries.add(ModItems.N_SOLARIZER);
+                        entries.add(ModItems.DNA_SPLICER);
+                        entries.add(MegaStones.BLUE_ORB);
+                        entries.add(MegaStones.RED_ORB);
+                        entries.add(ModItems.RUSTED_SWORD);
+                        entries.add(ModItems.RUSTED_SHIELD);
+                        entries.add(ModItems.PRISON_BOTTLE);
+                        entries.add(ModItems.REINS_OF_UNITY);
                     }))
                     .build());
 

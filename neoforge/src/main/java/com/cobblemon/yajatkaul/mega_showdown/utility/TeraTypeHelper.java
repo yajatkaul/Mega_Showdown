@@ -63,7 +63,7 @@ public class TeraTypeHelper {
             if (type.equals(ElementalTypes.INSTANCE.getSTEEL())) return TeraMoves.STEEL_TERA_SHARD;
             if (type.equals(ElementalTypes.INSTANCE.getWATER())) return TeraMoves.WATER_TERA_SHARD;
         }
-        throw new IllegalArgumentException("Unknown Pokémon types: " + types);
+        return TeraMoves.NORMAL_TERA_SHARD;
     }
 
     public static ChatFormatting getGlowColorForType(Pokemon pokemon) {
@@ -89,7 +89,7 @@ public class TeraTypeHelper {
             if (type.equals(ElementalTypes.INSTANCE.getSTEEL())) return ChatFormatting.GRAY;
             if (type.equals(ElementalTypes.INSTANCE.getWATER())) return ChatFormatting.BLUE;
         }
-        throw new IllegalArgumentException("Unknown Pokémon types: " + types);
+        return ChatFormatting.WHITE;
     }
 
     public static ChatFormatting getGlowColorForTeraType(TeraType teraType) {
@@ -113,6 +113,6 @@ public class TeraTypeHelper {
         if (teraType.equals(TeraTypes.getWATER())) return ChatFormatting.BLUE;
         if(teraType.equals(TeraTypes.getSTELLAR())) return ChatFormatting.WHITE;
 
-        throw new IllegalArgumentException("Unknown TeraType: " + teraType);
+        return ChatFormatting.WHITE;
     }
 }
