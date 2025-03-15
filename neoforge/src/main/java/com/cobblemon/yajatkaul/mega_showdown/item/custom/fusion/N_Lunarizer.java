@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
+
 
 public class N_Lunarizer extends Item {
     public N_Lunarizer(Properties arg) {
@@ -76,6 +78,7 @@ public class N_Lunarizer extends Item {
             pk.setData(DataManage.N_LUNAR_POKEMON, currentValue);
             arg.set(DataManage.N_LUNAR, null);
             new FlagSpeciesFeature("dawn-fusion", true).apply(pokemon);
+            setTradable(pokemon, false);
 
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));
@@ -107,6 +110,7 @@ public class N_Lunarizer extends Item {
             }
 
             new FlagSpeciesFeature("dawn-fusion", false).apply(pokemon);
+            setTradable(pokemon, true);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));
         } else {
             return InteractionResult.PASS;

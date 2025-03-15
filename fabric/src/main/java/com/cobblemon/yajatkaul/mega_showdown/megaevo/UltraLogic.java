@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
+
 public class UltraLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
@@ -100,12 +102,14 @@ public class UltraLogic {
 
                     if(enabled) {
                         new FlagSpeciesFeature("ultra", false).apply(pokemon);
+                        setTradable(pokemon, true);
                         ultraAnimation(pokemon.getEntity());
                         return;
                     }
                 }
 
                 new FlagSpeciesFeature("ultra", true).apply(pokemon);
+                setTradable(pokemon, false);
                 AdvancementHelper.grantAdvancement(player, "ultra_necrom");
                 ultraAnimation(pokemon.getEntity());
             }

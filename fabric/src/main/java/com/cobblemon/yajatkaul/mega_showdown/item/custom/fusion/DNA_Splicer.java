@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
+
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Settings settings) {
         super(settings);
@@ -65,7 +67,7 @@ public class DNA_Splicer extends Item {
             particleEffect(pk, ParticleTypes.ASH);
             new FlagSpeciesFeature("white", false).apply(pokemon);
             new FlagSpeciesFeature("black", false).apply(pokemon);
-            pokemon.setTradeable(true);
+            setTradable(pokemon, true);
 
             if(!pokemon.getEntity().hasAttached(DataManage.KYUREM_FUSED_WITH)){
                 HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
@@ -88,7 +90,7 @@ public class DNA_Splicer extends Item {
                 particleEffect(pk, ParticleTypes.SMOKE);
                 new FlagSpeciesFeature("black", true).apply(pokemon);
             }
-            pokemon.setTradeable(false);
+            setTradable(pokemon, false);
 
             pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, currentValue);
 

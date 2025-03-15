@@ -14,7 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionResult;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -104,12 +104,14 @@ public class UltraLogic {
 
                     if(enabled) {
                         new FlagSpeciesFeature("ultra", false).apply(pokemon);
+                        setTradable(pokemon, true);
                         ultraAnimation(pokemon.getEntity());
                         return;
                     }
                 }
 
                 new FlagSpeciesFeature("ultra", true).apply(pokemon);
+                setTradable(pokemon, false);
                 AdvancementHelper.grantAdvancement(player, "ultra_necrom");
                 ultraAnimation(pokemon.getEntity());
             }

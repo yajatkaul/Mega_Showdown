@@ -78,6 +78,7 @@ import top.theillusivec4.curios.api.SlotResult;
 import java.util.*;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class CobbleEventsHandler {
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
@@ -129,7 +130,7 @@ public class CobbleEventsHandler {
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setData(DataManage.PRIMAL_DATA, true);
-            post.getPokemon().setTradeable(false);
+            setTradable(post.getPokemon(), false);
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().is(MegaStones.RED_ORB)){
             if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
@@ -141,7 +142,7 @@ public class CobbleEventsHandler {
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setData(DataManage.PRIMAL_DATA, true);
-            post.getPokemon().setTradeable(false);
+            setTradable(post.getPokemon(), false);
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
             if(feature == null){
@@ -151,7 +152,7 @@ public class CobbleEventsHandler {
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
             player.setData(DataManage.PRIMAL_DATA, false);
-            post.getPokemon().setTradeable(true);
+            setTradable(post.getPokemon(), true);
         }
     }
     public static void megaEvent(HeldItemEvent.Post event){
@@ -194,19 +195,19 @@ public class CobbleEventsHandler {
             if(event.getReceived().is(ModItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")){
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
-                pokemon.setTradeable(false);
+                setTradable(pokemon, false);
             } else if (event.getReceived().is(ModItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
-                pokemon.setTradeable(false);
+                setTradable(pokemon, false);
             } else if(pokemon.getSpecies().getName().equals("Zacian") && event.getReturned().is(ModItems.RUSTED_SWORD)){
                 playEvolveAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
-                pokemon.setTradeable(true);
+                setTradable(pokemon, true);
             }else if(pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturned().is(ModItems.RUSTED_SHIELD)){
                 playEvolveAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
-                pokemon.setTradeable(true);
+                setTradable(pokemon, true);
             }
         }
     }

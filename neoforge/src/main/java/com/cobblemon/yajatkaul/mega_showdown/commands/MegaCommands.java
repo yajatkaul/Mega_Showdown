@@ -46,14 +46,12 @@ public class MegaCommands {
             new FlagSpeciesFeature("mega", false).apply(pokemon);
             new FlagSpeciesFeature("mega-x", false).apply(pokemon);
             new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-            pokemon.setTradeable(true);
         }
 
         for (Pokemon pokemon: party){
             new FlagSpeciesFeature("mega", false).apply(pokemon);
             new FlagSpeciesFeature("mega-x", false).apply(pokemon);
             new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-            pokemon.setTradeable(true);
         }
 
         // Send success message to the command source

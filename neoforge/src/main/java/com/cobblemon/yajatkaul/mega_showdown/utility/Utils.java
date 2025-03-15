@@ -1,8 +1,10 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
+import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.world.item.Item;
@@ -160,5 +162,11 @@ public class Utils {
         megaStonesRegister();
         zMovesRegister();
         loadMegaStoneIds();
+    }
+
+    public static void setTradable(Pokemon pokemon, boolean allow){
+        if(!Config.tradeForm){
+            pokemon.setTradeable(allow);
+        }
     }
 }

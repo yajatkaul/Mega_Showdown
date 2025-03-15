@@ -36,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
+
 public class Unity extends Item {
     public Unity(Settings settings) {
         super(settings);
@@ -70,7 +72,7 @@ public class Unity extends Item {
             particleEffect(pk, ParticleTypes.END_ROD);
             new FlagSpeciesFeature("shadow", false).apply(pokemon);
             new FlagSpeciesFeature("ice", false).apply(pokemon);
-            pokemon.setTradeable(true);
+            setTradable(pokemon, true);
 
             if(!pokemon.getEntity().hasAttached(DataManage.CALYREX_FUSED_WITH)){
                 HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
@@ -93,7 +95,7 @@ public class Unity extends Item {
                 particleEffect(pk, ParticleTypes.END_ROD);
                 new FlagSpeciesFeature("ice", true).apply(pokemon);
             }
-            pokemon.setTradeable(false);
+            setTradable(pokemon, false);
 
             pokemon.getEntity().setAttached(DataManage.CALYREX_FUSED_WITH, currentValue);
 

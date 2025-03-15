@@ -1,8 +1,10 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.item.Item;
@@ -154,5 +156,11 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.TAPUNIUM_Z.asItem(), "tapuniumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ULTRANECROZIUM_Z.asItem(), "ultranecroziumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.WATERIUM_Z.asItem(), "wateriumz");
+    }
+
+    public static void setTradable(Pokemon pokemon, boolean allow){
+        if(!ShowdownConfig.tradeForm.get()){
+            pokemon.setTradeable(allow);
+        }
     }
 }

@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
+
 public class N_Solarizer extends Item {
     public N_Solarizer(Settings settings) {
         super(settings);
@@ -68,6 +70,7 @@ public class N_Solarizer extends Item {
             pk.setAttached(DataManage.N_SOLAR_POKEMON, currentValue);
             arg.set(DataManage.N_SOLAR, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
+            setTradable(pokemon, false);
 
             AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "fusion");
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
@@ -99,6 +102,7 @@ public class N_Solarizer extends Item {
             }
 
             new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
+            setTradable(pokemon, true);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else {
             return ActionResult.PASS;
