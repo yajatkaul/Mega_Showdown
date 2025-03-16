@@ -1,6 +1,4 @@
 {
-  "pokemon": [
-    "necrozma"
-  ],
+  "pokemon": ["necrozma"],
   "features": ["dusk-fusion"]
 }

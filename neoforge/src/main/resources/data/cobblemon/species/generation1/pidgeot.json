@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 15,
   "weight": 395,
-  "pokedex": [
-    "cobblemon.species.pidgeot.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.pidgeot.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "keeneye",
-    "tangledfeet",
-    "h:bigpecks"
-  ],
-  "eggGroups": [
-    "flying"
-  ],
+  "abilities": ["keeneye", "tangledfeet", "h:bigpecks"],
+  "eggGroups": ["flying"],
   "baseStats": {
     "hp": 83,
     "attack": 80,
@@ -163,20 +153,10 @@
       "maleRatio": 0.5,
       "height": 22,
       "weight": 505,
-      "pokedex": [
-        "cobblemon.species.pidgeot-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "noguard",
-        "h:noguard"
-      ],
+      "pokedex": ["cobblemon.species.pidgeot-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["noguard", "h:noguard"],
       "baseStats": {
         "hp": 83,
         "attack": 80,

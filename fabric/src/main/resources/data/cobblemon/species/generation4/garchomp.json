@@ -7,22 +7,11 @@
   "maleRatio": 0.5,
   "height": 19,
   "weight": 950,
-  "pokedex": [
-    "cobblemon.species.garchomp.desc"
-  ],
-  "labels": [
-    "gen4",
-    "powerhouse"
-  ],
+  "pokedex": ["cobblemon.species.garchomp.desc"],
+  "labels": ["gen4", "powerhouse"],
   "aspects": [],
-  "abilities": [
-    "sandveil",
-    "h:roughskin"
-  ],
-  "eggGroups": [
-    "monster",
-    "dragon"
-  ],
+  "abilities": ["sandveil", "h:roughskin"],
+  "eggGroups": ["monster", "dragon"],
   "baseStats": {
     "hp": 108,
     "attack": 130,
@@ -211,20 +200,10 @@
       "maleRatio": 0.5,
       "height": 19,
       "weight": 950,
-      "pokedex": [
-        "cobblemon.species.garchomp-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "sandforce",
-        "h:sandforce"
-      ],
+      "pokedex": ["cobblemon.species.garchomp-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["sandforce", "h:sandforce"],
       "baseStats": {
         "hp": 108,
         "attack": 170,

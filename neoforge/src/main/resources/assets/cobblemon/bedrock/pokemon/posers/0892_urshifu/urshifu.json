@@ -1,0 +1,62 @@
+{
+  "head": "whiteneck",
+  "portraitScale": 1,
+  "portraitTranslation": [0, 2.3, 0],
+  "profileScale": 0.5,
+  "profileTranslation": [0, 1, 0],
+  "animations": {
+    "faint": "q.bedrock_primary('urshifu', 'faint', q.curve('one'))",
+    "cry": "q.bedrock_primary('urshifu', 'cry', q.curve('symmetrical_wide'))",
+    "recoil": "q.bedrock_stateful('urshifu', 'recoil')",
+    "physical": "q.bedrock_primary('urshifu', 'ssphysical_attack', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('urshifu', 'ssphysical_attack', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('urshifu', 'cry', q.curve('symmetrical_wide'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": ["STAND", "PORTRAIT", "PROFILE"],
+      "isBattle": true,
+      "animations": ["look",
+        "q.bedrock('urshifu', 'singlestrike')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('urshifu', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": ["STAND", "NONE"],
+      "isBattle": false,
+      "animations": ["look",
+        "q.bedrock('urshifu', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('urshifu', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": ["WALK"],
+      "animations": ["look",
+        "q.bedrock('urshifu', 'ground_walk')"
+      ],
+      "quirks": ["q.bedrock_quirk('urshifu', 'blink')"]
+    },
+    "float": {
+      "poseTypes": ["FLOAT"],
+      "animations": [
+        "q.bedrock('urshifu', 'ground_idle')"
+      ],
+      "quirks": ["q.bedrock_quirk('urshifu', 'blink')"]
+    },
+    "swim": {
+      "poseTypes": ["SWIM"],
+      "animations": [
+        "q.bedrock('urshifu', 'ground_walk')"
+      ],
+      "quirks": ["q.bedrock_quirk('urshifu', 'blink')"]
+    },
+    "sleep": {
+      "poseTypes": ["SLEEP"],
+      "animations": ["q.bedrock('urshifu', 'sleep')"]
+    }
+  }
+}

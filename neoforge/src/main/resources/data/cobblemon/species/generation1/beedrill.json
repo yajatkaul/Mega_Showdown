@@ -7,20 +7,11 @@
   "maleRatio": 0.5,
   "height": 10,
   "weight": 295,
-  "pokedex": [
-    "cobblemon.species.beedrill.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.beedrill.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "swarm",
-    "h:sniper"
-  ],
-  "eggGroups": [
-    "bug"
-  ],
+  "abilities": ["swarm", "h:sniper"],
+  "eggGroups": ["bug"],
   "baseStats": {
     "hp": 65,
     "attack": 90,
@@ -194,20 +185,10 @@
       "maleRatio": 0.5,
       "height": 14,
       "weight": 405,
-      "pokedex": [
-        "cobblemon.species.beedrill-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "adaptability",
-        "h:adaptability"
-      ],
+      "pokedex": ["cobblemon.species.beedrill-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["adaptability", "h:adaptability"],
       "baseStats": {
         "hp": 65,
         "attack": 150,

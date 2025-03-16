@@ -6,21 +6,11 @@
   "maleRatio": 0.5,
   "height": 14,
   "weight": 350,
-  "pokedex": [
-    "cobblemon.species.houndoom.desc"
-  ],
-  "labels": [
-    "gen2"
-  ],
+  "pokedex": ["cobblemon.species.houndoom.desc"],
+  "labels": ["gen2"],
   "aspects": [],
-  "abilities": [
-    "earlybird",
-    "flashfire",
-    "h:unnerve"
-  ],
-  "eggGroups": [
-    "field"
-  ],
+  "abilities": ["earlybird", "flashfire", "h:unnerve"],
+  "eggGroups": ["field"],
   "baseStats": {
     "hp": 75,
     "attack": 90,
@@ -208,20 +198,10 @@
       "maleRatio": 0.5,
       "height": 19,
       "weight": 495,
-      "pokedex": [
-        "cobblemon.species.houndoom-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "solarpower",
-        "h:solarpower"
-      ],
+      "pokedex": ["cobblemon.species.houndoom-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["solarpower", "h:solarpower"],
       "baseStats": {
         "hp": 75,
         "attack": 90,

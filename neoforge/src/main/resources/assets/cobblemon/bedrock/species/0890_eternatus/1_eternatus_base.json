@@ -1,0 +1,32 @@
+{
+    "species": "cobblemon:eternatus",
+    "order": 1,
+    "variations": [
+        {
+            "aspects": ["eternamax"],
+            "poser": "cobblemon:eternamax",
+            "model": "cobblemon:eternamax.geo",
+            "texture": "cobblemon:textures/pokemon/0890_eternatus/eternamax.png",
+            "layers": [
+                {
+                    "name": "emissive",
+                    "texture": "cobblemon:textures/pokemon/0890_eternatus/eternamax_emissive.png",
+                    "emissive": true
+                }
+            ]
+        },
+        {
+            "aspects": ["eternamax",
+                "shiny"
+            ],
+            "texture": "cobblemon:textures/pokemon/0890_eternatus/eternamax_shiny.png",
+            "layers": [
+                {
+                    "name": "emissive",
+                    "texture": "cobblemon:textures/pokemon/0890_eternatus/eternamax_emissive_shiny.png",
+                    "emissive": true
+                }
+            ]
+        }
+    ]
+}

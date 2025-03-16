@@ -1,0 +1,382 @@
+{
+    "implemented": true,
+    "name": "Urshifu",
+    "nationalPokedexNumber": 892,
+    "primaryType": "fighting",
+    "secondaryType": "dark",
+    "abilities": [
+      "unseenfist"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "attack": 130,
+      "defence": 100,
+      "special_attack": 63,
+      "special_defence": 60,
+      "speed": 97
+    },
+    "features": ["rapidstrike"],
+    "behaviour": {
+      "moving": {
+        "canLook": true,
+        "walk": {
+          "walkSpeed": 0.3,
+          "canWalk": true,
+          "avoidsLand": false
+        },
+      "fly": {
+        "canFly": false
+      },
+      "swim": {
+        "swimSpeed": 0.2,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
+    }
+  },
+    "catchRate": 3,
+    "maleRatio": 0.875,
+    "shoulderMountable": false,
+    "baseScale":0.7,
+    "hitbox": {
+      "width": 2,
+      "height": 3,
+      "fixed": false
+    },
+    "forms": [
+      {
+        "name": "rapidstrike",
+        "primaryType": "fighting",
+        "secondaryType": "water",
+        "abilities": [
+          "unseenfist"
+        ],
+        "baseStats": {
+          "hp": 100,
+          "attack": 130,
+          "defence": 100,
+          "special_attack": 63,
+          "special_defence": 60,
+          "speed": 97
+        },
+        "catchRate": 3,
+        "maleRatio": 0.875,
+        "baseExperienceYield": 275,
+        "baseFriendship": 50,
+        "evYield": {
+          "hp": 0,
+          "attack": 3,
+          "defence": 0,
+          "special_attack": 0,
+          "special_defence": 0,
+          "speed": 0
+        },
+        "experienceGroup": "slow",
+        "eggCycles": 120,
+        "eggGroups": [
+          "undiscovered"
+        ],
+        "moves": [
+          "1:aquajet",
+          "1:endure",
+          "1:focusenergy",
+          "1:leer",
+          "1:rocksmash",
+          "12:aerialace",
+          "16:scaryface",
+          "20:headbutt",
+          "24:brickbreak",
+          "28:detect",
+          "32:bulkup",
+          "36:ironhead",
+          "40:dynamicpunch",
+          "44:counter",
+          "48:closecombat",
+          "52:focuspunch",
+          "tm:acrobatics",
+          "tm:aerialace",
+          "tm:attract",
+          "tm:aurasphere",
+          "tm:bodypress",
+          "tm:bodyslam",
+          "tm:brickbreak",
+          "tm:brine",
+          "tm:bulkup",
+          "tm:chillingwater",
+          "tm:closecombat",
+          "tm:coaching",
+          "tm:dig",
+          "tm:dive",
+          "tm:doubleedge",
+          "tm:drainpunch",
+          "tm:endure",
+          "tm:facade",
+          "tm:falseswipe",
+          "tm:firepunch",
+          "tm:fling",
+          "tm:focusblast",
+          "tm:focusenergy",
+          "tm:focuspunch",
+          "tm:gigaimpact",
+          "tm:helpinghand",
+          "tm:icepunch",
+          "tm:icespinner",
+          "tm:irondefense",
+          "tm:ironhead",
+          "tm:liquidation",
+          "tm:lowkick",
+          "tm:lowsweep",
+          "tm:megakick",
+          "tm:megapunch",
+          "tm:poisonjab",
+          "tm:protect",
+          "tm:raindance",
+          "tm:rest",
+          "tm:retaliate",
+          "tm:revenge",
+          "tm:reversal",
+          "tm:rockslide",
+          "tm:rocktomb",
+          "tm:round",
+          "tm:scald",
+          "tm:scaryface",
+          "tm:sleeptalk",
+          "tm:snore",
+          "tm:stoneedge",
+          "tm:substitute",
+          "tm:superpower",
+          "tm:swift",
+          "tm:swordsdance",
+          "tm:takedown",
+          "tm:taunt",
+          "tm:terablast",
+          "tm:thunderpunch",
+          "tm:trailblaze",
+          "tm:uturn",
+          "tm:waterfall",
+          "tm:whirlpool",
+          "tm:workup",
+          "tm:zenheadbutt",
+          "tutor:coaching"
+        ],
+        "labels": [
+          "gen8",
+          "legendary"
+        ],
+        "aspects": [
+          "rapidstrike"
+        ],
+        "height": 19,
+        "weight": 1050,
+        "preEvolution": "kubfu",
+        "cannotDynamax": false,
+        "battleOnly": false
+      },
+      {
+        "name": "Gmax",
+        "primaryType": "fighting",
+        "secondaryType": "dark",
+        "abilities": [
+          "unseenfist"
+        ],
+        "baseStats": {
+          "hp": 100,
+          "attack": 130,
+          "defence": 100,
+          "special_attack": 63,
+          "special_defence": 60,
+          "speed": 97
+        },
+        "catchRate": 3,
+        "maleRatio": 0.875,
+        "baseExperienceYield": 275,
+        "baseFriendship": 50,
+        "evYield": {
+          "hp": 0,
+          "attack": 3,
+          "defence": 0,
+          "special_attack": 0,
+          "special_defence": 0,
+          "speed": 0
+        },
+        "experienceGroup": "slow",
+        "eggCycles": 120,
+        "eggGroups": [
+          "undiscovered"
+        ],
+        "labels": [
+          "gen8",
+          "legendary",
+          "gmax"
+        ],
+        "aspects": [
+          "gmax"
+        ],
+        "height": 30,
+        "weight": 0,
+        "cannotDynamax": false,
+        "battleOnly": false
+      },
+      {
+        "name": "RapidStrike-Gmax",
+        "primaryType": "fighting",
+        "secondaryType": "water",
+        "abilities": [
+          "unseenfist"
+        ],
+        "baseStats": {
+          "hp": 100,
+          "attack": 130,
+          "defence": 100,
+          "special_attack": 63,
+          "special_defence": 60,
+          "speed": 97
+        },
+        "catchRate": 3,
+        "maleRatio": 0.875,
+        "baseExperienceYield": 275,
+        "baseFriendship": 50,
+        "evYield": {
+          "hp": 0,
+          "attack": 3,
+          "defence": 0,
+          "special_attack": 0,
+          "special_defence": 0,
+          "speed": 0
+        },
+        "experienceGroup": "slow",
+        "eggCycles": 120,
+        "eggGroups": [
+          "undiscovered"
+        ],
+        "labels": [
+          "gen8",
+          "legendary",
+          "gmax"
+        ],
+        "aspects": [
+          "rapidstrike-gmax"
+        ],
+        "height": 19,
+        "weight": 1050,
+        "cannotDynamax": false,
+        "battleOnly": true
+      }
+    ],
+    "baseExperienceYield": 275,
+    "experienceGroup": "slow",
+    "eggCycles": 120,
+    "eggGroups": [
+      "undiscovered"
+    ],
+    "moves": [
+      "1:endure",
+      "1:focusenergy",
+      "1:leer",
+      "1:rocksmash",
+      "1:suckerpunch",
+      "12:aerialace",
+      "16:scaryface",
+      "20:headbutt",
+      "24:brickbreak",
+      "28:detect",
+      "32:bulkup",
+      "36:ironhead",
+      "40:dynamicpunch",
+      "44:counter",
+      "48:closecombat",
+      "52:focuspunch",
+      "tm:acrobatics",
+      "tm:aerialace",
+      "tm:assurance",
+      "tm:attract",
+      "tm:aurasphere",
+      "tm:beatup",
+      "tm:bodypress",
+      "tm:bodyslam",
+      "tm:brickbreak",
+      "tm:bulkup",
+      "tm:closecombat",
+      "tm:coaching",
+      "tm:crunch",
+      "tm:darkestlariat",
+      "tm:darkpulse",
+      "tm:dig",
+      "tm:doubleedge",
+      "tm:drainpunch",
+      "tm:endure",
+      "tm:facade",
+      "tm:falseswipe",
+      "tm:firepunch",
+      "tm:fling",
+      "tm:focusblast",
+      "tm:focusenergy",
+      "tm:focuspunch",
+      "tm:foulplay",
+      "tm:gigaimpact",
+      "tm:helpinghand",
+      "tm:icepunch",
+      "tm:irondefense",
+      "tm:ironhead",
+      "tm:lashout",
+      "tm:lowkick",
+      "tm:lowsweep",
+      "tm:megakick",
+      "tm:megapunch",
+      "tm:metalclaw",
+      "tm:payback",
+      "tm:poisonjab",
+      "tm:protect",
+      "tm:rest",
+      "tm:retaliate",
+      "tm:revenge",
+      "tm:reversal",
+      "tm:roar",
+      "tm:rockslide",
+      "tm:rocktomb",
+      "tm:round",
+      "tm:scaryface",
+      "tm:sleeptalk",
+      "tm:snarl",
+      "tm:snore",
+      "tm:stoneedge",
+      "tm:substitute",
+      "tm:superpower",
+      "tm:swift",
+      "tm:swordsdance",
+      "tm:takedown",
+      "tm:taunt",
+      "tm:terablast",
+      "tm:throatchop",
+      "tm:thunderpunch",
+      "tm:trailblaze",
+      "tm:uturn",
+      "tm:workup",
+      "tm:zenheadbutt",
+      "tutor:coaching",
+      "tutor:lashout"
+    ],
+    "labels": [
+      "gen8",
+      "legendary"
+    ],
+    "pokedex": [
+      "cobblemon.species.urshifu.desc"
+    ],
+    "preEvolution": "kubfu",
+    "evolutions": [],
+    "baseFriendship": 50,
+    "evYield": {
+      "hp": 0,
+      "attack": 3,
+      "defence": 0,
+      "special_attack": 0,
+      "special_defence": 0,
+      "speed": 0
+    },
+    "height": 19,
+    "weight": 1050,
+    "aspects": [],
+    "cannotDynamax": false
+  }
+  

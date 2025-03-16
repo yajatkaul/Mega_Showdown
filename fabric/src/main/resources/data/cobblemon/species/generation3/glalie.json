@@ -5,22 +5,11 @@
   "maleRatio": 0.5,
   "height": 15,
   "weight": 2565,
-  "pokedex": [
-    "cobblemon.species.glalie.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.glalie.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "innerfocus",
-    "icebody",
-    "h:moody"
-  ],
-  "eggGroups": [
-    "fairy",
-    "mineral"
-  ],
+  "abilities": ["innerfocus", "icebody", "h:moody"],
+  "eggGroups": ["fairy", "mineral"],
   "baseStats": {
     "hp": 80,
     "attack": 80,
@@ -182,20 +171,10 @@
       "maleRatio": 0.5,
       "height": 21,
       "weight": 3502,
-      "pokedex": [
-        "cobblemon.species.glalie-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "refrigerate",
-        "h:refrigerate"
-      ],
+      "pokedex": ["cobblemon.species.glalie-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["refrigerate", "h:refrigerate"],
       "baseStats": {
         "hp": 80,
         "attack": 120,

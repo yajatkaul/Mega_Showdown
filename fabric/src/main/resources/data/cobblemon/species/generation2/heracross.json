@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 15,
   "weight": 540,
-  "pokedex": [
-    "cobblemon.species.heracross.desc"
-  ],
-  "labels": [
-    "gen2"
-  ],
+  "pokedex": ["cobblemon.species.heracross.desc"],
+  "labels": ["gen2"],
   "aspects": [],
-  "abilities": [
-    "swarm",
-    "guts",
-    "h:moxie"
-  ],
-  "eggGroups": [
-    "bug"
-  ],
+  "abilities": ["swarm", "guts", "h:moxie"],
+  "eggGroups": ["bug"],
   "baseStats": {
     "hp": 80,
     "attack": 125,
@@ -196,20 +186,10 @@
       "maleRatio": 0.5,
       "height": 17,
       "weight": 625,
-      "pokedex": [
-        "cobblemon.species.heracross-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "skilllink",
-        "h:skilllink"
-      ],
+      "pokedex": ["cobblemon.species.heracross-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["skilllink", "h:skilllink"],
       "baseStats": {
         "hp": 80,
         "attack": 185,

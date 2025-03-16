@@ -2,9 +2,7 @@
   "name": "Zamazenta",
   "nationalPokedexNumber": 889,
   "primaryType": "fighting",
-  "abilities": [
-    "dauntlessshield"
-  ],
+  "abilities": ["dauntlessshield"],
   "baseStats": {
     "hp": 92,
     "attack": 120,
@@ -21,9 +19,7 @@
       "name": "Crowned",
       "primaryType": "fighting",
       "secondaryType": "steel",
-      "abilities": [
-        "dauntlessshield"
-      ],
+      "abilities": ["dauntlessshield"],
       "baseStats": {
         "hp": 92,
         "attack": 120,
@@ -47,19 +43,10 @@
       },
       "experienceGroup": "slow",
       "eggCycles": 120,
-      "eggGroups": [
-        "undiscovered"
-      ],
-      "moves": [
-        "form_change:behemothbash"
-      ],
-      "labels": [
-        "gen8",
-        "legendary"
-      ],
-      "aspects": [
-        "crowned"
-      ],
+      "eggGroups": ["undiscovered"],
+      "moves": ["form_change:behemothbash"],
+      "labels": ["gen8", "legendary"],
+      "aspects": ["crowned"],
       "height": 29,
       "weight": 7850,
       "cannotDynamax": true,
@@ -77,9 +64,7 @@
   "baseExperienceYield": 335,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "eggGroups": ["undiscovered"],
   "moves": [
     "1:bite",
     "1:howl",
@@ -164,13 +149,8 @@
     "tutor:steelbeam",
     "tutor:wideguard"
   ],
-  "labels": [
-    "gen8",
-    "legendary"
-  ],
-  "pokedex": [
-    "cobblemon.species.zamazenta.desc"
-  ],
+  "labels": ["gen8", "legendary"],
+  "pokedex": ["cobblemon.species.zamazenta.desc"],
   "baseScale": 0.8,
   "hitbox": {
     "width": 2,
@@ -194,16 +174,16 @@
         "canWalk": true,
         "avoidsLand": false
       },
-    "fly": {
-      "canFly": false
-    },
-    "swim": {
-      "swimSpeed": 0.5,
-      "canSwimInWater": false,
-      "canBreatheUnderwater": false
+      "fly": {
+        "canFly": false
+      },
+      "swim": {
+        "swimSpeed": 0.5,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
     }
-  }
-},
+  },
   "height": 29,
   "weight": 2100,
   "dynamaxBlocked": true,

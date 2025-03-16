@@ -258,6 +258,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PRISON_BOTTLE);
                         output.accept(ModItems.REINS_OF_UNITY);
                         output.accept(ModItems.GRACIDEA_FLOWER);
+                        output.accept(ModItems.SCROLL_OF_WATERS);
+                        output.accept(ModItems.SCROLL_OF_DARKNESS);
+                        output.accept(ModItems.WELLSPRING_MASK);
+                        output.accept(ModItems.CORNERSTONE_MASK);
+                        output.accept(ModItems.HEARTHFLAME_MASK);
+                        output.accept(ModItems.STAR_CORE);
                     })
                     .build());
 

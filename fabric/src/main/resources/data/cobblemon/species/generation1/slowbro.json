@@ -7,23 +7,11 @@
   "maleRatio": 0.5,
   "height": 16,
   "weight": 785,
-  "pokedex": [
-    "cobblemon.species.slowbro.desc"
-  ],
-  "labels": [
-    "gen1",
-    "kantonian_form"
-  ],
+  "pokedex": ["cobblemon.species.slowbro.desc"],
+  "labels": ["gen1", "kantonian_form"],
   "aspects": [],
-  "abilities": [
-    "oblivious",
-    "owntempo",
-    "h:regenerator"
-  ],
-  "eggGroups": [
-    "monster",
-    "water_1"
-  ],
+  "abilities": ["oblivious", "owntempo", "h:regenerator"],
+  "eggGroups": ["monster", "water_1"],
   "baseStats": {
     "hp": 95,
     "attack": 75,
@@ -45,9 +33,7 @@
   "catchRate": 75,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "features": [
-    "galarian"
-  ],
+  "features": ["galarian"],
   "baseScale": 1.3,
   "hitbox": {
     "width": 0.8,
@@ -250,20 +236,10 @@
       "maleRatio": 0.5,
       "height": 20,
       "weight": 1200,
-      "pokedex": [
-        "cobblemon.species.slowbro-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "shellarmor",
-        "h:shellarmor"
-      ],
+      "pokedex": ["cobblemon.species.slowbro-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["shellarmor", "h:shellarmor"],
       "baseStats": {
         "hp": 95,
         "attack": 75,
@@ -297,21 +273,10 @@
       "maleRatio": 0.5,
       "height": 16,
       "weight": 705,
-      "pokedex": [
-        "cobblemon.species.slowbro-galar.desc"
-      ],
-      "labels": [
-        "gen8",
-        "galarian_form"
-      ],
-      "aspects": [
-        "galarian"
-      ],
-      "abilities": [
-        "quickdraw",
-        "owntempo",
-        "h:regenerator"
-      ],
+      "pokedex": ["cobblemon.species.slowbro-galar.desc"],
+      "labels": ["gen8", "galarian_form"],
+      "aspects": ["galarian"],
+      "abilities": ["quickdraw", "owntempo", "h:regenerator"],
       "baseStats": {
         "hp": 95,
         "attack": 100,

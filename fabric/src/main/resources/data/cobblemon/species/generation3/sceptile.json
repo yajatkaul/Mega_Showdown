@@ -6,21 +6,11 @@
   "maleRatio": 0.875,
   "height": 17,
   "weight": 522,
-  "pokedex": [
-    "cobblemon.species.sceptile.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.sceptile.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "overgrow",
-    "h:unburden"
-  ],
-  "eggGroups": [
-    "monster",
-    "dragon"
-  ],
+  "abilities": ["overgrow", "h:unburden"],
+  "eggGroups": ["monster", "dragon"],
   "baseStats": {
     "hp": 70,
     "attack": 85,
@@ -242,20 +232,10 @@
       "maleRatio": 0.875,
       "height": 19,
       "weight": 552,
-      "pokedex": [
-        "cobblemon.species.sceptile-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "lightningrod",
-        "h:lightningrod"
-      ],
+      "pokedex": ["cobblemon.species.sceptile-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["lightningrod", "h:lightningrod"],
       "baseStats": {
         "hp": 70,
         "attack": 110,

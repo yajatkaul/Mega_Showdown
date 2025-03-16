@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 65,
   "weight": 2350,
-  "pokedex": [
-    "cobblemon.species.gyarados.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.gyarados.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "intimidate",
-    "h:moxie"
-  ],
-  "eggGroups": [
-    "water_2",
-    "dragon"
-  ],
+  "abilities": ["intimidate", "h:moxie"],
+  "eggGroups": ["water_2", "dragon"],
   "baseStats": {
     "hp": 95,
     "attack": 125,
@@ -207,20 +197,10 @@
       "maleRatio": 0.5,
       "height": 65,
       "weight": 3050,
-      "pokedex": [
-        "cobblemon.species.gyarados-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "moldbreaker",
-        "h:moldbreaker"
-      ],
+      "pokedex": ["cobblemon.species.gyarados-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["moldbreaker", "h:moldbreaker"],
       "baseStats": {
         "hp": 95,
         "attack": 155,

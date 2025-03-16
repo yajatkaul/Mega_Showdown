@@ -6,21 +6,11 @@
   "maleRatio": -1,
   "height": 7,
   "weight": 88,
-  "pokedex": [
-    "cobblemon.species.diancie.desc"
-  ],
-  "labels": [
-    "gen6",
-    "mythical"
-  ],
+  "pokedex": ["cobblemon.species.diancie.desc"],
+  "labels": ["gen6", "mythical"],
   "aspects": [],
-  "abilities": [
-    "clearbody",
-    "h:clearbody"
-  ],
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "abilities": ["clearbody", "h:clearbody"],
+  "eggGroups": ["undiscovered"],
   "baseStats": {
     "hp": 50,
     "attack": 100,
@@ -184,21 +174,10 @@
       "maleRatio": -1,
       "height": 11,
       "weight": 278,
-      "pokedex": [
-        "cobblemon.species.diancie-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mythical",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "magicbounce",
-        "h:magicbounce"
-      ],
+      "pokedex": ["cobblemon.species.diancie-mega.desc"],
+      "labels": ["gen6", "mythical", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["magicbounce", "h:magicbounce"],
       "baseStats": {
         "hp": 50,
         "attack": 160,

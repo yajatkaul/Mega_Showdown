@@ -6,21 +6,11 @@
   "maleRatio": 0.75,
   "height": 15,
   "weight": 480,
-  "pokedex": [
-    "cobblemon.species.alakazam.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.alakazam.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "synchronize",
-    "innerfocus",
-    "h:magicguard"
-  ],
-  "eggGroups": [
-    "human_like"
-  ],
+  "abilities": ["synchronize", "innerfocus", "h:magicguard"],
+  "eggGroups": ["human_like"],
   "baseStats": {
     "hp": 55,
     "attack": 50,
@@ -214,20 +204,10 @@
       "maleRatio": 0.75,
       "height": 12,
       "weight": 480,
-      "pokedex": [
-        "cobblemon.species.alakazam-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "trace",
-        "h:trace"
-      ],
+      "pokedex": ["cobblemon.species.alakazam-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["trace", "h:trace"],
       "baseStats": {
         "hp": 55,
         "attack": 50,

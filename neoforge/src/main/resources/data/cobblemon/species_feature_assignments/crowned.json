@@ -1,7 +1,4 @@
 {
-  "pokemon": [
-    "zacian",
-    "zamazenta"
-  ],
+  "pokemon": ["zacian", "zamazenta"],
   "features": ["crowned"]
 }

@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 5,
   "weight": 110,
-  "pokedex": [
-    "cobblemon.species.sableye.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.sableye.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "keeneye",
-    "stall",
-    "h:prankster"
-  ],
-  "eggGroups": [
-    "human_like"
-  ],
+  "abilities": ["keeneye", "stall", "h:prankster"],
+  "eggGroups": ["human_like"],
   "baseStats": {
     "hp": 50,
     "attack": 75,
@@ -260,20 +250,10 @@
       "maleRatio": 0.5,
       "height": 5,
       "weight": 1610,
-      "pokedex": [
-        "cobblemon.species.sableye-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "magicbounce",
-        "h:magicbounce"
-      ],
+      "pokedex": ["cobblemon.species.sableye-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["magicbounce", "h:magicbounce"],
       "baseStats": {
         "hp": 50,
         "attack": 85,

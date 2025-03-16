@@ -5,21 +5,11 @@
   "maleRatio": 0.5,
   "height": 11,
   "weight": 310,
-  "pokedex": [
-    "cobblemon.species.audino.desc"
-  ],
-  "labels": [
-    "gen5"
-  ],
+  "pokedex": ["cobblemon.species.audino.desc"],
+  "labels": ["gen5"],
   "aspects": [],
-  "abilities": [
-    "healer",
-    "regenerator",
-    "h:klutz"
-  ],
-  "eggGroups": [
-    "fairy"
-  ],
+  "abilities": ["healer", "regenerator", "h:klutz"],
+  "eggGroups": ["fairy"],
   "baseStats": {
     "hp": 103,
     "attack": 60,
@@ -226,20 +216,10 @@
       "maleRatio": 0.5,
       "height": 15,
       "weight": 320,
-      "pokedex": [
-        "cobblemon.species.audino-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "healer",
-        "h:healer"
-      ],
+      "pokedex": ["cobblemon.species.audino-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["healer", "h:healer"],
       "baseStats": {
         "hp": 103,
         "attack": 60,

@@ -19,12 +19,14 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
+import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -81,6 +83,9 @@ public class CobbleEventHandler {
         checkUltra(post);
         primalEvent(post);
         crownedEvent(post);
+        ogerponChange(post);
+        eternamaxChange(post);
+
         // Battle mode only
         if(ShowdownConfig.battleModeOnly.get()){
             return Unit.INSTANCE;
@@ -117,6 +122,50 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
+    public static void eternamaxChange(HeldItemEvent.Post post){
+        if(!ShowdownConfig.etermaxForme.get()){
+            return;
+        }
+        Pokemon pokemon = post.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Eternatus") && post.getReceived().isOf(ModItems.STAR_CORE)){
+            new FlagSpeciesFeature("eternamax",true).apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Eternatus")) {
+            new FlagSpeciesFeature("eternamax",false).apply(pokemon);
+        }
+    }
+    public static void ogerponChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+
+        if(!pokemon.getSpecies().getName().equals("Ogerpon")){
+            return;
+        }
+        if(post.getReceived().isOf(ModItems.HEARTHFLAME_MASK)){
+            new FlagSpeciesFeature("hearthflame-mask", true).apply(pokemon);
+            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+
+            pokemon.setTeraType(TeraTypes.getFIRE());
+        } else if (post.getReceived().isOf(ModItems.CORNERSTONE_MASK)) {
+            new FlagSpeciesFeature("cornerstone-mask", true).apply(pokemon);
+            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+
+            pokemon.setTeraType(TeraTypes.getGROUND());
+        }else if (post.getReceived().isOf(ModItems.WELLSPRING_MASK)) {
+            new FlagSpeciesFeature("wellspring-mask", true).apply(pokemon);
+            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+
+            pokemon.setTeraType(TeraTypes.getWATER());
+        }else {
+            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+
+            pokemon.setTeraType(TeraTypes.getGRASS());
+        }
+    }
     public static void primalEvent(HeldItemEvent.Post post) {
         ServerPlayerEntity player = post.getPokemon().getOwnerPlayer();
         Species species = post.getPokemon().getSpecies();

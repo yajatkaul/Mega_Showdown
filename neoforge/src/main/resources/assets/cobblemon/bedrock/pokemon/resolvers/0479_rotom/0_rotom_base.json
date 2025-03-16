@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:rotom",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:rotom",
+      "model": "cobblemon:rotom.geo",
+      "texture": "cobblemon:textures/pokemon/0479_rotom/rotom.png",
+      "layers": [
+	  {
+			"name": "glow",
+			"texture": "cobblemon:textures/pokemon/0479_rotom/rotom_emissive.png",
+			"emissive": true
+	  }
+	  ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0479_rotom/rotom_shiny.png",
+	  "layers": [
+	  {
+			"name": "glow",
+			"texture": "cobblemon:textures/pokemon/0479_rotom/rotom_shiny_emissive.png",
+			"emissive": true
+	  }
+	  ]
+    }
+	]
+}

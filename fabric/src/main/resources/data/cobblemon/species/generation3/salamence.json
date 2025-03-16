@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 15,
   "weight": 1026,
-  "pokedex": [
-    "cobblemon.species.salamence.desc"
-  ],
-  "labels": [
-    "gen3",
-    "powerhouse"
-  ],
+  "pokedex": ["cobblemon.species.salamence.desc"],
+  "labels": ["gen3", "powerhouse"],
   "aspects": [],
-  "abilities": [
-    "intimidate",
-    "h:moxie"
-  ],
-  "eggGroups": [
-    "dragon"
-  ],
+  "abilities": ["intimidate", "h:moxie"],
+  "eggGroups": ["dragon"],
   "baseStats": {
     "hp": 95,
     "attack": 135,
@@ -220,20 +210,10 @@
       "maleRatio": 0.5,
       "height": 18,
       "weight": 1126,
-      "pokedex": [
-        "cobblemon.species.salamence-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "aerilate",
-        "h:aerilate"
-      ],
+      "pokedex": ["cobblemon.species.salamence-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["aerilate", "h:aerilate"],
       "baseStats": {
         "hp": 95,
         "attack": 145,

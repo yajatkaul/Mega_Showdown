@@ -6,21 +6,11 @@
   "maleRatio": 0.5,
   "height": 12,
   "weight": 470,
-  "pokedex": [
-    "cobblemon.species.absol.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.absol.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "pressure",
-    "superluck",
-    "h:justified"
-  ],
-  "eggGroups": [
-    "field"
-  ],
+  "abilities": ["pressure", "superluck", "h:justified"],
+  "eggGroups": ["field"],
   "baseStats": {
     "hp": 65,
     "attack": 130,
@@ -229,20 +219,10 @@
       "maleRatio": 0.5,
       "height": 12,
       "weight": 490,
-      "pokedex": [
-        "cobblemon.species.absol-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "magicbounce",
-        "h:magicbounce"
-      ],
+      "pokedex": ["cobblemon.species.absol-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["magicbounce", "h:magicbounce"],
       "baseStats": {
         "hp": 65,
         "attack": 150,

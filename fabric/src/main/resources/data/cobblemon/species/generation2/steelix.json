@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 92,
   "weight": 4000,
-  "pokedex": [
-    "cobblemon.species.steelix.desc"
-  ],
-  "labels": [
-    "gen2"
-  ],
+  "pokedex": ["cobblemon.species.steelix.desc"],
+  "labels": ["gen2"],
   "aspects": [],
-  "abilities": [
-    "rockhead",
-    "sturdy",
-    "h:sheerforce"
-  ],
-  "eggGroups": [
-    "mineral"
-  ],
+  "abilities": ["rockhead", "sturdy", "h:sheerforce"],
+  "eggGroups": ["mineral"],
   "baseStats": {
     "hp": 75,
     "attack": 85,
@@ -237,20 +227,10 @@
       "maleRatio": 0.5,
       "height": 105,
       "weight": 7400,
-      "pokedex": [
-        "cobblemon.species.steelix-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "sandforce",
-        "h:sandforce"
-      ],
+      "pokedex": ["cobblemon.species.steelix-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["sandforce", "h:sandforce"],
       "baseStats": {
         "hp": 75,
         "attack": 125,

@@ -43,6 +43,10 @@ public class TeraShard extends Item {
 
             Item shard = stack.getItem().asItem();
 
+            if(pokemon.getSpecies().getName().equals("Ogerpon")){
+                return ActionResult.PASS;
+            }
+
             if(pokemon.getOwnerPlayer() == player && stack.getCount() == 50){
                 AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "change_tera");
                 stack.decrement(50);

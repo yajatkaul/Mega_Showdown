@@ -7,21 +7,11 @@
   "maleRatio": -1,
   "height": 16,
   "weight": 5500,
-  "pokedex": [
-    "cobblemon.species.metagross.desc"
-  ],
-  "labels": [
-    "gen3",
-    "powerhouse"
-  ],
+  "pokedex": ["cobblemon.species.metagross.desc"],
+  "labels": ["gen3", "powerhouse"],
   "aspects": [],
-  "abilities": [
-    "clearbody",
-    "h:lightmetal"
-  ],
-  "eggGroups": [
-    "mineral"
-  ],
+  "abilities": ["clearbody", "h:lightmetal"],
+  "eggGroups": ["mineral"],
   "baseStats": {
     "hp": 80,
     "attack": 135,
@@ -234,20 +224,10 @@
       "maleRatio": -1,
       "height": 25,
       "weight": 9429,
-      "pokedex": [
-        "cobblemon.species.metagross-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "toughclaws",
-        "h:toughclaws"
-      ],
+      "pokedex": ["cobblemon.species.metagross-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["toughclaws", "h:toughclaws"],
       "baseStats": {
         "hp": 80,
         "attack": 145,

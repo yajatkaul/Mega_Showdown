@@ -7,22 +7,11 @@
   "maleRatio": 0.875,
   "height": 12,
   "weight": 540,
-  "pokedex": [
-    "cobblemon.species.lucario.desc"
-  ],
-  "labels": [
-    "gen4"
-  ],
+  "pokedex": ["cobblemon.species.lucario.desc"],
+  "labels": ["gen4"],
   "aspects": [],
-  "abilities": [
-    "steadfast",
-    "innerfocus",
-    "h:justified"
-  ],
-  "eggGroups": [
-    "field",
-    "human_like"
-  ],
+  "abilities": ["steadfast", "innerfocus", "h:justified"],
+  "eggGroups": ["field", "human_like"],
   "baseStats": {
     "hp": 70,
     "attack": 110,
@@ -236,20 +225,10 @@
       "maleRatio": 0.875,
       "height": 13,
       "weight": 575,
-      "pokedex": [
-        "cobblemon.species.lucario-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "adaptability",
-        "h:adaptability"
-      ],
+      "pokedex": ["cobblemon.species.lucario-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["adaptability", "h:adaptability"],
       "baseStats": {
         "hp": 70,
         "attack": 145,

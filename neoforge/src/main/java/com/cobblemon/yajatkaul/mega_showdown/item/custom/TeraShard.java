@@ -43,6 +43,10 @@ public class TeraShard extends Item {
 
             Item shard = arg.getItem().asItem();
 
+            if(pokemon.getSpecies().getName().equals("Ogerpon")){
+                return InteractionResult.PASS;
+            }
+
             if(pokemon.getOwnerPlayer() == player && arg.getCount() == 50){
                 AdvancementHelper.grantAdvancement((ServerPlayer) player, "change_tera");
                 arg.shrink(50);
@@ -51,7 +55,7 @@ public class TeraShard extends Item {
                     try {
                         pokemon.setTeraType(getType(shard));
                     }catch (Exception e){
-                        MegaShowdown.LOGGER.info("Hehe");
+                        MegaShowdown.LOGGER.info("Sike");
                     }
 
                 }else{
@@ -59,7 +63,7 @@ public class TeraShard extends Item {
                     try {
                         pokemon.setTeraType(TeraTypes.getSTELLAR());
                     }catch (Exception e){
-                        MegaShowdown.LOGGER.info("Hehe");
+                        MegaShowdown.LOGGER.info("Sike");
                     }
                 }
             } else if (pokemon.getOwnerPlayer() == player && arg.getCount() != 50) {

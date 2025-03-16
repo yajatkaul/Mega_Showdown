@@ -140,5 +140,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.REINS_OF_UNITY.get());
 
         basicItem(ModItems.GRACIDEA_FLOWER.get());
+
+        basicItem(ModItems.SCROLL_OF_DARKNESS.get());
+        basicItem(ModItems.SCROLL_OF_WATERS.get());
+
+        basicItem(ModItems.HEARTHFLAME_MASK.get());
+        basicItem(ModItems.CORNERSTONE_MASK.get());
+        basicItem(ModItems.WELLSPRING_MASK.get());
+
+        basicItem(ModItems.STAR_CORE.get());
     }
 }

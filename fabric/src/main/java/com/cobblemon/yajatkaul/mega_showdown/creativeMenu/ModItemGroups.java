@@ -251,6 +251,12 @@ public class ModItemGroups {
                         entries.add(ModItems.PRISON_BOTTLE);
                         entries.add(ModItems.REINS_OF_UNITY);
                         entries.add(ModItems.GRACIDEA_FLOWER);
+                        entries.add(ModItems.SCROLL_OF_DARKNESS);
+                        entries.add(ModItems.SCROLL_OF_WATERS);
+                        entries.add(ModItems.WELLSPRING_MASK);
+                        entries.add(ModItems.CORNERSTONE_MASK);
+                        entries.add(ModItems.HEARTHFLAME_MASK);
+                        entries.add(ModItems.STAR_CORE);
                     }))
                     .build());
 

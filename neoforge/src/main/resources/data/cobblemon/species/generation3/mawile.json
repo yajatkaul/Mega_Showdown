@@ -7,22 +7,11 @@
   "maleRatio": 0.5,
   "height": 6,
   "weight": 115,
-  "pokedex": [
-    "cobblemon.species.mawile.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.mawile.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "hypercutter",
-    "intimidate",
-    "h:sheerforce"
-  ],
-  "eggGroups": [
-    "field",
-    "fairy"
-  ],
+  "abilities": ["hypercutter", "intimidate", "h:sheerforce"],
+  "eggGroups": ["field", "fairy"],
   "baseStats": {
     "hp": 50,
     "attack": 85,
@@ -226,20 +215,10 @@
       "maleRatio": 0.5,
       "height": 10,
       "weight": 235,
-      "pokedex": [
-        "cobblemon.species.mawile-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "hugepower",
-        "h:hugepower"
-      ],
+      "pokedex": ["cobblemon.species.mawile-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["hugepower", "h:hugepower"],
       "baseStats": {
         "hp": 50,
         "attack": 105,

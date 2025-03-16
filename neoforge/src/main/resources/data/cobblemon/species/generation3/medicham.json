@@ -6,20 +6,11 @@
   "maleRatio": 0.5,
   "height": 13,
   "weight": 315,
-  "pokedex": [
-    "cobblemon.species.medicham.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.medicham.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "purepower",
-    "h:telepathy"
-  ],
-  "eggGroups": [
-    "human_like"
-  ],
+  "abilities": ["purepower", "h:telepathy"],
+  "eggGroups": ["human_like"],
   "baseStats": {
     "hp": 60,
     "attack": 60,
@@ -230,20 +221,10 @@
       "maleRatio": 0.5,
       "height": 13,
       "weight": 315,
-      "pokedex": [
-        "cobblemon.species.medicham-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "purepower",
-        "h:purepower"
-      ],
+      "pokedex": ["cobblemon.species.medicham-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["purepower", "h:purepower"],
       "baseStats": {
         "hp": 60,
         "attack": 100,

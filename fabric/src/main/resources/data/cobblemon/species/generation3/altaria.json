@@ -6,21 +6,11 @@
   "maleRatio": 0.5,
   "height": 11,
   "weight": 206,
-  "pokedex": [
-    "cobblemon.species.altaria.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.altaria.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "naturalcure",
-    "h:cloudnine"
-  ],
-  "eggGroups": [
-    "flying",
-    "dragon"
-  ],
+  "abilities": ["naturalcure", "h:cloudnine"],
+  "eggGroups": ["flying", "dragon"],
   "baseStats": {
     "hp": 75,
     "attack": 70,
@@ -208,20 +198,10 @@
       "maleRatio": 0.5,
       "height": 15,
       "weight": 206,
-      "pokedex": [
-        "cobblemon.species.altaria-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "pixilate",
-        "h:pixilate"
-      ],
+      "pokedex": ["cobblemon.species.altaria-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["pixilate", "h:pixilate"],
       "baseStats": {
         "hp": 75,
         "attack": 110,

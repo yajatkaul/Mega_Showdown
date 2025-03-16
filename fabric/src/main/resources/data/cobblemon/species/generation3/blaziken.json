@@ -7,20 +7,11 @@
   "maleRatio": 0.875,
   "height": 19,
   "weight": 520,
-  "pokedex": [
-    "cobblemon.species.blaziken.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.blaziken.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "blaze",
-    "h:speedboost"
-  ],
-  "eggGroups": [
-    "field"
-  ],
+  "abilities": ["blaze", "h:speedboost"],
+  "eggGroups": ["field"],
   "baseStats": {
     "hp": 80,
     "attack": 120,
@@ -237,20 +228,10 @@
       "maleRatio": 0.875,
       "height": 19,
       "weight": 520,
-      "pokedex": [
-        "cobblemon.species.blaziken-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "speedboost",
-        "h:speedboost"
-      ],
+      "pokedex": ["cobblemon.species.blaziken-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["speedboost", "h:speedboost"],
       "baseStats": {
         "hp": 80,
         "attack": 160,

@@ -6,21 +6,11 @@
   "maleRatio": 0.5,
   "height": 22,
   "weight": 1355,
-  "pokedex": [
-    "cobblemon.species.abomasnow.desc"
-  ],
-  "labels": [
-    "gen4"
-  ],
+  "pokedex": ["cobblemon.species.abomasnow.desc"],
+  "labels": ["gen4"],
   "aspects": [],
-  "abilities": [
-    "snowwarning",
-    "h:soundproof"
-  ],
-  "eggGroups": [
-    "monster",
-    "grass"
-  ],
+  "abilities": ["snowwarning", "h:soundproof"],
+  "eggGroups": ["monster", "grass"],
   "baseStats": {
     "hp": 90,
     "attack": 92,
@@ -198,20 +188,10 @@
       "maleRatio": 0.5,
       "height": 27,
       "weight": 1850,
-      "pokedex": [
-        "cobblemon.species.abomasnow-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "snowwarning",
-        "h:snowwarning"
-      ],
+      "pokedex": ["cobblemon.species.abomasnow-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["snowwarning", "h:snowwarning"],
       "baseStats": {
         "hp": 90,
         "attack": 132,

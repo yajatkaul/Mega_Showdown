@@ -6,22 +6,11 @@
   "maleRatio": -1,
   "height": 20,
   "weight": 1220,
-  "pokedex": [
-    "cobblemon.species.mewtwo.desc"
-  ],
-  "labels": [
-    "gen1",
-    "legendary",
-    "restricted"
-  ],
+  "pokedex": ["cobblemon.species.mewtwo.desc"],
+  "labels": ["gen1", "legendary", "restricted"],
   "aspects": [],
-  "abilities": [
-    "pressure",
-    "h:unnerve"
-  ],
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "abilities": ["pressure", "h:unnerve"],
+  "eggGroups": ["undiscovered"],
   "baseStats": {
     "hp": 106,
     "attack": 110,
@@ -278,22 +267,10 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1270,
-      "pokedex": [
-        "cobblemon.species.mewtwo-megax.desc"
-      ],
-      "labels": [
-        "gen6",
-        "legendary",
-        "restricted",
-        "mega"
-      ],
-      "aspects": [
-        "mega-x"
-      ],
-      "abilities": [
-        "steadfast",
-        "h:steadfast"
-      ],
+      "pokedex": ["cobblemon.species.mewtwo-megax.desc"],
+      "labels": ["gen6", "legendary", "restricted", "mega"],
+      "aspects": ["mega-x"],
+      "abilities": ["steadfast", "h:steadfast"],
       "baseStats": {
         "hp": 106,
         "attack": 190,
@@ -313,22 +290,10 @@
       "maleRatio": -1,
       "height": 15,
       "weight": 330,
-      "pokedex": [
-        "cobblemon.species.mewtwo-megay.desc"
-      ],
-      "labels": [
-        "gen6",
-        "legendary",
-        "restricted",
-        "mega"
-      ],
-      "aspects": [
-        "mega-y"
-      ],
-      "abilities": [
-        "insomnia",
-        "h:insomnia"
-      ],
+      "pokedex": ["cobblemon.species.mewtwo-megay.desc"],
+      "labels": ["gen6", "legendary", "restricted", "mega"],
+      "aspects": ["mega-y"],
+      "abilities": ["insomnia", "h:insomnia"],
       "baseStats": {
         "hp": 106,
         "attack": 150,

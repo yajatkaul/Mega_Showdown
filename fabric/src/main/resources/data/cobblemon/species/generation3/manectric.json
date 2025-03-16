@@ -5,21 +5,11 @@
   "maleRatio": 0.5,
   "height": 15,
   "weight": 402,
-  "pokedex": [
-    "cobblemon.species.manectric.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.manectric.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "static",
-    "lightningrod",
-    "h:minus"
-  ],
-  "eggGroups": [
-    "field"
-  ],
+  "abilities": ["static", "lightningrod", "h:minus"],
+  "eggGroups": ["field"],
   "baseStats": {
     "hp": 70,
     "attack": 75,
@@ -168,20 +158,10 @@
       "maleRatio": 0.5,
       "height": 18,
       "weight": 440,
-      "pokedex": [
-        "cobblemon.species.manectric-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "intimidate",
-        "h:intimidate"
-      ],
+      "pokedex": ["cobblemon.species.manectric-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["intimidate", "h:intimidate"],
       "baseStats": {
         "hp": 70,
         "attack": 75,

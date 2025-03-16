@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 19,
   "weight": 2200,
-  "pokedex": [
-    "cobblemon.species.camerupt.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.camerupt.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "magmaarmor",
-    "solidrock",
-    "h:angerpoint"
-  ],
-  "eggGroups": [
-    "field"
-  ],
+  "abilities": ["magmaarmor", "solidrock", "h:angerpoint"],
+  "eggGroups": ["field"],
   "baseStats": {
     "hp": 70,
     "attack": 100,
@@ -202,20 +192,10 @@
       "maleRatio": 0.5,
       "height": 25,
       "weight": 3205,
-      "pokedex": [
-        "cobblemon.species.camerupt-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "sheerforce",
-        "h:sheerforce"
-      ],
+      "pokedex": ["cobblemon.species.camerupt-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["sheerforce", "h:sheerforce"],
       "baseStats": {
         "hp": 70,
         "attack": 120,

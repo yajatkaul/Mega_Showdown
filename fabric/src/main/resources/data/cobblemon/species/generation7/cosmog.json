@@ -2,9 +2,7 @@
   "name": "Cosmog",
   "nationalPokedexNumber": 789,
   "primaryType": "psychic",
-  "abilities": [
-    "unaware"
-  ],
+  "abilities": ["unaware"],
   "baseStats": {
     "hp": 43,
     "attack": 29,
@@ -19,31 +17,17 @@
   "baseExperienceYield": 40,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": [
-    "undiscovered"
-  ],
-  "moves": [
-    "1:splash",
-    "1:teleport",
-    "tutor:splash",
-    "tutor:teleport"
-  ],
-  "labels": [
-    "gen7",
-    "legendary"
-  ],
-  "pokedex": [
-    "cobblemon.species.cosmog.desc"
-  ],
+  "eggGroups": ["undiscovered"],
+  "moves": ["1:splash", "1:teleport", "tutor:splash", "tutor:teleport"],
+  "labels": ["gen7", "legendary"],
+  "pokedex": ["cobblemon.species.cosmog.desc"],
   "evolutions": [
     {
       "id": "cosmog_cosmoem",
       "variant": "level_up",
       "result": "cosmoem",
       "consumeHeldItem": false,
-      "learnableMoves": [
-        "cosmicpower"
-      ],
+      "learnableMoves": ["cosmicpower"],
       "requirements": [
         {
           "variant": "level",

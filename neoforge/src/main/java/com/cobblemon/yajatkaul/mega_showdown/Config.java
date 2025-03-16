@@ -48,6 +48,10 @@ public class Config
             .comment("Allows you to trade even if your pokemon is not in base form")
             .define("tradeForm", false);
 
+    private static final ModConfigSpec.BooleanValue ETERMAX_FORME = BUILDER
+            .comment("Enables etermax eternus forme")
+            .define("etermaxForme", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -59,6 +63,7 @@ public class Config
     public static boolean zMoves;
     public static boolean teralization;
     public static boolean tradeForm;
+    public static boolean etermaxForme;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -72,5 +77,6 @@ public class Config
         zMoves = Z_MOVES.get();
         teralization = TERA_EVO.get();
         tradeForm = TRADE_FORM.get();
+        etermaxForme = ETERMAX_FORME.get();
     }
 }

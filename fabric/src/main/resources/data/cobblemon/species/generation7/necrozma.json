@@ -2,9 +2,7 @@
   "name": "Necrozma",
   "nationalPokedexNumber": 800,
   "primaryType": "psychic",
-  "abilities": [
-    "prismarmor"
-  ],
+  "abilities": ["prismarmor"],
   "baseStats": {
     "hp": 97,
     "attack": 107,
@@ -21,9 +19,7 @@
       "name": "Dusk-Mane",
       "primaryType": "psychic",
       "secondaryType": "steel",
-      "abilities": [
-        "prismarmor"
-      ],
+      "abilities": ["prismarmor"],
       "baseStats": {
         "hp": 97,
         "attack": 157,
@@ -46,19 +42,10 @@
       },
       "experienceGroup": "slow",
       "eggCycles": 120,
-      "eggGroups": [
-        "undiscovered"
-      ],
-      "moves": [
-        "form_change:sunsteelstrike"
-      ],
-      "labels": [
-        "gen7",
-        "legendary"
-      ],
-      "aspects": [
-        "dusk-fusion"
-      ],
+      "eggGroups": ["undiscovered"],
+      "moves": ["form_change:sunsteelstrike"],
+      "labels": ["gen7", "legendary"],
+      "aspects": ["dusk-fusion"],
       "height": 38,
       "weight": 4600,
       "evolutions": [],
@@ -69,9 +56,7 @@
       "name": "Dawn-Wings",
       "primaryType": "psychic",
       "secondaryType": "ghost",
-      "abilities": [
-        "prismarmor"
-      ],
+      "abilities": ["prismarmor"],
       "baseStats": {
         "hp": 97,
         "attack": 113,
@@ -94,19 +79,10 @@
       },
       "experienceGroup": "slow",
       "eggCycles": 120,
-      "eggGroups": [
-        "undiscovered"
-      ],
-      "moves": [
-        "form_change:moongeistbeam"
-      ],
-      "labels": [
-        "gen7",
-        "legendary"
-      ],
-      "aspects": [
-        "dawn-fusion"
-      ],
+      "eggGroups": ["undiscovered"],
+      "moves": ["form_change:moongeistbeam"],
+      "labels": ["gen7", "legendary"],
+      "aspects": ["dawn-fusion"],
       "height": 42,
       "weight": 3500,
       "evolutions": [],
@@ -117,9 +93,7 @@
       "name": "Ultra",
       "primaryType": "psychic",
       "secondaryType": "dragon",
-      "abilities": [
-        "neuroforce"
-      ],
+      "abilities": ["neuroforce"],
       "baseStats": {
         "hp": 97,
         "attack": 167,
@@ -142,9 +116,7 @@
       },
       "experienceGroup": "slow",
       "eggCycles": 120,
-      "eggGroups": [
-        "undiscovered"
-      ],
+      "eggGroups": ["undiscovered"],
       "moves": [
         "form_change:moongeistbeam",
         "form_change:sunsteelstrike",
@@ -263,13 +235,8 @@
         "tutor:telekinesis",
         "tutor:wringout"
       ],
-      "labels": [
-        "gen7",
-        "legendary"
-      ],
-      "aspects": [
-        "ultra"
-      ],
+      "labels": ["gen7", "legendary"],
+      "aspects": ["ultra"],
       "hitbox": {
         "width": 3,
         "height": 4.45,
@@ -284,9 +251,7 @@
   "baseExperienceYield": 300,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "eggGroups": ["undiscovered"],
   "moves": [
     "1:chargebeam",
     "1:confusion",
@@ -403,13 +368,8 @@
     "tutor:telekinesis",
     "tutor:wringout"
   ],
-  "labels": [
-    "gen7",
-    "legendary"
-  ],
-  "pokedex": [
-    "cobblemon.species.necrozma.desc"
-  ],
+  "labels": ["gen7", "legendary"],
+  "pokedex": ["cobblemon.species.necrozma.desc"],
   "baseScale": 1.5,
   "hitbox": {
     "width": 2,

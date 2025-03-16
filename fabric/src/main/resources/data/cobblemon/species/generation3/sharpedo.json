@@ -7,20 +7,11 @@
   "maleRatio": 0.5,
   "height": 18,
   "weight": 888,
-  "pokedex": [
-    "cobblemon.species.sharpedo.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.sharpedo.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "roughskin",
-    "h:speedboost"
-  ],
-  "eggGroups": [
-    "water_2"
-  ],
+  "abilities": ["roughskin", "h:speedboost"],
+  "eggGroups": ["water_2"],
   "baseStats": {
     "hp": 70,
     "attack": 120,
@@ -199,20 +190,10 @@
       "maleRatio": 0.5,
       "height": 25,
       "weight": 1303,
-      "pokedex": [
-        "cobblemon.species.sharpedo-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "strongjaw",
-        "h:strongjaw"
-      ],
+      "pokedex": ["cobblemon.species.sharpedo-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["strongjaw", "h:strongjaw"],
       "baseStats": {
         "hp": 70,
         "attack": 140,

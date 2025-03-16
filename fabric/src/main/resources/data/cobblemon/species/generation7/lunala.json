@@ -3,9 +3,7 @@
   "nationalPokedexNumber": 792,
   "primaryType": "psychic",
   "secondaryType": "ghost",
-  "abilities": [
-    "shadowshield"
-  ],
+  "abilities": ["shadowshield"],
   "baseStats": {
     "hp": 137,
     "attack": 113,
@@ -20,9 +18,7 @@
   "baseExperienceYield": 340,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "eggGroups": ["undiscovered"],
   "moves": [
     "1:moongeistbeam",
     "1:cosmicpower",
@@ -141,15 +137,9 @@
     "tutor:thunderbolt",
     "tutor:trick",
     "tutor:wonderroom"
-
   ],
-  "labels": [
-    "gen7",
-    "legendary"
-  ],
-  "pokedex": [
-    "cobblemon.species.lunala.desc"
-  ],
+  "labels": ["gen7", "legendary"],
+  "pokedex": ["cobblemon.species.lunala.desc"],
   "preEvolution": "cosmoem",
   "evolutions": [],
   "baseScale": 1.5,

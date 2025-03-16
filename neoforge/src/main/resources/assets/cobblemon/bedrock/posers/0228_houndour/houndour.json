@@ -47,6 +47,5 @@
         "poseTypes": ["SLEEP"],
         "animations": ["bedrock(houndour, sleep)"]
       }
-
     }
 }

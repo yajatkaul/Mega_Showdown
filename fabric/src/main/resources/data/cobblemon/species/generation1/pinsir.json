@@ -6,21 +6,11 @@
   "maleRatio": 0.5,
   "height": 15,
   "weight": 550,
-  "pokedex": [
-    "cobblemon.species.pinsir.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.pinsir.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "hypercutter",
-    "moldbreaker",
-    "h:moxie"
-  ],
-  "eggGroups": [
-    "bug"
-  ],
+  "abilities": ["hypercutter", "moldbreaker", "h:moxie"],
+  "eggGroups": ["bug"],
   "baseStats": {
     "hp": 65,
     "attack": 125,
@@ -176,20 +166,10 @@
       "maleRatio": 0.5,
       "height": 17,
       "weight": 590,
-      "pokedex": [
-        "cobblemon.species.pinsir-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "aerilate",
-        "h:aerilate"
-      ],
+      "pokedex": ["cobblemon.species.pinsir-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["aerilate", "h:aerilate"],
       "baseStats": {
         "hp": 65,
         "attack": 155,

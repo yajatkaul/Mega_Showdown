@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 20,
   "weight": 2020,
-  "pokedex": [
-    "cobblemon.species.tyranitar.desc"
-  ],
-  "labels": [
-    "gen2",
-    "powerhouse"
-  ],
+  "pokedex": ["cobblemon.species.tyranitar.desc"],
+  "labels": ["gen2", "powerhouse"],
   "aspects": [],
-  "abilities": [
-    "sandstream",
-    "h:unnerve"
-  ],
-  "eggGroups": [
-    "monster"
-  ],
+  "abilities": ["sandstream", "h:unnerve"],
+  "eggGroups": ["monster"],
   "baseStats": {
     "hp": 100,
     "attack": 134,
@@ -269,20 +259,10 @@
       "maleRatio": 0.5,
       "height": 25,
       "weight": 2550,
-      "pokedex": [
-        "cobblemon.species.tyranitar-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "sandstream",
-        "h:sandstream"
-      ],
+      "pokedex": ["cobblemon.species.tyranitar-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["sandstream", "h:sandstream"],
       "baseStats": {
         "hp": 100,
         "attack": 164,

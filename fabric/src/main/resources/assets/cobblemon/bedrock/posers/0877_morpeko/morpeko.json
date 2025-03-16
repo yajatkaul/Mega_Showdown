@@ -1,0 +1,28 @@
+{
+    "head": "head",
+	"portraitScale": 2.5,
+    "portraitTranslation": [ 0, -1.5, 0 ],
+    "profileScale": 0.8,
+    "profileTranslation": [ 0, 0.4, 0 ],
+    "poses": {
+      "standing": {
+        "poseName": "standing",
+        "transformTicks": 10,
+        "poseTypes": [
+          "STAND",
+          "NONE",
+          "PORTRAIT",
+          "PROFILE"
+        ],
+        "animations": [
+          "bedrock(morpeko, ground_idle)"
+        ]
+      },
+      "walking": {
+        "poseName": "walking",
+        "transformTicks": 10,
+        "poseTypes": [ "WALK" ],
+        "animations": [ "bedrock(morpeko, ground_walk)" ]
+		}
+      }
+    }

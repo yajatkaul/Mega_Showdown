@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:morpeko",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:morpeko",
+      "model": "cobblemon:morpeko.geo",
+      "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko_shiny.png"
+    }
+  ]
+}

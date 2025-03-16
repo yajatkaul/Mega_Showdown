@@ -54,7 +54,6 @@ public class MegaShowdown implements ModInitializer {
     }
 
     private void onServerStarted(MinecraftServer server) {
-        Utils.loadMegaStoneIds();
         Utils.registerRemapping();
         TeraTypeHelper.loadShardData();
 

@@ -7,21 +7,11 @@
   "maleRatio": 0.875,
   "height": 20,
   "weight": 1000,
-  "pokedex": [
-    "cobblemon.species.venusaur.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.venusaur.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "overgrow",
-    "h:chlorophyll"
-  ],
-  "eggGroups": [
-    "monster",
-    "grass"
-  ],
+  "abilities": ["overgrow", "h:chlorophyll"],
+  "eggGroups": ["monster", "grass"],
   "baseStats": {
     "hp": 80,
     "attack": 82,
@@ -202,20 +192,10 @@
       "maleRatio": 0.875,
       "height": 24,
       "weight": 1555,
-      "pokedex": [
-        "cobblemon.species.venusaur-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "thickfat",
-        "h:thickfat"
-      ],
+      "pokedex": ["cobblemon.species.venusaur-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["thickfat", "h:thickfat"],
       "baseStats": {
         "hp": 80,
         "attack": 100,
@@ -236,16 +216,9 @@
       "maleRatio": 0.875,
       "height": 240,
       "weight": 0,
-      "pokedex": [
-        "cobblemon.species.venusaur-gmax.desc"
-      ],
-      "labels": [
-        "gen8",
-        "gmax"
-      ],
-      "aspects": [
-        "gmax"
-      ],
+      "pokedex": ["cobblemon.species.venusaur-gmax.desc"],
+      "labels": ["gen8", "gmax"],
+      "aspects": ["gmax"],
       "dynamaxBlocked": true,
       "evolutions": [],
       "battleOnly": false

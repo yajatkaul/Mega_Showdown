@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 18,
   "weight": 1180,
-  "pokedex": [
-    "cobblemon.species.scizor.desc"
-  ],
-  "labels": [
-    "gen2"
-  ],
+  "pokedex": ["cobblemon.species.scizor.desc"],
+  "labels": ["gen2"],
   "aspects": [],
-  "abilities": [
-    "swarm",
-    "technician",
-    "h:lightmetal"
-  ],
-  "eggGroups": [
-    "bug"
-  ],
+  "abilities": ["swarm", "technician", "h:lightmetal"],
+  "eggGroups": ["bug"],
   "baseStats": {
     "hp": 70,
     "attack": 130,
@@ -203,20 +193,10 @@
       "maleRatio": 0.5,
       "height": 20,
       "weight": 1250,
-      "pokedex": [
-        "cobblemon.species.scizor-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "technician",
-        "h:technician"
-      ],
+      "pokedex": ["cobblemon.species.scizor-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["technician", "h:technician"],
       "baseStats": {
         "hp": 70,
         "attack": 150,

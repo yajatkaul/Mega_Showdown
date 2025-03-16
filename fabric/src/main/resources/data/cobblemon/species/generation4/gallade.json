@@ -7,22 +7,11 @@
   "maleRatio": 1,
   "height": 16,
   "weight": 520,
-  "pokedex": [
-    "cobblemon.species.gallade.desc"
-  ],
-  "labels": [
-    "gen4"
-  ],
+  "pokedex": ["cobblemon.species.gallade.desc"],
+  "labels": ["gen4"],
   "aspects": [],
-  "abilities": [
-    "steadfast",
-    "sharpness",
-    "h:justified"
-  ],
-  "eggGroups": [
-    "human_like",
-    "amorphous"
-  ],
+  "abilities": ["steadfast", "sharpness", "h:justified"],
+  "eggGroups": ["human_like", "amorphous"],
   "baseStats": {
     "hp": 68,
     "attack": 125,
@@ -309,24 +298,11 @@
       "maleRatio": 1,
       "height": 16,
       "weight": 564,
-      "pokedex": [
-        "cobblemon.species.gallade-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "innerfocus",
-        "h:innerfocus"
-      ],
-      "eggGroups": [
-        "amorphous",
-        "human_like"
-      ],
+      "pokedex": ["cobblemon.species.gallade-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["innerfocus", "h:innerfocus"],
+      "eggGroups": ["amorphous", "human_like"],
       "baseStats": {
         "hp": 68,
         "attack": 165,

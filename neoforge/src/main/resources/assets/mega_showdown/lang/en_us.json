@@ -400,5 +400,19 @@
   "item.mega_showdown.prison_bottle": "Prison Bottle",
   "tooltip.mega_showdown.prison_bottle.tooltip": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",
   "item.mega_showdown.gracidea_flower": "Gracidea Flower",
-  "tooltip.mega_showdown.gracidea_flower.tooltip": "A rare flower with a mystical aura, known to bloom in special conditions."
+  "tooltip.mega_showdown.gracidea_flower.tooltip": "A rare flower with a mystical aura, known to bloom in special conditions.",
+
+  "item.mega_showdown.cornerstone_mask": "Cornerstone Mask",
+  "tooltip.mega_showdown.cornerstone_mask.tooltip": "A mystical mask that enhances the resilience of a Pokémon, embodying the spirit of unwavering defense.",
+  "item.mega_showdown.wellspring_mask": "Wellspring Mask",
+  "tooltip.mega_showdown.wellspring_mask.tooltip": "A sacred mask infused with the power of flowing water, boosting a Pokémon's agility and recovery.",
+  "item.mega_showdown.hearthflame_mask": "Hearthflame Mask",
+  "tooltip.mega_showdown.hearthflame_mask.tooltip": "A fiery mask that ignites a Pokémon’s inner strength, increasing their offensive power.",
+
+  "item.mega_showdown.scroll_of_darkness": "Scroll of Darkness",
+  "tooltip.mega_showdown.scroll_of_darkness.tooltip": "An ancient scroll filled with shadowy knowledge. It empowers certain Pokémon with the essence of darkness.",
+  "item.mega_showdown.scroll_of_waters": "Scroll of Waters",
+  "tooltip.mega_showdown.scroll_of_waters.tooltip": "A mystical scroll containing the secrets of flowing waters. It grants special Pokémon mastery over aquatic techniques.",
+  "item.mega_showdown.star_core": "Star Core",
+  "tooltip.mega_showdown.star_core.tooltip": "An orb which contains an immense energy."
 }

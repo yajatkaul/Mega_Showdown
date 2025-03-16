@@ -6,21 +6,11 @@
   "maleRatio": 0.5,
   "height": 14,
   "weight": 615,
-  "pokedex": [
-    "cobblemon.species.ampharos.desc"
-  ],
-  "labels": [
-    "gen2"
-  ],
+  "pokedex": ["cobblemon.species.ampharos.desc"],
+  "labels": ["gen2"],
   "aspects": [],
-  "abilities": [
-    "static",
-    "h:plus"
-  ],
-  "eggGroups": [
-    "monster",
-    "field"
-  ],
+  "abilities": ["static", "h:plus"],
+  "eggGroups": ["monster", "field"],
   "baseStats": {
     "hp": 90,
     "attack": 75,
@@ -218,20 +208,10 @@
       "maleRatio": 0.5,
       "height": 14,
       "weight": 615,
-      "pokedex": [
-        "cobblemon.species.ampharos-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "moldbreaker",
-        "h:moldbreaker"
-      ],
+      "pokedex": ["cobblemon.species.ampharos-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["moldbreaker", "h:moldbreaker"],
       "baseStats": {
         "hp": 90,
         "attack": 95,

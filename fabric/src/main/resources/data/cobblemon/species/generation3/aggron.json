@@ -7,21 +7,11 @@
   "maleRatio": 0.5,
   "height": 21,
   "weight": 3600,
-  "pokedex": [
-    "cobblemon.species.aggron.desc"
-  ],
-  "labels": [
-    "gen3"
-  ],
+  "pokedex": ["cobblemon.species.aggron.desc"],
+  "labels": ["gen3"],
   "aspects": [],
-  "abilities": [
-    "sturdy",
-    "rockhead",
-    "h:heavymetal"
-  ],
-  "eggGroups": [
-    "monster"
-  ],
+  "abilities": ["sturdy", "rockhead", "h:heavymetal"],
+  "eggGroups": ["monster"],
   "baseStats": {
     "hp": 70,
     "attack": 110,
@@ -255,20 +245,10 @@
       "maleRatio": 0.5,
       "height": 22,
       "weight": 3950,
-      "pokedex": [
-        "cobblemon.species.aggron-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "filter",
-        "h:filter"
-      ],
+      "pokedex": ["cobblemon.species.aggron-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["filter", "h:filter"],
       "baseStats": {
         "hp": 70,
         "attack": 140,

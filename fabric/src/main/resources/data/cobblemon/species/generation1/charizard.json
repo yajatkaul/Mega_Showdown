@@ -4,10 +4,7 @@
   "nationalPokedexNumber": 6,
   "primaryType": "fire",
   "secondaryType": "flying",
-  "abilities": [
-    "blaze",
-    "h:solarpower"
-  ],
+  "abilities": ["blaze", "h:solarpower"],
   "baseStats": {
     "hp": 78,
     "attack": 84,
@@ -24,9 +21,7 @@
       "name": "Mega-X",
       "primaryType": "fire",
       "secondaryType": "dragon",
-      "abilities": [
-        "toughclaws"
-      ],
+      "abilities": ["toughclaws"],
       "baseStats": {
         "hp": 78,
         "attack": 130,
@@ -49,17 +44,9 @@
       },
       "experienceGroup": "medium_slow",
       "eggCycles": 20,
-      "eggGroups": [
-        "monster",
-        "dragon"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega-x"
-      ],
+      "eggGroups": ["monster", "dragon"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega-x"],
       "height": 17,
       "weight": 1105,
       "evolutions": [],
@@ -70,9 +57,7 @@
       "name": "Mega-Y",
       "primaryType": "fire",
       "secondaryType": "flying",
-      "abilities": [
-        "drought"
-      ],
+      "abilities": ["drought"],
       "baseStats": {
         "hp": 78,
         "attack": 104,
@@ -95,17 +80,9 @@
       },
       "experienceGroup": "medium_slow",
       "eggCycles": 20,
-      "eggGroups": [
-        "monster",
-        "dragon"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega-y"
-      ],
+      "eggGroups": ["monster", "dragon"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega-y"],
       "height": 17,
       "weight": 1005,
       "evolutions": [],
@@ -116,10 +93,7 @@
       "name": "Gmax",
       "primaryType": "fire",
       "secondaryType": "flying",
-      "abilities": [
-        "blaze",
-        "h:solarpower"
-      ],
+      "abilities": ["blaze", "h:solarpower"],
       "baseStats": {
         "hp": 78,
         "attack": 84,
@@ -142,17 +116,9 @@
       },
       "experienceGroup": "medium_slow",
       "eggCycles": 20,
-      "eggGroups": [
-        "monster",
-        "dragon"
-      ],
-      "labels": [
-        "gen8",
-        "gmax"
-      ],
-      "aspects": [
-        "gmax"
-      ],
+      "eggGroups": ["monster", "dragon"],
+      "labels": ["gen8", "gmax"],
+      "aspects": ["gmax"],
       "height": 280,
       "weight": 0,
       "evolutions": [],
@@ -163,10 +129,7 @@
   "baseExperienceYield": 267,
   "experienceGroup": "medium_slow",
   "eggCycles": 20,
-  "eggGroups": [
-    "monster",
-    "dragon"
-  ],
+  "eggGroups": ["monster", "dragon"],
   "drops": {
     "amount": 4,
     "entries": [
@@ -401,12 +364,8 @@
     "tutor:willowisp",
     "tutor:wingattack"
   ],
-  "labels": [
-    "gen1"
-  ],
-  "pokedex": [
-    "cobblemon.species.charizard.desc"
-  ],
+  "labels": ["gen1"],
+  "pokedex": ["cobblemon.species.charizard.desc"],
   "preEvolution": "charmeleon",
   "evolutions": [],
   "baseScale": 1,

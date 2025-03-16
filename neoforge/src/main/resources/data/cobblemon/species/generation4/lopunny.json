@@ -6,22 +6,11 @@
   "maleRatio": 0.5,
   "height": 12,
   "weight": 333,
-  "pokedex": [
-    "cobblemon.species.lopunny.desc"
-  ],
-  "labels": [
-    "gen4"
-  ],
+  "pokedex": ["cobblemon.species.lopunny.desc"],
+  "labels": ["gen4"],
   "aspects": [],
-  "abilities": [
-    "cutecharm",
-    "klutz",
-    "h:limber"
-  ],
-  "eggGroups": [
-    "field",
-    "human_like"
-  ],
+  "abilities": ["cutecharm", "klutz", "h:limber"],
+  "eggGroups": ["field", "human_like"],
   "baseStats": {
     "hp": 65,
     "attack": 76,
@@ -243,20 +232,10 @@
       "maleRatio": 0.5,
       "height": 13,
       "weight": 283,
-      "pokedex": [
-        "cobblemon.species.lopunny-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "scrappy",
-        "h:scrappy"
-      ],
+      "pokedex": ["cobblemon.species.lopunny-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["scrappy", "h:scrappy"],
       "baseStats": {
         "hp": 65,
         "attack": 136,

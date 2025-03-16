@@ -6,21 +6,11 @@
   "maleRatio": 0,
   "height": 22,
   "weight": 800,
-  "pokedex": [
-    "cobblemon.species.kangaskhan.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.kangaskhan.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "earlybird",
-    "scrappy",
-    "h:innerfocus"
-  ],
-  "eggGroups": [
-    "monster"
-  ],
+  "abilities": ["earlybird", "scrappy", "h:innerfocus"],
+  "eggGroups": ["monster"],
   "baseStats": {
     "hp": 105,
     "attack": 95,
@@ -211,20 +201,10 @@
       "maleRatio": 0,
       "height": 22,
       "weight": 1000,
-      "pokedex": [
-        "cobblemon.species.kangaskhan-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "parentalbond",
-        "h:parentalbond"
-      ],
+      "pokedex": ["cobblemon.species.kangaskhan-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["parentalbond", "h:parentalbond"],
       "baseStats": {
         "hp": 105,
         "attack": 125,

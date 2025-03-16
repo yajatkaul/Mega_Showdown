@@ -18,6 +18,7 @@ import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.Moves;
+import com.cobblemon.mod.common.api.pokemon.feature.ChoiceSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
@@ -89,6 +90,8 @@ public class CobbleEventsHandler {
         checkUltra(event);
         primalEvent(event);
         crownedEvent(event);
+        ogerponChange(event);
+        eternamaxChange(event);
 
         if(Config.battleModeOnly){
             return Unit.INSTANCE;
@@ -117,6 +120,62 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
+    public static void eternamaxChange(HeldItemEvent.Post post){
+        if(!Config.etermaxForme){
+           return;
+        }
+        Pokemon pokemon = post.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Eternatus") && post.getReceived().is(ModItems.STAR_CORE)){
+            new FlagSpeciesFeature("eternamax",true).apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Eternatus")) {
+            new FlagSpeciesFeature("eternamax",false).apply(pokemon);
+        }
+    }
+    public static void ogerponChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+
+        if(!pokemon.getSpecies().getName().equals("Ogerpon")){
+            return;
+        }
+        if(post.getReceived().is(ModItems.HEARTHFLAME_MASK)){
+            new FlagSpeciesFeature("hearthflame-mask", true).apply(pokemon);
+            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+            try {
+                pokemon.setTeraType(TeraTypes.getFIRE());
+            }catch (Exception e){
+                MegaShowdown.LOGGER.info("Sike");
+            }
+        } else if (post.getReceived().is(ModItems.CORNERSTONE_MASK)) {
+            new FlagSpeciesFeature("cornerstone-mask", true).apply(pokemon);
+            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+            try {
+                pokemon.setTeraType(TeraTypes.getGROUND());
+            }catch (Exception e){
+                MegaShowdown.LOGGER.info("Sike");
+            }
+        }else if (post.getReceived().is(ModItems.WELLSPRING_MASK)) {
+            new FlagSpeciesFeature("wellspring-mask", true).apply(pokemon);
+            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+            try {
+                pokemon.setTeraType(TeraTypes.getWATER());
+            }catch (Exception e){
+                MegaShowdown.LOGGER.info("Sike");
+            }
+        }else {
+            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+            try {
+                pokemon.setTeraType(TeraTypes.getGRASS());
+            }catch (Exception e){
+                MegaShowdown.LOGGER.info("Sike");
+            }
+        }
+    }
     public static void primalEvent(HeldItemEvent.Post post) {
         ServerPlayer player = post.getPokemon().getOwnerPlayer();
         Species species = post.getPokemon().getSpecies();

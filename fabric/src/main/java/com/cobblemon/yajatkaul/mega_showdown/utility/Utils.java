@@ -21,6 +21,12 @@ public class Utils {
         return PokemonSpecies.INSTANCE.getByName(name);
     }
 
+    public static void registerRemapping(){
+        zMovesRegister();
+        megaStonesRegister();
+        loadMegaStoneIds();
+    }
+
     public static void loadMegaStoneIds() {
         MEGA_STONE_IDS.put(MegaStones.VENUSAURITE.asItem(), getSpecies("venusaur"));
         MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_X.asItem(), getSpecies("charizard"));
@@ -71,7 +77,7 @@ public class Utils {
         MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), getSpecies("diancie"));
     }
 
-    public static void registerRemapping(){
+    public static void megaStonesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABSOLITE.asItem(), "Absolite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.AGGRONITE.asItem(), "Aggronite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ALAKAZITE.asItem(), "Alakazite");
@@ -119,7 +125,9 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.SWAMPERTITE.asItem(), "Swampertite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.TYRANITARITE.asItem(), "Tyranitarite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.VENUSAURITE.asItem(), "Venusaurite");
+    }
 
+    public static void zMovesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ALORAICHIUM_Z.asItem(), "aloraichiumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BLANK_Z.asItem(), "blankz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BUGINIUM_Z.asItem(), "buginiumz");

@@ -4,36 +4,34 @@
   "nationalPokedexNumber": 384,
   "primaryType": "dragon",
   "secondaryType": "flying",
-  "abilities": [
-    "airlock"
-  ],
+  "abilities": ["airlock"],
   "drops": {
     "amount": 5,
     "entries": [
       {
-          "item": "cobblemon:rare_candy",
-          "quantityRange": "5-10"
-        },
-        {
-          "item": "minecraft:dragon_breath",
-          "quantityRange": "2-9"
-        },
-        {
-          "item": "cobblemon:dragon_fang",
-          "quantityRange": "3-12"
-        },
-        {
-          "item": "cobblemon:dragon_scale",
-          "quantityRange": "3-12"
-        },
-        {
-          "item": "cobblemon:ability_capsule",
-          "percentage": 25.0
-        },
-        {
-          "item": "cobblemon:ability_patch",
-          "percentage": 5.0
-        }
+        "item": "cobblemon:rare_candy",
+        "quantityRange": "5-10"
+      },
+      {
+        "item": "minecraft:dragon_breath",
+        "quantityRange": "2-9"
+      },
+      {
+        "item": "cobblemon:dragon_fang",
+        "quantityRange": "3-12"
+      },
+      {
+        "item": "cobblemon:dragon_scale",
+        "quantityRange": "3-12"
+      },
+      {
+        "item": "cobblemon:ability_capsule",
+        "percentage": 25.0
+      },
+      {
+        "item": "cobblemon:ability_patch",
+        "percentage": 5.0
+      }
     ]
   },
   "baseStats": {
@@ -47,16 +45,14 @@
   "catchRate": 45,
   "maleRatio": -1,
   "shoulderMountable": false,
-  "features": ["mega"],	
+  "features": ["mega"],
   "forms": [
     {
       "name": "Mega",
-	  "pokedex": ["cobblemon.species.rayquaza-mega.desc"],	
+      "pokedex": ["cobblemon.species.rayquaza-mega.desc"],
       "primaryType": "dragon",
       "secondaryType": "flying",
-      "abilities": [
-        "deltastream"
-      ],
+      "abilities": ["deltastream"],
       "baseStats": {
         "hp": 105,
         "attack": 180,
@@ -79,39 +75,29 @@
       },
       "experienceGroup": "slow",
       "eggCycles": 120,
-      "eggGroups": [
-        "undiscovered"
-      ],
-      "labels": [
-        "gen6",
-        "mega",
-        "legendary"
-      ],
-      "aspects": [
-        "mega"
-      ],
+      "eggGroups": ["undiscovered"],
+      "labels": ["gen6", "mega", "legendary"],
+      "aspects": ["mega"],
       "height": 108,
       "weight": 3920,
       "cannotDynamax": false,
       "battleOnly": false,
-	  "baseScale": 0.8,
-        "hitbox": {
-          "width": 6,
-          "height": 8.5,
-          "fixed": false
-        },
-        "height": 69,
-        "weight": 690,
-        "cannotDynamax": false,
-        "battleOnly": false	
+      "baseScale": 0.8,
+      "hitbox": {
+        "width": 6,
+        "height": 8.5,
+        "fixed": false
+      },
+      "height": 69,
+      "weight": 690,
+      "cannotDynamax": false,
+      "battleOnly": false
     }
   ],
   "baseExperienceYield": 340,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "eggGroups": ["undiscovered"],
   "moves": [
     "1:airslash",
     "1:ancientpower",
@@ -267,30 +253,25 @@
     "tutor:vcreate",
     "tutor:waterpulse"
   ],
-  "labels": [
-    "gen3",
-    "legendary"
-  ],
-  "pokedex": [
-    "cobblemon.species.rayquaza.desc"
-  ],
+  "labels": ["gen3", "legendary"],
+  "pokedex": ["cobblemon.species.rayquaza.desc"],
   "behaviour": {
-            "moving": {
-              "walk": {
-                "canWalk": true,
-                "walkSpeed": 2
-              },
-              "fly": {
-                "canFly": true
-              }
-            },
-            "resting": {
-              "canSleep": true,
-              "willSleepOnBed": true,
-              "depth": "normal",
-              "light": "0-4"
-            }
-          },
+    "moving": {
+      "walk": {
+        "canWalk": true,
+        "walkSpeed": 2
+      },
+      "fly": {
+        "canFly": true
+      }
+    },
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "depth": "normal",
+      "light": "0-4"
+    }
+  },
   "baseScale": 0.8,
   "hitbox": {
     "width": 6,

@@ -109,6 +109,55 @@ public class ModItems {
         }
     });
 
+    public static final Item SCROLL_OF_DARKNESS = registerItem("scroll_of_darkness", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.scroll_of_darkness.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item SCROLL_OF_WATERS = registerItem("scroll_of_waters", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.scroll_of_waters.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item CORNERSTONE_MASK = registerItem("cornerstone_mask", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.cornerstone_mask.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+
+    public static final Item WELLSPRING_MASK = registerItem("wellspring_mask", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.wellspring_mask.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item HEARTHFLAME_MASK = registerItem("hearthflame_mask", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.hearthflame_mask.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item STAR_CORE = registerItem("star_core", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.star_core.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
 
     public static final Item MEGA_STONE_CRYSTAL_ITEM = Registry.register(Registries.ITEM,
             Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),

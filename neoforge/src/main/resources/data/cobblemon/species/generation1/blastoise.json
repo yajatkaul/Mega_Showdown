@@ -6,21 +6,11 @@
   "maleRatio": 0.875,
   "height": 16,
   "weight": 855,
-  "pokedex": [
-    "cobblemon.species.blastoise.desc"
-  ],
-  "labels": [
-    "gen1"
-  ],
+  "pokedex": ["cobblemon.species.blastoise.desc"],
+  "labels": ["gen1"],
   "aspects": [],
-  "abilities": [
-    "torrent",
-    "h:raindish"
-  ],
-  "eggGroups": [
-    "monster",
-    "water_1"
-  ],
+  "abilities": ["torrent", "h:raindish"],
+  "eggGroups": ["monster", "water_1"],
   "baseStats": {
     "hp": 79,
     "attack": 83,
@@ -215,20 +205,10 @@
       "maleRatio": 0.875,
       "height": 16,
       "weight": 1011,
-      "pokedex": [
-        "cobblemon.species.blastoise-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
-      "abilities": [
-        "megalauncher",
-        "h:megalauncher"
-      ],
+      "pokedex": ["cobblemon.species.blastoise-mega.desc"],
+      "labels": ["gen6", "mega"],
+      "aspects": ["mega"],
+      "abilities": ["megalauncher", "h:megalauncher"],
       "baseStats": {
         "hp": 79,
         "attack": 103,
@@ -248,16 +228,9 @@
       "maleRatio": 0.875,
       "height": 250,
       "weight": 0,
-      "pokedex": [
-        "cobblemon.species.blastoise-gmax.desc"
-      ],
-      "labels": [
-        "gen8",
-        "gmax"
-      ],
-      "aspects": [
-        "gmax"
-      ],
+      "pokedex": ["cobblemon.species.blastoise-gmax.desc"],
+      "labels": ["gen8", "gmax"],
+      "aspects": ["gmax"],
       "dynamaxBlocked": true,
       "evolutions": [],
       "battleOnly": false

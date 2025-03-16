@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:genesect",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:genesect",
+      "model": "cobblemon:genesect.geo",
+      "texture": "cobblemon:textures/pokemon/0649_genesect/genesect.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0649_genesect/genesect_shiny.png"
+    }
+  ]
+}

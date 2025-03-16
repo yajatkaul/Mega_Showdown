@@ -6,21 +6,11 @@
   "maleRatio": 0,
   "height": 14,
   "weight": 400,
-  "pokedex": [
-    "cobblemon.species.latias.desc"
-  ],
-  "labels": [
-    "gen3",
-    "legendary"
-  ],
+  "pokedex": ["cobblemon.species.latias.desc"],
+  "labels": ["gen3", "legendary"],
   "aspects": [],
-  "abilities": [
-    "levitate",
-    "h:levitate"
-  ],
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "abilities": ["levitate", "h:levitate"],
+  "eggGroups": ["undiscovered"],
   "baseStats": {
     "hp": 80,
     "attack": 80,
@@ -227,17 +217,9 @@
       "maleRatio": 0,
       "height": 18,
       "weight": 520,
-      "pokedex": [
-        "cobblemon.species.latias-mega.desc"
-      ],
-      "labels": [
-        "gen6",
-        "legendary",
-        "mega"
-      ],
-      "aspects": [
-        "mega"
-      ],
+      "pokedex": ["cobblemon.species.latias-mega.desc"],
+      "labels": ["gen6", "legendary", "mega"],
+      "aspects": ["mega"],
       "baseStats": {
         "hp": 80,
         "attack": 100,
