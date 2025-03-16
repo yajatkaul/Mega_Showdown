@@ -1,0 +1,6 @@
+{
+  "keys": ["cornerstone-mask"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}

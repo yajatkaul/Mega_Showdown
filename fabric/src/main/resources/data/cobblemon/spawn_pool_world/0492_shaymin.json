@@ -1,0 +1,22 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "shaymin-1",
+            "pokemon": "shaymin",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "ultra-rare",
+            "level": "60-80",
+            "weight": 2.5,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "minecraft:cherry_grove"
+                ]
+            }
+        }
+    ]
+}

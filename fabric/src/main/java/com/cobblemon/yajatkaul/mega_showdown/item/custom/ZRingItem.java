@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraPacket;
 import dev.emi.trinkets.api.TrinketComponent;

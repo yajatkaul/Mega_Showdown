@@ -1,0 +1,6 @@
+{
+  "keys": ["wellspring-mask"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}

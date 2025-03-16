@@ -250,6 +250,7 @@ public class ModItemGroups {
                         entries.add(ModItems.RUSTED_SHIELD);
                         entries.add(ModItems.PRISON_BOTTLE);
                         entries.add(ModItems.REINS_OF_UNITY);
+                        entries.add(ModItems.GRACIDEA_FLOWER);
                     }))
                     .build());
 

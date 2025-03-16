@@ -138,5 +138,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PRISON_BOTTLE.get());
 
         basicItem(ModItems.REINS_OF_UNITY.get());
+
+        basicItem(ModItems.GRACIDEA_FLOWER.get());
     }
 }

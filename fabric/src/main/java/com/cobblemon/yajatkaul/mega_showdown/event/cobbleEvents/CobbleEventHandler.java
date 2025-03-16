@@ -78,6 +78,7 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
+        checkUltra(post);
         primalEvent(post);
         crownedEvent(post);
         // Battle mode only
@@ -219,7 +220,59 @@ public class CobbleEventHandler {
             }
         }
     }
+    public static void checkUltra(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
 
+        if(pokemon.getSpecies().getName().equals("Necrozma")){
+            if(event.getReturned().isOf(ZMoves.ULTRANECROZIUM_Z)){
+                ultraAnimation(pokemon.getEntity());
+                new FlagSpeciesFeature("ultra",false).apply(pokemon);
+            }
+        }
+    }
+
+    public static void ultraAnimation(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 1.2; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_BEACON_ACTIVATE, // Change this if needed
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.GLOW,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
     private static void crownAnimation(ServerWorld level, BlockPos pos, LivingEntity context) {
         LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(level);
         if (lightning != null) {

@@ -73,7 +73,7 @@ public class TeraShard extends Item {
         return InteractionResult.PASS;
     }
 
-    public static void particleEffect(LivingEntity context) {
+    private void particleEffect(LivingEntity context) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
 

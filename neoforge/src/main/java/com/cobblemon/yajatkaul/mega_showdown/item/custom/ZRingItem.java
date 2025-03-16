@@ -8,6 +8,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -82,7 +83,7 @@ public class ZRingItem extends Item{
         }
 
         if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player){
-            PacketDistributor.sendToServer(new UltraTrans("ultra_trans"));
+            UltraLogic.ultraTransform(player);
         }
 
         return InteractionResult.PASS;

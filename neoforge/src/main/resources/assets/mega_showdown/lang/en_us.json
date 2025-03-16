@@ -224,7 +224,7 @@
   "block.mega_showdown.mega_meteorid_water_ore": "Mega Meteorid Water Ore",
 
   "key.mega_showdown.mega_evo": "Mega Evolve",
-  "key.mega_showdown.ultra_key": "Ultra Transformation",
+  "key.mega_showdown.ultra_key": "Ultra Burst",
   "key.categories.mega_showdown": "Mega Showdown",
 
   "trinkets.slot.hand.evowear": "Mega Wear",
@@ -398,5 +398,7 @@
   "item.mega_showdown.rusted_shield": "Rusted Shield",
   "tooltip.mega_showdown.rusted_shield.tooltip": "It is said that a hero used this shield to halt a terrible disaster in ancient times.",
   "item.mega_showdown.prison_bottle": "Prison Bottle",
-  "tooltip.mega_showdown.prison_bottle.tooltip": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago."
+  "tooltip.mega_showdown.prison_bottle.tooltip": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",
+  "item.mega_showdown.gracidea_flower": "Gracidea Flower",
+  "tooltip.mega_showdown.gracidea_flower.tooltip": "A rare flower with a mystical aura, known to bloom in special conditions."
 }

@@ -1,0 +1,23 @@
+{
+  "species": "cobblemon:ogerpon",
+  "order": 2,
+  "variations": [
+    {
+      "aspects": ["cornerstone-mask"],
+      "poser": "cobblemon:ogerpon_rock",
+      "model": "cobblemon:ogerpon_rock.geo",
+      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_rock.png",
+      "layers": [
+	  {
+			"name": "glow",
+			"texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_emissive_rock.png",
+			"emissive": true
+	  }
+	  ]
+    },
+    {
+      "aspects": ["cornerstone-mask","shiny"],
+      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_rock.png"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "target": "cobblemon:eternatus",
+  "hitbox": {
+    "width": 2.3,
+    "height": 2.4,
+    "fixed": false
+  },
+  "behaviour": {
+    "moving": {
+      "canLook": true,
+      "fly": {
+        "canFly": true,
+        "flySpeedHorizontal": 0.35
+      }
+    }
+  }
+}

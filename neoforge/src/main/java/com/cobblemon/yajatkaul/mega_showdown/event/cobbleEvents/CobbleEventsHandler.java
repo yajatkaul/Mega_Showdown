@@ -86,6 +86,7 @@ public class CobbleEventsHandler {
             return Unit.INSTANCE;
         }
 
+        checkUltra(event);
         primalEvent(event);
         crownedEvent(event);
 
@@ -211,7 +212,58 @@ public class CobbleEventsHandler {
             }
         }
     }
+    public static void checkUltra(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
 
+        if(pokemon.getSpecies().getName().equals("Necrozma")){
+            if(event.getReturned().is(ZMoves.ULTRANECROZIUM_Z)){
+                ultraAnimation(pokemon.getEntity());
+                new FlagSpeciesFeature("ultra",false).apply(pokemon);
+            }
+        }
+    }
+
+    public static void ultraAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 1.2; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityWidth * scaleFactor;
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BEACON_ACTIVATE, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverLevel.sendParticles(
+                        ParticleTypes.GLOW,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
     private static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position

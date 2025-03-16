@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Gracidea;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Unbound;
@@ -122,6 +123,15 @@ public class ModItems {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> GRACIDEA_FLOWER = ITEMS.register("gracidea_flower",
+            () -> new Gracidea(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.gracidea_flower.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });

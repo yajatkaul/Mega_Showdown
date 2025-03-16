@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-12T18:11:40.7384554	Item Models: mega_showdown
+// 1.21.1	2025-03-15T22:26:21.0067279	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
@@ -44,6 +44,7 @@ d46f0b605428d77fd6e8e1c12c205dcbda693b67 assets/mega_showdown/models/item/gardev
 48c3c7c2db36a59b22e16580ba88399e07cc317a assets/mega_showdown/models/item/ghostium-z.json
 bf13516a78634866686ca48c555ac428321cdfe4 assets/mega_showdown/models/item/ghost_tera_shard.json
 4523eed07b75253c2affa300d42d797dab457d97 assets/mega_showdown/models/item/glalitite.json
+0de261341a9dcdeb0992fd3a32457fff827c1a47 assets/mega_showdown/models/item/gracidea_flower.json
 7b05413e220e1579433d7aa046981e3b3f7f58fb assets/mega_showdown/models/item/grassium-z.json
 dec641193d145eacdbbe7c5f73bfa3a87a45c5e6 assets/mega_showdown/models/item/grass_tera_shard.json
 ec7add6cccd79ffc8d7b6b6587a36160ca4de2dd assets/mega_showdown/models/item/groundium-z.json

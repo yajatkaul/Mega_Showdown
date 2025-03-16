@@ -91,7 +91,7 @@ public class UltraLogic {
                 return;
             }
 
-            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZMoves.ULTRANECROZIUM_Z) && (pokemon.getForcedAspects().contains("dawn-fusion") || pokemon.getForcedAspects().contains("dusk-fusion"))){
+            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZMoves.ULTRANECROZIUM_Z) && checkFused(pokemon)){
                 if(!Possible(player)){
                     return;
                 }
@@ -116,6 +116,32 @@ public class UltraLogic {
                 ultraAnimation(pokemon.getEntity());
             }
         }
+    }
+
+    private static boolean checkFused(Pokemon pokemon){
+        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
+        FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+            if(enabled){
+                return true;
+            }
+        }
+
+        featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
+        feature = featureProvider.get(pokemon);
+
+        if(feature != null){
+            boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+            if(enabled){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void ultraAnimation(LivingEntity context) {

@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Gracidea;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Unbound;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
@@ -96,6 +97,14 @@ public class ModItems {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item GRACIDEA_FLOWER = registerItem("gracidea_flower", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.gracidea_flower.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
