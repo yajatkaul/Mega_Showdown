@@ -151,5 +151,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STAR_CORE.get());
 
         basicItem(ModItems.GRISEOUS_ORB.get());
+
+        basicItem(ModItems.ASH_CAP.get());
     }
 }

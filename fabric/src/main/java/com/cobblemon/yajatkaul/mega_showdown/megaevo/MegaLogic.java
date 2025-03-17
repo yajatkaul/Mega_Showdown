@@ -110,7 +110,7 @@ public class MegaLogic {
                     boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
 
                     if(enabled){
-                        Devolve(pk, player);
+                        Devolve(pk, player, false);
                         end = false;
                         break;
                     }else{
@@ -120,12 +120,12 @@ public class MegaLogic {
                 }
             }
             if(end){
-                Evolve(pk, player);
+                Evolve(pk, player, false);
             }
         }
     }
 
-    public static void Evolve(LivingEntity context, PlayerEntity player){
+    public static void Evolve(LivingEntity context, PlayerEntity player, Boolean fromBattle){
         if(context instanceof PokemonEntity pk){
             if(pk.getPokemon().getOwnerPlayer() != player){
                 return;
@@ -139,7 +139,7 @@ public class MegaLogic {
             playerData = false;
         }
 
-        if(context instanceof PokemonEntity pk && pk.isBattling()){
+        if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
             player.sendMessage(
                     Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -278,7 +278,7 @@ public class MegaLogic {
         }
     }
 
-    public static void Devolve(LivingEntity context, PlayerEntity player){
+    public static void Devolve(LivingEntity context, PlayerEntity player, Boolean fromBattle){
         if(player.getWorld().isClient || context == null){
             return;
         }
@@ -288,7 +288,7 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.isBattling()){
+            if(pk.isBattling() && !fromBattle){
                 player.sendMessage(
                         Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true

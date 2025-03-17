@@ -142,7 +142,7 @@ public class MegaLogic {
                     .withColor(0xFF0000), true);
             return;
         }
-        
+
         if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) &&
                 (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
             if(Config.friendshipMode && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
@@ -290,7 +290,6 @@ public class MegaLogic {
             setTradable(pokemon, true);
         }
     }
-
     public static void playEvolveAnimation(LivingEntity context) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position

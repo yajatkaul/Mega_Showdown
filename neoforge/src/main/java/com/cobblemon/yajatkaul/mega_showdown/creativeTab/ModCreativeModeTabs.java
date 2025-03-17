@@ -265,6 +265,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HEARTHFLAME_MASK);
                         output.accept(ModItems.STAR_CORE);
                         output.accept(ModItems.GRISEOUS_ORB);
+                        output.accept(ModItems.ASH_CAP);
                     })
                     .build());
 

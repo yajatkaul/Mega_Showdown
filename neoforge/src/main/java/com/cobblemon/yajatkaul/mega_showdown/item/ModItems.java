@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Cap;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Gracidea;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
@@ -195,6 +196,15 @@ public class ModItems {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.griseous_orb.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> ASH_CAP = ITEMS.register("ash_cap",
+            () -> new Cap(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ash_cap.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });

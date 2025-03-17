@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
 import net.minecraft.world.item.Item;
 
@@ -158,10 +159,15 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.WATERIUM_Z.asItem(), "wateriumz");
     }
 
+    public static void heldItems(){
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GRISEOUS_ORB.asItem(), "griseouscore");
+    }
+
     public static void registerRemapping(){
         megaStonesRegister();
         zMovesRegister();
         loadMegaStoneIds();
+        heldItems();
     }
 
     public static void setTradable(Pokemon pokemon, boolean allow){

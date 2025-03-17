@@ -258,11 +258,11 @@ public class CobbleEventHandler {
                 boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                 if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player);
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    MegaLogic.Devolve(pokemon.getEntity(), player);
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player);
+                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
                 }
             }
         }
@@ -504,7 +504,7 @@ public class CobbleEventHandler {
                         boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                         if(enabled){
-                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer);
+                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
                             if(!ShowdownConfig.multipleMegas.get()){
                                 break;
@@ -536,7 +536,7 @@ public class CobbleEventHandler {
                 boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                 if(enabled){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer);
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
                     break;
                 }
             }
@@ -574,7 +574,7 @@ public class CobbleEventHandler {
                         boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                         if(enabled){
-                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer);
+                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
 
                             if(!ShowdownConfig.multipleMegas.get()){
                                 break;
@@ -637,7 +637,7 @@ public class CobbleEventHandler {
                             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                             if(enabled){
-                                MegaLogic.Devolve(pokemon.getEntity(), player);
+                                MegaLogic.Devolve(pokemon.getEntity(), player, true);
                             }
                         }
                     }
@@ -684,7 +684,7 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
-        MegaLogic.Evolve(pokemon.getEntity(), player);
+        MegaLogic.Evolve(pokemon.getEntity(), player, true);
 
         battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));

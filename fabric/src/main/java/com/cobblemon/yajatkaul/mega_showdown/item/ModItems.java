@@ -158,10 +158,18 @@ public class ModItems {
         }
     });
 
-    public static final Item GRISEOUS_ORB = registerItem("griseous_orb", new Gracidea(new Item.Settings().maxCount(1)){
+    public static final Item GRISEOUS_ORB = registerItem("griseous_orb", new Item(new Item.Settings().maxCount(1)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.griseous_orb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item ASH_CAP = registerItem("ash_cap", new Cap(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.ash_cap.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
