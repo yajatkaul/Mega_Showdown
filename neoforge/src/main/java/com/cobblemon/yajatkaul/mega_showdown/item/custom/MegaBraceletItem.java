@@ -81,31 +81,8 @@ public class MegaBraceletItem extends Item {
             if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide){
                 return InteractionResult.PASS;
             }
-            List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
-            for (String key : megaKeys) {
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                if(feature != null){
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if(enabled) {
-                        if(!MegaLogic.Possible((ServerPlayer) player, false)){
-                            return InteractionResult.PASS;
-                        }
-
-                        MegaLogic.Devolve(context, player, false);
-                        return InteractionResult.SUCCESS;
-                    }
-                }
-            }
-
-            if(!MegaLogic.Possible((ServerPlayer) player, false)){
-                return InteractionResult.PASS;
-            }
-            MegaLogic.Evolve(context, player, false);
-            return InteractionResult.SUCCESS;
+            MegaLogic.EvoLogic(player);
         }
 
         return InteractionResult.PASS;

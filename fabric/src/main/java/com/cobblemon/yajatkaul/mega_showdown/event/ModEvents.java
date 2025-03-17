@@ -1,9 +1,17 @@
 package com.cobblemon.yajatkaul.mega_showdown.event;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.component.Component;
 import net.minecraft.component.ComponentType;
@@ -23,6 +31,7 @@ import net.minecraft.loot.function.ExplorationMapLootFunction;
 import net.minecraft.loot.function.LootFunction;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -102,6 +111,39 @@ public class ModEvents {
                     6, // Experience
                     0.05f // Price multiplier
             ));
+        });
+
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
+            ServerPlayerEntity player = handler.player;
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+            for (Pokemon pokemon : playerPartyStore) {
+                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+            }
+
+            player.setAttached(DataManage.MEGA_DATA, false);
+        });
+
+        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(newPlayer);
+
+            if(alive){
+                oldPlayer.removeAttached(DataManage.MEGA_DATA);
+            }else{
+                newPlayer.removeAttached(DataManage.MEGA_DATA);
+            }
+
+            for (Pokemon pokemon : playerPartyStore) {
+                new FlagSpeciesFeature("mega", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+            }
         });
     }
 

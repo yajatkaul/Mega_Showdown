@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.api.abilities.PotentialAbility;
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.pokemon.FormData;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -23,7 +24,8 @@ public class ShowdownSpeciesMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"), remap = false)
     private void populateAbilities(Species species, FormData formData, CallbackInfo ci) {
-        if(formData == null || formData.getAspects().stream().noneMatch((it) -> it.contains("mega"))) return;
+        if(formData == null || (formData.getAspects().stream().noneMatch((it) -> it.contains("embody")) &&
+                formData.getAspects().stream().noneMatch((it) -> it.contains("mega")))) return;
 
         Iterator<PotentialAbility> abilityIterator = formData.getAbilities().iterator();
         abilities = Map.of(

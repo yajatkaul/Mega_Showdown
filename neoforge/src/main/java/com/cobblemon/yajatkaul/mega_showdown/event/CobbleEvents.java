@@ -25,6 +25,9 @@ public class CobbleEvents {
 
         CobblemonEvents.LOOT_DROPPED.subscribe(Priority.NORMAL, CobbleEventsHandler::dropShardPokemon);
 
+        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventsHandler::fixOgerTera);
+
+        CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEventsHandler::formeChanges);
         // Battle mode only
         if(Config.battleModeOnly || Config.battleMode){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventsHandler::battleEnded);

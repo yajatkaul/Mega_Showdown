@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventHandler;
@@ -33,36 +34,13 @@ public class CobbleEvents {
 
         CobblemonEvents.POKEMON_HEALED.subscribe(Priority.NORMAL, CobbleEventHandler::healedPokemons);
 
+        CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEventHandler::formeChanges);
+
+        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventHandler::fixOgerTera);
+
         if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, CobbleEventHandler::getBattleEndInfo);
             CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, CobbleEventHandler::deVolveFlee);
-
-            ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
-                ServerPlayerEntity player = handler.player;
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-                for (Pokemon pokemon : playerPartyStore) {
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            });
-
-            ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(newPlayer);
-
-                if(alive){
-                    oldPlayer.removeAttached(DataManage.MEGA_DATA);
-                }else{
-                    newPlayer.removeAttached(DataManage.MEGA_DATA);
-                }
-
-                for (Pokemon pokemon : playerPartyStore) {
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-            });
         }
     }
 }

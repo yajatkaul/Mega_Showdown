@@ -3,11 +3,13 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.BattleRegistry;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
@@ -115,7 +117,6 @@ public class ModEvents {
                 table.addPool(newPoolBuilder.build());
             }
         }else if (ruinColdLootTable.equals(lootTableId) || ruinWarmLootTable.equals(lootTableId)) {
-
 
             if (mainPool != null && !mainPool.isFrozen()) {
                 // Cast to accessor interface
@@ -365,7 +366,11 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                 }
+
+                player.setData(DataManage.MEGA_DATA, false);
             }
         }
     }
@@ -380,7 +385,11 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                 }
+
+                player.setData(DataManage.MEGA_DATA, false);
             }
         }
     }

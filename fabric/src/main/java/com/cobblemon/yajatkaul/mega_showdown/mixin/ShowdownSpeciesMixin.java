@@ -20,7 +20,8 @@ public class ShowdownSpeciesMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"), remap = false)
     private void populateAbilities(Species species, FormData formData, CallbackInfo ci) {
-        if(formData == null || formData.getAspects().stream().noneMatch((it) -> it.contains("mega"))) return;
+        if(formData == null || (formData.getAspects().stream().noneMatch((it) -> it.contains("mega"))
+                && formData.getAspects().stream().noneMatch((it) -> it.contains("embody")))) return;
 
         Iterator<PotentialAbility> abilityIterator = formData.getAbilities().iterator();
         abilities = Map.of(

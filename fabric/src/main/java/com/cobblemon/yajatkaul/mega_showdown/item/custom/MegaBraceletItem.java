@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -80,8 +81,6 @@ public class MegaBraceletItem extends Item {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
         //Battle Mode only
         if (player.getWorld().isClient || ShowdownConfig.battleModeOnly.get()){
-//            player.sendMessage(Text.literal("BATTLE_MODE_ONLY is enabled this item is only required to be equipped in your off hand during battle, to enable megas outside battle please change your config settings")
-//                    .formatted(Formatting.RED));
             return ActionResult.PASS;
         }
 
@@ -90,29 +89,8 @@ public class MegaBraceletItem extends Item {
             if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient){
                 return super.useOnEntity(stack, player, context, hand);
             }
-            List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
-            boolean end = false;
-            for (String key : megaKeys) {
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                if(feature != null){
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if(enabled){
-                        MegaLogic.Devolve(context, player, false);
-                        end = false;
-                        break;
-                    }else{
-                        end = true;
-                    }
-
-                }
-            }
-            if(end){
-                MegaLogic.Evolve(context, player, false);
-            }
+            MegaLogic.EvoLogic((ServerPlayerEntity) player);
         }
 
         return super.useOnEntity(stack, player, context, hand);

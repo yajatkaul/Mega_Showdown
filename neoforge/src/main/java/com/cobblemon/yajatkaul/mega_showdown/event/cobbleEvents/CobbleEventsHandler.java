@@ -10,10 +10,7 @@ import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationE
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
 import com.cobblemon.mod.common.api.events.entity.SpawnEvent;
-import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
-import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
-import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPreEvent;
-import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent;
+import com.cobblemon.mod.common.api.events.pokemon.*;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.moves.Move;
@@ -24,6 +21,7 @@ import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
+import com.cobblemon.mod.common.battles.ShowdownInterpreter;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -150,36 +148,28 @@ public class CobbleEventsHandler {
             return;
         }
         if(post.getReceived().is(ModItems.HEARTHFLAME_MASK)){
-            new FlagSpeciesFeature("hearthflame-mask", true).apply(pokemon);
-            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
-            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
+            new StringSpeciesFeature("ogre_mask","hearthflame").apply(pokemon);
             try {
                 pokemon.setTeraType(TeraTypes.getFIRE());
             }catch (Exception e){
                 MegaShowdown.LOGGER.info("Sike");
             }
         } else if (post.getReceived().is(ModItems.CORNERSTONE_MASK)) {
-            new FlagSpeciesFeature("cornerstone-mask", true).apply(pokemon);
-            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
-            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+            new StringSpeciesFeature("ogre_mask","cornerstone").apply(pokemon);
             try {
                 pokemon.setTeraType(TeraTypes.getGROUND());
             }catch (Exception e){
                 MegaShowdown.LOGGER.info("Sike");
             }
         }else if (post.getReceived().is(ModItems.WELLSPRING_MASK)) {
-            new FlagSpeciesFeature("wellspring-mask", true).apply(pokemon);
-            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
-            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+            new StringSpeciesFeature("ogre_mask","wellspring").apply(pokemon);
             try {
                 pokemon.setTeraType(TeraTypes.getWATER());
             }catch (Exception e){
                 MegaShowdown.LOGGER.info("Sike");
             }
         }else {
-            new FlagSpeciesFeature("wellspring-mask", false).apply(pokemon);
-            new FlagSpeciesFeature("cornerstone-mask", false).apply(pokemon);
-            new FlagSpeciesFeature("hearthflame-mask", false).apply(pokemon);
+            new StringSpeciesFeature("ogre_mask","teal").apply(pokemon);
             try {
                 pokemon.setTeraType(TeraTypes.getGRASS());
             }catch (Exception e){
@@ -386,7 +376,7 @@ public class CobbleEventsHandler {
             double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 4; // Adjust this for more spread
+            double scaleFactor = 2; // Adjust this for more spread
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
             double adjustedDepth = entityDepth * scaleFactor;
@@ -584,6 +574,8 @@ public class CobbleEventsHandler {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 if(pokemon.getEntity() != null){
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
             }
@@ -657,6 +649,8 @@ public class CobbleEventsHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
                 for (Pokemon pokemon: playerPartyStore){
                     if(pokemon.getEntity() != null){
+                        new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                        new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                         pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                     }
                 }
@@ -736,6 +730,10 @@ public class CobbleEventsHandler {
             }
 
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
+
+            if(pk.getSpecies().getName().equals("Ogerpon")){
+                new FlagSpeciesFeature("embody_aspect", true).apply(pk);
+            }
         }
 
         ItemStack teraOrb = CuriosApi.getCuriosInventory(terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()).get().findFirstCurio(TeraMoves.TERA_ORB.get()).get().stack();
@@ -782,6 +780,30 @@ public class CobbleEventsHandler {
         } else if (randomValue == 33) {
             teraShardDropEntry.setItem(BuiltInRegistries.ITEM.getKey(TeraMoves.STELLAR_TERA_SHARD.get()));
             lootDroppedEvent.getDrops().add(teraShardDropEntry);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit formeChanges(FormeChangeEvent formeChangeEvent) {
+        Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Aegislash")){
+            if(formeChangeEvent.getFormeName().equals("blade")){
+                new StringSpeciesFeature("stance_forme", "blade").apply(pokemon);
+            } else if (formeChangeEvent.getFormeName().equals("aegislash")) {
+                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+            }
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit fixOgerTera(PokemonCapturedEvent pokemonCapturedEvent) {
+        Pokemon pokemon = pokemonCapturedEvent.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Ogerpon")){
+            pokemon.setTeraType(TeraTypes.getGRASS());
         }
 
         return Unit.INSTANCE;

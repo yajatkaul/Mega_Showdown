@@ -9,28 +9,11 @@
     "moving": {
       "walk": {
         "walkSpeed": 0.17
+      },
+      "fly": {
+        "canFly": true
       }
     }
   },
-  "baseScale": 1.1,
-  "forms": [
-    {
-      "name": "Origin",
-      "hitbox": {
-        "width": 4.5,
-        "height": 6.5,
-        "fixed": false
-      },
-      "behaviour": {
-        "moving": {
-          "walk": {
-            "walkSpeed": 0.6
-          }
-        }
-      },
-      "aspects": [
-        "origin-forme"
-      ]
-    }
-  ]
+  "baseScale": 1.1
 }

@@ -1,16 +1,27 @@
 {
-  "implemented": true,
   "nationalPokedexNumber": 1017,
   "name": "Ogerpon",
   "primaryType": "grass",
   "maleRatio": 0,
   "height": 12,
   "weight": 398,
-  "pokedex": ["cobblemon.species.ogerpon.desc"],
-  "labels": ["gen9", "legendary"],
-  "aspects": [],
-  "abilities": ["defiant", "h:defiant"],
-  "eggGroups": ["undiscovered"],
+  "pokedex": [
+    "cobblemon.species.ogerpon.desc"
+  ],
+  "labels": [
+    "gen9",
+    "legendary"
+  ],
+  "aspects": [
+    "teal-mask"
+  ],
+  "abilities": [
+    "defiant",
+    "h:defiant"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
   "baseStats": {
     "hp": 80,
     "attack": 120,
@@ -133,10 +144,20 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-wellspring.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["wellspring-mask"],
-      "abilities": ["waterabsorb", "h:waterabsorb"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-wellspring.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "wellspring-mask"
+      ],
+      "abilities": [
+        "waterabsorb",
+        "h:waterabsorb"
+      ],
       "eggCycles": 5,
       "evolutions": [],
       "battleOnly": false
@@ -148,10 +169,20 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-hearthflame.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["hearthflame-mask"],
-      "abilities": ["moldbreaker", "h:moldbreaker"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-hearthflame.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "hearthflame-mask"
+      ],
+      "abilities": [
+        "moldbreaker",
+        "h:moldbreaker"
+      ],
       "eggCycles": 5,
       "evolutions": [],
       "battleOnly": false
@@ -163,10 +194,20 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-cornerstone.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["cornerstone-mask"],
-      "abilities": ["sturdy", "h:sturdy"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-cornerstone.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "cornerstone-mask"
+      ],
+      "abilities": [
+        "sturdy",
+        "h:sturdy"
+      ],
       "eggCycles": 5,
       "evolutions": [],
       "battleOnly": false
@@ -177,10 +218,21 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-tealtera.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["embody-aspect", "teal-mask"],
-      "abilities": ["embodyaspectteal", "h:embodyaspectteal"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-tealtera.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "embody_aspect",
+        "teal-mask"
+      ],
+      "abilities": [
+        "embodyaspectteal",
+        "h:embodyaspectteal"
+      ],
       "eggCycles": 5,
       "dynamaxBlocked": true,
       "evolutions": [],
@@ -193,10 +245,21 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-wellspringtera.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["embody-aspect", "wellspring-mask"],
-      "abilities": ["embodyaspectwellspring", "h:embodyaspectwellspring"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-wellspringtera.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "embody_aspect",
+        "wellspring-mask"
+      ],
+      "abilities": [
+        "embodyaspectwellspring",
+        "h:embodyaspectwellspring"
+      ],
       "eggCycles": 5,
       "dynamaxBlocked": true,
       "evolutions": [],
@@ -209,10 +272,21 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-hearthflametera.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["embody-aspect", "hearthflame-mask"],
-      "abilities": ["embodyaspecthearthflame", "h:embodyaspecthearthflame"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-hearthflametera.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "embody_aspect",
+        "hearthflame-mask"
+      ],
+      "abilities": [
+        "embodyaspecthearthflame",
+        "h:embodyaspecthearthflame"
+      ],
       "eggCycles": 5,
       "dynamaxBlocked": true,
       "evolutions": [],
@@ -225,10 +299,21 @@
       "maleRatio": 0,
       "height": 12,
       "weight": 398,
-      "pokedex": ["cobblemon.species.ogerpon-cornerstonetera.desc"],
-      "labels": ["gen9", "legendary"],
-      "aspects": ["embody-aspect", "cornerstone-mask"],
-      "abilities": ["embodyaspectcornerstone", "h:embodyaspectcornerstone"],
+      "pokedex": [
+        "cobblemon.species.ogerpon-cornerstonetera.desc"
+      ],
+      "labels": [
+        "gen9",
+        "legendary"
+      ],
+      "aspects": [
+        "embody_aspect",
+        "cornerstone-mask"
+      ],
+      "abilities": [
+        "embodyaspectcornerstone",
+        "h:embodyaspectcornerstone"
+      ],
       "eggCycles": 5,
       "dynamaxBlocked": true,
       "evolutions": [],

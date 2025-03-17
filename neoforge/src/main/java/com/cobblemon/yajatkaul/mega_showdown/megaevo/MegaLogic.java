@@ -34,7 +34,7 @@ import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class MegaLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_TIME = 1000; // 1 sec
+    private static final long COOLDOWN_TIME = 2000; // 2 sec
 
     public static boolean Possible(ServerPlayer player, boolean fromBattle) {
         UUID playerId = player.getUUID();

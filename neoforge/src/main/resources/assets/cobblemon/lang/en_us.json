@@ -552,5 +552,8 @@
 	"cobblemon.ui.pokedex.info.form.unbound": "Unbound",
 	"cobblemon.ui.pokedex.info.form.white": "White",
 	"cobblemon.ui.pokedex.info.form.ice": "Ice",
-	"cobblemon.ui.pokedex.info.form.shadow": "Shadow"
+	"cobblemon.ui.pokedex.info.form.shadow": "Shadow",
+	"cobblemon.ui.pokedex.info.form.eternamax": "Eternamax",
+
+	"cobblemon.battle.formechange.default.temporary.end": "%1$s reverted!"
 }
