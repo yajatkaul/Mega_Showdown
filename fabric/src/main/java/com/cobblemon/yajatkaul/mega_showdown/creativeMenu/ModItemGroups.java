@@ -257,6 +257,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CORNERSTONE_MASK);
                         entries.add(ModItems.HEARTHFLAME_MASK);
                         entries.add(ModItems.STAR_CORE);
+                        entries.add(ModItems.GRISEOUS_ORB);
                     }))
                     .build());
 

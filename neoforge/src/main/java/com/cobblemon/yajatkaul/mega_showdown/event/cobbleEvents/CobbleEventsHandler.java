@@ -18,10 +18,7 @@ import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.Moves;
-import com.cobblemon.mod.common.api.pokemon.feature.ChoiceSpeciesFeatureProvider;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
-import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
@@ -92,6 +89,7 @@ public class CobbleEventsHandler {
         crownedEvent(event);
         ogerponChange(event);
         eternamaxChange(event);
+        originChange(event);
 
         if(Config.battleModeOnly){
             return Unit.INSTANCE;
@@ -120,6 +118,19 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
+    public static void originChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Giratina")){
+            if(post.getReceived().is(ModItems.GRISEOUS_ORB)){
+                originAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+            }else{
+                originAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+            }
+        }
+    }
     public static void eternamaxChange(HeldItemEvent.Post post){
         if(!Config.etermaxForme){
            return;
@@ -355,6 +366,48 @@ public class CobbleEventsHandler {
 
                 serverLevel.sendParticles(
                         particleType,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+    private static void originAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 4; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.NOTE_BLOCK_IMITATE_ENDER_DRAGON, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverLevel.sendParticles(
+                        ParticleTypes.ASH,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,

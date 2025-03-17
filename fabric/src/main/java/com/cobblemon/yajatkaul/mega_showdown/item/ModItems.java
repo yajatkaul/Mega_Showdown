@@ -158,6 +158,13 @@ public class ModItems {
         }
     });
 
+    public static final Item GRISEOUS_ORB = registerItem("griseous_orb", new Gracidea(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.griseous_orb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
 
     public static final Item MEGA_STONE_CRYSTAL_ITEM = Registry.register(Registries.ITEM,
             Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),

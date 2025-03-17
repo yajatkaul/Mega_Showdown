@@ -149,5 +149,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.WELLSPRING_MASK.get());
 
         basicItem(ModItems.STAR_CORE.get());
+
+        basicItem(ModItems.GRISEOUS_ORB.get());
     }
 }

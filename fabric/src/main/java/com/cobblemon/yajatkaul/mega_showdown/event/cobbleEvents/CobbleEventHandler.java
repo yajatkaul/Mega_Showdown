@@ -17,6 +17,7 @@ import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
@@ -85,6 +86,7 @@ public class CobbleEventHandler {
         crownedEvent(post);
         ogerponChange(post);
         eternamaxChange(post);
+        originChange(post);
 
         // Battle mode only
         if(ShowdownConfig.battleModeOnly.get()){
@@ -122,6 +124,19 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
+    public static void originChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+
+        if(pokemon.getSpecies().getName().equals("Giratina")){
+            if(post.getReceived().isOf(ModItems.GRISEOUS_ORB)){
+                originAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+            }else{
+                originAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+            }
+        }
+    }
     public static void eternamaxChange(HeldItemEvent.Post post){
         if(!ShowdownConfig.etermaxForme.get()){
             return;
@@ -400,6 +415,48 @@ public class CobbleEventHandler {
 
                 serverWorld.spawnParticles(
                         particleType,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+    public static void originAnimation(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 4; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_NOTE_BLOCK_IMITATE_ENDER_DRAGON, // Change this if needed
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.ASH,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,

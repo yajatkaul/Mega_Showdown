@@ -414,5 +414,7 @@
   "item.mega_showdown.scroll_of_waters": "Scroll of Waters",
   "tooltip.mega_showdown.scroll_of_waters.tooltip": "A mystical scroll containing the secrets of flowing waters. It grants special Pokémon mastery over aquatic techniques.",
   "item.mega_showdown.star_core": "Star Core",
-  "tooltip.mega_showdown.star_core.tooltip": "An orb which contains an immense energy."
+  "tooltip.mega_showdown.star_core.tooltip": "An orb which contains an immense energy.",
+  "item.mega_showdown.griseous_orb": "Griseous Orb",
+  "tooltip.mega_showdown.griseous_orb.tooltip": "A powerful orb that resonates with the fabric of dimensions."
 }

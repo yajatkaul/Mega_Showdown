@@ -142,6 +142,12 @@
         "special_defence": 250,
         "speed": 130
       },
+      "baseScale": 1,
+      "hitbox": {
+        "width": 23,
+        "height": 24,
+        "fixed": false
+      },
       "baseExperienceYield": 563,
       "evolutions": [],
       "battleOnly": true

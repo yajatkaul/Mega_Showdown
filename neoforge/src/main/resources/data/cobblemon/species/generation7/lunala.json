@@ -12,6 +12,13 @@
     "special_defence": 107,
     "speed": 97
   },
+  "behaviour": {
+    "moving": {
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
   "catchRate": 45,
   "maleRatio": -1,
   "shoulderMountable": false,
