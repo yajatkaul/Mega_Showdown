@@ -4,7 +4,9 @@
   "nationalPokedexNumber": 720,
   "primaryType": "psychic",
   "secondaryType": "ghost",
-  "abilities": ["magician"],
+  "abilities": [
+    "magician"
+  ],
   "baseStats": {
     "hp": 80,
     "attack": 110,
@@ -23,7 +25,9 @@
       "nationalPokedexNumber": 720,
       "primaryType": "psychic",
       "secondaryType": "dark",
-      "abilities": ["magician"],
+      "abilities": [
+        "magician"
+      ],
       "baseStats": {
         "hp": 80,
         "attack": 160,
@@ -38,7 +42,9 @@
       "baseExperienceYield": 340,
       "experienceGroup": "slow",
       "eggCycles": 120,
-      "eggGroups": ["undiscovered"],
+      "eggGroups": [
+        "undiscovered"
+      ],
       "evYield": {
         "hp": 0,
         "attack": 3,
@@ -47,8 +53,14 @@
         "special_defence": 0,
         "speed": 0
       },
-      "labels": ["gen6", "primal", "legendary"],
-      "aspects": ["unbound"],
+      "labels": [
+        "gen6",
+        "primal",
+        "legendary"
+      ],
+      "aspects": [
+        "unbound"
+      ],
       "height": 65,
       "weight": 4900,
       "cannotDynamax": false,
@@ -69,9 +81,9 @@
           "light": "0-4"
         }
       },
-      "baseScale": 0.5,
+      "baseScale": 0.3,
       "hitbox": {
-        "width": 6,
+        "width": 5.5,
         "height": 12,
         "fixed": false
       }
@@ -81,7 +93,9 @@
   "baseExperienceYield": 300,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": ["undiscovered"],
+  "eggGroups": [
+    "undiscovered"
+  ],
   "moves": [
     "1:shadowball",
     "1:confusion",
@@ -199,31 +213,37 @@
     "tutor:wonderroom",
     "tutor:zenheadbutt"
   ],
-  "labels": ["gen6", "mythical", "legendary"],
-  "pokedex": ["cobblemon.species.hoopa.desc"],
-  "behaviour": {
-    "moving": {
-      "walk": {
-        "canWalk": true,
-        "walkSpeed": 0.6
-      },
-      "fly": {
-        "canFly": true
-      }
-    },
-    "resting": {
-      "canSleep": true,
-      "willSleepOnBed": true,
-      "depth": "normal",
-      "light": "0-4"
-    }
-  },
-  "baseScale": 1,
-  "hitbox": {
-    "width": 1,
-    "height": 2,
-    "fixed": false
-  },
+  "labels": [
+    "gen6",
+    "mythical",
+    "legendary"
+  ],
+  "pokedex": [
+    "cobblemon.species.hoopa.desc"
+  ],
+ "behaviour": {
+   "moving": {
+     "walk": {
+       "canWalk": true,
+       "walkSpeed": 0.6
+     },
+     "fly": {
+       "canFly": true
+     }
+   },
+   "resting": {
+     "canSleep": true,
+     "willSleepOnBed": true,
+     "depth": "normal",
+     "light": "0-4"
+   }
+ },
+ "baseScale": 1,
+ "hitbox": {
+   "width": 1,
+   "height": 2,
+   "fixed": false
+ },
   "baseFriendship": 100,
   "evYield": {
     "hp": 0,

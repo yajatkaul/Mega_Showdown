@@ -1,8 +1,8 @@
 {
-  "portraitScale": 0.4,
-  "portraitTranslation": [-0.5, 2.2, 0],
-  "profileScale": 0.34,
-  "profileTranslation": [0, 1.5, 0],
+  "portraitScale": 0.62,
+  "portraitTranslation": [-0.77, 3.03, 0],
+  "profileScale": 0.21,
+  "profileTranslation": [0.1, 1.5, 0],
   "animations": {
     "faint": "q.bedrock_primary('groudon', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('groudon', 'cry')",

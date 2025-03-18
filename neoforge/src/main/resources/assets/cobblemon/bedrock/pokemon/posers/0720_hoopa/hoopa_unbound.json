@@ -1,9 +1,9 @@
 {
   "head": "head",
-  "portraitScale": 0.2,
-  "portraitTranslation": [0, 2.5, 0],
-  "profileScale": 0.2,
-  "profileTranslation": [0, 2, 0],
+  "portraitScale": 0.46,
+  "portraitTranslation": [-0.56, 5.12, 0],
+  "profileScale": 0.12,
+  "profileTranslation": [0, 1.8, 0],
   "animations": {
     "faint": "q.bedrock_primary('hoopa_unbound', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('hoopa_unbound', 'cry')",

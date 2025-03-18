@@ -1,8 +1,8 @@
 {
-  "portraitScale": 0.4,
-  "portraitTranslation": [0, 1.0, 0],
-  "profileScale": 0.34,
-  "profileTranslation": [0, 1.0, 0],
+  "portraitScale": 0.55,
+  "portraitTranslation": [-0.86, 0.88, 0],
+  "profileScale": 0.21,
+  "profileTranslation": [0.2, 1.0, 0],
   "animations": {
     "faint": "q.bedrock_primary('kyogreprimal', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('kyogreprimal', 'cry')",

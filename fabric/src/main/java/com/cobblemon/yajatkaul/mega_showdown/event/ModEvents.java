@@ -121,7 +121,6 @@ public class ModEvents {
                 new FlagSpeciesFeature("mega", false).apply(pokemon);
                 new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                 new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                 new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
             }
 
@@ -141,7 +140,6 @@ public class ModEvents {
                 new FlagSpeciesFeature("mega", false).apply(pokemon);
                 new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                 new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                 new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
             }
         });

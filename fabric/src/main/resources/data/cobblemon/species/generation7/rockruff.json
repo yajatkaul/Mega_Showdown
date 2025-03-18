@@ -5,11 +5,21 @@
   "maleRatio": 0.5,
   "height": 5,
   "weight": 92,
-  "pokedex": ["cobblemon.species.rockruff.desc"],
-  "labels": ["gen7"],
+  "pokedex": [
+    "cobblemon.species.rockruff.desc"
+  ],
+  "labels": [
+    "gen7"
+  ],
   "aspects": [],
-  "abilities": ["keeneye", "vitalspirit", "h:steadfast"],
-  "eggGroups": ["field"],
+  "abilities": [
+    "keeneye",
+    "vitalspirit",
+    "h:steadfast"
+  ],
+  "eggGroups": [
+    "field"
+  ],
   "baseStats": {
     "hp": 45,
     "attack": 65,
@@ -156,7 +166,10 @@
       "variant": "level_up",
       "result": "lycanroc wolf_form=midday",
       "consumeHeldItem": false,
-      "learnableMoves": ["accelerock", "suckerpunch"],
+      "learnableMoves": [
+        "accelerock",
+        "suckerpunch"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -173,7 +186,10 @@
       "variant": "level_up",
       "result": "lycanroc wolf_form=dusk dusk",
       "consumeHeldItem": false,
-      "learnableMoves": ["accelerock", "counter"],
+      "learnableMoves": [
+        "accelerock",
+        "counter"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -190,7 +206,9 @@
       "variant": "level_up",
       "result": "lycanroc wolf_form=midnight midnight",
       "consumeHeldItem": false,
-      "learnableMoves": ["counter"],
+      "learnableMoves": [
+        "counter"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -210,10 +228,19 @@
       "maleRatio": 0.5,
       "height": 5,
       "weight": 92,
-      "pokedex": ["cobblemon.species.rockruff-dusk.desc"],
-      "labels": ["gen7"],
-      "aspects": ["dusk-form"],
-      "abilities": ["owntempo", "h:owntempo"],
+      "pokedex": [
+        "cobblemon.species.rockruff-dusk.desc"
+      ],
+      "labels": [
+        "gen7"
+      ],
+      "aspects": [
+        "dusk-form"
+      ],
+      "abilities": [
+        "owntempo",
+        "h:owntempo"
+      ],
       "moves": [
         "1:tackle",
         "1:leer",

@@ -1,7 +1,5 @@
 ![](https://media.forgecdn.net/attachments/description/1189523/description_d7badc45-c97e-4d0e-a0c8-c96a60b65a74.png)
 
-
-
 ![](https://media.forgecdn.net/attachments/description/1189523/description_ffe46c19-60b9-46d4-97c8-de2b1bbb7e7b.png)
 
 # **Content -**
@@ -40,8 +38,6 @@ While them in this slot you can click \`k\` and it will mega the pokemon
 
 ![](https://cdn.discordapp.com/attachments/1334226114876538921/1342482393704955986/2025-02-21_18.28.08.png?ex=67bbc5e8&is=67ba7468&hm=b710d55ace831df4ce81e6b0a70b3d40d06e8eac2c07d8d067cb674dbb946cd4&=)
 
-
-
 These are also spheres found at y level 5 but these are hollow and contain some evolution stones and a mega crystal on breaking the mega crystal with diamond you can get any one of the mega stones to mega evolve you pokemon
 
 ## **Primals in the game**
@@ -77,6 +73,7 @@ A huge thanks to everyone who allowed me to use there models from there pack
 - [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc and Marshadow
 - [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum
 - [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Giritina and origin forme
+- [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon)
 
 # **Socials**
 

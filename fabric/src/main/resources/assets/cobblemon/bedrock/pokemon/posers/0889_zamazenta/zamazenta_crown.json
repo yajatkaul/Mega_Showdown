@@ -1,8 +1,8 @@
 {
-  "portraitScale": 0.8,
-  "portraitTranslation": [-0.5, 1, 0],
-  "profileScale": 0.6,
-  "profileTranslation": [-0.3, 1, 0],
+  "portraitScale": 1.4,
+  "portraitTranslation": [-1.51, 1.5, 0],
+  "profileScale": 0.42,
+  "profileTranslation": [0, 1.2, 0],
   "animations": {
     "faint": "q.bedrock_primary('zamazenta_crown', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('zamazenta_crown', 'cry')",

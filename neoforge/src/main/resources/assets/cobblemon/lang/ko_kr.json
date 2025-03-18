@@ -535,7 +535,7 @@
 	"cobblemon.move.zauroraveil": "Z 오로라베일",
 	"cobblemon.move.zauroraveil.desc": "스피드가 1단계 증가합니다.",
 	"cobblemon.move.ztearfullook": "Z 눈물그렁그렁",
-	"cobblemon.move.ztearfullook.desc": "방어력이 1단계 증가합니다."
+	"cobblemon.move.ztearfullook.desc": "방어력이 1단계 증가합니다.",
 
 	"cobblemon.ui.pokedex.info.form.crowned": "왕관을 쓴",
 	"cobblemon.ui.pokedex.info.form.black": "블랙",
@@ -547,5 +547,8 @@
 	"cobblemon.ui.pokedex.info.form.unbound": "굴레를 벗어난",
 	"cobblemon.ui.pokedex.info.form.white": "화이트",
 	"cobblemon.ui.pokedex.info.form.ice": "백마를 탄",
-	"cobblemon.ui.pokedex.info.form.shadow": "흑마를 탄"
+	"cobblemon.ui.pokedex.info.form.shadow": "흑마를 탄",
+	"cobblemon.ui.pokedex.info.form.eternamax": "무한다이맥스",
+
+	"cobblemon.battle.formechange.default.temporary.end": "%1$s이(가) 되돌려졌습니다!"
 }

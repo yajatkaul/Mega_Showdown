@@ -1,0 +1,19 @@
+{
+  "species": "cobblemon:thundurus",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:thundurus",
+      "model": "cobblemon:thundurus.geo",
+      "texture": "cobblemon:textures/pokemon/0642_thundurus/thundurus.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0642_thundurus/thundurus_shiny.png"
+    }
+  ]
+}

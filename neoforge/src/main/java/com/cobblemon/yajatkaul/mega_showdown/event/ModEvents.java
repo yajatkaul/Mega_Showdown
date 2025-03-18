@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.BattleRegistry;
+import com.cobblemon.mod.common.platform.events.ServerTickEvent;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
@@ -48,6 +49,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
 
@@ -366,7 +368,6 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                 }
 
@@ -385,7 +386,6 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                 }
 

@@ -3,7 +3,9 @@
   "nationalPokedexNumber": 647,
   "primaryType": "water",
   "secondaryType": "fighting",
-  "abilities": ["justified"],
+  "abilities": [
+    "justified"
+  ],
   "baseStats": {
     "hp": 91,
     "attack": 72,
@@ -27,7 +29,9 @@
   },
   "experienceGroup": "slow",
   "eggCycles": 80,
-  "eggGroups": ["undiscovered"],
+  "eggGroups": [
+    "undiscovered"
+  ],
   "moves": [
     "1:aquajet",
     "1:helpinghand",
@@ -138,8 +142,14 @@
     "tutor:swordsdance",
     "tutor:waterpulse"
   ],
-  "labels": ["gen5", "mythical", "legendary"],
-  "pokedex": ["cobblemon.species.keldeo.desc"],
+  "labels": [
+    "gen5",
+    "mythical",
+    "legendary"
+  ],
+  "pokedex": [
+    "cobblemon.species.keldeo.desc"
+  ],
   "height": 14,
   "weight": 485,
   "forms": [
@@ -147,7 +157,9 @@
       "name": "Resolute",
       "primaryType": "water",
       "secondaryType": "fighting",
-      "abilities": ["justified"],
+      "abilities": [
+        "justified"
+      ],
       "baseStats": {
         "hp": 91,
         "attack": 72,
@@ -170,9 +182,17 @@
       },
       "experienceGroup": "slow",
       "eggCycles": 80,
-      "eggGroups": ["undiscovered"],
-      "labels": ["gen5", "mythical", "legendary"],
-      "aspects": ["resolute"],
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "labels": [
+        "gen5",
+        "mythical",
+        "legendary"
+      ],
+      "aspects": [
+        "resolute"
+      ],
       "height": 14,
       "weight": 485,
       "cannotDynamax": false,
@@ -180,13 +200,13 @@
     }
   ],
   "behaviour": {
-    "moving": {
-      "canLook": true,
-      "walk": {
-        "walkSpeed": 0.4,
-        "canWalk": true,
-        "avoidsLand": false
-      },
+      "moving": {
+        "canLook": true,
+        "walk": {
+          "walkSpeed": 0.4,
+          "canWalk": true,
+          "avoidsLand": false
+        },
       "fly": {
         "canFly": false
       },
@@ -197,9 +217,9 @@
       }
     }
   },
-  "baseScale": 1.0,
+  "baseScale":1.0,
   "hitbox": {
-    "width": 1,
+    "width": 2,
     "height": 2.2,
     "fixed": false
   },

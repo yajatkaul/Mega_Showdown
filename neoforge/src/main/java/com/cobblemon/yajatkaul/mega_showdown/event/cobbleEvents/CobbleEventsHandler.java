@@ -574,7 +574,6 @@ public class CobbleEventsHandler {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 if(pokemon.getEntity() != null){
-                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
@@ -649,7 +648,6 @@ public class CobbleEventsHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
                 for (Pokemon pokemon: playerPartyStore){
                     if(pokemon.getEntity() != null){
-                        new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                         pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                     }

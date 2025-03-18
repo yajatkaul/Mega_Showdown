@@ -1,0 +1,92 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.castform_rainy.ground_idle": {
+			"loop": true,
+			"animation_length": 2.375,
+			"bones": {
+				"body": {
+					"position": {
+						"0.1667": {
+							"pre": [0, 0, 0],
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.8333": {
+							"post": [0, 1, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.5": {
+							"post": [0, 1, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"2.3333": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				}
+			}
+		},
+		"animation.castform_rainy.ground_walk": {
+			"loop": true,
+			"animation_length": 4.29167,
+			"bones": {
+				"body": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.4167": [2.5, 0, 0],
+						"3.0": [-2.5, 0, 0],
+						"4.0833": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"1.4167": [0, 1, 0],
+						"2.2083": [0, 0, 0],
+						"3.0": [0, 1, 0],
+						"4.0833": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.castform_rainy.blink": {
+			"loop": true,
+			"animation_length": 2.5,
+			"bones": {
+				"eyes": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.25": [0, 7, 0],
+						"0.4583": [0, 12, 0],
+						"1.0": [0, 7, 0],
+						"1.4583": [0, 0, 0]
+					},
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.25": [1, 0.6, 1],
+						"0.4583": [1, 0.3, 1],
+						"1.0": [1, 0.6, 1],
+						"1.4583": [1, 1, 1]
+					}
+				}
+			}
+		},
+		"animation.castform_rainy.faint": {
+			"animation_length": 2.08333,
+			"bones": {
+				"body": {
+					"rotation": {
+						"0.0": [-2.5, 0, 0],
+						"0.5833": [-85, 0, 0]
+					},
+					"scale": {
+						"0.0": [1, 1, 1],
+						"1.375": [1, 1, 0.1],
+						"1.6667": [1, 0.3, 0.1],
+						"2.0": [1, 0.3, -0.1]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,9 +1,9 @@
 {
     "head": "head",
-    "portraitScale": 1,
-    "portraitTranslation": [ -0.2, 0.85, 0 ],
-    "profileScale": 0.5,
-    "profileTranslation": [ 0, 1.15, 0 ],
+    "portraitScale": 1.39,
+    "portraitTranslation": [ -1.11, 1.56, 0 ],
+    "profileScale": 0.43,
+    "profileTranslation": [ 0, 1, 0 ],
     "faint": "bedrock(solgaleo, faint)",
     "poses": {
 

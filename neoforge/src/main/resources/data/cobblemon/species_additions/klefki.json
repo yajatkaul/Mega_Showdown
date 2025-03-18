@@ -2,25 +2,25 @@
   "target": "cobblemon:klefki",
   "baseScale": 1,
   "hitbox": {
-    "width": 2,
-    "height": 3,
-    "fixed": false
+   "width": 2,
+   "height": 3,
+   "fixed": false
   },
   "drops": {
-    "amount": 1,
-    "entries": [
-      {
-        "item": "minecraft:name_tag",
-        "percentage": 5.0
-      },
-      {
-        "item": "minecraft:ominous_trial_key",
-        "percentage": 5.0
-      },
-      {
-        "item": "minecraft:trial_key",
-        "percentage": 90.0
-      }
-    ]
-  }
+  "amount": 1,
+  "entries": [
+    {
+      "item": "minecraft:name_tag",
+      "percentage": 5.0
+    },
+    {
+      "item": "minecraft:ominous_trial_key",
+      "percentage": 5.0
+    },
+    {
+      "item": "minecraft:trial_key",
+      "percentage": 90.0
+    }
+  ]
+}
 }

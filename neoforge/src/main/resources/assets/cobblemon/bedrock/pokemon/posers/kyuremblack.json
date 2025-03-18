@@ -1,8 +1,8 @@
 {
-  "portraitScale": 1,
-  "portraitTranslation": [-2, 2.7, -10],
-  "profileScale": 0.4,
-  "profileTranslation": [0, 1.1, -10],
+  "portraitScale": 1.15,
+  "portraitTranslation": [-2.26, 3.42, -10],
+  "profileScale": 0.25,
+  "profileTranslation": [0, 1.3, -10],
   "animations": {
     "faint": "q.bedrock_primary('kyuremblack', 'special_attack', q.curve('one'))",
     "cry": "q.bedrock_primary('kyuremblack', 'cry', q.curve('symmetrical_wide'))",

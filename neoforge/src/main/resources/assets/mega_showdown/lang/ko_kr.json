@@ -375,11 +375,11 @@
   "item.mega_showdown.n_lunarizer": "N 루나라이저",
   "item.mega_showdown.n_lunarizer.inactive": "N 루나라이저 (비활성)",
   "item.mega_showdown.n_lunarizer.charged": "N 루나라이저 (활성화됨)",
-  "tooltip.mega_showdown.n_lunarizer.tooltip": "루나리아와 신비한 존재를 융합시키는 데 사용됩니다",
+  "tooltip.mega_showdown.n_lunarizer.tooltip": "루나리아와 신비한 존재를 융합시키는 데 사용됩니다.",
   "item.mega_showdown.n_solarizer": "N 솔라라이저",
   "item.mega_showdown.n_solarizer.inactive": "N 솔라라이저 (비활성)",
   "item.mega_showdown.n_solarizer.charged": "N 솔라라이저 (활성화됨)",
-  "tooltip.mega_showdown.n_solarizer.tooltip": "솔가레오와 신비한 존재를 융합시키는 데 사용됩니다"
+  "tooltip.mega_showdown.n_solarizer.tooltip": "솔가레오와 신비한 존재를 융합시키는 데 사용됩니다.",
   "item.mega_showdown.dna_splicer": "유전자쐐기",
   "item.mega_showdown.dna_splicer.inactive": "유전자쐐기 (비활성)",
   "item.mega_showdown.dna_splicer.charged": "유전자쐐기 (활성화됨)",
@@ -397,5 +397,25 @@
   "item.mega_showdown.rusted_shield": "녹슨방패",
   "tooltip.mega_showdown.rusted_shield.tooltip": "먼 옛날의 영웅이 재앙을 막는 데 사용했다고 전해지는 방패지만 지금은 녹이 슬고 닳아버렸다.",
   "item.mega_showdown.prison_bottle": "굴레의항아리",
-  "tooltip.mega_showdown.prison_bottle.tooltip": "먼 옛날 어떤 포켓몬의 힘을 봉인했다고 여겨지는 항아리."
+  "tooltip.mega_showdown.prison_bottle.tooltip": "먼 옛날 어떤 포켓몬의 힘을 봉인했다고 여겨지는 항아리.",
+  "item.mega_showdown.gracidea_flower": "그라시데아꽃",
+  "tooltip.mega_showdown.gracidea_flower.tooltip": "생일이나 기념일 등에 감사의 마음을 전하기 위해 부케로 만들어 보내는 일이 있다.",
+
+  "item.mega_showdown.cornerstone_mask": "주춧돌의가면",
+  "tooltip.mega_showdown.cornerstone_mask.tooltip": "결정이 장식되어 있는 목각 가면. 오거폰에게 지니게 하면 바위타입을 두르고 싸울 수 있다.",
+  "item.mega_showdown.wellspring_mask": "우물의가면",
+  "tooltip.mega_showdown.wellspring_mask.tooltip": "결정이 장식되어 있는 목각 가면. 오거폰에게 지니게 하면 물타입을 두르고 싸울 수 있다.",
+  "item.mega_showdown.hearthflame_mask": "화덕의가면",
+  "tooltip.mega_showdown.hearthflame_mask.tooltip": "결정이 장식되어 있는 목각 가면. 오거폰에게 지니게 하면 불꽃타입을 두르고 싸울 수 있다.",
+
+  "item.mega_showdown.scroll_of_darkness": "악의 족자",
+  "tooltip.mega_showdown.scroll_of_darkness.tooltip": "악의 지식으로 가득 찬 고대 두루마리. 특정 포켓몬에게 악의 정수를 부여합니다.",
+  "item.mega_showdown.scroll_of_waters": "물의 족자",
+  "tooltip.mega_showdown.scroll_of_waters.tooltip": "물의 지식으로 가득 찬 고대 두루마리. 특정 포켓몬에게 물의 정수를 부여합니다.",
+  "item.mega_showdown.star_core": "별의 심장",
+  "tooltip.mega_showdown.star_core.tooltip": "엄청난 에너지를 담은 구체.",
+  "item.mega_showdown.griseous_orb": "백금옥",
+  "tooltip.mega_showdown.griseous_orb.tooltip": "차원의 구조와 공명하는 강력한 구체입니다.",
+  "item.mega_showdown.ash_cap": "지우의 모자",
+  "tooltip.mega_showdown.ash_cap.tooltip": "모험심이 담긴 전설적인 트레이너의 모자."
 }

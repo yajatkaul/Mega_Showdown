@@ -2,7 +2,9 @@
   "name": "Cosmoem",
   "nationalPokedexNumber": 790,
   "primaryType": "psychic",
-  "abilities": ["sturdy"],
+  "abilities": [
+    "sturdy"
+  ],
   "baseStats": {
     "hp": 43,
     "attack": 29,
@@ -17,10 +19,21 @@
   "baseExperienceYield": 140,
   "experienceGroup": "slow",
   "eggCycles": 120,
-  "eggGroups": ["undiscovered"],
-  "moves": ["1:cosmicpower", "1:teleport", "tm:cosmicpower"],
-  "labels": ["gen7", "legendary"],
-  "pokedex": ["cobblemon.species.cosmoem.desc"],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "moves": [
+    "1:cosmicpower",
+    "1:teleport",
+    "tm:cosmicpower"
+  ],
+  "labels": [
+    "gen7",
+    "legendary"
+  ],
+  "pokedex": [
+    "cobblemon.species.cosmoem.desc"
+  ],
   "preEvolution": "cosmog",
   "evolutions": [
     {
@@ -28,7 +41,9 @@
       "variant": "level_up",
       "result": "solgaleo",
       "consumeHeldItem": false,
-      "learnableMoves": ["sunsteelstrike"],
+      "learnableMoves": [
+        "sunsteelstrike"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -45,7 +60,9 @@
       "variant": "level_up",
       "result": "lunala",
       "consumeHeldItem": false,
-      "learnableMoves": ["moongeistbeam"],
+      "learnableMoves": [
+        "moongeistbeam"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -58,10 +75,10 @@
       ]
     }
   ],
-  "baseScale": 0.15,
+  "baseScale": 0.5,
   "hitbox": {
-    "width": 1,
-    "height": 0.5,
+    "width": 1.7,
+    "height": 2.7,
     "fixed": false
   },
   "baseFriendship": 0,

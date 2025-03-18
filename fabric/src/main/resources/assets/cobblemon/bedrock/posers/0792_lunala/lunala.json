@@ -1,9 +1,9 @@
 {
     "head": "head",
-    "portraitScale": 1,
-    "portraitTranslation": [ -0.2, 2.1, 0 ],
-    "profileScale": 0.3,
-    "profileTranslation": [ 0, 1.15, 0 ],
+    "portraitScale": 1.46,
+    "portraitTranslation": [ -0.36, 3.02, 0 ],
+    "profileScale": 0.28,
+    "profileTranslation": [ 0, 1.25, 0 ],
     "faint": "bedrock(lunala, faint)",
     "poses": {
 

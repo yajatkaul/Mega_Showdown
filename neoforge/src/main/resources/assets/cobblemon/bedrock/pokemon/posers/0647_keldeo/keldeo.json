@@ -1,7 +1,7 @@
 {
-  "portraitScale": 1,
-  "portraitTranslation": [0, 1, 0],
-  "profileScale": 0.75,
+  "portraitScale": 1.72,
+  "portraitTranslation": [-0.34, 0.86, 0],
+  "profileScale": 0.67,
   "profileTranslation": [0, 0.8, 0],
   "animations": {
     "faint": "q.bedrock_primary('keldeo', 'faint', q.curve('one'))",
