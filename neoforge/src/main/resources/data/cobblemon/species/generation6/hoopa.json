@@ -81,15 +81,14 @@
           "light": "0-4"
         }
       },
-      "baseScale": 0.3,
+      "baseScale": 0.5,
       "hitbox": {
-        "width": 5.5,
+        "width": 6,
         "height": 12,
         "fixed": false
       }
     }
   ],
-
   "baseExperienceYield": 300,
   "experienceGroup": "slow",
   "eggCycles": 120,
@@ -238,12 +237,12 @@
      "light": "0-4"
    }
  },
- "baseScale": 1,
- "hitbox": {
-   "width": 1,
-   "height": 2,
-   "fixed": false
- },
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1,
+    "height": 2,
+    "fixed": false
+  },
   "baseFriendship": 100,
   "evYield": {
     "hp": 0,

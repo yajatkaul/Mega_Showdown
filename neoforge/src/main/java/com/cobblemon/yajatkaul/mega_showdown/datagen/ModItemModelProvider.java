@@ -1,10 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.data.PackOutput;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -153,5 +150,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.GRISEOUS_ORB.get());
 
         basicItem(ModItems.ASH_CAP.get());
+
+        basicItem(RotomFormes.FAN.get());
+        basicItem(RotomFormes.FRIDGEUNIT.get());
+        basicItem(RotomFormes.OVENUNIT.get());
+        basicItem(RotomFormes.MOWUNIT.get());
+        basicItem(RotomFormes.WASHUNIT.get());
+        basicItem(RotomFormes.ROTOM_CATALOGUE.get());
     }
 }

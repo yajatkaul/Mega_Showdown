@@ -493,6 +493,11 @@ public class CobbleEventsHandler {
 
             if(Config.battleMode){
                 for (Pokemon pokemon : playerPartyStore) {
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
                     for (String key : megaKeys) {
@@ -574,6 +579,9 @@ public class CobbleEventsHandler {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 if(pokemon.getEntity() != null){
+                    new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
@@ -648,6 +656,9 @@ public class CobbleEventsHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
                 for (Pokemon pokemon: playerPartyStore){
                     if(pokemon.getEntity() != null){
+                        new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                        new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                        new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                         pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                     }
@@ -792,9 +803,61 @@ public class CobbleEventsHandler {
             } else if (formeChangeEvent.getFormeName().equals("aegislash")) {
                 new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
             }
+        } else if (pokemon.getSpecies().getName().equals("Minior") && formeChangeEvent.getFormeName().equals("meteor")) {
+            playFormeChangeAnimation(pokemon.getEntity());
+            new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Castform")) {
+            if(formeChangeEvent.getFormeName().equals("sunny")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("forecast_form", "sunny").apply(pokemon);
+            } else if (formeChangeEvent.getFormeName().equals("rainy")) {
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("forecast_form", "rainy").apply(pokemon);
+            } else if (formeChangeEvent.getFormeName().equals("snowy")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("forecast_form", "snowy").apply(pokemon);
+            }
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static void playFormeChangeAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverLevel.sendParticles(
+                        ParticleTypes.END_ROD, // Change this to any particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
     }
 
     public static Unit fixOgerTera(PokemonCapturedEvent pokemonCapturedEvent) {

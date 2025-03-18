@@ -6,5 +6,6 @@ public class ItemRegister {
         MegaStones.registerModItem();
         ZMoves.registerModItem();
         TeraMoves.registerModItem();
+        RotomFormes.register();
     }
 }

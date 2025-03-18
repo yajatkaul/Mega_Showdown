@@ -369,6 +369,9 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                 }
 
                 player.setData(DataManage.MEGA_DATA, false);
@@ -387,6 +390,9 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                 }
 
                 player.setData(DataManage.MEGA_DATA, false);

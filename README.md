@@ -73,7 +73,8 @@ A huge thanks to everyone who allowed me to use there models from there pack
 - [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc and Marshadow
 - [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum
 - [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Giritina and origin forme
-- [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon)
+- [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
+- [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
 
 # **Socials**
 

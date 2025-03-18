@@ -21,7 +21,7 @@
       "name": "Mega-X",
       "primaryType": "fire",
       "secondaryType": "dragon",
-      "abilities": ["drought"],
+      "abilities": ["toughclaws"],
       "baseStats": {
         "hp": 78,
         "attack": 130,

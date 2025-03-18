@@ -6,7 +6,9 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -88,6 +90,16 @@ public class DataManage {
             builder -> builder
                     .persistent(PokemonRef.CODEC)
                     .networkSynchronized(PokemonRef.S2C_CODEC)
+    );
+
+    public static final Supplier<DataComponentType<Integer>> CATALOGUE_PAGE = REGISTRAR.registerComponentType(
+            "catalogue_page",
+            builder -> builder
+                    .persistent(Codec.INT)
+                    .networkSynchronized(StreamCodec.of(
+                            FriendlyByteBuf::writeInt,
+                            FriendlyByteBuf::readInt
+                    ))
     );
 
     public static final Supplier<AttachmentType<Pokemon>> N_LUNAR_POKEMON = ATTACHMENT_TYPES.register(

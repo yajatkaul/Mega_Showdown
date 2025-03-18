@@ -3,10 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.creativeTab;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -266,6 +263,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STAR_CORE);
                         output.accept(ModItems.GRISEOUS_ORB);
                         output.accept(ModItems.ASH_CAP);
+                        output.accept(RotomFormes.FAN);
+                        output.accept(RotomFormes.FRIDGEUNIT);
+                        output.accept(RotomFormes.OVENUNIT);
+                        output.accept(RotomFormes.MOWUNIT);
+                        output.accept(RotomFormes.WASHUNIT);
+                        output.accept(RotomFormes.ROTOM_CATALOGUE);
                     })
                     .build());
 

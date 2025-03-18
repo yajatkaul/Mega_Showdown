@@ -8,5 +8,6 @@ public class ItemsRegistration {
         MegaStones.register();
         ZMoves.register();
         TeraMoves.register();
+        RotomFormes.register();
     }
 }

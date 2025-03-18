@@ -418,5 +418,12 @@
   "item.mega_showdown.griseous_orb": "Griseous Orb",
   "tooltip.mega_showdown.griseous_orb.tooltip": "A powerful orb that resonates with the fabric of dimensions.",
   "item.mega_showdown.ash_cap": "Ash Cap",
-  "tooltip.mega_showdown.ash_cap.tooltip": "A cap worn by a legendary trainer, carrying the spirit of adventure."
+  "tooltip.mega_showdown.ash_cap.tooltip": "A cap worn by a legendary trainer, carrying the spirit of adventure.",
+
+  "item.mega_showdown.fanunit": "Fan Unit",
+  "item.mega_showdown.fridgeunit": "Fridge Unit",
+  "item.mega_showdown.mowunit": "Mow Unit",
+  "item.mega_showdown.ovenunit": "Oven Unit",
+  "item.mega_showdown.washunit": "Wash Unit",
+  "item.mega_showdown.rotom_catalogue": "Rotom Catalogue"
 }

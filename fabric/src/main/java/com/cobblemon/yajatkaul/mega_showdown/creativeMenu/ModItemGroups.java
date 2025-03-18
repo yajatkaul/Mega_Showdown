@@ -4,10 +4,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -259,6 +256,12 @@ public class ModItemGroups {
                         entries.add(ModItems.STAR_CORE);
                         entries.add(ModItems.GRISEOUS_ORB);
                         entries.add(ModItems.ASH_CAP);
+                        entries.add(RotomFormes.FAN);
+                        entries.add(RotomFormes.FRIDGEUNIT);
+                        entries.add(RotomFormes.MOWUNIT);
+                        entries.add(RotomFormes.OVENUNIT);
+                        entries.add(RotomFormes.WASHUNIT);
+                        entries.add(RotomFormes.ROTOM_CATALOGUE);
                     }))
                     .build());
 

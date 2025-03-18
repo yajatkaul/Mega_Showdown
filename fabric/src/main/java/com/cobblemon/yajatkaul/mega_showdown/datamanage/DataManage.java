@@ -185,6 +185,12 @@ public class DataManage {
                     )
     );
 
+    public static final ComponentType<Integer> CATALOGUE_PAGE = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "catalogue_page"),
+            ComponentType.<Integer>builder().codec(Codec.INT).build()
+    );
+
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();

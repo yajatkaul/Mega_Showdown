@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
@@ -118,29 +119,45 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                new FlagSpeciesFeature("mega", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                if(ShowdownConfig.battleModeOnly.get()){
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
                 new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
             }
 
-            player.setAttached(DataManage.MEGA_DATA, false);
+            if(ShowdownConfig.battleModeOnly.get()){
+                player.setAttached(DataManage.MEGA_DATA, false);
+            }
         });
 
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(newPlayer);
 
-            if(alive){
-                oldPlayer.removeAttached(DataManage.MEGA_DATA);
-            }else{
-                newPlayer.removeAttached(DataManage.MEGA_DATA);
+            if(ShowdownConfig.battleModeOnly.get()){
+                if(alive){
+                    oldPlayer.removeAttached(DataManage.MEGA_DATA);
+                }else{
+                    newPlayer.removeAttached(DataManage.MEGA_DATA);
+                }
             }
 
             for (Pokemon pokemon : playerPartyStore) {
-                new FlagSpeciesFeature("mega", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                if(ShowdownConfig.battleModeOnly.get()){
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                }
                 new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+                new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
             }
         });
     }
