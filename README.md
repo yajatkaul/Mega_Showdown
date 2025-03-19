@@ -68,7 +68,7 @@ Redorb and Blueorb can be used to get primal groudon and primal kyogre respectiv
 
 A huge thanks to everyone who allowed me to use there models from there pack
 
-- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound)
+- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes, Dialga and its formes, Palkia and its formes 
 - [Souls Megas](https://modrinth.com/datapack/soul-megas-free-megas-for-all) Used for all the mega models
 - [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc and Marshadow
 - [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum

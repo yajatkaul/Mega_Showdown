@@ -21,7 +21,7 @@
         ],
         "quirks": [{
           "name": "blink",
-          "animations": ["bedrock(castform_rainy, blink)"]
+          "animations": ["bedrock(castform, blink)"]
         }
 ]
       },

@@ -37,6 +37,8 @@ import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusPlates;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
@@ -83,6 +85,8 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
+        silvallyChange(post);
+        arcuesChange(post);
         checkUltra(post);
         primalEvent(post);
         crownedEvent(post);
@@ -126,16 +130,167 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
+    public static void silvallyChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+        if(pokemon.getSpecies().getName().equals("Silvally")){
+            if(post.getReceived().isOf(ModItems.BUG_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","bug").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.DARK_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","dark").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.DRAGON_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","dragon").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.ELECTRIC_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","electric").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.FAIRY_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","fairy").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.FIGHTING_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","fighting").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.FIRE_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","fire").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.FLYING_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","flying").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.GHOST_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","ghost").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.GRASS_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","grass").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.GROUND_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","ground").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.ICE_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","ice").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.POISON_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","poison").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.PSYCHIC_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","psychic").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.ROCK_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","rock").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.STEEL_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","steel").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.WATER_MEMORY)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","water").apply(pokemon);
+            } else if (!(post.getReceived().getItem() instanceof Memories)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("rks_memory","normal").apply(pokemon);
+            }
+        }
+    }
+    public static void arcuesChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+        if(pokemon.getSpecies().getName().equals("Arceus")){
+            if(post.getReceived().isOf(ModItems.FLAME_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","fire").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.SPLASH_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","water").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.ZAP_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","electric").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.MEADOW_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","grass").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.ICICLE_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","ice").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.FIST_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","fighting").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.TOXIC_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","poison").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.EARTH_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","ground").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.SKY_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","flying").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.MIND_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","psychic").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.INSECT_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","bug").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.STONE_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","rock").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.SPOOKY_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","ghost").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.DRACO_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","dragon").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.DREAD_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","dark").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.IRON_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","steel").apply(pokemon);
+            } else if(post.getReceived().isOf(ModItems.PIXIE_PLATE)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","fairy").apply(pokemon);
+            } else if(!(post.getReceived().getItem() instanceof ArceusPlates)){
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype","normal").apply(pokemon);
+            }
+        }
+    }
     public static void originChange(HeldItemEvent.Post post){
         Pokemon pokemon = post.getPokemon();
 
         if(pokemon.getSpecies().getName().equals("Giratina")){
             if(post.getReceived().isOf(ModItems.GRISEOUS_ORB)){
-                originAnimation(pokemon.getEntity());
+                originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
                 new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
-                MegaShowdown.LOGGER.info(pokemon.getAspects().toString());
-            }else{
-                originAnimation(pokemon.getEntity());
+            }else if (post.getReturned().isOf(ModItems.GRISEOUS_ORB)){
+                originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
+                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+            }
+        } else if (pokemon.getSpecies().getName().equals("Palkia")) {
+            if(post.getReceived().isOf(ModItems.LUSTROUS_GLOBE)){
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+            }else if (post.getReturned().isOf(ModItems.LUSTROUS_GLOBE)){
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Dialga")) {
+            if(post.getReceived().isOf(ModItems.ADAMANT_ORB)){
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+            }else if (post.getReturned().isOf(ModItems.ADAMANT_ORB)){
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }
         }
@@ -432,7 +587,7 @@ public class CobbleEventHandler {
             }
         }
     }
-    public static void originAnimation(LivingEntity context) {
+    public static void originAnimation(LivingEntity context, SimpleParticleType particleType) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
 
@@ -450,7 +605,7 @@ public class CobbleEventHandler {
             // Play sound effect
             serverWorld.playSound(
                     null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_NOTE_BLOCK_IMITATE_ENDER_DRAGON, // Change this if needed
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
                     SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
             );
 
@@ -463,7 +618,7 @@ public class CobbleEventHandler {
                 double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
 
                 serverWorld.spawnParticles(
-                        ParticleTypes.ASH,
+                        particleType,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,
@@ -484,6 +639,7 @@ public class CobbleEventHandler {
                     new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
 
                     pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
@@ -563,6 +719,7 @@ public class CobbleEventHandler {
                         new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                         new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                         new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                        new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                         new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                         pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
@@ -637,6 +794,7 @@ public class CobbleEventHandler {
                     new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
 
@@ -851,6 +1009,10 @@ public class CobbleEventHandler {
             } else if (formeChangeEvent.getFormeName().equals("wishiwashi")) {
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+            } else if (pokemon.getSpecies().getName().equals("Mimikyu")) {
+                if(formeChangeEvent.getFormeName().equals("busted")){
+                    new StringSpeciesFeature("disguise_form", "busted").apply(pokemon);
+                }
             }
         }
 

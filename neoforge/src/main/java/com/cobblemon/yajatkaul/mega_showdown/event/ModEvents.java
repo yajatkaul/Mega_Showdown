@@ -365,16 +365,22 @@ public class ModEvents {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    if(Config.battleModeOnly){
+                        new FlagSpeciesFeature("mega", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    }
+                    new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                 }
 
-                player.setData(DataManage.MEGA_DATA, false);
+                if(Config.battleModeOnly){
+                    player.setData(DataManage.MEGA_DATA, false);
+                }
             }
         }
     }
@@ -386,16 +392,22 @@ public class ModEvents {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
                 for (Pokemon pokemon : playerPartyStore) {
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    if(Config.battleModeOnly){
+                        new FlagSpeciesFeature("mega", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
+                    }
+                    new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+                    new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                 }
 
-                player.setData(DataManage.MEGA_DATA, false);
+                if(Config.battleModeOnly){
+                    player.setData(DataManage.MEGA_DATA, false);
+                }
             }
         }
     }

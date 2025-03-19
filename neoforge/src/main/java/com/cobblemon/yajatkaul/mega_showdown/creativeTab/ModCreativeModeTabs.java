@@ -262,6 +262,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HEARTHFLAME_MASK);
                         output.accept(ModItems.STAR_CORE);
                         output.accept(ModItems.GRISEOUS_ORB);
+                        output.accept(ModItems.LUSTROUS_GLOBE);
+                        output.accept(ModItems.ADAMANT_ORB);
                         output.accept(ModItems.ASH_CAP);
                         output.accept(RotomFormes.FAN);
                         output.accept(RotomFormes.FRIDGEUNIT);
@@ -269,6 +271,42 @@ public class ModCreativeModeTabs {
                         output.accept(RotomFormes.MOWUNIT);
                         output.accept(RotomFormes.WASHUNIT);
                         output.accept(RotomFormes.ROTOM_CATALOGUE);
+
+                        output.accept(ModItems.FLAME_PLATE);
+                        output.accept(ModItems.SPLASH_PLATE);
+                        output.accept(ModItems.ZAP_PLATE);
+                        output.accept(ModItems.MEADOW_PLATE);
+                        output.accept(ModItems.ICICLE_PLATE);
+                        output.accept(ModItems.FIST_PLATE);
+                        output.accept(ModItems.TOXIC_PLATE);
+                        output.accept(ModItems.EARTH_PLATE);
+                        output.accept(ModItems.SKY_PLATE);
+                        output.accept(ModItems.MIND_PLATE);
+                        output.accept(ModItems.INSECT_PLATE);
+                        output.accept(ModItems.STONE_PLATE);
+                        output.accept(ModItems.SPOOKY_PLATE);
+                        output.accept(ModItems.DRACO_PLATE);
+                        output.accept(ModItems.DREAD_PLATE);
+                        output.accept(ModItems.IRON_PLATE);
+                        output.accept(ModItems.PIXIE_PLATE);
+
+                        output.accept(ModItems.BUG_MEMORY);
+                        output.accept(ModItems.DARK_MEMORY);
+                        output.accept(ModItems.DRAGON_MEMORY);
+                        output.accept(ModItems.ELECTRIC_MEMORY);
+                        output.accept(ModItems.FAIRY_MEMORY);
+                        output.accept(ModItems.FIGHTING_MEMORY);
+                        output.accept(ModItems.FIRE_MEMORY);
+                        output.accept(ModItems.FLYING_MEMORY);
+                        output.accept(ModItems.GHOST_MEMORY);
+                        output.accept(ModItems.GRASS_MEMORY);
+                        output.accept(ModItems.GROUND_MEMORY);
+                        output.accept(ModItems.ICE_MEMORY);
+                        output.accept(ModItems.POISON_MEMORY);
+                        output.accept(ModItems.PSYCHIC_MEMORY);
+                        output.accept(ModItems.ROCK_MEMORY);
+                        output.accept(ModItems.STEEL_MEMORY);
+                        output.accept(ModItems.WATER_MEMORY);
                     })
                     .build());
 

@@ -217,7 +217,7 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "メガ流星たいようの鉱石",
   "block.mega_showdown.mega_meteorid_thunder_ore": "メガ流星かみなりの鉱石",
   "block.mega_showdown.mega_meteorid_water_ore": "メガ流星みずの鉱石",
-  
+
   "key.mega_showdown.mega_evo": "メガシンカ",
   "key.categories.mega_showdown": "Mega Showdown",
 
@@ -404,5 +404,34 @@
   "item.mega_showdown.rusted_shield": "くちたたて",
   "tooltip.mega_showdown.rusted_shield.tooltip": "大昔の 英雄が 災厄を 討ち払ったと 伝えられる 盾 だが いまは さびて ボロボロに なっている。",
   "item.mega_showdown.prison_bottle": "いましめのツボ",
-  "tooltip.mega_showdown.prison_bottle.tooltip": "大昔に とあるポケモンの 力を 封じ込めたと される ツボ。"
+  "tooltip.mega_showdown.prison_bottle.tooltip": "大昔に とあるポケモンの 力を 封じ込めたと される ツボ。",
+
+  "item.mega_showdown.gracidea_flower": "グラシデアのはな",
+  "tooltip.mega_showdown.gracidea_flower.tooltip": "誕生日や 記念日などに 感謝の気持ちを 伝えるため ブーケにして 贈ることが ある 神秘的な花。",
+
+  "item.mega_showdown.cornerstone_mask": "いしずえのめん",
+  "tooltip.mega_showdown.cornerstone_mask.tooltip": "結晶が あしらわれた 木彫りの 面。オーガポンに 持たせると いわタイプを まとい 頑丈な 石の 体で あらゆる 攻撃から 身を守る。",
+  "item.mega_showdown.wellspring_mask": "いどのめん",
+  "tooltip.mega_showdown.wellspring_mask.tooltip": "結晶が あしらわれた 木彫りの 面。オーガポンに 持たせると みずタイプを まとい 水のように 絶え間なく 技を 繰りだし続ける。",
+  "item.mega_showdown.hearthflame_mask": "かまどのめん",
+  "tooltip.mega_showdown.hearthflame_mask.tooltip": "結晶が あしらわれた 木彫りの 面。オーガポンに 持たせると ほのおタイプを まとい 炎のように 激しく 敵を 攻めたてる。",
+
+  "item.mega_showdown.scroll_of_darkness": "あくのかけじく",
+  "tooltip.mega_showdown.scroll_of_darkness.tooltip": "ある特定の ポケモンを 進化させる 不思議なかけじく。 あくの極意が 書かれている。",
+  "item.mega_showdown.scroll_of_waters": "みずのかけじく",
+  "tooltip.mega_showdown.scroll_of_waters.tooltip": "ある特定の ポケモンを 進化させる 不思議なかけじく。 みずの極意が 書かれている。",
+  "item.mega_showdown.star_core": "とこしえのねがい",
+  "tooltip.mega_showdown.star_core.tooltip": "不思議で 莫大なパワーを 秘めている 石。ムゲンダイナに与えると エネルギーを吸収し オーバーロードを引き起こす。",
+  "item.mega_showdown.griseous_orb": "はっきんだま",
+  "tooltip.mega_showdown.griseous_orb.tooltip": "ギラティナに 持たせると 力がみなぎり 姿が変わる 光り輝く 珠。",
+  "creativeTab.mega_showdown.forms_tab": "Mega Showdown-フォルムチェンジ",
+  "item.mega_showdown.ash_cap": "オリジナルキャップ",
+  "tooltip.mega_showdown.ash_cap.tooltip": "世界を巡った とある ポケモントレーナーが 被っていたとされる 帽子。ピカチュウに 被せると 大きな冒険心を 心に 宿す。",
+
+  "item.mega_showdown.fanunit": "カラクリ風車",
+  "item.mega_showdown.fridgeunit": "カラクリつづら",
+  "item.mega_showdown.mowunit": "カラクリ丸のこ",
+  "item.mega_showdown.ovenunit": "カラクリ箱",
+  "item.mega_showdown.washunit": "カラクリ桶",
+  "item.mega_showdown.rotom_catalogue": "ロトムのカタログ"
 }

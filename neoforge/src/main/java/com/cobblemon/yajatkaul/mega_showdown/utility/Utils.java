@@ -168,6 +168,48 @@ public class Utils {
         zMovesRegister();
         loadMegaStoneIds();
         heldItems();
+        platesRegister();
+        memoriesRegister();
+    }
+
+    public static void platesRegister(){
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FLAME_PLATE.get(), "flameplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DRACO_PLATE.get(), "dracoplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DREAD_PLATE.get(), "dreadplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.EARTH_PLATE.get(), "earthplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FIST_PLATE.get(), "fistplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ICICLE_PLATE.get(), "icicleplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.INSECT_PLATE.get(), "insectplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.IRON_PLATE.get(), "ironplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.MEADOW_PLATE.get(), "meadowplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.MIND_PLATE.get(), "mindplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.PIXIE_PLATE.get(), "pixieplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SKY_PLATE.get(), "skyplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SPLASH_PLATE.get(), "splashplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SPOOKY_PLATE.get(), "spookyplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.STONE_PLATE.get(), "stoneplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.TOXIC_PLATE.get(), "toxicplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ZAP_PLATE.get(), "zapplate");
+    }
+
+    public static void memoriesRegister(){
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.BUG_MEMORY.get(), "bugmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DARK_MEMORY.get(), "darkmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DRAGON_MEMORY.get(), "dragonmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ELECTRIC_MEMORY.get(), "electricmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FAIRY_MEMORY.get(), "fairymemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FIGHTING_MEMORY.get(), "fightingmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FIRE_MEMORY.get(), "firememory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FLYING_MEMORY.get(), "flyingmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GHOST_MEMORY.get(), "ghostmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GRASS_MEMORY.get(), "grassmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GROUND_MEMORY.get(), "groundmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ICE_MEMORY.get(), "icememory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.POISON_MEMORY.get(), "poisonmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.PSYCHIC_MEMORY.get(), "psychicmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ROCK_MEMORY.get(), "rockmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.STEEL_MEMORY.get(), "steelmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.WATER_MEMORY.get(), "watermemory");
     }
 
     public static void setTradable(Pokemon pokemon, boolean allow){

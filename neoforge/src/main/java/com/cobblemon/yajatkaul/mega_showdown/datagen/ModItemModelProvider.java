@@ -148,6 +148,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STAR_CORE.get());
 
         basicItem(ModItems.GRISEOUS_ORB.get());
+        basicItem(ModItems.LUSTROUS_GLOBE.get());
+        basicItem(ModItems.ADAMANT_ORB.get());
 
         basicItem(ModItems.ASH_CAP.get());
 
@@ -157,5 +159,41 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(RotomFormes.MOWUNIT.get());
         basicItem(RotomFormes.WASHUNIT.get());
         basicItem(RotomFormes.ROTOM_CATALOGUE.get());
+
+        basicItem(ModItems.FLAME_PLATE.get());
+        basicItem(ModItems.SPLASH_PLATE.get());
+        basicItem(ModItems.ZAP_PLATE.get());
+        basicItem(ModItems.MEADOW_PLATE.get());
+        basicItem(ModItems.ICICLE_PLATE.get());
+        basicItem(ModItems.FIST_PLATE.get());
+        basicItem(ModItems.TOXIC_PLATE.get());
+        basicItem(ModItems.EARTH_PLATE.get());
+        basicItem(ModItems.SKY_PLATE.get());
+        basicItem(ModItems.MIND_PLATE.get());
+        basicItem(ModItems.INSECT_PLATE.get());
+        basicItem(ModItems.STONE_PLATE.get());
+        basicItem(ModItems.SPOOKY_PLATE.get());
+        basicItem(ModItems.DRACO_PLATE.get());
+        basicItem(ModItems.DREAD_PLATE.get());
+        basicItem(ModItems.IRON_PLATE.get());
+        basicItem(ModItems.PIXIE_PLATE.get());
+
+        basicItem(ModItems.BUG_MEMORY.get());
+        basicItem(ModItems.DARK_MEMORY.get());
+        basicItem(ModItems.DRAGON_MEMORY.get());
+        basicItem(ModItems.ELECTRIC_MEMORY.get());
+        basicItem(ModItems.FAIRY_MEMORY.get());
+        basicItem(ModItems.FIGHTING_MEMORY.get());
+        basicItem(ModItems.FIRE_MEMORY.get());
+        basicItem(ModItems.FLYING_MEMORY.get());
+        basicItem(ModItems.GHOST_MEMORY.get());
+        basicItem(ModItems.GRASS_MEMORY.get());
+        basicItem(ModItems.GROUND_MEMORY.get());
+        basicItem(ModItems.ICE_MEMORY.get());
+        basicItem(ModItems.POISON_MEMORY.get());
+        basicItem(ModItems.PSYCHIC_MEMORY.get());
+        basicItem(ModItems.ROCK_MEMORY.get());
+        basicItem(ModItems.STEEL_MEMORY.get());
+        basicItem(ModItems.WATER_MEMORY.get());
     }
 }

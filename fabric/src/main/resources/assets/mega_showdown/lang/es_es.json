@@ -252,7 +252,7 @@
   "advancement.mega_showdown.terastallized.title": "¡Teracristalizado!",
   "advancement.mega_showdown.ultra_necrom.title": "Radiante, poderoso, majestuoso",
   "advancement.mega_showdown.z_moves.title": "¡Libera el poder Z!",
-	
+
   "advancement.mega_showdown.root.description": "Mundo Showdown",
   "advancement.mega_showdown.mega_evolve.description": "Megaevoluciona a algún pokemon",
   "advancement.mega_showdown.find_mega_stone.description": "Obtén cualquier megapiedra",
@@ -347,7 +347,7 @@
   "tooltip.mega_showdown.z-ring.tooltip": "Brazalete que permite a un Entrenador y su Pokémon reunir el Poder Z necesario para ejecutar Movimientos Z.",
   "item.mega_showdown.tera_orb": "Orbe teracristal",
   "tooltip.mega_showdown.tera_item.tooltip": "Orbe que permite a un Entrenador Teracristalizar a su Pokémon, cambiando temporalmente su tipo y potenciando sus movimientos.",
-  
+
   "item.mega_showdown.bug_tera_shard": "Teralito Bicho",
   "item.mega_showdown.dark_tera_shard": "Teralito Siniestro",
   "item.mega_showdown.dragon_tera_shard": "Teralito Dragón",
@@ -380,12 +380,45 @@
   "item.mega_showdown.dna_splicer.inactive": "Punta ADN (Inactivo)",
   "item.mega_showdown.dna_splicer.charged": "Punta ADN (Cargado)",
   "tooltip.mega_showdown.dna_splicer.tooltip": "Se usa para fusionar a Reshiram/Zekrom con un ser misterioso",
-  
+  "item.mega_showdown.reins_of_unity": "Riendas unión",
+  "item.mega_showdown.reins_of_unity.inactive": "Riendas unión (Inactivo)",
+  "item.mega_showdown.reins_of_unity.charged": "Riendas unión (Cargado)",
+  "tooltip.mega_showdown.reins_of_unity.tooltip": "Se usa para fusionar a Spectrier/Glastrier con un ser misterioso",
+
   "item.mega_showdown.z-ring_black": "Pulsera Z negra",
   "item.mega_showdown.z-power_ring": "Superpulsera Z",
   "item.mega_showdown.may_bracelet": "Brazalete Mega de Aura",
   "item.mega_showdown.rusted_sword": "Espada oxidada",
   "tooltip.mega_showdown.rusted_sword.tooltip": "Cuenta una antigua leyenda que un valiente héroe blandió esta espada para hacer frente a un cataclismo, pero ahora está oxidada y en un estado lamentable..",
   "item.mega_showdown.rusted_shield": "Escudo oxidado",
-  "tooltip.mega_showdown.rusted_shield.tooltip": "Cuenta una antigua leyenda que un valiente héroe asió este escudo para hacer frente a un cataclismo, pero ahora está oxidado y en un estado lamentable."  
+  "tooltip.mega_showdown.rusted_shield.tooltip": "Cuenta una antigua leyenda que un valiente héroe asió este escudo para hacer frente a un cataclismo, pero ahora está oxidado y en un estado lamentable.",
+  "item.mega_showdown.prison_bottle": "Vasija castigo",
+  "tooltip.mega_showdown.prison_bottle.tooltip": "Vasija en la que se halla confinado el poder de cierto Pokémon desde hace muchísimo tiempo.",
+  "item.mega_showdown.gracidea_flower": "Gracídea",
+  "tooltip.mega_showdown.gracidea_flower.tooltip": "Una flor que se suele regalar en ramos para expresar agradecimiento en ocasiones especiales, como cumpleaños.",
+
+  "item.mega_showdown.cornerstone_mask": "Máscara cimiento",
+  "tooltip.mega_showdown.cornerstone_mask.tooltip": "Una máscara mística que mejora la resistencia de un Pokémon, encarnando el espíritu de una defensa inquebrantable.",
+  "item.mega_showdown.wellspring_mask": "Máscara fuente",
+  "tooltip.mega_showdown.wellspring_mask.tooltip": "Una máscara sagrada infundida con el poder del agua fluyente, que mejora la agilidad y recuperación de un Pokémon.",
+  "item.mega_showdown.hearthflame_mask": "Máscara horno",
+  "tooltip.mega_showdown.hearthflame_mask.tooltip": "Una máscara ardiente que enciende la fuerza interior de un Pokémon, aumentando su poder ofensivo.",
+
+  "item.mega_showdown.scroll_of_darkness": "Manuscrito sombras",
+  "tooltip.mega_showdown.scroll_of_darkness.tooltip": "Un pergamino antiguo lleno de conocimiento sombrío. Otorga a ciertos Pokémon la esencia de la oscuridad.",
+  "item.mega_showdown.scroll_of_waters": "Manuscrito aguas",
+  "tooltip.mega_showdown.scroll_of_waters.tooltip": "Un pergamino místico que contiene los secretos de las aguas fluyentes. Otorga a ciertos Pokémon el dominio sobre técnicas acuáticas.",
+  "item.mega_showdown.star_core": "Núcleo estelar",
+  "tooltip.mega_showdown.star_core.tooltip": "Un orbe el cual contiene una inmensa energía",
+  "item.mega_showdown.griseous_orb": "Griseosfera",
+  "tooltip.mega_showdown.griseous_orb.tooltip": "Un orbe poderoso que resuena con la esencia de las dimensiones.",
+  "item.mega_showdown.ash_cap": "Gorra de Ash",
+  "tooltip.mega_showdown.ash_cap.tooltip": "Una gorra usada por un entrenador legendario, que lleva el espíritu de la aventura.",
+
+  "item.mega_showdown.fanunit": "Ventilador",
+  "item.mega_showdown.fridgeunit": "Refrigerador",
+  "item.mega_showdown.mowunit": "Podadora",
+  "item.mega_showdown.ovenunit": "Horno",
+  "item.mega_showdown.washunit": "Lavadora",
+  "item.mega_showdown.rotom_catalogue": "Catálogo Rotom"
 }

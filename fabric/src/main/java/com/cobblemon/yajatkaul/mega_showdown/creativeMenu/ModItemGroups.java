@@ -255,6 +255,8 @@ public class ModItemGroups {
                         entries.add(ModItems.HEARTHFLAME_MASK);
                         entries.add(ModItems.STAR_CORE);
                         entries.add(ModItems.GRISEOUS_ORB);
+                        entries.add(ModItems.ADAMANT_ORB);
+                        entries.add(ModItems.LUSTROUS_GLOBE);
                         entries.add(ModItems.ASH_CAP);
                         entries.add(RotomFormes.FAN);
                         entries.add(RotomFormes.FRIDGEUNIT);
@@ -262,6 +264,42 @@ public class ModItemGroups {
                         entries.add(RotomFormes.OVENUNIT);
                         entries.add(RotomFormes.WASHUNIT);
                         entries.add(RotomFormes.ROTOM_CATALOGUE);
+
+                        entries.add(ModItems.FLAME_PLATE);
+                        entries.add(ModItems.SPLASH_PLATE);
+                        entries.add(ModItems.ZAP_PLATE);
+                        entries.add(ModItems.MEADOW_PLATE);
+                        entries.add(ModItems.ICICLE_PLATE);
+                        entries.add(ModItems.FIST_PLATE);
+                        entries.add(ModItems.TOXIC_PLATE);
+                        entries.add(ModItems.EARTH_PLATE);
+                        entries.add(ModItems.SKY_PLATE);
+                        entries.add(ModItems.MIND_PLATE);
+                        entries.add(ModItems.INSECT_PLATE);
+                        entries.add(ModItems.STONE_PLATE);
+                        entries.add(ModItems.SPOOKY_PLATE);
+                        entries.add(ModItems.DRACO_PLATE);
+                        entries.add(ModItems.DREAD_PLATE);
+                        entries.add(ModItems.IRON_PLATE);
+                        entries.add(ModItems.PIXIE_PLATE);
+
+                        entries.add(ModItems.BUG_MEMORY);
+                        entries.add(ModItems.DARK_MEMORY);
+                        entries.add(ModItems.DRAGON_MEMORY);
+                        entries.add(ModItems.ELECTRIC_MEMORY);
+                        entries.add(ModItems.FAIRY_MEMORY);
+                        entries.add(ModItems.FIGHTING_MEMORY);
+                        entries.add(ModItems.FIRE_MEMORY);
+                        entries.add(ModItems.FLYING_MEMORY);
+                        entries.add(ModItems.GHOST_MEMORY);
+                        entries.add(ModItems.GRASS_MEMORY);
+                        entries.add(ModItems.GROUND_MEMORY);
+                        entries.add(ModItems.ICE_MEMORY);
+                        entries.add(ModItems.POISON_MEMORY);
+                        entries.add(ModItems.PSYCHIC_MEMORY);
+                        entries.add(ModItems.ROCK_MEMORY);
+                        entries.add(ModItems.STEEL_MEMORY);
+                        entries.add(ModItems.WATER_MEMORY);
                     }))
                     .build());
 

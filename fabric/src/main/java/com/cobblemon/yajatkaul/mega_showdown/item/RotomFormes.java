@@ -151,7 +151,7 @@ public class RotomFormes {
         }
     });
 
-    public static final Item WASHUNIT = registerItem("fanunit", new Item(new Item.Settings()){
+    public static final Item WASHUNIT = registerItem("washunit", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
             if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
