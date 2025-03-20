@@ -323,7 +323,7 @@ public class CobbleEventHandler {
         } else if (post.getReceived().isOf(ModItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask","cornerstone").apply(pokemon);
             try {
-                pokemon.setTeraType(TeraTypes.getGROUND());
+                pokemon.setTeraType(TeraTypes.getROCK());
             }catch (Exception e){
                 MegaShowdown.LOGGER.info("Sike");
             }
@@ -641,6 +641,9 @@ public class CobbleEventHandler {
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                    if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                        new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                    }
 
                     pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
                 }
@@ -722,6 +725,9 @@ public class CobbleEventHandler {
                         new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                         new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                        if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                            new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                        }
                         pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
                     }
                 }
@@ -797,6 +803,9 @@ public class CobbleEventHandler {
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                    if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                        new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                    }
 
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
@@ -1013,6 +1022,11 @@ public class CobbleEventHandler {
                 if(formeChangeEvent.getFormeName().equals("busted")){
                     new StringSpeciesFeature("disguise_form", "busted").apply(pokemon);
                 }
+            }
+        }else if (pokemon.getSpecies().getName().equals("Greninja")) {
+            if(formeChangeEvent.getFormeName().equals("ash")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
             }
         }
 

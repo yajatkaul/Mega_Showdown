@@ -376,6 +376,9 @@ public class ModEvents {
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
+                    if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                        new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                    }
                 }
 
                 if(Config.battleModeOnly){
@@ -403,6 +406,9 @@ public class ModEvents {
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                        new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                    }
                 }
 
                 if(Config.battleModeOnly){

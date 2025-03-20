@@ -130,6 +130,9 @@ public class ModEvents {
                 new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                 new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                 new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                    new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                }
             }
 
             if(ShowdownConfig.battleModeOnly.get()){
@@ -160,6 +163,9 @@ public class ModEvents {
                 new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                 new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                 new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+                    new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+                }
             }
         });
     }

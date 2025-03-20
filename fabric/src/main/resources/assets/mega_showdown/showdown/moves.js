@@ -3467,22 +3467,42 @@ const Moves = {
     priority: 0,
     flags: { bypasssub: 1, metronome: 1 },
     volatileStatus: "curse",
-    onModifyMove(move, source, target) {
-      if (!source.hasType("Ghost")) {
-        move.target = move.nonGhostTarget;
-      } else if (source.isAlly(target)) {
-        move.target = "randomNormal";
-      }
-    },
+	onModifyMove(move, source, target) {
+		if (!source.terastallized) {
+			if (!source.hasType("Ghost")) {
+				move.target = move.nonGhostTarget;
+			} else if (source.isAlly(target)) {
+				move.target = "randomNormal";
+			}
+		}
+		if (source.terastallized) {
+			if (source.teraType !== "ghost") {
+				move.target = move.nonGhostTarget;
+			} else if (source.isAlly(target)) {
+				move.target = "randomNormal";
+			}
+		}
+	},
     onTryHit(target, source, move) {
-      if (!source.hasType("Ghost")) {
-        delete move.volatileStatus;
-        delete move.onHit;
-        move.self = { boosts: { spe: -1, atk: 1, def: 1 } };
-      } else if (move.volatileStatus && target.volatiles["curse"]) {
-        return false;
-      }
-    },
+      if (!source.terastallized) {
+		  if (!source.hasType("Ghost")) {
+			  delete move.volatileStatus;
+			  delete move.onHit;
+			  move.self = { boosts: { spe: -1, atk: 1, def: 1 } };
+		  } else if (move.volatileStatus && target.volatiles["curse"]) {
+			  return false;
+		  }
+	  }
+	  if (source.terastallized) {
+		  if (source.teraType !== "ghost") {
+			  delete move.volatileStatus;
+			  delete move.onHit;
+			  move.self = { boosts: { spe: -1, atk: 1, def: 1 } };
+		  } else if (move.volatileStatus && target.volatiles["curse"]) {
+			  return false;
+		  }
+	  }
+	}, 
     onHit(target, source) {
       this.directDamage(source.maxhp / 2, source, source);
     },
