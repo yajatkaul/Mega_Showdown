@@ -3,12 +3,12 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.ashgreninja",
-				"texture_width": 128,
-				"texture_height": 64,
+				"identifier": "geometry.ash_greninja",
+				"texture_width": 130,
+				"texture_height": 92,
 				"visible_bounds_width": 7,
-				"visible_bounds_height": 3.5,
-				"visible_bounds_offset": [0, 1.25, 0]
+				"visible_bounds_height": 6,
+				"visible_bounds_offset": [0, 2, 0]
 			},
 			"bones": [
 				{
@@ -18,7 +18,7 @@
 				{
 					"name": "body",
 					"parent": "greninja",
-					"pivot": [0, 0, 0]
+					"pivot": [0, 20, 1]
 				},
 				{
 					"name": "torso",
@@ -43,6 +43,34 @@
 					"cubes": [
 						{"origin": [-4, 20.8, -2], "size": [8, 4, 6], "uv": [40, 14]},
 						{"origin": [-3, 24.8, -1], "size": [6, 2, 5], "inflate": 0.01, "uv": [24, 13]}
+					]
+				},
+				{
+					"name": "shuriken_chest",
+					"parent": "chest",
+					"pivot": [0, 22.2, 4],
+					"cubes": [
+						{"origin": [-2.5, 19.7, 4], "size": [5, 5, 0], "inflate": 0.01, "uv": [75, 28]},
+						{"origin": [-0.5, 21.7, 4], "size": [1, 1, 2], "uv": [24, 85]}
+					]
+				},
+				{
+					"name": "back_shuriken",
+					"parent": "chest",
+					"pivot": [1.55042, 21.23587, 2.83333],
+					"rotation": [90, 0, -45]
+				},
+				{
+					"name": "back_shuriken1",
+					"parent": "back_shuriken",
+					"pivot": [1.05042, 17.5692, 2.66667],
+					"cubes": [
+						{"origin": [-8.44958, 17.0692, 1.16667], "size": [23, 1, 3], "pivot": [1.05042, 17.5692, 2.66667], "rotation": [0, -90, 0], "uv": [0, 88]},
+						{"origin": [0.55042, 17.06087, 16.13333], "size": [1, 1, 2], "uv": [24, 85]},
+						{"origin": [13.05042, 17.06087, 3.63333], "size": [1, 1, 2], "pivot": [13.55042, 17.56087, 4.63333], "rotation": [0, 90, 0], "uv": [24, 85]},
+						{"origin": [0.55042, 17.06087, -8.86667], "size": [1, 1, 2], "pivot": [1.05042, 17.56087, -7.86667], "rotation": [0, 180, 0], "uv": [24, 85]},
+						{"origin": [-6.44958, 17.0692, 3.16667], "size": [23, 1, 3], "pivot": [3.05042, 17.5692, 4.66667], "rotation": [0, 180, 0], "uv": [0, 88]},
+						{"origin": [-11.94958, 17.06087, 3.63333], "size": [1, 1, 2], "pivot": [-11.44958, 17.56087, 4.63333], "rotation": [0, -90, 0], "uv": [24, 85]}
 					]
 				},
 				{
@@ -192,70 +220,6 @@
 					]
 				},
 				{
-					"name": "tongue_hidden",
-					"parent": "head",
-					"pivot": [0, 27.16914, 0.09714],
-					"cubes": [
-						{"origin": [-1, 26.66914, -4.90286], "size": [2, 1, 5], "inflate": 0.01, "uv": [79, 48]}
-					]
-				},
-				{
-					"name": "tongue_hidden2",
-					"parent": "tongue_hidden",
-					"pivot": [0, 27.16914, -4.90286],
-					"cubes": [
-						{"origin": [-1.5, 26.66914, -8.65286], "size": [3, 1, 4], "uv": [79, 54]}
-					]
-				},
-				{
-					"name": "tongue_hidden3",
-					"parent": "tongue_hidden2",
-					"pivot": [0, 27.16914, -8.65286],
-					"cubes": [
-						{"origin": [-1.5, 26.66914, -12.40286], "size": [3, 1, 4], "inflate": 0.01, "uv": [79, 59]}
-					]
-				},
-				{
-					"name": "tongue_hidden4",
-					"parent": "tongue_hidden3",
-					"pivot": [0, 27.16914, -12.40286],
-					"cubes": [
-						{"origin": [-1.5, 26.16914, -17.15286], "size": [3, 2, 5], "uv": [93, 57]}
-					]
-				},
-				{
-					"name": "tongue_hidden5",
-					"parent": "tongue_hidden4",
-					"pivot": [0, 27.16914, -17.15286],
-					"cubes": [
-						{"origin": [-1.5, 26.16914, -21.90286], "size": [3, 2, 5], "inflate": 0.01, "uv": [93, 50]}
-					]
-				},
-				{
-					"name": "tongue_hidden6",
-					"parent": "tongue_hidden5",
-					"pivot": [0, 27.16914, -21.90286],
-					"cubes": [
-						{"origin": [-1.5, 26.16914, -26.65286], "size": [3, 2, 5], "uv": [109, 57]}
-					]
-				},
-				{
-					"name": "tongue_hidden7",
-					"parent": "tongue_hidden6",
-					"pivot": [0, 27.16914, -26.65286],
-					"cubes": [
-						{"origin": [-1.5, 26.16914, -31.40286], "size": [3, 2, 5], "inflate": 0.01, "uv": [109, 50]}
-					]
-				},
-				{
-					"name": "tongue_hidden8",
-					"parent": "tongue_hidden7",
-					"pivot": [0, 27.16914, -31.40286],
-					"cubes": [
-						{"origin": [-2, 25.66914, -37.15286], "size": [4, 3, 6], "uv": [99, 41]}
-					]
-				},
-				{
 					"name": "head_fin_right",
 					"parent": "head",
 					"pivot": [-3.7, 30.66914, 0.09714],
@@ -332,11 +296,12 @@
 					]
 				},
 				{
-					"name": "shuriken_chest",
+					"name": "shuriken_hand",
 					"parent": "chest",
-					"pivot": [0, 22.2, 4],
+					"pivot": [-35, 21.95, 2],
 					"cubes": [
-						{"origin": [-2.5, 19.7, 4], "size": [5, 5, 0], "inflate": 0.01, "uv": [75, 28]}
+						{"origin": [-46, 20.95, 2], "size": [22, 2, 0], "pivot": [-35, 21.95, 2], "rotation": [90, 0, 0], "uv": [84, 35]},
+						{"origin": [-36, 10.95, 2], "size": [2, 22, 0], "inflate": 0.01, "pivot": [-35, 21.95, 2], "rotation": [90, 0, 0], "uv": [120, 0]}
 					]
 				},
 				{

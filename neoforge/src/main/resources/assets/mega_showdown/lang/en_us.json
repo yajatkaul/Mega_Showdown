@@ -193,13 +193,6 @@
   "item.mega_showdown.archie_anchor": "Archie's Anchor",
   "tooltip.mega_showdown.archie_anchor.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
 
-  "item.mega_showdown.dnasplicers": "DNA Splicers",
-  "item.mega_showdown.dousedrive": "Douse Drive",
-  "item.mega_showdown.cornerstonemask": "Cornerstone Mask",
-  "item.mega_showdown.burndrive": "Burn Drive",
-  "item.mega_showdown.chilldrive": "Chill Drive",
-  "item.mega_showdown.adamantorb": "Adamant Orb",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
@@ -493,5 +486,15 @@
   "item.mega_showdown.steelmemory": "Steel Memory",
   "tooltip.mega_showdown.steelmemory.tooltip": "A disc with Steel-type data. It changes Silvally's type.",
   "item.mega_showdown.watermemory": "Water Memory",
-  "tooltip.mega_showdown.watermemory.tooltip": "A disc with Water-type data. It changes Silvally's type."
+  "tooltip.mega_showdown.watermemory.tooltip": "A disc with Water-type data. It changes Silvally's type.",
+
+  "item.mega_showdown.dousedrive": "Douse Drive",
+  "tooltip.mega_showdown.dousedrive.tooltip": "A cassette that contains Water-type data. It changes Genesect's Techno Blast to Water-type.",
+  "item.mega_showdown.shockdisk": "Shock Drive",
+  "tooltip.mega_showdown.shockdisk.tooltip": "A cassette that contains Electric-type data. It changes Genesect's Techno Blast to Electric-type.",
+  "item.mega_showdown.burndrive": "Burn Drive",
+  "tooltip.mega_showdown.burndrive.tooltip": "A cassette that contains Fire-type data. It changes Genesect's Techno Blast to Fire-type.",
+  "item.mega_showdown.chilldrive": "Chill Drive",
+  "tooltip.mega_showdown.chilldrive.tooltip": "A cassette that contains Ice-type data. It changes Genesect's Techno Blast to Ice-type."
+
 }

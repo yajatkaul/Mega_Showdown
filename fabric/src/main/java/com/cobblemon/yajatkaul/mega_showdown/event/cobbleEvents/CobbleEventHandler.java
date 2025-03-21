@@ -37,10 +37,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusPlates;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -85,6 +82,7 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
+        genesectChange(post);
         silvallyChange(post);
         arcuesChange(post);
         checkUltra(post);
@@ -130,6 +128,26 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
+    public static void genesectChange(HeldItemEvent.Post post){
+        Pokemon pokemon = post.getPokemon();
+        if(pokemon.getSpecies().getName().equals("Genesect")){
+            if(post.getReceived().isOf(ModItems.DOUSE_DRIVE)){
+                new StringSpeciesFeature("techno_drive","water").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.BURN_DRIVE)){
+                new StringSpeciesFeature("techno_drive","fire").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.CHILL_DRIVE)){
+                new StringSpeciesFeature("techno_drive","ice").apply(pokemon);
+            }
+            else if(post.getReceived().isOf(ModItems.SHOCK_DRIVE)){
+                new StringSpeciesFeature("techno_drive","electric").apply(pokemon);
+            }
+            else if (!(post.getReceived().getItem() instanceof Drives)) {
+                new StringSpeciesFeature("techno_drive","none").apply(pokemon);
+            }
+        }
+    }
     public static void silvallyChange(HeldItemEvent.Post post){
         Pokemon pokemon = post.getPokemon();
         if(pokemon.getSpecies().getName().equals("Silvally")){
@@ -1027,6 +1045,11 @@ public class CobbleEventHandler {
             if(formeChangeEvent.getFormeName().equals("ash")){
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Cherrim")) {
+            if(formeChangeEvent.getFormeName().equals("sunshine")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("blossom_form", "sunshine").apply(pokemon);
             }
         }
 

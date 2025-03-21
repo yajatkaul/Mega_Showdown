@@ -195,5 +195,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ROCK_MEMORY.get());
         basicItem(ModItems.STEEL_MEMORY.get());
         basicItem(ModItems.WATER_MEMORY.get());
+
+        basicItem(ModItems.BURN_DRIVE.get());
+        basicItem(ModItems.DOUSE_DRIVE.get());
+        basicItem(ModItems.CHILL_DRIVE.get());
+        basicItem(ModItems.SHOCK_DRIVE.get());
     }
 }

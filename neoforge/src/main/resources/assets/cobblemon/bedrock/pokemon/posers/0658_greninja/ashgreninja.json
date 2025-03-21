@@ -1,66 +1,180 @@
 {
-  "head": "head",
-  "portraitScale": 2,
-  "portraitTranslation": [0, 1.25, 0],
-  "profileScale": 0.7,
-  "profileTranslation": [0, 0.7, 0],
-  "faint": "bedrock(ashgreninja, faint)",
+    "head": "head",
+    "portraitScale": 2.2,
+    "portraitTranslation": [ -0.15, 1.45, 0 ],
+    "profileScale": 0.65,
+    "profileTranslation": [ 0.1, 0.77, 0 ],
+  "animations": {
+    "cry": "q.bedrock_stateful('ashgreninja', 'cry')",
+	"faint": "q.bedrock_primary('ashgreninja', 'faint', q.curve('one'))"
+  },
   "poses": {
-    "battle-idle": {
-      "poseName": "battle-idle",
-      "transformTicks": 10,
-      "poseTypes": ["STAND"],
+    "battle-standing": {
+      "poseTypes": ["STAND", "WALK"],
       "isBattle": true,
-      "animations": ["bedrock(ashgreninja, battle_idle)"],
+      "animations": [
+        "q.look('head')",
+		"q.bedrock('ashgreninja', 'battle_idle')"
+      ],
       "quirks": [
-        {
-          "name": "blink",
-          "animations": ["bedrock(ashgreninja, blink)"]
-        }
-      ]
+        "q.bedrock_quirk('ashgreninja', 'blink')"
+      ],
+	  "transformedParts": [
+         {
+           "part": "shuriken_hand",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "shuriken_chest",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": true
+         },
+		 {
+           "part": "back_shuriken",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": true
+         }
+        ]
     },
     "standing": {
-      "poseName": "standing",
-      "transformTicks": 10,
       "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
       "isBattle": false,
-      "animations": ["look", "bedrock(ashgreninja, ground_idle)"],
+      "animations": [
+        "q.look('head')",
+		"q.bedrock('ashgreninja', 'ground_idle')"
+      ],
       "quirks": [
-        {
-          "name": "blink",
-          "animations": ["bedrock(ashgreninja, blink)"]
-        }
-      ]
+        "q.bedrock_quirk('ashgreninja', 'blink')"
+      ],
+	  "transformedParts": [
+         {
+           "part": "shuriken_hand",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "shuriken_chest",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "back_shuriken",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         }
+        ]
     },
     "walking": {
-      "poseName": "walking",
-      "transformTicks": 10,
       "poseTypes": ["WALK"],
-      "animations": ["look", "bedrock(ashgreninja, ground_walk)"],
-      "quirks": [
-        {
-          "name": "blink",
-          "animations": ["bedrock(ashgreninja, blink)"]
-        }
-      ]
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('ashgreninja', 'ground_walk')"
+      ],
+	  "transformedParts": [
+         {
+           "part": "shuriken_hand",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "shuriken_chest",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "back_shuriken",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         }
+        ]
     },
-    "floating": {
-      "poseName": "floating",
-      "transformTicks": 10,
+    "float": {
       "poseTypes": ["FLOAT"],
-      "animations": ["bedrock(ashgreninja, water_idle)"],
-      "quirks": [
-        {
-          "name": "blink",
-          "animations": ["bedrock(ashgreninja, blink)"]
-        }
-      ]
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('ashgreninja', 'water_idle')"
+      ],
+	  "transformedParts": [
+         {
+           "part": "shuriken_hand",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "shuriken_chest",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "back_shuriken",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         }
+        ]
     },
-    "swimming": {
-      "poseName": "swimming",
-      "transformTicks": 10,
+    "swim": {
       "poseTypes": ["SWIM"],
-      "animations": ["bedrock(ashgreninja, water_swim)"]
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('ashgreninja', 'water_swim')"
+      ],
+	  "transformedParts": [
+         {
+           "part": "shuriken_hand",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "shuriken_chest",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "back_shuriken",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         }
+        ]
+    },
+	"sleep": {
+      "poseTypes": ["SLEEP"],
+      "animations": ["q.bedrock('ashgreninja', 'sleep')"],
+	  "transformedParts": [
+         {
+           "part": "shuriken_hand",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "shuriken_chest",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         },
+		 {
+           "part": "back_shuriken",
+           "position": [0, 0, 0],
+           "rotation": [0, 0, 0],
+           "isVisible": false
+         }
+        ]
     }
   }
 }

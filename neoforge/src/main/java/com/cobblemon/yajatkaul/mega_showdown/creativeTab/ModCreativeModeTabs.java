@@ -307,6 +307,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ROCK_MEMORY);
                         output.accept(ModItems.STEEL_MEMORY);
                         output.accept(ModItems.WATER_MEMORY);
+
+                        output.accept(ModItems.BURN_DRIVE);
+                        output.accept(ModItems.DOUSE_DRIVE);
+                        output.accept(ModItems.CHILL_DRIVE);
+                        output.accept(ModItems.SHOCK_DRIVE);
                     })
                     .build());
 

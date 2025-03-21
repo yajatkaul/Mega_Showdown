@@ -300,6 +300,11 @@ public class ModItemGroups {
                         entries.add(ModItems.ROCK_MEMORY);
                         entries.add(ModItems.STEEL_MEMORY);
                         entries.add(ModItems.WATER_MEMORY);
+
+                        entries.add(ModItems.BURN_DRIVE);
+                        entries.add(ModItems.DOUSE_DRIVE);
+                        entries.add(ModItems.CHILL_DRIVE);
+                        entries.add(ModItems.SHOCK_DRIVE);
                     }))
                     .build());
 

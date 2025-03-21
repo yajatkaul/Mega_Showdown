@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-19T14:36:13.0893253	Item Models: mega_showdown
+// 1.21.1	2025-03-21T03:52:50.9151175	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 2e79cca34cc0cdf9153ad03da162a70a331a1412 assets/mega_showdown/models/item/adamant_orb.json
@@ -19,9 +19,11 @@ d7ba66a5617c1c9c36444e515157d1fad28ec9b6 assets/mega_showdown/models/item/beedri
 16cc4ca2e588aeab4e83cc18125160687450e885 assets/mega_showdown/models/item/buginium-z.json
 be0af4c377b9d2e151bf1030f218a2c82627a000 assets/mega_showdown/models/item/bugmemory.json
 f09e22c1bd15a589d80c953244cb749b1fadf6d7 assets/mega_showdown/models/item/bug_tera_shard.json
+e075b6a1c6a08961763d20d08c62b753227ab79b assets/mega_showdown/models/item/burndrive.json
 6a11e887db03e4b976863b7e6d6bff4a0dd03089 assets/mega_showdown/models/item/cameruptite.json
 fa5da1e81f303a056fa14417ae82731c955d7b4f assets/mega_showdown/models/item/charizardite_x.json
 e3297ae4b723d9648a34f1df2798f73100356c0f assets/mega_showdown/models/item/charizardite_y.json
+251ee64bc7c0b921456daca0cc6a61155d5c4a2f assets/mega_showdown/models/item/chilldrive.json
 7f2c41612fe7867a378700c3a7e3332130dacad4 assets/mega_showdown/models/item/cornerstone_mask.json
 c3f936650210788ca59963e5fa5289524d2fc6b5 assets/mega_showdown/models/item/darkinium-z.json
 f3b8c5beedf5649613f226037db4df3b9409bb19 assets/mega_showdown/models/item/darkmemory.json
@@ -29,6 +31,7 @@ f3b8c5beedf5649613f226037db4df3b9409bb19 assets/mega_showdown/models/item/darkme
 a75f4047ad27107cf48f5aac2fd390f3578be4eb assets/mega_showdown/models/item/decidium-z.json
 8e53f610132573504ebc6795e063c336e44f086c assets/mega_showdown/models/item/diancite.json
 b0371e72b888fbaa1b3b680b412cc3ad14abddc7 assets/mega_showdown/models/item/dna_splicer.json
+d7c4ffa1d8ee728ebd2346f422827b3ab1cee13f assets/mega_showdown/models/item/dousedrive.json
 abffeba482722129166b8a2bc2fd8b84287a826d assets/mega_showdown/models/item/dracoplate.json
 77e9c0702d4a1d8c110c2f32c6e4610c36eca35a assets/mega_showdown/models/item/dragonium-z.json
 a3bf05a58badbf83f4d6d427c2efc390b76839db assets/mega_showdown/models/item/dragonmemory.json
@@ -138,6 +141,7 @@ d7c581f59921db9e84e30ff2b0b3bae5ac497201 assets/mega_showdown/models/item/rotom_
 2e667d9de0b607ba53c9c98a9be0434670e58c1e assets/mega_showdown/models/item/scroll_of_darkness.json
 4737dc95a0e9ad15b8fcf36a973ee36d2e9bcbf1 assets/mega_showdown/models/item/scroll_of_waters.json
 8cad21f524ec91b1d1d71f62f8c1113bdf668eb7 assets/mega_showdown/models/item/sharpedonite.json
+9ed71d032e5cd9b79d44d0e9aabc39f3ea4ae6b5 assets/mega_showdown/models/item/shockdrive.json
 02b51105b2f0376ec2c039f0db312a81906f793a assets/mega_showdown/models/item/skyplate.json
 173c998ddb662ebd530e52e1943f15a73933770e assets/mega_showdown/models/item/slowbronite.json
 ff16f1adc5e2c51568198e886e2e476af96a2082 assets/mega_showdown/models/item/snorlium-z.json

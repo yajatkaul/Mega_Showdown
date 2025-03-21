@@ -1,0 +1,32 @@
+{
+ "implemented": true,
+    "target": "cobblemon:cherrim",
+        "behaviour": {
+        "resting": {
+            "canSleep": true,
+            "depth": "normal",
+            "light": "4-15"
+        },
+        "moving": {
+            "canLook": true,
+            "walk": {
+                "canWalk": true,
+                "avoidsLand": true
+            },
+            "swim": {
+                "swimSpeed": 0.1,
+                "canSwimInWater": false,
+                "canBreatheUnderwater": false
+            },
+			"fly": {
+			"canFly": false
+			}
+        }
+    },
+    "baseScale": 1,
+    "hitbox": {
+        "width": 1.0,
+        "height": 1,
+        "fixed": false
+    }
+}
