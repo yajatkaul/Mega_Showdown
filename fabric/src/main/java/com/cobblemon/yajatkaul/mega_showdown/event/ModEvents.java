@@ -128,6 +128,7 @@ public class ModEvents {
                 new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                 new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                 new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                 new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                 new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                 if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
@@ -158,6 +159,7 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
                 new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+                new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                 new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                 new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                 new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);

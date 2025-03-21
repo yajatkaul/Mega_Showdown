@@ -670,6 +670,7 @@ public class CobbleEventsHandler {
                     new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
+                    new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
@@ -688,6 +689,7 @@ public class CobbleEventsHandler {
 
                             if(enabled){
                                 MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                                player.setData(DataManage.MEGA_DATA, false);
                             }
                         }
                     }
@@ -764,6 +766,7 @@ public class CobbleEventsHandler {
                     if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
                         new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
                     }
+                    new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
@@ -789,6 +792,7 @@ public class CobbleEventsHandler {
 
                         if(enabled){
                             MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                            serverPlayer.setData(DataManage.MEGA_DATA, false);
 
                             if(!Config.multipleMegas){
                                 break;
@@ -821,6 +825,8 @@ public class CobbleEventsHandler {
 
                 if(enabled){
                     MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    serverPlayer.setData(DataManage.MEGA_DATA, false);
+
                     break;
                 }
             }
@@ -844,6 +850,7 @@ public class CobbleEventsHandler {
                         new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                         new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                         new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
+                        new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                         new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                         if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
@@ -866,6 +873,7 @@ public class CobbleEventsHandler {
 
                         if(enabled){
                             MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                            serverPlayer.setData(DataManage.MEGA_DATA, false);
 
                             if(!Config.multipleMegas){
                                 break;
@@ -1030,7 +1038,13 @@ public class CobbleEventsHandler {
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blossom_form", "sunshine").apply(pokemon);
             }
+        }else if (pokemon.getSpecies().getName().equals("Palafin")) {
+            if(formeChangeEvent.getFormeName().equals("hero")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("dolphin_form", "hero").apply(pokemon);
+            }
         }
+
 
         return Unit.INSTANCE;
     }

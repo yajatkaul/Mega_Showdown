@@ -658,6 +658,7 @@ public class CobbleEventHandler {
                     new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
+                    new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
                     if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
                         new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
@@ -686,7 +687,7 @@ public class CobbleEventHandler {
 
                         if(enabled){
                             MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-
+                            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
                             if(!ShowdownConfig.multipleMegas.get()){
                                 break;
                             }
@@ -718,6 +719,7 @@ public class CobbleEventHandler {
 
                 if(enabled){
                     MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    serverPlayer.setAttached(DataManage.MEGA_DATA, false);
                     break;
                 }
             }
@@ -742,6 +744,7 @@ public class CobbleEventHandler {
                         new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                         new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                         new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                        new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                         if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
                             new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
@@ -763,7 +766,7 @@ public class CobbleEventHandler {
 
                         if(enabled){
                             MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-
+                            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
                             if(!ShowdownConfig.multipleMegas.get()){
                                 break;
                             }
@@ -820,6 +823,7 @@ public class CobbleEventHandler {
                     new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                     new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                    new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
                     new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
                     if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
                         new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
@@ -1036,12 +1040,13 @@ public class CobbleEventHandler {
             } else if (formeChangeEvent.getFormeName().equals("wishiwashi")) {
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
-            } else if (pokemon.getSpecies().getName().equals("Mimikyu")) {
-                if(formeChangeEvent.getFormeName().equals("busted")){
-                    new StringSpeciesFeature("disguise_form", "busted").apply(pokemon);
-                }
             }
-        }else if (pokemon.getSpecies().getName().equals("Greninja")) {
+        }else if (pokemon.getSpecies().getName().equals("Mimikyu")) {
+            if(formeChangeEvent.getFormeName().equals("busted")){
+                new StringSpeciesFeature("disguise_form", "busted").apply(pokemon);
+            }
+        }
+        else if (pokemon.getSpecies().getName().equals("Greninja")) {
             if(formeChangeEvent.getFormeName().equals("ash")){
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
@@ -1050,6 +1055,11 @@ public class CobbleEventHandler {
             if(formeChangeEvent.getFormeName().equals("sunshine")){
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blossom_form", "sunshine").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Palafin")) {
+            if(formeChangeEvent.getFormeName().equals("hero")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("dolphin_form", "hero").apply(pokemon);
             }
         }
 
