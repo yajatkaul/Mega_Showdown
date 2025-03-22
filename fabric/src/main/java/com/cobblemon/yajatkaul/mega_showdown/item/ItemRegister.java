@@ -7,5 +7,6 @@ public class ItemRegister {
         ZMoves.registerModItem();
         TeraMoves.registerModItem();
         RotomFormes.register();
+        CompiItems.registerModItem();
     }
 }

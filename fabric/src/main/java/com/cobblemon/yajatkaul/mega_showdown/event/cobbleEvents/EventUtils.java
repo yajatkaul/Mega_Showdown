@@ -16,5 +16,8 @@ public class EventUtils {
         new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
         new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
         new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+        new StringSpeciesFeature("penguin_head", "ice_face").apply(pokemon);
+        new StringSpeciesFeature("missile_form", "none").apply(pokemon);
+        new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
     }
 }

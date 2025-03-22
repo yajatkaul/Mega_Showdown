@@ -312,6 +312,20 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.DOUSE_DRIVE);
                         output.accept(ModItems.CHILL_DRIVE);
                         output.accept(ModItems.SHOCK_DRIVE);
+
+                        output.accept(ModItems.RED_NECTAR);
+                        output.accept(ModItems.PINK_NECTAR);
+                        output.accept(ModItems.YELLOW_NECTAR);
+                        output.accept(ModItems.PURPLE_NECTAR);
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> COMPI_TAB = CREATIVE_MODE_TAB.register("compi_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(CompiItems.BOOSTER_ENERGY.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "forms_tab"))
+                    .title(Component.translatable("creativeTab.mega_showdown.compi_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(CompiItems.BOOSTER_ENERGY);
                     })
                     .build());
 

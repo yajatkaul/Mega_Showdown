@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
@@ -29,6 +30,7 @@ public class Utils {
         heldItems();
         platesRegister();
         memoriesRegister();
+        formeChangeheldItems();
     }
 
     public static void loadMegaStoneIds() {
@@ -170,10 +172,14 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.WATERIUM_Z.asItem(), "wateriumz");
     }
 
-    public static void heldItems(){
+    public static void formeChangeheldItems(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GRISEOUS_ORB.asItem(), "griseouscore");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.LUSTROUS_GLOBE.asItem(), "lustrousglobe");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ADAMANT_ORB.asItem(), "adamantcrystal");
+    }
+
+    public static void heldItems(){
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.asItem(), "boosterenergy");
     }
 
     public static void platesRegister(){

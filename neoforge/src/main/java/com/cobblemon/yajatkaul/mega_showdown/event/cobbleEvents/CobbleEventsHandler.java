@@ -268,6 +268,57 @@ public class CobbleEventsHandler {
             } else if(post.getReceived().is(ModItems.PIXIE_PLATE)){
                 playEvolveAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","fairy").apply(pokemon);
+            }else if(post.getReceived().is(ZMoves.BUGINIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "bug").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.DARKINIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "dark").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.DRAGONIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "dragon").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.ELECTRIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "electric").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.FAIRIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "fairy").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.FIGHTINIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "fighting").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.FIRIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "fire").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.FLYINIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "flying").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.GHOSTIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "ghost").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.GRASSIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "grass").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.GROUNDIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "ground").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.ICIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "ice").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.POISONIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "poison").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.PSYCHIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "psychic").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.ROCKIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "rock").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.STEELIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "steel").apply(pokemon);
+            } else if(post.getReceived().is(ZMoves.WATERIUM_Z)) {
+                playEvolveAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "water").apply(pokemon);
             } else if(!(post.getReceived().getItem() instanceof ArceusPlates)){
                 playEvolveAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","normal").apply(pokemon);
@@ -1011,6 +1062,34 @@ public class CobbleEventsHandler {
             if(formeChangeEvent.getFormeName().equals("hangry")){
                 playFormeChangeAngryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("hunger_mode", "hangry").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Eiscue")) {
+            if(formeChangeEvent.getFormeName().equals("noice")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("penguin_head", "noice_face").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Cramorant")) {
+            switch (formeChangeEvent.getFormeName()) {
+                case "gulping" -> {
+                    playFormeChangeAnimation(pokemon.getEntity());
+                    new StringSpeciesFeature("missile_form", "gulping").apply(pokemon);
+                }
+                case "cramorant" -> {
+                    playFormeChangeAnimation(pokemon.getEntity());
+                    new StringSpeciesFeature("missile_form", "none").apply(pokemon);
+                }
+                case "gorging" -> {
+                    playFormeChangeAnimation(pokemon.getEntity());
+                    new StringSpeciesFeature("missile_form", "gorging").apply(pokemon);
+                }
+            }
+        }else if (pokemon.getSpecies().getName().equals("Darmanitan")) {
+            if(formeChangeEvent.getFormeName().equals("zen")){
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("blazing_mode", "zen").apply(pokemon);
+            }else{
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
             }
         }
 

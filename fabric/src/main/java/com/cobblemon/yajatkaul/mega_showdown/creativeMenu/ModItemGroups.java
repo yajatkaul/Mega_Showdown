@@ -305,6 +305,20 @@ public class ModItemGroups {
                         entries.add(ModItems.DOUSE_DRIVE);
                         entries.add(ModItems.CHILL_DRIVE);
                         entries.add(ModItems.SHOCK_DRIVE);
+
+                        entries.add(ModItems.PINK_NECTAR);
+                        entries.add(ModItems.PURPLE_NECTAR);
+                        entries.add(ModItems.YELLOW_DRIVE);
+                        entries.add(ModItems.RED_NECTAR);
+                    }))
+                    .build());
+
+    public static final ItemGroup COMPI_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "compi_tab"),
+            FabricItemGroup.builder().icon(() -> new ItemStack(CompiItems.BOOSTER_ENERGY))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.compi_tab"))
+                    .entries(((displayContext, entries) -> {
+                        entries.add(CompiItems.BOOSTER_ENERGY);
                     }))
                     .build());
 

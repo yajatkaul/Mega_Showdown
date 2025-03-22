@@ -9,5 +9,6 @@ public class ItemsRegistration {
         ZMoves.register();
         TeraMoves.register();
         RotomFormes.register();
+        CompiItems.register();
     }
 }

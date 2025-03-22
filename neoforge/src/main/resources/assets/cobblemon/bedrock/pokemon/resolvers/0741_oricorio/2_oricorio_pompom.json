@@ -1,0 +1,20 @@
+{
+  "species": "cobblemon:oricorio",
+  "order": 2,
+  "variations": [
+    {
+      "aspects": ["pom_pom-style"],
+      "poser": "cobblemon:pompom_oricorio",
+      "model": "cobblemon:pompom_oricorio.geo",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/pompom_oricorio.png",
+      "layers": []
+    },
+    {
+      "aspects": ["shiny", "pom_pom-style"],
+      "poser": "cobblemon:pompom_oricorio",
+      "model": "cobblemon:pompom_oricorio.geo",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/pompom_oricorio_shiny.png",
+      "layers": []
+    }
+  ]
+}

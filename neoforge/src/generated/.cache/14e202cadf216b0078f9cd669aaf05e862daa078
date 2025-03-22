@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-21T03:52:50.9151175	Item Models: mega_showdown
+// 1.21.1	2025-03-22T16:28:55.5261389	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 2e79cca34cc0cdf9153ad03da162a70a331a1412 assets/mega_showdown/models/item/adamant_orb.json
@@ -16,6 +16,7 @@ d7ba66a5617c1c9c36444e515157d1fad28ec9b6 assets/mega_showdown/models/item/beedri
 9699d5c9b5dc0caf7cbbb46eba82b6fc3c145969 assets/mega_showdown/models/item/blastoisinite.json
 77cd2d22fdfcbcad3883a7128081fe991fe97814 assets/mega_showdown/models/item/blazikenite.json
 0aa41d423acb9015e123a97819ce481b252ba49b assets/mega_showdown/models/item/blueorb.json
+795fdc3a8bb1d62e782fa20a98cc9705822a0c52 assets/mega_showdown/models/item/booster_energy.json
 16cc4ca2e588aeab4e83cc18125160687450e885 assets/mega_showdown/models/item/buginium-z.json
 be0af4c377b9d2e151bf1030f218a2c82627a000 assets/mega_showdown/models/item/bugmemory.json
 f09e22c1bd15a589d80c953244cb749b1fadf6d7 assets/mega_showdown/models/item/bug_tera_shard.json
@@ -116,6 +117,7 @@ f15c42022126b60b6e788ff251edcdba6f1d0baa assets/mega_showdown/models/item/n_sola
 6ad66abc876feb4cc03a562c7f1be7d24e02f4e2 assets/mega_showdown/models/item/pidgeotite.json
 09054ce39dd29db659a9e9f8dae2bb25d690a9a2 assets/mega_showdown/models/item/pikanium-z.json
 df20cc318724f28fa3a85b6f519342e94585766a assets/mega_showdown/models/item/pikashunium-z.json
+ad2a66a7e1ebdb39bc5629741a61b5143a766a84 assets/mega_showdown/models/item/pink_nectar.json
 ad8a4c1c0a0f2a782def736db0a29fd6dc0c8517 assets/mega_showdown/models/item/pinsirite.json
 46ebfd23033ceae4038db17b8e83351c39c03903 assets/mega_showdown/models/item/pixieplate.json
 476c693f88c3a4027073e227fecd61459f544216 assets/mega_showdown/models/item/poisonium-z.json
@@ -126,7 +128,9 @@ e785b3c7680fdf356f794dee7aeb882a2ecd08b4 assets/mega_showdown/models/item/primar
 22573fb3f59c4a3b9eb07dc70ff66b09c5a35060 assets/mega_showdown/models/item/psychicmemory.json
 bfc4655c44ec41069a3f21e3249cebc81980bffb assets/mega_showdown/models/item/psychic_tera_shard.json
 db7d50db0d8d42fe8e0bb673c56d29c2a936630a assets/mega_showdown/models/item/psychium-z.json
+44174d0def3736b1fdaa08cd0baeacc6793929f4 assets/mega_showdown/models/item/purple_nectar.json
 da3b1f4be002ac09f90358f221be83387b0ad59d assets/mega_showdown/models/item/redorb.json
+dded8dd14f6dc4664a9bdc621c53948975d0a545 assets/mega_showdown/models/item/red_nectar.json
 5876bf1095ab123be88755a7b577be789abf50af assets/mega_showdown/models/item/reins_of_unity.json
 8a94794b9d829168efb489a3fb9285f2c153ee26 assets/mega_showdown/models/item/rockium-z.json
 998746591affe2a677aa3e8708dfeb6d8eb0c1f8 assets/mega_showdown/models/item/rockmemory.json
@@ -166,4 +170,5 @@ e0cb8f8122e1e0fd7ca47c815bdda13aba273eb8 assets/mega_showdown/models/item/wateri
 048d948f4c68c3b668eb9224e4afdee508fc8736 assets/mega_showdown/models/item/watermemory.json
 114a0f707e64d1b5883e9ab916a7700f66fbd145 assets/mega_showdown/models/item/water_tera_shard.json
 369402c7aadcbf11a590d6c03e2626f3ad14ac90 assets/mega_showdown/models/item/wellspring_mask.json
+65414a383098ef6d82050c30084175d6543a41a7 assets/mega_showdown/models/item/yellow_nectar.json
 70f9b9dcb5ef10c1b89dc3c940de873fa65efa59 assets/mega_showdown/models/item/zapplate.json

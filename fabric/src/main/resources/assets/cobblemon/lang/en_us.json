@@ -556,5 +556,8 @@
 	"cobblemon.ui.pokedex.info.form.eternamax": "Eternamax",
 
 	"cobblemon.battle.formechange.default.temporary.end": "%1$s reverted!",
-	"cobblemon.battle.activate.battlebond": "%1$s stats were raised!"
+	"cobblemon.battle.activate.battlebond": "%1$s stats were raised!",
+
+	"cobblemon.battle.damage.gulpmissile": "%1$s threw the Arrokuda on the foe",
+	"cobblemon.battle.damage.gorgmissile": "%1$s threw the Pikachu on the foe"
 }

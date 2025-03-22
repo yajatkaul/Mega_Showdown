@@ -1,0 +1,20 @@
+{
+  "species": "cobblemon:oricorio",
+  "order": 3,
+  "variations": [
+    {
+      "aspects": ["sensu-style"],
+      "poser": "cobblemon:sensu_oricorio",
+      "model": "cobblemon:sensu_oricorio.geo",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/sensu_oricorio.png",
+      "layers": []
+    },
+    {
+      "aspects": ["shiny", "sensu-style"],
+      "poser": "cobblemon:sensu_oricorio",
+      "model": "cobblemon:sensu_oricorio.geo",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/sensu_oricorio_shiny.png",
+      "layers": []
+    }
+  ]
+}

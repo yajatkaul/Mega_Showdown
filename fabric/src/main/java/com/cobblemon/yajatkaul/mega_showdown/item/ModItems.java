@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
@@ -10,14 +12,23 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
@@ -496,6 +507,102 @@ public class ModItems {
         }
     });
 
+    public static final Item PINK_NECTAR = registerItem("pink_nectar", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.pink_nectar.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                Pokemon pokemon = pk.getPokemon();
+
+                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                    new StringSpeciesFeature("dance_style", "pa'u").apply(pokemon);
+                    stack.decrement(1);
+                    playFormeChangeAnimation(pk);
+                    return ActionResult.SUCCESS;
+                }
+            }
+
+            return super.useOnEntity(stack, user, entity, hand);
+        }
+    });
+
+    public static final Item PURPLE_NECTAR = registerItem("purple_nectar", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.purple_nectar.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                Pokemon pokemon = pk.getPokemon();
+
+                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                    new StringSpeciesFeature("dance_style", "sensu").apply(pokemon);
+                    playFormeChangeAnimation(pk);
+                    stack.decrement(1);
+                    return ActionResult.SUCCESS;
+                }
+            }
+
+            return super.useOnEntity(stack, user, entity, hand);
+        }
+    });
+
+    public static final Item RED_NECTAR = registerItem("red_nectar", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.red_nectar.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                Pokemon pokemon = pk.getPokemon();
+
+                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                    new StringSpeciesFeature("dance_style", "baile").apply(pokemon);
+                    stack.decrement(1);
+                    playFormeChangeAnimation(pk);
+                    return ActionResult.SUCCESS;
+                }
+            }
+
+            return super.useOnEntity(stack, user, entity, hand);
+        }
+    });
+
+    public static final Item YELLOW_DRIVE = registerItem("yellow_nectar", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.yellow_nectar.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                Pokemon pokemon = pk.getPokemon();
+
+                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                    new StringSpeciesFeature("dance_style", "pom_pom").apply(pokemon);
+                    playFormeChangeAnimation(pk);
+                    stack.decrement(1);
+                    return ActionResult.SUCCESS;
+                }
+            }
+
+            return super.useOnEntity(stack, user, entity, hand);
+        }
+    });
+
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), item);
     }
@@ -504,5 +611,41 @@ public class ModItems {
 
     }
 
+    public static void playFormeChangeAnimation(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
 
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Yarn mapping for BEACON_ACTIVATE
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD, // Same particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
 }

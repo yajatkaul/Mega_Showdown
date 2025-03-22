@@ -10,16 +10,10 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko_shiny.png"
-    },
-    {
-      "aspects": ["hangry-mode"],
-      "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko_hangry.png"
-    },
-    {
-      "aspects": ["shiny", "hangry-mode"],
-      "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko_hangry_shiny.png"
     }
   ]
 }

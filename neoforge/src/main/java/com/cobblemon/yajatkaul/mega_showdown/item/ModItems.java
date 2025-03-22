@@ -1,5 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
@@ -7,8 +10,17 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -566,7 +578,145 @@ public class ModItems {
                 }
             });
 
+    public static final DeferredItem<Item> PINK_NECTAR = ITEMS.register("pink_nectar",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.pink_nectar.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+                @Override
+                public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                        Pokemon pokemon = pk.getPokemon();
+
+                        if(pokemon.getSpecies().getName().equals("Oricorio")){
+                            new StringSpeciesFeature("dance_style", "pa'u").apply(pokemon);
+                            arg.shrink(1);
+                            playFormeChangeAnimation(pk);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+
+                    return super.interactLivingEntity(arg, user, entity, arg4);
+                }
+            });
+
+    public static final DeferredItem<Item> PURPLE_NECTAR = ITEMS.register("purple_nectar",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.purple_nectar.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+                @Override
+                public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                        Pokemon pokemon = pk.getPokemon();
+
+                        if(pokemon.getSpecies().getName().equals("Oricorio")){
+                            new StringSpeciesFeature("dance_style", "sensu").apply(pokemon);
+                            arg.shrink(1);
+                            playFormeChangeAnimation(pk);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+
+                    return super.interactLivingEntity(arg, user, entity, arg4);
+                }
+            });
+
+    public static final DeferredItem<Item> RED_NECTAR = ITEMS.register("red_nectar",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.red_nectar.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+                @Override
+                public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                        Pokemon pokemon = pk.getPokemon();
+
+                        if(pokemon.getSpecies().getName().equals("Oricorio")){
+                            new StringSpeciesFeature("dance_style", "baile").apply(pokemon);
+                            arg.shrink(1);
+                            playFormeChangeAnimation(pk);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+
+                    return super.interactLivingEntity(arg, user, entity, arg4);
+                }
+            });
+
+    public static final DeferredItem<Item> YELLOW_NECTAR = ITEMS.register("yellow_nectar",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.yellow_nectar.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+
+                @Override
+                public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                        Pokemon pokemon = pk.getPokemon();
+
+                        if(pokemon.getSpecies().getName().equals("Oricorio")){
+                            new StringSpeciesFeature("dance_style", "pom_pom").apply(pokemon);
+                            arg.shrink(1);
+                            playFormeChangeAnimation(pk);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+
+                    return super.interactLivingEntity(arg, user, entity, arg4);
+                }
+            });
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
+    }
+
+    public static void playFormeChangeAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverLevel.sendParticles(
+                        ParticleTypes.END_ROD, // Change this to any particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
     }
 }

@@ -200,5 +200,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DOUSE_DRIVE.get());
         basicItem(ModItems.CHILL_DRIVE.get());
         basicItem(ModItems.SHOCK_DRIVE.get());
+
+        basicItem(ModItems.RED_NECTAR.get());
+        basicItem(ModItems.PINK_NECTAR.get());
+        basicItem(ModItems.PURPLE_NECTAR.get());
+        basicItem(ModItems.YELLOW_NECTAR.get());
+
+        basicItem(CompiItems.BOOSTER_ENERGY.get());
     }
 }
