@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
@@ -124,16 +125,7 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
-                new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
-                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-                new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-                new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
-                new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
-                new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
-                new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
-                if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
-                    new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
-                }
+                EventUtils.revertFormesEnd(pokemon);
             }
 
             if(ShowdownConfig.battleModeOnly.get()){
@@ -158,16 +150,7 @@ public class ModEvents {
                     new FlagSpeciesFeature("mega-x", false).apply(pokemon);
                     new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
-                new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
-                new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
-                new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-                new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-                new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
-                new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
-                new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
-                if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
-                    new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
-                }
+                EventUtils.revertFormesEnd(pokemon);
             }
         });
     }

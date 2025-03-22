@@ -305,7 +305,7 @@ public class CobbleEventsHandler {
     }
     public static void eternamaxChange(HeldItemEvent.Post post){
         if(!Config.etermaxForme){
-           return;
+            return;
         }
         Pokemon pokemon = post.getPokemon();
 
@@ -660,6 +660,7 @@ public class CobbleEventsHandler {
             }
         }
     }
+
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
         for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
@@ -667,16 +668,7 @@ public class CobbleEventsHandler {
 
             if(Config.battleMode){
                 for (Pokemon pokemon : playerPartyStore) {
-                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-                    new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-                    new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
-                    new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
-                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
-                    new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
-                    new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
-                    if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
-                        new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
-                    }
+                    EventUtils.revertFormesEnd(pokemon);
 
                     List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
 
@@ -689,7 +681,6 @@ public class CobbleEventsHandler {
 
                             if(enabled){
                                 MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                                player.setData(DataManage.MEGA_DATA, false);
                             }
                         }
                     }
@@ -760,16 +751,7 @@ public class CobbleEventsHandler {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 if(pokemon.getEntity() != null){
-                    new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
-                    new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-                    if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
-                        new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
-                    }
-                    new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
-                    new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
-                    new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
-                    new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                    EventUtils.revertFormesEnd(pokemon);
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
             }
@@ -792,7 +774,6 @@ public class CobbleEventsHandler {
 
                         if(enabled){
                             MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                            serverPlayer.setData(DataManage.MEGA_DATA, false);
 
                             if(!Config.multipleMegas){
                                 break;
@@ -825,8 +806,6 @@ public class CobbleEventsHandler {
 
                 if(enabled){
                     MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                    serverPlayer.setData(DataManage.MEGA_DATA, false);
-
                     break;
                 }
             }
@@ -846,16 +825,7 @@ public class CobbleEventsHandler {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
                 for (Pokemon pokemon: playerPartyStore){
                     if(pokemon.getEntity() != null){
-                        new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-                        new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-                        new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
-                        new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
-                        new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
-                        new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
-                        new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
-                        if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
-                            new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
-                        }
+                        EventUtils.revertFormesEnd(pokemon);
                         pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                     }
                 }
@@ -873,7 +843,6 @@ public class CobbleEventsHandler {
 
                         if(enabled){
                             MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                            serverPlayer.setData(DataManage.MEGA_DATA, false);
 
                             if(!Config.multipleMegas){
                                 break;
@@ -994,7 +963,7 @@ public class CobbleEventsHandler {
     public static Unit formeChanges(FormeChangeEvent formeChangeEvent) {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
 
-        MegaShowdown.LOGGER.info(formeChangeEvent.getFormeName());
+        MegaShowdown.LOGGER.info("{}", formeChangeEvent.getFormeName());
         if(pokemon.getSpecies().getName().equals("Aegislash")){
             if(formeChangeEvent.getFormeName().equals("blade")){
                 new StringSpeciesFeature("stance_forme", "blade").apply(pokemon);
@@ -1038,13 +1007,12 @@ public class CobbleEventsHandler {
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blossom_form", "sunshine").apply(pokemon);
             }
-        }else if (pokemon.getSpecies().getName().equals("Palafin")) {
-            if(formeChangeEvent.getFormeName().equals("hero")){
-                playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("dolphin_form", "hero").apply(pokemon);
+        }else if (pokemon.getSpecies().getName().equals("Morpeko")) {
+            if(formeChangeEvent.getFormeName().equals("hangry")){
+                playFormeChangeAngryAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("hunger_mode", "hangry").apply(pokemon);
             }
         }
-
 
         return Unit.INSTANCE;
     }
@@ -1086,7 +1054,43 @@ public class CobbleEventsHandler {
             }
         }
     }
+    public static void playFormeChangeAngryAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
 
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (10 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverLevel.sendParticles(
+                        ParticleTypes.ANGRY_VILLAGER, // Change this to any particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
     public static Unit fixOgerTera(PokemonCapturedEvent pokemonCapturedEvent) {
         Pokemon pokemon = pokemonCapturedEvent.getPokemon();
 
