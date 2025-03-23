@@ -4,7 +4,7 @@
   "variations": [
     {
       "aspects": ["gulping-form"],
-      "poser": "cobblemon:cramorant",
+      "poser": "cobblemon:cramorant_pikachu",
       "model": "cobblemon:cramorant_gulping.geo",
       "texture": "cobblemon:textures/pokemon/0845_cramorant/cramorant_gulping.png",
       "layers": []
@@ -12,17 +12,6 @@
     {
       "aspects": ["shiny", "gulping-form"],
       "texture": "cobblemon:textures/pokemon/0845_cramorant/cramorant_gulping_shiny.png"
-    },
-    {
-      "aspects": ["gorging-form"],
-      "poser": "cobblemon:cramorant_pikachu",
-      "model": "cobblemon:cramorant_pikachu.geo",
-      "texture": "cobblemon:textures/pokemon/0845_cramorant/cramorant_gorging.png",
-      "layers": []
-    },
-    {
-      "aspects": ["shiny", "gorging-form"],
-      "texture": "cobblemon:textures/pokemon/0845_cramorant/cramorant_gorging_shiny.png"
     }
   ]
 }

@@ -193,12 +193,11 @@
   "item.mega_showdown.archie_anchor": "Archie's Anchor",
   "tooltip.mega_showdown.archie_anchor.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
 
-  "item.mega_showdown.adamantorb": "Adamant Orb",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
   "creativeTab.mega_showdown.forms_tab": "Form Changes",
+  "creativeTab.mega_showdown.compi_tab": "Compi Tab",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
@@ -492,10 +491,22 @@
 
   "item.mega_showdown.dousedrive": "Douse Drive",
   "tooltip.mega_showdown.dousedrive.tooltip": "A cassette that contains Water-type data. It changes Genesect's Techno Blast to Water-type.",
-  "item.mega_showdown.shockdisk": "Shock Drive",
-  "tooltip.mega_showdown.shockdisk.tooltip": "A cassette that contains Electric-type data. It changes Genesect's Techno Blast to Electric-type.",
+  "item.mega_showdown.shockdrive": "Shock Drive",
+  "tooltip.mega_showdown.shockdrive.tooltip": "A cassette that contains Electric-type data. It changes Genesect's Techno Blast to Electric-type.",
   "item.mega_showdown.burndrive": "Burn Drive",
   "tooltip.mega_showdown.burndrive.tooltip": "A cassette that contains Fire-type data. It changes Genesect's Techno Blast to Fire-type.",
   "item.mega_showdown.chilldrive": "Chill Drive",
-  "tooltip.mega_showdown.chilldrive.tooltip": "A cassette that contains Ice-type data. It changes Genesect's Techno Blast to Ice-type."
+  "tooltip.mega_showdown.chilldrive.tooltip": "A cassette that contains Ice-type data. It changes Genesect's Techno Blast to Ice-type.",
+
+  "item.mega_showdown.pink_nectar": "Pink Nectar",
+  "tooltip.mega_showdown.pink_nectar.tooltip": "A flower nectar that changes Oricorio to its Pa'u Style.",
+  "item.mega_showdown.purple_nectar": "Purple Nectar",
+  "tooltip.mega_showdown.purple_nectar.tooltip": "A flower nectar infused with mystical energy. (Custom item—define its effect!)",
+  "item.mega_showdown.red_nectar": "Red Nectar",
+  "tooltip.mega_showdown.red_nectar.tooltip": "A flower nectar that changes Oricorio to its Baile Style.",
+  "item.mega_showdown.yellow_nectar": "Yellow Nectar",
+  "tooltip.mega_showdown.yellow_nectar.tooltip": "A flower nectar that changes Oricorio to its Pom-Pom Style.",
+
+  "item.mega_showdown.booster_energy": "Booster Energy",
+  "tooltip.mega_showdown.booster_energy.tooltip": "An item that boosts the strongest stat of a Pokémon with Protosynthesis or Quark Drive."
 }
