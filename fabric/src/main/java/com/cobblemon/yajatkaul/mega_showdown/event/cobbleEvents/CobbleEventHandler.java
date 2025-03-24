@@ -143,7 +143,7 @@ public class CobbleEventHandler {
             else if(post.getReceived().isOf(ModItems.SHOCK_DRIVE)){
                 new StringSpeciesFeature("techno_drive","electric").apply(pokemon);
             }
-            else if (!(post.getReceived().getItem() instanceof Drives)) {
+            else if (!(post.getReceived().getItem() instanceof Drives) && post.getReturned().getItem() instanceof Drives) {
                 new StringSpeciesFeature("techno_drive","none").apply(pokemon);
             }
         }
@@ -218,7 +218,7 @@ public class CobbleEventHandler {
             else if(post.getReceived().isOf(ModItems.WATER_MEMORY)){
                 playEvolveAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","water").apply(pokemon);
-            } else if (!(post.getReceived().getItem() instanceof Memories)) {
+            } else if (!(post.getReceived().getItem() instanceof Memories) && post.getReturned().getItem() instanceof Memories) {
                 playEvolveAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","normal").apply(pokemon);
             }
@@ -329,7 +329,7 @@ public class CobbleEventHandler {
             } else if(post.getReceived().isOf(ZMoves.WATERIUM_Z)) {
                 playEvolveAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "water").apply(pokemon);
-            } else if(!(post.getReceived().getItem() instanceof ArceusPlates)){
+            } else if(!(post.getReceived().getItem() instanceof ArceusPlates) && post.getReturned().getItem() instanceof ArceusPlates){
                 playEvolveAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","normal").apply(pokemon);
             }
@@ -1034,7 +1034,6 @@ public class CobbleEventHandler {
     public static Unit formeChanges(FormeChangeEvent formeChangeEvent) {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
 
-        MegaShowdown.LOGGER.info(formeChangeEvent.getFormeName());
         if(pokemon.getSpecies().getName().equals("Aegislash")){
             if(formeChangeEvent.getFormeName().equals("blade")){
                 new StringSpeciesFeature("stance_forme", "blade").apply(pokemon);
@@ -1093,6 +1092,9 @@ public class CobbleEventHandler {
             if(formeChangeEvent.getFormeName().equals("noice")){
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("penguin_head", "noice_face").apply(pokemon);
+            }else {
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("penguin_head", "ice_face").apply(pokemon);
             }
         }else if (pokemon.getSpecies().getName().equals("Cramorant")) {
             switch (formeChangeEvent.getFormeName()) {

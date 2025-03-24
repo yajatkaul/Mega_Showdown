@@ -17,7 +17,7 @@
     },
     {
       "aspects": ["hearthflame-mask","shiny"],
-      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_fire.png"
+      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_fire_shiny.png"
     }
   ]
 }

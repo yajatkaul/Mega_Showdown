@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 741,
   "name": "Oricorio",
   "primaryType": "fire",
@@ -163,14 +164,14 @@
   "evolutions": [],
   "forms": [
     {
-      "name": "Pom-Pom",
+      "name": "Pom_Pom",
       "primaryType": "electric",
       "secondaryType": "flying",
       "maleRatio": 0.25,
       "height": 6,
       "weight": 34,
       "pokedex": [
-        "cobblemon.species.oricorio-pompom.desc"
+        "cobblemon.species.oricorio.desc"
       ],
       "labels": [
         "gen7"
@@ -182,14 +183,14 @@
       "battleOnly": false
     },
     {
-      "name": "Paâ€™u",
+      "name": "Pau",
       "primaryType": "psychic",
       "secondaryType": "flying",
       "maleRatio": 0.25,
       "height": 6,
       "weight": 34,
       "pokedex": [
-        "cobblemon.species.oricorio-pau.desc"
+        "cobblemon.species.oricorio.desc"
       ],
       "labels": [
         "gen7"
@@ -208,7 +209,7 @@
       "height": 6,
       "weight": 34,
       "pokedex": [
-        "cobblemon.species.oricorio-sensu.desc"
+        "cobblemon.species.oricorio.desc"
       ],
       "labels": [
         "gen7"

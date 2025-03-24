@@ -17,7 +17,7 @@
     },
     {
       "aspects": ["wellspring-mask","shiny"],
-      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_water.png"
+      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_water_shiny.png"
     }
   ]
 }

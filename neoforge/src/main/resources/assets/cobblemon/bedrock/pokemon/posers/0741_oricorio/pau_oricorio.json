@@ -2,8 +2,8 @@
   "portraitScale": 2,
   "head": "neck",
   "portraitTranslation": [0, -0.1, 0],
-  "profileScale": 1.1,
-  "profileTranslation": [-0.1, 0.15, 0],
+  "profileScale": 0.76,
+  "profileTranslation": [0.08, 0.4, 0],
  "animations": {
   "cry": "q.bedrock_stateful('pau_oricorio', 'cry')",
 "physical": "q.bedrock_primary('pau_oricorio', 'physical_attack', q.curve('symmetrical_wide'))",

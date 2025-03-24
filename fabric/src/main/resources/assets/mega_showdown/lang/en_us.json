@@ -501,12 +501,14 @@
   "item.mega_showdown.pink_nectar": "Pink Nectar",
   "tooltip.mega_showdown.pink_nectar.tooltip": "A flower nectar that changes Oricorio to its Pa'u Style.",
   "item.mega_showdown.purple_nectar": "Purple Nectar",
-  "tooltip.mega_showdown.purple_nectar.tooltip": "A flower nectar infused with mystical energy. (Custom item—define its effect!)",
+  "tooltip.mega_showdown.purple_nectar.tooltip": "A flower nectar infused with mystical energy.",
   "item.mega_showdown.red_nectar": "Red Nectar",
   "tooltip.mega_showdown.red_nectar.tooltip": "A flower nectar that changes Oricorio to its Baile Style.",
   "item.mega_showdown.yellow_nectar": "Yellow Nectar",
   "tooltip.mega_showdown.yellow_nectar.tooltip": "A flower nectar that changes Oricorio to its Pom-Pom Style.",
 
   "item.mega_showdown.booster_energy": "Booster Energy",
-  "tooltip.mega_showdown.booster_energy.tooltip": "An item that boosts the strongest stat of a Pokémon with Protosynthesis or Quark Drive."
+  "tooltip.mega_showdown.booster_energy.tooltip": "An item that boosts the strongest stat of a Pokémon with Protosynthesis or Quark Drive.",
+  "item.mega_showdown.legend_plate": "Legend Plate",
+  "tooltip.mega_showdown.legend_plate.tooltip": "A mysterious plate that changes a Pokémon's type to match its attack."
 }

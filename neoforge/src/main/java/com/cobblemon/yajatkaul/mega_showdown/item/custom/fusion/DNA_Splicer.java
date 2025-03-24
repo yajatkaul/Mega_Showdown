@@ -34,28 +34,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
+
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Properties arg) {
         super(arg);
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity conComponent, InteractionHand hand) {
+    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
         if (player.level().isClientSide) {
             return InteractionResult.PASS;
         }
 
-        if (!(conComponent instanceof PokemonEntity pk)) {
+        if (!(context instanceof PokemonEntity pk)) {
             return InteractionResult.PASS;
         }
 
         Pokemon pokemon = pk.getPokemon();
-        if (pokemon.getOwnerPlayer() != player) {
+        if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null) {
             return InteractionResult.PASS;
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
         PokemonRef refValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
+        MegaShowdown.LOGGER.info(String.valueOf(player.getData(DataManage.DATA_MAP)));
         Pokemon currentValue;
 
         if(refValue == null){
@@ -73,7 +76,7 @@ public class DNA_Splicer extends Item {
             particleEffect(pk, ParticleTypes.ASH);
             new FlagSpeciesFeature("white", false).apply(pokemon);
             new FlagSpeciesFeature("black", false).apply(pokemon);
-            pokemon.setTradeable(true);
+            setTradable(pokemon, true);
 
             if(!pokemon.getEntity().hasData(DataManage.KYUREM_FUSED_WITH)){
                 HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
@@ -96,12 +99,14 @@ public class DNA_Splicer extends Item {
                 particleEffect(pk, ParticleTypes.SMOKE);
                 new FlagSpeciesFeature("black", true).apply(pokemon);
             }
-
-            pokemon.setTradeable(false);
+            setTradable(pokemon, false);
 
             pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, currentValue);
 
             HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+            if(map == null){
+                map = new HashMap<>();
+            }
             map.put(pokemon.getUuid(), currentValue);
             player.setData(DataManage.DATA_MAP, map);
 

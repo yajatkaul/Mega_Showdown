@@ -47,10 +47,12 @@ public class DataManage {
     public static final Supplier<AttachmentType<HashMap<UUID, Pokemon>>> DATA_MAP = ATTACHMENT_TYPES.register(
             "data_map",
             () -> AttachmentType.<HashMap<UUID, Pokemon>>builder(() -> new HashMap<>())
-                    .serialize(Codec.unboundedMap(UUIDUtil.CODEC, Pokemon.getCODEC()).xmap(HashMap::new, map -> map))
+                    .serialize(Codec.unboundedMap(Codec.STRING.xmap(UUID::fromString, UUID::toString), Pokemon.getCODEC())
+                            .xmap(HashMap::new, map -> map))
                     .copyOnDeath()
                     .build()
     );
+
 
     public static final DeferredRegister.DataComponents REGISTRAR = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, "mega_showdown");
 

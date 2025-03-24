@@ -326,6 +326,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativeTab.mega_showdown.compi_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(CompiItems.BOOSTER_ENERGY);
+                        output.accept(CompiItems.LEGEND_PLATE);
                     })
                     .build());
 

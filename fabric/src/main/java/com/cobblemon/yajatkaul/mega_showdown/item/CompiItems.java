@@ -18,6 +18,14 @@ public class CompiItems {
         }
     });
 
+    public static final Item LEGEND_PLATE = registerItem("legend_plate", new Item(new Item.Settings()) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.legend_plate.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static void registerModItem(){
 
     }

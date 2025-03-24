@@ -20,6 +20,15 @@ public class CompiItems {
                 }
             });
 
+    public static final DeferredItem<Item> LEGEND_PLATE = ITEMS.register("legend_plate",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.legend_plate.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static void register(){
     }
 }

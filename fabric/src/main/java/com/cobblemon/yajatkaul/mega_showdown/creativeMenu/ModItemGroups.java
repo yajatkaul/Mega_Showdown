@@ -319,6 +319,7 @@ public class ModItemGroups {
                     .displayName(Text.translatable("creativeTab.mega_showdown.compi_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(CompiItems.BOOSTER_ENERGY);
+                        entries.add(CompiItems.LEGEND_PLATE);
                     }))
                     .build());
 

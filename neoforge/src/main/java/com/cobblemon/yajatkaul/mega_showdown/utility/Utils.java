@@ -166,10 +166,6 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ADAMANT_ORB.asItem(), "adamantcrystal");
     }
 
-    public static void heldItems(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.asItem(), "boosterenergy");
-    }
-
     public static void registerRemapping(){
         megaStonesRegister();
         zMovesRegister();
@@ -178,6 +174,15 @@ public class Utils {
         platesRegister();
         memoriesRegister();
         formeChangeheldItems();
+    }
+
+    public static void heldItems(){
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.asItem(), "boosterenergy");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.BURN_DRIVE.asItem(), "burndrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.CHILL_DRIVE.asItem(), "chilldrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DOUSE_DRIVE.asItem(), "dousedrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SHOCK_DRIVE.asItem(), "shockdrive");
     }
 
     public static void platesRegister(){
@@ -198,6 +203,8 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.STONE_PLATE.get(), "stoneplate");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.TOXIC_PLATE.get(), "toxicplate");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ZAP_PLATE.get(), "zapplate");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE.get(), "legendplate");
     }
 
     public static void memoriesRegister(){
