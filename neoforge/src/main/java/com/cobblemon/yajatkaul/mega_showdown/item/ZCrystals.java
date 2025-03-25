@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.ITEMS;
 
-public class ZMoves {
+public class ZCrystals {
     public static final DeferredItem<Item> ALORAICHIUM_Z = ITEMS.register("aloraichium-z",
             () -> new Item(new Item.Properties()) {
                 @Override

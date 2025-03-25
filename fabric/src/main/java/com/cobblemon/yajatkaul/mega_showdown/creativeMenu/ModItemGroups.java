@@ -136,7 +136,7 @@ public class ModItemGroups {
                         entries.add(MegaOres.KEYSTONE_ORE);
                         entries.add(ModBlocks.KEYSTONE_BLOCK);
 
-                        entries.add(ModItems.MEGA_METEOROID_BLOCK_ITEM);
+                        entries.add(FormeChangeItems.MEGA_METEOROID_BLOCK_ITEM);
                         entries.add(ModBlocks.MEGA_EVO_BLOCK);
                         entries.add(ModBlocks.MEGA_EVO_BRICK);
                         entries.add(ModBlocks.CHISELED_MEGA_EVO_BRICK);
@@ -160,48 +160,48 @@ public class ModItemGroups {
 
     public static final ItemGroup Z_MOVES_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "z_moves_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ZMoves.BLANK_Z))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ZCrystals.BLANK_Z))
                     .displayName(Text.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .entries(((displayContext, entries) -> {
-                        entries.add(ZMoves.Z_RING);
-                        entries.add(ZMoves.Z_RING_BLACK);
-                        entries.add(ZMoves.Z_RING_POWER);
-                        entries.add(ZMoves.ALORAICHIUM_Z);
-                        entries.add(ZMoves.BLANK_Z);
-                        entries.add(ZMoves.BUGINIUM_Z);
-                        entries.add(ZMoves.DARKINIUM_Z);
-                        entries.add(ZMoves.DECIDIUM_Z);
-                        entries.add(ZMoves.DRAGONIUM_Z);
-                        entries.add(ZMoves.EEVIVIUM_Z);
-                        entries.add(ZMoves.ELECTRIUM_Z);
-                        entries.add(ZMoves.FAIRIUM_Z);
-                        entries.add(ZMoves.FIGHTINIUM_Z);
-                        entries.add(ZMoves.FIRIUM_Z);
-                        entries.add(ZMoves.FLYINIUM_Z);
-                        entries.add(ZMoves.GHOSTIUM_Z);
-                        entries.add(ZMoves.GRASSIUM_Z);
-                        entries.add(ZMoves.GROUNDIUM_Z);
-                        entries.add(ZMoves.ICIUM_Z);
-                        entries.add(ZMoves.INCINIUM_Z);
-                        entries.add(ZMoves.KOMMONIUM_Z);
-                        entries.add(ZMoves.LUNALIUM_Z);
-                        entries.add(ZMoves.LYCANIUM_Z);
-                        entries.add(ZMoves.MARSHADIUM_Z);
-                        entries.add(ZMoves.MEWNIUM_Z);
-                        entries.add(ZMoves.MIMIKIUM_Z);
-                        entries.add(ZMoves.NORMALIUM_Z);
-                        entries.add(ZMoves.PIKANIUM_Z);
-                        entries.add(ZMoves.PIKASHUNIUM_Z);
-                        entries.add(ZMoves.POISONIUM_Z);
-                        entries.add(ZMoves.PRIMARIUM_Z);
-                        entries.add(ZMoves.PSYCHIUM_Z);
-                        entries.add(ZMoves.ROCKIUM_Z);
-                        entries.add(ZMoves.SNORLIUM_Z);
-                        entries.add(ZMoves.SOLGANIUM_Z);
-                        entries.add(ZMoves.STEELIUM_Z);
-                        entries.add(ZMoves.TAPUNIUM_Z);
-                        entries.add(ZMoves.ULTRANECROZIUM_Z);
-                        entries.add(ZMoves.WATERIUM_Z);
+                        entries.add(ZCrystals.Z_RING);
+                        entries.add(ZCrystals.Z_RING_BLACK);
+                        entries.add(ZCrystals.Z_RING_POWER);
+                        entries.add(ZCrystals.ALORAICHIUM_Z);
+                        entries.add(ZCrystals.BLANK_Z);
+                        entries.add(ZCrystals.BUGINIUM_Z);
+                        entries.add(ZCrystals.DARKINIUM_Z);
+                        entries.add(ZCrystals.DECIDIUM_Z);
+                        entries.add(ZCrystals.DRAGONIUM_Z);
+                        entries.add(ZCrystals.EEVIVIUM_Z);
+                        entries.add(ZCrystals.ELECTRIUM_Z);
+                        entries.add(ZCrystals.FAIRIUM_Z);
+                        entries.add(ZCrystals.FIGHTINIUM_Z);
+                        entries.add(ZCrystals.FIRIUM_Z);
+                        entries.add(ZCrystals.FLYINIUM_Z);
+                        entries.add(ZCrystals.GHOSTIUM_Z);
+                        entries.add(ZCrystals.GRASSIUM_Z);
+                        entries.add(ZCrystals.GROUNDIUM_Z);
+                        entries.add(ZCrystals.ICIUM_Z);
+                        entries.add(ZCrystals.INCINIUM_Z);
+                        entries.add(ZCrystals.KOMMONIUM_Z);
+                        entries.add(ZCrystals.LUNALIUM_Z);
+                        entries.add(ZCrystals.LYCANIUM_Z);
+                        entries.add(ZCrystals.MARSHADIUM_Z);
+                        entries.add(ZCrystals.MEWNIUM_Z);
+                        entries.add(ZCrystals.MIMIKIUM_Z);
+                        entries.add(ZCrystals.NORMALIUM_Z);
+                        entries.add(ZCrystals.PIKANIUM_Z);
+                        entries.add(ZCrystals.PIKASHUNIUM_Z);
+                        entries.add(ZCrystals.POISONIUM_Z);
+                        entries.add(ZCrystals.PRIMARIUM_Z);
+                        entries.add(ZCrystals.PSYCHIUM_Z);
+                        entries.add(ZCrystals.ROCKIUM_Z);
+                        entries.add(ZCrystals.SNORLIUM_Z);
+                        entries.add(ZCrystals.SOLGANIUM_Z);
+                        entries.add(ZCrystals.STEELIUM_Z);
+                        entries.add(ZCrystals.TAPUNIUM_Z);
+                        entries.add(ZCrystals.ULTRANECROZIUM_Z);
+                        entries.add(ZCrystals.WATERIUM_Z);
                     }))
                     .build());
 
@@ -235,29 +235,29 @@ public class ModItemGroups {
 
     public static final ItemGroup FORMS_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "forms_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.DNA_SPLICER))
+            FabricItemGroup.builder().icon(() -> new ItemStack(FormeChangeItems.DNA_SPLICER))
                     .displayName(Text.translatable("creativeTab.mega_showdown.forms_tab"))
                     .entries(((displayContext, entries) -> {
-                        entries.add(ModItems.N_LUNARIZER);
-                        entries.add(ModItems.N_SOLARIZER);
-                        entries.add(ModItems.DNA_SPLICER);
+                        entries.add(FormeChangeItems.N_LUNARIZER);
+                        entries.add(FormeChangeItems.N_SOLARIZER);
+                        entries.add(FormeChangeItems.DNA_SPLICER);
                         entries.add(MegaStones.BLUE_ORB);
                         entries.add(MegaStones.RED_ORB);
-                        entries.add(ModItems.RUSTED_SWORD);
-                        entries.add(ModItems.RUSTED_SHIELD);
-                        entries.add(ModItems.PRISON_BOTTLE);
-                        entries.add(ModItems.REINS_OF_UNITY);
-                        entries.add(ModItems.GRACIDEA_FLOWER);
+                        entries.add(FormeChangeItems.RUSTED_SWORD);
+                        entries.add(FormeChangeItems.RUSTED_SHIELD);
+                        entries.add(FormeChangeItems.PRISON_BOTTLE);
+                        entries.add(FormeChangeItems.REINS_OF_UNITY);
+                        entries.add(FormeChangeItems.GRACIDEA_FLOWER);
                         entries.add(ModItems.SCROLL_OF_DARKNESS);
                         entries.add(ModItems.SCROLL_OF_WATERS);
-                        entries.add(ModItems.WELLSPRING_MASK);
-                        entries.add(ModItems.CORNERSTONE_MASK);
-                        entries.add(ModItems.HEARTHFLAME_MASK);
-                        entries.add(ModItems.STAR_CORE);
-                        entries.add(ModItems.GRISEOUS_ORB);
-                        entries.add(ModItems.ADAMANT_ORB);
-                        entries.add(ModItems.LUSTROUS_GLOBE);
-                        entries.add(ModItems.ASH_CAP);
+                        entries.add(FormeChangeItems.WELLSPRING_MASK);
+                        entries.add(FormeChangeItems.CORNERSTONE_MASK);
+                        entries.add(FormeChangeItems.HEARTHFLAME_MASK);
+                        entries.add(FormeChangeItems.STAR_CORE);
+                        entries.add(FormeChangeItems.GRISEOUS_ORB);
+                        entries.add(FormeChangeItems.ADAMANT_ORB);
+                        entries.add(FormeChangeItems.LUSTROUS_GLOBE);
+                        entries.add(FormeChangeItems.ASH_CAP);
                         entries.add(RotomFormes.FAN);
                         entries.add(RotomFormes.FRIDGEUNIT);
                         entries.add(RotomFormes.MOWUNIT);
@@ -265,51 +265,51 @@ public class ModItemGroups {
                         entries.add(RotomFormes.WASHUNIT);
                         entries.add(RotomFormes.ROTOM_CATALOGUE);
 
-                        entries.add(ModItems.FLAME_PLATE);
-                        entries.add(ModItems.SPLASH_PLATE);
-                        entries.add(ModItems.ZAP_PLATE);
-                        entries.add(ModItems.MEADOW_PLATE);
-                        entries.add(ModItems.ICICLE_PLATE);
-                        entries.add(ModItems.FIST_PLATE);
-                        entries.add(ModItems.TOXIC_PLATE);
-                        entries.add(ModItems.EARTH_PLATE);
-                        entries.add(ModItems.SKY_PLATE);
-                        entries.add(ModItems.MIND_PLATE);
-                        entries.add(ModItems.INSECT_PLATE);
-                        entries.add(ModItems.STONE_PLATE);
-                        entries.add(ModItems.SPOOKY_PLATE);
-                        entries.add(ModItems.DRACO_PLATE);
-                        entries.add(ModItems.DREAD_PLATE);
-                        entries.add(ModItems.IRON_PLATE);
-                        entries.add(ModItems.PIXIE_PLATE);
+                        entries.add(FormeChangeItems.FLAME_PLATE);
+                        entries.add(FormeChangeItems.SPLASH_PLATE);
+                        entries.add(FormeChangeItems.ZAP_PLATE);
+                        entries.add(FormeChangeItems.MEADOW_PLATE);
+                        entries.add(FormeChangeItems.ICICLE_PLATE);
+                        entries.add(FormeChangeItems.FIST_PLATE);
+                        entries.add(FormeChangeItems.TOXIC_PLATE);
+                        entries.add(FormeChangeItems.EARTH_PLATE);
+                        entries.add(FormeChangeItems.SKY_PLATE);
+                        entries.add(FormeChangeItems.MIND_PLATE);
+                        entries.add(FormeChangeItems.INSECT_PLATE);
+                        entries.add(FormeChangeItems.STONE_PLATE);
+                        entries.add(FormeChangeItems.SPOOKY_PLATE);
+                        entries.add(FormeChangeItems.DRACO_PLATE);
+                        entries.add(FormeChangeItems.DREAD_PLATE);
+                        entries.add(FormeChangeItems.IRON_PLATE);
+                        entries.add(FormeChangeItems.PIXIE_PLATE);
 
-                        entries.add(ModItems.BUG_MEMORY);
-                        entries.add(ModItems.DARK_MEMORY);
-                        entries.add(ModItems.DRAGON_MEMORY);
-                        entries.add(ModItems.ELECTRIC_MEMORY);
-                        entries.add(ModItems.FAIRY_MEMORY);
-                        entries.add(ModItems.FIGHTING_MEMORY);
-                        entries.add(ModItems.FIRE_MEMORY);
-                        entries.add(ModItems.FLYING_MEMORY);
-                        entries.add(ModItems.GHOST_MEMORY);
-                        entries.add(ModItems.GRASS_MEMORY);
-                        entries.add(ModItems.GROUND_MEMORY);
-                        entries.add(ModItems.ICE_MEMORY);
-                        entries.add(ModItems.POISON_MEMORY);
-                        entries.add(ModItems.PSYCHIC_MEMORY);
-                        entries.add(ModItems.ROCK_MEMORY);
-                        entries.add(ModItems.STEEL_MEMORY);
-                        entries.add(ModItems.WATER_MEMORY);
+                        entries.add(FormeChangeItems.BUG_MEMORY);
+                        entries.add(FormeChangeItems.DARK_MEMORY);
+                        entries.add(FormeChangeItems.DRAGON_MEMORY);
+                        entries.add(FormeChangeItems.ELECTRIC_MEMORY);
+                        entries.add(FormeChangeItems.FAIRY_MEMORY);
+                        entries.add(FormeChangeItems.FIGHTING_MEMORY);
+                        entries.add(FormeChangeItems.FIRE_MEMORY);
+                        entries.add(FormeChangeItems.FLYING_MEMORY);
+                        entries.add(FormeChangeItems.GHOST_MEMORY);
+                        entries.add(FormeChangeItems.GRASS_MEMORY);
+                        entries.add(FormeChangeItems.GROUND_MEMORY);
+                        entries.add(FormeChangeItems.ICE_MEMORY);
+                        entries.add(FormeChangeItems.POISON_MEMORY);
+                        entries.add(FormeChangeItems.PSYCHIC_MEMORY);
+                        entries.add(FormeChangeItems.ROCK_MEMORY);
+                        entries.add(FormeChangeItems.STEEL_MEMORY);
+                        entries.add(FormeChangeItems.WATER_MEMORY);
 
-                        entries.add(ModItems.BURN_DRIVE);
-                        entries.add(ModItems.DOUSE_DRIVE);
-                        entries.add(ModItems.CHILL_DRIVE);
-                        entries.add(ModItems.SHOCK_DRIVE);
+                        entries.add(FormeChangeItems.BURN_DRIVE);
+                        entries.add(FormeChangeItems.DOUSE_DRIVE);
+                        entries.add(FormeChangeItems.CHILL_DRIVE);
+                        entries.add(FormeChangeItems.SHOCK_DRIVE);
 
-                        entries.add(ModItems.PINK_NECTAR);
-                        entries.add(ModItems.PURPLE_NECTAR);
-                        entries.add(ModItems.YELLOW_DRIVE);
-                        entries.add(ModItems.RED_NECTAR);
+                        entries.add(FormeChangeItems.PINK_NECTAR);
+                        entries.add(FormeChangeItems.PURPLE_NECTAR);
+                        entries.add(FormeChangeItems.YELLOW_DRIVE);
+                        entries.add(FormeChangeItems.RED_NECTAR);
                     }))
                     .build());
 

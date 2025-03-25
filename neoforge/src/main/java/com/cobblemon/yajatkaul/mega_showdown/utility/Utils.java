@@ -5,10 +5,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
-import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.world.item.Item;
 
 import java.util.HashMap;
@@ -122,48 +119,48 @@ public class Utils {
     }
 
     public static void zMovesRegister(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ALORAICHIUM_Z.asItem(), "aloraichiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BLANK_Z.asItem(), "blankz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.BUGINIUM_Z.asItem(), "buginiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.DARKINIUM_Z.asItem(), "darkiniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.DECIDIUM_Z.asItem(), "decidiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.DRAGONIUM_Z.asItem(), "dragoniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.EEVIUM_Z.asItem(), "eeviumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ELECTRIUM_Z.asItem(), "electriumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FAIRIUM_Z.asItem(), "fairiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FIGHTINIUM_Z.asItem(), "fightiniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FIRIUM_Z.asItem(), "firiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.FLYINIUM_Z.asItem(), "flyiniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.GHOSTIUM_Z.asItem(), "ghostiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.GRASSIUM_Z.asItem(), "grassiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.GROUNDIUM_Z.asItem(), "groundiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ICIUM_Z.asItem(), "iciumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.INCINIUM_Z.asItem(), "inciniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.KOMMONIUM_Z.asItem(), "kommoniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.LUNALIUM_Z.asItem(), "lunaliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.LYCANIUM_Z.asItem(), "lycaniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.MARSHADIUM_Z.asItem(), "marshadiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.MEWNIUM_Z.asItem(), "mewniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.MIMIKIUM_Z.asItem(), "mimikiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.NORMALIUM_Z.asItem(), "normaliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PIKANIUM_Z.asItem(), "pikaniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PIKASHUNIUM_Z.asItem(), "pikashuniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.POISONIUM_Z.asItem(), "poisoniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PRIMARIUM_Z.asItem(), "primariumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.PSYCHIUM_Z.asItem(), "psychiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ROCKIUM_Z.asItem(), "rockiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.SNORLIUM_Z.asItem(), "snorliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.SOLGANIUM_Z.asItem(), "solganiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.STEELIUM_Z.asItem(), "steeliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.TAPUNIUM_Z.asItem(), "tapuniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.ULTRANECROZIUM_Z.asItem(), "ultranecroziumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ZMoves.WATERIUM_Z.asItem(), "wateriumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.ALORAICHIUM_Z.asItem(), "aloraichiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.BLANK_Z.asItem(), "blankz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.BUGINIUM_Z.asItem(), "buginiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.DARKINIUM_Z.asItem(), "darkiniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.DECIDIUM_Z.asItem(), "decidiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.DRAGONIUM_Z.asItem(), "dragoniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.EEVIUM_Z.asItem(), "eeviumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.ELECTRIUM_Z.asItem(), "electriumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.FAIRIUM_Z.asItem(), "fairiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.FIGHTINIUM_Z.asItem(), "fightiniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.FIRIUM_Z.asItem(), "firiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.FLYINIUM_Z.asItem(), "flyiniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.GHOSTIUM_Z.asItem(), "ghostiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.GRASSIUM_Z.asItem(), "grassiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.GROUNDIUM_Z.asItem(), "groundiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.ICIUM_Z.asItem(), "iciumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.INCINIUM_Z.asItem(), "inciniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.KOMMONIUM_Z.asItem(), "kommoniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.LUNALIUM_Z.asItem(), "lunaliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.LYCANIUM_Z.asItem(), "lycaniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.MARSHADIUM_Z.asItem(), "marshadiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.MEWNIUM_Z.asItem(), "mewniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.MIMIKIUM_Z.asItem(), "mimikiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.NORMALIUM_Z.asItem(), "normaliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.PIKANIUM_Z.asItem(), "pikaniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.PIKASHUNIUM_Z.asItem(), "pikashuniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.POISONIUM_Z.asItem(), "poisoniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.PRIMARIUM_Z.asItem(), "primariumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.PSYCHIUM_Z.asItem(), "psychiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.ROCKIUM_Z.asItem(), "rockiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.SNORLIUM_Z.asItem(), "snorliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.SOLGANIUM_Z.asItem(), "solganiumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.STEELIUM_Z.asItem(), "steeliumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.TAPUNIUM_Z.asItem(), "tapuniumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.ULTRANECROZIUM_Z.asItem(), "ultranecroziumz");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.WATERIUM_Z.asItem(), "wateriumz");
     }
 
     public static void formeChangeheldItems(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GRISEOUS_ORB.asItem(), "griseouscore");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.LUSTROUS_GLOBE.asItem(), "lustrousglobe");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ADAMANT_ORB.asItem(), "adamantcrystal");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_ORB.asItem(), "griseouscore");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.LUSTROUS_GLOBE.asItem(), "lustrousglobe");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ADAMANT_ORB.asItem(), "adamantcrystal");
     }
 
     public static void registerRemapping(){
@@ -179,52 +176,52 @@ public class Utils {
     public static void heldItems(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.asItem(), "boosterenergy");
 
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.BURN_DRIVE.asItem(), "burndrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.CHILL_DRIVE.asItem(), "chilldrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DOUSE_DRIVE.asItem(), "dousedrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SHOCK_DRIVE.asItem(), "shockdrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BURN_DRIVE.asItem(), "burndrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CHILL_DRIVE.asItem(), "chilldrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.asItem(), "dousedrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.asItem(), "shockdrive");
     }
 
     public static void platesRegister(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FLAME_PLATE.get(), "flameplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DRACO_PLATE.get(), "dracoplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DREAD_PLATE.get(), "dreadplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.EARTH_PLATE.get(), "earthplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FIST_PLATE.get(), "fistplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ICICLE_PLATE.get(), "icicleplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.INSECT_PLATE.get(), "insectplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.IRON_PLATE.get(), "ironplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.MEADOW_PLATE.get(), "meadowplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.MIND_PLATE.get(), "mindplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.PIXIE_PLATE.get(), "pixieplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SKY_PLATE.get(), "skyplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SPLASH_PLATE.get(), "splashplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.SPOOKY_PLATE.get(), "spookyplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.STONE_PLATE.get(), "stoneplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.TOXIC_PLATE.get(), "toxicplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ZAP_PLATE.get(), "zapplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLAME_PLATE.get(), "flameplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRACO_PLATE.get(), "dracoplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DREAD_PLATE.get(), "dreadplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.EARTH_PLATE.get(), "earthplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIST_PLATE.get(), "fistplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ICICLE_PLATE.get(), "icicleplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.INSECT_PLATE.get(), "insectplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.IRON_PLATE.get(), "ironplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.MEADOW_PLATE.get(), "meadowplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.MIND_PLATE.get(), "mindplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.PIXIE_PLATE.get(), "pixieplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SKY_PLATE.get(), "skyplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SPLASH_PLATE.get(), "splashplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SPOOKY_PLATE.get(), "spookyplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STONE_PLATE.get(), "stoneplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.TOXIC_PLATE.get(), "toxicplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ZAP_PLATE.get(), "zapplate");
 
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE.get(), "legendplate");
     }
 
     public static void memoriesRegister(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.BUG_MEMORY.get(), "bugmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DARK_MEMORY.get(), "darkmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.DRAGON_MEMORY.get(), "dragonmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ELECTRIC_MEMORY.get(), "electricmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FAIRY_MEMORY.get(), "fairymemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FIGHTING_MEMORY.get(), "fightingmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FIRE_MEMORY.get(), "firememory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.FLYING_MEMORY.get(), "flyingmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GHOST_MEMORY.get(), "ghostmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GRASS_MEMORY.get(), "grassmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.GROUND_MEMORY.get(), "groundmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ICE_MEMORY.get(), "icememory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.POISON_MEMORY.get(), "poisonmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.PSYCHIC_MEMORY.get(), "psychicmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.ROCK_MEMORY.get(), "rockmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.STEEL_MEMORY.get(), "steelmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(ModItems.WATER_MEMORY.get(), "watermemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BUG_MEMORY.get(), "bugmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DARK_MEMORY.get(), "darkmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRAGON_MEMORY.get(), "dragonmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ELECTRIC_MEMORY.get(), "electricmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FAIRY_MEMORY.get(), "fairymemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIGHTING_MEMORY.get(), "fightingmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIRE_MEMORY.get(), "firememory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLYING_MEMORY.get(), "flyingmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GHOST_MEMORY.get(), "ghostmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRASS_MEMORY.get(), "grassmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GROUND_MEMORY.get(), "groundmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ICE_MEMORY.get(), "icememory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.POISON_MEMORY.get(), "poisonmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.PSYCHIC_MEMORY.get(), "psychicmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ROCK_MEMORY.get(), "rockmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STEEL_MEMORY.get(), "steelmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.WATER_MEMORY.get(), "watermemory");
     }
 
     public static void setTradable(Pokemon pokemon, boolean allow){

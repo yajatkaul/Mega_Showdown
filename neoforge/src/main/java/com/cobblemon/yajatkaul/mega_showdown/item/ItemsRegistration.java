@@ -6,9 +6,10 @@ public class ItemsRegistration {
     public static void register(IEventBus modEventBus){
         ModItems.register(modEventBus);
         MegaStones.register();
-        ZMoves.register();
+        ZCrystals.register();
         TeraMoves.register();
         RotomFormes.register();
         CompiItems.register();
+        FormeChangeItems.register();
     }
 }

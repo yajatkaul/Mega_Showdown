@@ -143,7 +143,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaOres.MEGA_STONE_CRYSTAL);
 
-                        output.accept(ModItems.MEGA_METEOROID_BLOCK_ITEM);
+                        output.accept(FormeChangeItems.MEGA_METEOROID_BLOCK_ITEM);
                         output.accept(ModBlocks.MEGA_EVO_BLOCK);
                         output.accept(ModBlocks.MEGA_EVO_BRICK);
                         output.accept(ModBlocks.CHISELED_MEGA_EVO_BRICK);
@@ -166,49 +166,49 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final Supplier<CreativeModeTab> Z_MOVES_TAB = CREATIVE_MODE_TAB.register("z_moves_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ZMoves.BLANK_Z.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ZCrystals.BLANK_Z.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_showdown_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ZMoves.Z_RING);
-                        output.accept(ZMoves.Z_RING_BLACK);
-                        output.accept(ZMoves.Z_RING_POWER);
-                        output.accept(ZMoves.ALORAICHIUM_Z);
-                        output.accept(ZMoves.BLANK_Z);
-                        output.accept(ZMoves.BUGINIUM_Z);
-                        output.accept(ZMoves.DARKINIUM_Z);
-                        output.accept(ZMoves.DECIDIUM_Z);
-                        output.accept(ZMoves.DRAGONIUM_Z);
-                        output.accept(ZMoves.EEVIUM_Z);
-                        output.accept(ZMoves.ELECTRIUM_Z);
-                        output.accept(ZMoves.FAIRIUM_Z);
-                        output.accept(ZMoves.FIGHTINIUM_Z);
-                        output.accept(ZMoves.FIRIUM_Z);
-                        output.accept(ZMoves.FLYINIUM_Z);
-                        output.accept(ZMoves.GHOSTIUM_Z);
-                        output.accept(ZMoves.GRASSIUM_Z);
-                        output.accept(ZMoves.GROUNDIUM_Z);
-                        output.accept(ZMoves.ICIUM_Z);
-                        output.accept(ZMoves.INCINIUM_Z);
-                        output.accept(ZMoves.KOMMONIUM_Z);
-                        output.accept(ZMoves.LUNALIUM_Z);
-                        output.accept(ZMoves.LYCANIUM_Z);
-                        output.accept(ZMoves.MARSHADIUM_Z);
-                        output.accept(ZMoves.MEWNIUM_Z);
-                        output.accept(ZMoves.MIMIKIUM_Z);
-                        output.accept(ZMoves.NORMALIUM_Z);
-                        output.accept(ZMoves.PIKANIUM_Z);
-                        output.accept(ZMoves.PIKASHUNIUM_Z);
-                        output.accept(ZMoves.POISONIUM_Z);
-                        output.accept(ZMoves.PRIMARIUM_Z);
-                        output.accept(ZMoves.PSYCHIUM_Z);
-                        output.accept(ZMoves.ROCKIUM_Z);
-                        output.accept(ZMoves.SNORLIUM_Z);
-                        output.accept(ZMoves.SOLGANIUM_Z);
-                        output.accept(ZMoves.STEELIUM_Z);
-                        output.accept(ZMoves.TAPUNIUM_Z);
-                        output.accept(ZMoves.ULTRANECROZIUM_Z);
-                        output.accept(ZMoves.WATERIUM_Z);
+                        output.accept(ZCrystals.Z_RING);
+                        output.accept(ZCrystals.Z_RING_BLACK);
+                        output.accept(ZCrystals.Z_RING_POWER);
+                        output.accept(ZCrystals.ALORAICHIUM_Z);
+                        output.accept(ZCrystals.BLANK_Z);
+                        output.accept(ZCrystals.BUGINIUM_Z);
+                        output.accept(ZCrystals.DARKINIUM_Z);
+                        output.accept(ZCrystals.DECIDIUM_Z);
+                        output.accept(ZCrystals.DRAGONIUM_Z);
+                        output.accept(ZCrystals.EEVIUM_Z);
+                        output.accept(ZCrystals.ELECTRIUM_Z);
+                        output.accept(ZCrystals.FAIRIUM_Z);
+                        output.accept(ZCrystals.FIGHTINIUM_Z);
+                        output.accept(ZCrystals.FIRIUM_Z);
+                        output.accept(ZCrystals.FLYINIUM_Z);
+                        output.accept(ZCrystals.GHOSTIUM_Z);
+                        output.accept(ZCrystals.GRASSIUM_Z);
+                        output.accept(ZCrystals.GROUNDIUM_Z);
+                        output.accept(ZCrystals.ICIUM_Z);
+                        output.accept(ZCrystals.INCINIUM_Z);
+                        output.accept(ZCrystals.KOMMONIUM_Z);
+                        output.accept(ZCrystals.LUNALIUM_Z);
+                        output.accept(ZCrystals.LYCANIUM_Z);
+                        output.accept(ZCrystals.MARSHADIUM_Z);
+                        output.accept(ZCrystals.MEWNIUM_Z);
+                        output.accept(ZCrystals.MIMIKIUM_Z);
+                        output.accept(ZCrystals.NORMALIUM_Z);
+                        output.accept(ZCrystals.PIKANIUM_Z);
+                        output.accept(ZCrystals.PIKASHUNIUM_Z);
+                        output.accept(ZCrystals.POISONIUM_Z);
+                        output.accept(ZCrystals.PRIMARIUM_Z);
+                        output.accept(ZCrystals.PSYCHIUM_Z);
+                        output.accept(ZCrystals.ROCKIUM_Z);
+                        output.accept(ZCrystals.SNORLIUM_Z);
+                        output.accept(ZCrystals.SOLGANIUM_Z);
+                        output.accept(ZCrystals.STEELIUM_Z);
+                        output.accept(ZCrystals.TAPUNIUM_Z);
+                        output.accept(ZCrystals.ULTRANECROZIUM_Z);
+                        output.accept(ZCrystals.WATERIUM_Z);
                     })
                     .build());
 
@@ -241,30 +241,30 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final Supplier<CreativeModeTab> FORMS_TAB = CREATIVE_MODE_TAB.register("forms_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DNA_SPLICER.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(FormeChangeItems.DNA_SPLICER.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.forms_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.N_LUNARIZER);
-                        output.accept(ModItems.N_SOLARIZER);
-                        output.accept(ModItems.DNA_SPLICER);
+                        output.accept(FormeChangeItems.N_LUNARIZER);
+                        output.accept(FormeChangeItems.N_SOLARIZER);
+                        output.accept(FormeChangeItems.DNA_SPLICER);
                         output.accept(MegaStones.BLUE_ORB);
                         output.accept(MegaStones.RED_ORB);
-                        output.accept(ModItems.RUSTED_SWORD);
-                        output.accept(ModItems.RUSTED_SHIELD);
-                        output.accept(ModItems.PRISON_BOTTLE);
-                        output.accept(ModItems.REINS_OF_UNITY);
-                        output.accept(ModItems.GRACIDEA_FLOWER);
+                        output.accept(FormeChangeItems.RUSTED_SWORD);
+                        output.accept(FormeChangeItems.RUSTED_SHIELD);
+                        output.accept(FormeChangeItems.PRISON_BOTTLE);
+                        output.accept(FormeChangeItems.REINS_OF_UNITY);
+                        output.accept(FormeChangeItems.GRACIDEA_FLOWER);
                         output.accept(ModItems.SCROLL_OF_WATERS);
                         output.accept(ModItems.SCROLL_OF_DARKNESS);
-                        output.accept(ModItems.WELLSPRING_MASK);
-                        output.accept(ModItems.CORNERSTONE_MASK);
-                        output.accept(ModItems.HEARTHFLAME_MASK);
-                        output.accept(ModItems.STAR_CORE);
-                        output.accept(ModItems.GRISEOUS_ORB);
-                        output.accept(ModItems.LUSTROUS_GLOBE);
-                        output.accept(ModItems.ADAMANT_ORB);
-                        output.accept(ModItems.ASH_CAP);
+                        output.accept(FormeChangeItems.WELLSPRING_MASK);
+                        output.accept(FormeChangeItems.CORNERSTONE_MASK);
+                        output.accept(FormeChangeItems.HEARTHFLAME_MASK);
+                        output.accept(FormeChangeItems.STAR_CORE);
+                        output.accept(FormeChangeItems.GRISEOUS_ORB);
+                        output.accept(FormeChangeItems.LUSTROUS_GLOBE);
+                        output.accept(FormeChangeItems.ADAMANT_ORB);
+                        output.accept(FormeChangeItems.ASH_CAP);
                         output.accept(RotomFormes.FAN);
                         output.accept(RotomFormes.FRIDGEUNIT);
                         output.accept(RotomFormes.OVENUNIT);
@@ -272,51 +272,51 @@ public class ModCreativeModeTabs {
                         output.accept(RotomFormes.WASHUNIT);
                         output.accept(RotomFormes.ROTOM_CATALOGUE);
 
-                        output.accept(ModItems.FLAME_PLATE);
-                        output.accept(ModItems.SPLASH_PLATE);
-                        output.accept(ModItems.ZAP_PLATE);
-                        output.accept(ModItems.MEADOW_PLATE);
-                        output.accept(ModItems.ICICLE_PLATE);
-                        output.accept(ModItems.FIST_PLATE);
-                        output.accept(ModItems.TOXIC_PLATE);
-                        output.accept(ModItems.EARTH_PLATE);
-                        output.accept(ModItems.SKY_PLATE);
-                        output.accept(ModItems.MIND_PLATE);
-                        output.accept(ModItems.INSECT_PLATE);
-                        output.accept(ModItems.STONE_PLATE);
-                        output.accept(ModItems.SPOOKY_PLATE);
-                        output.accept(ModItems.DRACO_PLATE);
-                        output.accept(ModItems.DREAD_PLATE);
-                        output.accept(ModItems.IRON_PLATE);
-                        output.accept(ModItems.PIXIE_PLATE);
+                        output.accept(FormeChangeItems.FLAME_PLATE);
+                        output.accept(FormeChangeItems.SPLASH_PLATE);
+                        output.accept(FormeChangeItems.ZAP_PLATE);
+                        output.accept(FormeChangeItems.MEADOW_PLATE);
+                        output.accept(FormeChangeItems.ICICLE_PLATE);
+                        output.accept(FormeChangeItems.FIST_PLATE);
+                        output.accept(FormeChangeItems.TOXIC_PLATE);
+                        output.accept(FormeChangeItems.EARTH_PLATE);
+                        output.accept(FormeChangeItems.SKY_PLATE);
+                        output.accept(FormeChangeItems.MIND_PLATE);
+                        output.accept(FormeChangeItems.INSECT_PLATE);
+                        output.accept(FormeChangeItems.STONE_PLATE);
+                        output.accept(FormeChangeItems.SPOOKY_PLATE);
+                        output.accept(FormeChangeItems.DRACO_PLATE);
+                        output.accept(FormeChangeItems.DREAD_PLATE);
+                        output.accept(FormeChangeItems.IRON_PLATE);
+                        output.accept(FormeChangeItems.PIXIE_PLATE);
 
-                        output.accept(ModItems.BUG_MEMORY);
-                        output.accept(ModItems.DARK_MEMORY);
-                        output.accept(ModItems.DRAGON_MEMORY);
-                        output.accept(ModItems.ELECTRIC_MEMORY);
-                        output.accept(ModItems.FAIRY_MEMORY);
-                        output.accept(ModItems.FIGHTING_MEMORY);
-                        output.accept(ModItems.FIRE_MEMORY);
-                        output.accept(ModItems.FLYING_MEMORY);
-                        output.accept(ModItems.GHOST_MEMORY);
-                        output.accept(ModItems.GRASS_MEMORY);
-                        output.accept(ModItems.GROUND_MEMORY);
-                        output.accept(ModItems.ICE_MEMORY);
-                        output.accept(ModItems.POISON_MEMORY);
-                        output.accept(ModItems.PSYCHIC_MEMORY);
-                        output.accept(ModItems.ROCK_MEMORY);
-                        output.accept(ModItems.STEEL_MEMORY);
-                        output.accept(ModItems.WATER_MEMORY);
+                        output.accept(FormeChangeItems.BUG_MEMORY);
+                        output.accept(FormeChangeItems.DARK_MEMORY);
+                        output.accept(FormeChangeItems.DRAGON_MEMORY);
+                        output.accept(FormeChangeItems.ELECTRIC_MEMORY);
+                        output.accept(FormeChangeItems.FAIRY_MEMORY);
+                        output.accept(FormeChangeItems.FIGHTING_MEMORY);
+                        output.accept(FormeChangeItems.FIRE_MEMORY);
+                        output.accept(FormeChangeItems.FLYING_MEMORY);
+                        output.accept(FormeChangeItems.GHOST_MEMORY);
+                        output.accept(FormeChangeItems.GRASS_MEMORY);
+                        output.accept(FormeChangeItems.GROUND_MEMORY);
+                        output.accept(FormeChangeItems.ICE_MEMORY);
+                        output.accept(FormeChangeItems.POISON_MEMORY);
+                        output.accept(FormeChangeItems.PSYCHIC_MEMORY);
+                        output.accept(FormeChangeItems.ROCK_MEMORY);
+                        output.accept(FormeChangeItems.STEEL_MEMORY);
+                        output.accept(FormeChangeItems.WATER_MEMORY);
 
-                        output.accept(ModItems.BURN_DRIVE);
-                        output.accept(ModItems.DOUSE_DRIVE);
-                        output.accept(ModItems.CHILL_DRIVE);
-                        output.accept(ModItems.SHOCK_DRIVE);
+                        output.accept(FormeChangeItems.BURN_DRIVE);
+                        output.accept(FormeChangeItems.DOUSE_DRIVE);
+                        output.accept(FormeChangeItems.CHILL_DRIVE);
+                        output.accept(FormeChangeItems.SHOCK_DRIVE);
 
-                        output.accept(ModItems.RED_NECTAR);
-                        output.accept(ModItems.PINK_NECTAR);
-                        output.accept(ModItems.YELLOW_NECTAR);
-                        output.accept(ModItems.PURPLE_NECTAR);
+                        output.accept(FormeChangeItems.RED_NECTAR);
+                        output.accept(FormeChangeItems.PINK_NECTAR);
+                        output.accept(FormeChangeItems.YELLOW_NECTAR);
+                        output.accept(FormeChangeItems.PURPLE_NECTAR);
                     })
                     .build());
 

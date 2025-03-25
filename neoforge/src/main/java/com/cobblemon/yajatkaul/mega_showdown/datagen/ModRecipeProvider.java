@@ -2,17 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -195,7 +190,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('I', Items.IRON_INGOT)
                 .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.N_LUNARIZER.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.N_LUNARIZER.get())
                 .pattern("IWI")
                 .pattern("ISI")
                 .pattern("IRI")
@@ -205,7 +200,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('R', Items.REDSTONE)
                 .unlockedBy("has_moonstone", has(CobblemonItems.MOON_STONE)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.N_SOLARIZER.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.N_SOLARIZER.get())
                 .pattern("IWI")
                 .pattern("ISI")
                 .pattern("IRI")
@@ -226,7 +221,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('E', Items.ENDER_PEARL)
                 .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DNA_SPLICER.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.DNA_SPLICER.get())
                 .pattern(" BN")
                 .pattern("BIB")
                 .pattern("IB ")
@@ -235,7 +230,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('N', Items.NETHERITE_INGOT)
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZMoves.Z_RING.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING.get())
                 .pattern("FLF")
                 .pattern("WRW")
                 .pattern("FDF")
@@ -247,7 +242,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
                 .unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZMoves.Z_RING_BLACK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_BLACK.get())
                 .pattern("FLF")
                 .pattern("BRB")
                 .pattern("FDF")
@@ -259,7 +254,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
                 .unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZMoves.Z_RING_POWER.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_POWER.get())
                 .pattern("FLF")
                 .pattern("BNB")
                 .pattern("FDF")
@@ -281,7 +276,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('Y', CobblemonItems.YELLOW_APRICORN)
                 .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.REINS_OF_UNITY.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.REINS_OF_UNITY.get())
                 .pattern("SGS")
                 .pattern("C  ")
                 .pattern("SIS")

@@ -267,6 +267,6 @@ public class RotomFormes {
         }
     }
 
-    public static void register(){
+    public static void registerModItem(){
     }
 }

@@ -4,9 +4,10 @@ public class ItemRegister {
     public static void register(){
         ModItems.registerModItem();
         MegaStones.registerModItem();
-        ZMoves.registerModItem();
+        ZCrystals.registerModItem();
         TeraMoves.registerModItem();
-        RotomFormes.register();
+        RotomFormes.registerModItem();
         CompiItems.registerModItem();
+        FormeChangeItems.registerModItem();
     }
 }

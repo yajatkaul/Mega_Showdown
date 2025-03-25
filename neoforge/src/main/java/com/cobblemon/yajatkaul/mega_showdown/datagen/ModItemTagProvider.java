@@ -4,7 +4,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -42,41 +42,41 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.BRENDAN_MEGA_CUFF.get());
 
         tag(ModTags.Items.Z_CRYSTALS)
-                .add(ZMoves.ALORAICHIUM_Z.get())
-                .add(ZMoves.BUGINIUM_Z.get())
-                .add(ZMoves.DARKINIUM_Z.get())
-                .add(ZMoves.DECIDIUM_Z.get())
-                .add(ZMoves.DRAGONIUM_Z.get())
-                .add(ZMoves.EEVIUM_Z.get())
-                .add(ZMoves.ELECTRIUM_Z.get())
-                .add(ZMoves.FAIRIUM_Z.get())
-                .add(ZMoves.FIGHTINIUM_Z.get())
-                .add(ZMoves.FIRIUM_Z.get())
-                .add(ZMoves.FLYINIUM_Z.get())
-                .add(ZMoves.GHOSTIUM_Z.get())
-                .add(ZMoves.GRASSIUM_Z.get())
-                .add(ZMoves.GROUNDIUM_Z.get())
-                .add(ZMoves.ICIUM_Z.get())
-                .add(ZMoves.INCINIUM_Z.get())
-                .add(ZMoves.KOMMONIUM_Z.get())
-                .add(ZMoves.LUNALIUM_Z.get())
-                .add(ZMoves.LYCANIUM_Z.get())
-                .add(ZMoves.MARSHADIUM_Z.get())
-                .add(ZMoves.MEWNIUM_Z.get())
-                .add(ZMoves.MIMIKIUM_Z.get())
-                .add(ZMoves.NORMALIUM_Z.get())
-                .add(ZMoves.PIKANIUM_Z.get())
-                .add(ZMoves.PIKASHUNIUM_Z.get())
-                .add(ZMoves.POISONIUM_Z.get())
-                .add(ZMoves.PRIMARIUM_Z.get())
-                .add(ZMoves.PSYCHIUM_Z.get())
-                .add(ZMoves.ROCKIUM_Z.get())
-                .add(ZMoves.SNORLIUM_Z.get())
-                .add(ZMoves.SOLGANIUM_Z.get())
-                .add(ZMoves.STEELIUM_Z.get())
-                .add(ZMoves.TAPUNIUM_Z.get())
-                .add(ZMoves.ULTRANECROZIUM_Z.get())
-                .add(ZMoves.WATERIUM_Z.get());
+                .add(ZCrystals.ALORAICHIUM_Z.get())
+                .add(ZCrystals.BUGINIUM_Z.get())
+                .add(ZCrystals.DARKINIUM_Z.get())
+                .add(ZCrystals.DECIDIUM_Z.get())
+                .add(ZCrystals.DRAGONIUM_Z.get())
+                .add(ZCrystals.EEVIUM_Z.get())
+                .add(ZCrystals.ELECTRIUM_Z.get())
+                .add(ZCrystals.FAIRIUM_Z.get())
+                .add(ZCrystals.FIGHTINIUM_Z.get())
+                .add(ZCrystals.FIRIUM_Z.get())
+                .add(ZCrystals.FLYINIUM_Z.get())
+                .add(ZCrystals.GHOSTIUM_Z.get())
+                .add(ZCrystals.GRASSIUM_Z.get())
+                .add(ZCrystals.GROUNDIUM_Z.get())
+                .add(ZCrystals.ICIUM_Z.get())
+                .add(ZCrystals.INCINIUM_Z.get())
+                .add(ZCrystals.KOMMONIUM_Z.get())
+                .add(ZCrystals.LUNALIUM_Z.get())
+                .add(ZCrystals.LYCANIUM_Z.get())
+                .add(ZCrystals.MARSHADIUM_Z.get())
+                .add(ZCrystals.MEWNIUM_Z.get())
+                .add(ZCrystals.MIMIKIUM_Z.get())
+                .add(ZCrystals.NORMALIUM_Z.get())
+                .add(ZCrystals.PIKANIUM_Z.get())
+                .add(ZCrystals.PIKASHUNIUM_Z.get())
+                .add(ZCrystals.POISONIUM_Z.get())
+                .add(ZCrystals.PRIMARIUM_Z.get())
+                .add(ZCrystals.PSYCHIUM_Z.get())
+                .add(ZCrystals.ROCKIUM_Z.get())
+                .add(ZCrystals.SNORLIUM_Z.get())
+                .add(ZCrystals.SOLGANIUM_Z.get())
+                .add(ZCrystals.STEELIUM_Z.get())
+                .add(ZCrystals.TAPUNIUM_Z.get())
+                .add(ZCrystals.ULTRANECROZIUM_Z.get())
+                .add(ZCrystals.WATERIUM_Z.get());
 
 
         tag(ModTags.Items.MEGA_STONES)
@@ -129,9 +129,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaStones.VENUSAURITE.get());
 
         tag(ModTags.Items.Z_RINGS)
-                .add(ZMoves.Z_RING.get())
-                .add(ZMoves.Z_RING_POWER.get())
-                .add(ZMoves.Z_RING_BLACK.get());
+                .add(ZCrystals.Z_RING.get())
+                .add(ZCrystals.Z_RING_POWER.get())
+                .add(ZCrystals.Z_RING_BLACK.get());
 
         tag(ModTags.Items.TERA_ITEMS)
                 .add(TeraMoves.TERA_ORB.get());

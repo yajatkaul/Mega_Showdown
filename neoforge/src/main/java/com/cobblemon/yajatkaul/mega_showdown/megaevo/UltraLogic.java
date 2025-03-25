@@ -5,8 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -91,7 +90,7 @@ public class UltraLogic {
                 return;
             }
 
-            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZMoves.ULTRANECROZIUM_Z) && checkFused(pokemon)){
+            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZCrystals.ULTRANECROZIUM_Z) && checkFused(pokemon)){
                 if(!Possible(player)){
                     return;
                 }

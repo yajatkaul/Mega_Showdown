@@ -3,7 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.curios;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -29,9 +29,9 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.MAXIE_GLASSES.get(), CurioHeadRenderer::new);
         CuriosRendererRegistry.register(ModItems.ARCHIE_ANCHOR.get(), CurioChestRenderer::new);
 
-        CuriosRendererRegistry.register(ZMoves.Z_RING.get(), CurioOffHandRenderer::new);
-        CuriosRendererRegistry.register(ZMoves.Z_RING_BLACK.get(), CurioOffHandRenderer::new);
-        CuriosRendererRegistry.register(ZMoves.Z_RING_POWER.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_BLACK.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_POWER.get(), CurioOffHandRenderer::new);
 
         CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
     }

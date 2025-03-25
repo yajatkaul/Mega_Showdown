@@ -10,7 +10,7 @@ import java.util.List;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 
-public class ZMoves {
+public class ZCrystals {
     public static final Item ALORAICHIUM_Z = registerItem("aloraichium-z", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {

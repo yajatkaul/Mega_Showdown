@@ -3,19 +3,14 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.BattleRegistry;
-import com.cobblemon.mod.common.platform.events.ServerTickEvent;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
-import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
@@ -50,7 +45,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
 
@@ -184,7 +178,7 @@ public class ModEvents {
                 );
 
                 // Add your new item
-                newPoolBuilder.add(LootItem.lootTableItem(ZMoves.BLANK_Z).setWeight(2));
+                newPoolBuilder.add(LootItem.lootTableItem(ZCrystals.BLANK_Z).setWeight(2));
 
                 // Preserve the name
                 if (mainPool.getName() != null) {
@@ -217,7 +211,7 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SWORD).setWeight(6));
+                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.RUSTED_SWORD).setWeight(6));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());
@@ -248,7 +242,7 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.RUSTED_SHIELD).setWeight(6));
+                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.RUSTED_SHIELD).setWeight(6));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());
@@ -279,7 +273,7 @@ public class ModEvents {
                         })
                 );
 
-                newPoolBuilder.add(LootItem.lootTableItem(ModItems.PRISON_BOTTLE).setWeight(3));
+                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.PRISON_BOTTLE).setWeight(3));
 
                 if (mainPool.getName() != null) {
                     newPoolBuilder.name(mainPool.getName());

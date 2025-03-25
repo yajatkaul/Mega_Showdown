@@ -3,7 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -76,7 +76,7 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ModItems.MEGA_STONE_CRYSTAL_ITEM) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal")));
         }
-        else if (stack.getItem() == ZMoves.Z_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ZCrystals.Z_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring")));
         }
         else if (stack.getItem() == TeraMoves.TERA_ORB && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
@@ -85,10 +85,10 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ModItems.MAY_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "may_bracelet")));
         }
-        else if (stack.getItem() == ZMoves.Z_RING_BLACK && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ZCrystals.Z_RING_BLACK && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_black")));
         }
-        else if (stack.getItem() == ZMoves.Z_RING_POWER && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ZCrystals.Z_RING_POWER && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring")));
         }
         return bakedModel;
@@ -142,7 +142,7 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ModItems.MEGA_STONE_CRYSTAL_ITEM) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal")));
         }
-        else if (stack.getItem() == ZMoves.Z_RING) {
+        else if (stack.getItem() == ZCrystals.Z_RING) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_3d")));
         }
         else if (stack.getItem() == TeraMoves.TERA_ORB) {
@@ -151,10 +151,10 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ModItems.MAY_BRACELET) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "may_bracelet_3d")));
         }
-        else if (stack.getItem() == ZMoves.Z_RING_BLACK) {
+        else if (stack.getItem() == ZCrystals.Z_RING_BLACK) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_black_3d")));
         }
-        else if (stack.getItem() == ZMoves.Z_RING_POWER) {
+        else if (stack.getItem() == ZCrystals.Z_RING_POWER) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring_3d")));
         }
 

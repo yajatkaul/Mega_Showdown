@@ -50,7 +50,7 @@ public class RotomFormes {
             () -> new Item(new Item.Properties()) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-                    if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+                    if(!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
                         Pokemon pokemon = pk.getPokemon();
                         if(pokemon.getSpecies().getName().equals("Rotom")){
                             if(!possible((ServerPlayer) player)){
@@ -77,7 +77,7 @@ public class RotomFormes {
             () -> new Item(new Item.Properties()) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-                    if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+                    if(!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
                         Pokemon pokemon = pk.getPokemon();
                         if(pk.getPokemon().getSpecies().getName().equals("Rotom")){
                             if(!possible((ServerPlayer) player)){
@@ -104,7 +104,7 @@ public class RotomFormes {
             () -> new Item(new Item.Properties()) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-                    if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+                    if(!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
                         Pokemon pokemon = pk.getPokemon();
                         if(pk.getPokemon().getSpecies().getName().equals("Rotom")){
                             if(!possible((ServerPlayer) player)){
@@ -132,7 +132,7 @@ public class RotomFormes {
             () -> new Item(new Item.Properties()) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-                    if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+                    if(!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
                         Pokemon pokemon = pk.getPokemon();
                         if(pk.getPokemon().getSpecies().getName().equals("Rotom")){
                             if(!possible((ServerPlayer) player)){
@@ -159,7 +159,7 @@ public class RotomFormes {
             () -> new Item(new Item.Properties()) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-                    if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+                    if(!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
                         Pokemon pokemon = pk.getPokemon();
                         if(pk.getPokemon().getSpecies().getName().equals("Rotom")){
                             if(!possible((ServerPlayer) player)){
@@ -186,7 +186,7 @@ public class RotomFormes {
             () -> new Item(new Item.Properties().component(DataManage.CATALOGUE_PAGE, 1)) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand hand) {
-                    if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()) {
+                    if (!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()) {
                         Pokemon pokemon = pk.getPokemon();
                         if (pokemon.getSpecies().getName().equals("Rotom")) {
 

@@ -2,27 +2,24 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.component.Component;
-import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.map.MapDecorationType;
 import net.minecraft.item.map.MapDecorationTypes;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
@@ -73,7 +70,7 @@ public class ModEvents {
 
             if(trialChamberLootTable.equals(key.getValue())){
                 tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(ZMoves.BLANK_Z).weight(2));
+                    poolBuilder.with(ItemEntry.builder(ZCrystals.BLANK_Z).weight(2));
                 });
             }
 
@@ -82,13 +79,13 @@ public class ModEvents {
 
             if(luna_ruins.equals(key.getValue())){
                 tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SWORD).weight(6));
+                    poolBuilder.with(ItemEntry.builder(FormeChangeItems.RUSTED_SWORD).weight(6));
                 });
             }
 
             if(mossy_ruins.equals(key.getValue())){
                 tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(ModItems.RUSTED_SHIELD).weight(6));
+                    poolBuilder.with(ItemEntry.builder(FormeChangeItems.RUSTED_SHIELD).weight(6));
                 });
             }
 
@@ -98,7 +95,7 @@ public class ModEvents {
                 final boolean[] canEdit = {true};
                 tableBuilder.modifyPools(poolBuilder -> {
                     if(canEdit[0]){
-                        poolBuilder.with(ItemEntry.builder(ModItems.PRISON_BOTTLE).weight(1));
+                        poolBuilder.with(ItemEntry.builder(FormeChangeItems.PRISON_BOTTLE).weight(1));
                         canEdit[0] = false;
                     }
                 });
