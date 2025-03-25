@@ -30,7 +30,7 @@ side = "BOTH"
 [[dependencies.mega_showdown]]
 modId = "cobblemon"
 mandatory = true
-versionRange = "[1.6.0,)"
+versionRange = "[1.6.1,)"
 ordering = "AFTER"
 side = "BOTH"
 

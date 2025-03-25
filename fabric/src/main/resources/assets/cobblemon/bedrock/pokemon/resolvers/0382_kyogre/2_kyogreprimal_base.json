@@ -8,39 +8,39 @@
       "model": "cobblemon:kyogreprimal.geo",
       "texture": "cobblemon:textures/pokemon/kyogreprimal/kyogreprimal.png",
       "layers": [
-                   {
-                      "name": "kyogreprimal_line",
-                      "emissive": true,
-                      "translucent": true,
-                      "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_line.png"
-                  },
-                  {
-                   "name": "emissive",
-                   "emissive": true,
-                   "translucent": true,
-                   "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_emissive.png"
-                              }
-    ]
+        {
+          "name": "kyogreprimal_line",
+          "emissive": true,
+          "translucent": true,
+          "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_line.png"
+        },
+        {
+          "name": "emissive",
+          "emissive": true,
+          "translucent": true,
+          "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_emissive.png"
+        }
+      ]
     },
     {
-     "aspects": [
-       "shiny","primal"
-     ],
-     "texture": "cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_shiny.png",
-     "layers": [
-       {
- "name": "kyogreprimal_line",
- "emissive": true,
- "translucent": true,
- "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_line_shiny.png"
-      },
-      {
-       "name": "emissive",
-       "emissive": true,
-       "translucent": true,
-       "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_emissive_shiny.png"
-                  }
- ]
-   }
+      "aspects": [
+        "shiny","primal"
+      ],
+      "texture": "cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_shiny.png",
+      "layers": [
+        {
+          "name": "kyogreprimal_line",
+          "emissive": true,
+          "translucent": true,
+          "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_line_shiny.png"
+        },
+        {
+          "name": "emissive",
+          "emissive": true,
+          "translucent": true,
+          "texture":"cobblemon:textures/pokemon/kyogreprimal/kyogreprimal_emissive_shiny.png"
+        }
+      ]
+    }
   ]
- }
+}

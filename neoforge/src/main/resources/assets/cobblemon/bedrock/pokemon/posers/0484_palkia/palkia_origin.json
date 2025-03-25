@@ -1,0 +1,80 @@
+{
+  "portraitScale": 0.6,
+  "portraitTranslation": [ -1, 4.5, 0 ],
+  "profileScale": 0.2,
+  "profileTranslation": [ 0, 1.5, 0 ],
+  "animations": {
+    "faint": "q.bedrock_primary('palkia_origin', 'faint', q.curve('one'))",
+    "cry": "q.bedrock_primary('palkia_origin', 'cry', q.curve('symmetrical_wide'))",
+    "physical": "q.bedrock_primary('palkia_origin', 'physical_attack', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('palkia_origin', 'special_attack', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('palkia_origin', 'cry', q.curve('symmetrical_wide'))"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": ["STAND"],
+      "isBattle": true,
+      "animations": ["look", "q.bedrock('palkia_origin', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "isBattle": false,
+      "animations": ["look", "q.bedrock('palkia_origin', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": ["WALK"],
+      "animations": ["look", "q.bedrock('palkia_origin', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "float": {
+      "poseTypes": ["FLOAT"],
+      "animations": ["look", "q.bedrock('palkia_origin', 'air_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "swim": {
+      "poseTypes": ["SWIM"],
+      "animations": ["look",
+        "q.bedrock('palkia_origin', 'air_fly')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "hover": {
+      "poseName": "hover",
+      "poseTypes": ["HOVER"],
+      "animations": ["look", "q.bedrock('palkia_origin', 'air_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "fly": {
+      "poseName": "fly",
+      "poseTypes": ["FLY"],
+      "animations": ["look", "q.bedrock('palkia_origin', 'air_fly')"],
+      "quirks": [
+        "q.bedrock_quirk('palkia_origin', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseName": "sleep",
+      "poseTypes": ["SLEEP"],
+      "animations": ["look", "q.bedrock('palkia_origin', 'sleep')"]
+    }
+  }
+}

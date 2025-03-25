@@ -19,5 +19,7 @@ public class EventUtils {
         new StringSpeciesFeature("penguin_head", "ice_face").apply(pokemon);
         new StringSpeciesFeature("missile_form", "none").apply(pokemon);
         new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
+        new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
+        new StringSpeciesFeature("blossom_form", "overcast").apply(pokemon);
     }
 }

@@ -454,8 +454,6 @@ public class CobbleEventHandler {
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
             player.setAttached(DataManage.PRIMAL_DATA, false);
         }
-
-        return;
     }
     public static void megaEvent(HeldItemEvent.Post event) {
         Pokemon pokemon = event.getPokemon();
@@ -717,23 +715,8 @@ public class CobbleEventHandler {
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                for (String key : megaKeys) {
-                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                    FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                    if(feature != null){
-                        boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                        if(enabled){
-                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
-                            if(!ShowdownConfig.multipleMegas.get()){
-                                break;
-                            }
-                        }
-                    }
+                if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
                 }
             }
         });
@@ -749,21 +732,8 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if(enabled){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                    serverPlayer.setAttached(DataManage.MEGA_DATA, false);
-                    break;
-                }
-            }
+        if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
         }
 
         return Unit.INSTANCE;
@@ -787,23 +757,8 @@ public class CobbleEventHandler {
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                for (String key : megaKeys) {
-                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                    FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                    if(feature != null){
-                        boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                        if(enabled){
-                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                            serverPlayer.setAttached(DataManage.MEGA_DATA, false);
-                            if(!ShowdownConfig.multipleMegas.get()){
-                                break;
-                            }
-                        }
-                    }
+                if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
                 }
             }
 
@@ -851,20 +806,9 @@ public class CobbleEventHandler {
             if(ShowdownConfig.battleMode.get()){
                 for (Pokemon pokemon : playerPartyStore) {
                     EventUtils.revertFormesEnd(pokemon);
-
-                    List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                    for (String key : megaKeys) {
-                        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                        if(feature != null){
-                            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                            if(enabled){
-                                MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                            }
-                        }
+                    MegaShowdown.LOGGER.info(pokemon.getAspects().toString());
+                    if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                        MegaLogic.Devolve(pokemon.getEntity(), player, true);
                     }
                 }
             }

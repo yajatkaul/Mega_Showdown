@@ -143,7 +143,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaOres.MEGA_STONE_CRYSTAL);
 
-                        output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
+                        output.accept(ModItems.MEGA_METEOROID_BLOCK_ITEM);
                         output.accept(ModBlocks.MEGA_EVO_BLOCK);
                         output.accept(ModBlocks.MEGA_EVO_BRICK);
                         output.accept(ModBlocks.CHISELED_MEGA_EVO_BRICK);

@@ -1,0 +1,28 @@
+{
+  "target": "cobblemon:arceus",
+
+  "baseScale":1,
+  "behaviour": {
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.6,
+        "canWalk": true,
+        "avoidsLand": false
+      },
+    "fly": {
+      "canFly": true
+    },
+    "swim": {
+      "swimSpeed": 0.4,
+      "canSwimInWater": false,
+      "canBreatheUnderwater": false
+    }
+  }
+},
+"hitbox": {
+  "width": 4,
+  "height": 5,
+  "fixed": false
+}
+}

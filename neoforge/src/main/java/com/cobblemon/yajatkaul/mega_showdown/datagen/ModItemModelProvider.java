@@ -207,5 +207,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.YELLOW_NECTAR.get());
 
         basicItem(CompiItems.BOOSTER_ENERGY.get());
+        basicItem(CompiItems.LEGEND_PLATE.get());
     }
 }

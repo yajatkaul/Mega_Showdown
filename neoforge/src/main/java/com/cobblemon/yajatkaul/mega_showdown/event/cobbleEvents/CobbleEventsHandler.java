@@ -721,19 +721,8 @@ public class CobbleEventsHandler {
                 for (Pokemon pokemon : playerPartyStore) {
                     EventUtils.revertFormesEnd(pokemon);
 
-                    List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                    for (String key : megaKeys) {
-                        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                        if(feature != null){
-                            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                            if(enabled){
-                                MegaLogic.Devolve(pokemon.getEntity(), player, true);
-                            }
-                        }
+                    if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                        MegaLogic.Devolve(pokemon.getEntity(), player, true);
                     }
                 }
             }
@@ -814,23 +803,8 @@ public class CobbleEventsHandler {
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                for (String key : megaKeys) {
-                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                    FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                    if(feature != null){
-                        boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                        if(enabled){
-                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-
-                            if(!Config.multipleMegas){
-                                break;
-                            }
-                        }
-                    }
+                if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
                 }
             }
         });
@@ -846,20 +820,8 @@ public class CobbleEventsHandler {
             return Unit.INSTANCE;
         }
 
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if(enabled){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-                    break;
-                }
-            }
+        if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
         }
 
         return Unit.INSTANCE;
@@ -883,23 +845,8 @@ public class CobbleEventsHandler {
 
                 Pokemon pokemon = battlePokemon.getOriginalPokemon();
 
-                List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-                for (String key : megaKeys) {
-                    FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                    FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                    if(feature != null){
-                        boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                        if(enabled){
-                            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
-
-                            if(!Config.multipleMegas){
-                                break;
-                            }
-                        }
-                    }
+                if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
                 }
             }
         });
@@ -1057,6 +1004,11 @@ public class CobbleEventsHandler {
             if(formeChangeEvent.getFormeName().equals("sunshine")){
                 playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blossom_form", "sunshine").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Palafin")) {
+            if (formeChangeEvent.getFormeName().equals("hero")) {
+                playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("dolphin_form", "hero").apply(pokemon);
             }
         }else if (pokemon.getSpecies().getName().equals("Morpeko")) {
             if(formeChangeEvent.getFormeName().equals("hangry")){

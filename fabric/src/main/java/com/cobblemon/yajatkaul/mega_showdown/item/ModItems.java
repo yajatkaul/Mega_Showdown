@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
@@ -186,6 +187,35 @@ public class ModItems {
     public static final Item MEGA_STONE_CRYSTAL_ITEM = Registry.register(Registries.ITEM,
             Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),
             new BlockItem(MegaOres.MEGA_STONE_CRYSTAL, new Item.Settings()));
+
+    public static final Item MEGA_METEOROID_BLOCK_ITEM = Registry.register(Registries.ITEM,
+            Identifier.of(MegaShowdown.MOD_ID, "mega_meteorid_block_item"),
+            new BlockItem(ModBlocks.MEGA_METEOROID_BLOCK, new Item.Settings()){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                        Pokemon pokemon = pk.getPokemon();
+
+                        if(pokemon.getSpecies().getName().equals("Deoxys")){
+                            if(pokemon.getAspects().contains("normal-forme")){
+                                new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
+                            } else if (pokemon.getAspects().contains("attack-forme")) {
+                                new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
+                            } else if (pokemon.getAspects().contains("speed-forme")) {
+                                new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
+                            }else if (pokemon.getAspects().contains("defense-forme")) {
+                                new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
+                            }
+
+                            stack.decrement(1);
+                            playFormeChangeAnimation(pk);
+                            return ActionResult.SUCCESS;
+                        }
+                    }
+
+                    return super.useOnEntity(stack, user, entity, hand);
+                }
+            });
 
     public static final Item ADAMANT_ORB = registerItem("adamant_orb", new Item(new Item.Settings().maxCount(1)){
         @Override

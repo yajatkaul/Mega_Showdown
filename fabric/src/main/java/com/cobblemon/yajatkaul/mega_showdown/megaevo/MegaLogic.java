@@ -298,10 +298,6 @@ public class MegaLogic {
 
             Pokemon pokemon = ((PokemonEntity) context).getPokemon();
 
-            if(player.getWorld().isClient){
-                return;
-            }
-
             player.setAttached(DataManage.MEGA_DATA, false);
             player.removeAttached(DataManage.MEGA_POKEMON);
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-22T16:28:55.5261389	Item Models: mega_showdown
+// 1.21.1	2025-03-25T19:28:15.3060676	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 2e79cca34cc0cdf9153ad03da162a70a331a1412 assets/mega_showdown/models/item/adamant_orb.json
@@ -91,6 +91,7 @@ de3f122de0fec463763c1a4526832c229742946d assets/mega_showdown/models/item/keysto
 e8e271134b083fef22413eb309a5ff0e54223141 assets/mega_showdown/models/item/kommonium-z.json
 269dce9fe63da1d21f904252ed66e0026d605a43 assets/mega_showdown/models/item/latiasite.json
 ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latiosite.json
+2baaa2c7ce7fa2e7eceabb6b841f39ff154e3a8c assets/mega_showdown/models/item/legend_plate.json
 6b68a35fee04802440ceb79aefc02f9b2f3241a2 assets/mega_showdown/models/item/lopunnite.json
 4177ac324c4d57e5043aac7727a0ce49f1d76e51 assets/mega_showdown/models/item/lucarionite.json
 61d712266d30ed015265039ba7adc0e4c3bafb4c assets/mega_showdown/models/item/lunalium-z.json

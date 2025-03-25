@@ -1,0 +1,77 @@
+{
+ "portraitScale": 0.6,
+ "portraitTranslation": [ -0.5, 2.5, 0 ],
+ "profileScale": 0.35,
+ "profileTranslation": [ 0, 1.5, 0 ],
+ "animations": {
+  "faint": "q.bedrock_primary('arceus', 'faint', q.curve('one'))",
+  "cry": "q.bedrock_stateful('arceus', 'cry')",
+  "physical": "q.bedrock_primary('arceus', 'attack', q.curve('symmetrical_wide'))",
+  "special": "q.bedrock_primary('arceus', 'attack', q.curve('symmetrical_wide'))",
+  "status": "q.bedrock_stateful('arceus', 'cry', q.curve('symmetrical_wide'))"
+},
+ "poses": {
+  "battle-standing": {
+    "poseTypes": ["STAND"],
+    "isBattle": true,
+    "animations": [
+     "q.look('head', 1, 1, 45, -45, 70, -70)",
+      "q.bedrock('arceus', 'battle_idle')"
+    ]
+  },
+  "battle-air": {
+    "poseTypes": ["HOVER"],
+    "isBattle": true,
+    "animations": [
+     "q.look('head', 1, 1, 45, -45, 70, -70)",
+      "q.bedrock('arceus', 'air_battle')"
+    ]
+  },
+  "standing": {
+    "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+    "isBattle": false,
+    "animations": ["look",
+      "q.bedrock('arceus', 'ground_idle')"
+    ],
+    "quirks": [
+      "q.bedrock_quirk('arceus', 'blink')"
+    ]
+  },
+  "walking": {
+    "poseTypes": ["WALK"],
+    "animations": ["look",
+      "q.bedrock('arceus', 'ground_walk')"
+    ],
+    "quirks": ["q.bedrock_quirk('arceus', 'blink')"]
+  },
+  "float": {
+    "poseTypes": ["FLOAT"],
+    "animations": [
+      "q.bedrock('arceus', 'air_idle')"
+    ],
+    "quirks": ["q.bedrock_quirk('arceus', 'blink')"]
+  },
+  "swim": {
+    "poseTypes": ["SWIM"],
+    "animations": [
+      "q.bedrock('arceus', 'air_fly')"
+    ],
+    "quirks": ["q.bedrock_quirk('arceus', 'blink')"]
+  }
+  ,
+  "fly": {
+    "poseTypes": ["FLY"],
+    "animations": [
+      "q.bedrock('arceus', 'air_fly')"
+    ],
+    "quirks": ["q.bedrock_quirk('arceus', 'blink')"]
+  },
+  "hover": {
+    "poseTypes": ["HOVER"],
+    "animations": [
+      "q.bedrock('arceus', 'air_idle')"
+    ],
+    "quirks": ["q.bedrock_quirk('arceus', 'blink')"]
+  }
+ }
+}

@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
@@ -665,9 +666,36 @@ public class ModItems {
                 public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
                     if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
                         Pokemon pokemon = pk.getPokemon();
-
                         if(pokemon.getSpecies().getName().equals("Oricorio")){
                             new StringSpeciesFeature("dance_style", "pom_pom").apply(pokemon);
+                            arg.shrink(1);
+                            playFormeChangeAnimation(pk);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                    return super.interactLivingEntity(arg, user, entity, arg4);
+                }
+            });
+
+    public static final DeferredItem<BlockItem> MEGA_METEOROID_BLOCK_ITEM = ITEMS.register("mega_meteorid_block_item",
+            () -> new BlockItem(ModBlocks.MEGA_METEOROID_BLOCK.get(),
+                    new Item.Properties()){
+                @Override
+                public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+                    if(!user.level().isClientSide && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                        Pokemon pokemon = pk.getPokemon();
+
+                        if(pokemon.getSpecies().getName().equals("Deoxys")){
+                            if(pokemon.getAspects().contains("normal-forme")){
+                                new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
+                            } else if (pokemon.getAspects().contains("attack-forme")) {
+                                new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
+                            } else if (pokemon.getAspects().contains("speed-forme")) {
+                                new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
+                            }else if (pokemon.getAspects().contains("defense-forme")) {
+                                new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
+                            }
+
                             arg.shrink(1);
                             playFormeChangeAnimation(pk);
                             return InteractionResult.SUCCESS;

@@ -1,0 +1,28 @@
+{
+  "target": "cobblemon:typenull",
+
+  "baseScale":1,
+  "behaviour": {
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.4,
+        "canWalk": true,
+        "avoidsLand": false
+      },
+    "fly": {
+      "canFly": false
+    },
+    "swim": {
+      "swimSpeed": 0.3,
+      "canSwimInWater": false,
+      "canBreatheUnderwater": false
+    }
+  }
+},
+"hitbox": {
+  "width": 2,
+  "height": 3,
+  "fixed": false
+}
+}

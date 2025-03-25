@@ -136,7 +136,7 @@ public class ModItemGroups {
                         entries.add(MegaOres.KEYSTONE_ORE);
                         entries.add(ModBlocks.KEYSTONE_BLOCK);
 
-                        entries.add(ModBlocks.MEGA_METEOROID_BLOCK);
+                        entries.add(ModItems.MEGA_METEOROID_BLOCK_ITEM);
                         entries.add(ModBlocks.MEGA_EVO_BLOCK);
                         entries.add(ModBlocks.MEGA_EVO_BRICK);
                         entries.add(ModBlocks.CHISELED_MEGA_EVO_BRICK);

@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
@@ -56,22 +57,15 @@ public class Unbound extends Item {
         if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayer) player) && pk.getPokemon().getSpecies().getName().equals("Hoopa")){
             Pokemon pokemon = pk.getPokemon();
 
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("unbound"));
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-            if(feature != null) {
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if(enabled){
-                    new FlagSpeciesFeature("unbound", false).apply(pokemon);
-                    playEvolveAnimation(pokemon.getEntity());
-                    return InteractionResult.SUCCESS;
-                }else{
-                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "prison_escape");
-                    new FlagSpeciesFeature("unbound", true).apply(pokemon);
-                    unboundAnimation(pokemon.getEntity());
-                    return InteractionResult.SUCCESS;
-                }
+            if(pokemon.getAspects().contains("unbound")){
+                new StringSpeciesFeature("djinn_state", "confined").apply(pokemon);
+                playEvolveAnimation(pokemon.getEntity());
+                return InteractionResult.SUCCESS;
+            }else{
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "prison_escape");
+                new StringSpeciesFeature("djinn_state", "unbound").apply(pokemon);
+                unboundAnimation(pokemon.getEntity());
+                return InteractionResult.SUCCESS;
             }
         }
 
@@ -125,7 +119,7 @@ public class Unbound extends Item {
             double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 6; // Adjust this for more spread
+            double scaleFactor = 4; // Adjust this for more spread
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
             double adjustedDepth = entityDepth * scaleFactor;
