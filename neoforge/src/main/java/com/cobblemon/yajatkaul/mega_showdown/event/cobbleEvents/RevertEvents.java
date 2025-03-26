@@ -74,24 +74,16 @@ public class RevertEvents {
 
     public static Unit deVolveFlee(BattleFledEvent battleFledEvent) {
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-            for (BattlePokemon battlePokemon : battleFledEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
-                if (battlePokemon.getOriginalPokemon().getEntity() == null ||
-                        battlePokemon.getOriginalPokemon().getEntity().level().isClientSide) {
-                    continue;
-                }
-
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-                for (Pokemon pokemon: playerPartyStore){
-                    if(pokemon.getEntity() != null){
-                        EventUtils.revertFormesEnd(pokemon);
-                        pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-                    }
-                }
-
-                Pokemon pokemon = battlePokemon.getOriginalPokemon();
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+            for (Pokemon pokemon: playerPartyStore){
+                EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
                     MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                }
+
+                if(pokemon.getEntity() != null){
+                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
             }
         });

@@ -1,6 +1,7 @@
-// 1.21.1	2025-03-25T19:28:15.3060676	Item Models: mega_showdown
+// 1.21.1	2025-03-27T00:54:45.7382937	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
+6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
 2e79cca34cc0cdf9153ad03da162a70a331a1412 assets/mega_showdown/models/item/adamant_orb.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
 dfdbb32813fd9d9c73c48c3b9c30c98be466e0ee assets/mega_showdown/models/item/aggronite.json
@@ -71,6 +72,7 @@ bf13516a78634866686ca48c555ac428321cdfe4 assets/mega_showdown/models/item/ghost_
 7b05413e220e1579433d7aa046981e3b3f7f58fb assets/mega_showdown/models/item/grassium-z.json
 06fd509fbc964cc7e1ae0f95b349c73e28ff969f assets/mega_showdown/models/item/grassmemory.json
 dec641193d145eacdbbe7c5f73bfa3a87a45c5e6 assets/mega_showdown/models/item/grass_tera_shard.json
+f5b6bd298bdcb62c906941600b79834ce942ac06 assets/mega_showdown/models/item/griseous_core.json
 e73f537546b5e62ca9b4c87dc0d5e62218c3051c assets/mega_showdown/models/item/griseous_orb.json
 ec7add6cccd79ffc8d7b6b6587a36160ca4de2dd assets/mega_showdown/models/item/groundium-z.json
 fc47ed7a2ab9b24782f72878a88f300a3314cdc9 assets/mega_showdown/models/item/groundmemory.json
@@ -96,6 +98,7 @@ ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latios
 4177ac324c4d57e5043aac7727a0ce49f1d76e51 assets/mega_showdown/models/item/lucarionite.json
 61d712266d30ed015265039ba7adc0e4c3bafb4c assets/mega_showdown/models/item/lunalium-z.json
 0ecbb158acfe584c40622743367002503c43068b assets/mega_showdown/models/item/lustrous_globe.json
+8ab826a8363e986adff49becd2b09c978e3f2491 assets/mega_showdown/models/item/lustrous_orb.json
 4c71c128e7043f1e29b2a1a523327ed2fb11e224 assets/mega_showdown/models/item/lycanium-z.json
 4486b99bdcd236c3154acf082002f4db131fe69f assets/mega_showdown/models/item/manectite.json
 52ad93657e4f0f4b29ac46b9623a4b6ba70f963a assets/mega_showdown/models/item/marshadium-z.json

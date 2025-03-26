@@ -146,9 +146,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(FormeChangeItems.STAR_CORE.get());
 
-        basicItem(FormeChangeItems.GRISEOUS_ORB.get());
+        basicItem(FormeChangeItems.GRISEOUS_CORE.get());
         basicItem(FormeChangeItems.LUSTROUS_GLOBE.get());
-        basicItem(FormeChangeItems.ADAMANT_ORB.get());
+        basicItem(FormeChangeItems.ADAMANT_CRYSTAL.get());
+
+        basicItem(CompiItems.ADAMANT_ORB.get());
+        basicItem(CompiItems.GRISEOUS_ORB.get());
+        basicItem(CompiItems.LUSTROUS_ORB.get());
 
         basicItem(FormeChangeItems.ASH_CAP.get());
 

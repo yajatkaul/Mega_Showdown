@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:mega_meteorid_block"
+          "name": "mega_showdown:mega_meteorid_block_item"
         }
       ],
       "rolls": 1.0

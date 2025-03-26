@@ -158,9 +158,15 @@ public class Utils {
     }
 
     public static void formeChangeheldItems(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_ORB.asItem(), "griseouscore");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.LUSTROUS_GLOBE.asItem(), "lustrousglobe");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ADAMANT_ORB.asItem(), "adamantcrystal");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_CORE.get(), "griseouscore");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRISEOUS_ORB.get(), "griseousorb");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.LUSTROUS_GLOBE.get(), "lustrousglobe");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUSTROUS_ORB.get(), "lustrousorb");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ADAMANT_CRYSTAL.get(), "adamantcrystal");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADAMANT_ORB.get(), "adamantorb");
+
     }
 
     public static void registerRemapping(){
@@ -174,12 +180,12 @@ public class Utils {
     }
 
     public static void heldItems(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.asItem(), "boosterenergy");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.get(), "boosterenergy");
 
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BURN_DRIVE.asItem(), "burndrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CHILL_DRIVE.asItem(), "chilldrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.asItem(), "dousedrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.asItem(), "shockdrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BURN_DRIVE.get(), "burndrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CHILL_DRIVE.get(), "chilldrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.get(), "dousedrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.get(), "shockdrive");
     }
 
     public static void platesRegister(){

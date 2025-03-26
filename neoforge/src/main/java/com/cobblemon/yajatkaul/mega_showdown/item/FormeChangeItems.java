@@ -193,11 +193,11 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final DeferredItem<Item> GRISEOUS_ORB = ITEMS.register("griseous_orb",
+    public static final DeferredItem<Item> GRISEOUS_CORE = ITEMS.register("griseous_core",
             () -> new Item(new Item.Properties().stacksTo(1)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.griseous_orb.tooltip"));
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.griseous_core.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
@@ -211,11 +211,11 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final DeferredItem<Item> ADAMANT_ORB = ITEMS.register("adamant_orb",
+    public static final DeferredItem<Item> ADAMANT_CRYSTAL = ITEMS.register("adamant_crystal",
             () -> new Item(new Item.Properties().stacksTo(1)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.adamant_orb.tooltip"));
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.adamant_crystal.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });

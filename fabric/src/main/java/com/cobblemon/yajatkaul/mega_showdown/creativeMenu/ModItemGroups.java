@@ -254,8 +254,8 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.CORNERSTONE_MASK);
                         entries.add(FormeChangeItems.HEARTHFLAME_MASK);
                         entries.add(FormeChangeItems.STAR_CORE);
-                        entries.add(FormeChangeItems.GRISEOUS_ORB);
-                        entries.add(FormeChangeItems.ADAMANT_ORB);
+                        entries.add(FormeChangeItems.GRISEOUS_CORE);
+                        entries.add(FormeChangeItems.ADAMANT_CRYSTAL);
                         entries.add(FormeChangeItems.LUSTROUS_GLOBE);
                         entries.add(FormeChangeItems.ASH_CAP);
                         entries.add(RotomFormes.FAN);
@@ -320,6 +320,9 @@ public class ModItemGroups {
                     .entries(((displayContext, entries) -> {
                         entries.add(CompiItems.BOOSTER_ENERGY);
                         entries.add(CompiItems.LEGEND_PLATE);
+                        entries.add(CompiItems.ADAMANT_ORB);
+                        entries.add(CompiItems.GRISEOUS_ORB);
+                        entries.add(CompiItems.LUSTROUS_ORB);
                     }))
                     .build());
 

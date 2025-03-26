@@ -244,10 +244,10 @@ public class HeldItemChangeFormes {
         Pokemon pokemon = post.getPokemon();
 
         if(pokemon.getSpecies().getName().equals("Giratina")){
-            if(post.getReceived().is(FormeChangeItems.GRISEOUS_ORB)){
+            if(post.getReceived().is(FormeChangeItems.GRISEOUS_CORE)){
                 EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
                 new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
-            }else if (post.getReturned().is(FormeChangeItems.GRISEOUS_ORB)){
+            }else if (post.getReturned().is(FormeChangeItems.GRISEOUS_CORE)){
                 EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }
@@ -260,10 +260,10 @@ public class HeldItemChangeFormes {
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }
         }else if (pokemon.getSpecies().getName().equals("Dialga")) {
-            if(post.getReceived().is(FormeChangeItems.ADAMANT_ORB)){
+            if(post.getReceived().is(FormeChangeItems.ADAMANT_CRYSTAL)){
                 EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
-            }else if (post.getReturned().is(FormeChangeItems.ADAMANT_ORB)){
+            }else if (post.getReturned().is(FormeChangeItems.ADAMANT_CRYSTAL)){
                 EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }

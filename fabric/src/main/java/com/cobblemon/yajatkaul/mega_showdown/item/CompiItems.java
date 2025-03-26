@@ -26,6 +26,30 @@ public class CompiItems {
         }
     });
 
+    public static final Item ADAMANT_ORB = registerItem("adamant_orb", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.adamant_orb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item GRISEOUS_ORB = registerItem("griseous_orb", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.griseous_orb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item LUSTROUS_ORB = registerItem("lustrous_orb", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.lustrous_orb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static void registerModItem(){
 
     }

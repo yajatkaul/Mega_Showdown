@@ -16,21 +16,33 @@ import net.minecraft.world.phys.Vec3;
 
 public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon){
-        new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-        new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
-        new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-        if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+        if(pokemon.getSpecies().getName().equals("Castform")){
+            new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Minior")) {
+            new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Aegislash")) {
+            new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
+        } else if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
             new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Morpeko")) {
+            new StringSpeciesFeature("hunger_mode", "full_belly").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Mimikyu")) {
+            new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Ogerpon")) {
+            new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Wishiwashi")) {
+            new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Eiscue")) {
+            new StringSpeciesFeature("penguin_head", "ice_face").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Cramorant")) {
+            new StringSpeciesFeature("missile_form", "none").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Palafin")) {
+            new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Cherrim")) {
+            new StringSpeciesFeature("blossom_form", "overcast").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Darmanitan")) {
+            new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
         }
-        new StringSpeciesFeature("hunger_mode", "full_belly").apply(pokemon);
-        new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
-        new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
-        new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
-        new StringSpeciesFeature("penguin_head", "ice_face").apply(pokemon);
-        new StringSpeciesFeature("missile_form", "none").apply(pokemon);
-        new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
-        new StringSpeciesFeature("dolphin_form", "zero").apply(pokemon);
-        new StringSpeciesFeature("blossom_form", "overcast").apply(pokemon);
     }
 
     public static void playFormeChangeAnimation(LivingEntity context) {

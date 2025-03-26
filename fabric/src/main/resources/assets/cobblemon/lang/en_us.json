@@ -559,5 +559,18 @@
 	"cobblemon.battle.activate.battlebond": "%1$s stats were raised!",
 
 	"cobblemon.battle.damage.gulpmissile": "%1$s threw the Arrokuda on the foe",
-	"cobblemon.battle.damage.gorgmissile": "%1$s threw the Pikachu on the foe"
+	"cobblemon.battle.damage.gorgmissile": "%1$s threw the Pikachu on the foe",
+	"cobblemon.battle.activate.protosynthesis": "The booster energy activated %1$s's Protosynthesis!",
+	"cobblemon.battle.activate.quarkdrive": "The booster energy activated %1$s's Quarkdrive!",
+
+	"cobblemon.battle.start.protosynthesisatk": "%1$s Attack raised!",
+	"cobblemon.battle.start.protosynthesisdef": "%1$s Defense raised!",
+	"cobblemon.battle.start.protosynthesisspa": "%1$s Special Attack raised!",
+	"cobblemon.battle.start.protosynthesisspd": "%1$s Special Defense raised!",
+	"cobblemon.battle.start.protosynthesisspe": "%1$s Speed raised!",
+	"cobblemon.battle.start.quarkdriveatk": "%1$s Attack raised!",
+	"cobblemon.battle.start.quarkdrivedef": "%1$s Defense raised!",
+	"cobblemon.battle.start.quarkdrivespa": "%1$s Special Attack raised!",
+	"cobblemon.battle.start.quarkdrivespd": "%1$s Special Defense raised!",
+	"cobblemon.battle.start.quarkdrivespe": "%1$s Speed raised!"
 }

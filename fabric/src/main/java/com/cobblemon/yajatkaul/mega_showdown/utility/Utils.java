@@ -169,9 +169,14 @@ public class Utils {
     }
 
     public static void formeChangeheldItems(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_ORB.asItem(), "griseouscore");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_CORE.asItem(), "griseouscore");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRISEOUS_ORB.asItem(), "griseousorb");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ADAMANT_CRYSTAL.asItem(), "adamantcrystal");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADAMANT_ORB.asItem(), "adamantorb");
+
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.LUSTROUS_GLOBE.asItem(), "lustrousglobe");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ADAMANT_ORB.asItem(), "adamantcrystal");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUSTROUS_ORB.asItem(), "lustrousorb");
     }
 
     public static void heldItems(){
@@ -182,48 +187,47 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.asItem(), "dousedrive");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.asItem(), "shockdrive");
 
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE.asItem(), "legendplate");
     }
 
     public static void platesRegister(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLAME_PLATE, "flameplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRACO_PLATE, "dracoplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DREAD_PLATE, "dreadplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.EARTH_PLATE, "earthplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIST_PLATE, "fistplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ICICLE_PLATE, "icicleplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.INSECT_PLATE, "insectplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.IRON_PLATE, "ironplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.MEADOW_PLATE, "meadowplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.MIND_PLATE, "mindplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.PIXIE_PLATE, "pixieplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SKY_PLATE, "skyplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SPLASH_PLATE, "splashplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SPOOKY_PLATE, "spookyplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STONE_PLATE, "stoneplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.TOXIC_PLATE, "toxicplate");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ZAP_PLATE, "zapplate");
-
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE, "legendplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLAME_PLATE.asItem(), "flameplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRACO_PLATE.asItem(), "dracoplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DREAD_PLATE.asItem(), "dreadplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.EARTH_PLATE.asItem(), "earthplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIST_PLATE.asItem(), "fistplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ICICLE_PLATE.asItem(), "icicleplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.INSECT_PLATE.asItem(), "insectplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.IRON_PLATE.asItem(), "ironplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.MEADOW_PLATE.asItem(), "meadowplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.MIND_PLATE.asItem(), "mindplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.PIXIE_PLATE.asItem(), "pixieplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SKY_PLATE.asItem(), "skyplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SPLASH_PLATE.asItem(), "splashplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SPOOKY_PLATE.asItem(), "spookyplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STONE_PLATE.asItem(), "stoneplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.TOXIC_PLATE.asItem(), "toxicplate");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ZAP_PLATE.asItem(), "zapplate");
     }
 
     public static void memoriesRegister(){
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BUG_MEMORY, "bugmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DARK_MEMORY, "darkmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRAGON_MEMORY, "dragonmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ELECTRIC_MEMORY, "electricmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FAIRY_MEMORY, "fairymemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIGHTING_MEMORY, "fightingmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIRE_MEMORY, "firememory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLYING_MEMORY, "flyingmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GHOST_MEMORY, "ghostmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRASS_MEMORY, "grassmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GROUND_MEMORY, "groundmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ICE_MEMORY, "icememory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.POISON_MEMORY, "poisonmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.PSYCHIC_MEMORY, "psychicmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ROCK_MEMORY, "rockmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STEEL_MEMORY, "steelmemory");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.WATER_MEMORY, "watermemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BUG_MEMORY.asItem(), "bugmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DARK_MEMORY.asItem(), "darkmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRAGON_MEMORY.asItem(), "dragonmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ELECTRIC_MEMORY.asItem(), "electricmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FAIRY_MEMORY.asItem(), "fairymemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIGHTING_MEMORY.asItem(), "fightingmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FIRE_MEMORY.asItem(), "firememory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLYING_MEMORY.asItem(), "flyingmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GHOST_MEMORY.asItem(), "ghostmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRASS_MEMORY.asItem(), "grassmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GROUND_MEMORY.asItem(), "groundmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ICE_MEMORY.asItem(), "icememory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.POISON_MEMORY.asItem(), "poisonmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.PSYCHIC_MEMORY.asItem(), "psychicmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ROCK_MEMORY.asItem(), "rockmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STEEL_MEMORY.asItem(), "steelmemory");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.WATER_MEMORY.asItem(), "watermemory");
     }
 
     public static void setTradable(Pokemon pokemon, boolean allow){

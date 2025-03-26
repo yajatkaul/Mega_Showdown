@@ -261,9 +261,9 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.CORNERSTONE_MASK);
                         output.accept(FormeChangeItems.HEARTHFLAME_MASK);
                         output.accept(FormeChangeItems.STAR_CORE);
-                        output.accept(FormeChangeItems.GRISEOUS_ORB);
+                        output.accept(FormeChangeItems.GRISEOUS_CORE);
                         output.accept(FormeChangeItems.LUSTROUS_GLOBE);
-                        output.accept(FormeChangeItems.ADAMANT_ORB);
+                        output.accept(FormeChangeItems.ADAMANT_CRYSTAL);
                         output.accept(FormeChangeItems.ASH_CAP);
                         output.accept(RotomFormes.FAN);
                         output.accept(RotomFormes.FRIDGEUNIT);
@@ -327,6 +327,9 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(CompiItems.BOOSTER_ENERGY);
                         output.accept(CompiItems.LEGEND_PLATE);
+                        output.accept(CompiItems.ADAMANT_ORB);
+                        output.accept(CompiItems.GRISEOUS_ORB);
+                        output.accept(CompiItems.LUSTROUS_ORB);
                     })
                     .build());
 

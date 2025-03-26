@@ -402,8 +402,6 @@
   "tooltip.mega_showdown.scroll_of_waters.tooltip": "A mystical scroll containing the secrets of flowing waters. It grants special Pokémon mastery over aquatic techniques.",
   "item.mega_showdown.star_core": "Star Core",
   "tooltip.mega_showdown.star_core.tooltip": "An orb which contains an immense energy.",
-  "item.mega_showdown.griseous_orb": "Griseous Orb",
-  "tooltip.mega_showdown.griseous_orb.tooltip": "A powerful orb that resonates with the fabric of dimensions.",
   "item.mega_showdown.ash_cap": "Ash Cap",
   "tooltip.mega_showdown.ash_cap.tooltip": "A cap worn by a legendary trainer, carrying the spirit of adventure.",
 
@@ -448,11 +446,6 @@
   "tooltip.mega_showdown.ironplate.tooltip": "A tablet that raises the power of Steel-type moves. When held by Arceus, it changes to the Steel type.",
   "item.mega_showdown.pixieplate": "Pixie Plate",
   "tooltip.mega_showdown.pixieplate.tooltip": "A tablet that raises the power of Fairy-type moves. When held by Arceus, it changes to the Fairy type.",
-
-  "item.mega_showdown.adamant_orb": "Adamant Orb",
-  "tooltip.mega_showdown.adamant_orb.tooltip": "An orb that boosts the power of Dragon- and Steel-type moves. When held by Dialga, its strength is enhanced.",
-  "item.mega_showdown.lustrous_globe": "Lustrous Globe",
-  "tooltip.mega_showdown.lustrous_globe.tooltip": "A globe that boosts the power of Dragon- and Water-type moves. When held by Palkia, its strength is enhanced.",
 
   "item.mega_showdown.bugmemory": "Bug Memory",
   "tooltip.mega_showdown.bugmemory.tooltip": "A disc with Bug-type data. It changes Silvally's type.",
@@ -501,7 +494,7 @@
   "item.mega_showdown.pink_nectar": "Pink Nectar",
   "tooltip.mega_showdown.pink_nectar.tooltip": "A flower nectar that changes Oricorio to its Pa'u Style.",
   "item.mega_showdown.purple_nectar": "Purple Nectar",
-  "tooltip.mega_showdown.purple_nectar.tooltip": "A flower nectar infused with mystical energy.",
+  "tooltip.mega_showdown.purple_nectar.tooltip": "A flower nectar that changes Oricorio to its Sensu Style.",
   "item.mega_showdown.red_nectar": "Red Nectar",
   "tooltip.mega_showdown.red_nectar.tooltip": "A flower nectar that changes Oricorio to its Baile Style.",
   "item.mega_showdown.yellow_nectar": "Yellow Nectar",
@@ -510,5 +503,18 @@
   "item.mega_showdown.booster_energy": "Booster Energy",
   "tooltip.mega_showdown.booster_energy.tooltip": "An item that boosts the strongest stat of a Pokémon with Protosynthesis or Quark Drive.",
   "item.mega_showdown.legend_plate": "Legend Plate",
-  "tooltip.mega_showdown.legend_plate.tooltip": "A mysterious plate that changes a Pokémon's type to match its attack."
+  "tooltip.mega_showdown.legend_plate.tooltip": "A mysterious plate that changes a Pokémon's type to match its attack.",
+
+  "item.mega_showdown.adamant_crystal": "Adamant Crystal",
+  "tooltip.mega_showdown.adamant_crystal.tooltip": "A radiant crystal that enhances Dialga's power when held.",
+  "item.mega_showdown.adamant_orb": "Adamant Orb",
+  "tooltip.mega_showdown.adamant_orb.tooltip": "A glowing orb that boosts Dialga's Dragon- and Steel-type moves.",
+  "item.mega_showdown.lustrous_globe": "Lustrous Globe",
+  "tooltip.mega_showdown.lustrous_globe.tooltip": "A mystical globe that strengthens Palkia's power when held.",
+  "item.mega_showdown.lustrous_orb": "Lustrous Orb",
+  "tooltip.mega_showdown.lustrous_orb.tooltip": "A shimmering orb that enhances Palkia's Dragon- and Water-type moves.",
+  "item.mega_showdown.griseous_core": "Griseous Core",
+  "tooltip.mega_showdown.griseous_core.tooltip": "A powerful core that amplifies Giratina's abilities when held.",
+  "item.mega_showdown.griseous_orb": "Griseous Orb",
+  "tooltip.mega_showdown.griseous_orb.tooltip": "An eerie orb that boosts Giratina's Dragon- and Ghost-type moves."
 }

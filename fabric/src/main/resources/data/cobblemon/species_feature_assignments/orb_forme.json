@@ -1,6 +1,8 @@
 {
   "pokemon": [
-    "giratina"
+    "giratina",
+    "palkia",
+    "dialga"
   ],
   "features": [
     "orb_forme"
