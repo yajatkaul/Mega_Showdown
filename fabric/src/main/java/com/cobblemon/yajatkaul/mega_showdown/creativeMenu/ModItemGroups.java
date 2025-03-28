@@ -323,6 +323,8 @@ public class ModItemGroups {
                         entries.add(CompiItems.ADAMANT_ORB);
                         entries.add(CompiItems.GRISEOUS_ORB);
                         entries.add(CompiItems.LUSTROUS_ORB);
+                        entries.add(CompiItems.CLEAR_AMULET);
+                        entries.add(CompiItems.LAGGING_TAIL);
                     }))
                     .build());
 

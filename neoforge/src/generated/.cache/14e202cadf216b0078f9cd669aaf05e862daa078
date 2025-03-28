@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-27T00:54:45.7382937	Item Models: mega_showdown
+// 1.21.1	2025-03-28T10:13:21.4239276	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -26,6 +26,7 @@ e075b6a1c6a08961763d20d08c62b753227ab79b assets/mega_showdown/models/item/burndr
 fa5da1e81f303a056fa14417ae82731c955d7b4f assets/mega_showdown/models/item/charizardite_x.json
 e3297ae4b723d9648a34f1df2798f73100356c0f assets/mega_showdown/models/item/charizardite_y.json
 251ee64bc7c0b921456daca0cc6a61155d5c4a2f assets/mega_showdown/models/item/chilldrive.json
+98cd27ad822c7f7781dbf8b5eff51ad07b7a9f2b assets/mega_showdown/models/item/clear_amulet.json
 7f2c41612fe7867a378700c3a7e3332130dacad4 assets/mega_showdown/models/item/cornerstone_mask.json
 c3f936650210788ca59963e5fa5289524d2fc6b5 assets/mega_showdown/models/item/darkinium-z.json
 f3b8c5beedf5649613f226037db4df3b9409bb19 assets/mega_showdown/models/item/darkmemory.json
@@ -91,6 +92,7 @@ f32f50ef4e7de35fef32db4123abacf3256f418e assets/mega_showdown/models/item/incini
 b5f1693c0c77700fe134b137ceaa7589169a9066 assets/mega_showdown/models/item/kangaskhanite.json
 de3f122de0fec463763c1a4526832c229742946d assets/mega_showdown/models/item/keystone.json
 e8e271134b083fef22413eb309a5ff0e54223141 assets/mega_showdown/models/item/kommonium-z.json
+3de1128327c11e7f162957b280214f748dad8590 assets/mega_showdown/models/item/lagging_tail.json
 269dce9fe63da1d21f904252ed66e0026d605a43 assets/mega_showdown/models/item/latiasite.json
 ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latiosite.json
 2baaa2c7ce7fa2e7eceabb6b841f39ff154e3a8c assets/mega_showdown/models/item/legend_plate.json

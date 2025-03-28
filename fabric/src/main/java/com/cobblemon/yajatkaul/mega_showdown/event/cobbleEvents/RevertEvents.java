@@ -37,9 +37,8 @@ public class RevertEvents {
             if(ShowdownConfig.battleMode.get()){
                 for (Pokemon pokemon : playerPartyStore) {
                     EventUtils.revertFormesEnd(pokemon);
-                    MegaShowdown.LOGGER.info(pokemon.getAspects().toString());
                     if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-                        MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                        MegaLogic.Devolve(pokemon, player, true);
                     }
                 }
             }
@@ -78,22 +77,14 @@ public class RevertEvents {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                if(pokemon.getEntity() != null){
-                    EventUtils.revertFormesEnd(pokemon);
-                    pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
-                }
-            }
-
-            for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUuid()).getPokemonList()) {
-                if (battlePokemon.getOriginalPokemon().getEntity() == null ||
-                        battlePokemon.getOriginalPokemon().getEntity().getWorld().isClient) {
-                    continue;
-                }
-
-                Pokemon pokemon = battlePokemon.getOriginalPokemon();
-
                 if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    MegaLogic.Devolve(pokemon, serverPlayer, true);
+                }
+
+                EventUtils.revertFormesEnd(pokemon);
+
+                if(pokemon.getEntity() != null){
+                    pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
                 }
             }
         });
@@ -110,7 +101,7 @@ public class RevertEvents {
         }
 
         if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+            MegaLogic.Devolve(pokemon, serverPlayer, true);
         }
 
         return Unit.INSTANCE;
@@ -123,7 +114,7 @@ public class RevertEvents {
                 EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    MegaLogic.Devolve(pokemon, serverPlayer, true);
                 }
 
                 if(pokemon.getEntity() != null){
@@ -148,17 +139,17 @@ public class RevertEvents {
                     }
                 }
 
-                if(feature != null){
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if(!enabled){
-                        if(hasMove){
-                            new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                if(pokemon.getAspects().contains("resolute")){
+                    if(!hasMove){
+                        new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                        if(pokemon.getEntity() != null){
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
-                    }else{
-                        if(!hasMove){
-                            new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                    }
+                }else {
+                    if(hasMove){
+                        new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                        if(pokemon.getEntity() != null){
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
                     }

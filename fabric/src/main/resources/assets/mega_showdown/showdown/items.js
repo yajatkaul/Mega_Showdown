@@ -3137,6 +3137,67 @@ const Items = {
     num: 234,
     gen: 2
   },
+  legendplate: {
+    name: "legendplate",
+    onTryMove(pokemon, target, move) {
+        if (!(pokemon.hasItem('legendplate') && move.id === 'judgment')) return;
+
+          const targetTypes = target.getTypes(); // e.g. ['Steel', 'Dragon']
+          let bestType = "Normal"; // Default type if no better choice is found
+          let highestEffectiveness = -99; // Track best net effectiveness
+
+          // Define type matchups, including resistances and immunities
+          const typeChart = {
+              Normal: { superEffective: ["Fighting"], resistedBy: [], immune: ["Ghost"] },
+              Fire: { superEffective: ["Grass", "Bug", "Ice", "Steel"], resistedBy: ["Fire", "Water", "Rock", "Dragon"], immune: [] },
+              Water: { superEffective: ["Fire", "Ground", "Rock"], resistedBy: ["Water", "Grass", "Dragon"], immune: [] },
+              Electric: { superEffective: ["Water", "Flying"], resistedBy: ["Electric", "Grass", "Dragon"], immune: ["Ground"] },
+              Grass: { superEffective: ["Water", "Ground", "Rock"], resistedBy: ["Fire", "Grass", "Poison", "Flying", "Bug", "Dragon", "Steel"], immune: [] },
+              Ice: { superEffective: ["Grass", "Ground", "Flying", "Dragon"], resistedBy: ["Fire", "Water", "Ice", "Steel"], immune: [] },
+              Fighting: { superEffective: ["Normal", "Ice", "Rock", "Dark", "Steel"], resistedBy: ["Flying", "Poison", "Bug", "Psychic", "Fairy"], immune: ["Ghost"] },
+              Poison: { superEffective: ["Grass", "Fairy"], resistedBy: ["Poison", "Ground", "Rock", "Ghost"], immune: ["Steel"] },
+              Ground: { superEffective: ["Fire", "Electric", "Poison", "Rock", "Steel"], resistedBy: ["Bug", "Grass"], immune: ["Flying"] },
+              Flying: { superEffective: ["Fighting", "Bug", "Grass"], resistedBy: ["Electric", "Rock", "Steel"], immune: [] },
+              Psychic: { superEffective: ["Fighting", "Poison"], resistedBy: ["Psychic", "Steel"], immune: ["Dark"] },
+              Bug: { superEffective: ["Grass", "Psychic", "Dark"], resistedBy: ["Fire", "Fighting", "Poison", "Flying", "Ghost", "Steel", "Fairy"], immune: [] },
+              Rock: { superEffective: ["Fire", "Ice", "Flying", "Bug"], resistedBy: ["Fighting", "Ground", "Steel"], immune: [] },
+              Ghost: { superEffective: ["Ghost", "Psychic"], resistedBy: ["Dark"], immune: ["Normal"] },
+              Dragon: { superEffective: ["Dragon"], resistedBy: ["Steel"], immune: [] },
+              Dark: { superEffective: ["Psychic", "Ghost"], resistedBy: ["Fighting", "Dark", "Fairy"], immune: [] },
+              Steel: { superEffective: ["Ice", "Rock", "Fairy"], resistedBy: ["Fire", "Water", "Electric", "Steel"], immune: [] },
+              Fairy: { superEffective: ["Fighting", "Dragon", "Dark"], resistedBy: ["Fire", "Poison", "Steel"], immune: [] }
+          };
+
+          // Loop through all types and determine the best choice
+          for (const [type, data] of Object.entries(typeChart)) {
+              let effectiveness = 0;
+
+              for (const targetType of targetTypes) {
+                  if (data.immune.includes(targetType)) {
+                      effectiveness = -99; // Disqualify if the target is immune
+                      break;
+                  }
+                  if (data.superEffective.includes(targetType)) {
+                      effectiveness += 2; // Strong match
+                  }
+                  if (data.resistedBy.includes(targetType)) {
+                      effectiveness -= 2; // Weakened effectiveness
+                  }
+              }
+
+              if (effectiveness > highestEffectiveness) {
+                  bestType = type;
+                  highestEffectiveness = effectiveness;
+              }
+          }
+          if (pokemon.name === 'Arceus') pokemon.setType(bestType);
+          move.type = bestType;
+          move.ignoreAbility = true;
+      },
+      onUse(pokemon) {
+          if (pokemon.name === 'Arceus') pokemon.setType('Normal');
+      }
+  },
   leppaberry: {
     name: "Leppa Berry",
     spritenum: 244,
@@ -3226,7 +3287,7 @@ const Items = {
         return this.chainModify(2);
       }
     },
-    itemUser: ["Pikachu", "Pikachu-Cosplay", "Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Starter", "Pikachu-World"],
+    itemUser: ["Pikachu", "Pikachu-Cosplay", "Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Starter", "Pikachu-World", "Pikachu-Captain"],
     num: 236,
     gen: 2
   },
@@ -4312,7 +4373,7 @@ const Items = {
     onTakeItem: false,
     zMove: "10,000,000 Volt Thunderbolt",
     zMoveFrom: "Thunderbolt",
-    itemUser: ["Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner"],
+    itemUser: ["Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Captain"],
     num: 836,
     isNonstandard: "Past",
     gen: 7
@@ -7761,60 +7822,6 @@ const Items = {
     num: -2,
     gen: 8,
     isNonstandard: "CAP"
-  },
-   legendplate: {
-    name: "legendplate",
-    onTryMove(pokemon, target, move) {
-      if (!(pokemon.hasItem('legendplate') && move.id === 'judgment')) return;
-
-      const targetTypes = target.getTypes();
-      const typeChart = {
-        Normal: { Ghost: 0 },
-	    Fire: { Bug: 2, Steel: 2, Grass: 2, Ice: 2, Water: 0.5, Fire: 0.5, Rock: 0.5, Dragon: 1 },
-        Water: { Fire: 2, Ground: 2, Rock: 2, Water: 0.5, Electric: 0.5, Grass: 0.5 },
-        Electric: { Water: 2, Flying: 2, Electric: 0.5, Ground: 0 },
-        Grass: { Water: 2, Ground: 2, Rock: 2, Fire: 0.5, Flying: 0.5, Bug: 0.5, Ice: 0.5, Grass: 0.5 },
-        Ice: { Flying: 2, Ground: 2, Dragon: 2, Grass: 2, Fire: 0.5, Water: 0.5, Steel: 0.5, Ice: 0.5 },
-        Fighting: { Normal: 2, Ice: 2, Rock: 2, Dark: 2, Steel: 2, Psychic: 0.5, Flying: 0.5, Fairy: 0.5 },
-        Poison: { Fairy: 2, Poison: 0.5, Ground: 0.5, Ghost: 1, Psychic: 1 },
-        Ground: { Fire: 2, Electric: 2, Poison: 2, Rock: 2, Steel: 2, Water: 0.5, Grass: 0.5, Ice: 0.5 },
-        Flying: { Fighting: 2, Bug: 2, Grass: 2, Electric: 0.5, Flying: 0.5, Rock: 0.5, Steel: 1 },
-        Psychic: { Fighting: 2, Poison: 2, Psychic: 0.5, Ghost: 1, Dark: 0 },
-        Bug: { Psychic: 2, Ghost: 2, Dark: 2, Fire: 0.5, Fighting: 0.5, Flying: 0.5, Rock: 0.5, Steel: 0.5 },
-        Ghost: { Psychic: 2, Ghost: 2, Normal: 0, Dark: 2, Fighting: 1 },
-        Dragon: { Dragon: 2, Fairy: 0, Steel: 0.5, Fire: 1, Water: 1 },
-        Dark: { Ghost: 2, Psychic: 2, Fighting: 0.5, Fairy: 0.5, Dark: 0.5 },
-        Steel: { Fairy: 2, Ice: 2, Rock: 2, Fire: 0.5, Water: 0.5, Electric: 0.5, Steel: 1 },
-        Fairy: { Dragon: 2, Dark: 2, Fighting: 2, Fire: 0.5, Poison: 0.5, Steel: 0.5 }
-      };
-
-      let bestType = 'Normal', maxEffectiveness = 0;
-      let hasGhost = targetTypes.includes('Ghost');
-      let hasNormal = targetTypes.includes('Normal');
-
-      if (hasNormal && hasGhost) {
-        bestType = 'Dark'; // Special case for Normal/Ghost
-      } else {
-        for (const [type, effectiveness] of Object.entries(typeChart)) {
-          let totalEffectiveness = targetTypes.reduce((multiplier, t) => multiplier * (effectiveness[t] || 1), 1);
-          if (totalEffectiveness > maxEffectiveness) {
-            maxEffectiveness = totalEffectiveness;
-            bestType = type;
-          }
-        }
-      }
-
-      // **Fix: Force Dark-type if the target is Mono-Ghost and no better match**
-      if (hasGhost && targetTypes.length === 1 && bestType !== 'Dark' && bestType !== 'Ghost') {
-        bestType = 'Dark';
-      }
-
-      if (pokemon.name === 'Arceus') pokemon.setType(bestType);
-      move.type = bestType;
-    },
-    onUse(pokemon) {
-      if (pokemon.name === 'Arceus') pokemon.setType('Normal');
-    }
   }
 };
 //# sourceMappingURL=items.js.map

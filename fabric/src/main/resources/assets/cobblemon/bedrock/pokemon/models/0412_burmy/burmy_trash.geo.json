@@ -1,0 +1,132 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.burmy_sand",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "burmy_trash",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "cuerpo",
+					"parent": "burmy_trash",
+					"pivot": [0, 3, 0],
+					"cubes": [
+						{"origin": [-4, 7, -2], "size": [8, 11, 8], "uv": [0, 19]},
+						{"origin": [1.15, 13, -2.2], "size": [1, 1, 0], "inflate": 0.02, "uv": [38, 42]},
+						{"origin": [-3.5, 9.75, -2.1], "size": [7, 6, 1], "uv": [33, 0]},
+						{"origin": [-2.15, 13, -2.2], "size": [1, 1, 0], "inflate": 0.02, "uv": [30, 38]},
+						{"origin": [1, 12, -2.2], "size": [2, 3, 0], "uv": [18, 42]},
+						{"origin": [-3, 12, -2.2], "size": [2, 3, 0], "uv": [22, 42]},
+						{"origin": [-4, 7, -2], "size": [8, 11, 8], "inflate": 0.3, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "leaves",
+					"parent": "cuerpo",
+					"pivot": [0, 3, 0],
+					"cubes": [
+						{"origin": [-3, 4, -1], "size": [6, 3, 6], "uv": [33, 17]},
+						{"origin": [-3, 4, -1], "size": [6, 4, 6], "inflate": 0.3, "uv": [34, 7]},
+						{"origin": [-3.13478, 1.33568, 0.1329], "size": [1.5, 3, 0], "inflate": 0.02, "pivot": [-1, 2.57437, 0.08682], "rotation": [14.83045, -1.29256, 14.94548], "uv": [8, 50]},
+						{"origin": [-1, 1.5, 0], "size": [1.5, 3, 0], "inflate": 0.02, "pivot": [0, 2.57437, 0.08682], "rotation": [5, 0, 0], "uv": [8, 50]},
+						{"origin": [1.13478, 1.33568, 0.1329], "size": [1.5, 3, 0], "inflate": 0.02, "pivot": [1, 2.57437, 0.08682], "rotation": [14.83045, 1.29256, -14.94548], "uv": [8, 50]}
+					]
+				},
+				{
+					"name": "chincho",
+					"parent": "cuerpo",
+					"pivot": [0, 16.75, 0],
+					"cubes": [
+						{"origin": [-3, 18, -1], "size": [6, 2, 6], "uv": [35, 38]}
+					]
+				},
+				{
+					"name": "chincho2",
+					"parent": "chincho",
+					"pivot": [0, 18.5, 0],
+					"cubes": [
+						{"origin": [-2, 20, 0], "size": [4, 2, 4], "uv": [37, 46]}
+					]
+				},
+				{
+					"name": "chincho3",
+					"parent": "chincho2",
+					"pivot": [0, 20.5, 0],
+					"cubes": [
+						{"origin": [-1, 22, 1], "size": [2, 3, 2], "uv": [10, 38]}
+					]
+				},
+				{
+					"name": "chincho4",
+					"parent": "chincho3",
+					"pivot": [0, 22, 0],
+					"cubes": [
+						{"origin": [-0.5, 25, 1.5], "size": [1, 2, 1], "uv": [26, 42]}
+					]
+				},
+				{
+					"name": "mandibula",
+					"parent": "cuerpo",
+					"pivot": [0, 3, 0]
+				},
+				{
+					"name": "jaw",
+					"parent": "mandibula",
+					"pivot": [0, 3, 0],
+					"cubes": [
+						{"origin": [-0.7, 11, -3], "size": [1.5, 2, 1], "uv": [30, 42]}
+					]
+				},
+				{
+					"name": "bone14",
+					"parent": "mandibula",
+					"pivot": [0, 3, 0],
+					"cubes": [
+						{"origin": [-0.7, 11, -3], "size": [1.5, 0, 1], "uv": [34, 42]}
+					]
+				},
+				{
+					"name": "parpado_izquierdo",
+					"parent": "cuerpo",
+					"pivot": [0.875, 13.2, -4.075],
+					"cubes": [
+						{"origin": [0.975, 12.1, -1.075], "size": [2, 3, 1], "inflate": 0.15, "uv": [18, 38]}
+					]
+				},
+				{
+					"name": "parpado_derecho",
+					"parent": "cuerpo",
+					"pivot": [-0.875, 13.2, -3.075],
+					"cubes": [
+						{"origin": [-2.975, 12, -1.075], "size": [2, 3, 1], "inflate": 0.15, "uv": [24, 38]}
+					]
+				},
+				{
+					"name": "pierna_izquierda",
+					"parent": "cuerpo",
+					"pivot": [2.25, 10.25, -2.5],
+					"cubes": [
+						{"origin": [1.75, 1.15, -2], "size": [1, 6, 1], "uv": [0, 47]}
+					]
+				},
+				{
+					"name": "pierna_derecha",
+					"parent": "cuerpo",
+					"pivot": [-2.25, 10.25, -2.5],
+					"cubes": [
+						{"origin": [-2.75, 1.05, -2], "size": [1, 6, 1], "uv": [0, 47]}
+					]
+				}
+			]
+		}
+	]
+}

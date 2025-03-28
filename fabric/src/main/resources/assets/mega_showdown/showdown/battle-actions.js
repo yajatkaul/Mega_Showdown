@@ -1688,7 +1688,7 @@ class BattleActions {
     if (pokemon.illusion && ["Ogerpon", "Terapagos"].includes(pokemon.illusion.species.baseSpecies)) {
       this.battle.singleEvent("End", this.dex.abilities.get("Illusion"), pokemon.abilityState, pokemon);
     }
-	const type = pokemon.teraType;
+	const type = pokemon.teraType.charAt(0).toUpperCase() + pokemon.teraType.slice(1).toLowerCase();
 	this.battle.add("-terastallize", pokemon, type);
     pokemon.terastallized = type;
     for (const ally of pokemon.side.pokemon) {

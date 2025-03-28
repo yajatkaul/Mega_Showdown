@@ -1,9 +1,9 @@
 {
   "head": "head",
-  "portraitScale": 1.25,
+  "portraitScale": 1.5,
   "portraitTranslation": [
-    0,
-    0.5,
+    -0.25,
+    3.8,
     0
   ],
   "profileScale": 0.45,

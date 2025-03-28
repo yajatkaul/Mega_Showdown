@@ -22,14 +22,29 @@
             "poser": "cobblemon:castform_snowy",
             "model": "cobblemon:castform_snowy.geo",
             "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy.png",
-            "layers": []
+            "layers": [
+                {
+                    "name": "emissive",
+                    "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy_emissives.png",
+                    "emissive": false,
+                    "translucent": true
+                }
+            ]
         },
         {
             "aspects": [
                 "shiny",
                 "snowy-form"
             ],
-            "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy_shiny.png"
+            "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy_shiny.png",
+            "layers": [
+                {
+                    "name": "emissive",
+                    "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy_shiny_emissives.png",
+                    "emissive": false,
+                    "translucent": true
+                }
+            ]
         },
         {
             "aspects": [
@@ -42,7 +57,7 @@
                 {
                     "name": "emissive",
                     "texture": "cobblemon:textures/pokemon/0351_castform/castform_sunny_emissives.png",
-                    "emissive": true,
+                    "emissive": false,
                     "translucent": true
                 }
             ]
@@ -57,7 +72,7 @@
                 {
                     "name": "emissive",
                     "texture": "cobblemon:textures/pokemon/0351_castform/castform_sunny_emissives.png",
-                    "emissive": true,
+                    "emissive": false,
                     "translucent": true
                 }
             ]
@@ -73,7 +88,7 @@
                 {
                     "name": "emissive",
                     "texture": "cobblemon:textures/pokemon/0351_castform/castform_rainy_emissives.png",
-                    "emissive": true,
+                    "emissive": false,
                     "translucent": true
                 }
             ]
@@ -88,7 +103,7 @@
                 {
                     "name": "emissive",
                     "texture": "cobblemon:textures/pokemon/0351_castform/castform_rainy_emissives.png",
-                    "emissive": true,
+                    "emissive": false,
                     "translucent": true
                 }
             ]

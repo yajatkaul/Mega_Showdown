@@ -159,14 +159,15 @@ public class Utils {
 
     public static void formeChangeheldItems(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_CORE.get(), "griseouscore");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRISEOUS_ORB.get(), "griseousorb");
 
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.LUSTROUS_GLOBE.get(), "lustrousglobe");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUSTROUS_ORB.get(), "lustrousorb");
 
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ADAMANT_CRYSTAL.get(), "adamantcrystal");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADAMANT_ORB.get(), "adamantorb");
 
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BURN_DRIVE.get(), "burndrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CHILL_DRIVE.get(), "chilldrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.get(), "dousedrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.get(), "shockdrive");
     }
 
     public static void registerRemapping(){
@@ -182,10 +183,15 @@ public class Utils {
     public static void heldItems(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.get(), "boosterenergy");
 
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BURN_DRIVE.get(), "burndrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CHILL_DRIVE.get(), "chilldrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.get(), "dousedrive");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.get(), "shockdrive");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE.get(), "legendplate");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.CLEAR_AMULET.get(), "clearamulet");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LAGGING_TAIL.get(), "laggingtail");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADAMANT_ORB.get(), "adamantorb");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRISEOUS_ORB.get(), "griseousorb");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUSTROUS_ORB.get(), "lustrousorb");
+
     }
 
     public static void platesRegister(){
@@ -206,8 +212,6 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.STONE_PLATE.get(), "stoneplate");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.TOXIC_PLATE.get(), "toxicplate");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ZAP_PLATE.get(), "zapplate");
-
-        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE.get(), "legendplate");
     }
 
     public static void memoriesRegister(){

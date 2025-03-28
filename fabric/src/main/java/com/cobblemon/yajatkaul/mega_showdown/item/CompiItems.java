@@ -50,6 +50,22 @@ public class CompiItems {
         }
     });
 
+    public static final Item CLEAR_AMULET = registerItem("clear_amulet", new Item(new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.clear_amulet.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item LAGGING_TAIL = registerItem("lagging_tail", new Item(new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.lagging_tail.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static void registerModItem(){
 
     }

@@ -330,6 +330,8 @@ public class ModCreativeModeTabs {
                         output.accept(CompiItems.ADAMANT_ORB);
                         output.accept(CompiItems.GRISEOUS_ORB);
                         output.accept(CompiItems.LUSTROUS_ORB);
+                        output.accept(CompiItems.CLEAR_AMULET);
+                        output.accept(CompiItems.LAGGING_TAIL);
                     })
                     .build());
 

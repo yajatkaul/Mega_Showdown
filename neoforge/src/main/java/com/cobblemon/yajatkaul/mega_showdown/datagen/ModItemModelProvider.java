@@ -211,5 +211,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(CompiItems.BOOSTER_ENERGY.get());
         basicItem(CompiItems.LEGEND_PLATE.get());
+
+        basicItem(CompiItems.CLEAR_AMULET.get());
+        basicItem(CompiItems.LAGGING_TAIL.get());
     }
 }

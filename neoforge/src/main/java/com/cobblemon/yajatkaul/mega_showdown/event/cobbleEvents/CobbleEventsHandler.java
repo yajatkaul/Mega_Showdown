@@ -13,7 +13,9 @@ import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.*;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -99,6 +101,12 @@ public class CobbleEventsHandler {
 
         battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+            if(activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == player){
+                battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true));
+            }
+        }
 
         return Unit.INSTANCE;
     }
@@ -209,6 +217,7 @@ public class CobbleEventsHandler {
 
     public static Unit formeChanges(FormeChangeEvent formeChangeEvent) {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
+        PokemonBattle battle = formeChangeEvent.getBattle();
 
         if(pokemon.getSpecies().getName().equals("Aegislash")){
             if(formeChangeEvent.getFormeName().equals("blade")){
@@ -252,6 +261,9 @@ public class CobbleEventsHandler {
             if(formeChangeEvent.getFormeName().equals("sunshine")){
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blossom_form", "sunshine").apply(pokemon);
+            }else{
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("blossom_form", "overcast").apply(pokemon);
             }
         }else if (pokemon.getSpecies().getName().equals("Palafin")) {
             if (formeChangeEvent.getFormeName().equals("hero")) {
@@ -293,6 +305,15 @@ public class CobbleEventsHandler {
             }else{
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
+            }
+        }
+
+        battle.sendUpdate(new AbilityUpdatePacket(formeChangeEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+            if(activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()){
+                battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true));
             }
         }
 

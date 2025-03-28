@@ -110,7 +110,7 @@ public class MegaLogic {
                     boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
 
                     if(enabled){
-                        Devolve(pk, player, false);
+                        Devolve(pk.getPokemon(), player, false);
                         end = false;
                         break;
                     }else{
@@ -278,37 +278,35 @@ public class MegaLogic {
         }
     }
 
-    public static void Devolve(LivingEntity context, PlayerEntity player, Boolean fromBattle){
+    public static void Devolve(Pokemon context, PlayerEntity player, Boolean fromBattle){
         if(player.getWorld().isClient || context == null){
             return;
         }
 
-        if(context instanceof PokemonEntity pk){
-            if(pk.getPokemon().getOwnerPlayer() != player){
-                return;
-            }
-
-            if(pk.isBattling() && !fromBattle){
-                player.sendMessage(
-                        Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return;
-            }
-
-            Pokemon pokemon = ((PokemonEntity) context).getPokemon();
-
-            player.setAttached(DataManage.MEGA_DATA, false);
-            player.removeAttached(DataManage.MEGA_POKEMON);
-
-            playDevolveAnimation(context);
-
-            new FlagSpeciesFeature("mega", false).apply(pokemon);
-            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-            setTradable(pokemon, true);
-
+        if(context.getOwnerPlayer() != player){
+            return;
         }
+
+        if(context.getEntity() != null && context.getEntity().isBattling() && !fromBattle){
+            player.sendMessage(
+                    Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
+        }
+
+        player.setAttached(DataManage.MEGA_DATA, false);
+        player.removeAttached(DataManage.MEGA_POKEMON);
+
+        if(context.getEntity() != null){
+            playDevolveAnimation(context.getEntity());
+        }
+
+        new FlagSpeciesFeature("mega", false).apply(context);
+        new FlagSpeciesFeature("mega-x", false).apply(context);
+        new FlagSpeciesFeature("mega-y", false).apply(context);
+        setTradable(context, true);
+
     }
 
     public static void playEvolveAnimation(LivingEntity context) {

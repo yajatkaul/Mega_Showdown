@@ -391,11 +391,11 @@ public class HeldItemChangeFormes {
                 boolean enabled = featureProvider.get(pokemon).getEnabled();
 
                 if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                    MegaLogic.Devolve(pokemon, player, true);
                 }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                    MegaLogic.Devolve(pokemon, player, true);
                 } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                    MegaLogic.Devolve(pokemon, player, true);
                 }
             }
         }

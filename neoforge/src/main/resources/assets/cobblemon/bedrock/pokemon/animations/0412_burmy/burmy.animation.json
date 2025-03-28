@@ -1,0 +1,211 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.burmy.ground_idle": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"cuerpo": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [0, -30, 0],
+						"0.75": [0, 35, 0],
+						"1.25": [0, -30, 0],
+						"1.5": [0, 0, 0]
+					}
+				},
+				"pierna_izquierda": {
+					"rotation": [0, 0, 27.5],
+					"position": [-3, 0, 0]
+				},
+				"pierna_derecha": {
+					"rotation": [0, 0, -22.5],
+					"position": [2, 0, 0]
+				},
+				"chincho": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, -12.5, 0],
+						"1.2083": [0, 0, 0]
+					}
+				},
+				"chincho2": {
+					"rotation": [0, 0, 0]
+				},
+				"chincho3": {
+					"rotation": [0, 0, -12.5]
+				},
+				"chincho4": {
+					"rotation": [0, 0, 5]
+				}
+			}
+		},
+		"animation.burmy.ground_walk": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"cuerpo": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.5": [30, 0, 0],
+						"0.75": [-40, 0, 0],
+						"1.0": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.75": [0, 0, -14],
+						"1.0": [0, 0, 0]
+					}
+				},
+				"chincho": {
+					"rotation": {
+						"0.0": [0, -40, 0],
+						"0.25": [0, -27.5, 0],
+						"0.75": [0, -22.5, 0]
+					},
+					"position": [1, 0, 0.3]
+				},
+				"chincho2": {
+					"rotation": [0, 17.5, 0],
+					"position": [-0.8, 0, 0]
+				},
+				"chincho3": {
+					"rotation": [-1.31845, 9.91358, -7.61435]
+				},
+				"chincho4": {
+					"rotation": [0, 7.5, 0]
+				},
+				"pierna_izquierda": {
+					"rotation": {
+						"0.0": [20, 0, 0],
+						"0.4167": [-32.5, 0, 0],
+						"1.0": [20, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.4167": [0, 0, 2],
+						"0.75": [0, 0, -0.5]
+					}
+				},
+				"pierna_derecha": {
+					"rotation": {
+						"0.0": [-15, 0, 0],
+						"0.4167": [12.5, 0, 0],
+						"1.0": [-15, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.burmy.blink": {
+			"animation_length": 0.25,
+			"bones": {
+				"parpado_izquierdo": {
+					"position": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.125": {
+							"post": [0, 0, -1],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"parpado_derecho": {
+					"position": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.125": {
+							"post": [0, 0, -1],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				}
+			}
+		},
+		"animation.burmy.cry": {
+			"animation_length": 0.5,
+			"bones": {
+				"jaw": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.25": [0, 0.3, 0],
+						"0.5": [0, 0.1, 0]
+					}
+				}
+			}
+		},
+		"animation.burmy.sleep": {
+			"loop": true,
+			"animation_length": 2.7917,
+			"bones": {
+				"cuerpo": {
+					"rotation": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [0, 0, 32.5],
+							"lerp_mode": "catmullrom"
+						},
+						"1.2917": {
+							"post": [0, 0, -45],
+							"lerp_mode": "catmullrom"
+						},
+						"2.0": {
+							"post": [0, 0, 32.5],
+							"lerp_mode": "catmullrom"
+						},
+						"2.7917": {
+							"post": [0, 0, -45],
+							"lerp_mode": "catmullrom"
+						}
+					},
+					"position": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [-7, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.2917": {
+							"post": [5, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"2.0": {
+							"post": [-7, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"2.7917": {
+							"post": [5, 0, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"chincho": {
+					"rotation": [0, 0, -2]
+				},
+				"chincho2": {
+					"rotation": [0, 0, -3]
+				},
+				"chincho3": {
+					"rotation": [0, 0, 9]
+				},
+				"chincho4": {
+					"rotation": [0, 0, 11]
+				},
+				"parpado_izquierdo": {
+					"position": [0, 0, -1]
+				},
+				"parpado_derecho": {
+					"position": [0, 0, -1]
+				}
+			}
+		}
+	}
+}

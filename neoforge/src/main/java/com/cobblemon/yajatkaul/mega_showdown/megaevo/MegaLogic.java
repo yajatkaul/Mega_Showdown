@@ -112,7 +112,7 @@ public class MegaLogic {
                     boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
 
                     if(enabled){
-                        Devolve(pk, player, false);
+                        Devolve(pk.getPokemon(), player, false);
                         end = false;
                         break;
                     }else{
@@ -261,33 +261,34 @@ public class MegaLogic {
 
     }
 
-    public static void Devolve(LivingEntity context, Player player, Boolean fromBattle){
+    public static void Devolve(Pokemon context, Player player, Boolean fromBattle){
         if(player.level().isClientSide || context == null){
             return;
         }
 
-        if(context instanceof PokemonEntity pk){
-            if(pk.getPokemon().getOwnerPlayer() != player){
+        if(context instanceof Pokemon pk){
+            if(pk.getOwnerPlayer() != player){
                 return;
             }
 
-            if(pk.isBattling() && !fromBattle){
+            if(pk.getEntity() != null && pk.getEntity().isBattling() && !fromBattle){
                 player.displayClientMessage(Component.literal("Not allowed in battle")
                         .withColor(0xFF0000), true);
                 return;
             }
 
-            Pokemon pokemon = ((PokemonEntity) context).getPokemon();
 
             player.setData(DataManage.MEGA_DATA, false);
             player.setData(DataManage.MEGA_POKEMON, new Pokemon());
 
-            playDevolveAnimation(context);
+            if(context.getEntity() != null){
+                playDevolveAnimation(context.getEntity());
+            }
 
-            new FlagSpeciesFeature("mega", false).apply(pokemon);
-            new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-            new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-            setTradable(pokemon, true);
+            new FlagSpeciesFeature("mega", false).apply(pk);
+            new FlagSpeciesFeature("mega-x", false).apply(pk);
+            new FlagSpeciesFeature("mega-y", false).apply(pk);
+            setTradable(pk, true);
         }
     }
     public static void playEvolveAnimation(LivingEntity context) {

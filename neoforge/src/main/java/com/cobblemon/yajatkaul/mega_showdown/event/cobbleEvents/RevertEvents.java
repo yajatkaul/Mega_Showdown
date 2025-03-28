@@ -25,6 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
@@ -35,21 +36,14 @@ public class RevertEvents {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                if(pokemon.getEntity() != null){
-                    EventUtils.revertFormesEnd(pokemon);
-                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-                }
-            }
-
-            for (BattlePokemon battlePokemon : battleVictoryEvent.getBattle().getActor(serverPlayer.getUUID()).getPokemonList()) {
-                if (battlePokemon.getOriginalPokemon().getEntity() == null) {
-                    continue;
-                }
-
-                Pokemon pokemon = battlePokemon.getOriginalPokemon();
-
                 if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    MegaLogic.Devolve(pokemon, serverPlayer, true);
+                }
+
+                EventUtils.revertFormesEnd(pokemon);
+
+                if(pokemon.getEntity() != null){
+                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
             }
         });
@@ -66,7 +60,7 @@ public class RevertEvents {
         }
 
         if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-            MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+            MegaLogic.Devolve(pokemon, serverPlayer, true);
         }
 
         return Unit.INSTANCE;
@@ -79,7 +73,7 @@ public class RevertEvents {
                 EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon.getEntity(), serverPlayer, true);
+                    MegaLogic.Devolve(pokemon, serverPlayer, true);
                 }
 
                 if(pokemon.getEntity() != null){
@@ -104,17 +98,17 @@ public class RevertEvents {
                     }
                 }
 
-                if(feature != null){
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if(!enabled){
-                        if(hasMove){
-                            new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                if(pokemon.getAspects().contains("resolute")){
+                    if(!hasMove){
+                        new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                        if(pokemon.getEntity() != null){
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
-                    }else{
-                        if(!hasMove){
-                            new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                    }
+                }else {
+                    if(hasMove){
+                        new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                        if(pokemon.getEntity() != null){
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
                     }
@@ -123,7 +117,7 @@ public class RevertEvents {
         }
     }
 
-    public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
+    public static Unit battleStarted(@NotNull BattleStartedPreEvent battleEvent) {
         for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             checkKeldeo(playerPartyStore);
@@ -133,7 +127,7 @@ public class RevertEvents {
                     EventUtils.revertFormesEnd(pokemon);
 
                     if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
-                        MegaLogic.Devolve(pokemon.getEntity(), player, true);
+                        MegaLogic.Devolve(pokemon, player, true);
                     }
                 }
             }
