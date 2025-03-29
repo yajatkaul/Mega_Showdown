@@ -1,7 +1,7 @@
 {
   "head": "whiteneck",
-  "portraitScale": 1,
-  "portraitTranslation": [0, 2.3, 0],
+  "portraitScale": 1.48,
+  "portraitTranslation": [0.15, 2.3, 0],
   "profileScale": 0.5,
   "profileTranslation": [0, 1, 0],
   "animations": {

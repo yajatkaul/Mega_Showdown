@@ -7,7 +7,13 @@
       "poser": "cobblemon:necrozma",
       "model": "cobblemon:necrozma.geo",
       "texture": "cobblemon:textures/pokemon/0800_necrozma/necrozma.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0800_necrozma/necrozma_emissive.png",
+          "emissive": true
+        }
+      ]
     },
     {
       "aspects": [ "shiny" ],

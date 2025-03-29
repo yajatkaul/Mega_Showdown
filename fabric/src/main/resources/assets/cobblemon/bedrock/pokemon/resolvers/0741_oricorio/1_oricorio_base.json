@@ -1,19 +1,19 @@
 {
   "species": "cobblemon:oricorio",
-  "order": 0,
+  "order": 1,
   "variations": [
     {
       "aspects": [],
       "poser": "cobblemon:baile_oricorio",
       "model": "cobblemon:baile_oricorio.geo",
-      "texture": "cobblemon:textures/pokemon/0741_oricorio/baile_oricorio.png",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/oricorio_baile.png",
       "layers": []
     },
     {
       "aspects": ["shiny"],
       "poser": "cobblemon:baile_oricorio",
       "model": "cobblemon:baile_oricorio.geo",
-      "texture": "cobblemon:textures/pokemon/0741_oricorio/baile_oricorio_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/oricorio_baile_shiny.png",
       "layers": []
     }
   ]

@@ -162,9 +162,10 @@
     "tutor:tailwind"
   ],
   "evolutions": [],
+  "features": ["dance_style"],
   "forms": [
     {
-      "name": "Pom_Pom",
+      "name": "Pom-Pom",
       "primaryType": "electric",
       "secondaryType": "flying",
       "maleRatio": 0.25,
@@ -177,13 +178,13 @@
         "gen7"
       ],
       "aspects": [
-        "pom_pom-style"
+        "pom-pom-style"
       ],
       "evolutions": [],
       "battleOnly": false
     },
     {
-      "name": "Pau",
+      "name": "Pa’u",
       "primaryType": "psychic",
       "secondaryType": "flying",
       "maleRatio": 0.25,
@@ -196,7 +197,7 @@
         "gen7"
       ],
       "aspects": [
-        "pa'u-style"
+        "pa’u-style"
       ],
       "evolutions": [],
       "battleOnly": false

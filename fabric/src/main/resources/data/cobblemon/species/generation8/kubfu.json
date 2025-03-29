@@ -98,7 +98,7 @@
       {
         "id": "kubfu_urshifu",
         "variant": "item_interact",
-        "result": "urshifu",
+        "result": "urshifu wushu_style=single_strike",
         "consumeHeldItem": true,
         "learnableMoves": [
           "wickedblow"
@@ -109,7 +109,7 @@
       {
         "id": "kubfu_urshifu_rapidstrike",
         "variant": "item_interact",
-        "result": "urshifu rapidstrike",
+        "result": "urshifu wushu_style=rapid_strike",
         "consumeHeldItem": true,
         "learnableMoves": [
           "surgingstrikes"

@@ -1,9 +1,9 @@
 {
   "head": "whiteneck",
-  "portraitScale": 1,
-  "portraitTranslation": [0, 2.3, 0],
+  "portraitScale": 1.35,
+  "portraitTranslation": [-0.02, 2.53, 0],
   "profileScale": 0.5,
-  "profileTranslation": [0, 1, 0],
+  "profileTranslation": [0, 1.1, 0],
   "animations": {
     "faint": "q.bedrock_primary('urshifu', 'rsfaint', q.curve('one'))",
     "cry": "q.bedrock_primary('urshifu', 'cry', q.curve('symmetrical_wide'))",

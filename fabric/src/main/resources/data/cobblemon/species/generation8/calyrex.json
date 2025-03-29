@@ -181,7 +181,7 @@
       "aspects": [
         "ice"
       ],
-      "baseScale": 1,
+      "baseScale": 0.7,
       "hitbox": {
         "width": 4,
         "height": 7,
@@ -347,7 +347,7 @@
       "aspects": [
         "shadow"
       ],
-      "baseScale": 1,
+      "baseScale": 0.7,
       "hitbox": {
         "width": 4,
         "height": 7,
@@ -453,27 +453,7 @@
   "pokedex": [
     "cobblemon.species.calyrex.desc"
   ],
-  "evolutions": [
-    {
-      "id":"shadow",
-      "variant": "item_interact",
-      "result":"calyrex shadow",
-      "consumeHeldItem": false,
-      "learnableMoves":[],
-      "requirements":[],
-    "requiredContext": "cobblemon:ice_stone"
-    },
-    {
-      "id":"ice",
-      "variant": "item_interact",
-      "result":"calyrex ice",
-      "consumeHeldItem": false,
-      "learnableMoves":[],
-      "requirements":[],
-    "requiredContext": "cobblemon:dusk_stone"
-    }
-  ],
-  "baseScale": 1,
+  "baseScale": 1.07,
   "hitbox": {
     "width": 1,
     "height": 2,

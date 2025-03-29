@@ -516,5 +516,10 @@
   "item.mega_showdown.griseous_core": "Griseous Core",
   "tooltip.mega_showdown.griseous_core.tooltip": "A powerful core that amplifies Giratina's abilities when held.",
   "item.mega_showdown.griseous_orb": "Griseous Orb",
-  "tooltip.mega_showdown.griseous_orb.tooltip": "An eerie orb that boosts Giratina's Dragon- and Ghost-type moves."
+  "tooltip.mega_showdown.griseous_orb.tooltip": "An eerie orb that boosts Giratina's Dragon- and Ghost-type moves.",
+
+  "item.mega_showdown.clear_amulet": "Clear Amulet",
+  "tooltip.mega_showdown.clear_amulet.tooltip": "An amulet that protects the holder from stat reduction.",
+  "item.mega_showdown.lagging_tail": "Lagging Tail",
+  "tooltip.mega_showdown.lagging_tail.tooltip": "An item that makes the holder move last in battle."
 }

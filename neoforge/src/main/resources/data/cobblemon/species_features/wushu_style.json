@@ -1,0 +1,13 @@
+{
+  "type": "choice",
+  "keys": [
+    "wushu_style"
+  ],
+  "default": "random",
+  "choices": [
+    "single_strike",
+    "rapid_strike"
+  ],
+  "isAspect": true,
+  "aspectFormat": "{{choice}}-style"
+}

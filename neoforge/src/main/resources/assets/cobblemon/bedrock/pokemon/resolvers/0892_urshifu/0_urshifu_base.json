@@ -6,12 +6,14 @@
 			"aspects": [],
 			"poser": "cobblemon:urshifu",
 			"model": "cobblemon:urshifu.geo",
-			"texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu.png",
+			"texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_single.png",
 			"layers": []
 		},
 		{
 			"aspects": [ "shiny" ],
-			"texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_shiny.png"
+                        "poser": "cobblemon:urshifu",
+			"model": "cobblemon:urshifu.geo",
+			"texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_single_shiny.png"
 		}
 	]
 }

@@ -1,19 +1,19 @@
 {
   "species": "cobblemon:oricorio",
-  "order": 1,
+  "order": 3,
   "variations": [
     {
-      "aspects": ["pa'u-style"],
+      "aspects": ["pa’u-style"],
       "poser": "cobblemon:pau_oricorio",
       "model": "cobblemon:pau_oricorio.geo",
-      "texture": "cobblemon:textures/pokemon/0741_oricorio/pau_oricorio.png",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/oricorio_pau.png",
       "layers": []
     },
     {
-      "aspects": ["shiny", "pa'u-style"],
+      "aspects": ["shiny", "pa’u-style"],
       "poser": "cobblemon:pau_oricorio",
       "model": "cobblemon:pau_oricorio.geo",
-      "texture": "cobblemon:textures/pokemon/0741_oricorio/pau_oricorio_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0741_oricorio/oricorio_pau_shiny.png",
       "layers": []
     }
   ]
