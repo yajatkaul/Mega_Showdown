@@ -57,7 +57,7 @@ public class ModItems {
     public static final Item ARCHIE_ANCHOR = registerItem("archie_anchor", new MegaBraceletItem(new Item.Settings().maxCount(1)));
     public static final Item MAY_BRACELET = registerItem("may_bracelet", new MegaBraceletItem(new Item.Settings().maxCount(1)));
 
-    public static final Item SCROLL_OF_DARKNESS = registerItem("scroll_of_darkness", new Gracidea(new Item.Settings().maxCount(1)){
+    public static final Item SCROLL_OF_DARKNESS = registerItem("scroll_of_darkness", new Item(new Item.Settings().maxCount(1)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.scroll_of_darkness.tooltip"));
@@ -65,7 +65,7 @@ public class ModItems {
         }
     });
 
-    public static final Item SCROLL_OF_WATERS = registerItem("scroll_of_waters", new Gracidea(new Item.Settings().maxCount(1)){
+    public static final Item SCROLL_OF_WATERS = registerItem("scroll_of_waters", new Item(new Item.Settings().maxCount(1)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.scroll_of_waters.tooltip"));

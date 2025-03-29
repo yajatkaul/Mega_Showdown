@@ -328,6 +328,16 @@ public class ModItemGroups {
                     }))
                     .build());
 
+    public static final ItemGroup KEY_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "key_tab"),
+            FabricItemGroup.builder().icon(() -> new ItemStack(KeyItems.AZURE_FLUTE))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.key_tab"))
+                    .entries(((displayContext, entries) -> {
+                        entries.add(KeyItems.AZURE_FLUTE);
+                        entries.add(KeyItems.RED_CHAIN);
+                    }))
+                    .build());
+
     public static void registerItemGroups(){
 
     }

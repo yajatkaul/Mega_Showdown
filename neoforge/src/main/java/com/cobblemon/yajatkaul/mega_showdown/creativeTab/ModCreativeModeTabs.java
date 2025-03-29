@@ -335,6 +335,16 @@ public class ModCreativeModeTabs {
                     })
                     .build());
 
+    public static final Supplier<CreativeModeTab> KEY_TAB = CREATIVE_MODE_TAB.register("key_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(KeyItems.AZURE_FLUTE.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "compi_tab"))
+                    .title(Component.translatable("creativeTab.mega_showdown.key_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(KeyItems.RED_CHAIN);
+                        output.accept(KeyItems.AZURE_FLUTE);
+                    })
+                    .build());
+
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TAB.register(eventBus);
     }

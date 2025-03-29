@@ -9,5 +9,6 @@ public class ItemRegister {
         RotomFormes.registerModItem();
         CompiItems.registerModItem();
         FormeChangeItems.registerModItem();
+        KeyItems.registerModItem();
     }
 }

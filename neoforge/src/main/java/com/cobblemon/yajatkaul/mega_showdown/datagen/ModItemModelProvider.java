@@ -214,5 +214,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(CompiItems.CLEAR_AMULET.get());
         basicItem(CompiItems.LAGGING_TAIL.get());
+
+        basicItem(KeyItems.AZURE_FLUTE.get());
+        basicItem(KeyItems.RED_CHAIN.get());
     }
 }

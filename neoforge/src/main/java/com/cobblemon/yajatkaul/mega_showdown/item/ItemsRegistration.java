@@ -11,5 +11,6 @@ public class ItemsRegistration {
         RotomFormes.register();
         CompiItems.register();
         FormeChangeItems.register();
+        KeyItems.register();
     }
 }

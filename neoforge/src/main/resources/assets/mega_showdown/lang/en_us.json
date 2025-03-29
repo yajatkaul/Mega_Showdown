@@ -197,7 +197,8 @@
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
   "creativeTab.mega_showdown.forms_tab": "Form Changes",
-  "creativeTab.mega_showdown.compi_tab": "Compi Tab",
+  "creativeTab.mega_showdown.compi_tab": "Competitive Items",
+  "creativeTab.mega_showdown.key_tab": "Key Items",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
@@ -521,5 +522,10 @@
   "item.mega_showdown.clear_amulet": "Clear Amulet",
   "tooltip.mega_showdown.clear_amulet.tooltip": "An amulet that protects the holder from stat reduction.",
   "item.mega_showdown.lagging_tail": "Lagging Tail",
-  "tooltip.mega_showdown.lagging_tail.tooltip": "An item that makes the holder move last in battle."
+  "tooltip.mega_showdown.lagging_tail.tooltip": "An item that makes the holder move last in battle.",
+
+  "item.mega_showdown.red_chain": "Red Chain",
+  "tooltip.mega_showdown.red_chain.tooltip": "A mysterious chain that can summon a legendary Pokémon.",
+  "item.mega_showdown.azure_flute": "Azure Flute",
+  "tooltip.mega_showdown.azure_flute.tooltip": "A flute that is said to summon a legendary Pokémon."
 }

@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:genesect",
   "behaviour": {
     "resting": {

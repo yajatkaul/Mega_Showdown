@@ -90,7 +90,7 @@
     "cobblemon.species.spectrier.desc"
   ],
   "evolutions": [],
-  "baseScale": 0.5,
+  "baseScale": 0.7,
   "hitbox": {
     "width": 4.5,
     "height": 6,
