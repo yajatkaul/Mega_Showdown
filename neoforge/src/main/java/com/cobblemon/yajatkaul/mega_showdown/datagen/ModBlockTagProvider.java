@@ -89,6 +89,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         MegaOres.MEGA_METEORID_THUNDER_ORE.get(),
                         MegaOres.MEGA_METEORID_WATER_ORE.get(),
 
+                        ModBlocks.DEOXYS_METEORITE.get(),
+
                         //Decor
                         ModBlocks.CHISELED_MEGA_EVO_BRICK.get(),
                         ModBlocks.CHISELED_MEGA_EVO_BLOCK.get(),
@@ -146,7 +148,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         MegaOres.VENUSAURITE_ORE.get(),
                         MegaOres.MEGA_STONE_CRYSTAL.get(),
                         MegaOres.KEYSTONE_ORE.get(),
-                        ModBlocks.KEYSTONE_BLOCK.get()
+                        ModBlocks.KEYSTONE_BLOCK.get(),
+
+                        ModBlocks.DEOXYS_METEORITE.get()
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)

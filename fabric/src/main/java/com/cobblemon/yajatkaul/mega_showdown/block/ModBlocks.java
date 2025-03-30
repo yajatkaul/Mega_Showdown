@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.block;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -64,6 +65,12 @@ public class ModBlocks {
                     .mapColor(MapColor.PURPLE)
                     .sounds(BlockSoundGroup.STONE)));
 
+    public static final Block DEOXYS_METEORITE = registerDeoxysBlock("deoxys_meteorite",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .mapColor(MapColor.PINK)
+                    .sounds(BlockSoundGroup.STONE)));
 
     public static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
@@ -76,5 +83,10 @@ public class ModBlocks {
 
     public static void registerBlocks(){
 
+    }
+
+    public static Block registerDeoxysBlock(String name, Block block){
+        FormeChangeItems.registerDeoxysBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
     }
 }

@@ -306,13 +306,16 @@ public class CobbleEventsHandler {
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
             }
+        } else if (pokemon.getSpecies().getName().equals("Arceus")) {
+            EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+            new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
         }
 
         battle.sendUpdate(new AbilityUpdatePacket(formeChangeEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()){
+            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()){
                 battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true));
             }
         }

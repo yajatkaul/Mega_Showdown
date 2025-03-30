@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -24,11 +25,21 @@ public class Cap extends Item {
 
         if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
             if(pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")){
+                if(pk.getFriendship() < 200){
+                    player.displayClientMessage(Component.literal("Need 200+ friendship to bond")
+                            .withColor(0xFF0000), true);
+                    return InteractionResult.PASS;
+                }
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("league_cap", "partner").apply(pk);
                 arg.shrink(1);
             }
             else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
+                if(pk.getFriendship() < 200){
+                    player.displayClientMessage(Component.literal("Need 200+ friendship to bond")
+                            .withColor(0xFF0000), true);
+                    return InteractionResult.PASS;
+                }
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("battle_bond", "bond").apply(pk);
                 arg.shrink(1);

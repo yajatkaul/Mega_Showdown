@@ -3190,12 +3190,20 @@ const Items = {
                   highestEffectiveness = effectiveness;
               }
           }
-          if (pokemon.name === 'Arceus') pokemon.setType(bestType);
-          move.type = bestType;
-          move.ignoreAbility = true;
+          if (pokemon.name === 'Arceus') {
+			  if (pokemon.species.name !== `Arceus-${bestType}`) {
+			  	pokemon.formeChange(`Arceus-${bestType}`, null, true);
+			  }
+			  move.type = bestType;
+			  move.ignoreAbility = true;
+		  }
       },
       onUse(pokemon) {
-          if (pokemon.name === 'Arceus') pokemon.setType('Normal');
+          if (pokemon.name === 'Arceus') {
+			//pokemon.setType('Normal');
+			//pokemon.formeChange(`Arceus-Normal`, null, true);
+			//pokemon.forcedForme = "Arceus";
+		  }
       }
   },
   leppaberry: {

@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
+import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -34,34 +35,39 @@ import java.util.List;
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 
 public class FormeChangeItems {
-    public static final Item MEGA_METEOROID_BLOCK_ITEM = Registry.register(Registries.ITEM,
-            Identifier.of(MegaShowdown.MOD_ID, "mega_meteorid_block_item"),
-            new BlockItem(ModBlocks.MEGA_METEOROID_BLOCK, new Item.Settings()){
-                @Override
-                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
-                        Pokemon pokemon = pk.getPokemon();
+    public static void registerDeoxysBlockItem(String name, Block block){
+        Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()){
+            @Override
+            public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                    Pokemon pokemon = pk.getPokemon();
 
-                        if(pokemon.getSpecies().getName().equals("Deoxys")){
-                            if(pokemon.getAspects().contains("normal-forme")){
-                                new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
-                            } else if (pokemon.getAspects().contains("attack-forme")) {
-                                new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
-                            } else if (pokemon.getAspects().contains("speed-forme")) {
-                                new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                            }else if (pokemon.getAspects().contains("defense-forme")) {
-                                new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
-                            }
-
-                            stack.decrement(1);
-                            playFormeChangeAnimation(pk);
-                            return ActionResult.SUCCESS;
+                    if(pokemon.getSpecies().getName().equals("Deoxys")){
+                        if(pokemon.getAspects().contains("normal-forme")){
+                            new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
+                        } else if (pokemon.getAspects().contains("attack-forme")) {
+                            new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
+                        } else if (pokemon.getAspects().contains("speed-forme")) {
+                            new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
+                        }else if (pokemon.getAspects().contains("defense-forme")) {
+                            new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
                         }
-                    }
 
-                    return super.useOnEntity(stack, user, entity, hand);
+                        stack.decrement(1);
+                        return ActionResult.SUCCESS;
+                    }
                 }
-            });
+
+                return super.useOnEntity(stack, user, entity, hand);
+            }
+
+            @Override
+            public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+                tooltip.add(Text.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
+                super.appendTooltip(stack, context, tooltip, type);
+            }
+        });
+    }
 
     public static final Item ADAMANT_CRYSTAL = registerItem("adamant_crystal", new Item(new Item.Settings().maxCount(1)){
         @Override

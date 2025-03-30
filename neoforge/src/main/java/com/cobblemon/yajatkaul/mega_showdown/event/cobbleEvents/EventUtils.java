@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -42,6 +43,8 @@ public class EventUtils {
             new StringSpeciesFeature("blossom_form", "overcast").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Darmanitan")) {
             new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Arceus") && pokemon.heldItem().is(CompiItems.LEGEND_PLATE)){
+            new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }
     }
 

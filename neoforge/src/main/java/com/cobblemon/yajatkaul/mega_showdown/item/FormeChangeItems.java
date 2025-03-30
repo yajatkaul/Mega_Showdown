@@ -23,7 +23,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.List;
@@ -124,35 +126,6 @@ public class FormeChangeItems {
                             return InteractionResult.SUCCESS;
                         }
                     }
-                    return super.interactLivingEntity(arg, user, entity, arg4);
-                }
-            });
-
-    public static final DeferredItem<BlockItem> MEGA_METEOROID_BLOCK_ITEM = ITEMS.register("mega_meteorid_block_item",
-            () -> new BlockItem(ModBlocks.MEGA_METEOROID_BLOCK.get(),
-                    new Item.Properties()){
-                @Override
-                public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
-                    if(!user.level().isClientSide && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
-                        Pokemon pokemon = pk.getPokemon();
-
-                        if(pokemon.getSpecies().getName().equals("Deoxys")){
-                            if(pokemon.getAspects().contains("normal-forme")){
-                                new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
-                            } else if (pokemon.getAspects().contains("attack-forme")) {
-                                new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
-                            } else if (pokemon.getAspects().contains("speed-forme")) {
-                                new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                            }else if (pokemon.getAspects().contains("defense-forme")) {
-                                new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
-                            }
-
-                            arg.shrink(1);
-                            playFormeChangeAnimation(pk);
-                            return InteractionResult.SUCCESS;
-                        }
-                    }
-
                     return super.interactLivingEntity(arg, user, entity, arg4);
                 }
             });
@@ -646,7 +619,7 @@ public class FormeChangeItems {
     public static void register(){
     }
 
-    public static void playFormeChangeAnimation(LivingEntity context) {
+    private static void playFormeChangeAnimation(LivingEntity context) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
 
@@ -684,4 +657,37 @@ public class FormeChangeItems {
         }
     }
 
+    public static <T extends Block> void registerBlockItemSpecial(String name, DeferredBlock<T> block){
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()){
+            @Override
+            public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+                if(!user.level().isClientSide && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                    Pokemon pokemon = pk.getPokemon();
+
+                    if(pokemon.getSpecies().getName().equals("Deoxys")){
+                        if(pokemon.getAspects().contains("normal-forme")){
+                            new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
+                        } else if (pokemon.getAspects().contains("attack-forme")) {
+                            new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
+                        } else if (pokemon.getAspects().contains("speed-forme")) {
+                            new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
+                        }else if (pokemon.getAspects().contains("defense-forme")) {
+                            new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
+                        }
+
+                        arg.shrink(1);
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+
+                return super.interactLivingEntity(arg, user, entity, arg4);
+            }
+
+            @Override
+            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                tooltipComponents.add(Component.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
+                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+            }
+        });
+    }
 }

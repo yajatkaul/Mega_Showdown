@@ -11,7 +11,6 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
-import com.cobblemon.yajatkaul.mega_showdown.mixin.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -33,8 +32,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
 import net.minecraft.world.level.storage.loot.*;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -43,7 +40,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
-import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
@@ -53,238 +49,6 @@ import java.util.Optional;
 
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class ModEvents {
-    @SubscribeEvent
-    public static void onLootTableLoad(LootTableLoadEvent event) {
-        ResourceLocation lootTableId = event.getName();
-        ResourceLocation desertPyramidLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/desert_pyramid");
-        ResourceLocation desertWellLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/desert_well");
-
-        ResourceLocation ruinWarmLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_warm_cold");
-        ResourceLocation ruinColdLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "archaeology/ocean_ruin_cold");
-
-        ResourceLocation trialChamberLootTable = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/trial_chambers/reward_ominous_unique");
-
-        ResourceLocation luna_ruins = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/luna_henge_ruins");
-        ResourceLocation mossy_ruins = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/mossy_oubliette_ruins");
-
-        ResourceLocation ancient_city = ResourceLocation.fromNamespaceAndPath("minecraft", "chests/ancient_city");
-
-        LootTable table = event.getTable();
-        LootPool mainPool = table.getPool("main");
-
-        if (desertPyramidLootTable.equals(lootTableId) || desertWellLootTable.equals(lootTableId)) {
-            table = event.getTable();
-            mainPool = table.getPool("main");
-
-            if (mainPool != null && !mainPool.isFrozen()) {
-                // Cast to accessor interface
-                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
-
-                // Create new builder with existing properties
-                LootPool.Builder newPoolBuilder = LootPool.lootPool()
-                        .setRolls(mainPool.getRolls())
-                        .setBonusRolls(mainPool.getBonusRolls());
-
-                // Add all existing entries using the accessor
-                poolAccessor.getEntries().forEach(entry ->
-                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
-                            @Override
-                            protected LootPoolEntryContainer.Builder getThis() {
-                                return null;
-                            }
-
-                            @Override
-                            public LootPoolEntryContainer build() {
-                                return entry;
-                            }
-                        })
-                );
-
-                // Add your new item
-                newPoolBuilder.add(LootItem.lootTableItem(MegaStones.RED_ORB)
-                        .setWeight(1));
-
-                // Preserve the name
-                if (mainPool.getName() != null) {
-                    newPoolBuilder.name(mainPool.getName());
-                }
-
-                // Replace the old pool with the new one
-                table.removePool("main");
-                table.addPool(newPoolBuilder.build());
-            }
-        }else if (ruinColdLootTable.equals(lootTableId) || ruinWarmLootTable.equals(lootTableId)) {
-
-            if (mainPool != null && !mainPool.isFrozen()) {
-                // Cast to accessor interface
-                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
-
-                // Create new builder with existing properties
-                LootPool.Builder newPoolBuilder = LootPool.lootPool()
-                        .setRolls(mainPool.getRolls())
-                        .setBonusRolls(mainPool.getBonusRolls());
-
-                // Add all existing entries using the accessor
-                poolAccessor.getEntries().forEach(entry ->
-                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
-                            @Override
-                            protected LootPoolEntryContainer.Builder getThis() {
-                                return null;
-                            }
-
-                            @Override
-                            public LootPoolEntryContainer build() {
-                                return entry;
-                            }
-                        })
-                );
-
-                // Add your new item
-                newPoolBuilder.add(LootItem.lootTableItem(MegaStones.BLUE_ORB)
-                        .setWeight(1));
-
-                // Preserve the name
-                if (mainPool.getName() != null) {
-                    newPoolBuilder.name(mainPool.getName());
-                }
-
-                // Replace the old pool with the new one
-                table.removePool("main");
-                table.addPool(newPoolBuilder.build());
-            }
-        }else if (trialChamberLootTable.equals(lootTableId)) {
-            if (mainPool != null && !mainPool.isFrozen()) {
-                // Cast to accessor interface
-                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
-
-                // Create new builder with existing properties
-                LootPool.Builder newPoolBuilder = LootPool.lootPool()
-                        .setRolls(mainPool.getRolls())
-                        .setBonusRolls(mainPool.getBonusRolls());
-
-                // Add all existing entries using the accessor
-                poolAccessor.getEntries().forEach(entry ->
-                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
-                            @Override
-                            protected LootPoolEntryContainer.Builder getThis() {
-                                return null;
-                            }
-
-                            @Override
-                            public LootPoolEntryContainer build() {
-                                return entry;
-                            }
-                        })
-                );
-
-                // Add your new item
-                newPoolBuilder.add(LootItem.lootTableItem(ZCrystals.BLANK_Z).setWeight(2));
-
-                // Preserve the name
-                if (mainPool.getName() != null) {
-                    newPoolBuilder.name(mainPool.getName());
-                }
-
-                // Replace the old pool with the new one
-                table.removePool("main");
-                table.addPool(newPoolBuilder.build());
-            }
-        } else if (luna_ruins.equals(lootTableId)) {
-            if (mainPool != null && !mainPool.isFrozen()) {
-                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
-
-                LootPool.Builder newPoolBuilder = LootPool.lootPool()
-                        .setRolls(mainPool.getRolls())
-                        .setBonusRolls(mainPool.getBonusRolls());
-
-                poolAccessor.getEntries().forEach(entry ->
-                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
-                            @Override
-                            protected LootPoolEntryContainer.Builder getThis() {
-                                return null;
-                            }
-
-                            @Override
-                            public LootPoolEntryContainer build() {
-                                return entry;
-                            }
-                        })
-                );
-
-                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.RUSTED_SWORD).setWeight(6));
-
-                if (mainPool.getName() != null) {
-                    newPoolBuilder.name(mainPool.getName());
-                }
-
-                table.removePool("main");
-                table.addPool(newPoolBuilder.build());
-            }
-        }else if (mossy_ruins.equals(lootTableId)) {
-            if (mainPool != null && !mainPool.isFrozen()) {
-                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
-
-                LootPool.Builder newPoolBuilder = LootPool.lootPool()
-                        .setRolls(mainPool.getRolls())
-                        .setBonusRolls(mainPool.getBonusRolls());
-
-                poolAccessor.getEntries().forEach(entry ->
-                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
-                            @Override
-                            protected LootPoolEntryContainer.Builder getThis() {
-                                return null;
-                            }
-
-                            @Override
-                            public LootPoolEntryContainer build() {
-                                return entry;
-                            }
-                        })
-                );
-
-                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.RUSTED_SHIELD).setWeight(6));
-
-                if (mainPool.getName() != null) {
-                    newPoolBuilder.name(mainPool.getName());
-                }
-
-                table.removePool("main");
-                table.addPool(newPoolBuilder.build());
-            }
-        }else if (ancient_city.equals(lootTableId)) {
-            mainPool = table.getPool("pool0");
-            if (mainPool != null && !mainPool.isFrozen()) {
-                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
-                LootPool.Builder newPoolBuilder = LootPool.lootPool()
-                        .setRolls(mainPool.getRolls())
-                        .setBonusRolls(mainPool.getBonusRolls());
-
-                poolAccessor.getEntries().forEach(entry ->
-                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
-                            @Override
-                            protected LootPoolEntryContainer.Builder getThis() {
-                                return null;
-                            }
-
-                            @Override
-                            public LootPoolEntryContainer build() {
-                                return entry;
-                            }
-                        })
-                );
-
-                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.PRISON_BOTTLE).setWeight(3));
-
-                if (mainPool.getName() != null) {
-                    newPoolBuilder.name(mainPool.getName());
-                }
-
-                table.removePool("pool0");
-                table.addPool(newPoolBuilder.build());
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event){
         if(event.getType() == VillagerProfession.CARTOGRAPHER){

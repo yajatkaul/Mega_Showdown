@@ -23,6 +23,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -249,6 +250,9 @@ public class CobbleEventHandler {
             } else if (formeChangeEvent.getFormeName().equals("aegislash")) {
                 new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
             }
+        }else if (pokemon.getSpecies().getName().equals("Arceus")) {
+            EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+            new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
         }else if (pokemon.getSpecies().getName().equals("Minior") && formeChangeEvent.getFormeName().equals("meteor")) {
             EventUtils.playFormeChangeAnimation(pokemon.getEntity());
             new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
@@ -337,7 +341,7 @@ public class CobbleEventHandler {
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()){
+            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()){
                 battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true));
             }
         }

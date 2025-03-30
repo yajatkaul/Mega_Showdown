@@ -7,12 +7,8 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
-import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
-import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.component.DataComponentTypes;
@@ -25,7 +21,6 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ExplorationMapLootFunction;
 import net.minecraft.loot.function.LootFunction;
 import net.minecraft.registry.RegistryKeys;
@@ -47,61 +42,6 @@ import java.util.Optional;
 
 public class ModEvents {
     public static void register(){
-        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-            Identifier desertPyramidLootTable = Identifier.of("minecraft", "archaeology/desert_pyramid");
-            Identifier desertWellLootTable = Identifier.of("minecraft", "archaeology/desert_well");
-
-            if (desertPyramidLootTable.equals(key.getValue()) || desertWellLootTable.equals(key.getValue())) {
-                tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(MegaStones.RED_ORB).weight(1));
-                });
-            }
-
-            Identifier ruinColdLootTable = Identifier.of("minecraft", "archaeology/ocean_ruin_cold");
-            Identifier ruinWarmLootTable = Identifier.of("minecraft", "archaeology/ocean_ruin_warm");
-
-            if (ruinColdLootTable.equals(key.getValue()) || ruinWarmLootTable.equals(key.getValue())) {
-                tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(MegaStones.BLUE_ORB).weight(1));
-                });
-            }
-
-            Identifier trialChamberLootTable = Identifier.of("minecraft", "chests/trial_chambers/reward_ominous_unique");
-
-            if(trialChamberLootTable.equals(key.getValue())){
-                tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(ZCrystals.BLANK_Z).weight(2));
-                });
-            }
-
-            Identifier luna_ruins = Identifier.of("cobblemon", "ruins/common/luna_henge_ruins");
-            Identifier mossy_ruins = Identifier.of("cobblemon", "ruins/common/mossy_oubliette_ruins");
-
-            if(luna_ruins.equals(key.getValue())){
-                tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(FormeChangeItems.RUSTED_SWORD).weight(6));
-                });
-            }
-
-            if(mossy_ruins.equals(key.getValue())){
-                tableBuilder.modifyPools(poolBuilder -> {
-                    poolBuilder.with(ItemEntry.builder(FormeChangeItems.RUSTED_SHIELD).weight(6));
-                });
-            }
-
-            Identifier ancient_city = Identifier.of("minecraft", "chests/ancient_city");
-
-            if(ancient_city.equals(key.getValue())){
-                final boolean[] canEdit = {true};
-                tableBuilder.modifyPools(poolBuilder -> {
-                    if(canEdit[0]){
-                        poolBuilder.with(ItemEntry.builder(FormeChangeItems.PRISON_BOTTLE).weight(1));
-                        canEdit[0] = false;
-                    }
-                });
-            }
-        });
-
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.CARTOGRAPHER, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(MegaStones.MEGA_STONE, 1), // Assuming MegaStones.KEYSTONE is an Item

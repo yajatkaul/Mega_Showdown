@@ -143,7 +143,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(MegaOres.MEGA_STONE_CRYSTAL);
 
-                        output.accept(FormeChangeItems.MEGA_METEOROID_BLOCK_ITEM);
+                        output.accept(ModBlocks.MEGA_METEOROID_BLOCK);
                         output.accept(ModBlocks.MEGA_EVO_BLOCK);
                         output.accept(ModBlocks.MEGA_EVO_BRICK);
                         output.accept(ModBlocks.CHISELED_MEGA_EVO_BRICK);
@@ -317,6 +317,8 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.PINK_NECTAR);
                         output.accept(FormeChangeItems.YELLOW_NECTAR);
                         output.accept(FormeChangeItems.PURPLE_NECTAR);
+
+                        output.accept(ModBlocks.DEOXYS_METEORITE);
                     })
                     .build());
 

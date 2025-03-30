@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -159,6 +160,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(MegaOres.MEGA_METEORID_WATER_ORE.get(),
                 block -> createOreDrop(block, CobblemonItems.WATER_STONE));
 
+        dropSelf(ModBlocks.DEOXYS_METEORITE.get());
     }
 
     @Override

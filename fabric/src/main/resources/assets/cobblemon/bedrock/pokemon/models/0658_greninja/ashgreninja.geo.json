@@ -90,7 +90,11 @@
 						{"origin": [-4, 27.66914, -3.60286], "size": [6, 3, 6], "pivot": [0, -5.33086, -1.60286], "rotation": [0, 45, 0], "uv": [0, 0]},
 						{"origin": [-4, 26.66914, 0.09714], "size": [8, 4, 4], "inflate": 0.01, "uv": [0, 9]},
 						{"origin": [0, 30.66914, -4.40286], "size": [0, 2, 12], "uv": [18, -12]}
-					]
+					],
+					"locators": {
+						"held_item_head": [0, 31.5, 0],
+						"held_item_eyes": [0, 29.3, -5]
+					}
 				},
 				{
 					"name": "eye_right",
@@ -325,7 +329,10 @@
 				{
 					"name": "hand_right",
 					"parent": "arm_right2",
-					"pivot": [-17, 24.3, 1.5]
+					"pivot": [-17, 24.3, 1.5],
+					"locators": {
+						"held_item": [-20, 23, 1.6]
+					}
 				},
 				{
 					"name": "finger_index_right",

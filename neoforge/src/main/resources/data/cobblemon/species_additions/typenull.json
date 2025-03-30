@@ -1,6 +1,5 @@
 {
   "target": "cobblemon:typenull",
-
   "baseScale":1,
   "behaviour": {
     "moving": {

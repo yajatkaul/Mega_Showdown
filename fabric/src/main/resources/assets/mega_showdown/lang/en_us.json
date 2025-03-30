@@ -156,7 +156,7 @@
   "block.mega_showdown.chiseled_mega_evo_brick": "Chiseled Meteoroid Brick",
   "block.mega_showdown.chiseled_mega_evo_block": "Chiseled Meteoroid Block",
   "block.mega_showdown.polished_mega_evo_block": "Polished Meteoroid Block",
-  "block.mega_showdown.mega_evo_block": "Evo Meteoroid Block",
+  "block.mega_showdown.mega_evo_block": "Meteoroid Block",
 
   "block.mega_showdown.mega_stone_crystal": "Mega Crystal",
 
@@ -527,5 +527,7 @@
   "item.mega_showdown.red_chain": "Red Chain",
   "tooltip.mega_showdown.red_chain.tooltip": "A mysterious chain that can summon a legendary Pokémon.",
   "item.mega_showdown.azure_flute": "Azure Flute",
-  "tooltip.mega_showdown.azure_flute.tooltip": "A flute that is said to summon a legendary Pokémon."
+  "tooltip.mega_showdown.azure_flute.tooltip": "A flute that is said to summon a legendary Pokémon.",
+  "block.mega_showdown.deoxys_meteorite": "Deoxys Meteorite",
+  "tooltip.mega_showdown.deoxys_meteorite.tooltip": "A meteorite that allows Deoxys to change forms."
 }

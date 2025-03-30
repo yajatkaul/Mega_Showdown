@@ -136,7 +136,7 @@ public class ModItemGroups {
                         entries.add(MegaOres.KEYSTONE_ORE);
                         entries.add(ModBlocks.KEYSTONE_BLOCK);
 
-                        entries.add(FormeChangeItems.MEGA_METEOROID_BLOCK_ITEM);
+                        entries.add(ModBlocks.MEGA_METEOROID_BLOCK);
                         entries.add(ModBlocks.MEGA_EVO_BLOCK);
                         entries.add(ModBlocks.MEGA_EVO_BRICK);
                         entries.add(ModBlocks.CHISELED_MEGA_EVO_BRICK);
@@ -310,6 +310,8 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.PURPLE_NECTAR);
                         entries.add(FormeChangeItems.YELLOW_DRIVE);
                         entries.add(FormeChangeItems.RED_NECTAR);
+
+                        entries.add(ModBlocks.DEOXYS_METEORITE);
                     }))
                     .build());
 

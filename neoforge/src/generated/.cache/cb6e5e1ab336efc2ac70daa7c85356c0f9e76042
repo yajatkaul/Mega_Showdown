@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-10T23:31:48.7919292	Block States: mega_showdown
+// 1.21.1	2025-03-29T16:42:01.9038003	Block States: mega_showdown
 43998113717108672477eed1c6ea8ba2abe109ce assets/mega_showdown/blockstates/abomasite_ore.json
 d560d60509a29b82d220b23259dc6abf13c4e3c9 assets/mega_showdown/blockstates/absolite_ore.json
 ba6fac7fe0a7a34662869d722408a7efd95d37d5 assets/mega_showdown/blockstates/aerodactylite_ore.json
@@ -16,6 +16,7 @@ b1330e166cf3fab23fbbff3cf197afbc239869f5 assets/mega_showdown/blockstates/cameru
 a93c44a57e164a1eddbdfdb334556f14b3579f2b assets/mega_showdown/blockstates/charizardite_y_ore.json
 974d10ab0142b22082a8b2270fcc8639a04e4376 assets/mega_showdown/blockstates/chiseled_mega_evo_block.json
 f8969b2498d0c95e2906f091ccc4ba6ff51fb5c7 assets/mega_showdown/blockstates/chiseled_mega_evo_brick.json
+a73d0bac7cc11a143715bf4df3f636767a33f5a2 assets/mega_showdown/blockstates/deoxys_meteorite.json
 dc4dc42227aa8300f353f2708feee2341cf458d9 assets/mega_showdown/blockstates/diancite_ore.json
 303765ff6f5417cb1b50d1146134d75ebae5af02 assets/mega_showdown/blockstates/galladite_ore.json
 c389f461c3239b60a826d114fac2b2b174c0d761 assets/mega_showdown/blockstates/garchompite_ore.json
@@ -81,6 +82,7 @@ c3e1848211768eea5df89316752828dda37eb875 assets/mega_showdown/models/block/camer
 2ed0d84ec24e162a737d5c708f0bd172343814fa assets/mega_showdown/models/block/charizardite_y_ore.json
 b62a9369fc7bf0b037104d1ca4e1a668e46612ba assets/mega_showdown/models/block/chiseled_mega_evo_block.json
 27442a223181d0d13d9c6110d07b56a13d2268ff assets/mega_showdown/models/block/chiseled_mega_evo_brick.json
+6d5f5e157f5a8ec6c97f3df20345041fcf9388a0 assets/mega_showdown/models/block/deoxys_meteorite.json
 a4fb03df8e767d6ba2622816647f057541dbebb2 assets/mega_showdown/models/block/diancite_ore.json
 9f5a92cee00e874cd126afaaa7926570dbde308c assets/mega_showdown/models/block/galladite_ore.json
 ff2d540fca512e714866e15cf4aeb1e7b5164d50 assets/mega_showdown/models/block/garchompite_ore.json
@@ -146,6 +148,7 @@ f3009a3d449b7613e8dd0b04210ad7766e3fbf4d assets/mega_showdown/models/item/chariz
 da7fa538fd5633bf271a612f591e801a92f003e7 assets/mega_showdown/models/item/charizardite_y_ore.json
 3b408dd0ef72f6d8ce65f639190415aab41d8665 assets/mega_showdown/models/item/chiseled_mega_evo_block.json
 81a128f5fc1a969d4ab47d966f36b5eabe6fbbd5 assets/mega_showdown/models/item/chiseled_mega_evo_brick.json
+d35bfaf15edf4171d78159c320d6e8617a7aa73b assets/mega_showdown/models/item/deoxys_meteorite.json
 f2b5382fa22e4f74a0c7fc2c387492628565ab03 assets/mega_showdown/models/item/diancite_ore.json
 25626ee05364e66205e3f7f99a59d1415426d6b1 assets/mega_showdown/models/item/galladite_ore.json
 394ff4a57fbff3557e1e66ef041a1d85baaad8f1 assets/mega_showdown/models/item/garchompite_ore.json

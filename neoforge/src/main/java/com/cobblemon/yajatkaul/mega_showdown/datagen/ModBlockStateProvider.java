@@ -87,6 +87,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.MEGA_EVO_BRICK);
         blockWithItem(ModBlocks.POLISHED_MEGA_EVO_BLOCK);
 
+        blockWithItem(ModBlocks.DEOXYS_METEORITE);
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock){

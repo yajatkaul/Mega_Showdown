@@ -8,16 +8,16 @@
     "standing": {
        "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
        "isBattle": false,
-       "animations": ["q.look('head')", "q.bedrock('deoxys_defense', 'idle')"]
+       "animations": ["q.bedrock('deoxys_defense', 'idle')"]
     },
     "walking": {
       "poseTypes": ["WALK"],
-      "animations": ["q.look('head')", "q.bedrock('deoxys_defense', 'walk')"]
+      "animations": ["q.bedrock('deoxys_defense', 'walk')"]
     },    
     "battle-idle": {
 		"poseTypes": ["STAND"],
 		"isBattle": true,
-		"animations": ["q.look('head')", "q.bedrock('deoxys_defense', 'battle_idle')"]
+		"animations": ["q.bedrock('deoxys_defense', 'battle_idle')"]
     }
   }
 }

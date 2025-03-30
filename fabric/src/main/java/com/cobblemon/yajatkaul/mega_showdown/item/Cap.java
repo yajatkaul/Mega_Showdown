@@ -11,6 +11,9 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
@@ -26,11 +29,25 @@ public class Cap extends Item {
 
         if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()){
             if(pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")){
+                if(pk.getFriendship() < 200){
+                    user.sendMessage(
+                            Text.literal("Need 200+ friendship to bond").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.PASS;
+                }
                 playFormeChangeAnimation(entity);
                 new StringSpeciesFeature("league_cap", "partner").apply(pk);
                 stack.decrement(1);
             }
             else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
+                if(pk.getFriendship() < 200){
+                    user.sendMessage(
+                            Text.literal("Need 200+ friendship to bond").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.PASS;
+                }
                 playFormeChangeAnimation(entity);
                 new StringSpeciesFeature("battle_bond", "bond").apply(pk);
                 stack.decrement(1);
