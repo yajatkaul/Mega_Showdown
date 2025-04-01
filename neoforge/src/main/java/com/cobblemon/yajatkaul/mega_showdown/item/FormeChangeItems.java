@@ -46,7 +46,7 @@ public class FormeChangeItems {
                         Pokemon pokemon = pk.getPokemon();
 
                         if(pokemon.getSpecies().getName().equals("Oricorio")){
-                            new StringSpeciesFeature("dance_style", "pa'u").apply(pokemon);
+                            new StringSpeciesFeature("dance_style", "pau").apply(pokemon);
                             arg.shrink(1);
                             playFormeChangeAnimation(pk);
                             return InteractionResult.SUCCESS;
@@ -120,7 +120,7 @@ public class FormeChangeItems {
                     if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
                         Pokemon pokemon = pk.getPokemon();
                         if(pokemon.getSpecies().getName().equals("Oricorio")){
-                            new StringSpeciesFeature("dance_style", "pom_pom").apply(pokemon);
+                            new StringSpeciesFeature("dance_style", "pom-pom").apply(pokemon);
                             arg.shrink(1);
                             playFormeChangeAnimation(pk);
                             return InteractionResult.SUCCESS;

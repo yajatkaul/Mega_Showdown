@@ -403,7 +403,7 @@ public class FormeChangeItems {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Oricorio")){
-                    new StringSpeciesFeature("dance_style", "pa'u").apply(pokemon);
+                    new StringSpeciesFeature("dance_style", "pau").apply(pokemon);
                     stack.decrement(1);
                     playFormeChangeAnimation(pk);
                     return ActionResult.SUCCESS;
@@ -475,7 +475,7 @@ public class FormeChangeItems {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Oricorio")){
-                    new StringSpeciesFeature("dance_style", "pom_pom").apply(pokemon);
+                    new StringSpeciesFeature("dance_style", "pom-pom").apply(pokemon);
                     playFormeChangeAnimation(pk);
                     stack.decrement(1);
                     return ActionResult.SUCCESS;
