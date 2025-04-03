@@ -218,6 +218,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(KeyItems.AZURE_FLUTE.get());
         basicItem(KeyItems.RED_CHAIN.get());
 
-        //basicItem(FormeChangeItems.DEOXYS_METEORITE_BLOCK_ITEM.get());
+       basicItem(CompiItems.SOULDEW.get());
+        basicItem(CompiItems.ADRENALINEORB.get());
+        basicItem(CompiItems.GRIPCLAW.get());
     }
 }

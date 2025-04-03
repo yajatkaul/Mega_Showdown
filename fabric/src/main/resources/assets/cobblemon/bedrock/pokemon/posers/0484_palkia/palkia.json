@@ -1,141 +1,68 @@
 {
-    "portraitScale": 0.35,
-    "portraitTranslation": [ 0, 1.4, 0 ],
-    "profileScale": 0.35,
-    "profileTranslation": [ 0, 1.4, 0 ],
-    "animations": {
-       "faint": "q.bedrock_primary('palkia', 'faint', q.curve('one'))",
-       "cry": "q.bedrock_stateful('palkia', 'cry')",
-       "physical": "q.bedrock_primary('palkia', 'physical_attack', q.curve('symmetrical_wide'))",
-       "special": "q.bedrock_primary('palkia', 'special_attack', q.curve('symmetrical_wide'))"
-     },
-    "poses": {
-      "battle-idle": {
-        "poseName": "battle-idle",
-        "transformTicks": 10,
-        "poseTypes": ["STAND"],
-        "isBattle": true,
-        "animations": ["bedrock(palkia, battle_idle)"],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": ["bedrock(palkia, blink)"]
-          }
-        ]
-      },
-      "standing": {
-        "poseName": "standing",
-        "transformTicks": 10,
-        "poseTypes": [
-          "STAND",
-          "NONE",
-          "PORTRAIT",
-          "PROFILE"
-        ],
-        "isBattle": false,
-        "animations": [
-          "bedrock(palkia, ground_idle)"
-        ],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": ["bedrock(palkia, blink)"]
-          }
-        ]
-      },
-      "walking": {
-        "poseName": "walking",
-        "transformTicks": 10,
-        "poseTypes": [
-          "WALK"
-        ],
-        "animations": [
-          "bedrock(palkia, ground_walk)"
-        ],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": ["bedrock(palkia, blink)"]
-          }
-        ]
-      },
-      "sleeping": {
-        "poseName": "sleeping",
-        "transformTicks": 10,
-        "poseTypes": [
-          "SLEEP"
-        ],
-        "animations": [
-          "bedrock(palkia, sleep)"
-        ]
-      },
-      "swimming": {
-        "poseName": "swimming",
-        "transformTicks": 10,
-        "poseTypes": [
-          "SWIM"
-        ],
-        "animations": [
-          "bedrock(palkia, ground_walk)"
-        ],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": ["bedrock(palkia, blink)"]
-          }
-        ]
-      },
-      "floating": {
-        "poseName": "floating",
-        "transformTicks": 10,
-        "poseTypes": [
-          "FLOAT"
-        ],
-        "animations": [
-          "bedrock(palkia, ground_idle)"
-        ],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": ["bedrock(palkia, blink)"]
-          }
-        ]
-      },
-      "hovering": {
-        "poseName": "hovering",
-        "transformTicks": 10,
-        "poseTypes": [
-          "HOVER"
-        ],
-        "animations": [
-          "bedrock(palkia, ground_idle)"
-        ],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": [
-              "bedrock(palkia, blink)"
-            ]
-          }
-        ]
-      },
-      "flying": {
-        "poseName": "flying",
-        "transformTicks": 10,
-        "poseTypes": [
-          "FLY"
-        ],
-        "animations": [
-          "bedrock(palkia, ground_walk)"
-        ],
-        "quirks": [
-          {
-            "name": "blink",
-            "animations": [
-              "bedrock(palkia, blink)"
-            ]
-          }
-        ]
-      }
+  "portraitScale": 0.83,
+  "portraitTranslation": [-1.95,4.09, 0],
+  "profileScale": 0.2,
+  "profileTranslation": [0, 1.46, -20],
+  "animations": {
+    "physical": "q.bedrock_primary('palkia', 'physical', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('palkia', 'special', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('palkia', 'special', q.curve('symmetrical_wide'))",
+    "spacialrend": "q.bedrock_primary('palkia', 'physical', q.curve('symmetrical_wide'))",
+    "recoil":"q.bedrock_primary('palkia', 'recoil', q.curve('symmetrical_wide'))",
+    "faint":"q.bedrock_primary('palkia', 'faint', q.curve('symmetrical_wide'))",
+    "cry":"q.bedrock_stateful('palkia', 'cry')"
+    
+  },
+  "poses": {
+    "battle-standing": {
+      "transformTicks": 10,
+      "poseTypes": ["STAND", "WALK"],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('palkia', 'battle_idle')"
+      ]
+    },
+    "standing": {
+      "transformTicks": 10,
+      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('palkia', 'ground_idle')"
+      ]
+    },
+    "walking": {
+      "transformTicks": 8,
+      "poseTypes": ["WALK"],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('palkia', 'ground_walk')"
+      ]
+    },
+    "hover": {
+      "transformTicks": 5,
+      "poseTypes": [ "FLY", "HOVER", "FLOAT" ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('palkia', 'air_fly')"
+       ]
+    },
+    "float": {
+      "transformTicks": 5,
+      "poseTypes": ["FLOAT"],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('palkia', 'ground_walk')"
+      ]
+    },
+    "swim": {
+      "transformTicks": 8,
+      "poseTypes": ["SWIM"],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('palkia', 'ground_walk')"
+      ]
     }
-   }
+  }
+}

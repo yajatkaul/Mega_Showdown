@@ -21,6 +21,11 @@ public class CurioChestRenderer implements ICurioRenderer {
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
             , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)  {
         LivingEntity entity = slotContext.entity();
+
+        ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
+        if (!chestArmor.isEmpty()) {
+            return;
+        }
         if (stack.getItem() instanceof MegaBraceletItem) {
             matrixStack.pushPose();
             

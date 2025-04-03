@@ -327,6 +327,9 @@ public class ModItemGroups {
                         entries.add(CompiItems.LUSTROUS_ORB);
                         entries.add(CompiItems.CLEAR_AMULET);
                         entries.add(CompiItems.LAGGING_TAIL);
+                        entries.add(CompiItems.ADRENALINEORB);
+                        entries.add(CompiItems.SOULDEW);
+                        entries.add(CompiItems.GRIPCLAW);
                     }))
                     .build());
 

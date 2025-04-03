@@ -10,6 +10,7 @@ import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
@@ -20,6 +21,11 @@ public class RenderChestTrinkets implements TrinketRenderer {
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel,
                        MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity,
                        float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+
+        ItemStack chestArmor = entity.getEquippedStack(EquipmentSlot.CHEST);
+        if (!chestArmor.isEmpty()) {
+            return; // Exit the method if chest slot has any armor
+        }
         if (stack.getItem() instanceof MegaBraceletItem) {
             matrices.push();
 

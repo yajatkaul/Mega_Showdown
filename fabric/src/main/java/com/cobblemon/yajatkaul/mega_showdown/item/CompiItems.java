@@ -66,6 +66,30 @@ public class CompiItems {
         }
     });
 
+    public static final Item ADRENALINEORB = registerItem("adrenalineorb", new Item(new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.adrenalineorb.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item SOULDEW = registerItem("souldew", new Item(new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.souldew.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item GRIPCLAW = registerItem("gripclaw", new Item(new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.gripclaw.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static void registerModItem(){
 
     }

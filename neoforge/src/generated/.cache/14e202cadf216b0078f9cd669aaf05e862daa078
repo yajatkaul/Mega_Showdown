@@ -1,8 +1,9 @@
-// 1.21.1	2025-03-29T16:42:01.9012922	Item Models: mega_showdown
+// 1.21.1	2025-04-02T18:37:13.0578592	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
 2e79cca34cc0cdf9153ad03da162a70a331a1412 assets/mega_showdown/models/item/adamant_orb.json
+a922a8345b35ab334479b8818ee412b44403729f assets/mega_showdown/models/item/adrenalineorb.json
 fc3afd784c1c1330a0deef6603634b88b460e03d assets/mega_showdown/models/item/aerodactylite.json
 dfdbb32813fd9d9c73c48c3b9c30c98be466e0ee assets/mega_showdown/models/item/aggronite.json
 44fe21f1c5915e0e3ee1f5c3b9a475c2c2fccdf0 assets/mega_showdown/models/item/alakazite.json
@@ -74,6 +75,7 @@ bf13516a78634866686ca48c555ac428321cdfe4 assets/mega_showdown/models/item/ghost_
 7b05413e220e1579433d7aa046981e3b3f7f58fb assets/mega_showdown/models/item/grassium-z.json
 06fd509fbc964cc7e1ae0f95b349c73e28ff969f assets/mega_showdown/models/item/grassmemory.json
 dec641193d145eacdbbe7c5f73bfa3a87a45c5e6 assets/mega_showdown/models/item/grass_tera_shard.json
+204293453a5228eed8fcb6b63731f9486f4c9b80 assets/mega_showdown/models/item/gripclaw.json
 f5b6bd298bdcb62c906941600b79834ce942ac06 assets/mega_showdown/models/item/griseous_core.json
 e73f537546b5e62ca9b4c87dc0d5e62218c3051c assets/mega_showdown/models/item/griseous_orb.json
 ec7add6cccd79ffc8d7b6b6587a36160ca4de2dd assets/mega_showdown/models/item/groundium-z.json
@@ -158,6 +160,7 @@ d7c581f59921db9e84e30ff2b0b3bae5ac497201 assets/mega_showdown/models/item/rotom_
 173c998ddb662ebd530e52e1943f15a73933770e assets/mega_showdown/models/item/slowbronite.json
 ff16f1adc5e2c51568198e886e2e476af96a2082 assets/mega_showdown/models/item/snorlium-z.json
 4cb17591d8366a495cfeeced7755c470e4edd7e9 assets/mega_showdown/models/item/solganium-z.json
+1f9b6a74b699c17ec39e3954bc463a1940bb44bd assets/mega_showdown/models/item/souldew.json
 5cecbc94fff916570aee191f3406d1e0dc742edc assets/mega_showdown/models/item/splashplate.json
 85f11dfdafe950f031bfa08d07a77d1cac4f84dc assets/mega_showdown/models/item/spookyplate.json
 ab8e8f12af4a81befe61898899d6c73bdbe85ddc assets/mega_showdown/models/item/star_core.json

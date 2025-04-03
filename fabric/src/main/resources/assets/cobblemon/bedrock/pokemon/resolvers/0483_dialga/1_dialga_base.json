@@ -7,30 +7,55 @@
       "poser": "cobblemon:dialga",
       "model": "cobblemon:dialga.geo",
       "texture": "cobblemon:textures/pokemon/0483_dialga/dialga.png",
-      "layers": [] 
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_emissive.png",
+          "translucent": false
+        }
+      ] 
     },
     {
       "aspects": ["shiny"],
       "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_shiny.png",
-      "layers": [] 
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_emissive_shiny.png",
+          "translucent": false
+        }
+       
+      ]
     },
     {
-      "aspects": [
-                "origin-forme"
-            ],
-            "poser": "cobblemon:origindialga",
-            "model": "cobblemon:origindialga.geo",
-            "texture": "cobblemon:textures/pokemon/0483_dialga/origindialga.png",
-            "layers":[] 
-        },
+      "aspects": ["origin-forme"],
+      "poser": "cobblemon:origindialga",
+      "model": "cobblemon:origindialga.geo",
+      "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin.png",
+      "layers": [
         {
-            "aspects": [
-                "origin-forme","shiny"
-            ],
-            "poser": "cobblemon:origindialga",
-            "model": "cobblemon:origindialga.geo",
-            "texture": "cobblemon:textures/pokemon/0483_dialga/origindialga_shiny.png",
-            "layers":[] 
+        "name": "emissive",
+        "emissive": false,
+        "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin_emissive.png",
+        "translucent": false
+      }
+  
+      ] 
+    },
+    {
+      "aspects": ["shiny", "origin-forme"],
+      "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": false,
+          "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin_emissive.png",
+          "translucent": false
         }
-    ]
+       
+      ]
+    }
+  ]
 }

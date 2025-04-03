@@ -529,5 +529,12 @@
   "item.mega_showdown.azure_flute": "Azure Flute",
   "tooltip.mega_showdown.azure_flute.tooltip": "A flute that is said to summon a legendary Pokémon.",
   "block.mega_showdown.deoxys_meteorite": "Deoxys Meteorite",
-  "tooltip.mega_showdown.deoxys_meteorite.tooltip": "A meteorite that allows Deoxys to change forms."
+  "tooltip.mega_showdown.deoxys_meteorite.tooltip": "A meteorite that allows Deoxys to change forms.",
+
+  "item.mega_showdown.adrenalineorb": "Adrenaline Orb",
+  "tooltip.mega_showdown.adrenalineorb.tooltip": "An item that boosts Speed when intimidated.",
+  "item.mega_showdown.souldew": "Soul Dew",
+  "tooltip.mega_showdown.souldew.tooltip": "A mysterious orb that boosts Latios and Latias' power.",
+  "item.mega_showdown.gripclaw": "Grip Claw",
+  "tooltip.mega_showdown.gripclaw.tooltip": "An item that extends the duration of binding moves."
 }

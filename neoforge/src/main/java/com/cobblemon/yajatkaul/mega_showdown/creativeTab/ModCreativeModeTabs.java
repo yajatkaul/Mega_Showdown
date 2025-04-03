@@ -334,6 +334,9 @@ public class ModCreativeModeTabs {
                         output.accept(CompiItems.LUSTROUS_ORB);
                         output.accept(CompiItems.CLEAR_AMULET);
                         output.accept(CompiItems.LAGGING_TAIL);
+                        output.accept(CompiItems.ADRENALINEORB);
+                        output.accept(CompiItems.SOULDEW);
+                        output.accept(CompiItems.GRIPCLAW);
                     })
                     .build());
 

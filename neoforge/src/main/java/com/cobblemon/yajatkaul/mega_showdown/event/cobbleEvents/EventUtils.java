@@ -215,7 +215,7 @@ public class EventUtils {
             double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 2; // Adjust this for more spread
+            double scaleFactor = 1.2; // Adjust this for more spread
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
             double adjustedDepth = entityDepth * scaleFactor;

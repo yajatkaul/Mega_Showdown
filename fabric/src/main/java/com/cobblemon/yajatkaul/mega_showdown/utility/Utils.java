@@ -192,6 +192,10 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADAMANT_ORB.asItem(), "adamantorb");
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRISEOUS_ORB.asItem(), "griseousorb");
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUSTROUS_ORB.asItem(), "lustrousorb");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADRENALINEORB.asItem(), "adrenalineorb");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.SOULDEW.asItem(), "souldew");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRIPCLAW.asItem(), "gripclaw");
     }
 
     public static void platesRegister(){

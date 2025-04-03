@@ -197,7 +197,8 @@
   "creativeTab.mega_showdown.z_moves_tab": "Z招式",
   "creativeTab.mega_showdown.tera_tab": "太晶化",
   "creativeTab.mega_showdown.forms_tab": "形态转换",
-  "creativeTab.mega_showdown.compi_tab": "Compi选项",
+  "creativeTab.mega_showdown.compi_tab": "竞赛物品",
+  "creativeTab.mega_showdown.key_tab": "关键物品",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "超级陨石黎明矿石",
   "block.mega_showdown.mega_meteorid_dusk_ore": "超级陨石尘土矿石",
@@ -516,5 +517,17 @@
   "item.mega_showdown.griseous_core": "大白金宝玉",
   "tooltip.mega_showdown.griseous_core.tooltip": "一个充满强大力量的核心，携带后可强化骑拉帝纳的能力。",
   "item.mega_showdown.griseous_orb": "白金宝珠",
-  "tooltip.mega_showdown.griseous_orb.tooltip": "一颗散发诡异气息的宝珠，可提升骑拉帝纳的龙属性与幽灵属性招式威力。"
+  "tooltip.mega_showdown.griseous_orb.tooltip": "一颗散发诡异气息的宝珠，可提升骑拉帝纳的龙属性与幽灵属性招式威力。",
+  
+  "item.mega_showdown.clear_amulet": "清净坠饰",
+  "tooltip.mega_showdown.clear_amulet.tooltip": "一种护符，可防止携带者的能力值被降低。",
+  "item.mega_showdown.lagging_tail": "后攻之尾",
+  "tooltip.mega_showdown.lagging_tail.tooltip": "一种道具，使携带者在战斗中最后行动。",
+  
+  "item.mega_showdown.red_chain": "红色锁链",
+  "tooltip.mega_showdown.red_chain.tooltip": "一条神秘的锁链，据说可以召唤传说中的宝可梦。",
+  "item.mega_showdown.azure_flute": "天界之笛",
+  "tooltip.mega_showdown.azure_flute.tooltip": "一支传说中能召唤神秘宝可梦的笛子。",
+  "block.mega_showdown.deoxys_meteorite": "代欧奇希斯陨石",
+  "tooltip.mega_showdown.deoxys_meteorite.tooltip": "一块陨石，可让代欧奇希斯改变形态。"
 }

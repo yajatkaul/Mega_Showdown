@@ -74,6 +74,33 @@ public class CompiItems {
                 }
             });
 
+    public static final DeferredItem<Item> ADRENALINEORB = ITEMS.register("adrenalineorb",
+            () -> new Item(new Item.Properties()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.adrenalineorb.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> SOULDEW = ITEMS.register("souldew",
+            () -> new Item(new Item.Properties()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.souldew.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> GRIPCLAW = ITEMS.register("gripclaw",
+            () -> new Item(new Item.Properties()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.gripclaw.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static void register(){
     }
 }

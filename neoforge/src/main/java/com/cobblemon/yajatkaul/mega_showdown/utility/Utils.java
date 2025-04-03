@@ -192,6 +192,11 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRISEOUS_ORB.get(), "griseousorb");
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUSTROUS_ORB.get(), "lustrousorb");
 
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADRENALINEORB.get(), "adrenalineorb");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.SOULDEW.get(), "souldew");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRIPCLAW.get(), "gripclaw");
+
+
     }
 
     public static void platesRegister(){
