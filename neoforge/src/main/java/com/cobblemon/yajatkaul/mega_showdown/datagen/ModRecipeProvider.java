@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.core.HolderLookup;
@@ -8,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,7 +19,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput){
+    protected void buildRecipes(RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MEGA_BRACELET.get())
                 .pattern("IDI")
                 .pattern("AKA")
@@ -278,12 +280,172 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.REINS_OF_UNITY.get())
                 .pattern("SGS")
-                .pattern("C  ")
+                .pattern("L  ")
                 .pattern("SIS")
-                .define('C', Items.IRON_INGOT)
+                .define('L', Items.LAPIS_LAZULI)
                 .define('S', Items.STRING)
                 .define('I', CobblemonItems.ICE_GEM)
                 .define('G', CobblemonItems.GHOST_GEM)
                 .unlockedBy("has_gem", has(CobblemonItems.GHOST_GEM)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.FAN.get())
+                .pattern(" C ")
+                .pattern("CWC")
+                .pattern(" B ")
+                .define('C', Items.COPPER_INGOT)
+                .define('W', Items.WIND_CHARGE)
+                .define('B', Items.COPPER_BLOCK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.FRIDGEUNIT.get())
+                .pattern("BBB")
+                .pattern("DID")
+                .pattern("BRB")
+                .define('D', Items.IRON_DOOR)
+                .define('R', Items.REDSTONE)
+                .define('I', Items.ICE)
+                .define('B', Items.COPPER_BLOCK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.MOWUNIT.get())
+                .pattern(" C ")
+                .pattern("BMB")
+                .pattern("RRR")
+                .define('C', Items.COPPER_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('M', Items.MINECART)
+                .define('B', Items.COPPER_BLOCK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.OVENUNIT.get())
+                .pattern("BBB")
+                .pattern("DTD")
+                .pattern("BRB")
+                .define('T', Items.IRON_TRAPDOOR)
+                .define('R', Items.REDSTONE)
+                .define('D', Items.BLAZE_POWDER)
+                .define('B', Items.COPPER_BLOCK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.WASHUNIT.get())
+                .pattern("BBB")
+                .pattern("BCB")
+                .pattern("BRB")
+                .define('C', Items.CAULDRON)
+                .define('R', Items.REDSTONE)
+                .define('B', Items.COPPER_BLOCK)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.ROTOM_CATALOGUE.get())
+                .pattern(" F ")
+                .pattern("OBW")
+                .pattern(" M ")
+                .define('F', RotomFormes.FAN)
+                .define('W', RotomFormes.WASHUNIT)
+                .define('M', RotomFormes.MOWUNIT)
+                .define('O', RotomFormes.OVENUNIT)
+                .define('B', Items.BOOK)
+                .unlockedBy("has_book", has(Items.BOOK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.PINK_NECTAR.get())
+                .pattern("   ")
+                .pattern("HPH")
+                .pattern(" H ")
+                .define('H', Items.HONEYCOMB)
+                .define('P', Items.PEONY)
+                .unlockedBy("has_honey", has(Items.HONEYCOMB)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.RED_NECTAR.get())
+                .pattern("   ")
+                .pattern("HRH")
+                .pattern(" H ")
+                .define('H', Items.HONEYCOMB)
+                .define('R', Items.ROSE_BUSH)
+                .unlockedBy("has_honey", has(Items.HONEYCOMB)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.YELLOW_NECTAR.get())
+                .pattern("   ")
+                .pattern("HYH")
+                .pattern(" H ")
+                .define('H', Items.HONEYCOMB)
+                .define('Y', Items.SUNFLOWER)
+                .unlockedBy("has_honey", has(Items.HONEYCOMB)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.PURPLE_NECTAR.get())
+                .pattern("   ")
+                .pattern("HPH")
+                .pattern(" H ")
+                .define('H', Items.HONEYCOMB)
+                .define('P', Items.LILAC)
+                .unlockedBy("has_honey", has(Items.HONEYCOMB)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.ASH_CAP.get())
+                .pattern(" WR")
+                .pattern("RGR")
+                .pattern("RWR")
+                .define('W', Items.WHITE_WOOL)
+                .define('R', Items.RED_WOOL)
+                .define('G', Items.GREEN_WOOL)
+                .unlockedBy("has_wool", has(Items.WHITE_WOOL)).save(recipeOutput);
+
+// Water
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_WATER_ORE), RecipeCategory.MISC, CobblemonItems.WATER_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_water_ore", has(MegaOres.MEGA_METEORID_WATER_ORE)).save(recipeOutput, "water_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_WATER_ORE), RecipeCategory.MISC, CobblemonItems.WATER_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_water_ore", has(MegaOres.MEGA_METEORID_WATER_ORE)).save(recipeOutput, "water_stone_smelting");
+
+// Dawn
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_DAWN_ORE), RecipeCategory.MISC, CobblemonItems.DAWN_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_dawn_ore", has(MegaOres.MEGA_METEORID_DAWN_ORE)).save(recipeOutput, "dawn_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_DAWN_ORE), RecipeCategory.MISC, CobblemonItems.DAWN_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_dawn_ore", has(MegaOres.MEGA_METEORID_DAWN_ORE)).save(recipeOutput, "dawn_stone_smelting");
+
+// Dusk
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_DUSK_ORE), RecipeCategory.MISC, CobblemonItems.DUSK_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_dusk_ore", has(MegaOres.MEGA_METEORID_DUSK_ORE)).save(recipeOutput, "dusk_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_DUSK_ORE), RecipeCategory.MISC, CobblemonItems.DUSK_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_dusk_ore", has(MegaOres.MEGA_METEORID_DUSK_ORE)).save(recipeOutput, "dusk_stone_smelting");
+
+// Fire
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_FIRE_ORE), RecipeCategory.MISC, CobblemonItems.FIRE_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_fire_ore", has(MegaOres.MEGA_METEORID_FIRE_ORE)).save(recipeOutput, "fire_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_FIRE_ORE), RecipeCategory.MISC, CobblemonItems.FIRE_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_fire_ore", has(MegaOres.MEGA_METEORID_FIRE_ORE)).save(recipeOutput, "fire_stone_smelting");
+
+// Ice
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_ICE_ORE), RecipeCategory.MISC, CobblemonItems.ICE_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_ice_ore", has(MegaOres.MEGA_METEORID_ICE_ORE)).save(recipeOutput, "ice_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_ICE_ORE), RecipeCategory.MISC, CobblemonItems.ICE_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_ice_ore", has(MegaOres.MEGA_METEORID_ICE_ORE)).save(recipeOutput, "ice_stone_smelting");
+
+// Leaf
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_LEAF_ORE), RecipeCategory.MISC, CobblemonItems.LEAF_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_leaf_ore", has(MegaOres.MEGA_METEORID_LEAF_ORE)).save(recipeOutput, "leaf_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_LEAF_ORE), RecipeCategory.MISC, CobblemonItems.LEAF_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_leaf_ore", has(MegaOres.MEGA_METEORID_LEAF_ORE)).save(recipeOutput, "leaf_stone_smelting");
+
+// Moon
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_MOON_ORE), RecipeCategory.MISC, CobblemonItems.MOON_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_moon_ore", has(MegaOres.MEGA_METEORID_MOON_ORE)).save(recipeOutput, "moon_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_MOON_ORE), RecipeCategory.MISC, CobblemonItems.MOON_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_moon_ore", has(MegaOres.MEGA_METEORID_MOON_ORE)).save(recipeOutput, "moon_stone_smelting");
+
+// Shiny
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_SHINY_ORE), RecipeCategory.MISC, CobblemonItems.SHINY_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_shiny_ore", has(MegaOres.MEGA_METEORID_SHINY_ORE)).save(recipeOutput, "shiny_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_SHINY_ORE), RecipeCategory.MISC, CobblemonItems.SHINY_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_shiny_ore", has(MegaOres.MEGA_METEORID_SHINY_ORE)).save(recipeOutput, "shiny_stone_smelting");
+
+// Sun
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_SUN_ORE), RecipeCategory.MISC, CobblemonItems.SUN_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_sun_ore", has(MegaOres.MEGA_METEORID_SUN_ORE)).save(recipeOutput, "sun_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_SUN_ORE), RecipeCategory.MISC, CobblemonItems.SUN_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_sun_ore", has(MegaOres.MEGA_METEORID_SUN_ORE)).save(recipeOutput, "sun_stone_smelting");
+
+// Thunder
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(MegaOres.MEGA_METEORID_THUNDER_ORE), RecipeCategory.MISC, CobblemonItems.THUNDER_STONE, 0.7f, 100)
+                .unlockedBy("has_mega_thunder_ore", has(MegaOres.MEGA_METEORID_THUNDER_ORE)).save(recipeOutput, "thunder_stone_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_THUNDER_ORE), RecipeCategory.MISC, CobblemonItems.THUNDER_STONE, 0.7f, 200)
+                .unlockedBy("has_mega_thunder_ore", has(MegaOres.MEGA_METEORID_THUNDER_ORE)).save(recipeOutput, "thunder_stone_smelting");
     }
 }

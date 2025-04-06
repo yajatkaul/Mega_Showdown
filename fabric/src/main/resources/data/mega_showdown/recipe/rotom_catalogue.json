@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "F": {
+      "item": "mega_showdown:fanunit"
+    },
+    "M": {
+      "item": "mega_showdown:mowunit"
+    },
+    "O": {
+      "item": "mega_showdown:ovenunit"
+    },
+    "W": {
+      "item": "mega_showdown:washunit"
+    }
+  },
+  "pattern": [
+    " F ",
+    "OBW",
+    " M "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:rotom_catalogue"
+  }
+}

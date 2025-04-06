@@ -1,0 +1,209 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.wormadam_sand.ground_walk": {
+			"loop": true,
+			"animation_length": 1.75,
+			"bones": {
+				"cuerpoi": {
+					"rotation": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.25": {
+							"post": [10, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [20, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.75": {
+							"post": [2.5, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.25": {
+							"post": [10, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.5": {
+							"post": [20, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.75": {
+							"post": [2.5, 0, 0],
+							"lerp_mode": "catmullrom"
+						}
+					},
+					"position": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.25": {
+							"post": [0, 3, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [0, -1, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.75": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.25": {
+							"post": [0, 3, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.5": {
+							"post": [0, -1, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.75": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"tercera2": {
+					"rotation": [0, 0, 27.5],
+					"position": [-1, 0, 0]
+				},
+				"primera2": {
+					"rotation": [0, 0, 5]
+				},
+				"segunda2": {
+					"rotation": [0, 0, 27.5],
+					"position": [-1, 0, 0]
+				},
+				"bone": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0]
+				},
+				"bone2": {
+					"rotation": [0, 0, -25],
+					"position": [1, 0, 0]
+				},
+				"bone3": {
+					"rotation": [0, 0, -37.5],
+					"position": [2, 2, 0]
+				}
+			}
+		},
+		"animation.wormadam_sand.blink": {
+			"animation_length": 0.25,
+			"bones": {
+				"parpados": {
+					"position": {
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.125": {
+							"post": [0, 0, -1],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				}
+			}
+		},
+		"animation.wormadam_sand.ground_idle": {
+			"loop": true,
+			"animation_length": 3,
+			"bones": {
+				"wormadam_plant": {
+					"rotation": {
+						"0.0": {
+							"post": [0, -22.5, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [0, 22.5, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.0": {
+							"post": [0, -22.5, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"1.5": {
+							"post": [0, 22.5, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"2.0": {
+							"post": [0, -22.5, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"2.5": {
+							"post": [0, 22.5, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"3.0": {
+							"post": [0, -22.5, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"hojas_superiores2": {
+					"rotation": {
+						"0.0": {
+							"post": [0, 0, 15],
+							"lerp_mode": "catmullrom"
+						}
+					},
+					"position": {
+						"0.0": {
+							"post": [-6, 2, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"segunda2": {
+					"rotation": [0, 0, 27.5],
+					"position": [-1, 0, 0]
+				},
+				"tercera2": {
+					"rotation": [0, 0, 27.5],
+					"position": [-1, 0, 0]
+				},
+				"segunda": {
+					"rotation": [0, 0, -30],
+					"position": [14, 10, 0]
+				},
+				"tercera": {
+					"rotation": [0, 0, -72.5],
+					"position": [11.6, 31.2, 0]
+				},
+				"cuerpoi": {
+					"rotation": {
+						"0.0": [0, 62.5, 0],
+						"0.6": [0, -42.5, 0],
+						"1.2": [0, 50, 0],
+						"2.1": [0, -57.5, 0],
+						"3.0": [0, 42.5, 0]
+					}
+				},
+				"primera2": {
+					"rotation": [0, 0, 5]
+				},
+				"bone3": {
+					"rotation": [0, 0, -37.5],
+					"position": [2, 2, 0]
+				},
+				"bone2": {
+					"rotation": [0, 0, -30],
+					"position": [2, 1.3, 0]
+				}
+			}
+		}
+	}
+}

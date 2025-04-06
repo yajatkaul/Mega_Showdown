@@ -1,0 +1,56 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.mothim.ground_idle": {
+			"loop": true,
+			"animation_length": 4.6569,
+			"bones": {
+				"brazo_derecho": {
+					"rotation": [0, -67.5, 0],
+					"position": [0, 0, 2]
+				},
+				"brazo_izquierdo": {
+					"rotation": [0, 70, 0],
+					"position": [0, 0, 2]
+				},
+				"pierna_derecha": {
+					"rotation": [7.5, 0, 0],
+					"position": [0, 0, 1]
+				},
+				"pierna_izquierda": {
+					"rotation": [7.5, 0, 0],
+					"position": [0, 0, 1]
+				}
+			}
+		},
+		"animation.mothim.ground_walk": {
+			"loop": true,
+			"animation_length": 4.6569,
+			"bones": {
+				"mothim": {
+					"rotation": [25, 0, 0]
+				},
+				"cabeza2": {
+					"rotation": [-20, 0, 0],
+					"position": [0, 0, -7]
+				},
+				"brazo_derecho": {
+					"rotation": [0, -67.5, 0],
+					"position": [0, 0, 2]
+				},
+				"brazo_izquierdo": {
+					"rotation": [0, 70, 0],
+					"position": [0, 0, 2]
+				},
+				"pierna_derecha": {
+					"rotation": [7.5, 0, 0],
+					"position": [0, 0, 1]
+				},
+				"pierna_izquierda": {
+					"rotation": [7.5, 0, 0],
+					"position": [0, 0, 1]
+				}
+			}
+		}
+	}
+}

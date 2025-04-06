@@ -23,13 +23,15 @@ public class RenderChestTrinkets implements TrinketRenderer {
                        float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
         ItemStack chestArmor = entity.getEquippedStack(EquipmentSlot.CHEST);
+
+        float z_axis = 0.0f;
         if (!chestArmor.isEmpty()) {
-            return; // Exit the method if chest slot has any armor
+            z_axis = -0.05f;
         }
         if (stack.getItem() instanceof MegaBraceletItem) {
             matrices.push();
 
-            matrices.translate(0.0, -0.25, 0.0); // Adjust this value as needed
+            matrices.translate(0.0, -0.25, z_axis); // Adjust this value as needed
 
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));

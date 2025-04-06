@@ -23,13 +23,14 @@ public class CurioChestRenderer implements ICurioRenderer {
         LivingEntity entity = slotContext.entity();
 
         ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
+        float z_axis = 0.0f;
         if (!chestArmor.isEmpty()) {
-            return;
+            z_axis = -0.05f;
         }
         if (stack.getItem() instanceof MegaBraceletItem) {
             matrixStack.pushPose();
             
-            matrixStack.translate(0.0, -0.25, 0.0); // Adjust this value as needed
+            matrixStack.translate(0.0, -0.25, z_axis); // Adjust this value as needed
 
             matrixStack.mulPose(Axis.YP.rotationDegrees(180));
             matrixStack.mulPose(Axis.XP.rotationDegrees(180));

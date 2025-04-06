@@ -1,0 +1,27 @@
+{
+  "portraitScale": 1.98,
+  "portraitTranslation": [0,0.35,0],
+  "profileScale": 0.8,
+  "profileTranslation": [ 0, 0.6, 0 ],
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "transformTicks": 10,
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "animations": ["q.bedrock('mothim', 'ground_idle')"],
+      "quirks": []
+    },
+    "walking": {
+      "poseName": "walking",
+      "transformTicks": 10,
+      "poseTypes": [ "WALK" ],
+       "animations": ["q.bedrock('mothim', 'ground_walk')"],
+      "quirks": []
+     }
+  }
+}

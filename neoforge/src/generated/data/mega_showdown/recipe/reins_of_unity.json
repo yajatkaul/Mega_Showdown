@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "minecraft:iron_ingot"
-    },
     "G": {
       "item": "cobblemon:ghost_gem"
     },
     "I": {
       "item": "cobblemon:ice_gem"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
     },
     "S": {
       "item": "minecraft:string"
@@ -17,7 +17,7 @@
   },
   "pattern": [
     "SGS",
-    "C  ",
+    "L  ",
     "SIS"
   ],
   "result": {
