@@ -20,6 +20,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
@@ -327,7 +328,11 @@ public class CobbleEventsHandler {
         Pokemon pokemon = pokemonCapturedEvent.getPokemon();
 
         if(pokemon.getSpecies().getName().equals("Ogerpon")){
-            pokemon.setTeraType(TeraTypes.getGRASS());
+            try{
+                pokemon.setTeraType(TeraTypes.getGRASS());
+            }catch (Exception e){
+                MegaShowdown.LOGGER.info("Sike");
+            }
         }
 
         return Unit.INSTANCE;
