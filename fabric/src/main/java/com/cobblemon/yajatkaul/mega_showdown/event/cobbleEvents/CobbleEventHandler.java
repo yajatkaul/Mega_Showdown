@@ -118,7 +118,7 @@ public class CobbleEventHandler {
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == player){
+            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == megaEvolutionEvent.getPokemon().getEffectedPokemon().getOwnerPlayer() && activeBattlePokemon.getBattlePokemon() == megaEvolutionEvent.getPokemon()){
                 battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true));
             }
         }
@@ -341,7 +341,7 @@ public class CobbleEventHandler {
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()){
+            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer() && activeBattlePokemon.getBattlePokemon() == formeChangeEvent.getPokemon()){
                 battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true));
             }
         }

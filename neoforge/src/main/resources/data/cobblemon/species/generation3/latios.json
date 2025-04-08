@@ -12,6 +12,17 @@
   "aspects": [],
   "abilities": ["levitate", "h:levitate"],
   "eggGroups": ["undiscovered"],
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true,
+        "walkSpeed": 2
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
   "baseStats": {
     "hp": 80,
     "attack": 90,

@@ -225,8 +225,12 @@
       },
       "swim": {
         "swimSpeed": 0.1,
+        "canBreatheUnderwater": false,
+        "canWalkOnLava": true,
+        "canBreatheUnderlava": true,
+        "avoidsWater": true,
         "canSwimInWater": false,
-        "canBreatheUnderwater": false
+        "canSwimInLava": true
       }
     }
   },

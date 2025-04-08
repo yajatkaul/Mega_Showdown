@@ -15,8 +15,10 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
@@ -153,7 +155,8 @@ public class RevertEvents {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
             }
 
-            if((Config.battleMode || Config.scuffedMode || Config.battleModeOnly) && MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
+            if((Config.battleMode || Config.scuffedMode || Config.battleModeOnly) &&
+                    MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }else{
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
@@ -163,10 +166,20 @@ public class RevertEvents {
                     .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof ZRingItem))
                     .orElse(false);
 
-            if((player.getOffhandItem().is(ZCrystals.Z_RING) || hasZItemCurios) && Config.zMoves){
+            if((player.getOffhandItem().getItem() instanceof ZRingItem || hasZItemCurios) && Config.zMoves){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
             }else{
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
+            }
+
+            boolean hasDMAXItemCurios = CuriosApi.getCuriosInventory(player)
+                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof Dynamax))
+                    .orElse(false);
+
+            if((player.getOffhandItem().getItem() instanceof Dynamax || hasDMAXItemCurios)){
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+            }else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
             }
         }
 

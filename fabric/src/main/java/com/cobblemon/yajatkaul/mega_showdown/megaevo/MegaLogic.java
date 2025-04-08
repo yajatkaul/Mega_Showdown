@@ -57,9 +57,16 @@ public class MegaLogic {
         boolean hasOffhandMegaItem = player.getOffHandStack().getItem() instanceof MegaBraceletItem;
         boolean hasMainhandMegaItem = player.getMainHandStack().getItem() instanceof MegaBraceletItem;
 
-        if (!hasMegaItemTrinkets && !hasOffhandMegaItem && !hasMainhandMegaItem) {
-            return false;
+        if(fromBattle){
+            if (!hasMegaItemTrinkets && !hasOffhandMegaItem && !hasMainhandMegaItem) {
+                return false;
+            }
+        }else {
+            if (!hasMegaItemTrinkets && !hasOffhandMegaItem) {
+                return false;
+            }
         }
+
 
         // Apply cooldown
         cooldowns.put(playerId, currentTime + COOLDOWN_TIME);

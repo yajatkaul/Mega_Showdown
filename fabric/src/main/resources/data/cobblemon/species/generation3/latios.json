@@ -20,6 +20,17 @@
     "special_defence": 110,
     "speed": 110
   },
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true,
+        "walkSpeed": 2
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
   "evYield": {
     "hp": 0,
     "attack": 0,

@@ -54,7 +54,9 @@ public class RevertEvents {
                 data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
             }
 
-            if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get() || ShowdownConfig.battleModeOnly.get()) && MegaLogic.Possible(player, true) && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
+            if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get()
+                    || ShowdownConfig.battleModeOnly.get()) && MegaLogic.Possible(player, true)
+                    && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
                 data.getKeyItems().add(Identifier.of("cobblemon","key_stone"));
             }else{
                 data.getKeyItems().remove(Identifier.of("cobblemon","key_stone"));
@@ -63,7 +65,7 @@ public class RevertEvents {
             boolean hasZItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                     trinkets.isEquipped(item -> item.getItem() instanceof ZRingItem)).orElse(false);
 
-            if((player.getOffHandStack().isOf(ZCrystals.Z_RING) || hasZItemTrinkets) && ShowdownConfig.zMoves.get()){
+            if((player.getOffHandStack().getItem() instanceof ZRingItem || hasZItemTrinkets) && ShowdownConfig.zMoves.get()){
                 data.getKeyItems().add(Identifier.of("cobblemon","z_ring"));
             }else{
                 data.getKeyItems().remove(Identifier.of("cobblemon","z_ring"));

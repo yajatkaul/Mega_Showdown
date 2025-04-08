@@ -7,7 +7,7 @@ plugins {
 
 
 group = "com.github.yajatkaul"
-version = "8.2.2-hotfix-release-neoforge"
+version = "8.2.3-hotfix-release-neoforge"
 
 architectury {
     platformSetupLoomIde()

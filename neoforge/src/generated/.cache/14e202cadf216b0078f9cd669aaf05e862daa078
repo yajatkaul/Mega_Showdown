@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-02T18:37:13.0578592	Item Models: mega_showdown
+// 1.21.1	2025-04-07T20:23:40.2855518	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -42,6 +42,7 @@ abffeba482722129166b8a2bc2fd8b84287a826d assets/mega_showdown/models/item/dracop
 a3bf05a58badbf83f4d6d427c2efc390b76839db assets/mega_showdown/models/item/dragonmemory.json
 b0bc40f3f9331cf8b3f523486bb3d39513751445 assets/mega_showdown/models/item/dragon_tera_shard.json
 e5877a4c96403bb619c7e7ebcc1eca8aabb800df assets/mega_showdown/models/item/dreadplate.json
+022ffcff379383114f76a937ecdd8b159d0bb2b7 assets/mega_showdown/models/item/dynamax_band.json
 0234f390adb5c288064fad8f32d5248c305f5fcb assets/mega_showdown/models/item/earthplate.json
 167f6b08b27be48a94a8142ff3511d5c3ff637ad assets/mega_showdown/models/item/eevium-z.json
 3644c3c51292700a3c0c4b9fb91a2f54282d4bff assets/mega_showdown/models/item/electricmemory.json

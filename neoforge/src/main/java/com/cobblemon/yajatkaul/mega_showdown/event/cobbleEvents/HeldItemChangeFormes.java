@@ -421,7 +421,7 @@ public class HeldItemChangeFormes {
     public static void ultraEvent(HeldItemEvent.Post event){
         Pokemon pokemon = event.getPokemon();
 
-        if(pokemon.getSpecies().getName().equals("Necrozma")){
+        if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")){
             if(event.getReturned().is(ZCrystals.ULTRANECROZIUM_Z)){
                 EventUtils.ultraAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("ultra",false).apply(pokemon);

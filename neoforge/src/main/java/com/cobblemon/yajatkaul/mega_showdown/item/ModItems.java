@@ -75,6 +75,9 @@ public class ModItems {
                 }
             });
 
+    public static final DeferredItem<Item> DYNAMAX_BAND = ITEMS.register("dynamax_band",
+            () -> new Dynamax(new Item.Properties().stacksTo(1)));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

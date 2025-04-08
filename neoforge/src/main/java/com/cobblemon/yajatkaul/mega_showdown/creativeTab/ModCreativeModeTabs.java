@@ -350,6 +350,15 @@ public class ModCreativeModeTabs {
                     })
                     .build());
 
+    public static final Supplier<CreativeModeTab> DYNAMAX_TAB = CREATIVE_MODE_TAB.register("dynamax_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DYNAMAX_BAND.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_tab"))
+                    .title(Component.translatable("creativeTab.mega_showdown.key_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.DYNAMAX_BAND);
+                    })
+                    .build());
+
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TAB.register(eventBus);
     }
