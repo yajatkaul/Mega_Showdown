@@ -19,8 +19,6 @@ public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon){
         if(pokemon.getSpecies().getName().equals("Castform")){
             new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Minior")) {
-            new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Aegislash")) {
             new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
         } else if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
@@ -45,6 +43,8 @@ public class EventUtils {
             new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Arceus") && pokemon.heldItem().is(CompiItems.LEGEND_PLATE)){
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Xerneas")) {
+            new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
         }
     }
 

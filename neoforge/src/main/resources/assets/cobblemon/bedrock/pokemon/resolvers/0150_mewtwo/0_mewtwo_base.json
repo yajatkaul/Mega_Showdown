@@ -4,8 +4,8 @@
   "variations": [
     {
       "aspects": [],
-      "poser": "cobblemon:mewtwo",
-      "model": "cobblemon:mewtwo.geo",
+      "model": "cobblemon:mewtwo2.geo",
+      "poser": "cobblemon:mewtwo2",
       "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo.png",
       "layers": []
     },
@@ -13,7 +13,9 @@
       "aspects": [
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_shiny.png"
+      "model": "cobblemon:mewtwo2.geo",
+      "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_shiny.png",
+      "layers": []
     }
   ]
 }

@@ -253,19 +253,29 @@ public class CobbleEventHandler {
         }else if (pokemon.getSpecies().getName().equals("Arceus")) {
             EventUtils.playFormeChangeAnimation(pokemon.getEntity());
             new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
-        }else if (pokemon.getSpecies().getName().equals("Minior") && formeChangeEvent.getFormeName().equals("meteor")) {
-            EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-            new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Castform")) {
-            if(formeChangeEvent.getFormeName().equals("sunny")){
+        } else if (pokemon.getSpecies().getName().equals("Minior")) {
+            if(formeChangeEvent.getFormeName().equals("meteor")){
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("forecast_form", "sunny").apply(pokemon);
-            } else if (formeChangeEvent.getFormeName().equals("rainy")) {
+                new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+            }else {
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("forecast_form", "rainy").apply(pokemon);
-            } else if (formeChangeEvent.getFormeName().equals("snowy")){
-                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("forecast_form", "snowy").apply(pokemon);
+                new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
+            }
+        }
+        else if (pokemon.getSpecies().getName().equals("Castform")) {
+            switch (formeChangeEvent.getFormeName()) {
+                case "sunny" -> {
+                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                    new StringSpeciesFeature("forecast_form", "sunny").apply(pokemon);
+                }
+                case "rainy" -> {
+                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                    new StringSpeciesFeature("forecast_form", "rainy").apply(pokemon);
+                }
+                case "snowy" -> {
+                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                    new StringSpeciesFeature("forecast_form", "snowy").apply(pokemon);
+                }
             }
         }else if (pokemon.getSpecies().getName().equals("Wishiwashi")) {
             EventUtils.playFormeChangeAnimation(pokemon.getEntity());
@@ -334,6 +344,11 @@ public class CobbleEventHandler {
             }else{
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
+            }
+        }else if (pokemon.getSpecies().getName().equals("Xerneas")) {
+            if(formeChangeEvent.getFormeName().equals("active")){
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("life_mode", "active").apply(pokemon);
             }
         }
 

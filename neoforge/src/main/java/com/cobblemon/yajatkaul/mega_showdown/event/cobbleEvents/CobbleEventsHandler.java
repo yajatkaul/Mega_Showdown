@@ -226,9 +226,14 @@ public class CobbleEventsHandler {
             } else if (formeChangeEvent.getFormeName().equals("aegislash")) {
                 new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
             }
-        } else if (pokemon.getSpecies().getName().equals("Minior") && formeChangeEvent.getFormeName().equals("meteor")) {
-            EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-            new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Minior")) {
+            if(formeChangeEvent.getFormeName().equals("meteor")){
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
+            }else {
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+            }
         } else if (pokemon.getSpecies().getName().equals("Castform")) {
             if(formeChangeEvent.getFormeName().equals("sunny")){
                 EventUtils.playFormeChangeAnimation(pokemon.getEntity());
@@ -310,6 +315,11 @@ public class CobbleEventsHandler {
         } else if (pokemon.getSpecies().getName().equals("Arceus")) {
             EventUtils.playFormeChangeAnimation(pokemon.getEntity());
             new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Xerneas")) {
+            if(formeChangeEvent.getFormeName().equals("active")){
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("life_mode", "active").apply(pokemon);
+            }
         }
 
         battle.sendUpdate(new AbilityUpdatePacket(formeChangeEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));

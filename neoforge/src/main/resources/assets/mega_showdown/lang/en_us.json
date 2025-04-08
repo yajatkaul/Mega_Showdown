@@ -536,5 +536,9 @@
   "item.mega_showdown.souldew": "Soul Dew",
   "tooltip.mega_showdown.souldew.tooltip": "A mysterious orb that boosts Latios and Latias' power.",
   "item.mega_showdown.gripclaw": "Grip Claw",
-  "tooltip.mega_showdown.gripclaw.tooltip": "An item that extends the duration of binding moves."
+  "tooltip.mega_showdown.gripclaw.tooltip": "An item that extends the duration of binding moves.",
+
+  "item.mega_showdown.dynamax_band": "Dynamax Band",
+  "tooltip.mega_showdown.dynamax_band.tooltip": "A special band that allows Pokémon to Dynamax during battle.",
+  "creativeTab.mega_showdown.dynamax_tab": "Dynamax Tab"
 }

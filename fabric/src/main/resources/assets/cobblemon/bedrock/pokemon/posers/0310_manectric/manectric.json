@@ -8,16 +8,20 @@
     "cry": "q.bedrock_stateful('manectric', 'cry')"
   },
   "poses": {
+    "battle-standing": {
+      "poseTypes": ["STAND"],
+      "isBattle": true,
+      "animations": ["q.bedrock('manectric', 'battle_idle')"]
+    },
     "standing": {
       "poseTypes": ["STAND", "FLOAT", "PORTRAIT", "PROFILE", "NONE"],
+      "isBattle": false,
       "animations": ["q.bedrock('manectric', 'ground_idle')"],
       "quirks": ["q.bedrock_quirk('manectric', 'blink')"]
     },
     "walking": {
       "poseTypes": ["WALK", "SWIM"],
-      "animations": [
-        "q.bedrock('manectric', 'ground_walk')"
-      ]
+      "animations": ["q.bedrock('manectric', 'ground_walk')"]
     }
   }
 }

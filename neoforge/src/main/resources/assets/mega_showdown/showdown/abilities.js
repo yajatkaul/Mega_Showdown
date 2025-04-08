@@ -1272,26 +1272,29 @@ const Abilities = {
     num: 194
   },
   fairyaura: {
-    onStart(pokemon) {
-      if (this.suppressingAbility(pokemon))
-        return;
-      this.add("-ability", pokemon, "Fairy Aura");
+      onStart(pokemon) {
+        if (pokemon.species.id === "xerneas") {
+          pokemon.formeChange("xerneasactive", this.effect, true);
+        }
+        if (this.suppressingAbility(pokemon))
+          return;
+        this.add("-ability", pokemon, "Fairy Aura");
+      },
+      onAnyBasePowerPriority: 20,
+      onAnyBasePower(basePower, source, target, move) {
+        if (target === source || move.category === "Status" || move.type !== "Fairy")
+          return;
+        if (!move.auraBooster?.hasAbility("Fairy Aura"))
+          move.auraBooster = this.effectState.target;
+        if (move.auraBooster !== this.effectState.target)
+          return;
+        return this.chainModify([move.hasAuraBreak ? 3072 : 5448, 4096]);
+      },
+      flags: {},
+      name: "Fairy Aura",
+      rating: 3,
+      num: 187
     },
-    onAnyBasePowerPriority: 20,
-    onAnyBasePower(basePower, source, target, move) {
-      if (target === source || move.category === "Status" || move.type !== "Fairy")
-        return;
-      if (!move.auraBooster?.hasAbility("Fairy Aura"))
-        move.auraBooster = this.effectState.target;
-      if (move.auraBooster !== this.effectState.target)
-        return;
-      return this.chainModify([move.hasAuraBreak ? 3072 : 5448, 4096]);
-    },
-    flags: {},
-    name: "Fairy Aura",
-    rating: 3,
-    num: 187
-  },
   filter: {
     onSourceModifyDamage(damage, source, target, move) {
       if (target.getMoveHitData(move).typeMod > 0) {
@@ -4308,6 +4311,7 @@ const Abilities = {
   },
   shieldsdown: {
     onStart(pokemon) {
+      console.log(pokemon.baseSpecies.baseSpecies)
       if (pokemon.baseSpecies.baseSpecies !== "Minior" || pokemon.transformed)
         return;
       if (pokemon.hp > pokemon.maxhp / 2) {
@@ -4316,7 +4320,7 @@ const Abilities = {
         }
       } else {
         if (pokemon.species.forme === "Meteor") {
-          pokemon.formeChange(pokemon.set.species);
+            pokemon.formeChange("Minior");
         }
       }
     },
@@ -4330,7 +4334,7 @@ const Abilities = {
         }
       } else {
         if (pokemon.species.forme === "Meteor") {
-          pokemon.formeChange(pokemon.set.species);
+            pokemon.formeChange("Minior");
         }
       }
     },
