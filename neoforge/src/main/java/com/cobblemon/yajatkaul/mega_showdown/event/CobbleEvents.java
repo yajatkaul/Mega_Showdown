@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.RevertEvents;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class CobbleEvents {
     public static void register(){
@@ -29,6 +30,8 @@ public class CobbleEvents {
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventsHandler::fixOgerTera);
 
         CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEventsHandler::formeChanges);
+
+        NeoForge.EVENT_BUS.register(new DynamaxEventListener());
         // Battle mode only
         if(Config.battleModeOnly || Config.battleMode){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, RevertEvents::battleEnded);

@@ -1330,42 +1330,148 @@ class BattleActions {
       return zMoves;
   }
   getMaxMove(move, pokemon) {
-    if (typeof move === "string")
-      move = this.dex.moves.get(move);
-    if (move.name === "Struggle")
-      return move;
-    if (pokemon.gigantamax && pokemon.canGigantamax && move.category !== "Status") {
-      const gMaxMove = this.dex.moves.get(pokemon.canGigantamax);
-      if (gMaxMove.exists && gMaxMove.type === move.type)
-        return gMaxMove;
-    }
-    const maxMove = this.dex.moves.get(this.MAX_MOVES[move.category === "Status" ? move.category : move.type]);
-    if (maxMove.exists)
-      return maxMove;
+  if (typeof move === "string")
+    move = this.dex.moves.get(move);
+  if (move.name === "Struggle")
+    return move;
+  // Assign the Gigantamax move based on species
+  let GigantamaxMove = null;
+  const GIGANTAMAX_MOVES = {
+	venusaur: "gmaxvinelash",//Works  
+    charizard: "gmaxwildfire",//Works
+	blastoise: "gmaxcannonade",//Works
+    butterfree: "gmaxbefuddle",//Works
+	pikachu: "gmaxvoltcrash",//Works
+    meowth: "gmaxgoldrush",//Works
+    machamp: "gmaxchistrike",//Works
+    gengar: "gmaxterror",//Works
+    kingler: "gmaxfoamburst",//Works
+    lapras: "gmaxresonance",//Works
+    eevee: "gmaxcuddle",//Works
+    snorlax: "gmaxreplenish",//Works
+    garbodor: "gmaxmalodor",//Works
+	melmetal: "gmaxmeltdown",//Works
+    copperajah: "gmaxsteelsurge",//Works
+    duraludon: "gmaxdepletion",//Works
+    corviknight: "gmaxwindrage",//Works
+	orbeetle: "gmaxgravitas",//Works
+    toxtricity: "gmaxstunshock",//Works
+	toxtricitylowkey: "gmaxstunshock",//Works
+    centiskorch: "gmaxcentiferno",//Works
+    hatterene: "gmaxsmite",//Works
+    grimmsnarl: "gmaxsnooze",//Works
+	alcremie: "gmaxfinale",//Works
+    alcremierubycream: "gmaxfinale",//Works
+	alcremiematchacream: "gmaxfinale",//Works
+	alcremiemintcream: "gmaxfinale",//Works
+	alcremielemoncream: "gmaxfinale",//Works
+	alcremiesaltedcream: "gmaxfinale",//Works
+	alcremierubyswirl: "gmaxfinale",//Works
+	alcremiecaramelswirl: "gmaxfinale",//Works
+	alcremierainbowswirl: "gmaxfinale",//Works
+    drednaw: "gmaxstonesurge",//Works
+    coalossal: "gmaxvolcalith",//Works
+	flapple: "gmaxtartness",//Works
+	appletun: "gmaxsweetness",//Works
+    sandaconda: "gmaxsandblast",//Works
+    inteleon: "gmaxhydrosnipe",//Works
+    cinderace: "gmaxfireball",//Works
+    rillaboom: "gmaxdrumsolo",//Works
+    urshifu: "gmaxoneblow",//Works
+    urshifurapidstrike: "gmaxrapidflow",//Works
+  };
+
+  const speciesName = this.dex.toID(pokemon.species?.name);
+  if (speciesName && pokemon.gigantamax && GIGANTAMAX_MOVES[speciesName]) {
+    GigantamaxMove = GIGANTAMAX_MOVES[speciesName];
+  }
+  
+  if (GigantamaxMove && move.category !== "Status") {
+    const gMaxMove = this.dex.moves.get(GigantamaxMove);
+    if (gMaxMove.exists && gMaxMove.type === move.type)
+      return gMaxMove;
+  }
+  const maxMove = this.dex.moves.get(this.MAX_MOVES[move.category === "Status" ? move.category : move.type]);
+  if (maxMove.exists)
+    return maxMove;
   }
   getActiveMaxMove(move, pokemon) {
-    if (typeof move === "string")
-      move = this.dex.getActiveMove(move);
-    if (move.name === "Struggle")
-      return this.dex.getActiveMove(move);
-    let maxMove = this.dex.getActiveMove(this.MAX_MOVES[move.category === "Status" ? move.category : move.type]);
-    if (move.category !== "Status") {
-      if (pokemon.gigantamax && pokemon.canGigantamax) {
-        const gMaxMove = this.dex.getActiveMove(pokemon.canGigantamax);
-        if (gMaxMove.exists && gMaxMove.type === move.type)
-          maxMove = gMaxMove;
-      }
-      if (!move.maxMove?.basePower)
-        throw new Error(`${move.name} doesn't have a maxMove basePower`);
-      if (!["gmaxdrumsolo", "gmaxfireball", "gmaxhydrosnipe"].includes(maxMove.id)) {
-        maxMove.basePower = move.maxMove.basePower;
-      }
-      maxMove.category = move.category;
+  if (typeof move === "string")
+    move = this.dex.getActiveMove(move);
+  if (move.name === "Struggle")
+    return this.dex.getActiveMove(move);
+
+  // Assign the Gigantamax move based on species
+  let GigantamaxMove = null;
+  const GIGANTAMAX_MOVES = {
+	venusaur: "gmaxvinelash",//Works  
+    charizard: "gmaxwildfire",//Works
+	blastoise: "gmaxcannonade",//Works
+    butterfree: "gmaxbefuddle",//Works
+	pikachu: "gmaxvoltcrash",//Works
+    meowth: "gmaxgoldrush",//Works
+    machamp: "gmaxchistrike",//Works
+    gengar: "gmaxterror",//Works
+    kingler: "gmaxfoamburst",//Works
+    lapras: "gmaxresonance",//Works
+    eevee: "gmaxcuddle",//Works
+    snorlax: "gmaxreplenish",//Works
+    garbodor: "gmaxmalodor",//Works
+	melmetal: "gmaxmeltdown",//Works
+    copperajah: "gmaxsteelsurge",//Works
+    duraludon: "gmaxdepletion",//Works
+    corviknight: "gmaxwindrage",//Works
+	orbeetle: "gmaxgravitas",//Works
+    toxtricity: "gmaxstunshock",//Works
+	toxtricitylowkey: "gmaxstunshock",//Works
+    centiskorch: "gmaxcentiferno",//Works
+    hatterene: "gmaxsmite",//Works
+    grimmsnarl: "gmaxsnooze",//Works
+	alcremie: "gmaxfinale",//Works
+    alcremierubycream: "gmaxfinale",//Works
+	alcremiematchacream: "gmaxfinale",//Works
+	alcremiemintcream: "gmaxfinale",//Works
+	alcremielemoncream: "gmaxfinale",//Works
+	alcremiesaltedcream: "gmaxfinale",//Works
+	alcremierubyswirl: "gmaxfinale",//Works
+	alcremiecaramelswirl: "gmaxfinale",//Works
+	alcremierainbowswirl: "gmaxfinale",//Works
+    drednaw: "gmaxstonesurge",//Works
+    coalossal: "gmaxvolcalith",//Works
+	flapple: "gmaxtartness",//Works
+	appletun: "gmaxsweetness",//Works
+    sandaconda: "gmaxsandblast",//Works
+    inteleon: "gmaxhydrosnipe",//Works
+    cinderace: "gmaxfireball",//Works
+    rillaboom: "gmaxdrumsolo",//Works
+    urshifu: "gmaxoneblow",//Works
+    urshifurapidstrike: "gmaxrapidflow",//Works
+  };
+
+  const speciesName = this.dex.toID(pokemon.species?.name);
+  if (speciesName && pokemon.gigantamax && GIGANTAMAX_MOVES[speciesName]) {
+    GigantamaxMove = GIGANTAMAX_MOVES[speciesName];
+  }
+
+  let maxMove = this.dex.getActiveMove(this.MAX_MOVES[move.category === "Status" ? move.category : move.type]);
+  if (move.category !== "Status") {
+    if (GigantamaxMove) {
+      const gMaxMove = this.dex.getActiveMove(GigantamaxMove);
+      if (gMaxMove.exists && gMaxMove.type === move.type)
+        maxMove = gMaxMove;
     }
-    maxMove.baseMove = move.id;
-    maxMove.priority = move.priority;
-    maxMove.isZOrMaxPowered = true;
-    return maxMove;
+    if (!move.maxMove?.basePower)
+      throw new Error(`${move.name} doesn't have a maxMove basePower`);
+    // Only update basePower if it's not a special-case G-Max move
+    if (!["gmaxdrumsolo", "gmaxfireball", "gmaxhydrosnipe"].includes(maxMove.id)) {
+      maxMove.basePower = move.maxMove.basePower;
+    }
+    maxMove.category = move.category;
+  }
+  maxMove.baseMove = move.id;
+  maxMove.priority = move.priority;
+  maxMove.isZOrMaxPowered = true;
+  return maxMove;
   }
   runZPower(move, pokemon) {
     const zPower = this.dex.conditions.get("zpower");

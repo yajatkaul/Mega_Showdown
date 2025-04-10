@@ -52,6 +52,10 @@ public class Config
             .comment("Enables etermax eternus forme")
             .define("etermaxForme", true);
 
+    private static final ModConfigSpec.BooleanValue DYNAMAX = BUILDER
+            .comment("Enables/Disables dmax in game")
+            .define("Dynamax", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -64,6 +68,7 @@ public class Config
     public static boolean teralization;
     public static boolean tradeForm;
     public static boolean etermaxForme;
+    public static boolean dynamax;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -78,5 +83,6 @@ public class Config
         teralization = TERA_EVO.get();
         tradeForm = TRADE_FORM.get();
         etermaxForme = ETERMAX_FORME.get();
+        dynamax = DYNAMAX.get();
     }
 }

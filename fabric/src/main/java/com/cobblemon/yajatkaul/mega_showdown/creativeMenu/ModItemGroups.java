@@ -343,6 +343,15 @@ public class ModItemGroups {
                     }))
                     .build());
 
+    public static final ItemGroup DYNAMAX_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "dynamax_tab"),
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.DYNAMAX_BAND))
+                    .displayName(Text.translatable("creativeTab.mega_showdown.dynamax_tab"))
+                    .entries(((displayContext, entries) -> {
+                        entries.add(ModItems.DYNAMAX_BAND);
+                    }))
+                    .build());
+
     public static void registerItemGroups(){
 
     }

@@ -12,6 +12,14 @@
   "aspects": [],
   "abilities": ["levitate", "h:levitate"],
   "eggGroups": ["undiscovered"],
+  "baseStats": {
+    "hp": 80,
+    "attack": 80,
+    "defence": 90,
+    "special_attack": 110,
+    "special_defence": 130,
+    "speed": 110
+  },
   "behaviour": {
     "moving": {
       "walk": {
@@ -22,14 +30,6 @@
         "canFly": true
       }
     }
-  },
-  "baseStats": {
-    "hp": 80,
-    "attack": 80,
-    "defence": 90,
-    "special_attack": 110,
-    "special_defence": 130,
-    "speed": 110
   },
   "evYield": {
     "hp": 0,

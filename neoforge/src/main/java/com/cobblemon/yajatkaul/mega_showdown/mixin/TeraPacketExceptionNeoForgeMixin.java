@@ -23,7 +23,9 @@ public class TeraPacketExceptionNeoForgeMixin {
             // Specifically check for the Tera packet error based on your exact error message
             if (errorMessage != null &&
                     errorMessage.contains("Failed to encode packet") &&
-                    errorMessage.contains("cobblemon:tera_type_update")) {
+                    (errorMessage.contains("cobblemon:tera_type_update") ||
+                            errorMessage.contains("cobblemon:dmax_level_update"))
+            ) {
 
                 // Log the exception but suppress it
                 System.out.println("[CobblemonMod] Suppressed Tera packet encoder exception in NeoForge: " + errorMessage);

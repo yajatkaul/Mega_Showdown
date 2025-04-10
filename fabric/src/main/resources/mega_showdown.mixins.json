@@ -5,7 +5,13 @@
   "mixins": [
     "ShowdownSpeciesMixin",
     "TeraPacketExceptionMixin",
-    "EarlyLoader"
+    "StartInstructionMixin",
+    "StartInstructionAccessor",
+    "EarlyLoader",
+    "ShowdownActionRequestMixin",
+    "ShowdownActionRequestAccessor",
+    "EndInstructionAccessor",
+    "EndInstructionMixin"
   ],
   "client": [
     "ItemRendererMixin",

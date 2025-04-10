@@ -5,9 +5,12 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ShowdownSpeciesMixin",
-    "LootPoolAccessor",
     "TeraPacketExceptionNeoForgeMixin",
-    "EarlyLoader"
+    "EarlyLoader",
+    "ShowdownActionRequestMixin",
+    "ShowdownActionRequestAccessor",
+    "StartInstructionMixin",
+    "StartInstructionAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

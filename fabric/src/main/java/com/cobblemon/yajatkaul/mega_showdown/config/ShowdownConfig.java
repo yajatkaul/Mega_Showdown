@@ -15,6 +15,7 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> friendshipMode;
     public static final Supplier<Boolean> zMoves;
     public static final Supplier<Boolean> teralization;
+    public static final Supplier<Boolean> dynamax;
     public static final Supplier<Boolean> tradeForm;
     public static final Supplier<Boolean> etermaxForme;
 
@@ -34,6 +35,7 @@ public class ShowdownConfig {
         teralization = builder.comment("Enables/Disables teralization in game").define("teralization", true);
         tradeForm = builder.comment("Allows you to trade even if your pokemon is not in base form").define("tradeForm", false);
         etermaxForme = builder.comment("Enables etermax eternus forme").define("etermaxForme", true);
+        dynamax = builder.comment("Enables/Disables Dmaxing in game").define("dynamax", true);
 
         builder.build();
     }

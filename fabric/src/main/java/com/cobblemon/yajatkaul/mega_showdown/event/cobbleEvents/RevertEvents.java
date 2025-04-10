@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
@@ -42,13 +43,24 @@ public class RevertEvents {
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
+            boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                    trinkets.isEquipped(item -> item.getItem() instanceof Dynamax)).orElse(false);
+
+            if((player.getOffHandStack().getItem() instanceof Dynamax || hasDMaxItemTrinkets) && ShowdownConfig.dynamax.get()){
+                data.getKeyItems().add(Identifier.of("cobblemon","dynamax_band"));
+            }else{
+                data.getKeyItems().remove(Identifier.of("cobblemon","dynamax_band"));
+            }
+
             boolean hasTeraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                     trinkets.isEquipped(item -> item.getItem() instanceof TeraItem)).orElse(false);
 
-            if(hasTeraItemTrinkets && ShowdownConfig.teralization.get()){
-                data.getKeyItems().add(Identifier.of("cobblemon","tera_orb"));
-            }else{
-                data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
+            if(!hasDMaxItemTrinkets && !(player.getOffHandStack().getItem() instanceof Dynamax)){
+                if(hasTeraItemTrinkets && ShowdownConfig.teralization.get()){
+                    data.getKeyItems().add(Identifier.of("cobblemon","tera_orb"));
+                }else{
+                    data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
+                }
             }
 
             if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get()

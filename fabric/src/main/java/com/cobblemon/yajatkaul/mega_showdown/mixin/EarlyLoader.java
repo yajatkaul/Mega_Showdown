@@ -31,6 +31,8 @@ public class EarlyLoader {
             yoink("/assets/mega_showdown/showdown/pokemon.js", showdown_sim.resolve("pokemon.js"));
             yoink("/assets/mega_showdown/showdown/abilities.js", showdown_data.resolve("abilities.js"));
             yoink("/assets/mega_showdown/showdown/items.js", showdown_data.resolve("items.js"));
+            yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
+
 
             MegaShowdown.LOGGER.info("All files are ready!");
         } catch (IOException e) {

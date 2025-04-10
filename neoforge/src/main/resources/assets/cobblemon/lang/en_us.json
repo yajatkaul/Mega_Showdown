@@ -645,5 +645,25 @@
 	"cobblemon.battle.start.quarkdrivespd": "%1$s Special Defense raised!",
 	"cobblemon.battle.start.quarkdrivespe": "%1$s Speed raised!",
 
-	"cobblemon.battle.damage.gulpmissile": "%1$s threw the Arrokuda on the foe"
+	"cobblemon.battle.damage.gulpmissile": "%1$s threw the Arrokuda on the foe",
+
+	"cobblemon.battle.activate.gmaxcentiferno": "%1$s became trapped in the fiery vortex!",
+	"cobblemon.battle.start.gmaxchistrike": "%1$s concentrated intensely!",
+	"cobblemon.battle.sidestart.gmaxvinelash": "%1$s vines were placed on the battlefield!",
+	"cobblemon.battle.sidestart.gmaxvolcalith": "%1$s was burned!",
+	"cobblemon.battle.sidestart.gmaxwildfire": "%1$s flames are going wild!",
+	"cobblemon.battle.sidestart.gmaxsteelsurge": "Spikes were scattered on the ground all around %1$s team!",
+	"cobblemon.battle.sidestart.gmaxcannonade": "%1$s was trapped in a vortex!",
+	"cobblemon.battle.end.gmaxvinelash": "The vines disappeared.",
+	"cobblemon.battle.end.gmaxvolcalith": "The burn went away.",
+	"cobblemon.battle.end.gmaxwildfire": "The flames went away.",
+	"cobblemon.battle.end.gmaxsteelsurge": "The spikes were cleared.",
+	"cobblemon.battle.end.gmaxcannonade": "The vortex vanished",
+	"cobblemon.battle.end.gmaxcentiferno": "The fiery vortex vanished.",
+	"cobblemon.battle.damage.gmaxvinelash": "%1$s was damaged by vines!",
+	"cobblemon.battle.damage.gmaxwildfire": "%1$s was damaged by the fire!",
+	"cobblemon.battle.damage.gmaxvolcalith": "%1$s was damaged by it's burn!",
+	"cobblemon.battle.damage.gmaxcentiferno": "%1$s is hurt by fiery vortex!",
+	"cobblemon.battle.damage.gmaxcannonade": "%1$s is hurt by the vortex!",
+	"cobblemon.battle.item.gmaxreplenish": "%1$s replenished it's %2$s!"
 }
