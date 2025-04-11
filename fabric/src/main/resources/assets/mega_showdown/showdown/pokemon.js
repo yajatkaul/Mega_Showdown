@@ -707,7 +707,7 @@ class Pokemon {
     if (!skipChecks) {
       if (!this.side.canDynamaxNow())
         return;
-      if (this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" || this.getItem().zMove || this.canMegaEvo) {
+        if (this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" || this.getItem().zMove || this.canMegaEvo || this.terastallized) {
         return;
       }
       if (this.species.cannotDynamax || this.illusion?.species.cannotDynamax)

@@ -291,32 +291,16 @@ public class HeldItemChangeFormes {
         }
         if(post.getReceived().is(FormeChangeItems.HEARTHFLAME_MASK)){
             new StringSpeciesFeature("ogre_mask","hearthflame").apply(pokemon);
-            try {
-                pokemon.setTeraType(TeraTypes.getFIRE());
-            }catch (Exception e){
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            pokemon.setTeraType(TeraTypes.getFIRE());
         } else if (post.getReceived().is(FormeChangeItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask","cornerstone").apply(pokemon);
-            try {
-                pokemon.setTeraType(TeraTypes.getROCK());
-            }catch (Exception e){
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            pokemon.setTeraType(TeraTypes.getROCK());
         }else if (post.getReceived().is(FormeChangeItems.WELLSPRING_MASK)) {
             new StringSpeciesFeature("ogre_mask","wellspring").apply(pokemon);
-            try {
-                pokemon.setTeraType(TeraTypes.getWATER());
-            }catch (Exception e){
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            pokemon.setTeraType(TeraTypes.getWATER());
         }else {
             new StringSpeciesFeature("ogre_mask","teal").apply(pokemon);
-            try {
-                pokemon.setTeraType(TeraTypes.getGRASS());
-            }catch (Exception e){
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            pokemon.setTeraType(TeraTypes.getGRASS());
         }
     }
 

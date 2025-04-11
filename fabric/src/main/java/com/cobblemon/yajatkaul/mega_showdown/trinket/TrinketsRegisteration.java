@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.trinket;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
@@ -22,10 +23,13 @@ public class TrinketsRegisteration {
         TrinketRendererRegistry.registerRenderer(ModItems.MAXIE_GLASSES, new RenderHeadTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.ARCHIE_ANCHOR, new RenderChestTrinkets());
 
-        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING, new RenderOffHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_BLACK, new RenderOffHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_POWER, new RenderOffHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_BLACK, new RenderHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_POWER, new RenderHandTrinkets());
 
         TrinketRendererRegistry.registerRenderer(TeraMoves.TERA_ORB, new RenderBeltTrinkets());
+
+        TrinketRendererRegistry.registerRenderer(DynamaxItems.DYNAMAX_BAND, new RenderOffHandTrinkets());
+
     }
 }

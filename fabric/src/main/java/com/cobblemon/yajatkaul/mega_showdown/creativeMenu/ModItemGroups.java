@@ -5,6 +5,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -345,10 +346,16 @@ public class ModItemGroups {
 
     public static final ItemGroup DYNAMAX_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "dynamax_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.DYNAMAX_BAND))
+            FabricItemGroup.builder().icon(() -> new ItemStack(DynamaxItems.DYNAMAX_BAND))
                     .displayName(Text.translatable("creativeTab.mega_showdown.dynamax_tab"))
                     .entries(((displayContext, entries) -> {
-                        entries.add(ModItems.DYNAMAX_BAND);
+                        entries.add(DynamaxItems.DYNAMAX_BAND);
+                        entries.add(DynamaxItems.DYNAMAX_CANDY);
+                        entries.add(DynamaxItems.WISHING_STAR);
+                        entries.add(DynamaxItems.MAX_HONEY);
+                        entries.add(DynamaxItems.MAX_MUSHROOM);
+                        entries.add(DynamaxItems.MAX_SOUP);
+                        entries.add(DynamaxItems.SWEET_MAX_SOUP);
                     }))
                     .build());
 

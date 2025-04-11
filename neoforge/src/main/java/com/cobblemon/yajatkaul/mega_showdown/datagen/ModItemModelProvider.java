@@ -221,7 +221,5 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(CompiItems.SOULDEW.get());
         basicItem(CompiItems.ADRENALINEORB.get());
         basicItem(CompiItems.GRIPCLAW.get());
-
-        basicItem(ModItems.DYNAMAX_BAND.get());
     }
 }

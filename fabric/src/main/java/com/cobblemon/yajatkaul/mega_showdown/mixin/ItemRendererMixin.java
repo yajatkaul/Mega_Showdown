@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
@@ -91,6 +92,9 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == ZCrystals.Z_RING_POWER && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring")));
         }
+        else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "dynamax_band")));
+        }
         return bakedModel;
     }
 
@@ -156,6 +160,9 @@ public abstract class ItemRendererMixin {
         }
         else if (stack.getItem() == ZCrystals.Z_RING_POWER) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring_3d")));
+        }
+        else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "dynamax_band_3d")));
         }
 
         return bakedModel;

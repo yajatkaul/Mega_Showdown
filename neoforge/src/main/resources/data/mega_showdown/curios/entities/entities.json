@@ -1,4 +1,4 @@
 {
   "entities": ["minecraft:player"],
-  "slots": ["evowear","z_slot","tera_slot"]
+  "slots": ["evowear","z_slot","tera_slot","dynamax_slot"]
 }

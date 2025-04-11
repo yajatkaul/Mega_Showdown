@@ -29,10 +29,12 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.MAXIE_GLASSES.get(), CurioHeadRenderer::new);
         CuriosRendererRegistry.register(ModItems.ARCHIE_ANCHOR.get(), CurioChestRenderer::new);
 
-        CuriosRendererRegistry.register(ZCrystals.Z_RING.get(), CurioOffHandRenderer::new);
-        CuriosRendererRegistry.register(ZCrystals.Z_RING_BLACK.get(), CurioOffHandRenderer::new);
-        CuriosRendererRegistry.register(ZCrystals.Z_RING_POWER.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING.get(), CurioHeadRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_BLACK.get(), CurioHeadRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_POWER.get(), CurioHeadRenderer::new);
 
         CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
+
+        CuriosRendererRegistry.register(ModItems.DYNAMAX_BAND.get(), CurioOffHandRenderer::new);
     }
 }

@@ -160,13 +160,10 @@ public class RevertEvents {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
             }
 
-
-            if(!hasDMAXItemCurios && !(player.getOffhandItem().getItem() instanceof Dynamax)){
-                if(hasTeraItemCurios && Config.teralization){
-                    data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
-                }else {
-                    data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
-                }
+            if(hasTeraItemCurios && Config.teralization){
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
+            }else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
             }
 
             if((Config.battleMode || Config.scuffedMode || Config.battleModeOnly) &&

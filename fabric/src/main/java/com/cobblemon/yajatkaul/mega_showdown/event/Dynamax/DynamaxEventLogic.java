@@ -1,6 +1,5 @@
-package com.cobblemon.yajatkaul.mega_showdown.event.Dynamax;
+package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -38,7 +37,11 @@ public class DynamaxEventLogic {
                 Team team = scoreboard.getTeam(teamName);
                 if (team == null) {
                     team = scoreboard.addTeam(teamName);
-                    team.setColor(Formatting.RED);
+                    if(pokemon.getEffectedPokemon().getSpecies().getName().equals("Calyrex")){
+                        team.setColor(Formatting.BLUE);
+                    }else{
+                        team.setColor(Formatting.RED);
+                    }
                 }
                 scoreboard.addScoreHolderToTeam(pokemon.getEntity().getUuid().toString(), team);
             }
@@ -61,7 +64,7 @@ public class DynamaxEventLogic {
         });
     }
 
-    private static void startGradualScaling(LivingEntity entity, float targetScale) {
+    public static void startGradualScaling(LivingEntity entity, float targetScale) {
         UUID entityId = entity.getUuid();
         EntityAttributeInstance scaleAttribute = entity.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
 

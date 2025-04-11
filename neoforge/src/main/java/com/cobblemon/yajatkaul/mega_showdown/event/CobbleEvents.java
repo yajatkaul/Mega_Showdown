@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.RevertEvents;
+import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class CobbleEvents {

@@ -1,7 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 
+import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.battles.BagItems;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
@@ -9,12 +11,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.*;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -77,7 +73,6 @@ public class ModItems {
             Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),
             new BlockItem(MegaOres.MEGA_STONE_CRYSTAL, new Item.Settings()));
 
-    public static final Item DYNAMAX_BAND = registerItem("dynamax_band", new Dynamax(new Item.Settings().maxCount(1)));
 
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), item);

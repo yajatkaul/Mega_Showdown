@@ -76,7 +76,6 @@ public class MegaBraceletItem extends Item {
         return super.use(world, user, hand);
     }
 
-
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
         //Battle Mode only

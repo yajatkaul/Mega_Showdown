@@ -4,14 +4,18 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ShowdownSpeciesMixin",
-    "TeraPacketExceptionMixin",
+    "ExceptionHandlerMixin",
     "StartInstructionMixin",
     "StartInstructionAccessor",
     "EarlyLoader",
     "ShowdownActionRequestMixin",
     "ShowdownActionRequestAccessor",
     "EndInstructionAccessor",
-    "EndInstructionMixin"
+    "EndInstructionMixin",
+    "GimmickTileMixin",
+    "MoveActionResponseMixin",
+    "BattleGimmickButtonMixin",
+    "ShowdownInterpreterMixin"
   ],
   "client": [
     "ItemRendererMixin",

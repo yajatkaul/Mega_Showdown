@@ -224,6 +224,9 @@
   "trinkets.slot.hand.tera_slot": "Tera Wear",
   "curios.identifier.tera_slot": "Tera Wear",
 
+  "trinkets.slot.hand.dynamax_slot": "Dynamax Slot",
+  "curios.identifier.dynamax_slot": "Dynamax Slot",
+
   "advancement.mega_showdown.root.title": "Showdown Time",
   "advancement.mega_showdown.mega_evolve.title": "A Beast",
   "advancement.mega_showdown.find_mega_stone.title": "Evolutionary Beings",

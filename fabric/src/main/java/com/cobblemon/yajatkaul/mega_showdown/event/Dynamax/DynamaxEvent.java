@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.event.Dynamax;
+package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;

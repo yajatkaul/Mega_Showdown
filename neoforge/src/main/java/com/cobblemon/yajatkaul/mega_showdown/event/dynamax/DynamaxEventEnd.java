@@ -1,15 +1,15 @@
-package com.cobblemon.yajatkaul.mega_showdown.event;
+package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import net.neoforged.bus.api.Event;
 
 
-public class DynamaxEvent extends Event {
+public class DynamaxEventEnd extends Event {
     private final PokemonBattle battle;
     private final BattlePokemon pokemon;
 
-    public DynamaxEvent(PokemonBattle battle, BattlePokemon pokemon) {
+    public DynamaxEventEnd(PokemonBattle battle, BattlePokemon pokemon) {
         this.battle = battle;
         this.pokemon = pokemon;
     }

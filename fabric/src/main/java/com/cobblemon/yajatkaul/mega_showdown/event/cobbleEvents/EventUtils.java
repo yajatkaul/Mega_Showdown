@@ -3,10 +3,12 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.world.ServerWorld;
@@ -17,6 +19,10 @@ import net.minecraft.util.math.Vec3d;
 
 public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon){
+        if(pokemon.getEntity() != null){
+            pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
+            DynamaxEventLogic.startGradualScaling(pokemon.getEntity(), 1.0f);
+        }
         if(pokemon.getSpecies().getName().equals("Castform")){
             new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Aegislash")) {

@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.ShowdownActionRequest;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;

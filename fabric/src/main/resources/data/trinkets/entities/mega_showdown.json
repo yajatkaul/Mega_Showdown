@@ -5,6 +5,7 @@
   "slots": [
     "hand/evowear",
     "hand/z_slot",
-    "hand/tera_slot"
+    "hand/tera_slot",
+    "hand/dynamax_slot"
   ]
 }

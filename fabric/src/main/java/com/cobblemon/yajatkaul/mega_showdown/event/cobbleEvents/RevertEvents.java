@@ -55,12 +55,10 @@ public class RevertEvents {
             boolean hasTeraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                     trinkets.isEquipped(item -> item.getItem() instanceof TeraItem)).orElse(false);
 
-            if(!hasDMaxItemTrinkets && !(player.getOffHandStack().getItem() instanceof Dynamax)){
-                if(hasTeraItemTrinkets && ShowdownConfig.teralization.get()){
-                    data.getKeyItems().add(Identifier.of("cobblemon","tera_orb"));
-                }else{
-                    data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
-                }
+            if(hasTeraItemTrinkets && ShowdownConfig.teralization.get()){
+                data.getKeyItems().add(Identifier.of("cobblemon","tera_orb"));
+            }else{
+                data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
             }
 
             if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get()

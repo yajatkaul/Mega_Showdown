@@ -1785,7 +1785,7 @@ class BattleActions {
     return true;
   }
   canTerastallize(pokemon) {
-    if (pokemon.getItem().zMove || pokemon.canMegaEvo || this.dex.gen !== 9) {
+      if (pokemon.getItem().zMove || pokemon.canMegaEvo || this.dex.gen !== 9 || pokemon.volatiles["dynamax"]) {
       return null;
     }
     return pokemon.teraType;

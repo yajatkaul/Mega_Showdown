@@ -10,5 +10,6 @@ public class ItemRegister {
         CompiItems.registerModItem();
         FormeChangeItems.registerModItem();
         KeyItems.registerModItem();
+        DynamaxItems.registerModItem();
     }
 }
