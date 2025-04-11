@@ -51,6 +51,11 @@ public class EventUtils {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }else if (pokemon.getSpecies().getName().equals("Xerneas")) {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
+        }else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
+            if(pokemon.getEntity() != null){
+                ultraAnimation(pokemon.getEntity());
+            }
+            new FlagSpeciesFeature("ultra", false).apply(pokemon);
         }
     }
 

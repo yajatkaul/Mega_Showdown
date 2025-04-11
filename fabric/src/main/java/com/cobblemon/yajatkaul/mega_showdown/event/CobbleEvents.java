@@ -6,6 +6,8 @@ import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.RevertEvents;
+import com.cobblemon.yajatkaul.mega_showdown.event.ultra.UltraEvent;
+import com.cobblemon.yajatkaul.mega_showdown.event.ultra.UltraEventLogic;
 
 public class CobbleEvents {
     public static void register(){
@@ -32,6 +34,7 @@ public class CobbleEvents {
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventHandler::fixOgerTera);
 
         DynamaxEventLogic.register();
+        UltraEventLogic.register();
 
         if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
             CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, RevertEvents::getBattleEndInfo);

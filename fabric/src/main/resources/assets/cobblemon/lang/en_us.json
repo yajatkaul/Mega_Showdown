@@ -665,5 +665,7 @@
 	"cobblemon.battle.damage.gmaxvolcalith": "%1$s was damaged by it's burn!",
 	"cobblemon.battle.damage.gmaxcentiferno": "%1$s is hurt by fiery vortex!",
 	"cobblemon.battle.damage.gmaxcannonade": "%1$s is hurt by the vortex!",
-	"cobblemon.battle.item.gmaxreplenish": "%1$s replenished it's %2$s!"
+	"cobblemon.battle.item.gmaxreplenish": "%1$s replenished it's %2$s!",
+
+	"cobblemon.battle.ultra": "%1$s has regained its true power through Ultra Burst!"
 }

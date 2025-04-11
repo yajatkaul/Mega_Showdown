@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.megaevo;
+package com.cobblemon.yajatkaul.mega_showdown.instructions;
 
 import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
