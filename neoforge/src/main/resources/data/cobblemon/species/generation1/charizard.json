@@ -315,6 +315,12 @@
       "aspects": [
         "gmax"
       ],
+      "baseScale": 1,
+      "hitbox": {
+        "width": 1.5,
+        "height": 2.65,
+        "fixed": false
+      },
       "dynamaxBlocked": true,
       "evolutions": [],
       "battleOnly": true

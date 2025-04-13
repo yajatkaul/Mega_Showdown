@@ -1,9 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -13,14 +11,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.List;
 
 public class ModBlocks {
-
     public static final Block MEGA_EVO_BRICK = registerBlock("mega_evo_brick",
             new Block(AbstractBlock.Settings.create()
                     .strength(3f)

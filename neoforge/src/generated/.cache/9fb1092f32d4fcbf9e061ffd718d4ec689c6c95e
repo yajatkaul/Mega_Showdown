@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-13T13:20:47.3755996	Recipes
+// 1.21.1	2025-04-13T23:16:53.6901964	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -16,6 +16,7 @@ f2e80378447f39916d8ee7ad38f036d6f02addcf data/mega_showdown/advancement/recipes/
 5c4003b1303f09f729c225e1a82de896cbf06111 data/mega_showdown/advancement/recipes/misc/korrina_glove.json
 00ff0db2b6ad9cd3833f974f11efb532c189f515 data/mega_showdown/advancement/recipes/misc/lysandre_ring.json
 4f93ee3f25b24f8b675e051d3b59245670a30228 data/mega_showdown/advancement/recipes/misc/maxie_glasses.json
+4d4ad5ac778953ac47bbc44442a78e4f85c74d51 data/mega_showdown/advancement/recipes/misc/max_honey.json
 c4bdb2b1835b92487ec5982053a258d85485f5cf data/mega_showdown/advancement/recipes/misc/max_soup.json
 a7171ddeed4200dfe87cab2d4bcf917b9befa5b4 data/mega_showdown/advancement/recipes/misc/may_bracelet.json
 beb6b7d1a8f8fc9cd884ee4b2284f6bb4cc30768 data/mega_showdown/advancement/recipes/misc/megabracelet.json
@@ -58,6 +59,7 @@ f0f98aef0586578f3adad3d7fdf32274495398cc data/mega_showdown/recipe/keystone_bloc
 78a6479617a6777d284ae1711990765f7e14cb47 data/mega_showdown/recipe/korrina_glove.json
 7bf561163615f2ef16a7e866ec10b43548284377 data/mega_showdown/recipe/lysandre_ring.json
 c4492313967e35095d6881fd802843597dc65a66 data/mega_showdown/recipe/maxie_glasses.json
+6a5c1d54e65abf8bfd1f2cdc122cd8966211334c data/mega_showdown/recipe/max_honey.json
 a36102673fe74968cc71cbda99faaf31a0db6813 data/mega_showdown/recipe/max_soup.json
 149373bf1b635fcaf09f18a8f8319839206d0ff6 data/mega_showdown/recipe/may_bracelet.json
 9d710c2a5f156c2867323fad6ed9216bbb987f6e data/mega_showdown/recipe/megabracelet.json

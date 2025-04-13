@@ -16,7 +16,8 @@
     "BattleGimmickButtonMixin",
     "ShowdownInterpreterMixin",
     "MoveActionResponseMixin",
-    "GimmickTileMixin"
+    "GimmickTileMixin",
+    "LootPoolAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -485,5 +485,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(DynamaxItems.MAX_MUSHROOM.get())
                 .requires(CobblemonItems.RARE_CANDY)
                 .unlockedBy("has_max_mushroom", has(DynamaxItems.MAX_MUSHROOM)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DynamaxItems.MAX_HONEY.get())
+                .requires(Items.HONEY_BOTTLE)
+                .requires(DynamaxItems.MAX_MUSHROOM.get())
+                .unlockedBy("has_max_mushroom", has(DynamaxItems.MAX_MUSHROOM)).save(recipeOutput);
+
     }
 }

@@ -41,6 +41,9 @@ public class DynamaxItems {
     public static final DeferredItem<Item> SWEET_MAX_SOUP = ITEMS.register("sweet_max_soup",
             () -> new SweetMaxSoup(new Item.Properties()));
 
+    public static final DeferredItem<Item> DYNAMAX_CLOUD = ITEMS.register("dynamax_cloud",
+            () -> new Item(new Item.Properties()));
+
     public static void register(){
 
     }

@@ -76,7 +76,7 @@ public final class MegaShowdown {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             NeoForge.EVENT_BUS.addListener(ClientModEvents::onClientTick);
-            NeoForge.EVENT_BUS.addListener(ChestRenderer::onRenderPlayer);
+            //NeoForge.EVENT_BUS.addListener(ChestRenderer::onRenderPlayer);
         }
 
         @SubscribeEvent

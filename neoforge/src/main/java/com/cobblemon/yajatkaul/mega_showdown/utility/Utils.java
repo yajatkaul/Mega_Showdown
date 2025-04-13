@@ -168,6 +168,10 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CHILL_DRIVE.get(), "chilldrive");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DOUSE_DRIVE.get(), "dousedrive");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.SHOCK_DRIVE.get(), "shockdrive");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.CORNERSTONE_MASK.get(), "cornerstonemask");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.WELLSPRING_MASK.get(), "wellspringmask");
+        CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.HEARTHFLAME_MASK.get(), "hearthflamemask");
     }
 
     public static void registerRemapping(){

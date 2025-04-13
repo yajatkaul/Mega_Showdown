@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.DmaxLevelUpda
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.GmaxFactorUpdatePacket
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdatePacket
 
-object SmoothServerCosmetics {
+object PacketHandler {
     fun handleCobblemonPacket(list: MutableList<PacketRegisterInfo<*>>) {
         list.add(PacketRegisterInfo(
             TeraTypeUpdatePacket.ID,
