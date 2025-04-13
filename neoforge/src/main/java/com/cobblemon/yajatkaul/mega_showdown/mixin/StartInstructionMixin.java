@@ -28,10 +28,11 @@ public class StartInstructionMixin  {
 
         String[] parts = battleLog.split("\\|");
         boolean containsDynamax = Arrays.stream(parts).anyMatch(part -> part.contains("Dynamax"));
+        boolean containsGmax = Arrays.stream(parts).anyMatch(part -> part.contains("Gmax"));
 
         if (containsDynamax) {
             BattlePokemon pokemon =  message.battlePokemon(0, battle);
-            DynamaxEvent event = new DynamaxEvent(battle, pokemon);
+            DynamaxEvent event = new DynamaxEvent(battle, pokemon, containsGmax);
             NeoForge.EVENT_BUS.post(event);
         }
     }

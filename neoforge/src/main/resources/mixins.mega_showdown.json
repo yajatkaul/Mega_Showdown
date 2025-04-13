@@ -5,14 +5,18 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ShowdownSpeciesMixin",
-    "EndInstructionMixin",
     "EarlyLoader",
     "ShowdownActionRequestMixin",
     "ShowdownActionRequestAccessor",
     "StartInstructionMixin",
     "StartInstructionAccessor",
     "EndInstructionAccessor",
-    "ExceptionHandlerMixin"
+    "EndInstructionMixin",
+    "ExceptionHandlerMixin",
+    "BattleGimmickButtonMixin",
+    "ShowdownInterpreterMixin",
+    "MoveActionResponseMixin",
+    "GimmickTileMixin"
   ],
   "injectors": {
     "defaultRequire": 1

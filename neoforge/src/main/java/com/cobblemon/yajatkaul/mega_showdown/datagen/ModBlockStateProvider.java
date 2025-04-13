@@ -94,19 +94,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
 
-    private void blockItem(DeferredBlock<?> deferredBlock) {
-        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile(MegaShowdown.MOD_ID + ":block/" + deferredBlock.getId().getPath()));
-    }
-
-    //For crystals
-    private void blockWithItemCutOut(DeferredBlock<?> deferredBlock) {
-        directionalBlock(deferredBlock.get(),
-                models().cross(deferredBlock.getId().getPath(),
-                        blockTexture(deferredBlock.get())).renderType("cutout"));
-        itemModels().withExistingParent(deferredBlock.getId().getPath(), mcLoc("item/generated"))
-                .texture("layer0", "block/" + deferredBlock.getId().getPath());
-    }
-
     private void blockWithTopBottom(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(),
                 models().cubeBottomTop(deferredBlock.getId().getPath(),

@@ -7,12 +7,17 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+
+import java.util.List;
 
 public class ModBlocks {
 
@@ -72,9 +77,31 @@ public class ModBlocks {
                     .mapColor(MapColor.PINK)
                     .sounds(BlockSoundGroup.STONE)));
 
+    public static final Block POWER_SPOT = registerBlockWithToolTip("power_spot",
+            new Block(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .mapColor(MapColor.RED)
+                    .sounds(BlockSoundGroup.STONE)));
+
     public static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
+    }
+
+    public static Block registerBlockWithToolTip(String name, Block block){
+        registerBlockItemWithToolTip(name, block);
+        return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
+    }
+
+    private static void registerBlockItemWithToolTip(String name, Block block){
+        Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()){
+            @Override
+            public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+                tooltip.add(Text.translatable("tooltip.mega_showdown."  + name + ".tooltip"));
+                super.appendTooltip(stack, context, tooltip, type);
+            }
+        });
     }
 
     private static void registerBlockItem(String name, Block block){

@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.BattleRegistry;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -119,44 +120,41 @@ public class ModEvents {
 
     @SubscribeEvent
     private static void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
-        if(Config.battleModeOnly){
-            if(playerLoggedInEvent.getEntity() instanceof ServerPlayer player){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+        if(!playerLoggedInEvent.getEntity().level().isClientSide){
+            ServerPlayer player = (ServerPlayer) playerLoggedInEvent.getEntity();
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
-                for (Pokemon pokemon : playerPartyStore) {
-                    if(Config.battleModeOnly){
-                        new FlagSpeciesFeature("mega", false).apply(pokemon);
-                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    }
-                    EventUtils.revertFormesEnd(pokemon);
-                }
-
+            for (Pokemon pokemon : playerPartyStore) {
                 if(Config.battleModeOnly){
-                    player.setData(DataManage.MEGA_DATA, false);
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
+                EventUtils.revertFormesEnd(pokemon);
+            }
+
+            if(Config.battleModeOnly){
+                player.setData(DataManage.MEGA_DATA, false);
             }
         }
     }
 
     @SubscribeEvent
     private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-        if(Config.battleModeOnly){
-            if(event.getEntity() instanceof ServerPlayer player){
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+        if(event.getEntity() instanceof ServerPlayer player){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
-                for (Pokemon pokemon : playerPartyStore) {
-                    if(Config.battleModeOnly){
-                        new FlagSpeciesFeature("mega", false).apply(pokemon);
-                        new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                        new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    }
-                    EventUtils.revertFormesEnd(pokemon);
-                }
-
+            for (Pokemon pokemon : playerPartyStore) {
                 if(Config.battleModeOnly){
-                    player.setData(DataManage.MEGA_DATA, false);
+                    new FlagSpeciesFeature("mega", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
+                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
                 }
+                EventUtils.revertFormesEnd(pokemon);
+            }
+
+            if(Config.battleModeOnly){
+                player.setData(DataManage.MEGA_DATA, false);
             }
         }
     }

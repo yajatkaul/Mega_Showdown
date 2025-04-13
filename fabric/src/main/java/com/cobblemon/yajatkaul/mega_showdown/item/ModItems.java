@@ -69,11 +69,6 @@ public class ModItems {
         }
     });
 
-    public static final Item MEGA_STONE_CRYSTAL_ITEM = Registry.register(Registries.ITEM,
-            Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),
-            new BlockItem(MegaOres.MEGA_STONE_CRYSTAL, new Item.Settings()));
-
-
     public static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), item);
     }

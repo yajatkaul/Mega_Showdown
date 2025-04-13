@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.item.custom;
+package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;

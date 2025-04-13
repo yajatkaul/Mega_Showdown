@@ -7,12 +7,12 @@ import net.fabricmc.fabric.api.event.EventFactory;
 
 public interface DynamaxEvent {
     Event<DynamaxEvent> EVENT = EventFactory.createArrayBacked(DynamaxEvent.class,
-            listeners -> (battle, pokemon) -> {
+            listeners -> (battle, pokemon, gmax) -> {
                 for (DynamaxEvent listener : listeners) {
-                    listener.onDynamax(battle, pokemon);
+                    listener.onDynamax(battle, pokemon, gmax);
                 }
             }
     );
 
-    void onDynamax(PokemonBattle battle, BattlePokemon pokemon);
+    void onDynamax(PokemonBattle battle, BattlePokemon pokemon, Boolean gmax);
 }

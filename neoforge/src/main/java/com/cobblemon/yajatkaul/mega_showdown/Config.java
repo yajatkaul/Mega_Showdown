@@ -54,7 +54,15 @@ public class Config
 
     private static final ModConfigSpec.BooleanValue DYNAMAX = BUILDER
             .comment("Enables/Disables dmax in game")
-            .define("Dynamax", true);
+            .define("dynamax", true);
+
+    private static final ModConfigSpec.BooleanValue DYNAMAX_ANYWHERE = BUILDER
+            .comment("Allows you to dynamax anywhere you dont need to be near the dynamax area")
+            .define("dynamaxAnywhere", false);
+
+    private static final ModConfigSpec.IntValue POWER_SPOT_RANGE = BUILDER
+            .comment("Range around a power spot where Dynamax is allowed.")
+            .defineInRange("powerSpotRange", 20, 0, 10000);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -69,6 +77,8 @@ public class Config
     public static boolean tradeForm;
     public static boolean etermaxForme;
     public static boolean dynamax;
+    public static boolean dynamaxAnywhere;
+    public static int powerSpotRange;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -84,5 +94,7 @@ public class Config
         tradeForm = TRADE_FORM.get();
         etermaxForme = ETERMAX_FORME.get();
         dynamax = DYNAMAX.get();
+        dynamaxAnywhere = DYNAMAX_ANYWHERE.get();
+        powerSpotRange = POWER_SPOT_RANGE.get();
     }
 }

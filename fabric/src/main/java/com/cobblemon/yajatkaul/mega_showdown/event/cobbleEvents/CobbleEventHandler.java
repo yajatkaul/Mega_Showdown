@@ -22,6 +22,7 @@ import com.cobblemon.mod.common.battles.runner.ShowdownService;
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleGimmickButton;
 import com.cobblemon.mod.common.client.gui.battle.subscreen.DynamaxButton;
+import com.cobblemon.mod.common.client.net.battle.BattleTransformPokemonHandler;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
@@ -120,11 +121,17 @@ public class CobbleEventHandler {
         battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
-//        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-//            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == megaEvolutionEvent.getPokemon().getEffectedPokemon().getOwnerPlayer() && activeBattlePokemon.getBattlePokemon() == megaEvolutionEvent.getPokemon()){
-//                battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true));
-//            }
-//        }
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+            if(activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == megaEvolutionEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == megaEvolutionEvent.getPokemon()){
+                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), false),
+                        false);
+
+            }
+        }
 
         return Unit.INSTANCE;
     }
@@ -371,11 +378,18 @@ public class CobbleEventHandler {
         battle.sendUpdate(new AbilityUpdatePacket(formeChangeEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
-//        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-//            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer() && activeBattlePokemon.getBattlePokemon() == formeChangeEvent.getPokemon()){
-//                battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true));
-//            }
-//        }
+
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+            if(activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == formeChangeEvent.getPokemon()){
+                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), false),
+                        false);
+
+            }
+        }
 
         return Unit.INSTANCE;
     }

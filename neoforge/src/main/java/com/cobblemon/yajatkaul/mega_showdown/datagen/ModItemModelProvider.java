@@ -221,5 +221,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(CompiItems.SOULDEW.get());
         basicItem(CompiItems.ADRENALINEORB.get());
         basicItem(CompiItems.GRIPCLAW.get());
+
+        basicItem(DynamaxItems.DYNAMAX_CANDY.get());
+        basicItem(DynamaxItems.WISHING_STAR.get());
+        basicItem(DynamaxItems.MAX_HONEY.get());
+        basicItem(DynamaxItems.MAX_MUSHROOM.get());
+        basicItem(DynamaxItems.MAX_SOUP.get());
+        basicItem(DynamaxItems.SWEET_MAX_SOUP.get());
     }
 }

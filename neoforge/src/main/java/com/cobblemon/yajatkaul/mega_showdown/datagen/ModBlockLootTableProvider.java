@@ -161,6 +161,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createOreDrop(block, CobblemonItems.WATER_STONE));
 
         dropSelf(ModBlocks.DEOXYS_METEORITE.get());
+
+        dropSelf(ModBlocks.POWER_SPOT.get());
     }
 
     @Override

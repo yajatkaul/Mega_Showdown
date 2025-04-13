@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

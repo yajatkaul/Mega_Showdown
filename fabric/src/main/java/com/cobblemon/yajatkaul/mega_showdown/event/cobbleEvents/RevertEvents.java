@@ -12,17 +12,21 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
+import net.minecraft.block.Block;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
 
@@ -46,9 +50,13 @@ public class RevertEvents {
             boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                     trinkets.isEquipped(item -> item.getItem() instanceof Dynamax)).orElse(false);
 
-            if((player.getOffHandStack().getItem() instanceof Dynamax || hasDMaxItemTrinkets) && ShowdownConfig.dynamax.get()){
-                data.getKeyItems().add(Identifier.of("cobblemon","dynamax_band"));
-            }else{
+            if(isBlockNearby(player, ModBlocks.POWER_SPOT, ShowdownConfig.powerSpotRange.get()) || ShowdownConfig.dynamaxAnywhere.get()) {
+                if ((player.getOffHandStack().getItem() instanceof Dynamax || hasDMaxItemTrinkets) && ShowdownConfig.dynamax.get()) {
+                    data.getKeyItems().add(Identifier.of("cobblemon", "dynamax_band"));
+                } else {
+                    data.getKeyItems().remove(Identifier.of("cobblemon", "dynamax_band"));
+                }
+            }else {
                 data.getKeyItems().remove(Identifier.of("cobblemon","dynamax_band"));
             }
 
@@ -80,6 +88,24 @@ public class RevertEvents {
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static boolean isBlockNearby(ServerPlayerEntity player, Block targetBlock, int radius) {
+        BlockPos playerPos = player.getBlockPos();
+        ServerWorld world = player.getServerWorld();
+
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -radius; dy <= radius; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    BlockPos checkPos = playerPos.add(dx, dy, dz);
+                    if (world.getBlockState(checkPos).isOf(targetBlock)) {
+                        return true; // Found the block
+                    }
+                }
+            }
+        }
+
+        return false; // Not found
     }
 
     public static Unit getBattleEndInfo(BattleVictoryEvent battleVictoryEvent) {
@@ -138,8 +164,6 @@ public class RevertEvents {
     private static void checkKeldeo(PlayerPartyStore pokemons){
         for(Pokemon pokemon: pokemons){
             if(pokemon.getSpecies().getName().equals("Keldeo")){
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("resolute"));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
                 boolean hasMove = false;
 
                 for(Move move: pokemon.getMoveSet().getMoves()){

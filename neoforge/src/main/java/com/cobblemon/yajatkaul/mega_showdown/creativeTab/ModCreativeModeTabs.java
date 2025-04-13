@@ -351,11 +351,18 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final Supplier<CreativeModeTab> DYNAMAX_TAB = CREATIVE_MODE_TAB.register("dynamax_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DYNAMAX_BAND.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(DynamaxItems.DYNAMAX_BAND.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.dynamax_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.DYNAMAX_BAND);
+                        output.accept(DynamaxItems.DYNAMAX_BAND);
+                        output.accept(DynamaxItems.DYNAMAX_CANDY);
+                        output.accept(DynamaxItems.WISHING_STAR);
+                        output.accept(DynamaxItems.MAX_HONEY);
+                        output.accept(DynamaxItems.MAX_MUSHROOM);
+                        output.accept(DynamaxItems.MAX_SOUP);
+                        output.accept(DynamaxItems.SWEET_MAX_SOUP);
+                        output.accept(ModBlocks.POWER_SPOT);
                     })
                     .build());
 

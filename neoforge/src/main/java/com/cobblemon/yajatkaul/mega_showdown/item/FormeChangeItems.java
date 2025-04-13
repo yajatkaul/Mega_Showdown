@@ -617,6 +617,7 @@ public class FormeChangeItems {
             });
 
     public static void register(){
+
     }
 
     private static void playFormeChangeAnimation(LivingEntity context) {

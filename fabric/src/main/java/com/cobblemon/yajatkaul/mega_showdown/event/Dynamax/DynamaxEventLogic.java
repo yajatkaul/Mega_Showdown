@@ -1,5 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -21,7 +25,22 @@ public class DynamaxEventLogic {
     private static MinecraftServer server;
 
     public static void register() {
-        DynamaxEvent.EVENT.register((battle, pokemon) -> {
+        DynamaxEvent.EVENT.register((battle, pokemon, gmax) -> {
+            if(gmax){
+                new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon.getEffectedPokemon());
+                for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+                    if(activeBattlePokemon.getBattlePokemon() != null &&
+                            activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
+                            && activeBattlePokemon.getBattlePokemon() == pokemon){
+                        battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                                new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
+                                new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
+                                false);
+
+                    }
+                }
+            }
+
             pokemon.getEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
             LivingEntity pokemonEntity = pokemon.getEntity();
 
@@ -48,6 +67,18 @@ public class DynamaxEventLogic {
         });
 
         DynamaxEventEnd.EVENT.register((battle, pokemon) -> {
+            new StringSpeciesFeature("dynamax_form", "none").apply(pokemon.getEffectedPokemon());
+            for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+                if(activeBattlePokemon.getBattlePokemon() != null &&
+                        activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
+                        && activeBattlePokemon.getBattlePokemon() == pokemon){
+                    battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                            new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
+                            new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
+                            false);
+
+                }
+            }
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
             LivingEntity pokemonEntity = pokemon.getEntity();
 

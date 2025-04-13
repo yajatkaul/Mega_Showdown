@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/cube_top",
+	"textures": {
+		"top": "mega_showdown:block/power_spot",
+		"side": "mega_showdown:block/power_spot_side",
+		"bottom": "mega_showdown:block/power_spot_side"
+	}
+}

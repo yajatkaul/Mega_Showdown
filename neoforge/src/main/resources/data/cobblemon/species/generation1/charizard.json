@@ -245,7 +245,7 @@
         "mega"
       ],
       "aspects": [
-        "mega_x"
+        "mega-x"
       ],
       "abilities": [
         "toughclaws",
@@ -279,7 +279,7 @@
         "mega"
       ],
       "aspects": [
-        "mega_y"
+        "mega-y"
       ],
       "abilities": [
         "drought",

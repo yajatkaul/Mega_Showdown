@@ -103,11 +103,17 @@ public class CobbleEventsHandler {
         battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
-//        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-//            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == megaEvolutionEvent.getPokemon().getEffectedPokemon().getOwnerPlayer() && activeBattlePokemon.getBattlePokemon() == megaEvolutionEvent.getPokemon()){
-//                battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true));
-//            }
-//        }
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+            if(activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == megaEvolutionEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == megaEvolutionEvent.getPokemon()){
+                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), false),
+                        false);
+
+            }
+        }
 
         return Unit.INSTANCE;
     }
@@ -325,11 +331,17 @@ public class CobbleEventsHandler {
         battle.sendUpdate(new AbilityUpdatePacket(formeChangeEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
         battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
 
-//        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-//            if(activeBattlePokemon.getBattlePokemon() != null && activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer() && activeBattlePokemon.getBattlePokemon() == formeChangeEvent.getPokemon()){
-//                battle.sendUpdate(new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true));
-//            }
-//        }
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
+            if(activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == formeChangeEvent.getPokemon()){
+                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), false),
+                        false);
+
+            }
+        }
 
         return Unit.INSTANCE;
     }

@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -10,6 +11,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,6 +19,13 @@ import net.minecraft.world.phys.Vec3;
 
 public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon){
+        if(pokemon.getEntity() != null){
+            pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+            DynamaxEventListener.startGradualScaling(pokemon.getEntity(), 1.0f);
+        }
+
+        new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
+
         if(pokemon.getSpecies().getName().equals("Castform")){
             new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Aegislash")) {
@@ -45,6 +54,11 @@ public class EventUtils {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Xerneas")) {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
+            if(pokemon.getEntity() != null){
+                ultraAnimation(pokemon.getEntity());
+            }
+            new FlagSpeciesFeature("ultra", false).apply(pokemon);
         }
     }
 

@@ -555,5 +555,7 @@
   "item.mega_showdown.sweet_max_soup": "Sweet Max Soup",
   "tooltip.mega_showdown.sweet_max_soup.tooltip": "A tastier variant of Max Soup, preferred by certain Pokémon when unlocking Gigantamax forms.",
   "item.mega_showdown.max_mushroom": "Max Mushroom",
-  "tooltip.mega_showdown.max_mushroom.tooltip": "A rare mushroom with a strong Gigantamax smell. Needed to make Max Soup."
+  "tooltip.mega_showdown.max_mushroom.tooltip": "A rare mushroom with a strong Gigantamax smell. Needed to make Max Soup.",
+  "block.mega_showdown.power_spot": "Power Spot",
+  "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area."
 }

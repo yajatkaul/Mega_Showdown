@@ -1,4 +1,4 @@
-// 1.21.1	2025-03-29T17:05:29.2249965	Loot Tables
+// 1.21.1	2025-04-12T19:41:10.0104934	Loot Tables
 71cf7b81ee8010ccfa329c846873b628a3f2ff8e data/mega_showdown/loot_table/blocks/abomasite_ore.json
 d76eaf7c9bdeb8c07164747a19e6a70913aa1e6c data/mega_showdown/loot_table/blocks/absolite_ore.json
 295361eebc004b3a9a23ac720232c83c41d5a325 data/mega_showdown/loot_table/blocks/aerodactylite_ore.json
@@ -56,6 +56,7 @@ aa0c4ecfd298b99050983fd886284119f6f424f2 data/mega_showdown/loot_table/blocks/me
 f9645f2d4e090f13e8bd55820912c84e7bd63879 data/mega_showdown/loot_table/blocks/pidgeotite_ore.json
 83e298e4ec5c9967c56eb1f98c78f2e962be5832 data/mega_showdown/loot_table/blocks/pinsirite_ore.json
 96749bc2baf4bf99cdff67e75d351bf171fa1646 data/mega_showdown/loot_table/blocks/polished_mega_evo_block.json
+802d1023f0178a14240b6f609fe2deab045121ab data/mega_showdown/loot_table/blocks/power_spot.json
 8cf54ab73ce945f2538ef986c5e48d829eac9e6c data/mega_showdown/loot_table/blocks/sablenite_ore.json
 0429c4b109205908601f489c9c3669da7468c9da data/mega_showdown/loot_table/blocks/salamencite_ore.json
 3d030aeaec0c3b1900477be16b87fc32b9cbd304 data/mega_showdown/loot_table/blocks/sceptilite_ore.json

@@ -1,0 +1,13 @@
+{
+  "species": "cobblemon:pikachu",
+  "order": 3,
+  "variations": [
+    {
+      "aspects": ["gmax"],
+      "poser": "cobblemon:pikachu_gigantamax",
+      "model": "cobblemon:pikachu_gigantamax.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax.png",
+      "layers": []
+    }
+  ]
+}

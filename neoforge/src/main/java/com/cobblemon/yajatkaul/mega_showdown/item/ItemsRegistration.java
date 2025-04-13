@@ -12,5 +12,6 @@ public class ItemsRegistration {
         CompiItems.register();
         FormeChangeItems.register();
         KeyItems.register();
+        DynamaxItems.register();
     }
 }

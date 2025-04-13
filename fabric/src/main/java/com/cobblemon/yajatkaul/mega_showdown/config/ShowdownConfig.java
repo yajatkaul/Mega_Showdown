@@ -18,7 +18,8 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> dynamax;
     public static final Supplier<Boolean> tradeForm;
     public static final Supplier<Boolean> etermaxForme;
-
+    public static final Supplier<Boolean> dynamaxAnywhere;
+    public static final Supplier<Integer> powerSpotRange;
 
     static{
         // construct a new config builder
@@ -36,6 +37,8 @@ public class ShowdownConfig {
         tradeForm = builder.comment("Allows you to trade even if your pokemon is not in base form").define("tradeForm", false);
         etermaxForme = builder.comment("Enables etermax eternus forme").define("etermaxForme", true);
         dynamax = builder.comment("Enables/Disables Dmaxing in game").define("dynamax", true);
+        dynamaxAnywhere = builder.comment("Allows you to dynamax anywhere you dont need to be near the dynamax area").define("dynamaxAnywhere", false);
+        powerSpotRange = builder.comment("Range around a power spot where Dynamax is allowed").define("powerSpotRange", 20,0,10000);
 
         builder.build();
     }

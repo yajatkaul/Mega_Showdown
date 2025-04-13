@@ -351,8 +351,7 @@ public class MegaOres {
                     .requiresTool()
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
-    public static final Block MEGA_STONE_CRYSTAL = Registry.register(Registries.BLOCK,
-            Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal"),
+    public static final Block MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
             new MegaCrystalBlock(4, 3,
                     AbstractBlock.Settings.create()
                             .strength(1.5f)

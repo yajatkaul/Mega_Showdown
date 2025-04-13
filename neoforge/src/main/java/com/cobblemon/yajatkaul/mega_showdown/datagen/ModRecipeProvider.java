@@ -447,5 +447,43 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_mega_thunder_ore", has(MegaOres.MEGA_METEORID_THUNDER_ORE)).save(recipeOutput, "thunder_stone_blasting");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(MegaOres.MEGA_METEORID_THUNDER_ORE), RecipeCategory.MISC, CobblemonItems.THUNDER_STONE, 0.7f, 200)
                 .unlockedBy("has_mega_thunder_ore", has(MegaOres.MEGA_METEORID_THUNDER_ORE)).save(recipeOutput, "thunder_stone_smelting");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DynamaxItems.DYNAMAX_BAND.get())
+                .pattern("PPP")
+                .pattern("IWI")
+                .pattern("LLL")
+                .define('P', CobblemonItems.PINK_APRICORN)
+                .define('I', Items.IRON_INGOT)
+                .define('W', DynamaxItems.WISHING_STAR)
+                .define('L', Items.LAPIS_LAZULI)
+                .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DynamaxItems.MAX_SOUP.get())
+                .pattern("MMM")
+                .pattern(" B ")
+                .pattern("   ")
+                .define('M', DynamaxItems.MAX_MUSHROOM)
+                .define('B', Items.BOWL)
+                .unlockedBy("has_max_mushroom", has(DynamaxItems.MAX_MUSHROOM)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DynamaxItems.SWEET_MAX_SOUP.get())
+                .requires(DynamaxItems.MAX_HONEY.get())
+                .requires(DynamaxItems.MAX_SOUP.get())
+                .unlockedBy("has_max_soup", has(DynamaxItems.MAX_SOUP)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWER_SPOT.get())
+                .pattern("RMR")
+                .pattern("RWR")
+                .pattern("SSS")
+                .define('R', Items.REDSTONE)
+                .define('W', DynamaxItems.WISHING_STAR)
+                .define('S', Items.STONE)
+                .define('M', DynamaxItems.MAX_MUSHROOM)
+                .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DynamaxItems.DYNAMAX_CANDY.get())
+                .requires(DynamaxItems.MAX_MUSHROOM.get())
+                .requires(CobblemonItems.RARE_CANDY)
+                .unlockedBy("has_max_mushroom", has(DynamaxItems.MAX_MUSHROOM)).save(recipeOutput);
     }
 }

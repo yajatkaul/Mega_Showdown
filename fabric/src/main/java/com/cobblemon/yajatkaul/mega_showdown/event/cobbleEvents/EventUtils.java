@@ -23,6 +23,8 @@ public class EventUtils {
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
             DynamaxEventLogic.startGradualScaling(pokemon.getEntity(), 1.0f);
         }
+        new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
+
         if(pokemon.getSpecies().getName().equals("Castform")){
             new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Aegislash")) {

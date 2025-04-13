@@ -11,23 +11,23 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
-import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import kotlin.Unit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
@@ -91,8 +91,6 @@ public class RevertEvents {
     public static void checkKeldeo(PlayerPartyStore pokemons){
         for(Pokemon pokemon: pokemons){
             if(pokemon.getSpecies().getName().equals("Keldeo")){
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("resolute"));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
                 boolean hasMove = false;
 
                 for(Move move: pokemon.getMoveSet().getMoves()){
@@ -154,8 +152,12 @@ public class RevertEvents {
                     .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof Dynamax))
                     .orElse(false);
 
-            if((player.getOffhandItem().getItem() instanceof Dynamax || hasDMAXItemCurios) && Config.dynamax){
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+            if(isBlockNearby(player, ModBlocks.POWER_SPOT.get(), Config.powerSpotRange) || Config.dynamaxAnywhere){
+                if((player.getOffhandItem().getItem() instanceof Dynamax || hasDMAXItemCurios) && Config.dynamax){
+                    data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+                }else {
+                    data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+                }
             }else {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
             }
@@ -185,5 +187,24 @@ public class RevertEvents {
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static boolean isBlockNearby(ServerPlayer player, Block targetBlock, int radius) {
+        BlockPos playerPos = player.blockPosition();
+        ServerLevel level = player.serverLevel();
+
+        // scan a cube around the player
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -radius; dy <= radius; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    BlockPos checkPos = playerPos.offset(dx, dy, dz);
+                    if (level.getBlockState(checkPos).is(targetBlock)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }

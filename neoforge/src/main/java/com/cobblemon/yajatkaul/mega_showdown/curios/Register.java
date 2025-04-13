@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.curios;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
@@ -29,12 +30,12 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.MAXIE_GLASSES.get(), CurioHeadRenderer::new);
         CuriosRendererRegistry.register(ModItems.ARCHIE_ANCHOR.get(), CurioChestRenderer::new);
 
-        CuriosRendererRegistry.register(ZCrystals.Z_RING.get(), CurioHeadRenderer::new);
-        CuriosRendererRegistry.register(ZCrystals.Z_RING_BLACK.get(), CurioHeadRenderer::new);
-        CuriosRendererRegistry.register(ZCrystals.Z_RING_POWER.get(), CurioHeadRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_BLACK.get(), CurioHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_POWER.get(), CurioHandRenderer::new);
 
         CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
 
-        CuriosRendererRegistry.register(ModItems.DYNAMAX_BAND.get(), CurioOffHandRenderer::new);
+        CuriosRendererRegistry.register(DynamaxItems.DYNAMAX_BAND.get(), CurioOffHandRenderer::new);
     }
 }

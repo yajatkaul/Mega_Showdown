@@ -199,6 +199,7 @@
   "creativeTab.mega_showdown.forms_tab": "Form Changes",
   "creativeTab.mega_showdown.compi_tab": "Competitive Items",
   "creativeTab.mega_showdown.key_tab": "Key Items",
+  "creativeTab.mega_showdown.dynamax_tab": "Dynamax Tab",
 
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
@@ -543,5 +544,18 @@
 
   "item.mega_showdown.dynamax_band": "Dynamax Band",
   "tooltip.mega_showdown.dynamax_band.tooltip": "A special band that allows Pokémon to Dynamax during battle.",
-  "creativeTab.mega_showdown.dynamax_tab": "Dynamax Tab"
+  "item.mega_showdown.dynamax_candy": "Dynamax Candy",
+  "tooltip.mega_showdown.dynamax_candy.tooltip": "A candy that increases a Pokémon's Dynamax Level, enhancing its strength when Dynamaxed.",
+  "item.mega_showdown.wishing_star": "Wishing Star",
+  "tooltip.mega_showdown.wishing_star.tooltip": "A mysterious stone said to grant Pokémon the power to Dynamax when embedded in a Dynamax Band.",
+  "item.mega_showdown.max_honey": "Max Honey",
+  "tooltip.mega_showdown.max_honey.tooltip": "A rich and sweet honey that can trigger Max moves or be used to make Max Soup.",
+  "item.mega_showdown.max_soup": "Max Soup",
+  "tooltip.mega_showdown.max_soup.tooltip": "A special soup that unlocks the Gigantamax potential of certain Pokémon.",
+  "item.mega_showdown.sweet_max_soup": "Sweet Max Soup",
+  "tooltip.mega_showdown.sweet_max_soup.tooltip": "A tastier variant of Max Soup, preferred by certain Pokémon when unlocking Gigantamax forms.",
+  "item.mega_showdown.max_mushroom": "Max Mushroom",
+  "tooltip.mega_showdown.max_mushroom.tooltip": "A rare mushroom with a strong Gigantamax smell. Needed to make Max Soup.",
+  "block.mega_showdown.power_spot": "Power Spot",
+  "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area."
 }

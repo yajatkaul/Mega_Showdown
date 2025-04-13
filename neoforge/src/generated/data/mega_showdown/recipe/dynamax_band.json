@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "P": {
+      "item": "cobblemon:pink_apricorn"
+    },
+    "W": {
+      "item": "mega_showdown:wishing_star"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "IWI",
+    "LLL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:dynamax_band"
+  }
+}

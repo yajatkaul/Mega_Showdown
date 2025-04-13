@@ -4,10 +4,8 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
@@ -101,6 +100,14 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
+    public static final DeferredBlock<Block> POWER_SPOT = registerBlockWithToolTip("power_spot",
+            () -> new Block(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .mapColor(MapColor.COLOR_PURPLE)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
@@ -108,9 +115,26 @@ public class ModBlocks {
         return toReturn;
     }
 
+    private static <T extends Block> DeferredBlock<T> registerBlockWithToolTip(String name, Supplier<T> block){
+        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        registerBlockItemWithToolTip(name, toReturn);
+        return toReturn;
+    }
+
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block){
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
+
+    private static <T extends Block> void registerBlockItemWithToolTip(String name, DeferredBlock<T> block){
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()){
+            @Override
+            public void appendHoverText(ItemStack arg, TooltipContext arg2, List<Component> list, TooltipFlag arg3) {
+                list.add(Component.translatable("tooltip.mega_showdown."  + name + ".tooltip"));
+                super.appendHoverText(arg, arg2, list, arg3);
+            }
+        });
+    }
+
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);

@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.utility
 import com.cobblemon.mod.common.client.net.pokemon.update.PokemonUpdatePacketHandler
 import com.cobblemon.mod.common.net.PacketRegisterInfo
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.DmaxLevelUpdatePacket
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.GmaxFactorUpdatePacket
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdatePacket
 
 object SmoothServerCosmetics {
@@ -16,6 +17,12 @@ object SmoothServerCosmetics {
         list.add(PacketRegisterInfo(
             DmaxLevelUpdatePacket.ID,
             DmaxLevelUpdatePacket::decode,
+            PokemonUpdatePacketHandler()
+        ))
+
+        list.add(PacketRegisterInfo(
+            GmaxFactorUpdatePacket.ID,
+            GmaxFactorUpdatePacket::decode,
             PokemonUpdatePacketHandler()
         ))
     }

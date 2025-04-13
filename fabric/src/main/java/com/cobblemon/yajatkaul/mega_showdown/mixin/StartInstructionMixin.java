@@ -14,13 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Arrays;
 import java.util.List;
 
-
 @Mixin(value = StartInstruction.class, remap = false)
 public class StartInstructionMixin  {
     @Inject(method = "invoke", at = @At("HEAD"), remap = false)
     private void injectBeforeInvoke(PokemonBattle battle, CallbackInfo ci) {
         BattleMessage message = ((StartInstructionAccessor) this).getMessage();
-        MegaShowdown.LOGGER.info(String.valueOf(battle.getShowdownMessages()));
+
         List<String> logs = battle.getShowdownMessages();
         if (logs.isEmpty()) return; // Nothing to check
 
@@ -28,10 +27,11 @@ public class StartInstructionMixin  {
 
         String[] parts = battleLog.split("\\|");
         boolean containsDynamax = Arrays.stream(parts).anyMatch(part -> part.contains("Dynamax"));
+        boolean containsGmax = Arrays.stream(parts).anyMatch(part -> part.contains("Gmax"));
 
         if (containsDynamax) {
             BattlePokemon pokemon =  message.battlePokemon(0, battle);
-            DynamaxEvent.EVENT.invoker().onDynamax(battle, pokemon);
+            DynamaxEvent.EVENT.invoker().onDynamax(battle, pokemon, containsGmax);
         }
     }
 }

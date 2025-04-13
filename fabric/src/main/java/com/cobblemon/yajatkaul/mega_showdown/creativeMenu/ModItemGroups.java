@@ -5,7 +5,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.Dynamax;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -144,7 +143,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHISELED_MEGA_EVO_BLOCK);
                         entries.add(ModBlocks.POLISHED_MEGA_EVO_BLOCK);
 
-                        entries.add(ModItems.MEGA_STONE_CRYSTAL_ITEM);
+                        entries.add(MegaOres.MEGA_STONE_CRYSTAL);
 
                         entries.add(PokemonStones.MEGA_METEORID_DAWN_ORE);
                         entries.add(PokemonStones.MEGA_METEORID_DUSK_ORE);
@@ -356,6 +355,7 @@ public class ModItemGroups {
                         entries.add(DynamaxItems.MAX_MUSHROOM);
                         entries.add(DynamaxItems.MAX_SOUP);
                         entries.add(DynamaxItems.SWEET_MAX_SOUP);
+                        entries.add(ModBlocks.POWER_SPOT);
                     }))
                     .build());
 

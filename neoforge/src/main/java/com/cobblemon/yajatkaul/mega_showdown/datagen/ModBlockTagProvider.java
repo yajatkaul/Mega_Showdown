@@ -95,7 +95,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.CHISELED_MEGA_EVO_BRICK.get(),
                         ModBlocks.CHISELED_MEGA_EVO_BLOCK.get(),
                         ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(),
-                        ModBlocks.MEGA_EVO_BRICK.get()
+                        ModBlocks.MEGA_EVO_BRICK.get(),
+
+                        ModBlocks.POWER_SPOT.get()
                 );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -150,7 +152,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         MegaOres.KEYSTONE_ORE.get(),
                         ModBlocks.KEYSTONE_BLOCK.get(),
 
-                        ModBlocks.DEOXYS_METEORITE.get()
+                        ModBlocks.DEOXYS_METEORITE.get(),
+
+                        ModBlocks.POWER_SPOT.get()
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)

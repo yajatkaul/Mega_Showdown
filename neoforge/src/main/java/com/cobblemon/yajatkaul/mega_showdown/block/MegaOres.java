@@ -22,6 +22,7 @@ public class MegaOres {
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
+                            .mapColor(MapColor.COLOR_PURPLE)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)));
 

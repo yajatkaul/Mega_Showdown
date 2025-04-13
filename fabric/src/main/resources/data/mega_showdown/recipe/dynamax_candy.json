@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mega_showdown:max_mushroom"
+    },
+    {
+      "item": "cobblemon:rare_candy"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:dynamax_candy"
+  }
+}

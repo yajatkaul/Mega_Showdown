@@ -8,10 +8,12 @@ import net.neoforged.bus.api.Event;
 public class DynamaxEvent extends Event {
     private final PokemonBattle battle;
     private final BattlePokemon pokemon;
+    private final Boolean gmax;
 
-    public DynamaxEvent(PokemonBattle battle, BattlePokemon pokemon) {
+    public DynamaxEvent(PokemonBattle battle, BattlePokemon pokemon, Boolean gmax) {
         this.battle = battle;
         this.pokemon = pokemon;
+        this.gmax = gmax;
     }
 
     public PokemonBattle getBattle() {
@@ -20,5 +22,9 @@ public class DynamaxEvent extends Event {
 
     public BattlePokemon getPokemon() {
         return pokemon;
+    }
+
+    public Boolean getGmax(){
+        return gmax;
     }
 }
