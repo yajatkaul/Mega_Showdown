@@ -32,10 +32,10 @@
   "catchRate": 3,
   "eggCycles": 120,
   "baseFriendship": 0,
-  "baseScale": 1.2,
+  "baseScale": 0.715,
   "hitbox": {
-    "width": 0.75,
-    "height": 1.7,
+    "width": 1.5,
+    "height": 2.6,
     "fixed": false
   },
   "behaviour": {
@@ -279,10 +279,16 @@
         "special_defence": 100,
         "speed": 130
       },
+      "baseScale": 0.9,
+      "hitbox": {
+        "width": 1.2,
+        "height": 2.5,
+        "fixed": false
+      },
       "baseExperienceYield": 390,
       "dynamaxBlocked": true,
       "evolutions": [],
-      "battleOnly": false
+      "battleOnly": true
     },
     {
       "name": "Mega-Y",
@@ -302,10 +308,16 @@
         "special_defence": 120,
         "speed": 140
       },
+      "baseScale": 0.60,
+      "hitbox": {
+        "width": 1.25,
+        "height": 2.85,
+        "fixed": false
+      },
       "baseExperienceYield": 390,
       "dynamaxBlocked": true,
       "evolutions": [],
-      "battleOnly": false
+      "battleOnly": true
     }
   ]
 }

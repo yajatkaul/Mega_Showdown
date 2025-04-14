@@ -20,6 +20,10 @@ loom {
     }
 }
 
+fabricApi {
+    configureDataGeneration()
+}
+
 repositories {
     mavenCentral()
     maven(url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")

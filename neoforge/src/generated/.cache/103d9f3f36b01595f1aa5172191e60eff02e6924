@@ -1,3 +1,7 @@
-// 1.21.1	2025-03-29T16:42:01.9058675	Registries
-e29b13bdc5b26965d8db48840a5beea5d4ab7392 data/mega_showdown/worldgen/configured_feature/charizardite_x_ore.json
-c9957bf77bf185b548a87933c30675edfb7d46f5 data/mega_showdown/worldgen/placed_feature/charizardite_x_ore_placed.json
+// 1.21.1	2025-04-14T21:28:36.6913842	Registries
+0b3d23513c5c7593ac5a30231e829b662d046bb3 data/mega_showdown/neoforge/biome_modifier/add_gracidea_flower.json
+90f91dffec5effd02b6a94eb8f3b42476576fbda data/mega_showdown/neoforge/biome_modifier/add_max_mushroom.json
+f4af9029f612baa6b3574165ac837316df73c058 data/mega_showdown/worldgen/configured_feature/gracidea_flower.json
+d0b0236488bc09c2c11c92efa218bfea6ecc32f1 data/mega_showdown/worldgen/configured_feature/max_mushroom.json
+48105b5ea9d24d91d27b78112d583c2b5858fbea data/mega_showdown/worldgen/placed_feature/gracidea_flower_placed_key.json
+f2ea45c6241f75d41fdcf566224939f033bf151a data/mega_showdown/worldgen/placed_feature/max_mushroom_placed_key.json

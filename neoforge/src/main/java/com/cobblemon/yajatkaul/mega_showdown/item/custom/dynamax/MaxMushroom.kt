@@ -2,18 +2,20 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax
 
 import com.cobblemon.mod.common.api.Priority
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
+import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.battles.BagItems
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
-import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.item.battle.SimpleBagItemLike
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
-import net.minecraft.world.item.TooltipFlag
+import net.minecraft.world.item.*
+import net.minecraft.world.level.block.Block
 
-class MaxMushroom : CobblemonItem(Properties()), SimpleBagItemLike {
+class MaxMushroom(
+    block: Block,
+    settings: Properties
+) : BlockItem(block, settings), SimpleBagItemLike {
 
     override val bagItem = object : BagItem {
         override val itemName = "item.mega_showdown.max_mushroom"
@@ -24,7 +26,7 @@ class MaxMushroom : CobblemonItem(Properties()), SimpleBagItemLike {
         }
 
         override fun getShowdownInput(
-            actor: com.cobblemon.mod.common.api.battles.model.actor.BattleActor,
+            actor: BattleActor,
             battlePokemon: BattlePokemon,
             data: String?
         ): String {
@@ -38,12 +40,12 @@ class MaxMushroom : CobblemonItem(Properties()), SimpleBagItemLike {
     }
 
     override fun appendHoverText(
-        arg: ItemStack,
-        arg2: TooltipContext,
+        stack: ItemStack,
+        context: TooltipContext,
         tooltipComponents: MutableList<Component>,
-        arg3: TooltipFlag
+        flag: TooltipFlag
     ) {
         tooltipComponents.add(Component.translatable("tooltip.mega_showdown.max_mushroom.tooltip"))
-        super.appendHoverText(arg, arg2, tooltipComponents, arg3)
+        super.appendHoverText(stack, context, tooltipComponents, flag)
     }
 }

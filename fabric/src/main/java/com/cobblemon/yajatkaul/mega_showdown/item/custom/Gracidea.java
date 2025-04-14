@@ -4,8 +4,10 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -18,9 +20,9 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
-public class Gracidea extends Item {
+public class Gracidea extends BlockItem {
     public Gracidea(Settings settings) {
-        super(settings);
+        super(ModBlocks.GRACIDEA_FLOWER, settings);
     }
 
     @Override

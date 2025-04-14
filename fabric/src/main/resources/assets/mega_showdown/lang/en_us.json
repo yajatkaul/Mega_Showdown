@@ -391,7 +391,7 @@
   "tooltip.mega_showdown.rusted_shield.tooltip": "It is said that a hero used this shield to halt a terrible disaster in ancient times.",
   "item.mega_showdown.prison_bottle": "Prison Bottle",
   "tooltip.mega_showdown.prison_bottle.tooltip": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",
-  "item.mega_showdown.gracidea_flower": "Gracidea Flower",
+  "block.mega_showdown.gracidea_flower": "Gracidea Flower",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "A rare flower with a mystical aura, known to bloom in special conditions.",
 
   "item.mega_showdown.cornerstone_mask": "Cornerstone Mask",
@@ -554,8 +554,11 @@
   "tooltip.mega_showdown.max_soup.tooltip": "A special soup that unlocks the Gigantamax potential of certain Pokémon.",
   "item.mega_showdown.sweet_max_soup": "Sweet Max Soup",
   "tooltip.mega_showdown.sweet_max_soup.tooltip": "A tastier variant of Max Soup, preferred by certain Pokémon when unlocking Gigantamax forms.",
-  "item.mega_showdown.max_mushroom": "Max Mushroom",
+  "block.mega_showdown.max_mushroom": "Max Mushroom",
   "tooltip.mega_showdown.max_mushroom.tooltip": "A rare mushroom with a strong Gigantamax smell. Needed to make Max Soup.",
   "block.mega_showdown.power_spot": "Power Spot",
-  "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area."
+  "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area.",
+
+  "item.mega_showdown.luminous_moss": "Luminous Moss",
+  "tooltip.mega_showdown.luminous_moss.tooltip": "A mossy growth that glows faintly. It reacts to Dynamax energy. Used to make Max Soup."
 }

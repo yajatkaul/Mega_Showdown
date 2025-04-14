@@ -337,6 +337,7 @@ public class ModCreativeModeTabs {
                         output.accept(CompiItems.ADRENALINEORB);
                         output.accept(CompiItems.SOULDEW);
                         output.accept(CompiItems.GRIPCLAW);
+                        output.accept(CompiItems.LUMINOUS_MOSS);
                     })
                     .build());
 
@@ -351,7 +352,7 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final Supplier<CreativeModeTab> DYNAMAX_TAB = CREATIVE_MODE_TAB.register("dynamax_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(DynamaxItems.DYNAMAX_BAND.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(DynamaxItems.WISHING_STAR.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.dynamax_tab"))
                     .displayItems((itemDisplayParameters, output) -> {

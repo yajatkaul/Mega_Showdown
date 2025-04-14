@@ -3,13 +3,23 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
+import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.Set;
 
@@ -163,6 +173,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.DEOXYS_METEORITE.get());
 
         dropSelf(ModBlocks.POWER_SPOT.get());
+
+        add(ModBlocks.MAX_MUSHROOM.get(),
+                createMaxMushroomDrops(ModBlocks.MAX_MUSHROOM.get(), DynamaxItems.MAX_MUSHROOM.get()));
+
+        dropSelf(ModBlocks.GRACIDEA_FLOWER.get());
+
+        add(ModBlocks.POTTED_GRACIDEA.get(),
+                createPotFlowerItemTable(ModBlocks.GRACIDEA_FLOWER.get())
+        );
     }
 
     @Override
@@ -170,4 +189,21 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 
+    private LootTable.Builder createMaxMushroomDrops(Block block, Item item) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(item)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(MaxMushroomBlock.AGE, 2)))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F))))
+                )
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(item)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(MaxMushroomBlock.AGE, 3)))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))
+                );
+    }
 }

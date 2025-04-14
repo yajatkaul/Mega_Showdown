@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import com.cobblemon.yajatkaul.mega_showdown.worldgen.ModWorldGeneration;
 import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -33,6 +34,8 @@ public class MegaShowdown implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ItemRegister.register();
         BlockRegister.register();
+
+        ModWorldGeneration.generateModWorldGen();
 
         DataManage.registerDataComponentTypes();
 

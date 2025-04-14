@@ -14,6 +14,9 @@
     "main": [
       "com.cobblemon.yajatkaul.mega_showdown.MegaShowdown"
     ],
+    "fabric-datagen": [
+      "com.cobblemon.yajatkaul.mega_showdown.datagen.ModDataGenerator"
+    ],
     "client": [
       "com.cobblemon.yajatkaul.mega_showdown.MegaShowdownClient"
     ]

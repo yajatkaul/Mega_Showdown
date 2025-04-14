@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "ccb",
+        "aaa"
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "b": {
+            "item": "minecraft:pink_dye"
+        },
+        "c": {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "cobblemon:ability_capsule"
+    }
+}

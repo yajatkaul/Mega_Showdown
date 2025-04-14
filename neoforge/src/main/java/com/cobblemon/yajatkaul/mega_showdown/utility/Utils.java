@@ -200,7 +200,7 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.SOULDEW.get(), "souldew");
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRIPCLAW.get(), "gripclaw");
 
-
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUMINOUS_MOSS.get(), "luminousmoss");
     }
 
     public static void platesRegister(){

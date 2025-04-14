@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-12T10:48:08.3394399	Item Models: mega_showdown
+// 1.21.1	2025-04-14T11:51:03.5679101	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -102,6 +102,7 @@ ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latios
 2baaa2c7ce7fa2e7eceabb6b841f39ff154e3a8c assets/mega_showdown/models/item/legend_plate.json
 6b68a35fee04802440ceb79aefc02f9b2f3241a2 assets/mega_showdown/models/item/lopunnite.json
 4177ac324c4d57e5043aac7727a0ce49f1d76e51 assets/mega_showdown/models/item/lucarionite.json
+a23db1090e82fe09136fffb61a0e6817492b716d assets/mega_showdown/models/item/luminous_moss.json
 61d712266d30ed015265039ba7adc0e4c3bafb4c assets/mega_showdown/models/item/lunalium-z.json
 0ecbb158acfe584c40622743367002503c43068b assets/mega_showdown/models/item/lustrous_globe.json
 8ab826a8363e986adff49becd2b09c978e3f2491 assets/mega_showdown/models/item/lustrous_orb.json
@@ -110,7 +111,6 @@ ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latios
 52ad93657e4f0f4b29ac46b9623a4b6ba70f963a assets/mega_showdown/models/item/marshadium-z.json
 ec2c865e072247419fef7cb4616214a948e7a463 assets/mega_showdown/models/item/mawilite.json
 99e6711873862507a0d46c0a10a584d0207d5bba assets/mega_showdown/models/item/max_honey.json
-b7b84001ae9a338f443604dabbb37d4c45fcb855 assets/mega_showdown/models/item/max_mushroom.json
 a815198f9bb0f16768091c3768398fc7400104b4 assets/mega_showdown/models/item/max_soup.json
 eb5a1f10e27442e28c354947ff0f5ce2c5e93e57 assets/mega_showdown/models/item/meadowplate.json
 bdef710f84d07b951d14be7f36eca22fd27023c6 assets/mega_showdown/models/item/medichamite.json

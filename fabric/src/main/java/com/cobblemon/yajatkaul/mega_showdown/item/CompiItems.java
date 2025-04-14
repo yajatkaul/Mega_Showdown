@@ -90,6 +90,14 @@ public class CompiItems {
         }
     });
 
+    public static final Item LUMINOUS_MOSS = registerItem("luminous_moss", new Item(new Item.Settings()){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.luminous_moss.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static void registerModItem(){
 
     }

@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.GracideaBlock;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -76,8 +78,27 @@ public class ModBlocks {
             new Block(AbstractBlock.Settings.create()
                     .strength(3f)
                     .requiresTool()
-                    .mapColor(MapColor.RED)
+                    .mapColor(MapColor.PURPLE)
+                    .luminance((state) -> 20)
                     .sounds(BlockSoundGroup.STONE)));
+
+    public static final Block MAX_MUSHROOM = Registry.register(
+            Registries.BLOCK,
+            Identifier.of(MegaShowdown.MOD_ID, "max_mushroom"),
+            new MaxMushroomBlock(AbstractBlock
+                    .Settings.create()
+                    .sounds(BlockSoundGroup.FLOWERING_AZALEA)));
+
+    public static final Block GRACIDEA_FLOWER = Registry.register(
+            Registries.BLOCK,
+            Identifier.of(MegaShowdown.MOD_ID, "gracidea_flower"),
+            new GracideaBlock());
+
+    public static final Block POTTED_GRACIDEA = Registry.register(
+            Registries.BLOCK,
+            Identifier.of(MegaShowdown.MOD_ID, "potted_gracidea"),
+            new FlowerPotBlock(GRACIDEA_FLOWER, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM).nonOpaque())
+    );
 
     public static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
@@ -103,12 +124,12 @@ public class ModBlocks {
         Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()));
     }
 
-    public static void registerBlocks(){
-
-    }
-
     public static Block registerDeoxysBlock(String name, Block block){
         FormeChangeItems.registerDeoxysBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
+    }
+
+    public static void registerBlocks(){
+
     }
 }

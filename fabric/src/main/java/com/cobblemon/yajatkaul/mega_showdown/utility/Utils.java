@@ -200,6 +200,8 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.ADRENALINEORB.asItem(), "adrenalineorb");
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.SOULDEW.asItem(), "souldew");
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.GRIPCLAW.asItem(), "gripclaw");
+
+        CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUMINOUS_MOSS.asItem(), "luminousmoss");
     }
 
     public static void platesRegister(){

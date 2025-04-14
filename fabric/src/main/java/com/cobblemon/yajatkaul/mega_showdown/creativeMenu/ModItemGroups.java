@@ -330,6 +330,7 @@ public class ModItemGroups {
                         entries.add(CompiItems.ADRENALINEORB);
                         entries.add(CompiItems.SOULDEW);
                         entries.add(CompiItems.GRIPCLAW);
+                        entries.add(CompiItems.LUMINOUS_MOSS);
                     }))
                     .build());
 
@@ -345,7 +346,7 @@ public class ModItemGroups {
 
     public static final ItemGroup DYNAMAX_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "dynamax_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(DynamaxItems.DYNAMAX_BAND))
+            FabricItemGroup.builder().icon(() -> new ItemStack(DynamaxItems.WISHING_STAR))
                     .displayName(Text.translatable("creativeTab.mega_showdown.dynamax_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(DynamaxItems.DYNAMAX_BAND);

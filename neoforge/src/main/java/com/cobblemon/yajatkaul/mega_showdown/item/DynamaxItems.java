@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -32,17 +33,14 @@ public class DynamaxItems {
     public static final DeferredItem<Item> MAX_HONEY = ITEMS.register("max_honey",
             MaxHoney::new);
 
-    public static final DeferredItem<Item> MAX_MUSHROOM = ITEMS.register("max_mushroom",
-            MaxMushroom::new);
+    public static final DeferredItem<Item> MAX_MUSHROOM = ITEMS.register("max_mushroom", () ->
+            new MaxMushroom(ModBlocks.MAX_MUSHROOM.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> MAX_SOUP = ITEMS.register("max_soup",
             () -> new MaxSoup(new Item.Properties()));
 
     public static final DeferredItem<Item> SWEET_MAX_SOUP = ITEMS.register("sweet_max_soup",
             () -> new SweetMaxSoup(new Item.Properties()));
-
-    public static final DeferredItem<Item> DYNAMAX_CLOUD = ITEMS.register("dynamax_cloud",
-            () -> new Item(new Item.Properties()));
 
     public static void register(){
 

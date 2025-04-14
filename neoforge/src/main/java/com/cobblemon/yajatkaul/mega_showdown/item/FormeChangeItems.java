@@ -608,7 +608,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GRACIDEA_FLOWER = ITEMS.register("gracidea_flower",
-            () -> new Gracidea(new Item.Properties().stacksTo(1)){
+            () -> new Gracidea(new Item.Properties()){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.gracidea_flower.tooltip"));

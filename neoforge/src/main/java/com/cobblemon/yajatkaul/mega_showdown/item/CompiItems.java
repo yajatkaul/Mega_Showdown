@@ -101,6 +101,15 @@ public class CompiItems {
                 }
             });
 
+    public static final DeferredItem<Item> LUMINOUS_MOSS = ITEMS.register("luminous_moss",
+            () -> new Item(new Item.Properties()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.luminous_moss.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static void register(){
     }
 }

@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Mixin(value = BattleGimmickButton.Companion.class,remap = false)
 public class BattleGimmickButtonMixin {
-
     @Inject(method = "create", at = @At("HEAD"), remap = false, cancellable = true)
     private void handleUltraBurst(ShowdownMoveset.Gimmick gimmick, BattleMoveSelection moveSelection, float x, float y, CallbackInfoReturnable<BattleGimmickButton> cir){
         if(gimmick == ShowdownMoveset.Gimmick.ULTRA_BURST) {

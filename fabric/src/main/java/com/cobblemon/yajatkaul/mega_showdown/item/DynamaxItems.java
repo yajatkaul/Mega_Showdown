@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.*;
 import net.minecraft.item.Item;
@@ -26,7 +27,8 @@ public class DynamaxItems {
 
     public static final Item MAX_HONEY = registerItem("max_honey", new MaxHoney());
 
-    public static final Item MAX_MUSHROOM = registerItem("max_mushroom", new MaxMushroom());
+    public static final Item MAX_MUSHROOM = registerItem("max_mushroom",
+            new MaxMushroom(ModBlocks.MAX_MUSHROOM, new Item.Settings()));
 
     public static final Item MAX_SOUP = registerItem("max_soup", new MaxSoup(new Item.Settings()));
 
