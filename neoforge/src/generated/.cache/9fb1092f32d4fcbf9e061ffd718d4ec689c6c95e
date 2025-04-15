@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-15T20:15:47.4475198	Recipes
+// 1.21.1	2025-04-15T20:36:20.4893947	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -6,7 +6,10 @@
 b0b083e6a30f4abb9c679045594c2e5005b66569 data/mega_showdown/advancement/recipes/misc/archie_anchor.json
 085ce5405464649c9c97ae14fe25258c038ce182 data/mega_showdown/advancement/recipes/misc/ash_cap.json
 5cd29a537f70563c2cf1ab6e81b123ceeaab5267 data/mega_showdown/advancement/recipes/misc/brendan_mega_cuff.json
+9dc0665bbe8be93f2a3391af4f46e7ef2f8d221b data/mega_showdown/advancement/recipes/misc/burndrive.json
+70ab248cbb07c8f7ee776657c1755e0b7762fd2b data/mega_showdown/advancement/recipes/misc/chilldrive.json
 daa060efee2b8cdb3850101c2e060580e4679635 data/mega_showdown/advancement/recipes/misc/dna_splicer.json
+9cd9a1c49a2f50ed4933f889ab2e348e3e1e11d0 data/mega_showdown/advancement/recipes/misc/dousedrive.json
 00356f9aeff2a81cddf4fc644ef3cc4bde04b6c9 data/mega_showdown/advancement/recipes/misc/dynamax_band.json
 23ad9d6c6ae7eda547754daa471cdc52c11e4eaa data/mega_showdown/advancement/recipes/misc/dynamax_candy.json
 4b1e5b881b6fce6862b96de4571bca703ec10836 data/mega_showdown/advancement/recipes/misc/fanunit.json
@@ -37,6 +40,7 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 9156313bb79bc69e1e7630f999def1ab59930e7a data/mega_showdown/advancement/recipes/misc/red_nectar.json
 dbe0634f607157ebb47122dbfa0e88858aa0e172 data/mega_showdown/advancement/recipes/misc/reins_of_unity.json
 b7b35eb15daf8f0c5e7509a1ce285997dbe2549e data/mega_showdown/advancement/recipes/misc/rotom_catalogue.json
+5c935622eaf58b80f4a8cd1fbb937fafc33ed5a0 data/mega_showdown/advancement/recipes/misc/shockdrive.json
 a61bc2c0a157a42e5a391d3ff3b830ab0374e618 data/mega_showdown/advancement/recipes/misc/sweet_max_soup.json
 08602e7c34b11bd06840b4956f7b7f31fb6e1201 data/mega_showdown/advancement/recipes/misc/tera_orb.json
 c2bfd1a9860e5fcfff7c2c6fd84815deef19461e data/mega_showdown/advancement/recipes/misc/washunit.json
@@ -47,9 +51,12 @@ a19307a629ab754a4d181cd4432f174ce6276d49 data/mega_showdown/advancement/recipes/
 a8914e50df935068a9275d9ad066f3a7cefd2e96 data/mega_showdown/recipe/archie_anchor.json
 33aa55331f9a56c549e8c03a985d18a5751e466b data/mega_showdown/recipe/ash_cap.json
 8f1e9dc4761a416377ac5db39a1736fc8b5b0c25 data/mega_showdown/recipe/brendan_mega_cuff.json
+0e5bab58a471592776deace8a00f30f2b2515530 data/mega_showdown/recipe/burndrive.json
+1b7a35d35fcbab9e7821f597f9b7f6c17cca055e data/mega_showdown/recipe/chilldrive.json
 d4890cce7b9826d04c1b69111faba83da8f026ad data/mega_showdown/recipe/chiseled_mega_evo_block.json
 17aacd0eab9adcbc263ce83f49cbfabd03fda1a8 data/mega_showdown/recipe/chiseled_mega_evo_brick.json
 8a0957077c19d358c725fe861028ebf22fa62155 data/mega_showdown/recipe/dna_splicer.json
+a1ca5561f22cc5757c94b3f0ada6d26dcec4c923 data/mega_showdown/recipe/dousedrive.json
 06ceaf2d61c02b20d1fc644a1492eb6fc7b8cfe0 data/mega_showdown/recipe/dynamax_band.json
 d11a3208f89c22ac86aaa38ccb8c48130f11ee80 data/mega_showdown/recipe/dynamax_candy.json
 6a7ba069d13a73b3ab61dd811f362025884d3127 data/mega_showdown/recipe/fanunit.json
@@ -82,6 +89,7 @@ dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.j
 38d930c92fa0d308a21fadc15115da8fd43e0272 data/mega_showdown/recipe/red_nectar.json
 f2c8df58e0a8c4b99099e844f3a54e5fa1ea027c data/mega_showdown/recipe/reins_of_unity.json
 ba02e132dd35c1f2a36c837ba217862701284421 data/mega_showdown/recipe/rotom_catalogue.json
+553e781c7f44ff75a00d97514cd64ce6b96ab290 data/mega_showdown/recipe/shockdrive.json
 46b8649d081e0be7a83ad26e1514a878d512f158 data/mega_showdown/recipe/sweet_max_soup.json
 372ee1bc63995b76e1d0432d371e58b100e27f3e data/mega_showdown/recipe/tera_orb.json
 256a898154c2dee4789a10dd840d0d7e22faec6f data/mega_showdown/recipe/washunit.json

@@ -483,5 +483,44 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('A', CobblemonItems.BLACK_APRICORN)
                 .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.SHOCK_DRIVE.get())
+                .pattern("IEI")
+                .pattern("RNR")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('N', Items.NETHERITE_SCRAP)
+                .define('E', CobblemonItems.ELECTRIC_GEM)
+                .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.BURN_DRIVE.get())
+                .pattern("IFI")
+                .pattern("RNR")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('N', Items.NETHERITE_SCRAP)
+                .define('F', CobblemonItems.FIRE_GEM)
+                .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.CHILL_DRIVE.get())
+                .pattern("ICI")
+                .pattern("RNR")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('N', Items.NETHERITE_SCRAP)
+                .define('C', CobblemonItems.ICE_GEM)
+                .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.DOUSE_DRIVE.get())
+                .pattern("IWI")
+                .pattern("RNR")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('N', Items.NETHERITE_SCRAP)
+                .define('W', CobblemonItems.WATER_GEM)
+                .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP)).save(recipeOutput);
     }
 }

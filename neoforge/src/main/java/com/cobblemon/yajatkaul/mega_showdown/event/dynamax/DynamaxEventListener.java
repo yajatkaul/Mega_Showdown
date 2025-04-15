@@ -1,9 +1,12 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
@@ -71,7 +74,7 @@ public class DynamaxEventListener {
 
     @SubscribeEvent
     public void onDynamaxEnd(DynamaxEventEnd event) {
-        new StringSpeciesFeature("dynamax_form", "gmax").apply(event.getPokemon().getEffectedPokemon());
+        new StringSpeciesFeature("dynamax_form", "none").apply(event.getPokemon().getEffectedPokemon());
         BattlePokemon pokemon = event.getPokemon();
         for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()){
             if(activeBattlePokemon.getBattlePokemon() != null &&
