@@ -2,26 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
+    "A": {
       "item": "cobblemon:black_apricorn"
     },
-    "D": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "F": {
-      "item": "minecraft:quartz"
-    },
-    "L": {
-      "item": "minecraft:glass_pane"
-    },
-    "R": {
-      "item": "minecraft:diamond"
+    "S": {
+      "item": "mega_showdown:sparkling_stone_light"
     }
   },
   "pattern": [
-    "FLF",
-    "BRB",
-    "FDF"
+    "ISI",
+    "A A",
+    "III"
   ],
   "result": {
     "count": 1,

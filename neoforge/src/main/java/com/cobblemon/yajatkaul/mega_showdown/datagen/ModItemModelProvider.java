@@ -229,5 +229,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(DynamaxItems.SWEET_MAX_SOUP.get());
 
         basicItem(CompiItems.LUMINOUS_MOSS.get());
+
+        basicItem(ZCrystals.SPARKLING_STONE_DARK.get());
+        basicItem(ZCrystals.SPARKLING_STONE_LIGHT.get());
     }
 }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diamond": {
+    "has_light_sparkling_stone": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:diamond"
+            "items": "mega_showdown:sparkling_stone_light"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_diamond"
+      "has_light_sparkling_stone"
     ]
   ],
   "rewards": {

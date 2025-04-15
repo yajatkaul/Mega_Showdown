@@ -336,6 +336,24 @@ public class ZCrystals {
                 }
             });
 
+    public static final DeferredItem<Item> SPARKLING_STONE_LIGHT = ITEMS.register("sparkling_stone_light",
+            () -> new Item(new Item.Properties()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.sparkling_stone_light.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> SPARKLING_STONE_DARK = ITEMS.register("sparkling_stone_dark",
+            () -> new Item(new Item.Properties()){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.sparkling_stone_dark.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
     public static final DeferredItem<Item> Z_RING = ITEMS.register("z-ring",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
 

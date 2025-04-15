@@ -560,5 +560,9 @@
   "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area.",
 
   "item.mega_showdown.luminous_moss": "Luminous Moss",
-  "tooltip.mega_showdown.luminous_moss.tooltip": "A mossy growth that glows faintly. It reacts to Dynamax energy. Used to make Max Soup."
+  "tooltip.mega_showdown.luminous_moss.tooltip": "A mossy growth that glows faintly. It reacts to Dynamax energy. Used to make Max Soup.",
+  "item.mega_showdown.sparkling_stone_light": "Light Sparkling Stone",
+  "tooltip.mega_showdown.sparkling_stone_light.tooltip": "A mysterious stone that radiates a gentle light. It resonates with Z-Power.",
+  "item.mega_showdown.sparkling_stone_dark": "Dark Sparkling Stone",
+  "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "A mysterious stone that emits a faint shadowy glow. It resonates with Z-Power."
 }

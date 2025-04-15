@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-14T11:51:03.5679101	Item Models: mega_showdown
+// 1.21.1	2025-04-15T19:56:46.7178652	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -165,6 +165,8 @@ d7c581f59921db9e84e30ff2b0b3bae5ac497201 assets/mega_showdown/models/item/rotom_
 ff16f1adc5e2c51568198e886e2e476af96a2082 assets/mega_showdown/models/item/snorlium-z.json
 4cb17591d8366a495cfeeced7755c470e4edd7e9 assets/mega_showdown/models/item/solganium-z.json
 1f9b6a74b699c17ec39e3954bc463a1940bb44bd assets/mega_showdown/models/item/souldew.json
+1233570921c1db3978c6cdee3d7e943ada85eeeb assets/mega_showdown/models/item/sparkling_stone_dark.json
+f56a42d62bc63586f0461928dc41fb4ff80bdae8 assets/mega_showdown/models/item/sparkling_stone_light.json
 5cecbc94fff916570aee191f3406d1e0dc742edc assets/mega_showdown/models/item/splashplate.json
 85f11dfdafe950f031bfa08d07a77d1cac4f84dc assets/mega_showdown/models/item/spookyplate.json
 ab8e8f12af4a81befe61898899d6c73bdbe85ddc assets/mega_showdown/models/item/star_core.json

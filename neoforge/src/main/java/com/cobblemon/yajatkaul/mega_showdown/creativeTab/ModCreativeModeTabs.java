@@ -209,6 +209,8 @@ public class ModCreativeModeTabs {
                         output.accept(ZCrystals.TAPUNIUM_Z);
                         output.accept(ZCrystals.ULTRANECROZIUM_Z);
                         output.accept(ZCrystals.WATERIUM_Z);
+                        output.accept(ZCrystals.SPARKLING_STONE_LIGHT);
+                        output.accept(ZCrystals.SPARKLING_STONE_DARK);
                     })
                     .build());
 

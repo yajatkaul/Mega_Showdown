@@ -202,6 +202,8 @@ public class ModItemGroups {
                         entries.add(ZCrystals.TAPUNIUM_Z);
                         entries.add(ZCrystals.ULTRANECROZIUM_Z);
                         entries.add(ZCrystals.WATERIUM_Z);
+                        entries.add(ZCrystals.SPARKLING_STONE_LIGHT);
+                        entries.add(ZCrystals.SPARKLING_STONE_DARK);
                     }))
                     .build());
 

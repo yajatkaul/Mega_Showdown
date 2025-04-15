@@ -299,6 +299,22 @@ public class ZCrystals {
         }
     });
 
+    public static final Item SPARKLING_STONE_LIGHT = registerItem("sparkling_stone_light", new Item(new Item.Settings()) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.sparkling_stone_light.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item SPARKLING_STONE_DARK = registerItem("sparkling_stone_dark", new Item(new Item.Settings()) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.sparkling_stone_dark.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
     public static final Item Z_RING = registerItem("z-ring", new ZRingItem(new Item.Settings().maxCount(1)));
     public static final Item Z_RING_BLACK = registerItem("z-ring_black", new ZRingItem(new Item.Settings().maxCount(1)));
     public static final Item Z_RING_POWER = registerItem("z-power_ring", new ZRingItem(new Item.Settings().maxCount(1)));

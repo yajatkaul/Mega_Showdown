@@ -232,41 +232,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('N', Items.NETHERITE_INGOT)
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING.get())
-                .pattern("FLF")
-                .pattern("WRW")
-                .pattern("FDF")
-                .define('F', Items.QUARTZ)
-                .define('L', Items.GLASS_PANE)
-                .define('W', CobblemonItems.WHITE_APRICORN)
-                .define('R', Items.DIAMOND)
-                .define('D', Items.IRON_INGOT)
-
-                .unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_BLACK.get())
-                .pattern("FLF")
-                .pattern("BRB")
-                .pattern("FDF")
-                .define('F', Items.QUARTZ)
-                .define('L', Items.GLASS_PANE)
-                .define('B', CobblemonItems.BLACK_APRICORN)
-                .define('R', Items.DIAMOND)
-                .define('D', Items.IRON_INGOT)
-
-                .unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_POWER.get())
-                .pattern("FLF")
-                .pattern("BNB")
-                .pattern("FDF")
-                .define('F', Items.QUARTZ)
-                .define('L', Items.GLASS_PANE)
-                .define('B', CobblemonItems.BLACK_APRICORN)
-                .define('N', Items.NETHERITE_INGOT)
-                .define('D', Items.IRON_INGOT)
-                .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MAY_BRACELET.get())
                 .pattern("YSY")
                 .pattern("IKI")
@@ -490,6 +455,33 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.HONEY_BOTTLE)
                 .requires(DynamaxItems.MAX_MUSHROOM.get())
                 .unlockedBy("has_max_mushroom", has(DynamaxItems.MAX_MUSHROOM)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.WHITE_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_BLACK.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.BLACK_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_POWER.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_DARK)
+                .define('A', CobblemonItems.BLACK_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
 
     }
 }

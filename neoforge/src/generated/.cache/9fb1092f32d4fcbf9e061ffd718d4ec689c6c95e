@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-13T23:16:53.6901964	Recipes
+// 1.21.1	2025-04-15T20:15:47.4475198	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -41,9 +41,9 @@ a61bc2c0a157a42e5a391d3ff3b830ab0374e618 data/mega_showdown/advancement/recipes/
 08602e7c34b11bd06840b4956f7b7f31fb6e1201 data/mega_showdown/advancement/recipes/misc/tera_orb.json
 c2bfd1a9860e5fcfff7c2c6fd84815deef19461e data/mega_showdown/advancement/recipes/misc/washunit.json
 65342bf4241e2043eaa667607cf0852b52a88b43 data/mega_showdown/advancement/recipes/misc/yellow_nectar.json
-8315990c6cbe8003bc620613275ad6d92ac8f2cd data/mega_showdown/advancement/recipes/misc/z-power_ring.json
-6946b8de2ec5fecb3902c15e6e89acfeb86eb361 data/mega_showdown/advancement/recipes/misc/z-ring.json
-480637e9b2f912edb31ac9523b11af3632afe8be data/mega_showdown/advancement/recipes/misc/z-ring_black.json
+eda9d79e84c3edd6b589fc86a94c23370e6b574b data/mega_showdown/advancement/recipes/misc/z-power_ring.json
+e2b4f1f87cbc106fe8dd53aa761546484f5a98f9 data/mega_showdown/advancement/recipes/misc/z-ring.json
+a19307a629ab754a4d181cd4432f174ce6276d49 data/mega_showdown/advancement/recipes/misc/z-ring_black.json
 a8914e50df935068a9275d9ad066f3a7cefd2e96 data/mega_showdown/recipe/archie_anchor.json
 33aa55331f9a56c549e8c03a985d18a5751e466b data/mega_showdown/recipe/ash_cap.json
 8f1e9dc4761a416377ac5db39a1736fc8b5b0c25 data/mega_showdown/recipe/brendan_mega_cuff.json
@@ -86,9 +86,9 @@ ba02e132dd35c1f2a36c837ba217862701284421 data/mega_showdown/recipe/rotom_catalog
 372ee1bc63995b76e1d0432d371e58b100e27f3e data/mega_showdown/recipe/tera_orb.json
 256a898154c2dee4789a10dd840d0d7e22faec6f data/mega_showdown/recipe/washunit.json
 93ddb295639a12ca522ab2899ee05a25c55e1ba3 data/mega_showdown/recipe/yellow_nectar.json
-d84ae3a6b6fbcaccd7f2c5166598cf503df62521 data/mega_showdown/recipe/z-power_ring.json
-f10c3fc50f8ef2e41720bf8fdb4fee2883c4d0ef data/mega_showdown/recipe/z-ring.json
-6a359905d226b633de23a72009a6f769dc4f8987 data/mega_showdown/recipe/z-ring_black.json
+47e8a7c956231cf29125643705988b8ddac406f9 data/mega_showdown/recipe/z-power_ring.json
+a0a0173100cf937347f41eac5247d6a670b6ab48 data/mega_showdown/recipe/z-ring.json
+8175d7fc4f613d1b99a3564cccbef7ded78f12c0 data/mega_showdown/recipe/z-ring_black.json
 31f7ed6ee3421790f5c5d8d1b415a219e23df903 data/minecraft/advancement/recipes/misc/dawn_stone_blasting.json
 66f4d82446989192b52c92fe1712949c8c27f1cd data/minecraft/advancement/recipes/misc/dawn_stone_smelting.json
 5dc157f1ff55943125336dbe6040e41221f19176 data/minecraft/advancement/recipes/misc/dusk_stone_blasting.json

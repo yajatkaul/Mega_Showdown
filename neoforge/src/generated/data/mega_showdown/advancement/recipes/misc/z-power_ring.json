@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_netherite": {
+    "has_light_sparkling_stone": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:netherite_ingot"
+            "items": "mega_showdown:sparkling_stone_dark"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_netherite"
+      "has_light_sparkling_stone"
     ]
   ],
   "rewards": {
