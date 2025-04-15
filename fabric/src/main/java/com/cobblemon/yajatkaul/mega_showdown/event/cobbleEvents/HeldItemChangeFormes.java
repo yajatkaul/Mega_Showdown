@@ -327,32 +327,16 @@ public class HeldItemChangeFormes {
         Species species = post.getPokemon().getSpecies();
 
         if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().isOf(MegaStones.BLUE_ORB)){
-            if(player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()){
-                player.sendMessage(
-                        Text.literal("You can only have one primal at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return;
-            }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             setTradable(post.getPokemon(), false);
             EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
-            player.setAttached(DataManage.PRIMAL_DATA, true);
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().isOf(MegaStones.RED_ORB)){
-            if(player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()){
-                player.sendMessage(
-                        Text.literal("You can only have one primal at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return;
-            }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             setTradable(post.getPokemon(), false);
             EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
-            player.setAttached(DataManage.PRIMAL_DATA, true);
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
             if(feature == null){
@@ -362,7 +346,6 @@ public class HeldItemChangeFormes {
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
             setTradable(post.getPokemon(), true);
             EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
-            player.setAttached(DataManage.PRIMAL_DATA, false);
         }
     }
 

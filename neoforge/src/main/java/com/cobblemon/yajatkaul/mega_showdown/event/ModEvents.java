@@ -144,7 +144,8 @@ public class ModEvents {
 
     @SubscribeEvent
     private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
+        if(!event.getEntity().level().isClientSide){
+            ServerPlayer player = (ServerPlayer) event.getEntity();
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {

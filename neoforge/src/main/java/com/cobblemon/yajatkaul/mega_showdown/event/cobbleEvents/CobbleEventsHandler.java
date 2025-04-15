@@ -23,6 +23,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import kotlin.Unit;
@@ -34,6 +35,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.scores.PlayerTeam;
@@ -71,18 +73,17 @@ public class CobbleEventsHandler {
     }
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if(post.getPlayer().level().isClientSide){
+        if (post.getPlayer().level().isClientSide) {
             return Unit.INSTANCE;
         }
 
-        if(!post.getPlayer().level().isClientSide && post.getPlayer().getData(DataManage.MEGA_POKEMON) == post.getPokemon()){
-            post.getPlayer().setData(DataManage.MEGA_DATA, false);
-            post.getPlayer().removeData(DataManage.MEGA_POKEMON);
-        }
+        Pokemon released = post.getPokemon();
+        Player player = post.getPlayer();
 
-        if(!post.getPlayer().level().isClientSide && post.getPlayer().getData(DataManage.PRIMAL_POKEMON) == post.getPokemon()){
-            post.getPlayer().setData(DataManage.PRIMAL_DATA, false);
-            post.getPlayer().removeData(DataManage.PRIMAL_POKEMON);
+        PokemonRef megaRef = player.getData(DataManage.MEGA_POKEMON);
+        if (megaRef != null && megaRef.getPokemon() == released) {
+            player.setData(DataManage.MEGA_DATA, false);
+            player.removeData(DataManage.MEGA_POKEMON);
         }
 
         return Unit.INSTANCE;

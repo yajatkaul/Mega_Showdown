@@ -42,39 +42,15 @@ public class DataManage {
                     )
     );
 
-    public static final AttachmentType<Boolean> PRIMAL_DATA = AttachmentRegistry.create(
-            Identifier.of(MegaShowdown.MOD_ID, "primal_data"),
-            builder -> builder // Using a builder chain to configure the attachment data type
-                    .copyOnDeath()
-                    .initializer(() -> Boolean.FALSE) // A default value to provide if none is supplied
-                    .persistent(Codec.BOOL) // How to save and load the data
-                    .syncWith(
-                            PacketCodecs.BOOL,  // How to turn the data into a packet to send to players
-                            AttachmentSyncPredicate.all() // Who to send the data to
-                    )
-    );
-
     public static final AttachmentType<Pokemon> MEGA_POKEMON = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "mega_pokemon"),
-            builder -> builder // Using a builder chain to configure the attachment data type
+            builder -> builder
                     .copyOnDeath()
-                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
-                    .persistent(Pokemon.getCODEC()) // How to save and load the data
+                    .initializer(() -> new Pokemon())
+                    .persistent(Pokemon.getCODEC())
                     .syncWith(
-                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
-                            AttachmentSyncPredicate.all() // Who to send the data to
-                    )
-    );
-
-    public static final AttachmentType<Pokemon> PRIMAL_POKEMON = AttachmentRegistry.create(
-            Identifier.of(MegaShowdown.MOD_ID, "primal_pokemon"),
-            builder -> builder // Using a builder chain to configure the attachment data type
-                    .copyOnDeath()
-                    .initializer(() -> new Pokemon()) // A default value to provide if none is supplied
-                    .persistent(Pokemon.getCODEC()) // How to save and load the data
-                    .syncWith(
-                            Pokemon.getS2C_CODEC(),  // How to turn the data into a packet to send to players
-                            AttachmentSyncPredicate.all() // Who to send the data to
+                            Pokemon.getS2C_CODEC(),
+                            AttachmentSyncPredicate.all()
                     )
     );
 
@@ -194,9 +170,6 @@ public class DataManage {
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();
-
-        PRIMAL_DATA.initializer();
-        PRIMAL_POKEMON.initializer();
 
         N_LUNAR_POKEMON.initializer();
         N_SOLAR_POKEMON.initializer();

@@ -9,6 +9,7 @@ import com.cobblemon.mod.common.battles.dispatch.InterpreterInstruction;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -76,7 +77,7 @@ public class UltraLogic {
                 range * range
         );
 
-        if(entityHit == null){
+        if(entityHit == null || ShowdownConfig.battleModeOnly.get()){
             return;
         }
 

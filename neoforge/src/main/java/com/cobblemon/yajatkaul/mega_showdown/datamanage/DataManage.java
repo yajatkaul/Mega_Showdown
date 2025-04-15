@@ -29,19 +29,9 @@ public class DataManage {
                     .serialize(Codec.BOOL).copyOnDeath().build()
     );
 
-    public static final Supplier<AttachmentType<Boolean>> PRIMAL_DATA = ATTACHMENT_TYPES.register(
-            "primal_data", () -> AttachmentType.builder(() -> false)
-                    .serialize(Codec.BOOL).copyOnDeath().build()
-    );
-
-    public static final Supplier<AttachmentType<Pokemon>> MEGA_POKEMON = ATTACHMENT_TYPES.register(
-            "mega_pokemon", () -> AttachmentType.builder(Pokemon::new)
-                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
-    );
-
-    public static final Supplier<AttachmentType<Pokemon>> PRIMAL_POKEMON = ATTACHMENT_TYPES.register(
-            "primal_pokemon", () -> AttachmentType.builder(Pokemon::new)
-                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    public static final Supplier<AttachmentType<PokemonRef>> MEGA_POKEMON = ATTACHMENT_TYPES.register(
+            "mega_pokemon", () -> AttachmentType.builder(() -> new PokemonRef(new Pokemon()))
+                    .serialize(PokemonRef.CODEC).copyOnDeath().build()
     );
 
     public static final Supplier<AttachmentType<HashMap<UUID, Pokemon>>> DATA_MAP = ATTACHMENT_TYPES.register(

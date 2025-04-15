@@ -85,10 +85,6 @@ public class CobbleEventHandler {
             return Unit.INSTANCE;
         }
 
-        if(!post.getPlayer().hasAttached(DataManage.PRIMAL_POKEMON)){
-            post.getPlayer().setAttached(DataManage.PRIMAL_POKEMON, new Pokemon());
-        }
-
         if(!post.getPlayer().hasAttached(DataManage.MEGA_POKEMON)){
             post.getPlayer().setAttached(DataManage.MEGA_POKEMON, new Pokemon());
         }
@@ -96,11 +92,6 @@ public class CobbleEventHandler {
         if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON) == post.getPokemon()){
             post.getPlayer().removeAttached(DataManage.MEGA_DATA);
             post.getPlayer().removeAttached(DataManage.MEGA_POKEMON);
-        }
-
-        if(post.getPlayer().getAttached(DataManage.PRIMAL_POKEMON) == post.getPokemon()){
-            post.getPlayer().setAttached(DataManage.PRIMAL_DATA, false);
-            post.getPlayer().setAttached(DataManage.PRIMAL_POKEMON, new Pokemon());
         }
 
         return Unit.INSTANCE;

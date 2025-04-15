@@ -309,27 +309,15 @@ public class HeldItemChangeFormes {
         Species species = post.getPokemon().getSpecies();
 
         if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().is(MegaStones.BLUE_ORB)){
-            if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
-                player.displayClientMessage(Component.literal("You can only have one primal at a time")
-                        .withColor(0xFF0000), true);
-                return;
-            }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
-            player.setData(DataManage.PRIMAL_DATA, true);
             setTradable(post.getPokemon(), false);
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().is(MegaStones.RED_ORB)){
-            if(player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals){
-                player.displayClientMessage(Component.literal("You can only have one primal at a time")
-                        .withColor(0xFF0000), true);
-                return;
-            }
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
-            player.setData(DataManage.PRIMAL_DATA, true);
             setTradable(post.getPokemon(), false);
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
@@ -339,7 +327,6 @@ public class HeldItemChangeFormes {
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
             EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
-            player.setData(DataManage.PRIMAL_DATA, false);
             setTradable(post.getPokemon(), true);
         }
     }
