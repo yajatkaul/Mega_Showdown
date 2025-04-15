@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ab ",
+        "bcb",
+        " b "
+    ],
+    "key": {
+        "a": {
+            "item": "minecraft:string"
+        },
+        "b": {
+            "item": "minecraft:gold_ingot"
+        },
+        "c": {
+            "item": "minecraft:diamond"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "mega_showdown:clear_amulet"
+    }
+}
