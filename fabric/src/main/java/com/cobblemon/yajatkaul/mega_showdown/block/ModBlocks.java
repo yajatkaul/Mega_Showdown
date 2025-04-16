@@ -67,7 +67,7 @@ public class ModBlocks {
                     .mapColor(MapColor.PURPLE)
                     .sounds(BlockSoundGroup.STONE)));
 
-    public static final Block DEOXYS_METEORITE = registerDeoxysBlock("deoxys_meteorite",
+    public static final Block DEOXYS_METEORITE = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"),
             new Block(AbstractBlock.Settings.create()
                     .strength(3f)
                     .requiresTool()
@@ -122,11 +122,6 @@ public class ModBlocks {
 
     private static void registerBlockItem(String name, Block block){
         Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()));
-    }
-
-    public static Block registerDeoxysBlock(String name, Block block){
-        FormeChangeItems.registerDeoxysBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
     }
 
     public static void registerBlocks(){

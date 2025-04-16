@@ -95,7 +95,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
-    public static final DeferredBlock<Block> DEOXYS_METEORITE = registerBlockSpeical("deoxys_meteorite",
+    public static final DeferredBlock<Block> DEOXYS_METEORITE = BLOCKS.register("deoxys_meteorite",
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
@@ -152,11 +152,5 @@ public class ModBlocks {
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
-    }
-
-    private static <T extends Block> DeferredBlock<T> registerBlockSpeical(String name, Supplier<T> block){
-        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
-        FormeChangeItems.registerBlockItemSpecial(name, toReturn);
-        return toReturn;
     }
 }

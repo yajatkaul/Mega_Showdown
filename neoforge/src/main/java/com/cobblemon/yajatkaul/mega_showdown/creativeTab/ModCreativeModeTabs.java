@@ -320,7 +320,12 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.YELLOW_NECTAR);
                         output.accept(FormeChangeItems.PURPLE_NECTAR);
 
-                        output.accept(ModBlocks.DEOXYS_METEORITE);
+                        output.accept(FormeChangeItems.DEOXYS_METEORITE);
+
+                        output.accept(FormeChangeItems.REVEAL_GLASS);
+                        output.accept(FormeChangeItems.ZAYGARDE_CORE);
+                        output.accept(FormeChangeItems.ZAYGARDE_CELL);
+                        output.accept(FormeChangeItems.ZAYGARDE_CUBE);
                     })
                     .build());
 

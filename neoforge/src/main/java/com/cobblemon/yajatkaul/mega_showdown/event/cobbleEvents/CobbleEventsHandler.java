@@ -62,6 +62,7 @@ public class CobbleEventsHandler {
         HeldItemChangeFormes.ogerponChange(event);
         HeldItemChangeFormes.eternamaxChange(event);
         HeldItemChangeFormes.originChange(event);
+        HeldItemChangeFormes.therianEvent(event);
 
         if(Config.battleModeOnly){
             return Unit.INSTANCE;

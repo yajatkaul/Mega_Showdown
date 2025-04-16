@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
+import com.cobblemon.yajatkaul.mega_showdown.Config;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
@@ -54,7 +55,7 @@ public class DynamaxEventListener {
             server = serverLevel.getServer();
         }
 
-        startGradualScaling(entity, 4.0f);
+        startGradualScaling(entity, Config.dynamaxScaleFactor);
 
         if (entity.level() instanceof ServerLevel serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();

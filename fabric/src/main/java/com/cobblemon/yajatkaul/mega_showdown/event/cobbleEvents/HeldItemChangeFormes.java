@@ -23,9 +23,6 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
 
 import java.util.List;
 
@@ -417,6 +414,26 @@ public class HeldItemChangeFormes {
                 EventUtils.ultraAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("ultra",false).apply(pokemon);
             }
+        }
+    }
+
+    public static void therianEvent(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
+
+        if(!pokemon.getSpecies().getName().equals("Tornadus") &&
+                !pokemon.getSpecies().getName().equals("Thundurus") &&
+                !pokemon.getSpecies().getName().equals("Landorus") &&
+                !pokemon.getSpecies().getName().equals("Enamorus")){
+            return;
+        }
+
+        if(event.getReceived().isOf(FormeChangeItems.REVEAL_GLASS)){
+            new StringSpeciesFeature("mirror_forme","therian").apply(pokemon);
+            EventUtils.playEvolveAnimation(pokemon.getEntity());
+        } else if (!event.getReceived().isOf(FormeChangeItems.REVEAL_GLASS)
+                && event.getReturned().isOf(FormeChangeItems.REVEAL_GLASS)) {
+            new StringSpeciesFeature("mirror_forme","incarnate").apply(pokemon);
+            EventUtils.playEvolveAnimation(pokemon.getEntity());
         }
     }
 }

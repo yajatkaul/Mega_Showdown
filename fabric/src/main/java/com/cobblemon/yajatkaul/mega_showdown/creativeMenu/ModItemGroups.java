@@ -313,7 +313,12 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.YELLOW_DRIVE);
                         entries.add(FormeChangeItems.RED_NECTAR);
 
-                        entries.add(ModBlocks.DEOXYS_METEORITE);
+                        entries.add(FormeChangeItems.DEOXYS_METEORITE);
+
+                        entries.add(FormeChangeItems.REVEAL_GLASS);
+                        entries.add(FormeChangeItems.ZAYGARDE_CORE);
+                        entries.add(FormeChangeItems.ZAYGARDE_CELL);
+                        entries.add(FormeChangeItems.ZAYGARDE_CUBE);
                     }))
                     .build());
 

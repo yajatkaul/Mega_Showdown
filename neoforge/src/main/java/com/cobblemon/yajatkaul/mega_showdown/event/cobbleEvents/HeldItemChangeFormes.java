@@ -399,4 +399,23 @@ public class HeldItemChangeFormes {
             }
         }
     }
+
+    public static void therianEvent(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
+
+        if(!pokemon.getSpecies().getName().equals("Tornadus") &&
+                !pokemon.getSpecies().getName().equals("Thundurus") &&
+                !pokemon.getSpecies().getName().equals("Landorus") &&
+                !pokemon.getSpecies().getName().equals("Enamorus")){
+            return;
+        }
+
+        if(event.getReceived().is(FormeChangeItems.REVEAL_GLASS)){
+            new StringSpeciesFeature("mirror_forme","therian").apply(pokemon);
+            EventUtils.playEvolveAnimation(pokemon.getEntity());
+        } else if (!event.getReceived().is(FormeChangeItems.REVEAL_GLASS) && event.getReturned().is(FormeChangeItems.REVEAL_GLASS)) {
+            new StringSpeciesFeature("mirror_forme","incarnate").apply(pokemon);
+            EventUtils.playEvolveAnimation(pokemon.getEntity());
+        }
+    }
 }

@@ -35,39 +35,6 @@ import java.util.List;
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 
 public class FormeChangeItems {
-    public static void registerDeoxysBlockItem(String name, Block block){
-        Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()){
-            @Override
-            public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
-                    Pokemon pokemon = pk.getPokemon();
-
-                    if(pokemon.getSpecies().getName().equals("Deoxys")){
-                        if(pokemon.getAspects().contains("normal-forme")){
-                            new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
-                        } else if (pokemon.getAspects().contains("attack-forme")) {
-                            new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
-                        } else if (pokemon.getAspects().contains("speed-forme")) {
-                            new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                        }else if (pokemon.getAspects().contains("defense-forme")) {
-                            new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
-                        }
-
-                        stack.decrement(1);
-                        return ActionResult.SUCCESS;
-                    }
-                }
-
-                return super.useOnEntity(stack, user, entity, hand);
-            }
-
-            @Override
-            public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-                tooltip.add(Text.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
-                super.appendTooltip(stack, context, tooltip, type);
-            }
-        });
-    }
 
     public static final Item ADAMANT_CRYSTAL = registerItem("adamant_crystal", new Item(new Item.Settings().maxCount(1)){
         @Override
@@ -589,13 +556,81 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GRACIDEA_FLOWER = registerItem("gracidea_flower", new Gracidea(new Item.Settings().maxCount(1)){
+    public static final Item GRACIDEA_FLOWER = registerItem("gracidea_flower", new Gracidea(new Item.Settings()){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.gracidea_flower.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
+
+    public static final BlockItem DEOXYS_METEORITE = Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"), new BlockItem(ModBlocks.DEOXYS_METEORITE, new Item.Settings()){
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                Pokemon pokemon = pk.getPokemon();
+
+                if(pokemon.getSpecies().getName().equals("Deoxys")){
+                    if(pokemon.getAspects().contains("normal-forme")){
+                        new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
+                    } else if (pokemon.getAspects().contains("attack-forme")) {
+                        new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
+                    } else if (pokemon.getAspects().contains("speed-forme")) {
+                        new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
+                    }else if (pokemon.getAspects().contains("defense-forme")) {
+                        new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
+                    }
+
+                    stack.decrement(1);
+                    return ActionResult.SUCCESS;
+                }
+            }
+
+            return super.useOnEntity(stack, user, entity, hand);
+        }
+
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item ZAYGARDE_CUBE = registerItem("zaygarde_cube",
+            new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.mega_showdown.zaygarde_cube.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
+
+    public static final Item ZAYGARDE_CELL = registerItem("zaygarde_cell",
+            new Item(new Item.Settings().maxCount(100)){
+                @Override
+                public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+                    tooltip.add(Text.translatable("tooltip.mega_showdown.zaygarde_cell.tooltip"));
+                    super.appendTooltip(stack, context, tooltip, type);
+                }
+            });
+
+    public static final Item ZAYGARDE_CORE = registerItem("zaygarde_core",
+            new Item(new Item.Settings().maxCount(100)){
+                @Override
+                public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+                    tooltip.add(Text.translatable("tooltip.mega_showdown.zaygarde_core.tooltip"));
+                    super.appendTooltip(stack, context, tooltip, type);
+                }
+            });
+
+    public static final Item REVEAL_GLASS = registerItem("reveal_glass",
+            new Item(new Item.Settings().maxCount(1)){
+                @Override
+                public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+                    tooltip.add(Text.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
+                    super.appendTooltip(stack, context, tooltip, type);
+                }
+            });
 
     public static void registerModItem(){
 

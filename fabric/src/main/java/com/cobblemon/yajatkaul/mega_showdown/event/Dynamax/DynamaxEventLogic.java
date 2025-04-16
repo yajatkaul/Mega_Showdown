@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -48,7 +49,7 @@ public class DynamaxEventLogic {
                 server = serverWorld.getServer();
             }
 
-            startGradualScaling(pokemonEntity, 4.0f);
+            startGradualScaling(pokemonEntity, ShowdownConfig.dynamaxScaleFactor.get());
 
             if (pokemon.getEntity().getWorld() instanceof ServerWorld serverLevel) {
                 ServerScoreboard scoreboard = serverLevel.getScoreboard();

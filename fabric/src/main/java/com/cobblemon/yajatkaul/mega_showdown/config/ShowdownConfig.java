@@ -19,6 +19,7 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> etermaxForme;
     public static final Supplier<Boolean> dynamaxAnywhere;
     public static final Supplier<Integer> powerSpotRange;
+    public static final Supplier<Integer> dynamaxScaleFactor;
 
     static{
         // construct a new config builder
@@ -37,6 +38,7 @@ public class ShowdownConfig {
         dynamax = builder.comment("Enables/Disables Dmaxing in game").define("dynamax", true);
         dynamaxAnywhere = builder.comment("Allows you to dynamax anywhere you dont need to be near the dynamax area").define("dynamaxAnywhere", false);
         powerSpotRange = builder.comment("Range around a power spot where Dynamax is allowed").define("powerSpotRange", 20,0,10000);
+        dynamaxScaleFactor = builder.comment("By how many times should the pokemon size increase when g/dmaxing").define("dynamaxScaleFactor", 4,1,10000);
 
         builder.build();
     }

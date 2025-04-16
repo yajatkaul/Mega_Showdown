@@ -61,8 +61,12 @@ public class Config
             .define("dynamaxAnywhere", false);
 
     private static final ModConfigSpec.IntValue POWER_SPOT_RANGE = BUILDER
-            .comment("Range around a power spot where Dynamax is allowed.")
+            .comment("Range around a power spot where Dynamax is allowed")
             .defineInRange("powerSpotRange", 20, 0, 10000);
+
+    private static final ModConfigSpec.IntValue DMAX_SCALE_FACTOR = BUILDER
+            .comment("By how many times should the pokemon size increase when g/dmaxing")
+            .defineInRange("By how many times should the pokemon size increase when g/dmaxing", 4, 0, 10000);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -79,6 +83,7 @@ public class Config
     public static boolean dynamax;
     public static boolean dynamaxAnywhere;
     public static int powerSpotRange;
+    public static int dynamaxScaleFactor;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -96,5 +101,6 @@ public class Config
         dynamax = DYNAMAX.get();
         dynamaxAnywhere = DYNAMAX_ANYWHERE.get();
         powerSpotRange = POWER_SPOT_RANGE.get();
+        dynamaxScaleFactor = DMAX_SCALE_FACTOR.get();
     }
 }

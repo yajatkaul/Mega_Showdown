@@ -616,6 +616,75 @@ public class FormeChangeItems {
                 }
             });
 
+    public static final DeferredItem<Item> ZAYGARDE_CUBE = ITEMS.register("zaygarde_cube",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zaygarde_cube.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> ZAYGARDE_CELL = ITEMS.register("zaygarde_cell",
+            () -> new Item(new Item.Properties().stacksTo(100)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zaygarde_cell.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> ZAYGARDE_CORE = ITEMS.register("zaygarde_core",
+            () -> new Item(new Item.Properties().stacksTo(100)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zaygarde_core.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<Item> REVEAL_GLASS = ITEMS.register("reveal_glass",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            });
+
+    public static final DeferredItem<BlockItem> DEOXYS_METEORITE = ModItems.ITEMS.register("deoxys_meteorite", () -> new BlockItem(ModBlocks.DEOXYS_METEORITE.get(),
+            new Item.Properties()){
+        @Override
+        public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
+            if(!user.level().isClientSide && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+                Pokemon pokemon = pk.getPokemon();
+
+                if(pokemon.getSpecies().getName().equals("Deoxys")){
+                    if(pokemon.getAspects().contains("normal-forme")){
+                        new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
+                    } else if (pokemon.getAspects().contains("attack-forme")) {
+                        new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
+                    } else if (pokemon.getAspects().contains("speed-forme")) {
+                        new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
+                    }else if (pokemon.getAspects().contains("defense-forme")) {
+                        new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
+                    }
+
+                    arg.shrink(1);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+
+            return super.interactLivingEntity(arg, user, entity, arg4);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
+            tooltipComponents.add(Component.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
+            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        }
+    });
+
     public static void register(){
 
     }
@@ -656,39 +725,5 @@ public class FormeChangeItems {
                 );
             }
         }
-    }
-
-    public static <T extends Block> void registerBlockItemSpecial(String name, DeferredBlock<T> block){
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()){
-            @Override
-            public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
-                if(!user.level().isClientSide && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
-                    Pokemon pokemon = pk.getPokemon();
-
-                    if(pokemon.getSpecies().getName().equals("Deoxys")){
-                        if(pokemon.getAspects().contains("normal-forme")){
-                            new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
-                        } else if (pokemon.getAspects().contains("attack-forme")) {
-                            new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
-                        } else if (pokemon.getAspects().contains("speed-forme")) {
-                            new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                        }else if (pokemon.getAspects().contains("defense-forme")) {
-                            new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
-                        }
-
-                        arg.shrink(1);
-                        return InteractionResult.SUCCESS;
-                    }
-                }
-
-                return super.interactLivingEntity(arg, user, entity, arg4);
-            }
-
-            @Override
-            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                tooltipComponents.add(Component.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
-                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-            }
-        });
     }
 }
