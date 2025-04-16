@@ -81,7 +81,7 @@ public class N_Lunarizer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setData(DataManage.DATA_MAP, map);
 
-            pk.setData(DataManage.N_LUNAR_POKEMON, currentValue);
+            pk.setData(DataManage.N_LUNAR_POKEMON, new PokemonRef(currentValue));
             arg.set(DataManage.N_LUNAR, null);
             new FlagSpeciesFeature("dawn-fusion", true).apply(pokemon);
             particleEffect(pokemon.getEntity());
@@ -112,7 +112,7 @@ public class N_Lunarizer extends Item {
                 map.remove(pokemon.getUuid());
                 player.setData(DataManage.DATA_MAP, map);
             }else{
-                playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_LUNAR_POKEMON));
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_LUNAR_POKEMON).getPokemon());
                 pk.removeData(DataManage.N_LUNAR_POKEMON);
             }
 

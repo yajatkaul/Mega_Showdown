@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GimmickTileMixin {
     @Inject(method = "<init>", at = @At("TAIL"), remap = false)
     private void init(ShowdownMoveset.Gimmick gimmick, BattleMoveSelection moveSelection, InBattleMove move, float x, float y, CallbackInfo ci) {
-        if(gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
+        if(gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION || gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
             BattleGimmickButton.GimmickTile tile = (BattleGimmickButton.GimmickTile) (Object) this;
             tile.setMoveTemplate(Moves.INSTANCE.getByNameOrDummy(move.id));
             tile.setRgb(SimpleMathExtensionsKt.toRGB(tile.getMoveTemplate().getEffectiveElementalType(tile.getPokemon()).getHue()));

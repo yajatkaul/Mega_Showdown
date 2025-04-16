@@ -703,13 +703,13 @@ class Pokemon {
       return true;
     return !!(baseMove.category === "Status" && (this.hasItem("assaultvest") || this.volatiles["taunt"]));
   }
-  getDynamaxRequest(skipChecks) {
+  getDynamaxRequest(skipChecks) {  
     if (!skipChecks) {
       if (!this.side.canDynamaxNow())
         return;
-        if (this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" || this.getItem().zMove || this.canMegaEvo || this.terastallized) {
+		if (this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" || this.getItem().zMove || this.terastallized || (this.canMegaEvo && this.species.baseSpecies !== "Rayquaza")) {
         return;
-      }
+	  } 
       if (this.species.cannotDynamax || this.illusion?.species.cannotDynamax)
         return;
     }

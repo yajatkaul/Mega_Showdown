@@ -71,14 +71,17 @@ public class ModEvents {
         });
 
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(newPlayer);
+            ServerPlayerEntity player;
+            if(alive){
+                player = oldPlayer;
+            }else{
+                player = newPlayer;
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             if(ShowdownConfig.battleModeOnly.get()){
-                if(alive){
-                    oldPlayer.removeAttached(DataManage.MEGA_DATA);
-                }else{
-                    newPlayer.removeAttached(DataManage.MEGA_DATA);
-                }
+                player.setAttached(DataManage.MEGA_DATA, false);
             }
 
             for (Pokemon pokemon : playerPartyStore) {

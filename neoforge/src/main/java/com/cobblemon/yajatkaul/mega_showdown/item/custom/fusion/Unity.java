@@ -80,7 +80,7 @@ public class Unity extends Item {
                 map.remove(pokemon.getUuid());
                 player.setData(DataManage.DATA_MAP, map);
             }else{
-                playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH));
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH).getPokemon());
                 pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
             }
 
@@ -96,7 +96,7 @@ public class Unity extends Item {
             }
             pokemon.setTradeable(false);
 
-            pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, currentValue);
+            pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, new PokemonRef(currentValue));
 
             HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
             map.put(pokemon.getUuid(), currentValue);

@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -72,7 +73,7 @@ public class N_Solarizer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setAttached(DataManage.DATA_MAP, map);
 
-            pk.setAttached(DataManage.N_SOLAR_POKEMON, currentValue);
+            pk.setAttached(DataManage.N_SOLAR_POKEMON, new PokemonRef(currentValue));
             arg.set(DataManage.N_SOLAR, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
             particleEffect(pokemon.getEntity());
@@ -96,15 +97,15 @@ public class N_Solarizer extends Item {
                 }
             }
 
-            if(!pokemon.getEntity().hasAttached(DataManage.N_LUNAR_POKEMON)){
+            if(!pokemon.getEntity().hasAttached(DataManage.N_SOLAR_POKEMON)){
                 HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
                 Pokemon toAdd = map.get(pokemon.getUuid());
                 playerPartyStore.add(toAdd);
                 map.remove(pokemon.getUuid());
                 player.setAttached(DataManage.DATA_MAP, map);
             }else{
-                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.N_LUNAR_POKEMON));
-                pk.removeAttached(DataManage.N_LUNAR_POKEMON);
+                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.N_SOLAR_POKEMON).getPokemon());
+                pk.removeAttached(DataManage.N_SOLAR_POKEMON);
             }
 
             new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);

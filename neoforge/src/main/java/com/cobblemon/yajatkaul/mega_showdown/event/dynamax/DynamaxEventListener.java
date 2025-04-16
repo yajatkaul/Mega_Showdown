@@ -54,7 +54,7 @@ public class DynamaxEventListener {
             server = serverLevel.getServer();
         }
 
-        startGradualScaling(entity, 3.0f);
+        startGradualScaling(entity, 4.0f);
 
         if (entity.level() instanceof ServerLevel serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();

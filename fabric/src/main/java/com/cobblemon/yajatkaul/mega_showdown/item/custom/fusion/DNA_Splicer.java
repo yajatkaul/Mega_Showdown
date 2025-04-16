@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -76,7 +77,7 @@ public class DNA_Splicer extends Item {
                 map.remove(pokemon.getUuid());
                 player.setAttached(DataManage.DATA_MAP, map);
             }else{
-                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.KYUREM_FUSED_WITH));
+                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.KYUREM_FUSED_WITH).getPokemon());
                 pokemon.getEntity().removeAttached(DataManage.KYUREM_FUSED_WITH);
             }
 
@@ -92,7 +93,7 @@ public class DNA_Splicer extends Item {
             }
             setTradable(pokemon, false);
 
-            pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, currentValue);
+            pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, new PokemonRef(currentValue));
 
             HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
             if(map == null){

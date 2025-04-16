@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.mod.common.battles.*;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -49,6 +50,7 @@ public abstract class MoveActionResponseMixin {
 
         if (!availableTargets.contains(targetPokemon)) return false;
 
+        MegaShowdown.LOGGER.info(gimmickID);
         if (
                 ("terastal".equals(gimmickID) || "dynamax".equals(gimmickID)) &&
                         (moveTarget == MoveTarget.allAdjacent || moveTarget == MoveTarget.allAdjacentFoes || moveTarget == MoveTarget.adjacentFoe) &&

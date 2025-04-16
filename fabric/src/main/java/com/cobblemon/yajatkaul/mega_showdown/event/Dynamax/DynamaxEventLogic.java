@@ -48,7 +48,7 @@ public class DynamaxEventLogic {
                 server = serverWorld.getServer();
             }
 
-            startGradualScaling(pokemonEntity, 3.0f);
+            startGradualScaling(pokemonEntity, 4.0f);
 
             if (pokemon.getEntity().getWorld() instanceof ServerWorld serverLevel) {
                 ServerScoreboard scoreboard = serverLevel.getScoreboard();

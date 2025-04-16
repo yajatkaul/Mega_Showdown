@@ -1747,13 +1747,17 @@ class BattleActions {
   // #region MEGA EVOLUTION
   // ==================================================================
   canMegaEvo(pokemon) {
-    const species = pokemon.baseSpecies;
+    const species = pokemon.species;
     const item = pokemon.getItem();
-    const megaKey = species.otherFormes?.find((form) => /.*-Mega(-[a-zA-Z])?/.test(form));
-    const megaForme = megaKey && this.dex.species.get(megaKey);
-	if (species.baseSpecies === "Rayquaza" && pokemon.baseMoves.includes("dragonascent")) {
+	if (species.baseSpecies === "Rayquaza" && pokemon.terastallized) {
+      return null;
+    }
+    if (species.baseSpecies === "Rayquaza" && pokemon.baseMoves.includes("dragonascent")) {
       return "Rayquaza-Mega";
     }
+    const megaKey = species.otherFormes?.find((form) => /.*-Mega(-[a-zA-Z])?/.test(form));
+    const megaForme = megaKey && this.dex.species.get(megaKey);
+	
     if ((this.battle.gen <= 7 || this.battle.ruleTable.has("+pokemontag:past")) && megaForme?.requiredMove && pokemon.baseMoves.includes((0, import_dex.toID)(megaForme.requiredMove)) && !item.zMove) {
       return megaForme.name;
     }
@@ -1785,6 +1789,9 @@ class BattleActions {
     return true;
   }
   canTerastallize(pokemon) {
+	  if (pokemon.species.baseSpecies === "Rayquaza") {
+      return pokemon.teraType;
+    }
       if (pokemon.getItem().zMove || pokemon.canMegaEvo || this.dex.gen !== 9 || pokemon.volatiles["dynamax"]) {
       return null;
     }
@@ -1796,6 +1803,7 @@ class BattleActions {
     }
 	const type = pokemon.teraType.charAt(0).toUpperCase() + pokemon.teraType.slice(1).toLowerCase();
 	this.battle.add("-terastallize", pokemon, type);
+	pokemon.canMegaEvo = null;
     pokemon.terastallized = type;
     for (const ally of pokemon.side.pokemon) {
       ally.canTerastallize = null;

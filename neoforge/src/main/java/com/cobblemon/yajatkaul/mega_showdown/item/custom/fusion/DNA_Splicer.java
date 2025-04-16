@@ -58,7 +58,6 @@ public class DNA_Splicer extends Item {
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
         PokemonRef refValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
-        MegaShowdown.LOGGER.info(String.valueOf(player.getData(DataManage.DATA_MAP)));
         Pokemon currentValue;
 
         if(refValue == null){
@@ -85,7 +84,7 @@ public class DNA_Splicer extends Item {
                 map.remove(pokemon.getUuid());
                 player.setData(DataManage.DATA_MAP, map);
             }else{
-                playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH));
+                playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH).getPokemon());
                 pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
             }
 
@@ -101,7 +100,7 @@ public class DNA_Splicer extends Item {
             }
             setTradable(pokemon, false);
 
-            pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, currentValue);
+            pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, new PokemonRef(currentValue));
 
             HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
             if(map == null){

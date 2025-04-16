@@ -46,9 +46,9 @@ public class DataManage {
 
     public static final DeferredRegister.DataComponents REGISTRAR = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, "mega_showdown");
 
-    public static final Supplier<AttachmentType<Pokemon>> KYUREM_FUSED_WITH = ATTACHMENT_TYPES.register(
-            "kyurem_fused_with", () -> AttachmentType.builder(Pokemon::new)
-                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    public static final Supplier<AttachmentType<PokemonRef>> KYUREM_FUSED_WITH = ATTACHMENT_TYPES.register(
+            "kyurem_fused_with", () -> AttachmentType.builder(() -> new PokemonRef(new Pokemon()))
+                    .serialize(PokemonRef.CODEC).build()
     );
 
     public static final Supplier<DataComponentType<PokemonRef>> KYUREM_DATA = REGISTRAR.registerComponentType(
@@ -58,9 +58,9 @@ public class DataManage {
                     .networkSynchronized(PokemonRef.S2C_CODEC)
     );
 
-    public static final Supplier<AttachmentType<Pokemon>> CALYREX_FUSED_WITH = ATTACHMENT_TYPES.register(
-            "calyrex_fusion_with", () -> AttachmentType.builder(Pokemon::new)
-                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    public static final Supplier<AttachmentType<PokemonRef>> CALYREX_FUSED_WITH = ATTACHMENT_TYPES.register(
+            "calyrex_fusion_with", () -> AttachmentType.builder(() -> new PokemonRef(new Pokemon()))
+                    .serialize(PokemonRef.CODEC).build()
     );
 
     public static final Supplier<DataComponentType<PokemonRef>> CALYREX_DATA = REGISTRAR.registerComponentType(
@@ -94,14 +94,14 @@ public class DataManage {
                     ))
     );
 
-    public static final Supplier<AttachmentType<Pokemon>> N_LUNAR_POKEMON = ATTACHMENT_TYPES.register(
-            "n_lunar_pokemon", () -> AttachmentType.builder(Pokemon::new)
-                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    public static final Supplier<AttachmentType<PokemonRef>> N_LUNAR_POKEMON = ATTACHMENT_TYPES.register(
+            "n_lunar_pokemon", () -> AttachmentType.builder(() -> new PokemonRef(new Pokemon()))
+                    .serialize(PokemonRef.CODEC).build()
     );
 
-    public static final Supplier<AttachmentType<Pokemon>> N_SOLAR_POKEMON = ATTACHMENT_TYPES.register(
-            "n_solar_pokemon", () -> AttachmentType.builder(Pokemon::new)
-                    .serialize(Pokemon.getCODEC()).copyOnDeath().build()
+    public static final Supplier<AttachmentType<PokemonRef>> N_SOLAR_POKEMON = ATTACHMENT_TYPES.register(
+            "n_solar_pokemon", () -> AttachmentType.builder(() -> new PokemonRef(new Pokemon()))
+                    .serialize(PokemonRef.CODEC).build()
     );
 
     public static void register(IEventBus eventBus){

@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,8 +39,8 @@ public class MegaCommands {
     }
 
     private static int executeResetCommon(PlayerEntity player) {
-        player.setAttached(DataManage.MEGA_DATA, false);
-        player.setAttached(DataManage.MEGA_POKEMON, new Pokemon());
+        player.removeAttached(DataManage.MEGA_DATA);
+        player.removeAttached(DataManage.MEGA_POKEMON);
 
         PCStore storge = Cobblemon.INSTANCE.getStorage().getPC((ServerPlayerEntity) player);
         PlayerPartyStore party = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);

@@ -32,6 +32,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -86,10 +87,10 @@ public class CobbleEventHandler {
         }
 
         if(!post.getPlayer().hasAttached(DataManage.MEGA_POKEMON)){
-            post.getPlayer().setAttached(DataManage.MEGA_POKEMON, new Pokemon());
+            post.getPlayer().setAttached(DataManage.MEGA_POKEMON, new PokemonRef(new Pokemon()));
         }
 
-        if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON) == post.getPokemon()){
+        if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON).getPokemon() == post.getPokemon()){
             post.getPlayer().removeAttached(DataManage.MEGA_DATA);
             post.getPlayer().removeAttached(DataManage.MEGA_POKEMON);
         }

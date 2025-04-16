@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -73,7 +74,7 @@ public class N_Lunarizer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setAttached(DataManage.DATA_MAP, map);
 
-            pk.setAttached(DataManage.N_LUNAR_POKEMON, currentValue);
+            pk.setAttached(DataManage.N_LUNAR_POKEMON, new PokemonRef(currentValue));
             arg.set(DataManage.N_LUNAR, null);
             new FlagSpeciesFeature("dawn-fusion", true).apply(pokemon);
             particleEffect(pokemon.getEntity());
@@ -104,7 +105,7 @@ public class N_Lunarizer extends Item {
                 map.remove(pokemon.getUuid());
                 player.setAttached(DataManage.DATA_MAP, map);
             }else{
-                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.N_LUNAR_POKEMON));
+                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.N_LUNAR_POKEMON).getPokemon());
                 pk.removeAttached(DataManage.N_LUNAR_POKEMON);
             }
 
