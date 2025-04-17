@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -29,7 +29,6 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
@@ -73,7 +72,7 @@ public class N_Solarizer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setAttached(DataManage.DATA_MAP, map);
 
-            pk.setAttached(DataManage.N_SOLAR_POKEMON, new PokemonRef(currentValue));
+            pk.setAttached(DataManage.N_SOLAR_POKEMON, new PokeHandler(currentValue));
             arg.set(DataManage.N_SOLAR, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
             particleEffect(pokemon.getEntity());

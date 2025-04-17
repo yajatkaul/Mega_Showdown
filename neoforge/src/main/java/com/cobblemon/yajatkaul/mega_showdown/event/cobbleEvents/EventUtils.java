@@ -59,6 +59,10 @@ public class EventUtils {
                 ultraAnimation(pokemon.getEntity());
             }
             new FlagSpeciesFeature("ultra", false).apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
+            new StringSpeciesFeature("tera_form", "normal").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Meloetta")) {
+            new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
         }
     }
 
@@ -153,7 +157,7 @@ public class EventUtils {
             // Play sound effect
             serverLevel.playSound(
                     null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BEACON_ACTIVATE, // Change this if needed
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
                     SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
             );
 

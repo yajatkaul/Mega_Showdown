@@ -31,7 +31,7 @@ public class CobbleEvents {
 
         CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEventHandler::formeChanges);
 
-        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventHandler::fixOgerTera);
+        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventHandler::fixTeraTyping);
 
         DynamaxEventLogic.register();
         UltraEventLogic.register();

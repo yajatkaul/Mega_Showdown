@@ -596,29 +596,29 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ZAYGARDE_CUBE = registerItem("zaygarde_cube",
+    public static final Item ZAYGARDE_CUBE = registerItem("zygarde_cube",
             new Item(new Item.Settings().maxCount(1)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            tooltip.add(Text.translatable("tooltip.mega_showdown.zaygarde_cube.tooltip"));
+            tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
 
-    public static final Item ZAYGARDE_CELL = registerItem("zaygarde_cell",
+    public static final Item ZAYGARDE_CELL = registerItem("zygarde_cell",
             new Item(new Item.Settings().maxCount(100)){
                 @Override
                 public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-                    tooltip.add(Text.translatable("tooltip.mega_showdown.zaygarde_cell.tooltip"));
+                    tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cell.tooltip"));
                     super.appendTooltip(stack, context, tooltip, type);
                 }
             });
 
-    public static final Item ZAYGARDE_CORE = registerItem("zaygarde_core",
+    public static final Item ZAYGARDE_CORE = registerItem("zygarde_core",
             new Item(new Item.Settings().maxCount(100)){
                 @Override
                 public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-                    tooltip.add(Text.translatable("tooltip.mega_showdown.zaygarde_core.tooltip"));
+                    tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_core.tooltip"));
                     super.appendTooltip(stack, context, tooltip, type);
                 }
             });

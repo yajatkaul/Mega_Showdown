@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "B": {
+      "item": "cobblemon:blue_apricorn"
+    },
     "I": {
       "item": "minecraft:iron_ingot"
-    },
-    "L": {
-      "item": "minecraft:lapis_lazuli"
     },
     "P": {
       "item": "cobblemon:pink_apricorn"
@@ -18,7 +18,7 @@
   "pattern": [
     "PPP",
     "IWI",
-    "LLL"
+    "BBB"
   ],
   "result": {
     "count": 1,

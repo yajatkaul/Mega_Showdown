@@ -416,11 +416,11 @@ public class ModRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DynamaxItems.DYNAMAX_BAND.get())
                 .pattern("PPP")
                 .pattern("IWI")
-                .pattern("LLL")
+                .pattern("BBB")
                 .define('P', CobblemonItems.PINK_APRICORN)
                 .define('I', Items.IRON_INGOT)
                 .define('W', DynamaxItems.WISHING_STAR)
-                .define('L', Items.LAPIS_LAZULI)
+                .define('B', CobblemonItems.BLUE_APRICORN)
                 .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DynamaxItems.MAX_SOUP.get())
@@ -522,5 +522,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('N', Items.NETHERITE_SCRAP)
                 .define('W', CobblemonItems.WATER_GEM)
                 .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.ZAYGARDE_CUBE.get())
+                .pattern("BGB")
+                .pattern("GNG")
+                .pattern("BGB")
+                .define('G', CobblemonItems.GREEN_APRICORN)
+                .define('B', CobblemonItems.BLACK_APRICORN)
+                .define('N', Items.NETHERITE_INGOT)
+                .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
     }
 }

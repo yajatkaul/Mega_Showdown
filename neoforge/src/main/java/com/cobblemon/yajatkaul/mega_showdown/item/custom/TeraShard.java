@@ -43,7 +43,8 @@ public class TeraShard extends Item {
 
             Item shard = arg.getItem().asItem();
 
-            if(pokemon.getSpecies().getName().equals("Ogerpon")){
+            if(pokemon.getSpecies().getName().equals("Ogerpon")
+                    || pokemon.getSpecies().getName().equals("Terapagos")){
                 return InteractionResult.PASS;
             }
 

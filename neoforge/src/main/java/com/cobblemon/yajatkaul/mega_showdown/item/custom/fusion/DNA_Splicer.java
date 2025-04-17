@@ -6,11 +6,9 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventsHandler;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -57,7 +55,7 @@ public class DNA_Splicer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokemonRef refValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
+        PokeHandler refValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
         Pokemon currentValue;
 
         if(refValue == null){
@@ -100,7 +98,7 @@ public class DNA_Splicer extends Item {
             }
             setTradable(pokemon, false);
 
-            pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, new PokemonRef(currentValue));
+            pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));
 
             HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
             if(map == null){
@@ -113,11 +111,11 @@ public class DNA_Splicer extends Item {
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
-            arg.set(DataManage.KYUREM_DATA, new PokemonRef(pk.getPokemon()));
+            arg.set(DataManage.KYUREM_DATA, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.charged"));
         }else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
-            arg.set(DataManage.KYUREM_DATA, new PokemonRef(pk.getPokemon()));
+            arg.set(DataManage.KYUREM_DATA, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.charged"));
         } else {
@@ -201,7 +199,7 @@ public class DNA_Splicer extends Item {
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokemonRef refValue = entity.getItem().getOrDefault(DataManage.KYUREM_DATA, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.KYUREM_DATA, null);
             Pokemon currentValue;
 
             if(refValue == null){

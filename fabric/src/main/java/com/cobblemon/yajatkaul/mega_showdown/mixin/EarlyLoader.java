@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.mod.common.battles.ShowdownThread;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,25 +20,27 @@ public class EarlyLoader {
 
     @Inject(method = "run", at = @At("HEAD"), remap = false)
     private void beforeShowdownStarts(CallbackInfo ci) {
-        Path showdown_sim = Path.of("./showdown/sim");
-        Path showdown_data = Path.of("./showdown/data");
+        if(ShowdownConfig.showdownFilesLoading.get()){
+            Path showdown_sim = Path.of("./showdown/sim");
+            Path showdown_data = Path.of("./showdown/data");
 
-        try {
-            Files.createDirectories(showdown_sim);
-            Files.createDirectories(showdown_data);
+            try {
+                Files.createDirectories(showdown_sim);
+                Files.createDirectories(showdown_data);
 
-            yoink("/assets/mega_showdown/showdown/moves.js", showdown_data.resolve("moves.js"));
-            yoink("/assets/mega_showdown/showdown/battle-actions.js", showdown_sim.resolve("battle-actions.js"));
-            yoink("/assets/mega_showdown/showdown/pokemon.js", showdown_sim.resolve("pokemon.js"));
-            yoink("/assets/mega_showdown/showdown/abilities.js", showdown_data.resolve("abilities.js"));
-            yoink("/assets/mega_showdown/showdown/items.js", showdown_data.resolve("items.js"));
-            yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
-            yoink("/assets/mega_showdown/showdown/conditions.js", showdown_sim.resolve("conditions.js"));
+                yoink("/assets/mega_showdown/showdown/moves.js", showdown_data.resolve("moves.js"));
+                yoink("/assets/mega_showdown/showdown/battle-actions.js", showdown_sim.resolve("battle-actions.js"));
+                yoink("/assets/mega_showdown/showdown/pokemon.js", showdown_sim.resolve("pokemon.js"));
+                yoink("/assets/mega_showdown/showdown/abilities.js", showdown_data.resolve("abilities.js"));
+                yoink("/assets/mega_showdown/showdown/items.js", showdown_data.resolve("items.js"));
+                yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
+                yoink("/assets/mega_showdown/showdown/conditions.js", showdown_sim.resolve("conditions.js"));
 
 
-            MegaShowdown.LOGGER.info("All files are ready!");
-        } catch (IOException e) {
-            MegaShowdown.LOGGER.error("Failed to prepare required files: {}", e.getMessage());
+                MegaShowdown.LOGGER.info("All files are ready!");
+            } catch (IOException e) {
+                MegaShowdown.LOGGER.error("Failed to prepare required files: {}", e.getMessage());
+            }
         }
     }
 

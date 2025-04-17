@@ -51,13 +51,17 @@ public class EventUtils {
             new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Arceus") && pokemon.heldItem().isOf(CompiItems.LEGEND_PLATE)){
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
-        }else if (pokemon.getSpecies().getName().equals("Xerneas")) {
+        } else if (pokemon.getSpecies().getName().equals("Xerneas")) {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
-        }else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
+        } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
             if(pokemon.getEntity() != null){
                 ultraAnimation(pokemon.getEntity());
             }
             new FlagSpeciesFeature("ultra", false).apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
+            new StringSpeciesFeature("tera_form", "normal").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Meloetta")) {
+            new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
         }
     }
 
@@ -153,7 +157,7 @@ public class EventUtils {
             // Play sound effect
             serverWorld.playSound(
                     null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_BEACON_ACTIVATE, // Change this if needed
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
                     SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
             );
 

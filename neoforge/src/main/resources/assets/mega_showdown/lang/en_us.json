@@ -566,12 +566,12 @@
   "item.mega_showdown.sparkling_stone_dark": "Dark Sparkling Stone",
   "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "A mysterious stone that emits a faint shadowy glow. It resonates with Z-Power.",
 
-  "item.mega_showdown.zaygarde_cube": "Zygarde Cube",
-  "tooltip.mega_showdown.zaygarde_cube.tooltip": "A cube that collects Zygarde Cells and Cores. It pulses faintly with energy from deep underground.",
-  "item.mega_showdown.zaygarde_cell": "Zygarde Cell",
-  "tooltip.mega_showdown.zaygarde_cell.tooltip": "A component of Zygarde. It's said to be one of many living cells scattered across the world.",
-  "item.mega_showdown.zaygarde_core": "Zygarde Core",
-  "tooltip.mega_showdown.zaygarde_core.tooltip": "The brain of Zygarde. It can think and act on its own, guiding the assembly of Zygarde Forms.",
+  "item.mega_showdown.zygarde_cube": "Zygarde Cube",
+  "tooltip.mega_showdown.zygarde_cube.tooltip": "A cube that collects Zygarde Cells and Cores. It pulses faintly with energy from deep underground.",
+  "item.mega_showdown.zygarde_cell": "Zygarde Cell",
+  "tooltip.mega_showdown.zygarde_cell.tooltip": "A component of Zygarde. It's said to be one of many living cells scattered across the world.",
+  "item.mega_showdown.zygarde_core": "Zygarde Core",
+  "tooltip.mega_showdown.zygarde_core.tooltip": "The brain of Zygarde. It can think and act on its own, guiding the assembly of Zygarde Forms.",
   "item.mega_showdown.reveal_glass": "Reveal Glass",
   "tooltip.mega_showdown.reveal_glass.tooltip": "A mysterious mirror that reveals the true forms of certain Pokémon."
 }

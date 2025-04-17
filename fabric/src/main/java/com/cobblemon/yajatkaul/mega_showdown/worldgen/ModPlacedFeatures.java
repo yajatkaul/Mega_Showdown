@@ -21,7 +21,7 @@ public class ModPlacedFeatures {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, MAX_MUSHROOM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MAX_MUSHROOM_KEY),
-                CountPlacementModifier.of(8),
+                CountPlacementModifier.of(3),
                 SquarePlacementModifier.of(),
                 HeightRangePlacementModifier.uniform(YOffset.fixed(-59), YOffset.fixed(64)),
                 BiomePlacementModifier.of());

@@ -6,10 +6,9 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -30,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
@@ -56,7 +54,7 @@ public class N_Solarizer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokemonRef refValue = arg.getOrDefault(DataManage.N_SOLAR, null);
+        PokeHandler refValue = arg.getOrDefault(DataManage.N_SOLAR, null);
         Pokemon currentValue;
 
         if(refValue == null){
@@ -76,7 +74,7 @@ public class N_Solarizer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setData(DataManage.DATA_MAP, map);
 
-            pk.setData(DataManage.N_SOLAR_POKEMON, new PokemonRef(currentValue));
+            pk.setData(DataManage.N_SOLAR_POKEMON, new PokeHandler(currentValue));
             arg.set(DataManage.N_SOLAR, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
             particleEffect(pokemon.getEntity());
@@ -85,7 +83,7 @@ public class N_Solarizer extends Item {
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
-            arg.set(DataManage.N_SOLAR, new PokemonRef(pokemon));
+            arg.set(DataManage.N_SOLAR, new PokeHandler(pokemon));
             playerPartyStore.remove(pokemon);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.charged"));
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
@@ -165,7 +163,7 @@ public class N_Solarizer extends Item {
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokemonRef refValue = entity.getItem().getOrDefault(DataManage.N_SOLAR, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.N_SOLAR, null);
             Pokemon currentValue;
 
             if(refValue == null){

@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -53,7 +53,7 @@ public class Unity extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokemonRef refValue = arg.getOrDefault(DataManage.CALYREX_DATA, null);
+        PokeHandler refValue = arg.getOrDefault(DataManage.CALYREX_DATA, null);
         Pokemon currentValue;
 
         if(refValue == null){
@@ -96,7 +96,7 @@ public class Unity extends Item {
             }
             pokemon.setTradeable(false);
 
-            pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, new PokemonRef(currentValue));
+            pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, new PokeHandler(currentValue));
 
             HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
             map.put(pokemon.getUuid(), currentValue);
@@ -106,11 +106,11 @@ public class Unity extends Item {
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
-            arg.set(DataManage.CALYREX_DATA, new PokemonRef(pk.getPokemon()));
+            arg.set(DataManage.CALYREX_DATA, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
         }else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
-            arg.set(DataManage.CALYREX_DATA, new PokemonRef(pk.getPokemon()));
+            arg.set(DataManage.CALYREX_DATA, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
         } else {
@@ -194,7 +194,7 @@ public class Unity extends Item {
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokemonRef refValue = entity.getItem().getOrDefault(DataManage.CALYREX_DATA, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.CALYREX_DATA, null);
             Pokemon currentValue;
 
             if(refValue == null){

@@ -5,6 +5,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.block.MapColor;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
@@ -354,6 +355,7 @@ public class MegaOres {
                             .sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD)
                             .nonOpaque()
                             .requiresTool()
+                            .pistonBehavior(PistonBehavior.PUSH_ONLY)
                             .luminance((state) -> 15)));
 
     public static void registerBlocks(){

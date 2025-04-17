@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokemonRef;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -162,7 +162,7 @@ public class MegaLogic {
             boolean found = false;
             for (int i = 0; i < 4; i++){
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                    player.setData(DataManage.MEGA_POKEMON, new PokemonRef(pokemon)); // ✅ Wrap in PokemonRef
+                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon)); // ✅ Wrap in PokemonRef
                     player.setData(DataManage.MEGA_DATA, true);
 
                     playEvolveAnimation(context);
@@ -201,7 +201,7 @@ public class MegaLogic {
             if(species.getName().equals(Utils.getSpecies("charizard").getName())){
                 if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
-                    player.setData(DataManage.MEGA_POKEMON, new PokemonRef(pokemon));
+                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                     playEvolveAnimation(context);
 
@@ -212,7 +212,7 @@ public class MegaLogic {
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }else if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
-                    player.setData(DataManage.MEGA_POKEMON, new PokemonRef(pokemon));
+                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                     playEvolveAnimation(context);
 
@@ -226,7 +226,7 @@ public class MegaLogic {
             else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
                 if(pokemon.heldItem().is(MegaStones.MEWTWONITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
-                    player.setData(DataManage.MEGA_POKEMON, new PokemonRef(pokemon));
+                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                     playEvolveAnimation(context);
 
@@ -237,7 +237,7 @@ public class MegaLogic {
                     AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }else if(pokemon.heldItem().is(MegaStones.MEWTWONITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
-                    player.setData(DataManage.MEGA_POKEMON, new PokemonRef(pokemon));
+                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                     playEvolveAnimation(context);
 
@@ -250,7 +250,7 @@ public class MegaLogic {
             }
             else{
                 player.setData(DataManage.MEGA_DATA, true);
-                player.setData(DataManage.MEGA_POKEMON, new PokemonRef(pokemon));
+                player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                 new FlagSpeciesFeature("mega", true).apply(pokemon);
                 setTradable(pokemon, false);

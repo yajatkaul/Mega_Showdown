@@ -20,6 +20,7 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> dynamaxAnywhere;
     public static final Supplier<Integer> powerSpotRange;
     public static final Supplier<Integer> dynamaxScaleFactor;
+    public static final Supplier<Boolean> showdownFilesLoading;
 
     static{
         // construct a new config builder
@@ -39,6 +40,12 @@ public class ShowdownConfig {
         dynamaxAnywhere = builder.comment("Allows you to dynamax anywhere you dont need to be near the dynamax area").define("dynamaxAnywhere", false);
         powerSpotRange = builder.comment("Range around a power spot where Dynamax is allowed").define("powerSpotRange", 20,0,10000);
         dynamaxScaleFactor = builder.comment("By how many times should the pokemon size increase when g/dmaxing").define("dynamaxScaleFactor", 4,1,10000);
+        showdownFilesLoading = builder.comment("""
+                     Enable/Disable loading of showdown files from the mod,\s
+                     note this means once you load the game and the showdown changes have been affected you disable
+                     this it will stop overwriting it ever load\
+                    , this is for people who want to edit showdown\s
+                     but can't since mega showdown keeps overriding the files""").define("showdownFilesLoading", true);
 
         builder.build();
     }

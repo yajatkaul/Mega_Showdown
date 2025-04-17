@@ -66,7 +66,16 @@ public class Config
 
     private static final ModConfigSpec.IntValue DMAX_SCALE_FACTOR = BUILDER
             .comment("By how many times should the pokemon size increase when g/dmaxing")
-            .defineInRange("By how many times should the pokemon size increase when g/dmaxing", 4, 0, 10000);
+            .defineInRange("dynamaxScaleFactor", 4, 0, 10000);
+
+    private static final ModConfigSpec.BooleanValue SHOWDOWN_FILES_LOADING = BUILDER
+            .comment("""
+                     Enable/Disable loading of showdown files from the mod,\s
+                     note this means once you load the game and the showdown changes have been affected you disable
+                     this it will stop overwriting it ever load\
+                    , this is for people who want to edit showdown\s
+                     but can't since mega showdown keeps overriding the files""")
+            .define("showdownFilesLoading", true);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -84,6 +93,7 @@ public class Config
     public static boolean dynamaxAnywhere;
     public static int powerSpotRange;
     public static int dynamaxScaleFactor;
+    public static boolean showdownFilesLoading;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -102,5 +112,6 @@ public class Config
         dynamaxAnywhere = DYNAMAX_ANYWHERE.get();
         powerSpotRange = POWER_SPOT_RANGE.get();
         dynamaxScaleFactor = DMAX_SCALE_FACTOR.get();
+        showdownFilesLoading = SHOWDOWN_FILES_LOADING.get();
     }
 }

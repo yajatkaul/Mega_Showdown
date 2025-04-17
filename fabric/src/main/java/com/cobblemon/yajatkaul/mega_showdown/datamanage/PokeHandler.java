@@ -5,10 +5,10 @@ import com.mojang.serialization.Codec;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 
-public class PokemonRef {
+public class PokeHandler {
     private final Pokemon pokemon;
 
-    public PokemonRef(Pokemon pokemon) {
+    public PokeHandler(Pokemon pokemon) {
         this.pokemon = pokemon;
     }
 
@@ -26,9 +26,9 @@ public class PokemonRef {
         return System.identityHashCode(this);
     }
 
-    public static final Codec<PokemonRef> CODEC =
-            Pokemon.getCODEC().xmap(PokemonRef::new, PokemonRef::getPokemon);
+    public static final Codec<PokeHandler> CODEC =
+            Pokemon.getCODEC().xmap(PokeHandler::new, PokeHandler::getPokemon);
 
-    public static final PacketCodec<RegistryByteBuf, PokemonRef> S2C_CODEC =
-            Pokemon.getS2C_CODEC().xmap(PokemonRef::new, PokemonRef::getPokemon);
+    public static final PacketCodec<RegistryByteBuf, PokeHandler> S2C_CODEC =
+            Pokemon.getS2C_CODEC().xmap(PokeHandler::new, PokeHandler::getPokemon);
 }

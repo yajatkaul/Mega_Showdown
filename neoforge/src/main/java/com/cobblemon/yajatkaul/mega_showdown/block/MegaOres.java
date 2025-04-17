@@ -10,7 +10,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Supplier;
@@ -456,6 +460,7 @@ public class MegaOres {
                             .sound(SoundType.MEDIUM_AMETHYST_BUD)
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
+                            .pushReaction(PushReaction.PUSH_ONLY)
                             .lightLevel((state) -> 15)));
 
     public static final DeferredBlock<Block> MEGA_METEORID_WATER_ORE = registerBlock("mega_meteorid_water_ore",

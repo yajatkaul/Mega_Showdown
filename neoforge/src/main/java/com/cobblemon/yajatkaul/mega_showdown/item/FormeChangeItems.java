@@ -616,29 +616,29 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final DeferredItem<Item> ZAYGARDE_CUBE = ITEMS.register("zaygarde_cube",
+    public static final DeferredItem<Item> ZAYGARDE_CUBE = ITEMS.register("zygarde_cube",
             () -> new Item(new Item.Properties().stacksTo(1)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zaygarde_cube.tooltip"));
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
 
-    public static final DeferredItem<Item> ZAYGARDE_CELL = ITEMS.register("zaygarde_cell",
+    public static final DeferredItem<Item> ZAYGARDE_CELL = ITEMS.register("zygarde_cell",
             () -> new Item(new Item.Properties().stacksTo(100)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zaygarde_cell.tooltip"));
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_cell.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });
 
-    public static final DeferredItem<Item> ZAYGARDE_CORE = ITEMS.register("zaygarde_core",
+    public static final DeferredItem<Item> ZAYGARDE_CORE = ITEMS.register("zygarde_core",
             () -> new Item(new Item.Properties().stacksTo(100)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zaygarde_core.tooltip"));
+                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_core.tooltip"));
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             });

@@ -31,14 +31,14 @@ public class DataManage {
                     )
     );
 
-    public static final AttachmentType<PokemonRef> MEGA_POKEMON = AttachmentRegistry.create(
+    public static final AttachmentType<PokeHandler> MEGA_POKEMON = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "mega_pokemon"),
             builder -> builder
                     .copyOnDeath()
-                    .initializer(() -> new PokemonRef(new Pokemon()))
-                    .persistent(PokemonRef.CODEC)
+                    .initializer(() -> new PokeHandler(new Pokemon()))
+                    .persistent(PokeHandler.CODEC)
                     .syncWith(
-                            PokemonRef.S2C_CODEC,
+                            PokeHandler.S2C_CODEC,
                             AttachmentSyncPredicate.all()
                     )
     );
@@ -83,24 +83,24 @@ public class DataManage {
             ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
-    public static final AttachmentType<PokemonRef> N_LUNAR_POKEMON = AttachmentRegistry.create(
+    public static final AttachmentType<PokeHandler> N_LUNAR_POKEMON = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "n_lunar_pokemon"),
             builder -> builder
-                    .initializer(() -> new PokemonRef(new Pokemon()))
-                    .persistent(PokemonRef.CODEC)
+                    .initializer(() -> new PokeHandler(new Pokemon()))
+                    .persistent(PokeHandler.CODEC)
                     .syncWith(
-                            PokemonRef.S2C_CODEC,
+                            PokeHandler.S2C_CODEC,
                             AttachmentSyncPredicate.all()
                     )
     );
 
-    public static final AttachmentType<PokemonRef> N_SOLAR_POKEMON = AttachmentRegistry.create(
+    public static final AttachmentType<PokeHandler> N_SOLAR_POKEMON = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "n_solar_pokemon"),
             builder -> builder
-                    .initializer(() -> new PokemonRef(new Pokemon()))
-                    .persistent(PokemonRef.CODEC)
+                    .initializer(() -> new PokeHandler(new Pokemon()))
+                    .persistent(PokeHandler.CODEC)
                     .syncWith(
-                            PokemonRef.S2C_CODEC,
+                            PokeHandler.S2C_CODEC,
                             AttachmentSyncPredicate.all()
                     )
     );
@@ -111,13 +111,13 @@ public class DataManage {
             ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
-    public static final AttachmentType<PokemonRef> KYUREM_FUSED_WITH = AttachmentRegistry.create(
+    public static final AttachmentType<PokeHandler> KYUREM_FUSED_WITH = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "kyurem_fused_with"),
             builder -> builder
-                    .initializer(() -> new PokemonRef(new Pokemon()))
-                    .persistent(PokemonRef.CODEC)
+                    .initializer(() -> new PokeHandler(new Pokemon()))
+                    .persistent(PokeHandler.CODEC)
                     .syncWith(
-                            PokemonRef.S2C_CODEC,
+                            PokeHandler.S2C_CODEC,
                             AttachmentSyncPredicate.all()
                     )
     );
@@ -128,13 +128,13 @@ public class DataManage {
             ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
-    public static final AttachmentType<PokemonRef> CALYREX_FUSED_WITH = AttachmentRegistry.create(
+    public static final AttachmentType<PokeHandler> CALYREX_FUSED_WITH = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "calyrex_fused_with"),
             builder -> builder
-                    .initializer(() -> new PokemonRef(new Pokemon()))
-                    .persistent(PokemonRef.CODEC)
+                    .initializer(() -> new PokeHandler(new Pokemon()))
+                    .persistent(PokeHandler.CODEC)
                     .syncWith(
-                            PokemonRef.S2C_CODEC,
+                            PokeHandler.S2C_CODEC,
                             AttachmentSyncPredicate.all()
                     )
     );
