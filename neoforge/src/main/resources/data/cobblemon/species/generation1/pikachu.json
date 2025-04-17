@@ -286,7 +286,13 @@
       ],
       "dynamaxBlocked": true,
       "evolutions": [],
-      "battleOnly": true
+      "battleOnly": true,
+      "baseScale": 4,
+      "hitbox": {
+        "width": 0.7,
+        "height": 1.3,
+        "fixed": false
+      }
     },
     {
       "name": "Alola-Bias",

@@ -1,0 +1,25 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "morpeko-1",
+            "pokemon": "morpeko",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "15-32",
+            "weight": 4.1,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "minecraft:dark_forest",
+                    "minecraft:flower_forest",
+                    "#cobblemon:is_jungle",
+                    "#cobblemon:is_forest"
+                ]
+            }
+        }
+    ]
+}

@@ -24,7 +24,9 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -61,7 +63,6 @@ public class CobbleEventsHandler {
         HeldItemChangeFormes.ogerponChange(event);
         HeldItemChangeFormes.eternamaxChange(event);
         HeldItemChangeFormes.originChange(event);
-        HeldItemChangeFormes.therianEvent(event);
 
         if(Config.battleModeOnly){
             return Unit.INSTANCE;
@@ -179,7 +180,14 @@ public class CobbleEventsHandler {
             }
         }
 
-        ItemStack teraOrb = CuriosApi.getCuriosInventory(terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()).get().findFirstCurio(TeraMoves.TERA_ORB.get()).get().stack();
+        Player player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
+
+        ItemStack teraOrb = CuriosApi.getCuriosInventory(player)
+                .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
+                        stack -> (stack.getItem() instanceof TeraItem)
+                ))
+                .map(SlotResult::stack)
+                .orElse(null);
 
         if (teraOrb != null) {
             // Reduce durability by a specific amount (e.g., 10 points)
@@ -195,8 +203,10 @@ public class CobbleEventsHandler {
         }
 
         ItemStack teraOrb = CuriosApi.getCuriosInventory(pokemonHealedEvent.getPokemon().getOwnerPlayer())
-                .flatMap(curiosInventory -> curiosInventory.findFirstCurio(TeraMoves.TERA_ORB.get()))
-                .map(SlotResult::stack)  // Safely extract the stack if present
+                .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
+                        stack -> (stack.getItem() instanceof TeraItem)
+                ))
+                .map(SlotResult::stack)
                 .orElse(null);
 
         if (teraOrb != null) {

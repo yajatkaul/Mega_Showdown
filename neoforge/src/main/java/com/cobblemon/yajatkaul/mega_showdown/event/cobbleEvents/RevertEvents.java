@@ -20,6 +20,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -135,31 +136,36 @@ public class RevertEvents {
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
-            boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
-                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof TeraItem))
-                    .orElse(false);
-
-            ItemStack teraOrb = CuriosApi.getCuriosInventory(player)
-                    .flatMap(curiosInventory -> curiosInventory.findFirstCurio(TeraMoves.TERA_ORB.get()))
-                    .map(SlotResult::stack)
-                    .orElse(null);
-
-            if(teraOrb != null && teraOrb.getDamageValue() >= 100){
-                hasTeraItemCurios = false;
-            }
-
             boolean hasDMAXItemCurios = CuriosApi.getCuriosInventory(player)
-                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof Dynamax))
+                    .map(inventory -> inventory.isEquipped(stack ->
+                            (stack.getItem() instanceof Dynamax || stack.is(ModTags.Items.DYNAMAX_BAND))))
                     .orElse(false);
 
             if(isBlockNearby(player, ModBlocks.POWER_SPOT.get(), Config.powerSpotRange) || Config.dynamaxAnywhere){
-                if((player.getOffhandItem().getItem() instanceof Dynamax || hasDMAXItemCurios) && Config.dynamax){
+                if((player.getOffhandItem().getItem() instanceof Dynamax
+                        || player.getOffhandItem().is(ModTags.Items.DYNAMAX_BAND)
+                        || hasDMAXItemCurios) && Config.dynamax){
                     data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
                 }else {
                     data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
                 }
             }else {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+            }
+
+            boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
+                    .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof TeraItem)))
+                    .orElse(false);
+
+            ItemStack teraOrb = CuriosApi.getCuriosInventory(player)
+                    .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
+                            stack -> (stack.getItem() instanceof TeraItem)
+                    ))
+                    .map(SlotResult::stack)
+                    .orElse(null);
+
+            if(teraOrb == null || teraOrb.getDamageValue() >= 100){
+                hasTeraItemCurios = false;
             }
 
             if(hasTeraItemCurios && Config.teralization){
@@ -176,10 +182,10 @@ public class RevertEvents {
             }
 
             boolean hasZItemCurios = CuriosApi.getCuriosInventory(player)
-                    .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof ZRingItem))
+                    .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof ZRingItem || stack.is(ModTags.Items.Z_RINGS))))
                     .orElse(false);
 
-            if((player.getOffhandItem().getItem() instanceof ZRingItem || hasZItemCurios) && Config.zMoves){
+            if((player.getOffhandItem().getItem() instanceof ZRingItem || player.getOffhandItem().is(ModTags.Items.Z_CRYSTALS) || hasZItemCurios) && Config.zMoves){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
             }else{
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));

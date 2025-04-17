@@ -1,16 +1,14 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraPacket;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -28,9 +26,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class Unbound extends Item {
-    public Unbound(Settings settings) {
+public class RevealGlass extends Item {
+
+    public RevealGlass(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        tooltip.add(Text.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
+        super.appendTooltip(stack, context, tooltip, type);
     }
 
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
@@ -58,65 +63,29 @@ public class Unbound extends Item {
             return ActionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayerEntity) player) && pk.getPokemon().getSpecies().getName().equals("Hoopa")){
+        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayerEntity) player)){
             Pokemon pokemon = pk.getPokemon();
 
-            if(pokemon.getAspects().contains("unbound")){
-                new StringSpeciesFeature("djinn_state", "confined").apply(pokemon);
+            if(!pokemon.getSpecies().getName().equals("Tornadus") &&
+                    !pokemon.getSpecies().getName().equals("Thundurus") &&
+                    !pokemon.getSpecies().getName().equals("Landorus") &&
+                    !pokemon.getSpecies().getName().equals("Enamorus")){
+                return ActionResult.PASS;
+            }
+
+            if(pokemon.getAspects().contains("therian-forme")){
+                new StringSpeciesFeature("mirror_forme","therian").apply(pokemon);
                 playEvolveAnimation(pokemon.getEntity());
                 return ActionResult.SUCCESS;
             }else{
-                AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "prison_escape");
                 new StringSpeciesFeature("djinn_state", "unbound").apply(pokemon);
-                unboundAnimation(pokemon.getEntity());
+                playEvolveAnimation(pokemon.getEntity());
                 return ActionResult.SUCCESS;
             }
         }
         return super.useOnEntity(arg, player, context, hand);
     }
 
-    private static void unboundAnimation(LivingEntity context) {
-        if (context.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3d entityPos = context.getPos(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getWidth();
-            double entityHeight = context.getHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
-
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 4; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
-
-            // Play sound effect
-            serverWorld.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_NOTE_BLOCK_IMITATE_ENDER_DRAGON, // Change this if needed
-                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverWorld.spawnParticles(
-                        ParticleTypes.DRAGON_BREATH,
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
-    }
     public static void playEvolveAnimation(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position

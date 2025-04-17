@@ -12,16 +12,19 @@ import java.util.List;
 @Mixin(value = MoveActionResponse.class, remap = false)
 public abstract class MoveActionResponseMixin {
 
-    @Shadow public String moveName;
-    @Shadow @Nullable public String targetPnx;
-    @Shadow @Nullable public String gimmickID;
+    @Shadow
+    private String moveName;
+    @Shadow
+    private String targetPnx;
+    @Shadow
+    private String gimmickID;
 
     /**
      * @author YajatKaul
-     * @reason Fixing z moves, tera spread attack bug
+     * @reason TargetSelection
      */
     @Overwrite
-    public boolean isValid(ActiveBattlePokemon activeBattlePokemon, @Nullable ShowdownMoveset showdownMoveSet, boolean forceSwitch) {
+    public boolean isValid(ActiveBattlePokemon activeBattlePokemon, ShowdownMoveset showdownMoveSet, boolean forceSwitch) {
         if (forceSwitch || showdownMoveSet == null) {
             return false;
         }
@@ -44,18 +47,23 @@ public abstract class MoveActionResponseMixin {
         List<?> availableTargets = moveTarget.getTargetList().invoke(activeBattlePokemon);
         if (availableTargets == null || availableTargets.isEmpty()) return true;
 
-        if (targetPnx == null) return false;
+        boolean isGimmickAOEInSingles =
+                ("terastal".equals(gimmickID) || "dynamax".equals(gimmickID)) &&
+                        (moveTarget == MoveTarget.allAdjacent ||
+                                moveTarget == MoveTarget.allAdjacentFoes ||
+                                moveTarget == MoveTarget.adjacentFoe) &&
+                        activeBattlePokemon.getBattle().getFormat().getBattleType() == BattleTypes.INSTANCE.getSINGLES();
+
+        if (targetPnx == null) {
+            return isGimmickAOEInSingles;
+        }
+
         var pair = activeBattlePokemon.getActor().getBattle().getActorAndActiveSlotFromPNX(targetPnx);
         var targetPokemon = pair.getSecond();
 
         if (!availableTargets.contains(targetPokemon)) return false;
 
-        MegaShowdown.LOGGER.info(gimmickID);
-        if (
-                ("terastal".equals(gimmickID) || "dynamax".equals(gimmickID)) &&
-                        (moveTarget == MoveTarget.allAdjacent || moveTarget == MoveTarget.allAdjacentFoes || moveTarget == MoveTarget.adjacentFoe) &&
-                        activeBattlePokemon.getBattle().getFormat().getBattleType() == BattleTypes.INSTANCE.getSINGLES()
-        ) {
+        if (isGimmickAOEInSingles) {
             this.targetPnx = null;
             return true;
         }

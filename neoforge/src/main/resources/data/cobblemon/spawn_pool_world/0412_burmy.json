@@ -1,0 +1,35 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "burmy-1",
+            "pokemon": "burmy bagworm_cloak=plant",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "25-45",
+            "weight": 15.0,
+            "condition": {
+                "biomes": [
+                    "biomesoplenty:aspen_glade"
+                ]
+            }
+        },
+        {
+            "id": "burmy-2",
+            "pokemon": "burmy bagworm_cloak=plant",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "5-26",
+            "weight": 2,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_forest"
+                ]
+            }
+        }
+    ]
+}

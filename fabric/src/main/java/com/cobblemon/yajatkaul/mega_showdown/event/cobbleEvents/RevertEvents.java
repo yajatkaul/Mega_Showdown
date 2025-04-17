@@ -15,20 +15,22 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.List;
 
 public class RevertEvents {
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
@@ -48,10 +50,13 @@ public class RevertEvents {
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
             boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> item.getItem() instanceof Dynamax)).orElse(false);
+                    trinkets.isEquipped(item -> item.getItem() instanceof Dynamax
+                            || item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
 
             if(isBlockNearby(player, ModBlocks.POWER_SPOT, ShowdownConfig.powerSpotRange.get()) || ShowdownConfig.dynamaxAnywhere.get()) {
-                if ((player.getOffHandStack().getItem() instanceof Dynamax || hasDMaxItemTrinkets) && ShowdownConfig.dynamax.get()) {
+                if ((player.getOffHandStack().getItem() instanceof Dynamax
+                        || player.getOffHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
+                        || hasDMaxItemTrinkets) && ShowdownConfig.dynamax.get()) {
                     data.getKeyItems().add(Identifier.of("cobblemon", "dynamax_band"));
                 } else {
                     data.getKeyItems().remove(Identifier.of("cobblemon", "dynamax_band"));
@@ -61,7 +66,20 @@ public class RevertEvents {
             }
 
             boolean hasTeraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> item.getItem() instanceof TeraItem)).orElse(false);
+                    trinkets.isEquipped(item -> (item.getItem() instanceof TeraItem))).orElse(false);
+
+            ItemStack teraOrb = TrinketsApi.getTrinketComponent(player)
+                    .flatMap(component -> component.getAllEquipped().stream()
+                            .map(Pair::getRight)
+                            .filter(stack -> !stack.isEmpty() && (
+                                    stack.getItem() instanceof TeraItem
+                            ))
+                            .findFirst()
+                    ).orElse(null);
+
+            if (teraOrb == null || teraOrb.getDamage() >= 100) {
+                hasTeraItemTrinkets = false;
+            }
 
             if(hasTeraItemTrinkets && ShowdownConfig.teralization.get()){
                 data.getKeyItems().add(Identifier.of("cobblemon","tera_orb"));
@@ -78,9 +96,12 @@ public class RevertEvents {
             }
 
             boolean hasZItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> item.getItem() instanceof ZRingItem)).orElse(false);
+                    trinkets.isEquipped(item -> (item.getItem() instanceof ZRingItem
+                            || item.isIn(ModTags.Items.Z_RINGS)))).orElse(false);
 
-            if((player.getOffHandStack().getItem() instanceof ZRingItem || hasZItemTrinkets) && ShowdownConfig.zMoves.get()){
+            if((player.getOffHandStack().getItem() instanceof ZRingItem
+                    || player.getOffHandStack().isIn(ModTags.Items.Z_RINGS)
+                    || hasZItemTrinkets) && ShowdownConfig.zMoves.get()){
                 data.getKeyItems().add(Identifier.of("cobblemon","z_ring"));
             }else{
                 data.getKeyItems().remove(Identifier.of("cobblemon","z_ring"));

@@ -624,13 +624,7 @@ public class FormeChangeItems {
             });
 
     public static final Item REVEAL_GLASS = registerItem("reveal_glass",
-            new Item(new Item.Settings().maxCount(1)){
-                @Override
-                public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-                    tooltip.add(Text.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
-                    super.appendTooltip(stack, context, tooltip, type);
-                }
-            });
+            new RevealGlass(new Item.Settings().maxCount(1)));
 
     public static void registerModItem(){
 

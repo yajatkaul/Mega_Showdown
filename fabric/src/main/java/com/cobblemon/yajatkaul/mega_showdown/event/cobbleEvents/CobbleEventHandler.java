@@ -26,7 +26,9 @@ import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
 import net.minecraft.entity.LivingEntity;
@@ -41,6 +43,7 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 
 import java.util.Random;
 import java.util.UUID;
@@ -63,7 +66,6 @@ public class CobbleEventHandler {
         HeldItemChangeFormes.ogerponChange(post);
         HeldItemChangeFormes.eternamaxChange(post);
         HeldItemChangeFormes.originChange(post);
-        HeldItemChangeFormes.therianEvent(post);
 
         if(ShowdownConfig.battleModeOnly.get()){
             return Unit.INSTANCE;
@@ -114,7 +116,6 @@ public class CobbleEventHandler {
                         new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true),
                         new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), false),
                         false);
-
             }
         }
 
@@ -175,20 +176,19 @@ public class CobbleEventHandler {
         }
 
         PlayerEntity player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
-        AtomicReference<ItemStack> teraOrb = new AtomicReference<>(ItemStack.EMPTY); // Default to empty stack if not found
 
-        TrinketsApi.getTrinketComponent(player).ifPresent(trinketComponent -> {
-            trinketComponent.getEquipped(TeraMoves.TERA_ORB).forEach(pair -> {
-                ItemStack stack = pair.getRight(); // The ItemStack of the equipped trinket
-                if (!stack.isEmpty()) {
-                    teraOrb.set(stack); // Assign the found stack
-                }
-            });
-        });
+        ItemStack teraOrb = TrinketsApi.getTrinketComponent(player)
+                .flatMap(component -> component.getAllEquipped().stream()
+                        .map(Pair::getRight)
+                        .filter(stack -> !stack.isEmpty() && (
+                                stack.getItem() instanceof TeraItem
+                        ))
+                        .findFirst()
+                ).orElse(null);
 
-        if (teraOrb.get() != null) {
+        if (teraOrb != null) {
             // Reduce durability by a specific amount (e.g., 10 points)
-            teraOrb.get().setDamage(teraOrb.get().getDamage() + 10);
+            teraOrb.setDamage(teraOrb.getDamage() + 10);
         }
 
         return Unit.INSTANCE;
@@ -222,19 +222,18 @@ public class CobbleEventHandler {
         }
 
         PlayerEntity player = pokemonHealedEvent.getPokemon().getOwnerPlayer();
-        AtomicReference<ItemStack> teraOrb = new AtomicReference<>(ItemStack.EMPTY); // Default to empty stack if not found
 
-        TrinketsApi.getTrinketComponent(player).ifPresent(trinketComponent -> {
-            trinketComponent.getEquipped(TeraMoves.TERA_ORB).forEach(pair -> {
-                ItemStack stack = pair.getRight(); // The ItemStack of the equipped trinket
-                if (!stack.isEmpty()) {
-                    teraOrb.set(stack); // Assign the found stack
-                }
-            });
-        });
+        ItemStack teraOrb = TrinketsApi.getTrinketComponent(player)
+                .flatMap(component -> component.getAllEquipped().stream()
+                        .map(Pair::getRight)
+                        .filter(stack -> !stack.isEmpty() && (
+                                stack.getItem() instanceof TeraItem
+                        ))
+                        .findFirst()
+                ).orElse(null);
 
         if (teraOrb != null) {
-            teraOrb.get().setDamage(0);
+            teraOrb.setDamage(0);
         }
 
         return Unit.INSTANCE;

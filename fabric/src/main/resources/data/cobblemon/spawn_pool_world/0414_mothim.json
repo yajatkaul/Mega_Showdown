@@ -1,0 +1,35 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "mothim-1",
+            "pokemon": "mothim",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "rare",
+            "level": "45-65",
+            "weight": 15.0,
+            "condition": {
+                "biomes": [
+                    "biomesoplenty:maple_woods"
+                ]
+            }
+        },
+        {
+            "id": "mothim-2",
+            "pokemon": "mothim",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "rare",
+            "level": "28-45",
+            "weight": 2,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_forest"
+                ]
+            }
+        }
+    ]
+}

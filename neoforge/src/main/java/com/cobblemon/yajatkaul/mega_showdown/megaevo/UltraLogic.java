@@ -8,6 +8,7 @@ import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -37,11 +38,12 @@ public class UltraLogic {
         long currentTime = System.currentTimeMillis();
 
         boolean hasUltraItemCurios = CuriosApi.getCuriosInventory(player)
-                .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof ZRingItem))
+                .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof ZRingItem
+                        || stack.is(ModTags.Items.Z_RINGS))))
                 .orElse(false);
 
-        boolean hasOffhandUltraItem = player.getOffhandItem().getItem() instanceof ZRingItem;
-        boolean hasMainhandUltraItem = player.getMainHandItem().getItem() instanceof ZRingItem;
+        boolean hasOffhandUltraItem = player.getOffhandItem().getItem() instanceof ZRingItem || player.getOffhandItem().is(ModTags.Items.Z_RINGS);
+        boolean hasMainhandUltraItem = player.getMainHandItem().getItem() instanceof ZRingItem || player.getMainHandItem().is(ModTags.Items.Z_RINGS);
 
         if (!hasUltraItemCurios && !hasOffhandUltraItem && !hasMainhandUltraItem) {
             return false;

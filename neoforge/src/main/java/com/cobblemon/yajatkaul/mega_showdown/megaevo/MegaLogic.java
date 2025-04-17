@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -48,11 +49,11 @@ public class MegaLogic {
         }
 
         boolean hasMegaItemCurios = CuriosApi.getCuriosInventory(player)
-                .map(inventory -> inventory.isEquipped(stack -> stack.getItem() instanceof MegaBraceletItem))
+                .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof MegaBraceletItem || stack.is(ModTags.Items.MEGA_BRACELETS))))
                 .orElse(false);
 
-        boolean hasOffhandMegaItem = player.getOffhandItem().getItem() instanceof MegaBraceletItem;
-        boolean hasMainhandMegaItem = player.getMainHandItem().getItem() instanceof MegaBraceletItem;
+        boolean hasOffhandMegaItem = player.getOffhandItem().getItem() instanceof MegaBraceletItem || player.getOffhandItem().is(ModTags.Items.MEGA_BRACELETS);
+        boolean hasMainhandMegaItem = player.getMainHandItem().getItem() instanceof MegaBraceletItem || player.getMainHandItem().is(ModTags.Items.MEGA_BRACELETS);
 
         if(fromBattle){
             if (!hasMegaItemCurios && !hasOffhandMegaItem) {

@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.LivingEntity;
@@ -52,10 +53,11 @@ public class MegaLogic {
         }
 
         boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                trinkets.isEquipped(item -> item.getItem() instanceof MegaBraceletItem)).orElse(false);
+                trinkets.isEquipped(item -> (item.getItem() instanceof MegaBraceletItem || item.isIn(ModTags.Items.MEGA_BRACELETS)))).orElse(false);
 
-        boolean hasOffhandMegaItem = player.getOffHandStack().getItem() instanceof MegaBraceletItem;
-        boolean hasMainhandMegaItem = player.getMainHandStack().getItem() instanceof MegaBraceletItem;
+        boolean hasOffhandMegaItem = player.getOffHandStack().getItem() instanceof MegaBraceletItem || player.getOffHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
+        boolean hasMainhandMegaItem = player.getMainHandStack().getItem() instanceof MegaBraceletItem || player.getMainHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
+
 
         if(fromBattle){
             if (!hasMegaItemTrinkets && !hasOffhandMegaItem && !hasMainhandMegaItem) {

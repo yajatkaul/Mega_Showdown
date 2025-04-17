@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -39,10 +40,10 @@ public class UltraLogic {
         long currentTime = System.currentTimeMillis();
 
         boolean hasUltraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                trinkets.isEquipped(item -> item.getItem() instanceof ZRingItem)).orElse(false);
+                trinkets.isEquipped(item -> (item.getItem() instanceof ZRingItem || item.isIn(ModTags.Items.Z_RINGS)))).orElse(false);
 
-        boolean hasOffhandUltraItem = player.getOffHandStack().getItem() instanceof ZRingItem;
-        boolean hasMainhandUltraItem = player.getMainHandStack().getItem() instanceof ZRingItem;
+        boolean hasOffhandUltraItem = player.getOffHandStack().getItem() instanceof ZRingItem || player.getOffHandStack().isIn(ModTags.Items.Z_RINGS);
+        boolean hasMainhandUltraItem = player.getMainHandStack().getItem() instanceof ZRingItem || player.getMainHandStack().isIn(ModTags.Items.Z_RINGS);
 
         if (!hasUltraItemTrinkets && !hasOffhandUltraItem && !hasMainhandUltraItem) {
             return false;

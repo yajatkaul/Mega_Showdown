@@ -644,13 +644,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> REVEAL_GLASS = ITEMS.register("reveal_glass",
-            () -> new Item(new Item.Properties().stacksTo(1)){
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
+            () -> new RevealGlass(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<BlockItem> DEOXYS_METEORITE = ModItems.ITEMS.register("deoxys_meteorite", () -> new BlockItem(ModBlocks.DEOXYS_METEORITE.get(),
             new Item.Properties()){

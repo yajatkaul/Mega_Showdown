@@ -1,0 +1,35 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "wormadam-1",
+            "pokemon": "wormadam bagworm_cloak=plant",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "35-55",
+            "weight": 8.0,
+            "condition": {
+                "biomes": [
+                    "biomesoplenty:aspen_glade"
+                ]
+            }
+        },
+        {
+            "id": "wormadam-2",
+            "pokemon": "wormadam bagworm_cloak=plant",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "15-32",
+            "weight": 5,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_forest"
+                ]
+            }
+        }
+    ]
+}

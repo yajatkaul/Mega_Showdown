@@ -1,0 +1,36 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "rotom-1",
+            "pokemon": "rotom",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "20-75",
+            "weight": 7.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_overworld"
+                ],
+                "neededNearbyBlocks": [
+					"minecraft:redstone_block",
+					"minecraft:repeater",
+					"minecraft:redstone_torch",
+					"minecraft:daylight_detector",
+					"minecraft:comparator",
+					"minecraft:redstone_ore",
+					"minecraft:redstone_lamp",
+					"minecraft:lightning_rod",
+					"cobblemon:pc",
+					"cobblemon:monitor",
+					"cobblemon:healing_machine",
+					"cobblemon:restoration_tank",
+					"cobblemon:fossil_analyzer"
+                 ]
+            }
+        }
+    ]
+}

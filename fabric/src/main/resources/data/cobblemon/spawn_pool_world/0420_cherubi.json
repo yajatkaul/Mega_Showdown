@@ -1,0 +1,24 @@
+{
+    "enabled": "true",
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "cherubi-1",
+            "pokemon": "cherubi",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "4-25",
+            "weight": 7.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_forest",
+                    "#cobblemon:is_jungle",
+                    "#cobblemon:is_taiga"
+                ]
+            }
+        }
+    ]
+}
