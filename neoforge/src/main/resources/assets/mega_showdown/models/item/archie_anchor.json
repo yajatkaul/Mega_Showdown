@@ -12,10 +12,10 @@
 			"parent": "mega_showdown:item/archie_anchor_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/archie_anchor_2d"
+			"parent": "mega_showdown:item/archie_anchor_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/archie_anchor_2d"
+			"parent": "mega_showdown:item/archie_anchor_3d"
 		}
 	}
 }

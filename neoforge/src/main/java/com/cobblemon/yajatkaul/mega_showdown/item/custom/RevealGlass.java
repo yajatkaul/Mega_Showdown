@@ -70,11 +70,11 @@ public class RevealGlass extends Item {
             }
 
             if(pokemon.getAspects().contains("therian-forme")){
-                new StringSpeciesFeature("mirror_forme","therian").apply(pokemon);
+                new StringSpeciesFeature("mirror_forme","incarnate").apply(pokemon);
                 playEvolveAnimation(pokemon.getEntity());
                 return InteractionResult.SUCCESS;
             }else{
-                new StringSpeciesFeature("djinn_state", "unbound").apply(pokemon);
+                new StringSpeciesFeature("mirror_forme", "therian").apply(pokemon);
                 playEvolveAnimation(pokemon.getEntity());
                 return InteractionResult.SUCCESS;
             }

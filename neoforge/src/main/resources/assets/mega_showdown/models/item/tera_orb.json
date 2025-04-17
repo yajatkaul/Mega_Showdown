@@ -9,10 +9,10 @@
       "parent": "mega_showdown:item/tera_orb_2d"
     },
     "ground": {
-      "parent": "mega_showdown:item/tera_orb_2d"
+      "parent": "mega_showdown:item/tera_orb_3d"
     },
     "fixed": {
-      "parent": "mega_showdown:item/tera_orb_2d"
+      "parent": "mega_showdown:item/tera_orb_3d"
     }
   }
 }

@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
+import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
@@ -36,64 +37,64 @@ public abstract class ItemRendererMixin {
             argsOnly = true
     )
     public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
-        if (stack.getItem() == ModItems.MEGA_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        if (stack.getItem() == ModItems.MEGA_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet")));
         }
-        else if (stack.getItem() == ModItems.MEGA_RED_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_RED_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet_red")));
         }
-        else if (stack.getItem() == ModItems.MEGA_PINK_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_PINK_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet_pink")));
         }
-        else if (stack.getItem() == ModItems.MEGA_YELLOW_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_YELLOW_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet_yellow")));
         }
-        else if (stack.getItem() == ModItems.MEGA_GREEN_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_GREEN_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet_green")));
         }
-        else if (stack.getItem() == ModItems.MEGA_BLUE_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_BLUE_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet_blue")));
         }
-        else if (stack.getItem() == ModItems.MEGA_BLACK_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_BLACK_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megabracelet_black")));
         }
-        else if (stack.getItem() == ModItems.MEGA_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MEGA_RING && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "megaring")));
         }
-        else if (stack.getItem() == ModItems.BRENDAN_MEGA_CUFF && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.BRENDAN_MEGA_CUFF && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "brendan_mega_cuff")));
         }
-        else if (stack.getItem() == ModItems.LYSANDRE_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.LYSANDRE_RING && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "lysandre_ring")));
         }
-        else if (stack.getItem() == ModItems.KORRINA_GLOVE && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.KORRINA_GLOVE && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "korrina_glove")));
         }
-        else if (stack.getItem() == ModItems.MAXIE_GLASSES && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED || renderMode == ModelTransformationMode.THIRD_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND)) {
+        else if (stack.getItem() == ModItems.MAXIE_GLASSES && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.THIRD_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "maxie_glasses")));
         }
-        else if (stack.getItem() == ModItems.ARCHIE_ANCHOR && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED || renderMode == ModelTransformationMode.THIRD_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND)) {
+        else if (stack.getItem() == ModItems.ARCHIE_ANCHOR && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.THIRD_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "archie_anchor")));
         }
         else if (stack.getItem() == MegaOres.MEGA_STONE_CRYSTAL.asItem()) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "mega_stone_crystal")));
         }
-        else if (stack.getItem() == ZCrystals.Z_RING && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ZCrystals.Z_RING && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring")));
         }
-        else if (stack.getItem() == TeraMoves.TERA_ORB && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == TeraMoves.TERA_ORB && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "tera_orb")));
         }
-        else if (stack.getItem() == ModItems.MAY_BRACELET && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ModItems.MAY_BRACELET && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "may_bracelet")));
         }
-        else if (stack.getItem() == ZCrystals.Z_RING_BLACK && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ZCrystals.Z_RING_BLACK && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_black")));
         }
-        else if (stack.getItem() == ZCrystals.Z_RING_POWER && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == ZCrystals.Z_RING_POWER && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-power_ring")));
         }
-        else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
+        else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "dynamax_band")));
         }
         return bakedModel;
@@ -165,7 +166,6 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "dynamax_band_3d")));
         }
-
         return bakedModel;
     }
 }

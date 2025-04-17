@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
+import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
+import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
@@ -52,6 +54,7 @@ public final class MegaShowdown {
 
         ModBlocks.register(modEventBus);
         MegaOres.register();
+        ModBlockEntities.register(modEventBus);
 
         ItemsRegistration.register(modEventBus);
 
@@ -113,6 +116,11 @@ public final class MegaShowdown {
             while (ULTRA_KEY.get().consumeClick()) {
                 PacketDistributor.sendToServer(new UltraTrans("ultra_trans"));
             }
+        }
+
+        @SubscribeEvent
+        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
         }
     }
 }

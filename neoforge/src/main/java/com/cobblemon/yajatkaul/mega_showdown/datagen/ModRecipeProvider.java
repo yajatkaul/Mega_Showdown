@@ -544,5 +544,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('W', DynamaxItems.WISHING_STAR)
                 .define('S', Items.OBSIDIAN)
                 .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PEDESTAL.get())
+                .pattern(" S ")
+                .pattern(" B ")
+                .pattern("   ")
+                .define('S', Items.SMOOTH_STONE_SLAB)
+                .define('B', Items.CHISELED_STONE_BRICKS)
+                .unlockedBy("has_chiseled_stone_bricks", has(Items.CHISELED_STONE_BRICKS)).save(recipeOutput);
     }
 }

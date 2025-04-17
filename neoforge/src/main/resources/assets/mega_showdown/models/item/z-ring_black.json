@@ -12,10 +12,10 @@
 			"parent": "mega_showdown:item/z-ring_black_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/z-ring_black_2d"
+			"parent": "mega_showdown:item/z-ring_black_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/z-ring_black_2d"
+			"parent": "mega_showdown:item/z-ring_black_3d"
 		}
 	}
 }

@@ -4,7 +4,6 @@
 	"textures": {
 		"0": "mega_showdown:item/tera_orb_3d"
 	},
-	"gui_light": "front",
 	"elements": [
 		{
 			"name": "bottom",
@@ -141,6 +140,7 @@
 			}
 		}
 	],
+	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
 			"scale": [0.5, 0.5, 0.5]
@@ -149,7 +149,8 @@
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"ground": {
-			"translation": [0, 8, 0]
+			"translation": [0, 3.75, 0],
+			"scale": [0.65, 0.65, 0.65]
 		},
 		"gui": {
 			"rotation": [-160, 45, -180],

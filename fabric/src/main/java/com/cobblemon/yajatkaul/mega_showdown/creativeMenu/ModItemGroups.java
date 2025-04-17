@@ -300,6 +300,7 @@ public class ModItemGroups {
                     .entries(((displayContext, entries) -> {
                         entries.add(KeyItems.AZURE_FLUTE);
                         entries.add(KeyItems.RED_CHAIN);
+                        entries.add(ModBlocks.PEDESTAL);
                     }))
                     .build());
 

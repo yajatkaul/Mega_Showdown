@@ -9,10 +9,10 @@
 			"parent": "mega_showdown:item/korrina_glove_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/korrina_glove_2d"
+			"parent": "mega_showdown:item/korrina_glove_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/korrina_glove_2d"
+			"parent": "mega_showdown:item/korrina_glove_3d"
 		}
 	}
 }

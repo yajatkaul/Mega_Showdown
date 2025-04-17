@@ -2,9 +2,11 @@ package com.cobblemon.yajatkaul.mega_showdown.block;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
@@ -15,6 +17,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Supplier;
@@ -38,7 +42,14 @@ public class MegaOres {
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
                             .pushReaction(PushReaction.PUSH_ONLY)
-                            .lightLevel((state) -> 15)));
+                            .lightLevel((state) -> 15)){
+                public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 13, 14);
+
+                @Override
+                protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+                    return SHAPE;
+                }
+            });
 
     public static final DeferredBlock<Block> MEGA_METEORID_WATER_ORE = registerBlock("mega_meteorid_water_ore",
             () -> new Block(BlockBehaviour

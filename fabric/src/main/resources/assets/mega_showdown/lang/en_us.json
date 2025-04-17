@@ -145,14 +145,15 @@
   "item.mega_showdown.archie_anchor": "Archie's Anchor",
   "tooltip.mega_showdown.archie_anchor.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
 
-  "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
+  "creativeTab.mega_showdown.mega_showdown_tab": "Mega Evolutions",
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
   "creativeTab.mega_showdown.forms_tab": "Form Changes",
   "creativeTab.mega_showdown.compi_tab": "Competitive Items",
-  "creativeTab.mega_showdown.key_tab": "Key Items",
+  "creativeTab.mega_showdown.key_tab": "MegaShowdown Items",
   "creativeTab.mega_showdown.dynamax_tab": "Dynamax Tab",
 
+  "block.mega_showdown.pedestal": "Pedestal",
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
   "block.mega_showdown.mega_meteorid_fire_ore": "Mega Meteorid Fire Ore",

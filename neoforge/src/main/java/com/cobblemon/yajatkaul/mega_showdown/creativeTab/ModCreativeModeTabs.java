@@ -306,6 +306,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(KeyItems.RED_CHAIN);
                         output.accept(KeyItems.AZURE_FLUTE);
+                        output.accept(ModBlocks.PEDESTAL);
                     })
                     .build());
 

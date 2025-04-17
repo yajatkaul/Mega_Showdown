@@ -12,10 +12,10 @@
 			"parent": "mega_showdown:item/maxie_glasses_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/maxie_glasses_2d"
+			"parent": "mega_showdown:item/maxie_glasses_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/maxie_glasses_2d"
+			"parent": "mega_showdown:item/maxie_glasses_3d"
 		}
 	}
 }

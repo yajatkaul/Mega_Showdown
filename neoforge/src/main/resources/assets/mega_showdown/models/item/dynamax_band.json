@@ -9,10 +9,10 @@
 			"parent": "mega_showdown:item/dynamax_band_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/dynamax_band_2d"
+			"parent": "mega_showdown:item/dynamax_band_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/dynamax_band_2d"
+			"parent": "mega_showdown:item/dynamax_band_3d"
 		}
 	}
 }

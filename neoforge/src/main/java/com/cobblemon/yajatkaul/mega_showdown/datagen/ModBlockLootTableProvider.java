@@ -87,6 +87,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.POTTED_GRACIDEA.get(),
                 createPotFlowerItemTable(ModBlocks.GRACIDEA_FLOWER.get())
         );
+
+        dropSelf(ModBlocks.PEDESTAL.get());
     }
 
     @Override

@@ -9,10 +9,10 @@
       "parent": "mega_showdown:item/megabracelet_red_2d"
     },
     "ground": {
-      "parent": "mega_showdown:item/megabracelet_red_2d"
+      "parent": "mega_showdown:item/megabracelet_red_3d"
     },
     "fixed": {
-      "parent": "mega_showdown:item/megabracelet_red_2d"
+      "parent": "mega_showdown:item/megabracelet_red_3d"
     }
   }
 }

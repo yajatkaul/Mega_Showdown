@@ -9,10 +9,10 @@
 			"parent": "mega_showdown:item/brendan_mega_cuff_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/brendan_mega_cuff_2d"
+			"parent": "mega_showdown:item/brendan_mega_cuff_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/brendan_mega_cuff_2d"
+			"parent": "mega_showdown:item/brendan_mega_cuff_3d"
 		}
 	}
 }

@@ -51,7 +51,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(),
                         ModBlocks.MEGA_EVO_BRICK.get(),
 
-                        ModBlocks.POWER_SPOT.get()
+                        ModBlocks.POWER_SPOT.get(),
+
+                        ModBlocks.PEDESTAL.get()
                 );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)

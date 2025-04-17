@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.block;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.GracideaBlock;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.PedestalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -99,6 +100,9 @@ public class ModBlocks {
             Identifier.of(MegaShowdown.MOD_ID, "potted_gracidea"),
             new FlowerPotBlock(GRACIDEA_FLOWER, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM).nonOpaque())
     );
+
+    public static final Block PEDESTAL = registerBlock("pedestal",
+            new PedestalBlock(AbstractBlock.Settings.create().nonOpaque().strength(2).requiresTool()));
 
     public static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

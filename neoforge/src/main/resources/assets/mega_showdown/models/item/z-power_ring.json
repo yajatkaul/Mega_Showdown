@@ -12,10 +12,10 @@
 			"parent": "mega_showdown:item/z-power_ring_2d"
 		},
 		"ground": {
-			"parent": "mega_showdown:item/z-power_ring_2d"
+			"parent": "mega_showdown:item/z-power_ring_3d"
 		},
 		"fixed": {
-			"parent": "mega_showdown:item/z-power_ring_2d"
+			"parent": "mega_showdown:item/z-power_ring_3d"
 		}
 	}
 }

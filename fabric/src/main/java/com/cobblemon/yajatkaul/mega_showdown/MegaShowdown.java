@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.BlockRegister;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -34,6 +35,7 @@ public class MegaShowdown implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ItemRegister.register();
         BlockRegister.register();
+        ModBlockEntities.registerBlockEntities();
 
         ModWorldGeneration.generateModWorldGen();
 

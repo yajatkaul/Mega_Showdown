@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-17T13:49:29.2170819	Recipes
+// 1.21.1	2025-04-18T00:01:53.7126721	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -34,6 +34,7 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 17a61387448421f434ef34db0ca7fdcda94c94dd data/mega_showdown/advancement/recipes/misc/n_lunarizer.json
 5c7d37bd6f363dc1ffbbb5e55de384d07750916e data/mega_showdown/advancement/recipes/misc/n_solarizer.json
 57b2839a2fb2b4e1efa0f55cad6ca1a2b25e1f1c data/mega_showdown/advancement/recipes/misc/ovenunit.json
+7426846b2ffd39950efb7ef9de74c4047a923b83 data/mega_showdown/advancement/recipes/misc/pedestal.json
 96fb56f38e7eaa77fc5ec59dac4cada6c74c00dc data/mega_showdown/advancement/recipes/misc/pink_nectar.json
 89ac108ccdd0079095af5ff20b492f44d8ba5763 data/mega_showdown/advancement/recipes/misc/power_spot.json
 86c29a4c948b6fc931faa503c2c8f0d0476a4e63 data/mega_showdown/advancement/recipes/misc/purple_nectar.json
@@ -84,6 +85,7 @@ a36102673fe74968cc71cbda99faaf31a0db6813 data/mega_showdown/recipe/max_soup.json
 dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.json
 3573a93f54ee2b0e480adb16216ac318323ee4b0 data/mega_showdown/recipe/n_solarizer.json
 3bdb92cdcbab9a0e1fccad3afea4df3628dbb0f6 data/mega_showdown/recipe/ovenunit.json
+744c8cd74a30d903d8abe992ee2e27588923e795 data/mega_showdown/recipe/pedestal.json
 8bd6419854bd6ad7f14070024bbfe76e8eac763b data/mega_showdown/recipe/pink_nectar.json
 665e6e446b8e72bc520ebfdc82503da2b561dc52 data/mega_showdown/recipe/polished_mega_evo_block.json
 640985aa50ab1d16dba3101b6279327c8e67dcd2 data/mega_showdown/recipe/power_spot.json
