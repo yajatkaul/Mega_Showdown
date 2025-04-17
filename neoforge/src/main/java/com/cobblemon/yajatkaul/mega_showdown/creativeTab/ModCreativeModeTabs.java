@@ -90,55 +90,6 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.KORRINA_GLOVE);
                         output.accept(ModItems.MAY_BRACELET);
 
-                        // Blocks
-                        output.accept(MegaOres.ABOMASITE_ORE);
-                        output.accept(MegaOres.ABSOLITE_ORE);
-                        output.accept(MegaOres.AERODACTYLITE_ORE);
-                        output.accept(MegaOres.AGGRONITE_ORE);
-                        output.accept(MegaOres.ALAKAZITE_ORE);
-                        output.accept(MegaOres.ALTARIANITE_ORE);
-                        output.accept(MegaOres.AMPHAROSITE_ORE);
-                        output.accept(MegaOres.AUDINITE_ORE);
-                        output.accept(MegaOres.BANETTITE_ORE);
-                        output.accept(MegaOres.BEEDRILLITE_ORE);
-                        output.accept(MegaOres.BLASTOISINITE_ORE);
-                        output.accept(MegaOres.BLAZIKENITE_ORE);
-                        output.accept(MegaOres.CAMERUPTITE_ORE);
-                        output.accept(MegaOres.CHARIZARDITE_X_ORE);
-                        output.accept(MegaOres.CHARIZARDITE_Y_ORE);
-                        output.accept(MegaOres.DIANCITE_ORE);
-                        output.accept(MegaOres.GALLADITE_ORE);
-                        output.accept(MegaOres.GARCHOMPITE_ORE);
-                        output.accept(MegaOres.GARDEVOIRITE_ORE);
-                        output.accept(MegaOres.GENGARITE_ORE);
-                        output.accept(MegaOres.GLALITITE_ORE);
-                        output.accept(MegaOres.GYARADOSITE_ORE);
-                        output.accept(MegaOres.HERACRONITE_ORE);
-                        output.accept(MegaOres.HOUNDOOMINITE_ORE);
-                        output.accept(MegaOres.KANGASKHANITE_ORE);
-                        output.accept(MegaOres.LATIASITE_ORE);
-                        output.accept(MegaOres.LATIOSITE_ORE);
-                        output.accept(MegaOres.LOPUNNITE_ORE);
-                        output.accept(MegaOres.LUCARIONITE_ORE);
-                        output.accept(MegaOres.MANECTITE_ORE);
-                        output.accept(MegaOres.MAWILITE_ORE);
-                        output.accept(MegaOres.MEDICHAMITE_ORE);
-                        output.accept(MegaOres.METAGROSSITE_ORE);
-                        output.accept(MegaOres.MEWTWONITE_X_ORE);
-                        output.accept(MegaOres.MEWTWONITE_Y_ORE);
-                        output.accept(MegaOres.PIDGEOTITE_ORE);
-                        output.accept(MegaOres.PINSIRITE_ORE);
-                        output.accept(MegaOres.SABLENITE_ORE);
-                        output.accept(MegaOres.SALAMENCITE_ORE);
-                        output.accept(MegaOres.SCEPTILITE_ORE);
-                        output.accept(MegaOres.SCIZORITE_ORE);
-                        output.accept(MegaOres.SHARPEDONITE_ORE);
-                        output.accept(MegaOres.SLOWBRONITE_ORE);
-                        output.accept(MegaOres.STEELIXITE_ORE);
-                        output.accept(MegaOres.SWAMPERTITE_ORE);
-                        output.accept(MegaOres.TYRANITARITE_ORE);
-                        output.accept(MegaOres.VENUSAURITE_ORE);
-
                         output.accept(MegaOres.KEYSTONE_ORE);
 
                         output.accept(MegaOres.MEGA_STONE_CRYSTAL);

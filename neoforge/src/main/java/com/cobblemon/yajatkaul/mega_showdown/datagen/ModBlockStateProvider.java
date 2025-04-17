@@ -17,54 +17,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels(){
-        blockWithItem(MegaOres.ABOMASITE_ORE);
-        blockWithItem(MegaOres.ABSOLITE_ORE);
-        blockWithItem(MegaOres.AERODACTYLITE_ORE);
-        blockWithItem(MegaOres.AGGRONITE_ORE);
-        blockWithItem(MegaOres.ALAKAZITE_ORE);
-        blockWithItem(MegaOres.ALTARIANITE_ORE);
-        blockWithItem(MegaOres.AMPHAROSITE_ORE);
-        blockWithItem(MegaOres.AUDINITE_ORE);
-        blockWithItem(MegaOres.BANETTITE_ORE);
-        blockWithItem(MegaOres.BEEDRILLITE_ORE);
-        blockWithItem(MegaOres.BLASTOISINITE_ORE);
-        blockWithItem(MegaOres.BLAZIKENITE_ORE);
-        blockWithItem(MegaOres.CAMERUPTITE_ORE);
-        blockWithItem(MegaOres.CHARIZARDITE_X_ORE);
-        blockWithItem(MegaOres.CHARIZARDITE_Y_ORE);
-        blockWithItem(MegaOres.DIANCITE_ORE);
-        blockWithItem(MegaOres.GALLADITE_ORE);
-        blockWithItem(MegaOres.GARCHOMPITE_ORE);
-        blockWithItem(MegaOres.GARDEVOIRITE_ORE);
-        blockWithItem(MegaOres.GENGARITE_ORE);
-        blockWithItem(MegaOres.GLALITITE_ORE);
-        blockWithItem(MegaOres.GYARADOSITE_ORE);
-        blockWithItem(MegaOres.HERACRONITE_ORE);
-        blockWithItem(MegaOres.HOUNDOOMINITE_ORE);
-        blockWithItem(MegaOres.KANGASKHANITE_ORE);
-        blockWithItem(MegaOres.LATIASITE_ORE);
-        blockWithItem(MegaOres.LATIOSITE_ORE);
-        blockWithItem(MegaOres.LOPUNNITE_ORE);
-        blockWithItem(MegaOres.LUCARIONITE_ORE);
-        blockWithItem(MegaOres.MANECTITE_ORE);
-        blockWithItem(MegaOres.MAWILITE_ORE);
-        blockWithItem(MegaOres.MEDICHAMITE_ORE);
-        blockWithItem(MegaOres.METAGROSSITE_ORE);
-        blockWithItem(MegaOres.MEWTWONITE_X_ORE);
-        blockWithItem(MegaOres.MEWTWONITE_Y_ORE);
-        blockWithItem(MegaOres.PIDGEOTITE_ORE);
-        blockWithItem(MegaOres.PINSIRITE_ORE);
-        blockWithItem(MegaOres.SABLENITE_ORE);
-        blockWithItem(MegaOres.SALAMENCITE_ORE);
-        blockWithItem(MegaOres.SCEPTILITE_ORE);
-        blockWithItem(MegaOres.SCIZORITE_ORE);
-        blockWithItem(MegaOres.SHARPEDONITE_ORE);
-        blockWithItem(MegaOres.SLOWBRONITE_ORE);
-        blockWithItem(MegaOres.STEELIXITE_ORE);
-        blockWithItem(MegaOres.SWAMPERTITE_ORE);
-        blockWithItem(MegaOres.TYRANITARITE_ORE);
-        blockWithItem(MegaOres.VENUSAURITE_ORE);
-
         blockWithItem(MegaOres.KEYSTONE_ORE);
 
         blockWithItem(ModBlocks.MEGA_METEOROID_BLOCK);

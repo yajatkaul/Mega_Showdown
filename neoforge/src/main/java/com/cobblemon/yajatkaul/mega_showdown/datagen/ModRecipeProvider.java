@@ -446,9 +446,12 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('M', DynamaxItems.MAX_MUSHROOM)
                 .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DynamaxItems.DYNAMAX_CANDY.get())
-                .requires(DynamaxItems.MAX_MUSHROOM.get())
-                .requires(CobblemonItems.RARE_CANDY)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DynamaxItems.DYNAMAX_CANDY.get())
+                .pattern(" E ")
+                .pattern("EME")
+                .pattern(" E ")
+                .define('E', CobblemonItems.EXPERIENCE_CANDY_S)
+                .define('M', DynamaxItems.MAX_MUSHROOM)
                 .unlockedBy("has_max_mushroom", has(DynamaxItems.MAX_MUSHROOM)).save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DynamaxItems.MAX_HONEY.get())
@@ -531,5 +534,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('B', CobblemonItems.BLACK_APRICORN)
                 .define('N', Items.NETHERITE_INGOT)
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.STAR_CORE.get())
+                .pattern("PSD")
+                .pattern("SWS")
+                .pattern("PSD")
+                .define('P', CobblemonItems.POISON_GEM)
+                .define('D', CobblemonItems.DRAGON_GEM)
+                .define('W', DynamaxItems.WISHING_STAR)
+                .define('S', Items.OBSIDIAN)
+                .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
     }
 }

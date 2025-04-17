@@ -1,13 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
-      "item": "mega_showdown:max_mushroom"
+  "key": {
+    "E": {
+      "item": "cobblemon:exp_candy_s"
     },
-    {
-      "item": "cobblemon:rare_candy"
+    "M": {
+      "item": "mega_showdown:max_mushroom"
     }
+  },
+  "pattern": [
+    " E ",
+    "EME",
+    " E "
   ],
   "result": {
     "count": 1,

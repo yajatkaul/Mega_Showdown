@@ -4207,6 +4207,11 @@ const Abilities = {
       if (move.self?.chance)
         move.self.chance *= 2;
     },
+	onSwitchOut(pokemon) {
+      if (pokemon.species.id === "meloettapirouette"){
+        pokemon.formeChange("Meloetta", this.effect, true);
+      }
+    },
     flags: {},
     name: "Serene Grace",
     rating: 3.5,
