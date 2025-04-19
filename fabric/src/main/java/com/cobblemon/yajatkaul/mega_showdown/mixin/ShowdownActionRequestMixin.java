@@ -25,7 +25,6 @@ public class ShowdownActionRequestMixin {
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
             boolean hasBand = data.getKeyItems().contains(dynamaxBandId);
 
-            // Only modify the active Pokémon of the player who triggered this request
             if (player.getUuid().equals(battleActor.getUuid())) {
                 List<ShowdownMoveset> activeMovesets = ((ShowdownActionRequestAccessor) this).getActive();
                 if (!hasBand && activeMovesets != null) {

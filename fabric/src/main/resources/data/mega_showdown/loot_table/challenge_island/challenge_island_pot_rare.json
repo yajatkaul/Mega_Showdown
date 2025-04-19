@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mega_showdown:blank-z"
+        }
+      ]
+    }
+  ],
+  "functions": []
+}

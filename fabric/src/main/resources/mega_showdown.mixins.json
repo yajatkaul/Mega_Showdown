@@ -5,17 +5,17 @@
   "mixins": [
     "ShowdownSpeciesMixin",
     "ExceptionHandlerMixin",
-    "StartInstructionMixin",
-    "StartInstructionAccessor",
     "EarlyLoader",
     "ShowdownActionRequestMixin",
     "ShowdownActionRequestAccessor",
-    "EndInstructionAccessor",
-    "EndInstructionMixin",
     "GimmickTileMixin",
     "MoveActionResponseMixin",
     "BattleGimmickButtonMixin",
-    "ShowdownInterpreterMixin"
+    "ShowdownInterpreterMixin",
+    "EndInstructionAccessor",
+    "EndInstructionMixin",
+    "StartInstructionMixin",
+    "StartInstructionAccessor"
   ],
   "client": [
     "ItemRendererMixin",
@@ -25,3 +25,5 @@
     "defaultRequire": 1
   }
 }
+
+

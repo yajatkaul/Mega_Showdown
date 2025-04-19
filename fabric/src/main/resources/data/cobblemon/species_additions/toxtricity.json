@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:toxtricity",
+  "baseScale": 0.6,
+  "hitbox": {
+    "width": 1,
+    "height": 3.4,
+    "fixed": false
+  }
+}

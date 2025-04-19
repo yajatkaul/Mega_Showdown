@@ -82,15 +82,14 @@
     "undiscovered"
   ],
   "moves": [
-    "1:bite",
-    "1:howl",
-    "1:metalclaw",
-    "1:quickattack",
     "1:wideguard",
+    "1:metalclaw",
+    "1:howl",
+    "1:quickattack",
+    "1:bite",
     "11:slash",
     "22:irondefense",
     "33:ironhead",
-    "44:laserfocus",
     "44:metalburst",
     "55:crunch",
     "66:moonblast",
@@ -122,6 +121,7 @@
     "tm:irondefense",
     "tm:ironhead",
     "tm:irontail",
+    "tm:laserfocus",
     "tm:lightscreen",
     "tm:metalclaw",
     "tm:payback",
@@ -136,13 +136,11 @@
     "tm:revenge",
     "tm:reversal",
     "tm:roar",
-    "tm:round",
     "tm:safeguard",
     "tm:sandstorm",
     "tm:scaryface",
     "tm:sleeptalk",
     "tm:snarl",
-    "tm:snore",
     "tm:solarbeam",
     "tm:steelbeam",
     "tm:stoneedge",
@@ -156,14 +154,30 @@
     "tm:trailblaze",
     "tm:wildcharge",
     "tm:workup",
-    "tutor:closecombat",
     "tutor:coaching",
-    "tutor:crunch",
+    "tutor:dazzlinggleam",
+    "tutor:firefang",
+    "tutor:flashcannon",
+    "tutor:focusenergy",
+    "tutor:gigaimpact",
+    "tutor:helpinghand",
+    "tutor:hyperbeam",
+    "tutor:hypervoice",
+    "tutor:icefang",
     "tutor:irondefense",
     "tutor:ironhead",
-    "tutor:slash",
+    "tutor:irontail",
+    "tutor:laserfocus",
+    "tutor:playrough",
+    "tutor:psychic",
+    "tutor:rest",
+    "tutor:sleeptalk",
+    "tutor:snarl",
     "tutor:steelbeam",
-    "tutor:wideguard"
+    "tutor:stoneedge",
+    "tutor:swift",
+    "tutor:thunderfang",
+    "tutor:wildcharge"
   ],
   "labels": [
     "gen8",
@@ -195,16 +209,16 @@
         "canWalk": true,
         "avoidsLand": false
       },
-    "fly": {
-      "canFly": false
-    },
-    "swim": {
-      "swimSpeed": 0.5,
-      "canSwimInWater": false,
-      "canBreatheUnderwater": false
+      "fly": {
+        "canFly": false
+      },
+      "swim": {
+        "swimSpeed": 0.5,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
     }
-  }
-},
+  },
   "height": 29,
   "weight": 2100,
   "dynamaxBlocked": true,

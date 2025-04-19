@@ -112,10 +112,17 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour
                     .Properties.of()
                     .strength(3f)
-                    .lightLevel((state) -> 20)
+                    .lightLevel((state) -> 15)
                     .mapColor(MapColor.COLOR_PURPLE)
                     .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)));
+                    .sound(SoundType.STONE)){
+                public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 4, 14);
+
+                @Override
+                protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+                    return SHAPE;
+                }
+            });
 
     public static final DeferredBlock<Block> MAX_MUSHROOM = BLOCKS.register("max_mushroom", () ->
             new MaxMushroomBlock(BlockBehaviour

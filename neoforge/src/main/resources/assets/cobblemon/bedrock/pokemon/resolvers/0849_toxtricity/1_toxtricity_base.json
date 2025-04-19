@@ -1,0 +1,17 @@
+{
+  "species": "cobblemon:toxtricity",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:toxtricitya",
+      "model": "cobblemon:toxtricitya.geo",
+      "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricitya.png",
+      "layers": []
+    },
+    {
+      "aspects": [ "shiny" ],
+      "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricitya_shiny.png"
+    }
+  ]
+}

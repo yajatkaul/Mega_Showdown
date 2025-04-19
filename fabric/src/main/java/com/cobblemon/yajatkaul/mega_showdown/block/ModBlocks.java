@@ -15,6 +15,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 
 import java.util.List;
 
@@ -80,8 +83,21 @@ public class ModBlocks {
                     .strength(3f)
                     .requiresTool()
                     .mapColor(MapColor.PURPLE)
-                    .luminance((state) -> 20)
-                    .sounds(BlockSoundGroup.STONE)));
+                    .luminance((state) -> 15)
+                    .sounds(BlockSoundGroup.STONE)){
+                private static final VoxelShape SHAPE =
+                        Block.createCuboidShape(2, 0, 2, 14, 4, 14);
+
+                @Override
+                protected BlockRenderType getRenderType(BlockState state) {
+                    return BlockRenderType.MODEL;
+                }
+
+                @Override
+                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+                    return SHAPE;
+                }
+            });
 
     public static final Block MAX_MUSHROOM = Registry.register(
             Registries.BLOCK,
