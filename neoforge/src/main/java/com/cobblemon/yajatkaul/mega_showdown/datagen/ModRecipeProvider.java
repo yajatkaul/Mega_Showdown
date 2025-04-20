@@ -526,7 +526,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('W', CobblemonItems.WATER_GEM)
                 .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.ZAYGARDE_CUBE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.ZYGARDE_CUBE.get())
                 .pattern("BGB")
                 .pattern("GNG")
                 .pattern("BGB")

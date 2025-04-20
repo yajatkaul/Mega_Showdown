@@ -4,24 +4,28 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.curios.ChestRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
+import com.cobblemon.yajatkaul.mega_showdown.screen.ZygardeCubeScreen;
+import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.ItemCapability;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
-import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -49,12 +53,19 @@ public final class MegaShowdown {
     public static final Logger LOGGER = LoggerFactory.getLogger("Mega Showdown");
     public static final String MOD_ID = "mega_showdown";
 
+    public static final ItemCapability<ItemInventoryUtil, Void> ITEM_STORAGE =
+            ItemCapability.createVoid(
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "item_storage"),
+                    ItemInventoryUtil.class
+            );
+
     public MegaShowdown(IEventBus modEventBus, @NotNull ModContainer modContainer) {
         NeoForge.EVENT_BUS.register(this);
 
         ModBlocks.register(modEventBus);
         MegaOres.register();
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         ItemsRegistration.register(modEventBus);
 
@@ -69,6 +80,7 @@ public final class MegaShowdown {
         NeoForge.EVENT_BUS.addListener(MegaCommands::register);
 
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::registerCapabilities);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -80,6 +92,14 @@ public final class MegaShowdown {
         });
     }
 
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerItem(
+                MegaShowdown.ITEM_STORAGE,
+                (itemStack, ctx) -> new ItemInventoryUtil(),
+                FormeChangeItems.ZYGARDE_CUBE.get()
+        );
+    }
+
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         Utils.registerRemapping();
@@ -87,14 +107,12 @@ public final class MegaShowdown {
         CobbleEvents.register();
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             NeoForge.EVENT_BUS.addListener(ClientModEvents::onClientTick);
-            // NeoForge.EVENT_BUS.addListener(ChestRenderer::onRenderPlayer);
         }
 
         @SubscribeEvent
@@ -121,6 +139,11 @@ public final class MegaShowdown {
         @SubscribeEvent
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event){
+            event.register(ModMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
         }
     }
 }

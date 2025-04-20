@@ -616,8 +616,8 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final DeferredItem<Item> ZAYGARDE_CUBE = ITEMS.register("zygarde_cube",
-            () -> new Item(new Item.Properties().stacksTo(1)){
+    public static final DeferredItem<Item> ZYGARDE_CUBE = ITEMS.register("zygarde_cube",
+            () -> new ZygardeCube(new Item.Properties().stacksTo(1).component(DataManage.ZYGARDE_INV, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));
@@ -625,8 +625,8 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final DeferredItem<Item> ZAYGARDE_CELL = ITEMS.register("zygarde_cell",
-            () -> new Item(new Item.Properties().stacksTo(100)){
+    public static final DeferredItem<Item> ZYGARDE_CELL = ITEMS.register("zygarde_cell",
+            () -> new Item(new Item.Properties().stacksTo(99)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_cell.tooltip"));
@@ -634,8 +634,8 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final DeferredItem<Item> ZAYGARDE_CORE = ITEMS.register("zygarde_core",
-            () -> new Item(new Item.Properties().stacksTo(100)){
+    public static final DeferredItem<Item> ZYGARDE_CORE = ITEMS.register("zygarde_core",
+            () -> new Item(new Item.Properties().stacksTo(5)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_core.tooltip"));

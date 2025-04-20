@@ -1,0 +1,21 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "toxtricity-1",
+            "pokemon": "toxtricity",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "rare",
+            "level": "36-51",
+            "weight": 9.5,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_swamp"
+                ]
+            }
+        }
+    ]
+}

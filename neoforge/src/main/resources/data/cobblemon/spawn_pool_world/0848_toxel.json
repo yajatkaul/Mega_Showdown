@@ -1,0 +1,21 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "toxel-1",
+            "pokemon": "toxel",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "15-40",
+            "weight": 6.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_swamp"
+                ]
+            }
+        }
+    ]
+}

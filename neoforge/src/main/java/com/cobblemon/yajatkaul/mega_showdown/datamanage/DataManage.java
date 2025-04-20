@@ -3,12 +3,18 @@ package com.cobblemon.yajatkaul.mega_showdown.datamanage;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
@@ -87,6 +93,13 @@ public class DataManage {
                             FriendlyByteBuf::writeInt,
                             FriendlyByteBuf::readInt
                     ))
+    );
+
+    public static final Supplier<DataComponentType<CompoundTag>> ZYGARDE_INV = REGISTRAR.registerComponentType(
+            "zygarde_inventory",
+            builder -> builder
+                    .persistent(CompoundTag.CODEC)
+                    .networkSynchronized(ByteBufCodecs.COMPOUND_TAG)
     );
 
     public static final Supplier<AttachmentType<PokeHandler>> N_LUNAR_POKEMON = ATTACHMENT_TYPES.register(

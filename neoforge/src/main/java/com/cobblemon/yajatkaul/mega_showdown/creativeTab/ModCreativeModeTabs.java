@@ -274,9 +274,9 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.DEOXYS_METEORITE);
 
                         output.accept(FormeChangeItems.REVEAL_GLASS);
-                        output.accept(FormeChangeItems.ZAYGARDE_CORE);
-                        output.accept(FormeChangeItems.ZAYGARDE_CELL);
-                        output.accept(FormeChangeItems.ZAYGARDE_CUBE);
+                        output.accept(FormeChangeItems.ZYGARDE_CORE);
+                        output.accept(FormeChangeItems.ZYGARDE_CELL);
+                        output.accept(FormeChangeItems.ZYGARDE_CUBE);
                     })
                     .build());
 
