@@ -84,7 +84,7 @@
             "entries": [
                 {
                     "type": "minecraft:loot_table",
-                    "value": "challenge_island:sets/any_showdown_held_item",
+                    "value": "mega_showdown:sets/any_showdown_held_item",
                     "weight": 1
                 }
             ]

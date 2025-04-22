@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-17T21:08:54.2889322	Tags for minecraft:block mod id mega_showdown
-2ca689bae0fed1cf73b261ce27076bcc496975d0 data/minecraft/tags/block/mineable/pickaxe.json
-b2cbd962662b73510b4571fd850a01f359d21c4a data/minecraft/tags/block/needs_diamond_tool.json
-a88d7c68c595e99d6a8be9ddd847c0ef0ddbfeac data/minecraft/tags/block/needs_iron_tool.json
+// 1.21.1	2025-04-22T16:26:39.3308651	Tags for minecraft:block mod id mega_showdown
+2f3d6a47fd2e123fb85131c30f196ca484603928 data/minecraft/tags/block/mineable/pickaxe.json
+14ab4e37484bdcb420fbeac9c071fb83f817a4ca data/minecraft/tags/block/needs_diamond_tool.json
+f78fe2ea6eb002506a18d7fae455e08ba94a3b12 data/minecraft/tags/block/needs_iron_tool.json

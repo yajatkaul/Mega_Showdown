@@ -1,7 +1,6 @@
-package com.cobblemon.yajatkaul.mega_showdown.screen;
+package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

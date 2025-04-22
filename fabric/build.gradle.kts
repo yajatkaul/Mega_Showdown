@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "9.1.3-release-fabric"
+version = "9.2.0-release-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -51,13 +51,14 @@ repositories {
         }
     }
 }
+
 dependencies {
     minecraft("net.minecraft:minecraft:1.21.1")
     mappings("net.fabricmc:yarn:1.21.1+build.3:v2")
     modImplementation("net.fabricmc:fabric-loader:0.16.5")
 
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.115.0+1.21.1")
-    modImplementation(fabricApi.module("fabric-command-api-v2", "0.104.0+1.21.1"))
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.115.6+1.21.1")
+    modImplementation(fabricApi.module("fabric-command-api-v2", "0.115.6+1.21.1"))
 
     modImplementation("net.fabricmc:fabric-language-kotlin:1.12.3+kotlin.2.0.21")
     modImplementation("com.cobblemon:fabric:1.6.1+1.21.1")

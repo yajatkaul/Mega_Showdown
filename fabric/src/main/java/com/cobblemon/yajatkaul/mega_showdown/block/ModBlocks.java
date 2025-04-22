@@ -1,23 +1,26 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.GracideaBlock;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.PedestalBlock;
-import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.*;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -119,6 +122,62 @@ public class ModBlocks {
 
     public static final Block PEDESTAL = registerBlock("pedestal",
             new PedestalBlock(AbstractBlock.Settings.create().nonOpaque().strength(2).requiresTool()));
+
+    public static final Block REASSEMBLY_UNIT = registerBlock("reassembly_unit",
+            new ReassemblyUnitBlock(AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .pistonBehavior(PistonBehavior.PUSH_ONLY)
+                    .sounds(BlockSoundGroup.METAL)));
+
+    public static final Block WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
+            new CrystalBlock(4, 3,
+                    AbstractBlock.Settings.create()
+                            .strength(1.5f)
+                            .sounds(BlockSoundGroup.STONE)
+                            .nonOpaque()
+                            .requiresTool()
+                            .pistonBehavior(PistonBehavior.PUSH_ONLY)
+                            .luminance((state) -> 15)){
+                private static final VoxelShape SHAPE =
+                        Block.createCuboidShape(2, 0, 2, 14, 9, 14);
+
+                @Override
+                protected BlockRenderType getRenderType(BlockState state) {
+                    return BlockRenderType.MODEL;
+                }
+
+                @Override
+                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+                    return SHAPE;
+                }
+
+                @Override
+                public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+                    // Get block center coordinates
+                    double x = pos.getX() + 0.5D;
+                    double y = pos.getY() + 0.5D;
+                    double z = pos.getZ() + 0.5D;
+
+                    // Spawn particles around the block
+                    for (int i = 0; i < 3; i++) { // Spawn 3 particles per tick
+                        double offsetX = (random.nextDouble() - 0.5D) * 0.5D;
+                        double offsetY = (random.nextDouble() - 0.5D) * 0.5D;
+                        double offsetZ = (random.nextDouble() - 0.5D) * 0.5D;
+
+                        world.addParticle(
+                                new DustParticleEffect(new Vector3f(1.0f, 0.0f, 0.0f), 0.5f),
+                                x + offsetX,
+                                y + offsetY,
+                                z + offsetZ,
+                                0.0D,
+                                0.0D,
+                                0.0D
+                        );
+                    }
+                }
+            });
 
     public static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

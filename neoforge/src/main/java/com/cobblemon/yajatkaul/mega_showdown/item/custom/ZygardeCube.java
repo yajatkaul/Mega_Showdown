@@ -48,7 +48,7 @@ public class ZygardeCube extends Item {
                 new SimpleMenuProvider(
                         (id, playerInventory, playerEntity) ->
                                 new ZygardeCubeMenu(id, playerInventory, handler),
-                        Component.literal("Zygarde Cube")
+                        Component.translatable("menu.zygade_cube")
                 ),
                 buf -> buf.writeNbt(serializedTag)
         );

@@ -277,6 +277,7 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.ZYGARDE_CORE);
                         output.accept(FormeChangeItems.ZYGARDE_CELL);
                         output.accept(FormeChangeItems.ZYGARDE_CUBE);
+                        output.accept(ModBlocks.REASSEMBLY_UNIT);
                     })
                     .build());
 
@@ -323,6 +324,7 @@ public class ModCreativeModeTabs {
                         output.accept(DynamaxItems.MAX_SOUP);
                         output.accept(DynamaxItems.SWEET_MAX_SOUP);
                         output.accept(ModBlocks.POWER_SPOT);
+                        output.accept(ModBlocks.WISHING_STAR_CRYSTAL);
                     })
                     .build());
 

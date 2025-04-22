@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "half=lower,facing=north": { "model": "mega_showdown:block/reassembly_unit", "y": 0 },
+    "half=lower,facing=south": { "model": "mega_showdown:block/reassembly_unit", "y": 180 },
+    "half=lower,facing=west":  { "model": "mega_showdown:block/reassembly_unit", "y": 270 },
+    "half=lower,facing=east":  { "model": "mega_showdown:block/reassembly_unit", "y": 90 },
+
+    "half=upper,facing=north": { "model": "mega_showdown:block/reassembly_unit_top", "y": 0 },
+    "half=upper,facing=south": { "model": "mega_showdown:block/reassembly_unit_top", "y": 180 },
+    "half=upper,facing=west":  { "model": "mega_showdown:block/reassembly_unit_top", "y": 270 },
+    "half=upper,facing=east":  { "model": "mega_showdown:block/reassembly_unit_top", "y": 90 }
+  }
+}

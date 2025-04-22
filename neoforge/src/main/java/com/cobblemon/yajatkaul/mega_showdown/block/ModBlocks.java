@@ -1,23 +1,12 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.GracideaBlock;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.PedestalBlock;
-import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,17 +14,16 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -137,6 +125,60 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> PEDESTAL = registerBlock("pedestal",
             () -> new PedestalBlock(BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops().strength(2)));
+
+    public static final DeferredBlock<Block> REASSEMBLY_UNIT = registerBlock("reassembly_unit",
+            () -> new ReassemblyUnitBlock(BlockBehaviour
+                    .Properties.of()
+                    .strength(3f)
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<AmethystClusterBlock> WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
+            () -> new CrystalBlock(4, 3,
+                    BlockBehaviour.Properties.of()
+                            .strength(1.5f)
+                            .sound(SoundType.MEDIUM_AMETHYST_BUD)
+                            .noOcclusion()
+                            .requiresCorrectToolForDrops()
+                            .pushReaction(PushReaction.PUSH_ONLY)
+                            .lightLevel((state) -> 15)){
+                public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 9, 14);
+
+                @Override
+                protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+                    return SHAPE;
+                }
+
+                @Override
+                public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+                    // Get block center coordinates
+                    double x = pos.getX() + 0.5D;
+                    double y = pos.getY() + 0.5D;
+                    double z = pos.getZ() + 0.5D;
+
+                    // Spawn particles around the block
+                    for (int i = 0; i < 3; i++) { // Spawn 3 particles per tick
+                        // Add some random offset to particle position
+                        double offsetX = (random.nextDouble() - 0.5D) * 0.5D;
+                        double offsetY = (random.nextDouble() - 0.5D) * 0.5D;
+                        double offsetZ = (random.nextDouble() - 0.5D) * 0.5D;
+
+                        level.addParticle(
+                                new DustParticleOptions(
+                                        new Vector3f(1.0f, 0.0f, 0.0f), // From color
+                                        0.5f
+                                ),
+                                x + offsetX, // X position
+                                y + offsetY, // Y position
+                                z + offsetZ, // Z position
+                                0.0D, // X velocity
+                                0.0D, // Y velocity
+                                0.0D  // Z velocity
+                        );
+                    }
+                }
+            });
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

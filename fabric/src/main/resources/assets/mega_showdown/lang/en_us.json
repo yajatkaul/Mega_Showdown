@@ -103,8 +103,8 @@
   "tooltip.mega_showdown.venusaurite.tooltip": "Allows Venusaur to Mega Evolve into Mega Venusaur",
   "item.mega_showdown.diancite": "Diancite",
 
-  "block.mega_showdown.mega_meteorid_block": "Mega Meteoroid Block",
-  "block.mega_showdown.mega_evo_brick": "Evo Meteoroid Brick",
+  "block.mega_showdown.mega_meteorid_block": "Evo Meteoroid Block",
+  "block.mega_showdown.mega_evo_brick": "Mega Meteoroid Brick",
   "block.mega_showdown.chiseled_mega_evo_brick": "Chiseled Meteoroid Brick",
   "block.mega_showdown.chiseled_mega_evo_block": "Chiseled Meteoroid Block",
   "block.mega_showdown.polished_mega_evo_block": "Polished Meteoroid Block",
@@ -513,7 +513,7 @@
   "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area.",
 
   "item.mega_showdown.luminous_moss": "Luminous Moss",
-  "tooltip.mega_showdown.luminous_moss.tooltip": "A mossy growth that glows faintly. It reacts to Dynamax energy. Used to make Max Soup.",
+  "tooltip.mega_showdown.luminous_moss.tooltip": "A moss said to glow with mysterious light. It raises Special Defense when hit by a Water-type move.",
   "item.mega_showdown.sparkling_stone_light": "Light Sparkling Stone",
   "tooltip.mega_showdown.sparkling_stone_light.tooltip": "A mysterious stone that radiates a gentle light. It resonates with Z-Power.",
   "item.mega_showdown.sparkling_stone_dark": "Dark Sparkling Stone",
@@ -526,5 +526,10 @@
   "item.mega_showdown.zygarde_core": "Zygarde Core",
   "tooltip.mega_showdown.zygarde_core.tooltip": "The brain of Zygarde. It can think and act on its own, guiding the assembly of Zygarde Forms.",
   "item.mega_showdown.reveal_glass": "Reveal Glass",
-  "tooltip.mega_showdown.reveal_glass.tooltip": "A mysterious mirror that reveals the true forms of certain Pokémon."
+  "tooltip.mega_showdown.reveal_glass.tooltip": "A mysterious mirror that reveals the true forms of certain Pokémon.",
+
+  "menu.zygade_cube": "Zygarde Cube",
+
+  "block.mega_showdown.reassembly_unit": "Reassembly Unit",
+  "block.mega_showdown.wishing_star_crystal": "Wishing Star Crystal"
 }

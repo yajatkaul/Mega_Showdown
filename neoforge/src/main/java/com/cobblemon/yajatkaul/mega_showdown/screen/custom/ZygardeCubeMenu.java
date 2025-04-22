@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
+import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -14,10 +15,9 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class ZygardeCubeMenu extends AbstractContainerMenu {
     private final ItemStackHandler inventory;
-    private ItemStack stack;
 
     public ZygardeCubeMenu(int id, Inventory inv, FriendlyByteBuf buf) {
-        super(ModMenuTypes.ZYGARDE_CUBE_MENU.get(), id); // Use the custom container type
+        super(ModMenuTypes.ZYGARDE_CUBE_MENU.get(), id);
 
         HolderLookup.Provider provider = inv.player.level().registryAccess();
 
@@ -30,8 +30,8 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         // Add custom inventory slots
-        this.addSlot(new SlotItemType(this.inventory, 0, 62, 35));
-        this.addSlot(new SlotItemType(this.inventory, 1, 98, 35));
+        this.addSlot(new SlotItemType(this.inventory, 0, 62, 34));
+        this.addSlot(new SlotItemType(this.inventory, 1, 98, 34));
     }
 
     public ZygardeCubeMenu(int id, Inventory inv, ItemStackHandler inventory) {
@@ -41,8 +41,8 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemType(inventory, 0, 62, 35));
-        this.addSlot(new SlotItemType(inventory, 1, 98, 35));
+        this.addSlot(new SlotItemType(inventory, 0, 62, 34));
+        this.addSlot(new SlotItemType(inventory, 1, 98, 34));
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

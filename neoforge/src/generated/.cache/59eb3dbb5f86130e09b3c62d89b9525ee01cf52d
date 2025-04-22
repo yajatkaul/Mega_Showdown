@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-17T21:08:54.2933919	Loot Tables
+// 1.21.1	2025-04-22T16:26:39.3368659	Loot Tables
 02272d6a35a0b3e68b101ef82262a029bda7f829 data/mega_showdown/loot_table/blocks/chiseled_mega_evo_block.json
 99881b86993e98c1fcd85d946bee00105fab82f4 data/mega_showdown/loot_table/blocks/chiseled_mega_evo_brick.json
 6062133b9709b28cb9f91d5682021347702d73ca data/mega_showdown/loot_table/blocks/deoxys_meteorite.json
@@ -24,3 +24,5 @@ bab287dcbbdb5bffd6ce8736ce9d1cbe58fbe2f3 data/mega_showdown/loot_table/blocks/pe
 96749bc2baf4bf99cdff67e75d351bf171fa1646 data/mega_showdown/loot_table/blocks/polished_mega_evo_block.json
 b1a85e84cc008ffa1692ad9222efdbf97125b1c0 data/mega_showdown/loot_table/blocks/potted_gracidea.json
 802d1023f0178a14240b6f609fe2deab045121ab data/mega_showdown/loot_table/blocks/power_spot.json
+2877471304c4280567eefbe7fbf52915384a0941 data/mega_showdown/loot_table/blocks/reassembly_unit.json
+38ed3fa945c3073071a2349e06d439b1efd86b40 data/mega_showdown/loot_table/blocks/wishing_star_crystal.json

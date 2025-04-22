@@ -206,16 +206,16 @@
         "canWalk": true,
         "avoidsLand": false
       },
-    "fly": {
-      "canFly": false
-    },
-    "swim": {
-      "swimSpeed": 0.5,
-      "canSwimInWater": false,
-      "canBreatheUnderwater": false
+      "fly": {
+        "canFly": false
+      },
+      "swim": {
+        "swimSpeed": 0.5,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
     }
-  }
-},
+  },
   "height": 28,
   "weight": 1100,
   "dynamaxBlocked": true,

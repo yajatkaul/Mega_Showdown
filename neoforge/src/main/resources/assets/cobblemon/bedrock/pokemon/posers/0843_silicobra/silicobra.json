@@ -1,0 +1,19 @@
+{
+  "portraitScale": 2.1,
+  "portraitTranslation": [-0.1, -0.3, 0],
+  "profileScale": 0.65,
+  "profileTranslation": [0, 0.77, 0],
+  "rootBone": "silicobra",
+  "animations": {},
+  "poses": {
+    "standing": {
+      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "isTouchingWater": false,
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('silicobra', 'ground_idle')"
+      ]
+    }
+  }
+}

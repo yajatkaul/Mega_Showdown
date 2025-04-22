@@ -54,15 +54,19 @@ public abstract class MoveActionResponseMixin {
                                 moveTarget == MoveTarget.adjacentFoe) &&
                         activeBattlePokemon.getBattle().getFormat().getBattleType() == BattleTypes.INSTANCE.getSINGLES();
 
+
         if (targetPnx == null) {
+            if (activeBattlePokemon.getBattle().getFormat().getBattleType() != BattleTypes.INSTANCE.getSINGLES()
+                    && moveTarget == MoveTarget.adjacentFoe) {
+                return true;
+            }
+
             return isGimmickAOEInSingles;
         }
 
         var pair = activeBattlePokemon.getActor().getBattle().getActorAndActiveSlotFromPNX(targetPnx);
         var targetPokemon = pair.getSecond();
-
         if (!availableTargets.contains(targetPokemon)) return false;
-
         if (isGimmickAOEInSingles) {
             this.targetPnx = null;
             return true;

@@ -1,7 +1,7 @@
-package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
+package com.cobblemon.yajatkaul.mega_showdown.screen;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
+import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;

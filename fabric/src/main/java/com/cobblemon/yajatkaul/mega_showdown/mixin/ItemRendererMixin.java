@@ -3,10 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
+import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -94,6 +91,9 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "dynamax_band")));
         }
+        else if (stack.getItem() == FormeChangeItems.ZYGARDE_CUBE && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube")));
+        }
         return bakedModel;
     }
 
@@ -159,6 +159,9 @@ public abstract class ItemRendererMixin {
         }
         else if (stack.getItem() == DynamaxItems.DYNAMAX_BAND) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "dynamax_band_3d")));
+        }
+        else if (stack.getItem() == FormeChangeItems.ZYGARDE_CUBE) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube_3d")));
         }
         return bakedModel;
     }

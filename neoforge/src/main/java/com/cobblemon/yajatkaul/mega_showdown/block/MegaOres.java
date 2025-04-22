@@ -1,20 +1,21 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaCrystalBlock;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.CrystalBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -35,7 +36,7 @@ public class MegaOres {
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<AmethystClusterBlock> MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
-            () -> new MegaCrystalBlock(4, 3,
+            () -> new CrystalBlock(4, 3,
                     BlockBehaviour.Properties.of()
                             .strength(1.5f)
                             .sound(SoundType.MEDIUM_AMETHYST_BUD)
@@ -48,6 +49,32 @@ public class MegaOres {
                 @Override
                 protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
                     return SHAPE;
+                }
+
+                @Override
+                public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+                    // Get block center coordinates
+                    double x = pos.getX() + 0.5D;
+                    double y = pos.getY() + 0.5D;
+                    double z = pos.getZ() + 0.5D;
+
+                    // Spawn particles around the block
+                    for (int i = 0; i < 3; i++) { // Spawn 3 particles per tick
+                        // Add some random offset to particle position
+                        double offsetX = (random.nextDouble() - 0.5D) * 0.5D;
+                        double offsetY = (random.nextDouble() - 0.5D) * 0.5D;
+                        double offsetZ = (random.nextDouble() - 0.5D) * 0.5D;
+
+                        level.addParticle(
+                                ParticleTypes.END_ROD, // Particle type
+                                x + offsetX, // X position
+                                y + offsetY, // Y position
+                                z + offsetZ, // Z position
+                                0.0D, // X velocity
+                                0.0D, // Y velocity
+                                0.0D  // Z velocity
+                        );
+                    }
                 }
             });
 

@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-17T08:28:51.9395949	Item Models: mega_showdown
+// 1.21.1	2025-04-21T16:51:53.1268226	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -194,4 +194,3 @@ e0cb8f8122e1e0fd7ca47c815bdda13aba273eb8 assets/mega_showdown/models/item/wateri
 70f9b9dcb5ef10c1b89dc3c940de873fa65efa59 assets/mega_showdown/models/item/zapplate.json
 670eab6b4cfebff16652d4360f8b2203c5e54127 assets/mega_showdown/models/item/zygarde_cell.json
 93426b1a6d203146c28be70582777871002f4a5c assets/mega_showdown/models/item/zygarde_core.json
-62053abd79870e024ccf3513df32c55ff47b0a49 assets/mega_showdown/models/item/zygarde_cube.json

@@ -1,0 +1,37 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "sandaconda-1",
+            "pokemon": "sandaconda",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "rare",
+            "level": "37-45",
+            "weight": 7.0,
+            "condition": {
+                "biomes": [
+                    "biomesoplenty:dryland",
+                    "biomesoplenty:wasteland",
+                    "biomesoplenty:wasteland_steppe"
+                ]
+            }
+        },
+        {
+            "id": "sandaconda-2",
+            "pokemon": "sandaconda",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "rare",
+            "level": "37-44",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_desert"
+                ]
+            }
+        }
+    ]
+}

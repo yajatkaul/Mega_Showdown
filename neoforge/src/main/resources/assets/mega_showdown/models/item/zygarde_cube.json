@@ -1,0 +1,21 @@
+{
+	"parent": "minecraft:item/handheld",
+	"loader": "neoforge:separate_transforms",
+	"base": {
+		"parent": "mega_showdown:item/zygarde_cube_3d"
+	},
+	"perspectives": {
+		"head": {
+			"parent": "mega_showdown:item/zygarde_cube_3d"
+		},
+		"gui": {
+			"parent": "mega_showdown:item/zygarde_cube_2d"
+		},
+		"ground": {
+			"parent": "mega_showdown:item/zygarde_cube_3d"
+		},
+		"fixed": {
+			"parent": "mega_showdown:item/zygarde_cube_3d"
+		}
+	}
+}

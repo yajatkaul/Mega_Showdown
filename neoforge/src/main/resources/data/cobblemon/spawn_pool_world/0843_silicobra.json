@@ -1,0 +1,37 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "silicobra-1",
+            "pokemon": "silicobra",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "23-34",
+            "weight": 7.0,
+            "condition": {
+                "biomes": [
+                    "biomesoplenty:dryland",
+                    "biomesoplenty:wasteland",
+                    "biomesoplenty:wasteland_steppe"
+                ]
+            }
+        },
+        {
+            "id": "silicobra-2",
+            "pokemon": "silicobra",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "7-19",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_desert"
+                ]
+            }
+        }
+    ]
+}

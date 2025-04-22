@@ -268,9 +268,10 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.DEOXYS_METEORITE);
 
                         entries.add(FormeChangeItems.REVEAL_GLASS);
-                        entries.add(FormeChangeItems.ZAYGARDE_CORE);
-                        entries.add(FormeChangeItems.ZAYGARDE_CELL);
-                        entries.add(FormeChangeItems.ZAYGARDE_CUBE);
+                        entries.add(FormeChangeItems.ZYGARDE_CORE);
+                        entries.add(FormeChangeItems.ZYGARDE_CELL);
+                        entries.add(FormeChangeItems.ZYGARDE_CUBE);
+                        entries.add(ModBlocks.REASSEMBLY_UNIT);
                     }))
                     .build());
 
@@ -317,6 +318,7 @@ public class ModItemGroups {
                         entries.add(DynamaxItems.MAX_SOUP);
                         entries.add(DynamaxItems.SWEET_MAX_SOUP);
                         entries.add(ModBlocks.POWER_SPOT);
+                        entries.add(ModBlocks.WISHING_STAR_CRYSTAL);
                     }))
                     .build());
 

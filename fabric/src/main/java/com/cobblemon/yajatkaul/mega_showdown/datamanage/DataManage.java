@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.component.ComponentType;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.Registries;
@@ -126,6 +127,12 @@ public class DataManage {
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(MegaShowdown.MOD_ID, "calyrex_data"),
             ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
+    );
+
+    public static final ComponentType<NbtCompound> ZYGARDE_CUBE_INV = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube_inv"),
+            ComponentType.<NbtCompound>builder().codec(NbtCompound.CODEC).build()
     );
 
     public static final AttachmentType<PokeHandler> CALYREX_FUSED_WITH = AttachmentRegistry.create(

@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:archaeology",
+    "pools": [
+      {
+        "rolls": 1,
+        "bonus_rolls": 0,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:copper_ingot",
+            "weight": 10
+          },
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:gold_ingot",
+            "weight": 1
+          },
+          {
+            "type": "minecraft:item",
+            "name": "cobblemon:relic_coin",
+            "weight": 25
+          },
+          {
+            "type": "minecraft:loot_table",
+            "value": "cobblemon:sets/any_type_gem",
+            "weight": 5
+          }
+        ]
+      }
+    ],
+    "random_sequence": "mega_showdown:wishing_weald/wishing_weald"
+  }

@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.ReassemblyUnitBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -14,10 +15,12 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
@@ -89,6 +92,21 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         );
 
         dropSelf(ModBlocks.PEDESTAL.get());
+
+        add(ModBlocks.WISHING_STAR_CRYSTAL.get(), block ->
+                createSingleItemTableWithSilkTouch(block, DynamaxItems.WISHING_STAR.get()));
+
+        add(ModBlocks.REASSEMBLY_UNIT.get(), block ->
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .when(ExplosionCondition.survivesExplosion())
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(ReassemblyUnitBlock.HALF, DoubleBlockHalf.LOWER)))
+                                .add(LootItem.lootTableItem(ModBlocks.REASSEMBLY_UNIT.get()))
+                        )
+        );
     }
 
     @Override

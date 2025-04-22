@@ -24,6 +24,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(
+                        ModBlocks.WISHING_STAR_CRYSTAL.get(),
+
                         MegaOres.KEYSTONE_ORE.get(),
 
                         MegaOres.MEGA_STONE_CRYSTAL.get(),
@@ -53,11 +55,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.POWER_SPOT.get(),
 
-                        ModBlocks.PEDESTAL.get()
+                        ModBlocks.PEDESTAL.get(),
+
+                        ModBlocks.REASSEMBLY_UNIT.get()
                 );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(
+                        ModBlocks.WISHING_STAR_CRYSTAL.get(),
+
                         MegaOres.MEGA_STONE_CRYSTAL.get(),
                         MegaOres.KEYSTONE_ORE.get(),
                         ModBlocks.KEYSTONE_BLOCK.get(),
@@ -68,7 +74,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(ModBlocks.MEGA_METEOROID_BLOCK.get(),
+                .add(
+                        ModBlocks.MEGA_METEOROID_BLOCK.get(),
                         ModBlocks.MEGA_EVO_BLOCK.get(),
                         MegaOres.MEGA_METEORID_DAWN_ORE.get(),
                         MegaOres.MEGA_METEORID_DUSK_ORE.get(),
@@ -85,7 +92,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.CHISELED_MEGA_EVO_BRICK.get(),
                         ModBlocks.CHISELED_MEGA_EVO_BLOCK.get(),
                         ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(),
-                        ModBlocks.MEGA_EVO_BRICK.get()
+                        ModBlocks.MEGA_EVO_BRICK.get(),
+
+                        ModBlocks.REASSEMBLY_UNIT.get()
                 );
     }
 }

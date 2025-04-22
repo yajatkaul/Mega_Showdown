@@ -233,7 +233,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ZCrystals.SPARKLING_STONE_DARK.get());
         basicItem(ZCrystals.SPARKLING_STONE_LIGHT.get());
 
-        basicItem(FormeChangeItems.ZYGARDE_CUBE.get());
         basicItem(FormeChangeItems.ZYGARDE_CELL.get());
         basicItem(FormeChangeItems.ZYGARDE_CORE.get());
         basicItem(FormeChangeItems.REVEAL_GLASS.get());

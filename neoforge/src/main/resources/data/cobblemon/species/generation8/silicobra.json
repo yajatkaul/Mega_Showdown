@@ -1,0 +1,140 @@
+{
+  "implemented":true,
+  "nationalPokedexNumber": 843,
+  "name": "Silicobra",
+  "primaryType": "ground",
+  "maleRatio": 0.5,
+  "height": 22,
+  "weight": 76,
+  "pokedex": [
+    "cobblemon.species.silicobra.desc"
+  ],
+  "labels": [
+    "gen8"
+  ],
+  "aspects": [],
+  "abilities": [
+    "sandspit",
+    "shedskin",
+    "h:sandveil"
+  ],
+  "eggGroups": [
+    "field",
+    "dragon"
+  ],
+  "baseStats": {
+    "hp": 52,
+    "attack": 57,
+    "defence": 75,
+    "special_attack": 35,
+    "special_defence": 50,
+    "speed": 46
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 1,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 63,
+  "experienceGroup": "medium_fast",
+  "catchRate": 255,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 1,
+  "hitbox": {
+    "width": 0.85,
+    "height": 1,
+    "fixed": false
+  },
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:soft_sand",
+        "percentage": 2.5
+      }
+    ]
+  },
+  "moves": [
+    "1:wrap",
+    "1:sandattack",
+    "5:minimize",
+    "10:brutalswing",
+    "15:bulldoze",
+    "20:headbutt",
+    "25:glare",
+    "30:dig",
+    "35:sandstorm",
+    "40:slam",
+    "45:coil",
+    "50:sandtomb",
+    "egg:belch",
+    "egg:dragonrush",
+    "egg:lastresort",
+    "egg:mudslap",
+    "egg:poisontail",
+    "tm:bodyslam",
+    "tm:brutalswing",
+    "tm:bulldoze",
+    "tm:dig",
+    "tm:drillrun",
+    "tm:earthpower",
+    "tm:earthquake",
+    "tm:endure",
+    "tm:facade",
+    "tm:headbutt",
+    "tm:lastresort",
+    "tm:mudshot",
+    "tm:mudslap",
+    "tm:poisontail",
+    "tm:protect",
+    "tm:rest",
+    "tm:rockblast",
+    "tm:rockslide",
+    "tm:rocktomb",
+    "tm:sandstorm",
+    "tm:sandtomb",
+    "tm:scaleshot",
+    "tm:scaryface",
+    "tm:scorchingsands",
+    "tm:screech",
+    "tm:skittersmack",
+    "tm:sleeptalk",
+    "tm:stealthrock",
+    "tm:stoneedge",
+    "tm:substitute",
+    "tm:takedown",
+    "tm:terablast",
+    "tutor:bulldoze",
+    "tutor:drillrun",
+    "tutor:earthpower",
+    "tutor:lastresort",
+    "tutor:mudslap",
+    "tutor:rest",
+    "tutor:rockslide",
+    "tutor:scaleshot",
+    "tutor:scorchingsands",
+    "tutor:skittersmack",
+    "tutor:sleeptalk",
+    "tutor:stealthrock",
+    "tutor:stoneedge"
+  ],
+  "evolutions": [
+    {
+      "id": "silicobra_sandaconda",
+      "variant": "level_up",
+      "result": "sandaconda",
+      "consumeHeldItem": false,
+      "learnableMoves": [],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 36
+        }
+      ]
+    }
+  ]
+}
