@@ -27,7 +27,7 @@ public class Gracidea extends BlockItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-        if(player.level().isClientSide){
+        if(player.level().isClientSide || player.isCrouching()){
             return InteractionResult.PASS;
         }
 

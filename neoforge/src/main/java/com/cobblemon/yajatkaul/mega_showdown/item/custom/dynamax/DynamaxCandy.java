@@ -26,7 +26,7 @@ public class DynamaxCandy extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand arg4) {
-        if(player.level().isClientSide){
+        if(player.level().isClientSide || player.isCrouching()){
             return InteractionResult.PASS;
         }
 

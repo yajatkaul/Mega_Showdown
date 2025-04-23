@@ -41,7 +41,7 @@ public class Unity extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack arg, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (player.getWorld().isClient) {
+        if (player.getWorld().isClient || player.isCrawling()) {
             return ActionResult.PASS;
         }
 

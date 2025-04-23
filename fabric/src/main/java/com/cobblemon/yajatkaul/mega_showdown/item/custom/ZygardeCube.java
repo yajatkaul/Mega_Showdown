@@ -1,13 +1,21 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.api.types.tera.TeraTypes;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.CubeInventoryListener;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreenHandler;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -17,17 +25,31 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 import java.util.Optional;
+
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getType;
 
 public class ZygardeCube extends Item {
     private final SimpleInventory inventory;
@@ -41,6 +63,16 @@ public class ZygardeCube extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if(world.isClient || hand == Hand.OFF_HAND){
             return TypedActionResult.fail(user.getStackInHand(hand));
+        }
+
+        EntityHitResult entityHit = getEntityLookingAt(user, 4.5);
+        if (entityHit != null) {
+            Entity entity = entityHit.getEntity();
+            if (entity instanceof PokemonEntity pk) {
+                if (pk.getPokemon().getSpecies().getName().equals("Zygarde")) {
+                    return TypedActionResult.pass(user.getStackInHand(hand));
+                }
+            }
         }
 
         RegistryWrapper.WrapperLookup registries = user.getWorld().getRegistryManager();
@@ -57,6 +89,21 @@ public class ZygardeCube extends Item {
         ));
 
         return TypedActionResult.pass(user.getStackInHand(hand));
+    }
+
+    public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
+        Vec3d eyePos = player.getEyePos();
+        Vec3d lookVec = player.getRotationVec(1.0F);
+        Vec3d targetPos = eyePos.add(lookVec.multiply(distance));
+
+        return ProjectileUtil.raycast(
+                player,
+                eyePos,
+                targetPos,
+                player.getBoundingBox().stretch(lookVec.multiply(distance)).expand(1.0, 1.0, 1.0),
+                entity -> !entity.isSpectator() && entity.canHit() && entity instanceof LivingEntity,
+                distance * distance
+        );
     }
 
     public static NbtCompound serializeInventory(SimpleInventory inventory, RegistryWrapper.WrapperLookup registries) {
@@ -100,6 +147,95 @@ public class ZygardeCube extends Item {
                     inventory.setStack(slot, stack);
                 }
             });
+        }
+    }
+
+    public SimpleInventory getInventory(ItemStack stack, PlayerEntity player){
+        NbtCompound tag = stack.get(DataManage.ZYGARDE_CUBE_INV);
+        RegistryWrapper.WrapperLookup registries = player.getWorld().getRegistryManager();
+
+        deserializeInventory(tag, inventory, registries);
+
+        return inventory;
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
+        if(player.getWorld().isClient || player.isCrawling()){
+            return ActionResult.FAIL;
+        }
+
+        if(entity instanceof PokemonEntity pk){
+            Pokemon pokemon = pk.getPokemon();
+            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
+                return ActionResult.PASS;
+            }
+
+            if(!pokemon.getSpecies().getName().equals("Zygarde")){
+                return ActionResult.PASS;
+            }
+
+            if(pk.getAspects().contains("power-construct")){
+                if(pk.getAspects().contains("percent_cells=10-percent")){
+                    particleEffect(pokemon.getEntity());
+                    new StringSpeciesFeature("percent_cells","50-percent").apply(pk);
+                }else{
+                    particleEffect(pokemon.getEntity());
+                    new StringSpeciesFeature("percent_cells","10-percent").apply(pk);
+                }
+            }else {
+                player.sendMessage(
+                        Text.literal("You need a zygarde with power-construct").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+            }
+
+            return ActionResult.SUCCESS;
+        }
+
+        return ActionResult.FAIL;
+    }
+
+    public static void particleEffect(LivingEntity context) {
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 0.8; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
         }
     }
 }

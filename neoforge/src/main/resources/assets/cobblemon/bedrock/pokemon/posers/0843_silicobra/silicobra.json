@@ -1,18 +1,54 @@
 {
-  "portraitScale": 2.1,
-  "portraitTranslation": [-0.1, -0.3, 0],
-  "profileScale": 0.65,
-  "profileTranslation": [0, 0.77, 0],
-  "rootBone": "silicobra",
-  "animations": {},
+  "portraitScale": 1.55,
+  "portraitTranslation": [-0.23, -0.25, 0],
+  "profileScale": 0.81,
+  "profileTranslation": [-0.02, 0.35, 0],
   "poses": {
+    "battle-standing": {
+      "poseTypes": ["STAND"],
+      "isBattle": true,
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('silicobra', 'battle_idle')"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(silicobra, blink)"
+          ]
+        }
+      ]
+    },
     "standing": {
       "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
-      "isTouchingWater": false,
       "isBattle": false,
       "animations": [
-        "q.look('head')",
+        "q.look('head_ai')",
         "q.bedrock('silicobra', 'ground_idle')"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(silicobra, blink)"
+          ]
+        }
+      ]
+    },
+    "walking": {
+      "poseTypes": ["WALK"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('silicobra', 'ground_walk')"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(silicobra, blink)"
+          ]
+        }
       ]
     }
   }

@@ -552,5 +552,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('S', Items.SMOOTH_STONE_SLAB)
                 .define('B', Items.CHISELED_STONE_BRICKS)
                 .unlockedBy("has_chiseled_stone_bricks", has(Items.CHISELED_STONE_BRICKS)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REASSEMBLY_UNIT.get())
+                .pattern("RRR")
+                .pattern("RTR")
+                .pattern("III")
+                .define('R', Items.REDSTONE)
+                .define('T', CobblemonItems.RESTORATION_TANK)
+                .define('I', Items.IRON_BLOCK)
+                .unlockedBy("has_restoration_tank", has(CobblemonItems.RESTORATION_TANK)).save(recipeOutput);
     }
 }

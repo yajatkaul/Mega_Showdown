@@ -50,7 +50,7 @@ public class RotomFormes {
     public static final Item FAN = registerItem("fanunit", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
                 Pokemon pokemon = pk.getPokemon();
                 if(pokemon.getSpecies().getName().equals("Rotom")){
                     if(!possible((ServerPlayerEntity) player)){
@@ -76,7 +76,7 @@ public class RotomFormes {
     public static final Item FRIDGEUNIT = registerItem("fridgeunit", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
                 Pokemon pokemon = pk.getPokemon();
                 if(pokemon.getSpecies().getName().equals("Rotom")){
                     if(!possible((ServerPlayerEntity) player)){
@@ -102,7 +102,7 @@ public class RotomFormes {
     public static final Item MOWUNIT = registerItem("mowunit", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
                 Pokemon pokemon = pk.getPokemon();
                 if(pokemon.getSpecies().getName().equals("Rotom")){
                     if(!possible((ServerPlayerEntity) player)){
@@ -128,7 +128,7 @@ public class RotomFormes {
     public static final Item OVENUNIT = registerItem("ovenunit", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
                 Pokemon pokemon = pk.getPokemon();
                 if(pokemon.getSpecies().getName().equals("Rotom")){
                     if(!possible((ServerPlayerEntity) player)){
@@ -154,7 +154,7 @@ public class RotomFormes {
     public static final Item WASHUNIT = registerItem("washunit", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()){
+            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
                 Pokemon pokemon = pk.getPokemon();
                 if(pokemon.getSpecies().getName().equals("Rotom")){
                     if(!possible((ServerPlayerEntity) player)){
@@ -180,7 +180,7 @@ public class RotomFormes {
     public static final Item ROTOM_CATALOGUE = registerItem("rotom_catalogue", new Item(new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling()) {
+            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
                 if (pokemon.getSpecies().getName().equals("Rotom")) {
 

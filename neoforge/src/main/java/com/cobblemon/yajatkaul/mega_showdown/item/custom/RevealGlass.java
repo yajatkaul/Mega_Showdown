@@ -55,7 +55,7 @@ public class RevealGlass extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if (player.level().isClientSide){
+        if (player.level().isClientSide || player.isCrouching()){
             return InteractionResult.PASS;
         }
 

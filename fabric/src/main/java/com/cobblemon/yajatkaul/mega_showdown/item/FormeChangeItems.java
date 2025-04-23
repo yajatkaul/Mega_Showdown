@@ -366,7 +366,7 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Oricorio")){
@@ -390,7 +390,7 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Oricorio")){
@@ -414,7 +414,7 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Oricorio")){
@@ -438,7 +438,7 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Oricorio")){
@@ -567,7 +567,7 @@ public class FormeChangeItems {
     public static final BlockItem DEOXYS_METEORITE = Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"), new BlockItem(ModBlocks.DEOXYS_METEORITE, new Item.Settings()){
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+            if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
                 if(pokemon.getSpecies().getName().equals("Deoxys")){
@@ -606,7 +606,7 @@ public class FormeChangeItems {
     });
 
     public static final Item ZYGARDE_CELL = registerItem("zygarde_cell",
-            new Item(new Item.Settings().maxCount(99)){
+            new Item(new Item.Settings().maxCount(95)){
                 @Override
                 public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
                     tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cell.tooltip"));

@@ -16,7 +16,7 @@ public class ItemInventoryUtil {
             @Override
             protected int getStackLimit(int slot, ItemStack stack) {
                 if (slot == 1) return 5;
-                return 99;
+                return 95;
             }
         };
     }
@@ -26,7 +26,7 @@ public class ItemInventoryUtil {
             @Override
             protected int getStackLimit(int slot, ItemStack stack) {
                 if (slot == 1) return 5;
-                return 99;
+                return 95;
             }
 
             @Override

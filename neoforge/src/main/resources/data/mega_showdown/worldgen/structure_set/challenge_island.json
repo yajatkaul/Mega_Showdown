@@ -1,14 +1,15 @@
 {
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 112181,
+    "separation": 5,
+    "spacing": 32,
+    "spread_type": "triangular"
+  },
   "structures": [
     {
       "structure": "mega_showdown:challenge_island",
       "weight": 1
     }
-  ],
-  "placement": {
-    "type": "minecraft:random_spread",
-    "spacing": 32,
-    "separation": 8,
-    "salt": 112118
-  }
+  ]
 }
