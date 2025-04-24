@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:klefki",
   "baseScale": 1,
   "hitbox": {

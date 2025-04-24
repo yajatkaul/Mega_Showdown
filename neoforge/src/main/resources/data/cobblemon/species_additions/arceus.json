@@ -1,6 +1,6 @@
 {
+  "implemented": true,
   "target": "cobblemon:arceus",
-
   "baseScale":1,
   "behaviour": {
     "moving": {
@@ -10,19 +10,19 @@
         "canWalk": true,
         "avoidsLand": false
       },
-    "fly": {
-      "canFly": true
-    },
-    "swim": {
-      "swimSpeed": 0.4,
-      "canSwimInWater": false,
-      "canBreatheUnderwater": false
+      "fly": {
+        "canFly": true
+      },
+      "swim": {
+        "swimSpeed": 0.4,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
     }
+  },
+  "hitbox": {
+    "width": 4,
+    "height": 5,
+    "fixed": false
   }
-},
-"hitbox": {
-  "width": 4,
-  "height": 5,
-  "fixed": false
-}
 }

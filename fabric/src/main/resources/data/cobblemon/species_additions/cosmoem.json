@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:cosmoem",
   "baseScale": 0.4,
   "hitbox": {

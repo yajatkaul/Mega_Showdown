@@ -667,5 +667,9 @@
 	"cobblemon.battle.damage.gmaxcannonade": "%1$s is hurt by the vortex!",
 	"cobblemon.battle.item.gmaxreplenish": "%1$s replenished it's %2$s!",
 
-	"cobblemon.battle.ultra": "%1$s has regained its true power through Ultra Burst!"
+	"cobblemon.battle.ultra": "%1$s has regained its true power through Ultra Burst!",
+
+	"cobblemon.ui.stats.dynamax_level": "Dynamax Level",
+	"cobblemon.ui.stats.gmax": "G-Max",
+	"cobblemon.ui.stats.dmax": "D-Max"
 }

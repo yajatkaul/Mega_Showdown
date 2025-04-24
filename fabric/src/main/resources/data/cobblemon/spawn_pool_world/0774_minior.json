@@ -24,7 +24,7 @@
         },
         {
             "id": "minior-2",
-            "pokemon": "minior meteor_shield=core core_color=red",
+            "pokemon": "minior meteor_shield=meteor core_color=red",
             "presets": [
                 "natural"
             ],
@@ -39,12 +39,12 @@
                 "biomes": [
                     "#cobblemon:is_hills"
                 ]
-                
+
             }
         },
         {
             "id": "minior-3",
-            "pokemon": "minior meteor_shield=core core_color=orange",
+            "pokemon": "minior meteor_shield=meteor core_color=orange",
             "presets": [
                 "natural"
             ],
@@ -59,12 +59,12 @@
                 "biomes": [
                     "#cobblemon:is_savanna"
                 ]
-                
+
             }
         },
         {
             "id": "minior-4",
-            "pokemon": "minior meteor_shield=core core_color=yellow",
+            "pokemon": "minior meteor_shield=meteor core_color=yellow",
             "presets": [
                 "natural"
             ],
@@ -79,12 +79,12 @@
                 "biomes": [
                     "#cobblemon:is_plains"
                 ]
-                
+
             }
         },
         {
             "id": "minior-5",
-            "pokemon": "minior meteor_shield=core core_color=green",
+            "pokemon": "minior meteor_shield=meteor core_color=green",
             "presets": [
                 "natural"
             ],
@@ -99,12 +99,12 @@
                 "biomes": [
                     "#cobblemon:is_jungle"
                 ]
-                
+
             }
         },
         {
             "id": "minior-6",
-            "pokemon": "minior meteor_shield=core core_color=blue",
+            "pokemon": "minior meteor_shield=meteor core_color=blue",
             "presets": [
                 "natural"
             ],
@@ -119,12 +119,12 @@
                 "biomes": [
                     "#cobblemon:is_freshwater"
                 ]
-                
+
             }
         },
         {
             "id": "minior-7",
-            "pokemon": "minior meteor_shield=core core_color=indigo",
+            "pokemon": "minior meteor_shield=meteor core_color=indigo",
             "presets": [
                 "natural"
             ],
@@ -139,12 +139,12 @@
                 "biomes": [
                     "#cobblemon:is_cold"
                 ]
-                
+
             }
         },
         {
             "id": "minior-8",
-            "pokemon": "minior meteor_shield=core core_color=violet",
+            "pokemon": "minior meteor_shield=meteor core_color=violet",
             "presets": [
                 "natural"
             ],
@@ -159,7 +159,6 @@
                 "biomes": [
                     "#cobblemon:is_mountain"
                 ]
-                
             }
         }
     ]

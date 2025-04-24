@@ -1,5 +1,6 @@
 {
-    "target": "cobblemon:lycanroc",
+  "implemented": true,
+  "target": "cobblemon:lycanroc",
   "baseScale": 1,
   "hitbox": {
     "width": 1,

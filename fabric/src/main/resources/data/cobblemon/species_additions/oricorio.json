@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:oricorio",
   "baseScale": 0.55,
   "hitbox": {

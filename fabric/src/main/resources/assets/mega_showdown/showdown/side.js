@@ -119,7 +119,7 @@ class Side {
   canDynamaxNow() {
     if (this.battle.gen !== 9)
       return false;
-    if (this.battle.gameType === "multi" && this.battle.turn % 2 !== [1, 1, 0, 0][this.n])
+    if (this.battle.gameType === "multi")
       return false;
     return !this.dynamaxUsed;
   }

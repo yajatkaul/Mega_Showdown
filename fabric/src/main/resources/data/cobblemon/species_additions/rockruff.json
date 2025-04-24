@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:rockruff",
   "baseScale": 0.7,
   "evolutions": [

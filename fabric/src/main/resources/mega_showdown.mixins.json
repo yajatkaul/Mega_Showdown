@@ -15,7 +15,10 @@
     "EndInstructionAccessor",
     "EndInstructionMixin",
     "StartInstructionMixin",
-    "StartInstructionAccessor"
+    "StartInstructionAccessor",
+    "UI.SummaryMixin",
+    "UI.PokemonInfoWidgetMixin",
+    "UI.StatWidgetMixin"
   ],
   "client": [
     "ItemRendererMixin",

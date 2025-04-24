@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:giratina",
   "hitbox": {
     "width": 4.5,

@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:deoxys",
   "baseScale":1,
   "behaviour": {

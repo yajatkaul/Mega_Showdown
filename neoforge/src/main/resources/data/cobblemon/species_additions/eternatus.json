@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:eternatus",
   "hitbox": {
     "width": 2.3,

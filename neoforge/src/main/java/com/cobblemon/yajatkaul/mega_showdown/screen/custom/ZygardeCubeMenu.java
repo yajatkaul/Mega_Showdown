@@ -30,8 +30,8 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         // Add custom inventory slots
-        this.addSlot(new SlotItemType(this.inventory, 0, 62, 34));
-        this.addSlot(new SlotItemType(this.inventory, 1, 98, 34));
+        this.addSlot(new SlotItemType(this.inventory, 0, 62, 36));
+        this.addSlot(new SlotItemType(this.inventory, 1, 98, 36));
     }
 
     public ZygardeCubeMenu(int id, Inventory inv, ItemStackHandler inventory) {
@@ -41,8 +41,8 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemType(inventory, 0, 62, 34));
-        this.addSlot(new SlotItemType(inventory, 1, 98, 34));
+        this.addSlot(new SlotItemType(inventory, 0, 62, 36));
+        this.addSlot(new SlotItemType(inventory, 1, 98, 36));
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

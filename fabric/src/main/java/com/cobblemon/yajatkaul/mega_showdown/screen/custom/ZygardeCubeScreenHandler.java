@@ -26,14 +26,14 @@ public class ZygardeCubeScreenHandler extends ScreenHandler {
             ((SimpleInventory) inventory).addListener(new CubeInventoryListener(itemStack, playerEntity));
         }
 
-        this.addSlot(new SlotItemType(inventory, 0, 62, 34) {
+        this.addSlot(new SlotItemType(inventory, 0, 62, 36) {
             @Override
             public int getMaxItemCount() {
-                return 99;
+                return 95;
             }
         });
 
-        this.addSlot(new SlotItemType(inventory, 1, 98, 34) {
+        this.addSlot(new SlotItemType(inventory, 1, 98, 36) {
             @Override
             public int getMaxItemCount() {
                 return 5;

@@ -1,5 +1,6 @@
 {
-    "target": "cobblemon:marshadow",
+  "implemented": true,
+  "target": "cobblemon:marshadow",
         "behaviour": {
         "resting": {
             "canSleep": false,

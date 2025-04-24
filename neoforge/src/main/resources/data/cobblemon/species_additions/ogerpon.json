@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:ogerpon",
   "behaviour": {
     "resting": {

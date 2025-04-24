@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:zekrom",
   "baseScale": 0.9,
   "hitbox": {

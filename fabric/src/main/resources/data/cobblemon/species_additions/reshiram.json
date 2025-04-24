@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:reshiram",
   "baseScale": 0.9,
   "hitbox": {

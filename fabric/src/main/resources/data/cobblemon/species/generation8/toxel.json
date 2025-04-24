@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 848,
   "name": "Toxel",
   "primaryType": "electric",
@@ -6,22 +7,11 @@
   "maleRatio": 0.5,
   "height": 4,
   "weight": 110,
-  "pokedex": [
-    "cobblemon.species.toxel.desc"
-  ],
-  "labels": [
-    "gen8",
-    "baby"
-  ],
+  "pokedex": ["cobblemon.species.toxel.desc"],
+  "labels": ["gen8", "baby"],
   "aspects": [],
-  "abilities": [
-    "rattled",
-    "static",
-    "h:klutz"
-  ],
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "abilities": ["rattled", "static", "h:klutz"],
+  "eggGroups": ["undiscovered"],
   "baseStats": {
     "hp": 40,
     "attack": 38,
@@ -101,7 +91,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelbrave_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -118,7 +108,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxeladamant_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -135,7 +125,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelnaughty_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -152,7 +142,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxeldocile_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -169,7 +159,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelimpish_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -186,7 +176,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxellax_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -203,7 +193,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelhasty_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -220,7 +210,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxeljolly_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -237,7 +227,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelnaive_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -254,7 +244,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelrash_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -271,7 +261,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelsassy_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -288,7 +278,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelquirky_toxtricity",
       "variant": "level_up",
       "result": "toxtricity punk_form=amped",
@@ -322,7 +312,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelbold_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -339,7 +329,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelrelaxed_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -356,7 +346,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxeltimid_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -373,7 +363,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelserious_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -390,7 +380,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelmodest_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -407,7 +397,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelmild_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -424,7 +414,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelquiet_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -441,7 +431,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelbashful_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -458,7 +448,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelcalm_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -475,7 +465,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelgentle_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",
@@ -492,7 +482,7 @@
         }
       ]
     },
-	{
+    {
       "id": "toxelcareful_toxtricitylowkey",
       "variant": "level_up",
       "result": "toxtricity punk_form=low_key",

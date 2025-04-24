@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "target": "cobblemon:cosmog",
   "baseScale": 0.4,
   "hitbox": {
