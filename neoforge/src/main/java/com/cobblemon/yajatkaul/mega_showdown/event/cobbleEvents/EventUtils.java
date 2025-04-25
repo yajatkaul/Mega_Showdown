@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
+import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -22,6 +23,10 @@ public class EventUtils {
         if(pokemon.getEntity() != null){
             pokemon.getEntity().removeEffect(MobEffects.GLOWING);
             DynamaxEventListener.startGradualScaling(pokemon.getEntity(), 1.0f);
+        }
+
+        if(pokemon instanceof TeraAccessor pk){
+            pk.setTeraEnabled(false);
         }
 
         new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
@@ -179,99 +184,6 @@ public class EventUtils {
                         0.1 // Slight motion
                 );
             }
-        }
-    }
-    public static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getBbWidth();
-            double entityHeight = context.getBbHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
-
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1.2; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
-
-            // Play sound effect
-            serverLevel.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BEACON_ACTIVATE, // Change this if needed
-                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverLevel.sendParticles(
-                        particleType,
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
-    }
-    public static void originAnimation(LivingEntity context, SimpleParticleType particleType) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getBbWidth();
-            double entityHeight = context.getBbHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
-
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1.2; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
-
-            // Play sound effect
-            serverLevel.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
-                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverLevel.sendParticles(
-                        particleType,
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
-    }
-    public static void crownAnimation(ServerLevel level, BlockPos pos, LivingEntity context) {
-        LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
-        if (lightning != null) {
-            lightning.moveTo(Vec3.atBottomCenterOf(pos));
-            lightning.setVisualOnly(true);
-            level.addFreshEntity(lightning);
-            playEvolveAnimation(context);
         }
     }
     public static void playEvolveAnimation(LivingEntity context) {

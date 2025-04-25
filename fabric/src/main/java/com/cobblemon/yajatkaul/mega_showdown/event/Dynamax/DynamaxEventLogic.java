@@ -5,6 +5,8 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import kotlin.Unit;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -65,6 +67,11 @@ public class DynamaxEventLogic {
                 }
                 scoreboard.addScoreHolderToTeam(pokemon.getEntity().getUuid().toString(), team);
             }
+
+            battle.dispatchWaitingToFront(3F, () -> {
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                return Unit.INSTANCE;
+            });
         });
 
         DynamaxEventEnd.EVENT.register((battle, pokemon) -> {

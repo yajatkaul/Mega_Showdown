@@ -671,5 +671,9 @@
 
 	"cobblemon.ui.stats.dynamax_level": "Dynamax Level",
 	"cobblemon.ui.stats.gmax": "G-Max",
-	"cobblemon.ui.stats.dmax": "D-Max"
+	"cobblemon.ui.stats.dmax": "D-Max",
+
+	"cobblemon.ui.pokedex.info.form.core": "Core",
+	"cobblemon.pokedex.minior.desc": "Originally making its home in the ozone layer, it hurtles to the ground when the shell enclosing its body grows too heavy.",
+	"cobblemon.pokedex.minior-core.desc": "It eats dust in the atmosphere. The composition of the dust determines the color of its core."
 }

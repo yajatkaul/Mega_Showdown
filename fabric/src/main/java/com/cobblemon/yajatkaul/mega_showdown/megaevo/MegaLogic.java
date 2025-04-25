@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -315,7 +316,6 @@ public class MegaLogic {
         new FlagSpeciesFeature("mega-x", false).apply(context);
         new FlagSpeciesFeature("mega-y", false).apply(context);
         setTradable(context, true);
-
     }
 
     public static void playEvolveAnimation(LivingEntity context) {

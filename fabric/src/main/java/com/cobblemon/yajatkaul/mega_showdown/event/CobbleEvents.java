@@ -33,6 +33,8 @@ public class CobbleEvents {
 
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventHandler::fixTeraTyping);
 
+        CobblemonEvents.POKEMON_SENT_POST.subscribe(Priority.NORMAL, CobbleEventHandler::pokemonSent);
+
         DynamaxEventLogic.register();
         UltraEventLogic.register();
 

@@ -19,10 +19,19 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusPlates;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
@@ -33,18 +42,23 @@ public class HeldItemChangeFormes {
         Pokemon pokemon = post.getPokemon();
         if(pokemon.getSpecies().getName().equals("Genesect")){
             if(post.getReceived().isOf(FormeChangeItems.DOUSE_DRIVE)){
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive","water").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.BURN_DRIVE)){
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive","fire").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.CHILL_DRIVE)){
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive","ice").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.SHOCK_DRIVE)){
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive","electric").apply(pokemon);
             }
             else if (!(post.getReceived().getItem() instanceof Drives) && post.getReturned().getItem() instanceof Drives) {
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive","none").apply(pokemon);
             }
         }
@@ -54,74 +68,74 @@ public class HeldItemChangeFormes {
         Pokemon pokemon = post.getPokemon();
         if(pokemon.getSpecies().getName().equals("Silvally")){
             if(post.getReceived().isOf(FormeChangeItems.BUG_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","bug").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.DARK_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","dark").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.DRAGON_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","dragon").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.ELECTRIC_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","electric").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.FAIRY_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","fairy").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.FIGHTING_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","fighting").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.FIRE_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","fire").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.FLYING_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","flying").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.GHOST_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","ghost").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.GRASS_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","grass").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.GROUND_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","ground").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.ICE_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","ice").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.POISON_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","poison").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.PSYCHIC_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","psychic").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.ROCK_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","rock").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.STEEL_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","steel").apply(pokemon);
             }
             else if(post.getReceived().isOf(FormeChangeItems.WATER_MEMORY)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","water").apply(pokemon);
             } else if (!(post.getReceived().getItem() instanceof Memories) && post.getReturned().getItem() instanceof Memories) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory","normal").apply(pokemon);
             }
         }
@@ -131,109 +145,109 @@ public class HeldItemChangeFormes {
         Pokemon pokemon = post.getPokemon();
         if(pokemon.getSpecies().getName().equals("Arceus")){
             if(post.getReceived().isOf(FormeChangeItems.FLAME_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","fire").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.SPLASH_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","water").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.ZAP_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","electric").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.MEADOW_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","grass").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.ICICLE_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","ice").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.FIST_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","fighting").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.TOXIC_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","poison").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.EARTH_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","ground").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.SKY_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","flying").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.MIND_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","psychic").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.INSECT_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","bug").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.STONE_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","rock").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.SPOOKY_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","ghost").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.DRACO_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","dragon").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.DREAD_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","dark").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.IRON_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","steel").apply(pokemon);
             } else if(post.getReceived().isOf(FormeChangeItems.PIXIE_PLATE)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","fairy").apply(pokemon);
             }else if(post.getReceived().isOf(ZCrystals.BUGINIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "bug").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.DARKINIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "dark").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.DRAGONIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "dragon").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.ELECTRIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "electric").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.FAIRIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "fairy").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.FIGHTINIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "fighting").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.FIRIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "fire").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.FLYINIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "flying").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.GHOSTIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "ghost").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.GRASSIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "grass").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.GROUNDIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "ground").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.ICIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "ice").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.POISONIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "poison").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.PSYCHIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "psychic").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.ROCKIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "rock").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.STEELIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "steel").apply(pokemon);
             } else if(post.getReceived().isOf(ZCrystals.WATERIUM_Z)) {
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "water").apply(pokemon);
             } else if(!(post.getReceived().getItem() instanceof ArceusPlates) && post.getReturned().getItem() instanceof ArceusPlates){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","normal").apply(pokemon);
             }
         }
@@ -244,26 +258,26 @@ public class HeldItemChangeFormes {
 
         if(pokemon.getSpecies().getName().equals("Giratina")){
             if(post.getReceived().isOf(FormeChangeItems.GRISEOUS_CORE)){
-                EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
+                originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
                 new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
             }else if (post.getReturned().isOf(FormeChangeItems.GRISEOUS_CORE)){
-                EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
+                originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }
         } else if (pokemon.getSpecies().getName().equals("Palkia")) {
             if(post.getReceived().isOf(FormeChangeItems.LUSTROUS_GLOBE)){
-                EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
             }else if (post.getReturned().isOf(FormeChangeItems.LUSTROUS_GLOBE)){
-                EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }
         }else if (pokemon.getSpecies().getName().equals("Dialga")) {
             if(post.getReceived().isOf(FormeChangeItems.ADAMANT_CRYSTAL)){
-                EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
             }else if (post.getReturned().isOf(FormeChangeItems.ADAMANT_CRYSTAL)){
-                EventUtils.originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
+                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
                 new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
             }
         }
@@ -276,6 +290,7 @@ public class HeldItemChangeFormes {
         Pokemon pokemon = post.getPokemon();
 
         if(pokemon.getSpecies().getName().equals("Eternatus") && post.getReceived().isOf(FormeChangeItems.STAR_CORE)){
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
             new FlagSpeciesFeature("eternamax",true).apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Eternatus")) {
             new FlagSpeciesFeature("eternamax",false).apply(pokemon);
@@ -290,6 +305,7 @@ public class HeldItemChangeFormes {
         }
         if(post.getReceived().isOf(FormeChangeItems.HEARTHFLAME_MASK)){
             new StringSpeciesFeature("ogre_mask","hearthflame").apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
             try {
                 pokemon.setTeraType(TeraTypes.getFIRE());
             }catch (Exception e){
@@ -297,6 +313,7 @@ public class HeldItemChangeFormes {
             }
         } else if (post.getReceived().isOf(FormeChangeItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask","cornerstone").apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
             try {
                 pokemon.setTeraType(TeraTypes.getROCK());
             }catch (Exception e){
@@ -304,6 +321,7 @@ public class HeldItemChangeFormes {
             }
         }else if (post.getReceived().isOf(FormeChangeItems.WELLSPRING_MASK)) {
             new StringSpeciesFeature("ogre_mask","wellspring").apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
             try {
                 pokemon.setTeraType(TeraTypes.getWATER());
             }catch (Exception e){
@@ -311,6 +329,7 @@ public class HeldItemChangeFormes {
             }
         }else {
             new StringSpeciesFeature("ogre_mask","teal").apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
             try {
                 pokemon.setTeraType(TeraTypes.getGRASS());
             }catch (Exception e){
@@ -326,13 +345,13 @@ public class HeldItemChangeFormes {
         if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().isOf(MegaStones.BLUE_ORB)){
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             setTradable(post.getPokemon(), false);
-            EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().isOf(MegaStones.RED_ORB)){
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             setTradable(post.getPokemon(), false);
-            EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
@@ -342,7 +361,7 @@ public class HeldItemChangeFormes {
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
             setTradable(post.getPokemon(), true);
-            EventUtils.primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
         }
     }
 
@@ -387,19 +406,19 @@ public class HeldItemChangeFormes {
         if(pokemon.getSpecies().getName().equals("Zacian") ||
                 pokemon.getSpecies().getName().equals("Zamazenta")){
             if(event.getReceived().isOf(FormeChangeItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")){
-                EventUtils.crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
+                crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
                 setTradable(pokemon, false);
             } else if (event.getReceived().isOf(FormeChangeItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
-                EventUtils.crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
+                crownAnimation((ServerWorld) pokemon.getEntity().getWorld(), pokemon.getEntity().getBlockPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
                 setTradable(pokemon, false);
             } else if(pokemon.getSpecies().getName().equals("Zacian") && event.getReturned().isOf(FormeChangeItems.RUSTED_SWORD)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
                 setTradable(pokemon, true);
             }else if(pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturned().isOf(FormeChangeItems.RUSTED_SHIELD)){
-                EventUtils.playEvolveAnimation(pokemon.getEntity());
+                playHeldItemFormeChange(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
                 setTradable(pokemon, true);
             }
@@ -411,8 +430,146 @@ public class HeldItemChangeFormes {
 
         if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")){
             if(event.getReturned().isOf(ZCrystals.ULTRANECROZIUM_Z)){
+                if(!pokemon.getEntity().isBattling()){
+                    LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                }
                 EventUtils.ultraAnimation(pokemon.getEntity());
                 new FlagSpeciesFeature("ultra",false).apply(pokemon);
+            }
+        }
+    }
+
+
+    private static void playHeldItemFormeChange(LivingEntity context) {
+        LazyLib.Companion.cryAnimation(context);
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Yarn mapping for BEACON_ACTIVATE
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD, // Same particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+    private static void originAnimation(LivingEntity context, SimpleParticleType particleType) {
+        LazyLib.Companion.cryAnimation(context);
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 1; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverWorld.spawnParticles(
+                        particleType,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+    private static void crownAnimation(ServerWorld level, BlockPos pos, LivingEntity context) {
+        LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(level);
+        if (lightning != null) {
+            lightning.setPosition(Vec3d.ofBottomCenter(pos));
+            lightning.setCosmetic(true);
+            level.spawnEntity(lightning);
+            playHeldItemFormeChange(context);
+        }
+    }
+    private static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
+        LazyLib.Companion.cryAnimation(context);
+        if (context.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3d entityPos = context.getPos(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getWidth();
+            double entityHeight = context.getHeight();
+            double entityDepth = entityWidth; // Usually same as width for most mobs
+
+            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
+            double scaleFactor = 1.2; // Adjust this for more spread
+            double adjustedWidth = entityWidth * scaleFactor;
+            double adjustedHeight = entityHeight * scaleFactor;
+            double adjustedDepth = entityDepth * scaleFactor;
+
+            // Play sound effect
+            serverWorld.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.BLOCK_BEACON_ACTIVATE, // Change this if needed
+                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+
+            for (int i = 0; i < particleCount; i++) {
+                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
+                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
+                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+
+                serverWorld.spawnParticles(
+                        particleType,
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
             }
         }
     }

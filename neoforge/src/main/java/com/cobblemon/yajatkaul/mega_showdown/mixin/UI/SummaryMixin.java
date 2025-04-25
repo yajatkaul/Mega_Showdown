@@ -14,15 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static com.cobblemon.yajatkaul.mega_showdown.screen.GimmikInfoKt.gimmikInfo;
 
-@Mixin(value = Summary.class, remap = false)
+@Mixin(value = Summary.class)
 public abstract class SummaryMixin {
     @Inject(
             method = "render",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/screens/Screen;render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"
-            ),
-            remap = false
+            at = @At("RETURN")
     )
     private void displayIcons(GuiGraphics context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         Summary summary = (Summary) (Object) this;
@@ -32,9 +28,10 @@ public abstract class SummaryMixin {
         PoseStack matrices = context.pose();
 
         Pokemon pokemon = summary.getSelectedPokemon$common();
+
         gimmikInfo(
                 matrices,
-                ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/"+ pokemon.getTeraType().getDisplayName().getString().toLowerCase() + ".png"),
+                ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/"+ pokemon.getTeraType().showdownId() + ".png"),
                 (x + 58) / SCALE,
                 (y + 84) / SCALE,
                 32,

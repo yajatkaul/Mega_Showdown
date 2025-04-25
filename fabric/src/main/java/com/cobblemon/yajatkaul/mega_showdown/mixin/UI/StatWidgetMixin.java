@@ -21,7 +21,6 @@ import static com.cobblemon.mod.common.util.LocalizationUtilsKt.lang;
 import static com.cobblemon.mod.common.util.MiscUtilsKt.cobblemonResource;
 import static com.cobblemon.yajatkaul.mega_showdown.screen.GimmikInfoKt.gimmikBar;
 import static com.cobblemon.yajatkaul.mega_showdown.screen.GimmikInfoKt.gimmikText;
-import static net.minecraft.util.math.MathHelper.ceil;
 
 @Mixin(value = StatWidget.class, remap = false)
 public abstract class StatWidgetMixin {
@@ -30,8 +29,7 @@ public abstract class StatWidgetMixin {
 
     @Inject(
             method = "drawFriendship",
-            at = @At("RETURN"),
-            remap = false
+            at = @At("RETURN")
     )
     private void injectCustomWidget(int moduleX, int moduleY, MatrixStack matrices, DrawContext context, int friendship, CallbackInfo ci) {
         StatWidget self = (StatWidget) (Object) this;

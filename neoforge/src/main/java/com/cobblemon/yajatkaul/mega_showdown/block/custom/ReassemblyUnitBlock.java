@@ -52,6 +52,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ReassemblyUnitBlock extends Block {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
@@ -164,7 +165,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(1, ItemStack.EMPTY);
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), 3);
-                    level.scheduleTick(pos, this, 20 * 60 * 2); // 2 minutes in ticks
+                    level.scheduleTick(pos, this, 20 * 60 * 10); // 10 minutes in ticks
+
+                    inv.serializeNBT(provider);
                 } else if (slot0.getCount() >= 49 && slot1.getCount() >= 1) {
                     ItemStack newSlot0 = slot0.copy();
                     ItemStack newSlot1 = slot1.copy();
@@ -177,6 +180,8 @@ public class ReassemblyUnitBlock extends Block {
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), 3);
                     level.scheduleTick(pos, this, 20 * 60 * 5); // 5 minutes in ticks
+
+                    inv.serializeNBT(provider);
                 } else if (slot0.getCount() >= 9 && slot1.getCount() >= 1) {
                     ItemStack newSlot0 = slot0.copy();
                     ItemStack newSlot1 = slot1.copy();
@@ -188,55 +193,70 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(1, newSlot1);
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), 3);
-                    level.scheduleTick(pos, this, 20 * 60 * 10); // 10 minutes in ticks
+                    level.scheduleTick(pos, this, 20 * 60 * 2); // 2 minutes in ticks
+
+                    inv.serializeNBT(provider);
                 } else{
                     player.displayClientMessage(Component.literal("You dont have enough cells/core")
                             .withColor(0xFF0000), true);
                 }
-
-                inv.serializeNBT(provider);
             }
 
             return ItemInteractionResult.SUCCESS;
         }
 
-        if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_10 && stack.getItem() instanceof PokeBallItem) {
-            if(!level.isClientSide){
-                Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10-percent").create();
+        if(stack.getItem() instanceof PokeBallItem){
+            int shinyRoll = ThreadLocalRandom.current().nextInt(1, 8193); // 8193 is exclusive
 
-                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
-            }
-            level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
-            return ItemInteractionResult.SUCCESS;
-        } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50 && stack.getItem() instanceof PokeBallItem) {
-            if(!level.isClientSide){
-                Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50-percent").create();
+            if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_10) {
+                if(!level.isClientSide){
+                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
 
-                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
-            }
-            level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
-            return ItemInteractionResult.SUCCESS;
-        } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100 && stack.getItem() instanceof PokeBallItem) {
-            if(!level.isClientSide){
-                Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50-percent power-construct").create();
+                    if(shinyRoll == 8192){
+                        zygarde.setShiny(true);
+                    }
 
-                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                    Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                }
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                return ItemInteractionResult.SUCCESS;
+            } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
+                if(!level.isClientSide){
+                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
+
+                    if(shinyRoll == 8192){
+                        zygarde.setShiny(true);
+                    }
+
+                    Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                }
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                return ItemInteractionResult.SUCCESS;
+            } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
+                if(!level.isClientSide){
+                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
+
+                    if(shinyRoll == 8192){
+                        zygarde.setShiny(true);
+                    }
+
+                    Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                }
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                return ItemInteractionResult.SUCCESS;
             }
-            level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
-            return ItemInteractionResult.SUCCESS;
         }
+
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.COOKING_10){
-            level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), 3);
-        } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.COOKING_50) {
-            level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), 3);
-        } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.COOKING_100) {
-            level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), 3);
+        switch (state.getValue(REASSEMBLE_STAGE)) {
+            case COOKING_10 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), 3);
+            case COOKING_50 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), 3);
+            case COOKING_100 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), 3);
         }
     }
 

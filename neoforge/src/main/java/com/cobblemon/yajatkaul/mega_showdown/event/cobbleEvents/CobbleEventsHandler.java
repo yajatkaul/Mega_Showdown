@@ -20,13 +20,16 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
+import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -94,11 +97,12 @@ public class CobbleEventsHandler {
         PokemonBattle battle = megaEvolutionEvent.getBattle();
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
-        ServerPlayer player = megaEvolutionEvent.getPokemon().getOriginalPokemon().getOwnerPlayer();
-
-        if(player == null){
+        battle.dispatchWaitingToFront(3F, () -> {
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
             return Unit.INSTANCE;
-        }
+        });
+
+        ServerPlayer player = megaEvolutionEvent.getPokemon().getOriginalPokemon().getOwnerPlayer();
 
         MegaLogic.Evolve(pokemon.getEntity(), player, true);
 
@@ -113,7 +117,6 @@ public class CobbleEventsHandler {
                         new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true),
                         new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), false),
                         false);
-
             }
         }
 
@@ -142,6 +145,11 @@ public class CobbleEventsHandler {
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
         }
 
+        zMoveUsedEvent.getBattle().dispatchWaitingToFront(3F, () -> {
+            LazyLib.Companion.cryAnimation(pokemon);
+            return Unit.INSTANCE;
+        });
+
         return Unit.INSTANCE;
     }
 
@@ -149,9 +157,15 @@ public class CobbleEventsHandler {
         LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
 
-        if(pk.getSpecies().getName().equals("Terapagos")){
+        if(pk.getSpecies().getName().equals("Terapagos")) {
             new StringSpeciesFeature("tera_form", "stellar").apply(pk);
             EventUtils.playEvolveAnimation(pokemon);
+        }else if(pk.getSpecies().getName().equals("Ogerpon")){
+            new FlagSpeciesFeature("embody_aspect", true).apply(pk);
+        }
+
+        if (pk instanceof TeraAccessor accessor) {
+            accessor.setTeraEnabled(true);
         }
 
         pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
@@ -174,10 +188,6 @@ public class CobbleEventsHandler {
             }
 
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
-
-            if(pk.getSpecies().getName().equals("Ogerpon")){
-                new FlagSpeciesFeature("embody_aspect", true).apply(pk);
-            }
         }
 
         Player player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
@@ -193,6 +203,11 @@ public class CobbleEventsHandler {
             // Reduce durability by a specific amount (e.g., 10 points)
             teraOrb.setDamageValue(teraOrb.getDamageValue() + 10);
         }
+
+        terastallizationEvent.getBattle().dispatchWaitingToFront(3F, () -> {
+            LazyLib.Companion.cryAnimation(pokemon);
+            return Unit.INSTANCE;
+        });
 
         return Unit.INSTANCE;
     }
@@ -239,6 +254,11 @@ public class CobbleEventsHandler {
     }
 
     public static Unit formeChanges(FormeChangeEvent formeChangeEvent) {
+        if(formeChangeEvent.getFormeName().equals("x") || formeChangeEvent.getFormeName().equals("y")
+                || formeChangeEvent.getFormeName().equals("mega") || formeChangeEvent.getFormeName().equals("tera")){
+            return Unit.INSTANCE;
+        }
+
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
         PokemonBattle battle = formeChangeEvent.getBattle();
 
@@ -253,10 +273,10 @@ public class CobbleEventsHandler {
             case "Minior" -> {
                 if (formeChangeEvent.getFormeName().equals("meteor")) {
                     EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
+                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
                 } else {
                     EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("meteor_shield", "meteor").apply(pokemon);
+                    new StringSpeciesFeature("meteor_shield", "core").apply(pokemon);
                 }
             }
             case "Castform" -> {
@@ -373,8 +393,10 @@ public class CobbleEventsHandler {
             }
         }
 
-        battle.sendUpdate(new AbilityUpdatePacket(formeChangeEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
-        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+        formeChangeEvent.getBattle().dispatchWaitingToFront(3F, () -> {
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
+            return Unit.INSTANCE;
+        });
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
             if(activeBattlePokemon.getBattlePokemon() != null &&
@@ -391,13 +413,43 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit fixOgerTera(PokemonCapturedEvent pokemonCapturedEvent) {
+    public static Unit fixTera(PokemonCapturedEvent pokemonCapturedEvent) {
         Pokemon pokemon = pokemonCapturedEvent.getPokemon();
 
         if(pokemon.getSpecies().getName().equals("Ogerpon")){
             pokemon.setTeraType(TeraTypes.getGRASS());
         } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
             pokemon.setTeraType(TeraTypes.getSTELLAR());
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    public static Unit pokemonSent(PokemonSentPostEvent pokemonSentPostEvent) {
+        PokemonEntity pokemon = pokemonSentPostEvent.getPokemonEntity();
+        Pokemon pk = pokemonSentPostEvent.getPokemon();
+
+        if ((pk instanceof TeraAccessor accessor) && accessor.isTeraEnabled()) {
+            pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
+
+            if (pokemon.level() instanceof ServerLevel serverLevel) {
+                ServerScoreboard scoreboard = serverLevel.getScoreboard();
+                String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
+
+                PlayerTeam team = scoreboard.getPlayerTeam(teamName);
+
+                TeraType teraType = pk.getTeraType();
+
+                ChatFormatting color = getGlowColorForTeraType(teraType);
+                if (team == null) {
+                    team = scoreboard.addPlayerTeam(teamName);
+                    team.setColor(color);
+                    team.setSeeFriendlyInvisibles(false);
+                    team.setAllowFriendlyFire(true);
+                }
+
+                scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
+            }
         }
 
         return Unit.INSTANCE;

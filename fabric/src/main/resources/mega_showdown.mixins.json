@@ -16,13 +16,14 @@
     "EndInstructionMixin",
     "StartInstructionMixin",
     "StartInstructionAccessor",
-    "UI.SummaryMixin",
-    "UI.PokemonInfoWidgetMixin",
-    "UI.StatWidgetMixin"
+    "pokemon.PokemonMixin"
   ],
   "client": [
     "ItemRendererMixin",
-    "ModelLoaderMixin"
+    "ModelLoaderMixin",
+    "UI.SummaryMixin",
+    "UI.PokemonInfoWidgetMixin",
+    "UI.StatWidgetMixin"
   ],
   "injectors": {
     "defaultRequire": 1

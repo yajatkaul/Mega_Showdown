@@ -1,0 +1,22 @@
+
+{
+  "id": "cobblemon:minior",
+  "speciesId": "cobblemon:minior",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    },
+    {
+      "displayForm": "Core",
+      "unlockForms": [
+        "Core"
+      ]
+    }
+  ],
+  "variations": []
+}

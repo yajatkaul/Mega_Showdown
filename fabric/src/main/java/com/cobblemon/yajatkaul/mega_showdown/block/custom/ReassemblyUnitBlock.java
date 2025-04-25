@@ -41,6 +41,8 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class ReassemblyUnitBlock extends Block {
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
@@ -135,7 +137,7 @@ public class ReassemblyUnitBlock extends Block {
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(HALF) == DoubleBlockHalf.UPPER) {
             pos = pos.down();
-            state = world.getBlockState(pos); // Ensure we're working with lower half
+            state = world.getBlockState(pos); // Ensure working with lower half
         }
 
         if (state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.isOf(FormeChangeItems.ZYGARDE_CUBE)) {
@@ -149,7 +151,13 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStack(0, ItemStack.EMPTY);
                     inv.setStack(1, ItemStack.EMPTY);
                     world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), 3);
-                    world.scheduleBlockTick(pos, this, 20 * 60 * 2);
+                    world.scheduleBlockTick(pos, this, 20 * 60 * 10);
+
+                    if(!world.isClient){
+                        stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
+                                player.getWorld().getRegistryManager()));
+                    }
+
                 } else if (slot0.getCount() >= 49 && slot1.getCount() >= 1) {
                     slot0.decrement(49);
                     slot1.decrement(1);
@@ -157,44 +165,66 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStack(1, slot1);
                     world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), 3);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 5);
+
+                    if(!world.isClient){
+                        stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
+                                player.getWorld().getRegistryManager()));
+                    }
                 } else if (slot0.getCount() >= 9 && slot1.getCount() >= 1) {
                     slot0.decrement(9);
                     slot1.decrement(1);
                     inv.setStack(0, slot0);
                     inv.setStack(1, slot1);
                     world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), 3);
-                    world.scheduleBlockTick(pos, this, 20 * 60 * 10);
+                    world.scheduleBlockTick(pos, this, 20 * 60 * 2);
+
+                    if(!world.isClient){
+                        stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
+                                player.getWorld().getRegistryManager()));
+                    }
                 } else {
                     player.sendMessage(Text.literal("You don't have enough cells/core").styled(s -> s.withColor(Formatting.RED)), true);
                 }
-
-                if(!world.isClient){
-                    stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
-                            player.getWorld().getRegistryManager()));
-                }
             }
 
-            return ItemActionResult.success(world.isClient());
+            return ItemActionResult.success(true);
         }
 
         if (stack.getItem() instanceof PokeBallItem) {
+            int shinyRoll = ThreadLocalRandom.current().nextInt(1, 8193); // 8193 is exclusive
+
             if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_10) {
                 if (!world.isClient()) {
-                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10-percent").create();
+                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
+
+                    if(shinyRoll == 8192){
+                        zygarde.setShiny(true);
+                    }
+
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
                 return ItemActionResult.success(world.isClient());
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
                 if (!world.isClient()) {
-                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50-percent").create();
+                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
+
+                    if(shinyRoll == 8192){
+                        zygarde.setShiny(true);
+                    }
+
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
                 return ItemActionResult.success(world.isClient());
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
                 if (!world.isClient()) {
-                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50-percent power-construct").create();
+                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
+
+                    if(shinyRoll == 8192){
+                        zygarde.setShiny(true);
+                    }
+
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
@@ -207,6 +237,7 @@ public class ReassemblyUnitBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        MegaShowdown.LOGGER.info("Tick called for " + pos + " with state " + state.get(REASSEMBLE_STAGE));
         switch (state.get(REASSEMBLE_STAGE)) {
             case COOKING_10 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), 3);
             case COOKING_50 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), 3);

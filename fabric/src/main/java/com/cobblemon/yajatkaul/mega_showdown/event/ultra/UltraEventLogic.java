@@ -8,6 +8,8 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEvent;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventEnd;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import kotlin.Unit;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -47,6 +49,11 @@ public class UltraEventLogic {
 
             battle.sendUpdate(new AbilityUpdatePacket(pokemon::getEffectedPokemon, pokemon.getEffectedPokemon().getAbility().getTemplate()));
             battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon.getEffectedPokemon()));
+
+            battle.dispatchWaitingToFront(3F, () -> {
+                LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                return Unit.INSTANCE;
+            });
         });
     }
 }

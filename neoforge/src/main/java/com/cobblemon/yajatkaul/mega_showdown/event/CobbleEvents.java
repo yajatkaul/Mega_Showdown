@@ -29,9 +29,11 @@ public class CobbleEvents {
 
         CobblemonEvents.LOOT_DROPPED.subscribe(Priority.NORMAL, CobbleEventsHandler::dropShardPokemon);
 
-        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventsHandler::fixOgerTera);
+        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEventsHandler::fixTera);
 
         CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEventsHandler::formeChanges);
+
+        CobblemonEvents.POKEMON_SENT_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::pokemonSent);
 
         NeoForge.EVENT_BUS.register(new DynamaxEventListener());
         NeoForge.EVENT_BUS.register(new UltraEventListener());

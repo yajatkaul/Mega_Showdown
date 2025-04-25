@@ -18,6 +18,9 @@
     "MoveActionResponseMixin",
     "GimmickTileMixin",
     "LootPoolAccessor",
+    "pokemon.PokemonMixin"
+  ],
+  "client": [
     "UI.SummaryMixin",
     "UI.PokemonInfoWidgetMixin",
     "UI.StatWidgetMixin"
