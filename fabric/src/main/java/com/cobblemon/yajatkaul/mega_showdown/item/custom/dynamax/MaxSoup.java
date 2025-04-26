@@ -6,12 +6,16 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.HashSet;
 import java.util.List;
@@ -77,7 +81,14 @@ public class MaxSoup extends Item {
             if(pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()){
                 pokemon.setGmaxFactor(false);
 
-                stack.decrement(1);
+                player.setStackInHand(hand, new ItemStack(Items.BOWL));
+                Vec3d pos = pk.getPos();
+
+                player.getWorld().playSound(
+                        null, pos.x, pos.y, pos.z,
+                        SoundEvents.ENTITY_GENERIC_DRINK,
+                        SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                );
 
                 player.sendMessage(
                         Text.literal("Your pokemon cannot gmax now").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))),
@@ -86,7 +97,15 @@ public class MaxSoup extends Item {
                 return ActionResult.SUCCESS;
             }else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()){
                 pokemon.setGmaxFactor(true);
-                stack.decrement(1);
+
+                player.setStackInHand(hand, new ItemStack(Items.BOWL));
+                Vec3d pos = pk.getPos();
+
+                player.getWorld().playSound(
+                        null, pos.x, pos.y, pos.z,
+                        SoundEvents.ENTITY_GENERIC_DRINK,
+                        SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                );
 
                 player.sendMessage(
                         Text.literal("Your pokemon can gmax now").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))),

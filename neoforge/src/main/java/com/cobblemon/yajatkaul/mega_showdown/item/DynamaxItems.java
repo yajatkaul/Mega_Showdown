@@ -37,10 +37,10 @@ public class DynamaxItems {
             new MaxMushroom(ModBlocks.MAX_MUSHROOM.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> MAX_SOUP = ITEMS.register("max_soup",
-            () -> new MaxSoup(new Item.Properties()));
+            () -> new MaxSoup(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> SWEET_MAX_SOUP = ITEMS.register("sweet_max_soup",
-            () -> new SweetMaxSoup(new Item.Properties()));
+            () -> new SweetMaxSoup(new Item.Properties().stacksTo(1)));
 
     public static void register(){
 

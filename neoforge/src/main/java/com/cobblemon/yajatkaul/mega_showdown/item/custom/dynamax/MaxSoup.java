@@ -2,15 +2,20 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.HashSet;
 import java.util.List;
@@ -76,14 +81,30 @@ public class MaxSoup extends Item {
             if(pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()){
                 pokemon.setGmaxFactor(false);
 
-                stack.shrink(1);
+                player.setItemInHand(arg4, new ItemStack(Items.BOWL));
+                Vec3 pos = pk.position();
+
+                player.level().playSound(
+                        null, pos.x, pos.y, pos.z,
+                        SoundEvents.GENERIC_DRINK,
+                        SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                );
+
 
                 player.displayClientMessage(Component.literal("Your pokemon cannot gmax now")
                         .withColor(0xFFFFFF), true);
                 return InteractionResult.SUCCESS;
             }else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()){
                 pokemon.setGmaxFactor(true);
-                stack.shrink(1);
+
+                player.setItemInHand(arg4, new ItemStack(Items.BOWL));
+                Vec3 pos = pk.position();
+
+                player.level().playSound(
+                        null, pos.x, pos.y, pos.z,
+                        SoundEvents.GENERIC_DRINK,
+                        SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                );
 
                 player.displayClientMessage(Component.literal("Your pokemon can gmax now")
                         .withColor(0xFFFFFF), true);

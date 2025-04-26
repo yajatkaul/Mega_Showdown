@@ -30,9 +30,9 @@ public class DynamaxItems {
     public static final Item MAX_MUSHROOM = registerItem("max_mushroom",
             new MaxMushroom(ModBlocks.MAX_MUSHROOM, new Item.Settings()));
 
-    public static final Item MAX_SOUP = registerItem("max_soup", new MaxSoup(new Item.Settings()));
+    public static final Item MAX_SOUP = registerItem("max_soup", new MaxSoup(new Item.Settings().maxCount(1)));
 
-    public static final Item SWEET_MAX_SOUP = registerItem("sweet_max_soup", new SweetMaxSoup(new Item.Settings()));
+    public static final Item SWEET_MAX_SOUP = registerItem("sweet_max_soup", new SweetMaxSoup(new Item.Settings().maxCount(1)));
 
     public static void registerModItem(){
 

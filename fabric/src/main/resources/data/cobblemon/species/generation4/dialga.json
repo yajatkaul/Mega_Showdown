@@ -48,8 +48,8 @@
   "baseFriendship": 0,
   "baseScale": 0.85,
   "hitbox": {
-    "width": 6,
-    "height": 7,
+    "width": 2.5,
+    "height": 6.5,
     "fixed": false
   },
   "behaviour": {
@@ -333,11 +333,6 @@
       "evolutions": [
       ],
       "battleOnly": false,
-      "hitbox": {
-        "width": 5,
-        "height": 10,
-        "fixed": false
-      },
       "behaviour": {
         "moving": {
           "canLook": true,

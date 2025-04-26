@@ -23,22 +23,4 @@ public class GimmickTileMixin {
             tile.setRgb(SimpleMathExtensionsKt.toRGB(tile.getMoveTemplate().getEffectiveElementalType(tile.getPokemon()).getHue()));
         }
     }
-
-    @Shadow
-    private ShowdownMoveset.Gimmick gimmick;
-
-    @ModifyReturnValue(method = "getSelectable", at = @At("RETURN"), remap = false)
-    private boolean modifySelectable(boolean originalSelectable) {
-        BattleGimmickButton.GimmickTile tile = (BattleGimmickButton.GimmickTile) (Object) this;
-
-        if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
-            if (tile.getPokemon().getSpecies().getName().equalsIgnoreCase("rayquaza")) {
-                // Allow only dragonascent
-                if (!tile.getMove().getId().equalsIgnoreCase("dragonascent")) {
-                    return false; // Disable other moves
-                }
-            }
-        }
-        return originalSelectable; // Keep original behavior otherwise
-    }
 }

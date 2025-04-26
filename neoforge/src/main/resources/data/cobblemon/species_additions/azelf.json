@@ -1,0 +1,14 @@
+{
+  "implemented": true,
+  "target": "cobblemon:azelf",
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  }
+}

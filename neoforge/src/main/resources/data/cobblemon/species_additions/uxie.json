@@ -1,0 +1,14 @@
+{
+  "implemented": true,
+  "target": "cobblemon:uxie",
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  }
+}
