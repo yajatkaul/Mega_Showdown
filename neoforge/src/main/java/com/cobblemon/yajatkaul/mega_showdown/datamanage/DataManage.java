@@ -112,6 +112,14 @@ public class DataManage {
                     .serialize(PokeHandler.CODEC).build()
     );
 
+    public static final Supplier<DataComponentType<PokeHandler>> ZYGARDE_CUBE_DATA = REGISTRAR.registerComponentType(
+            "zygarde_cube_data",
+            builder -> builder
+                    .persistent(PokeHandler.CODEC)
+                    .networkSynchronized(PokeHandler.S2C_CODEC)
+    );
+
+
     public static void register(IEventBus eventBus){
         ATTACHMENT_TYPES.register(eventBus);
         REGISTRAR.register(eventBus);

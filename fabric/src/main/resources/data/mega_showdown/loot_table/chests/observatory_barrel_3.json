@@ -1,0 +1,71 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+          {
+              "type": "minecraft:item",
+              "name": "mega_showdown:zygarde_cell",
+              "weight":1,
+              "functions": []
+          }
+      ]    
+    },
+    {
+      "rolls": 3,
+      "entries": [
+          {
+              "type": "minecraft:item",
+              "name": "minecraft:emerald",
+              "weight":1,
+              "functions": []
+          }
+      ]    
+    },
+    {
+      "rolls":13,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lightning_rod",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_apple",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_carrot",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "mega_showdown:mega_meteorid_block",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:amethyst_shard",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:relic_coin",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobweb",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:normal_gem",
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}

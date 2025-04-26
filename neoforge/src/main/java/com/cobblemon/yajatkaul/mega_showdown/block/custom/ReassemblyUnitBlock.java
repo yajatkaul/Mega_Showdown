@@ -9,8 +9,10 @@ import com.cobblemon.mod.common.item.PokeBallItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.properties.ReassembleStage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -22,6 +24,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -152,6 +155,40 @@ public class ReassemblyUnitBlock extends Block {
             state = level.getBlockState(pos);// Ensure we're always working with the lower half
         }
 
+        if(hand == InteractionHand.OFF_HAND){
+            if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube){
+                if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
+                    player.displayClientMessage(Component.literal("Put your zygarde in the cube")
+                            .withColor(0xFF0000), true);
+                    return ItemInteractionResult.SUCCESS;
+                }
+                Pokemon pokemon = stack.get(DataManage.ZYGARDE_CUBE_DATA).getPokemon();
+                ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL.get());
+                ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE.get());
+                if(pokemon.getAspects().contains("10-percent")){
+                    cells.setCount(9);
+                    cores.setCount(1);
+                } else if (pokemon.getAspects().contains("50-percent")) {
+                    cells.setCount(49);
+                    cores.setCount(1);
+                }
+
+                if (!level.isClientSide()) { // Only spawn on server
+                    ItemEntity cellDrop = new ItemEntity(level,
+                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, // slightly above the block
+                            cells.copy());
+                    level.addFreshEntity(cellDrop);
+
+                    ItemEntity coreDrop = new ItemEntity(level,
+                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
+                            cores.copy());
+                    level.addFreshEntity(coreDrop);
+                }
+                stack.set(DataManage.ZYGARDE_CUBE_DATA, null);
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
         if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.is(FormeChangeItems.ZYGARDE_CUBE)) {
             if(stack.getItem() instanceof ZygardeCube cube){
                 ItemStackHandler inv = cube.getInventory(stack, level, player);
@@ -167,7 +204,6 @@ public class ReassemblyUnitBlock extends Block {
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 10); // 10 minutes in ticks
 
-                    inv.serializeNBT(provider);
                 } else if (slot0.getCount() >= 49 && slot1.getCount() >= 1) {
                     ItemStack newSlot0 = slot0.copy();
                     ItemStack newSlot1 = slot1.copy();
@@ -180,8 +216,6 @@ public class ReassemblyUnitBlock extends Block {
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 5); // 5 minutes in ticks
-
-                    inv.serializeNBT(provider);
                 } else if (slot0.getCount() >= 9 && slot1.getCount() >= 1) {
                     ItemStack newSlot0 = slot0.copy();
                     ItemStack newSlot1 = slot1.copy();
@@ -194,8 +228,6 @@ public class ReassemblyUnitBlock extends Block {
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 2); // 2 minutes in ticks
-
-                    inv.serializeNBT(provider);
                 } else{
                     player.displayClientMessage(Component.literal("You dont have enough cells/core")
                             .withColor(0xFF0000), true);

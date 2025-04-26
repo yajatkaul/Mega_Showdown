@@ -20,22 +20,20 @@ public class CurioBeltRenderer implements ICurioRenderer {
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
             , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)  {
         LivingEntity entity = slotContext.entity();
-        if (stack.getItem() instanceof TeraItem) {
-            matrixStack.pushPose();
+        matrixStack.pushPose();
 
-            matrixStack.translate(-0.15, 0.55, -0.20);
+        matrixStack.translate(-0.15, 0.55, -0.20);
 
-            matrixStack.mulPose(Axis.YP.rotationDegrees(180));
-            matrixStack.mulPose(Axis.XP.rotationDegrees(180));
+        matrixStack.mulPose(Axis.YP.rotationDegrees(180));
+        matrixStack.mulPose(Axis.XP.rotationDegrees(180));
 
-            matrixStack.scale(0.18f, 0.18f, 0.18f); // Scale item
+        matrixStack.scale(0.18f, 0.18f, 0.18f); // Scale item
 
-            // Render the item
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, entity.level(), 0
-            );
-            matrixStack.popPose();
-        }
+        // Render the item
+        Minecraft.getInstance().getItemRenderer().renderStatic(
+                stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, entity.level(), 0
+        );
+        matrixStack.popPose();
     }
 }
 

@@ -1,0 +1,14 @@
+{
+  "dynamaxing": {
+    "subtitle": "Dynamaxing!",
+    "sounds": [
+      "mega_showdown:dynamaxing"
+    ]
+  },
+  "terastallization": {
+    "subtitle": "Tera!",
+    "sounds": [
+      "mega_showdown:terastallization"
+    ]
+  }
+}

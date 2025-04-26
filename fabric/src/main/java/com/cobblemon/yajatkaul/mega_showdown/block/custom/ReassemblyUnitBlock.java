@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
@@ -25,7 +26,9 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -138,6 +141,42 @@ public class ReassemblyUnitBlock extends Block {
         if (state.get(HALF) == DoubleBlockHalf.UPPER) {
             pos = pos.down();
             state = world.getBlockState(pos); // Ensure working with lower half
+        }
+
+        if(hand == Hand.OFF_HAND){
+            if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube cube){
+                if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
+                    player.sendMessage(
+                            Text.literal("Put your zygarde in the cube").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ItemActionResult.SUCCESS;
+                }
+                Pokemon pokemon = stack.get(DataManage.ZYGARDE_CUBE_DATA);
+                ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL);
+                ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE);
+                if(pokemon.getAspects().contains("10-percent")){
+                    cells.setCount(9);
+                    cores.setCount(1);
+                } else if (pokemon.getAspects().contains("50-percent")) {
+                    cells.setCount(49);
+                    cores.setCount(1);
+                }
+
+                if (!world.isClient) {
+                    ItemEntity cellDrop = new ItemEntity(world,
+                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
+                            cells.copy());
+                    world.spawnEntity(cellDrop);
+
+                    ItemEntity coreDrop = new ItemEntity(world,
+                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
+                            cores.copy());
+                    world.spawnEntity(coreDrop);
+                }
+                stack.set(DataManage.ZYGARDE_CUBE_DATA, null);
+                return ItemActionResult.SUCCESS;
+            }
         }
 
         MegaShowdown.LOGGER.info(String.valueOf(state.get(REASSEMBLE_STAGE)));

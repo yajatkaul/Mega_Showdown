@@ -597,7 +597,8 @@ public class FormeChangeItems {
     });
 
     public static final Item ZYGARDE_CUBE = registerItem("zygarde_cube",
-            new ZygardeCube(new Item.Settings().maxCount(1).component(DataManage.ZYGARDE_CUBE_INV, null)){
+            new ZygardeCube(new Item.Settings().maxCount(1).component(DataManage.ZYGARDE_CUBE_INV, null)
+                    .component(DataManage.ZYGARDE_CUBE_DATA, null)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));

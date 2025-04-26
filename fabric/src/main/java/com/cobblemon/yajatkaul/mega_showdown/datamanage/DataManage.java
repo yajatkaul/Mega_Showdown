@@ -112,6 +112,12 @@ public class DataManage {
             ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
+    public static final ComponentType<Pokemon> ZYGARDE_CUBE_DATA = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube_data"),
+            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
+    );
+
     public static final AttachmentType<PokeHandler> KYUREM_FUSED_WITH = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "kyurem_fused_with"),
             builder -> builder

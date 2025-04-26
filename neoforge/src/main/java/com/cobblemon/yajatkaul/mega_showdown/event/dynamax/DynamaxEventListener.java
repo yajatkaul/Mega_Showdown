@@ -1,24 +1,24 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
-import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
-import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
-import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -33,6 +33,14 @@ public class DynamaxEventListener {
     @SubscribeEvent
     public void onDynamax(DynamaxEvent event) {
         LivingEntity entity = event.getPokemon().getEntity();
+        Vec3 entityPos = entity.position(); // Get entity position
+
+        entity.level().playSound(
+                null, entityPos.x, entityPos.y, entityPos.z,
+                ModSounds.DYNAMAX.get(),
+                SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+        );
+
         if (entity == null) return;
 
         if(event.getGmax()){

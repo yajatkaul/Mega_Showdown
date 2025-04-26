@@ -27,22 +27,20 @@ public class CurioChestRenderer implements ICurioRenderer {
         if (!chestArmor.isEmpty()) {
             z_axis = -0.05f;
         }
-        if (stack.getItem() instanceof MegaBraceletItem) {
-            matrixStack.pushPose();
-            
-            matrixStack.translate(0.0, -0.25, z_axis); // Adjust this value as needed
+        matrixStack.pushPose();
 
-            matrixStack.mulPose(Axis.YP.rotationDegrees(180));
-            matrixStack.mulPose(Axis.XP.rotationDegrees(180));
+        matrixStack.translate(0.0, -0.25, z_axis); // Adjust this value as needed
 
-            matrixStack.scale(0.58f, 0.58f, 0.58f); // Scale item
+        matrixStack.mulPose(Axis.YP.rotationDegrees(180));
+        matrixStack.mulPose(Axis.XP.rotationDegrees(180));
 
-            // Render the item
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, entity.level(), 0
-            );
-            matrixStack.popPose();
-        }
+        matrixStack.scale(0.58f, 0.58f, 0.58f); // Scale item
+
+        // Render the item
+        Minecraft.getInstance().getItemRenderer().renderStatic(
+                stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, entity.level(), 0
+        );
+        matrixStack.popPose();
     }
 }
 

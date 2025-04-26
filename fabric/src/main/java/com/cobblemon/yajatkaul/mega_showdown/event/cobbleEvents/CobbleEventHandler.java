@@ -29,6 +29,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
@@ -165,6 +166,14 @@ public class CobbleEventHandler {
     public static Unit terrastallizationUsed(TerastallizationEvent terastallizationEvent) {
         LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
+
+        Vec3d entityPos = pokemon.getPos();
+
+        pokemon.getWorld().playSound(
+                null, entityPos.x, entityPos.y, entityPos.z,
+                ModSounds.TERASTALLIZATION,
+                SoundCategory.PLAYERS, 0.4f, 1f
+        );
 
         if(pk.getSpecies().getName().equals("Terapagos")){
             new StringSpeciesFeature("tera_form", "stellar").apply(pk);

@@ -617,7 +617,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ZYGARDE_CUBE = ITEMS.register("zygarde_cube",
-            () -> new ZygardeCube(new Item.Properties().stacksTo(1).component(DataManage.ZYGARDE_INV, null)){
+            () -> new ZygardeCube(new Item.Properties().stacksTo(1).component(DataManage.ZYGARDE_INV, null).component(DataManage.ZYGARDE_CUBE_DATA, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));

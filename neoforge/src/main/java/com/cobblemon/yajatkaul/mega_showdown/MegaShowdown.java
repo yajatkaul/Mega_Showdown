@@ -12,9 +12,9 @@ import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -64,6 +64,7 @@ public final class MegaShowdown {
 
         ModBlocks.register(modEventBus);
         MegaOres.register();
+        ModSounds.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
 

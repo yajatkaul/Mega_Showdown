@@ -1,10 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeMenu;
 import net.minecraft.core.HolderLookup;
@@ -12,14 +15,17 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
@@ -131,6 +137,18 @@ public class ZygardeCube extends Item {
                 return InteractionResult.PASS;
             }
 
+            if(arg4 == InteractionHand.OFF_HAND && !pk.getAspects().contains("power-construct")){
+                if(arg.get(DataManage.ZYGARDE_CUBE_DATA) != null){
+                    player.displayClientMessage(Component.literal("Cube already has a zygarde")
+                            .withColor(0xFF0000), true);
+                    return InteractionResult.FAIL;
+                }
+                arg.set(DataManage.ZYGARDE_CUBE_DATA, new PokeHandler(pokemon));
+                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
+                player.setItemInHand(arg4, arg);
+                return InteractionResult.SUCCESS;
+            }
+
             if(pk.getAspects().contains("power-construct")){
                 if(pk.getAspects().contains("percent_cells=10-percent")){
                     particleEffect(pokemon.getEntity());
@@ -193,4 +211,26 @@ public class ZygardeCube extends Item {
         }
     }
 
+    @Override
+    public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
+        if(entity.getOwner() instanceof ServerPlayer player){
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.ZYGARDE_CUBE_DATA, null);
+            Pokemon currentValue;
+
+            if(refValue == null){
+                currentValue = null;
+            }else{
+                currentValue = refValue.getPokemon();
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+            if(currentValue != null){
+                playerPartyStore.add(currentValue);
+                entity.getItem().set(DataManage.ZYGARDE_CUBE_DATA, null);
+            }
+        }
+
+        super.onDestroyed(entity, damageSource);
+    }
 }

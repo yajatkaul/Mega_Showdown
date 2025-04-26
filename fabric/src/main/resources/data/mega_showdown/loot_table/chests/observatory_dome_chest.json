@@ -1,0 +1,53 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+          {
+              "type": "minecraft:item",
+              "name": "mega_showdown:zygarde_core",
+              "weight": 1,
+              "functions": []
+          },
+          {
+            "type": "minecraft:item",
+            "name": "cobblemon:ancient_wing_ball",
+            "weight": 4,
+            "functions": []
+        }
+        ]
+      },
+      {
+          "rolls": 10,
+          "entries": [  
+              {
+                  "type": "minecraft:loot_table",
+                  "value": "cobblemon:sets/any_evo_stone",
+                  "weight": 10,
+                  "functions": []
+              },
+              {
+                  "type": "minecraft:loot_table",
+                  "value": "cobblemon:sets/any_type_gem",
+                  "weight": 3
+              },
+              {
+                  "type": "minecraft:item",
+                  "name": "minecraft:spyglass",
+                  "weight": 6
+              },
+              {
+                  "type": "minecraft:loot_table",
+                  "name": "minecraft:potato",
+                  "value": "minecraft:archaeology/desert_pyramid",
+                  "weight": 2
+              },
+              {
+                  "type": "minecraft:item",
+                  "name": "minecraft:amethyst_shard",
+                  "weight": 20
+              }
+          ]
+      }
+  ]
+}

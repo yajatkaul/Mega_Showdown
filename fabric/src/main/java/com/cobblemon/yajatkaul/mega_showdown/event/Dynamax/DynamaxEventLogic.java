@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -17,7 +18,10 @@ import net.minecraft.scoreboard.ServerScoreboard;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.*;
 
@@ -46,6 +50,13 @@ public class DynamaxEventLogic {
 
             pokemon.getEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
             LivingEntity pokemonEntity = pokemon.getEntity();
+            Vec3d entityPos = pokemonEntity.getPos();
+
+            pokemonEntity.getWorld().playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    ModSounds.DYNAMAX,
+                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+            );
 
             if (server == null && pokemonEntity.getWorld() instanceof ServerWorld serverWorld) {
                 server = serverWorld.getServer();

@@ -1,17 +1,21 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.CubeInventoryListener;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreenHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -44,12 +48,9 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 import java.util.Optional;
-
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getType;
 
 public class ZygardeCube extends Item {
     private final SimpleInventory inventory;
@@ -154,7 +155,9 @@ public class ZygardeCube extends Item {
         NbtCompound tag = stack.get(DataManage.ZYGARDE_CUBE_INV);
         RegistryWrapper.WrapperLookup registries = player.getWorld().getRegistryManager();
 
-        deserializeInventory(tag, inventory, registries);
+        if(tag != null){
+            deserializeInventory(tag, inventory, registries);
+        }
 
         return inventory;
     }
@@ -173,6 +176,20 @@ public class ZygardeCube extends Item {
 
             if(!pokemon.getSpecies().getName().equals("Zygarde")){
                 return ActionResult.PASS;
+            }
+
+            if(hand == Hand.OFF_HAND && !pk.getAspects().contains("power-construct")){
+                if(stack.get(DataManage.ZYGARDE_CUBE_DATA) != null){
+                    player.sendMessage(
+                            Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.FAIL;
+                }
+                stack.set(DataManage.ZYGARDE_CUBE_DATA, pokemon);
+                player.setStackInHand(hand, stack);
+                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
+                return ActionResult.SUCCESS;
             }
 
             if(pk.getAspects().contains("power-construct")){
@@ -237,5 +254,20 @@ public class ZygardeCube extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        if(entity.getOwner() instanceof ServerPlayerEntity player){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.ZYGARDE_CUBE_DATA, null);
+
+            if(currentValue != null){
+                playerPartyStore.add(currentValue);
+                entity.getStack().set(DataManage.ZYGARDE_CUBE_DATA, null);
+            }
+        }
+
+        super.onItemEntityDestroyed(entity);
     }
 }

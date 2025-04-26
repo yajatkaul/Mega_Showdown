@@ -19,21 +19,19 @@ public class RenderBeltTrinkets implements TrinketRenderer {
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel,
                        MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity,
                        float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (stack.getItem() instanceof TeraItem) {
-            matrices.push();
+        matrices.push();
 
-            matrices.translate(-0.15, 0.55, -0.20);
+        matrices.translate(-0.15, 0.55, -0.20);
 
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
-            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
 
-            matrices.scale(0.18f, 0.18f, 0.18f); // Scale item
+        matrices.scale(0.18f, 0.18f, 0.18f); // Scale item
 
-            // Render the item
-            MinecraftClient.getInstance().getItemRenderer().renderItem(
-                    stack, ModelTransformationMode.HEAD, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, entity.getWorld(), 0
-            );
-            matrices.pop();
-        }
+        // Render the item
+        MinecraftClient.getInstance().getItemRenderer().renderItem(
+                stack, ModelTransformationMode.HEAD, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, entity.getWorld(), 0
+        );
+        matrices.pop();
     }
 }
