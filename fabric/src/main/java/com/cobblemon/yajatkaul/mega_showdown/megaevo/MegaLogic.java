@@ -289,11 +289,7 @@ public class MegaLogic {
     }
 
     public static void Devolve(Pokemon context, PlayerEntity player, Boolean fromBattle){
-        if(player.getWorld().isClient || context == null){
-            return;
-        }
-
-        if(context.getOwnerPlayer() != player){
+        if(player.getWorld().isClient || context == null || context.getOwnerPlayer() != player){
             return;
         }
 

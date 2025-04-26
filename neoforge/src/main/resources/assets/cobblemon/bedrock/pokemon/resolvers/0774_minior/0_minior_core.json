@@ -1,11 +1,11 @@
 {
   "species": "cobblemon:minior",
-  "order": 1,
+  "order": 0,
   "variations": [
     {
-      "aspects": ["core-form"],
+      "aspects": [],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_red.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_red.png",
       "layers": [
         {
@@ -16,9 +16,9 @@
       ]
     },
 	{
-      "aspects": ["core-form", "yellow-core"],
+      "aspects": ["yellow-core"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_yellow.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_yellow.png",
       "layers": [
         {
@@ -29,9 +29,9 @@
       ]
     },
 	{
-      "aspects": ["core-form", "blue-core"],
+      "aspects": ["blue-core"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_blue.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_blue.png",
       "layers": [
         {
@@ -42,9 +42,9 @@
       ]
     },
 	{
-      "aspects": ["core-form", "green-core"],
+      "aspects": ["green-core"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_green.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_green.png",
       "layers": [
         {
@@ -55,9 +55,9 @@
       ]
     },
 	{
-      "aspects": ["core-form", "indigo-core"],
+      "aspects": ["indigo-core"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_indigo.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_indigo.png",
       "layers": [
         {
@@ -68,9 +68,9 @@
       ]
     },
 	{
-      "aspects": ["core-form", "orange-core"],
+      "aspects": ["orange-core"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_orange.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_orange.png",
       "layers": [
         {
@@ -81,9 +81,9 @@
       ]
     },
 	{
-      "aspects": ["core-form", "violet-core"],
+      "aspects": ["violet-core"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_violet.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_violet.png",
       "layers": [
         {
@@ -96,7 +96,7 @@
     {
       "aspects": ["core-form", "shiny"],
 	  "poser": "cobblemon:minior",
-      "model": "cobblemon:minior_shiny.geo",
+      "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior_shiny.png",
       "layers": [
         {

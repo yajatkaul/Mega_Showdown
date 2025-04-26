@@ -32,16 +32,20 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.neoforged.neoforge.registries.DeferredItem;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -262,6 +266,8 @@ public class CobbleEventsHandler {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
         PokemonBattle battle = formeChangeEvent.getBattle();
 
+        MegaShowdown.LOGGER.info(formeChangeEvent.getFormeName());
+
         switch (pokemon.getSpecies().getName()) {
             case "Aegislash" -> {
                 if (formeChangeEvent.getFormeName().equals("blade")) {
@@ -391,6 +397,12 @@ public class CobbleEventsHandler {
                     new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
                 }
             }
+            case "Zygarde" -> {
+                if(formeChangeEvent.getFormeName().equals("complete")){
+                    new FlagSpeciesFeature("complete-percent", true).apply(pokemon);
+                    playZygardeTransformation(pokemon.getEntity());
+                }
+            }
         }
 
         formeChangeEvent.getBattle().dispatchWaitingToFront(3F, () -> {
@@ -411,6 +423,44 @@ public class CobbleEventsHandler {
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static void playZygardeTransformation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth() + 1;
+            double entityHeight = context.getBbHeight() + 4;
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverLevel.sendParticles(
+                        ParticleTypes.END_ROD, // Change this to any particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
     }
 
     public static Unit fixTera(PokemonCapturedEvent pokemonCapturedEvent) {

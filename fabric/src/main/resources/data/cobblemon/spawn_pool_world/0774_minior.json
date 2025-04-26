@@ -39,7 +39,7 @@
                 "biomes": [
                     "#cobblemon:is_hills"
                 ]
-
+                
             }
         },
         {
@@ -59,7 +59,7 @@
                 "biomes": [
                     "#cobblemon:is_savanna"
                 ]
-
+                
             }
         },
         {
@@ -79,7 +79,7 @@
                 "biomes": [
                     "#cobblemon:is_plains"
                 ]
-
+                
             }
         },
         {
@@ -99,7 +99,7 @@
                 "biomes": [
                     "#cobblemon:is_jungle"
                 ]
-
+                
             }
         },
         {
@@ -119,7 +119,7 @@
                 "biomes": [
                     "#cobblemon:is_freshwater"
                 ]
-
+                
             }
         },
         {
@@ -139,7 +139,7 @@
                 "biomes": [
                     "#cobblemon:is_cold"
                 ]
-
+                
             }
         },
         {

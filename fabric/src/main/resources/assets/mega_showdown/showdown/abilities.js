@@ -4316,27 +4316,23 @@ const Abilities = {
   },
   shieldsdown: {
 		onStart(pokemon) {
-			if (pokemon.baseSpecies.baseSpecies !== 'Minior' || pokemon.transformed) return;
-			if (pokemon.hp > pokemon.maxhp / 2) {
-				if (pokemon.species.forme !== 'Meteor') {
-					pokemon.formeChange('Minior-Meteor');
-				}
+			console.log(`[SHIELDS DOWN] species.id=${pokemon.species.id}`);
+			if (pokemon.hp > pokemon.maxhp / 2 && pokemon.species.id == "minior") {
+				pokemon.formeChange('Minior-Meteor');
+				console.log(`[SHIELDS DOWN] species.id=${pokemon.species.id}`);
 			} else {
-				if (pokemon.species.forme === 'Meteor') {
-					pokemon.formeChange(pokemon.set.species);
+				if (pokemon.species.id == "miniormeteor") {
+					return;
 				}
 			}
 		},
 		onResidualOrder: 29,
 		onResidual(pokemon) {
-			if (pokemon.baseSpecies.baseSpecies !== 'Minior' || pokemon.transformed || !pokemon.hp) return;
-			if (pokemon.hp > pokemon.maxhp / 2) {
-				if (pokemon.species.forme !== 'Meteor') {
-					pokemon.formeChange('Minior-Meteor');
-				}
+			if (pokemon.hp > pokemon.maxhp / 2 && pokemon.species.id == "minior") {
+				pokemon.formeChange('Minior-Meteor');
 			} else {
-				if (pokemon.species.forme === 'Meteor') {
-					pokemon.formeChange(pokemon.set.species);
+				if (pokemon.hp < pokemon.maxhp / 2 && pokemon.species.id == "miniormeteor") {
+					pokemon.formeChange('Minior');
 				}
 			}
 		},

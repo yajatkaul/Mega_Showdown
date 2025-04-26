@@ -56,7 +56,7 @@
         "1:confusion",
         "1:doubleedge",
         "1:doublekick",
-        "1:glaciallance",
+        "form_change:glaciallance",
         "1:growth",
         "1:iciclecrash",
         "1:irondefense",
@@ -227,7 +227,7 @@
       ],
       "moves": [
         "1:agility",
-        "1:astralbarrage",
+        "form_change:astralbarrage",
         "1:confuseray",
         "1:confusion",
         "1:disable",

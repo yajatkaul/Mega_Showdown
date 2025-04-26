@@ -140,6 +140,8 @@ public class ReassemblyUnitBlock extends Block {
             state = world.getBlockState(pos); // Ensure working with lower half
         }
 
+        MegaShowdown.LOGGER.info(String.valueOf(state.get(REASSEMBLE_STAGE)));
+
         if (state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.isOf(FormeChangeItems.ZYGARDE_CUBE)) {
             if (stack.getItem() instanceof ZygardeCube cube) {
                 SimpleInventory inv = cube.getInventory(stack, player);
@@ -150,44 +152,38 @@ public class ReassemblyUnitBlock extends Block {
                 if (slot0.getCount() == 95 && slot1.getCount() == 5) {
                     inv.setStack(0, ItemStack.EMPTY);
                     inv.setStack(1, ItemStack.EMPTY);
-                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), 3);
+                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.NOTIFY_ALL);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 10);
 
-                    if(!world.isClient){
-                        stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
-                                player.getWorld().getRegistryManager()));
-                    }
+                    stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
+                            player.getWorld().getRegistryManager()));
 
                 } else if (slot0.getCount() >= 49 && slot1.getCount() >= 1) {
                     slot0.decrement(49);
                     slot1.decrement(1);
                     inv.setStack(0, slot0);
                     inv.setStack(1, slot1);
-                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), 3);
+                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.NOTIFY_ALL);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 5);
 
-                    if(!world.isClient){
-                        stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
-                                player.getWorld().getRegistryManager()));
-                    }
+                    stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
+                            player.getWorld().getRegistryManager()));
                 } else if (slot0.getCount() >= 9 && slot1.getCount() >= 1) {
                     slot0.decrement(9);
                     slot1.decrement(1);
                     inv.setStack(0, slot0);
                     inv.setStack(1, slot1);
-                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), 3);
+                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.NOTIFY_ALL);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 2);
 
-                    if(!world.isClient){
-                        stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
-                                player.getWorld().getRegistryManager()));
-                    }
+                    stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
+                            player.getWorld().getRegistryManager()));
                 } else {
                     player.sendMessage(Text.literal("You don't have enough cells/core").styled(s -> s.withColor(Formatting.RED)), true);
                 }
             }
 
-            return ItemActionResult.success(true);
+            return ItemActionResult.success(world.isClient());
         }
 
         if (stack.getItem() instanceof PokeBallItem) {
@@ -203,7 +199,7 @@ public class ReassemblyUnitBlock extends Block {
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
-                world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.success(world.isClient());
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
                 if (!world.isClient()) {
@@ -215,7 +211,7 @@ public class ReassemblyUnitBlock extends Block {
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
-                world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.success(world.isClient());
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
                 if (!world.isClient()) {
@@ -227,7 +223,7 @@ public class ReassemblyUnitBlock extends Block {
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
-                world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.success(world.isClient());
             }
         }
@@ -237,11 +233,10 @@ public class ReassemblyUnitBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        MegaShowdown.LOGGER.info("Tick called for " + pos + " with state " + state.get(REASSEMBLE_STAGE));
         switch (state.get(REASSEMBLE_STAGE)) {
-            case COOKING_10 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), 3);
-            case COOKING_50 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), 3);
-            case COOKING_100 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), 3);
+            case COOKING_10 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), Block.NOTIFY_ALL);
+            case COOKING_50 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), Block.NOTIFY_ALL);
+            case COOKING_100 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), Block.NOTIFY_ALL);
         }
     }
 

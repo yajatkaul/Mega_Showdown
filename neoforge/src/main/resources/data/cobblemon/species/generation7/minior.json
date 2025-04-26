@@ -14,7 +14,7 @@
     "gen7"
   ],
   "aspects": [
-    "meteor-form"
+    "core-form"
   ],
   "abilities": [
     "shieldsdown",
@@ -158,7 +158,7 @@
   "battleOnly": false,
   "forms": [
     {
-      "name": "Core",
+      "name": "Meteor",
       "primaryType": "rock",
       "secondaryType": "flying",
       "maleRatio": -1,
@@ -176,13 +176,13 @@
         }
       },
       "pokedex": [
-        "cobblemon.pokedex.minior-core.desc"
+        "cobblemon.pokedex.minior-meteor.desc"
       ],
       "labels": [
         "gen7"
       ],
       "aspects": [
-        "core-form"
+        "meteor-form"
       ],
       "baseStats": {
         "hp": 60,

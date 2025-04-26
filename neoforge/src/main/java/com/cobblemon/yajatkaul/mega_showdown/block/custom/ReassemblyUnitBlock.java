@@ -164,7 +164,7 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(0, ItemStack.EMPTY);
                     inv.setStackInSlot(1, ItemStack.EMPTY);
 
-                    level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), 3);
+                    level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 10); // 10 minutes in ticks
 
                     inv.serializeNBT(provider);
@@ -178,7 +178,7 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(0, newSlot0);
                     inv.setStackInSlot(1, newSlot1);
 
-                    level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), 3);
+                    level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 5); // 5 minutes in ticks
 
                     inv.serializeNBT(provider);
@@ -192,7 +192,7 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(0, newSlot0);
                     inv.setStackInSlot(1, newSlot1);
 
-                    level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), 3);
+                    level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 2); // 2 minutes in ticks
 
                     inv.serializeNBT(provider);
@@ -218,7 +218,7 @@ public class ReassemblyUnitBlock extends Block {
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
                 }
-                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
             } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
                 if(!level.isClientSide){
@@ -230,7 +230,7 @@ public class ReassemblyUnitBlock extends Block {
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
                 }
-                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
             } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
                 if(!level.isClientSide){
@@ -242,7 +242,7 @@ public class ReassemblyUnitBlock extends Block {
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
                 }
-                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), 3);
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
             }
         }
@@ -254,9 +254,9 @@ public class ReassemblyUnitBlock extends Block {
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         switch (state.getValue(REASSEMBLE_STAGE)) {
-            case COOKING_10 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), 3);
-            case COOKING_50 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), 3);
-            case COOKING_100 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), 3);
+            case COOKING_10 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), Block.UPDATE_ALL);
+            case COOKING_50 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), Block.UPDATE_ALL);
+            case COOKING_100 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), Block.UPDATE_ALL);
         }
     }
 

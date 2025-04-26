@@ -68,6 +68,8 @@ public class EventUtils {
             new StringSpeciesFeature("tera_form", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Meloetta")) {
             new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Zygarde")) {
+            new FlagSpeciesFeature("complete-percent", false).apply(pokemon);
         }
     }
 
