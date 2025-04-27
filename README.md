@@ -44,8 +44,6 @@ These are also spheres found at y level 5 but these are hollow and contain some 
 
 **![](https://cdn.discordapp.com/attachments/1334226114876538921/1344641724936359956/image.png?ex=67c2f831&is=67c1a6b1&hm=da168451f5c7da7012577ba96401878a45a9666f1c13cfa76d06a1bc9054b6a8&=)**
 
-Redorb and Blueorb can be used to get primal groudon and primal kyogre respectively, spawn chance of kyogre and groudon is ultra rare and you have a 0.3% to get the red/blue orb from desert pyramid/well and ocean_ruin cold/warm respectively.
-
 ## **Riding is officialy supported**
 
 ![](https://media.forgecdn.net/attachments/description/1189523/description_5bda5706-80c4-402c-adaf-e03ce445d26a.png)
@@ -57,29 +55,32 @@ Redorb and Blueorb can be used to get primal groudon and primal kyogre respectiv
 - Emissive Textures
 - Stats and ability changes when mega
 - Ridding supported
-- **All 48 megas**
+- All 48 megas
 - Curios/Trinkets support
 - Adds primal's
 - Adds tera gimmik
-- Adds z moves
+- Adds mega gimmik
+- Adds z moves gimmik
+- Adds dynamax gimmik
+- Adds ultra burst gimmik
 - Adds ultra necrozma
+- All fusion mons
 
 # **Credits**
 
 A huge thanks to everyone who allowed me to use there models from there pack
 
-- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes, Dialga and its formes, Palkia and its formes 
+- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes, Dialga and its formes, Palkia and its formes
 - [Souls Megas](https://modrinth.com/datapack/soul-megas-free-megas-for-all) Used for all the mega models
-- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc and Marshadow
-- [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum
-- [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Giritina and origin forme
+- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, rotom and formes,gensect and Marshadow
+- [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes
+- [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes
 - [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
 - [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
+- [ServidorCobblemon](<[https://discord.com/invite/servidorcobblemon](https://discord.com/invite/servidorcobblemon)>) for Oricorio and all the formes
 
 # **Socials**
 
 This mod includes all the megas that exist for any help or question you can join my discord
 
 [![Join us on Discord - Aviator Updates](https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/8a41e45e-aac9-44e5-8b69-55a81058ecbf_875x280.png)](https://discord.gg/egeWG4GXhN)
-
-Thanks to McJohnJr for providing images for the description
