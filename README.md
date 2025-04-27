@@ -77,7 +77,7 @@ A huge thanks to everyone who allowed me to use there models from there pack
 - [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes
 - [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
 - [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
-- [ServidorCobblemon][https://discord.com/invite/servidorcobblemon](https://discord.com/invite/servidorcobblemon) for Oricorio and all the formes
+- [ServidorCobblemon](https://discord.com/invite/servidorcobblemon) for Oricorio and all the formes
 
 # **Socials**
 
