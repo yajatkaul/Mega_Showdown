@@ -103,11 +103,11 @@
   "tooltip.mega_showdown.venusaurite.tooltip": "Allows Venusaur to Mega Evolve into Mega Venusaur",
   "item.mega_showdown.diancite": "Diancite",
 
-  "block.mega_showdown.mega_meteorid_block": "Evo Meteoroid Block",
-  "block.mega_showdown.mega_evo_brick": "Mega Meteoroid Brick",
-  "block.mega_showdown.chiseled_mega_evo_brick": "Chiseled Meteoroid Brick",
-  "block.mega_showdown.chiseled_mega_evo_block": "Chiseled Meteoroid Block",
-  "block.mega_showdown.polished_mega_evo_block": "Polished Meteoroid Block",
+  "block.mega_showdown.mega_meteorid_block": "Mega Meteoroid Block",
+  "block.mega_showdown.mega_evo_brick": "Mega Brick",
+  "block.mega_showdown.chiseled_mega_evo_brick": "Chiseled Mega Brick",
+  "block.mega_showdown.chiseled_mega_evo_block": "Chiseled Mega Block",
+  "block.mega_showdown.polished_mega_evo_block": "Polished Mega Block",
   "block.mega_showdown.mega_evo_block": "Meteoroid Block",
 
   "block.mega_showdown.mega_stone_crystal": "Mega Crystal",
@@ -520,6 +520,7 @@
   "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "A mysterious stone that emits a faint shadowy glow. It resonates with Z-Power.",
 
   "item.mega_showdown.zygarde_cube": "Zygarde Cube",
+  "item.mega_showdown.zygarde_cube.full": "Zygarde Cube (Filled)",
   "tooltip.mega_showdown.zygarde_cube.tooltip": "A cube that collects Zygarde Cells and Cores. It pulses faintly with energy from deep underground.",
   "item.mega_showdown.zygarde_cell": "Zygarde Cell",
   "tooltip.mega_showdown.zygarde_cell.tooltip": "A component of Zygarde. It's said to be one of many living cells scattered across the world.",

@@ -16,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -184,6 +185,7 @@ public class ReassemblyUnitBlock extends Block {
                             cores.copy());
                     level.addFreshEntity(coreDrop);
                 }
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube"));
                 stack.set(DataManage.ZYGARDE_CUBE_DATA, null);
                 return ItemInteractionResult.SUCCESS;
             }

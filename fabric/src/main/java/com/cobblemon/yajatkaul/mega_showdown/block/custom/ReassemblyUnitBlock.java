@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -174,6 +175,7 @@ public class ReassemblyUnitBlock extends Block {
                             cores.copy());
                     world.spawnEntity(coreDrop);
                 }
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
                 stack.set(DataManage.ZYGARDE_CUBE_DATA, null);
                 return ItemActionResult.SUCCESS;
             }

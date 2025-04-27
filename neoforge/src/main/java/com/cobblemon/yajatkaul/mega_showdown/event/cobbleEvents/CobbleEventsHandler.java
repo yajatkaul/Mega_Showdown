@@ -244,7 +244,7 @@ public class CobbleEventsHandler {
     }
 
     public static Unit dropShardPokemon(LootDroppedEvent lootDroppedEvent) {
-        if (!Config.teralization || !(lootDroppedEvent.getEntity() instanceof PokemonEntity)){
+        if (!Config.teralization || Config.disableTeraShardDrop || !(lootDroppedEvent.getEntity() instanceof PokemonEntity)){
             return Unit.INSTANCE;
         }
         Pokemon pokemon = ((PokemonEntity) lootDroppedEvent.getEntity()).getPokemon();

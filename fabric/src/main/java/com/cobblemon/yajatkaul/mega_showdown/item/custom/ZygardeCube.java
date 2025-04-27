@@ -14,6 +14,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.CubeInventoryListener;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreenHandler;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -181,11 +182,12 @@ public class ZygardeCube extends Item {
             if(hand == Hand.OFF_HAND && !pk.getAspects().contains("power-construct")){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) != null){
                     player.sendMessage(
-                            Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            Text.literal("Cube already has a zygarde").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
                     );
                     return ActionResult.FAIL;
                 }
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
                 stack.set(DataManage.ZYGARDE_CUBE_DATA, pokemon);
                 player.setStackInHand(hand, stack);
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);

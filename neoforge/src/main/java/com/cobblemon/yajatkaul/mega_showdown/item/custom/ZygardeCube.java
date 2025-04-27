@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeMenu;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -143,6 +144,7 @@ public class ZygardeCube extends Item {
                             .withColor(0xFF0000), true);
                     return InteractionResult.FAIL;
                 }
+                arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
                 arg.set(DataManage.ZYGARDE_CUBE_DATA, new PokeHandler(pokemon));
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
                 player.setItemInHand(arg4, arg);

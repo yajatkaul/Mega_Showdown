@@ -77,6 +77,10 @@ public class Config
                      but can't since mega showdown keeps overriding the files""")
             .define("showdownFilesLoading", true);
 
+    private static final ModConfigSpec.BooleanValue DISABLE_TERASHARD_DROP = BUILDER
+            .comment("Disables pokemons from dropping tera shards")
+            .define("disableTeraShardDrop", false);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -86,6 +90,7 @@ public class Config
     public static boolean scuffedMode;
     public static boolean friendshipMode;
     public static boolean zMoves;
+    public static boolean disableTeraShardDrop;
     public static boolean teralization;
     public static boolean tradeForm;
     public static boolean etermaxForme;
@@ -106,6 +111,7 @@ public class Config
         friendshipMode = FRIENDSHIP_MODE.get();
         zMoves = Z_MOVES.get();
         teralization = TERA_EVO.get();
+        disableTeraShardDrop = DISABLE_TERASHARD_DROP.get();
         tradeForm = TRADE_FORM.get();
         etermaxForme = ETERMAX_FORME.get();
         dynamax = DYNAMAX.get();
