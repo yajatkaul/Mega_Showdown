@@ -1321,6 +1321,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.kyogreprimal.cry"
+				}
 			}
 		},
 		"animation.kyogreprimal.quirk_ground_idle": {

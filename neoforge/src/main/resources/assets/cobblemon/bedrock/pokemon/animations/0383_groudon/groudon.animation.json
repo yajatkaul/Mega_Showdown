@@ -528,6 +528,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.groudon.cry"
+				}
 			}
 		},
 		"animation.groudon.physical_attack": {

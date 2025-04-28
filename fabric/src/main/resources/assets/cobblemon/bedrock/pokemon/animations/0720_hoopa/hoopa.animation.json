@@ -473,6 +473,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.hoopa.cry"
+				}
 			}
 		},
 		"animation.hoopa.quirk": {

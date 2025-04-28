@@ -70,14 +70,14 @@ These are also spheres found at y level 5 but these are hollow and contain some 
 
 A huge thanks to everyone who allowed me to use there models from there pack
 
-- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes, Dialga and its formes, Palkia and its formes
+- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes, Dialga and its formes, Palkia and its formes 
 - [Souls Megas](https://modrinth.com/datapack/soul-megas-free-megas-for-all) Used for all the mega models
-- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, rotom and formes,gensect and Marshadow
-- [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes
+- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, rotom and formes,gensect and Marshadow 
+- [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes 
 - [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes
 - [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
 - [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
-- [ServidorCobblemon](https://discord.com/invite/servidorcobblemon) for Oricorio and all the formes
+- [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes
 
 # **Socials**
 

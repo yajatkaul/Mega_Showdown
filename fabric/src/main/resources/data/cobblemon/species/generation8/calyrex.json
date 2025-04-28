@@ -26,6 +26,9 @@
       "abilities": [
         "asoneglastrier"
       ],
+      "pokedex": [
+        "cobblemon.species.calyrex-ice.desc"
+      ],
       "baseStats": {
         "hp": 100,
         "attack": 165,
@@ -199,6 +202,9 @@
       "secondaryType": "ghost",
       "abilities": [
         "asonespectrier"
+      ],
+      "pokedex": [
+        "cobblemon.species.calyrex-shadow.desc"
       ],
       "baseStats": {
         "hp": 100,

@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
@@ -21,6 +22,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import kotlin.Unit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
@@ -345,13 +347,13 @@ public class HeldItemChangeFormes {
         if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().isOf(MegaStones.BLUE_ORB)){
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             setTradable(post.getPokemon(), false);
-            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE);
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().isOf(MegaStones.RED_ORB)){
             new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
             setTradable(post.getPokemon(), false);
-            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE);
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
         }else{
             SpeciesFeature feature = post.getPokemon().getFeature("primal");
@@ -361,7 +363,7 @@ public class HeldItemChangeFormes {
 
             new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
             setTradable(post.getPokemon(), true);
-            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD);
+            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
         }
     }
 
@@ -530,8 +532,16 @@ public class HeldItemChangeFormes {
             playHeldItemFormeChange(context);
         }
     }
-    private static void primalRevertAnimation(LivingEntity context, SimpleParticleType particleType) {
-        LazyLib.Companion.cryAnimation(context);
+    private static void primalRevertAnimation(PokemonEntity context, SimpleParticleType particleType, Boolean revert) {
+        if(revert){
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            context.after(2.5f, () -> {
+                LazyLib.Companion.cryAnimation(context);
+                context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        }
+
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
 

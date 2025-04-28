@@ -676,5 +676,35 @@
 	"cobblemon.pokedex.minior-meteor.desc": "Originally making its home in the ozone layer, it hurtles to the ground when the shell enclosing its body grows too heavy.",
 	"cobblemon.pokedex.minior.desc": "It eats dust in the atmosphere. The composition of the dust determines the color of its core.",
 	"cobblemon.ui.pokedex.info.form.meteor": "Meteor",
-	"cobblemon.battle.activate.powerconstruct": "You sensed the presence of many"
+	"cobblemon.battle.activate.powerconstruct": "You sensed the presence of many",
+
+	"cobblemon.ui.pokedex.info.form.attack": "Attack",
+	"cobblemon.ui.pokedex.info.form.defense": "Defense",
+	"cobblemon.ui.pokedex.info.form.speed": "Speed",
+	"cobblemon.ui.pokedex.info.form.mow": "Mow",
+	"cobblemon.ui.pokedex.info.form.heat": "Heat",
+	"cobblemon.ui.pokedex.info.form.wash": "Wash",
+	"cobblemon.ui.pokedex.info.form.frost": "Frost",
+	"cobblemon.ui.pokedex.info.form.fan": "Fan",
+
+	"cobblemon.species.deoxys-attack.desc": "This Deoxys has transformed into its aggressive guise. It can fool enemies by altering its appearance.",
+	"cobblemon.species.deoxys-defense.desc": "When it changes form, an aurora appears. It absorbs attacks by altering its cellular structure.",
+	"cobblemon.species.deoxys-speed.desc": "A Pokémon that mutated from an extraterrestrial virus exposed to a laser beam. Its body is configured for superior agility and speed.",
+
+	"cobblemon.species.hoopa-unbound.desc": "It is said to be able to seize anything it desires with its six rings and six huge arms. With its power sealed, it is transformed into a much smaller form.",
+
+	"cobblemon.species.rotom-heat.desc": "A form in which Rotom lurks within a strange cauldron. The cauldron's origin is unknown. A bothersome Pokémon, causing trouble with the flames it spits.",
+	"cobblemon.species.rotom-wash.desc": "A form in which Rotom lurks within an odd bureau. The bureau's purpose is unknown. A bothersome Pokémon, causing trouble by splashing cold water everywhere.",
+	"cobblemon.species.rotom-frost.desc": "A form in which Rotom lurks within a bizarre cupboard. The cupboard's composition is unknown. A bothersome Pokémon, causing trouble by frosting everything over.",
+	"cobblemon.species.rotom-fan.desc": "A form in which Rotom lurks within a mysterious contraption. The contraption's purpose is unknown. A bothersome Pokémon, causing trouble by stirring up powerful winds.",
+	"cobblemon.species.rotom-mow.desc": "A form in which Rotom lurks within a misshapen wheelbarrow. The wheelbarrow's mechanisms are bizarre. It's a bothersome Pokémon, causing trouble by mowing down grass and trees.",
+
+	"cobblemon.species.necrozma-duskmane.desc": "Necrozma has attached itself to Solgaleo. It siphons away its host's limitless energy, exploiting that energy to fuel a rampage.",
+	"cobblemon.species.necrozma-dawnwings.desc": "When Necrozma latches on to Lunala, it becomes vicious, seeing enemies everywhere it looks. It will burn the world with lasers.",
+
+	"cobblemon.species.calyrex-ice.desc": "It's said that this Pokémon once moved a large forest—and all the Pokémon living there—to a new location overnight.",
+	"cobblemon.species.calyrex-shadow.desc": "Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.",
+
+	"cobblemon.species.kyurem-white.desc": "It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.",
+	"cobblemon.species.kyurem-black.desc": "The sameness of Zekrom's and Kyurem's genes allowed Kyurem to absorb Zekrom. Kyurem can now use the power of both electricity and ice."
 }

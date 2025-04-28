@@ -4126,6 +4126,11 @@
 				"TAILTIP2": {
 					"rotation": [25, "0-math.sin(q.anim_time*90*1-200)*25", 0]
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.hoopaunbound.cry"
+				}
 			}
 		}
 	}

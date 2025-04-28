@@ -528,6 +528,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.groudonprimal.cry"
+				}
 			}
 		},
 		"animation.groudonprimal.physical_attack": {

@@ -603,6 +603,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.kyogre.cry"
+				}
 			}
 		},
 		"animation.kyogre.quirk_ground_idle": {
