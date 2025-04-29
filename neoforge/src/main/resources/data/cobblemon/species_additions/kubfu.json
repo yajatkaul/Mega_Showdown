@@ -1,0 +1,34 @@
+{
+  "implemented": true,
+  "target": "cobblemon:kubfu",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1,
+    "height": 1.5,
+    "fixed": false
+  },
+  "evolutions": [
+    {
+      "id": "kubfu_urshifu",
+      "variant": "item_interact",
+      "result": "urshifu wushu_style=single_strike",
+      "consumeHeldItem": true,
+      "learnableMoves": [
+        "wickedblow"
+      ],
+      "requirements": [],
+      "requiredContext": "mega_showdown:scroll_of_darkness"
+    },
+    {
+      "id": "kubfu_urshifu_rapidstrike",
+      "variant": "item_interact",
+      "result": "urshifu wushu_style=rapid_strike",
+      "consumeHeldItem": true,
+      "learnableMoves": [
+        "surgingstrikes"
+      ],
+      "requirements": [],
+      "requiredContext": "mega_showdown:scroll_of_waters"
+    }
+  ]
+}

@@ -4,11 +4,14 @@
   "baseScale": 0.7,
   "evolutions": [
     {
-      "id": "rockruff_lycanroc_midnight",
+      "id": "rockruff_lycanroc",
       "variant": "level_up",
-      "result": "lycanroc midnight",
+      "result": "lycanroc wolf_form=midday",
       "consumeHeldItem": false,
-      "learnableMoves": ["counter"],
+      "learnableMoves": [
+        "accelerock",
+        "suckerpunch"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -16,16 +19,19 @@
         },
         {
           "variant": "time_range",
-          "range": "night"
+          "range": "morning"
         }
       ]
     },
     {
-      "id": "rockruff_lycanroc_dusk",
+      "id": "rockruff_lycanrocdusk",
       "variant": "level_up",
-      "result": "lycanroc dusk",
+      "result": "lycanroc wolf_form=dusk dusk",
       "consumeHeldItem": false,
-      "learnableMoves": ["crushclaw"],
+      "learnableMoves": [
+        "accelerock",
+        "counter"
+      ],
       "requirements": [
         {
           "variant": "level",
@@ -33,7 +39,26 @@
         },
         {
           "variant": "time_range",
-          "range": "noon"
+          "range": "dusk"
+        }
+      ]
+    },
+    {
+      "id": "rockruff_lycanrocmidnight",
+      "variant": "level_up",
+      "result": "lycanroc wolf_form=midnight midnight",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "counter"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 25
+        },
+        {
+          "variant": "time_range",
+          "range": "midnight"
         }
       ]
     }

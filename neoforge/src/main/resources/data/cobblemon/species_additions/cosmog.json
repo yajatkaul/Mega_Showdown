@@ -1,10 +1,10 @@
 {
   "implemented": true,
   "target": "cobblemon:cosmog",
-  "baseScale": 0.4,
+  "baseScale": 0.6,
   "hitbox": {
-    "width": 1,
-    "height": 0.5,
+    "width": 1.7,
+    "height": 2.7,
     "fixed": false
   }
 }

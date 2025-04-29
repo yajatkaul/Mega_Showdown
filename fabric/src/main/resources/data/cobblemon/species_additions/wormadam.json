@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:wormadam",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1,
+    "height": 2,
+    "fixed": false
+  }
+}

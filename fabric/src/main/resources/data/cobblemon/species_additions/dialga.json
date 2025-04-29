@@ -1,0 +1,27 @@
+{
+  "implemented": true,
+  "target": "cobblemon:dialga",
+  "hitbox": {
+    "width": 2.5,
+    "height": 6.5,
+    "fixed": false
+  },
+  "behaviour": {
+    "moving": {
+      "canLook": true,
+      "walk": {
+        "walkSpeed": 0.5,
+        "canWalk": true,
+        "avoidsLand": false
+      },
+      "fly": {
+        "canFly": true
+      },
+      "swim": {
+        "swimSpeed": 0.5,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
+    }
+  }
+}

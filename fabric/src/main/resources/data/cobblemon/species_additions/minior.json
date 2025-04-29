@@ -1,12 +1,6 @@
 {
   "implemented": true,
-  "target": "cobblemon:lunala",
-  "baseScale": 1.5,
-  "hitbox": {
-    "width": 4,
-    "height": 5,
-    "fixed": false
-  },
+  "target": "cobblemon:minior",
   "behaviour": {
     "moving": {
       "swim": {
