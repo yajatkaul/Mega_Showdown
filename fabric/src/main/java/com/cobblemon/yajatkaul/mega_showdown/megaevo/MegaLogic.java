@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
@@ -54,10 +55,10 @@ public class MegaLogic {
         }
 
         boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                trinkets.isEquipped(item -> (item.getItem() instanceof MegaBraceletItem || item.isIn(ModTags.Items.MEGA_BRACELETS)))).orElse(false);
+                trinkets.isEquipped(item -> (item.isIn(ModTags.Items.MEGA_BRACELETS)))).orElse(false);
 
-        boolean hasOffhandMegaItem = player.getOffHandStack().getItem() instanceof MegaBraceletItem || player.getOffHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
-        boolean hasMainhandMegaItem = player.getMainHandStack().getItem() instanceof MegaBraceletItem || player.getMainHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
+        boolean hasOffhandMegaItem = player.getOffHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
+        boolean hasMainhandMegaItem = player.getMainHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
 
 
         if(fromBattle){
@@ -109,27 +110,9 @@ public class MegaLogic {
                 return;
             }
 
-            List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-            boolean end = false;
-            for (String key : megaKeys) {
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-                FlagSpeciesFeature feature = featureProvider.get(pk.getPokemon());
-
-                if(feature != null){
-                    boolean enabled = featureProvider.get(pk.getPokemon()).getEnabled();
-
-                    if(enabled){
-                        Devolve(pk.getPokemon(), player, false);
-                        end = false;
-                        break;
-                    }else{
-                        end = true;
-                    }
-
-                }
-            }
-            if(end){
+            if(pk.getAspects().contains("mega_x") || pk.getAspects().contains("mega") || pk.getAspects().contains("mega_y")){
+                Devolve(pk.getPokemon(), player, false);
+            }else {
                 Evolve(pk, player, false);
             }
         }
@@ -172,7 +155,7 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
                     player.setAttached(DataManage.MEGA_DATA, true);
 
-                    new FlagSpeciesFeature("mega", true).apply(pokemon);
+                    new StringSpeciesFeature("mega_evolution", "mega").apply(pokemon);
                     setTradable(pokemon, false);
 
                     playEvolveAnimation(context);
@@ -221,8 +204,7 @@ public class MegaLogic {
 
                     playEvolveAnimation(context);
 
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    new StringSpeciesFeature("mega_evolution", "mega_x").apply(pokemon);
                     setTradable(pokemon, false);
 
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
@@ -232,8 +214,7 @@ public class MegaLogic {
 
                     playEvolveAnimation(context);
 
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
                     setTradable(pokemon, false);
 
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
@@ -246,8 +227,8 @@ public class MegaLogic {
 
                     playEvolveAnimation(context);
 
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", true).apply(pokemon);
+                    new StringSpeciesFeature("mega_evolution", "mega_x").apply(pokemon);
+
                     setTradable(pokemon, false);
 
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
@@ -257,8 +238,8 @@ public class MegaLogic {
 
                     playEvolveAnimation(context);
 
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", true).apply(pokemon);
+                    new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
+
                     setTradable(pokemon, false);
 
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
@@ -270,7 +251,8 @@ public class MegaLogic {
 
                 playEvolveAnimation(context);
 
-                new FlagSpeciesFeature("mega", true).apply(pokemon);
+                new StringSpeciesFeature("mega_evolution", "mega").apply(pokemon);
+
                 setTradable(pokemon, false);
 
                 AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "mega_evolve");
@@ -308,9 +290,8 @@ public class MegaLogic {
             playDevolveAnimation(context.getEntity());
         }
 
-        new FlagSpeciesFeature("mega", false).apply(context);
-        new FlagSpeciesFeature("mega-x", false).apply(context);
-        new FlagSpeciesFeature("mega-y", false).apply(context);
+        new StringSpeciesFeature("mega_evolution", "none").apply(context);
+
         setTradable(context, true);
     }
 

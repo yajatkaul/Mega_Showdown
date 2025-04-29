@@ -40,7 +40,7 @@ public class RevertEvents {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
                     MegaLogic.Devolve(pokemon, serverPlayer, true);
                 }
 
@@ -63,7 +63,7 @@ public class RevertEvents {
             return Unit.INSTANCE;
         }
 
-        if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+        if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
             MegaLogic.Devolve(pokemon, serverPlayer, true);
         }
 
@@ -76,7 +76,7 @@ public class RevertEvents {
             for (Pokemon pokemon: playerPartyStore){
                 EventUtils.revertFormesEnd(pokemon);
 
-                if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
                     MegaLogic.Devolve(pokemon, serverPlayer, true);
                 }
 
@@ -128,7 +128,7 @@ public class RevertEvents {
                 for (Pokemon pokemon : playerPartyStore) {
                     EventUtils.revertFormesEnd(pokemon);
 
-                    if(pokemon.getAspects().contains("mega-x") || pokemon.getAspects().contains("mega-y") || pokemon.getAspects().contains("mega")){
+                    if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
                         MegaLogic.Devolve(pokemon, player, true);
                     }
                 }
