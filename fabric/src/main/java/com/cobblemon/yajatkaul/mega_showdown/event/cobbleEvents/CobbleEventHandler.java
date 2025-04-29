@@ -16,9 +16,11 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
@@ -50,6 +52,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Vec3d;
 
@@ -105,34 +108,42 @@ public class CobbleEventHandler {
         PokemonBattle battle = megaEvolutionEvent.getBattle();
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
-        battle.dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            return Unit.INSTANCE;
-        });
-
         ServerPlayerEntity player = megaEvolutionEvent.getPokemon().getOriginalPokemon().getOwnerPlayer();
 
         if(player == null){
             return Unit.INSTANCE;
         }
 
+        battle.dispatchWaitingToFront(3F, () -> {
+            LazyLib.Companion.cryAnimation(pokemon.getEntity());
+            return Unit.INSTANCE;
+        });
+
         MegaLogic.Evolve(pokemon.getEntity(), player, true);
 
-        battle.sendUpdate(new AbilityUpdatePacket(megaEvolutionEvent.getPokemon()::getEffectedPokemon, pokemon.getAbility().getTemplate()));
-        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+        updatePackets(battle, megaEvolutionEvent.getPokemon(), true);
+
+        return Unit.INSTANCE;
+    }
+
+    public static void updatePackets(PokemonBattle battle, BattlePokemon pk, boolean abilities){
+        Pokemon pokemon = pk.getEntity().getPokemon();
+
+        if(abilities){
+            battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+            battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+        }
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
             if(activeBattlePokemon.getBattlePokemon() != null &&
-                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == megaEvolutionEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()
-                    && activeBattlePokemon.getBattlePokemon() == megaEvolutionEvent.getPokemon()){
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pk.getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == pk){
                 battle.sendSidedUpdate(activeBattlePokemon.getActor(),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), true),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), megaEvolutionEvent.getPokemon(), false),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pk, true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pk, false),
                         false);
             }
         }
-
-        return Unit.INSTANCE;
     }
 
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
@@ -177,9 +188,11 @@ public class CobbleEventHandler {
 
         if(pk.getSpecies().getName().equals("Terapagos")){
             new StringSpeciesFeature("tera_form", "stellar").apply(pk);
+            updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon(), false);
             EventUtils.playEvolveAnimation(pokemon);
         } else if (pk.getSpecies().getName().equals("Ogerpon")) {
             new FlagSpeciesFeature("embody_aspect", true).apply(pk);
+            updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon(), false);
         }
 
         if (pk instanceof TeraAccessor accessor) {
@@ -221,17 +234,6 @@ public class CobbleEventHandler {
         }
 
         PokemonBattle battle = terastallizationEvent.getBattle();
-
-        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon() != null &&
-                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pk.getOwnerPlayer()
-                    && activeBattlePokemon.getBattlePokemon() == terastallizationEvent.getPokemon()){
-                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), terastallizationEvent.getPokemon(), true),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), terastallizationEvent.getPokemon(), false),
-                        false);
-            }
-        }
 
         battle.dispatchWaitingToFront(3F, () -> {
             LazyLib.Companion.cryAnimation(pokemon);
@@ -436,16 +438,7 @@ public class CobbleEventHandler {
             }
         }
 
-        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon() != null &&
-                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == formeChangeEvent.getPokemon().getEffectedPokemon().getOwnerPlayer()
-                    && activeBattlePokemon.getBattlePokemon() == formeChangeEvent.getPokemon()){
-                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), true),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), formeChangeEvent.getPokemon(), false),
-                        false);
-            }
-        }
+        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
 
         battle.dispatchWaitingToFront(3F, () -> {
             LazyLib.Companion.cryAnimation(pokemon.getEntity());

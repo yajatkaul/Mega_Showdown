@@ -330,23 +330,22 @@ public class HeldItemChangeFormes {
         Species species = post.getPokemon().getSpecies();
 
         if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().is(MegaStones.BLUE_ORB)){
-            new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            new StringSpeciesFeature("reversion_state", "primal").apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             setTradable(post.getPokemon(), false);
         }
         else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().is(MegaStones.RED_ORB)){
-            new FlagSpeciesFeature("primal", true).apply(post.getPokemon());
+            new StringSpeciesFeature("reversion_state", "primal").apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
             setTradable(post.getPokemon(), false);
         }else{
-            SpeciesFeature feature = post.getPokemon().getFeature("primal");
-            if(feature == null){
+            if(!post.getPokemon().getAspects().contains("primal")){
                 return;
             }
 
-            new FlagSpeciesFeature("primal", false).apply(post.getPokemon());
+            new StringSpeciesFeature("reversion_state", "standard").apply(post.getPokemon());
             primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
             setTradable(post.getPokemon(), true);
         }
