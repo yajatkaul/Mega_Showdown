@@ -3148,7 +3148,7 @@ const Items = {
 
           // Define type matchups, including resistances and immunities
           const typeChart = {
-              Normal: { superEffective: ["Fighting"], resistedBy: [], immune: ["Ghost"] },
+              Normal: { superEffective: [], resistedBy: ["Rock","Steel"], immune: ["Ghost"] },
               Fire: { superEffective: ["Grass", "Bug", "Ice", "Steel"], resistedBy: ["Fire", "Water", "Rock", "Dragon"], immune: [] },
               Water: { superEffective: ["Fire", "Ground", "Rock"], resistedBy: ["Water", "Grass", "Dragon"], immune: [] },
               Electric: { superEffective: ["Water", "Flying"], resistedBy: ["Electric", "Grass", "Dragon"], immune: ["Ground"] },
@@ -3162,7 +3162,7 @@ const Items = {
               Bug: { superEffective: ["Grass", "Psychic", "Dark"], resistedBy: ["Fire", "Fighting", "Poison", "Flying", "Ghost", "Steel", "Fairy"], immune: [] },
               Rock: { superEffective: ["Fire", "Ice", "Flying", "Bug"], resistedBy: ["Fighting", "Ground", "Steel"], immune: [] },
               Ghost: { superEffective: ["Ghost", "Psychic"], resistedBy: ["Dark"], immune: ["Normal"] },
-              Dragon: { superEffective: ["Dragon"], resistedBy: ["Steel"], immune: [] },
+              Dragon: { superEffective: ["Dragon"], resistedBy: ["Steel"], immune: ["Fairy"] },
               Dark: { superEffective: ["Psychic", "Ghost"], resistedBy: ["Fighting", "Dark", "Fairy"], immune: [] },
               Steel: { superEffective: ["Ice", "Rock", "Fairy"], resistedBy: ["Fire", "Water", "Electric", "Steel"], immune: [] },
               Fairy: { superEffective: ["Fighting", "Dragon", "Dark"], resistedBy: ["Fire", "Poison", "Steel"], immune: [] }

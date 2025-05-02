@@ -35,6 +35,16 @@ public class DataManage {
                     .serialize(PokeHandler.CODEC).copyOnDeath().build()
     );
 
+    public static final Supplier<AttachmentType<Boolean>> PRIMAL_DATA = ATTACHMENT_TYPES.register(
+            "primal_data", () -> AttachmentType.builder(() -> false)
+                    .serialize(Codec.BOOL).copyOnDeath().build()
+    );
+
+    public static final Supplier<AttachmentType<PokeHandler>> PRIMAL_POKEMON = ATTACHMENT_TYPES.register(
+            "primal_pokemon", () -> AttachmentType.builder(() -> new PokeHandler(new Pokemon()))
+                    .serialize(PokeHandler.CODEC).copyOnDeath().build()
+    );
+
     public static final Supplier<AttachmentType<HashMap<UUID, Pokemon>>> DATA_MAP = ATTACHMENT_TYPES.register(
             "data_map",
             () -> AttachmentType.<HashMap<UUID, Pokemon>>builder(() -> new HashMap<>())

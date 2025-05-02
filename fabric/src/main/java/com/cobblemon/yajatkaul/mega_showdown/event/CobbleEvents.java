@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.event.ultra.UltraEventLogic;
 public class CobbleEvents {
     public static void register(){
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChange);
+        CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChangePrimals);
 
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onReleasePokemon);
 

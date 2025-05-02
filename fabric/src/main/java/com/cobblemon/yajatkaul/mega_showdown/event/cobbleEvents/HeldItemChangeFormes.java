@@ -13,6 +13,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
@@ -32,6 +33,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -340,64 +344,60 @@ public class HeldItemChangeFormes {
         }
     }
 
-    public static void primalEvent(HeldItemEvent.Post post) {
-        ServerPlayerEntity player = post.getPokemon().getOwnerPlayer();
-        Species species = post.getPokemon().getSpecies();
+    public static void primalEvent(HeldItemEvent.Pre pre) {
+        ServerPlayerEntity player = pre.getPokemon().getOwnerPlayer();
+        Species species = pre.getPokemon().getSpecies();
 
-        if(species.getName().equals(Utils.getSpecies("kyogre").getName()) && post.getReceived().isOf(MegaStones.BLUE_ORB)){
-            new StringSpeciesFeature("reversion_state", "primal").apply(post.getPokemon());
-            setTradable(post.getPokemon(), false);
-            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
-            AdvancementHelper.grantAdvancement(player, "primal_evo");
+        if((player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().isOf(MegaStones.BLUE_ORB)){
+            pre.cancel();
+            player.sendMessage(
+                    Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
         }
-        else if(species.getName().equals(Utils.getSpecies("groudon").getName()) && post.getReceived().isOf(MegaStones.RED_ORB)){
-            new StringSpeciesFeature("reversion_state", "primal").apply(post.getPokemon());
-            setTradable(post.getPokemon(), false);
-            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
+        else if((player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("groudon").getName()) && pre.getReceiving().isOf(MegaStones.RED_ORB)){
+            pre.cancel();
+            player.sendMessage(
+                    Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return;
+        }
+
+        if((!player.getAttached(DataManage.PRIMAL_DATA) || ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().isOf(MegaStones.BLUE_ORB)){
+            new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
+            primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
             AdvancementHelper.grantAdvancement(player, "primal_evo");
+            player.setAttached(DataManage.PRIMAL_DATA, true);
+            player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
+            setTradable(pre.getPokemon(), false);
+        }
+        else if((!player.getAttached(DataManage.PRIMAL_DATA) || ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("groudon").getName()) && pre.getReceiving().isOf(MegaStones.RED_ORB)){
+            new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
+            primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
+            AdvancementHelper.grantAdvancement(player, "primal_evo");
+            player.setAttached(DataManage.PRIMAL_DATA, true);
+            player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
+            setTradable(pre.getPokemon(), false);
         }else{
-            if(!post.getPokemon().getAspects().contains("primal")){
+            if(!pre.getPokemon().getAspects().contains("primal")){
                 return;
             }
 
-            new StringSpeciesFeature("reversion_state", "standard").apply(post.getPokemon());
-            setTradable(post.getPokemon(), true);
-            primalRevertAnimation(post.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
+            new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
+            primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
+            player.setAttached(DataManage.PRIMAL_DATA, false);
+            player.removeAttached(DataManage.PRIMAL_POKEMON);
+            setTradable(pre.getPokemon(), true);
         }
     }
 
     public static void megaEvent(HeldItemEvent.Post event) {
         Pokemon pokemon = event.getPokemon();
 
-        if(pokemon.getEntity() == null){
-            return;
-        }
-
-        if(pokemon.getEntity().getWorld().isClient){
-            return;
-        }
-
-        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
-
-
-        List<String> megaKeys = List.of("mega-x", "mega-y", "mega");
-
-        for (String key : megaKeys) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of(key));
-            ServerPlayerEntity player = pokemon.getOwnerPlayer();
-
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if (enabled && feature.getName().equals("mega") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon, player, true);
-                }else if(enabled && feature.getName().equals("mega-x") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())){
-                    MegaLogic.Devolve(pokemon, player, true);
-                } else if (enabled && feature.getName().equals("mega-y") && (species != pokemon.getSpecies() || event.getReceived() != event.getReturned())) {
-                    MegaLogic.Devolve(pokemon, player, true);
-                }
-            }
+        if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
+            MegaLogic.Devolve(pokemon, true);
         }
     }
 

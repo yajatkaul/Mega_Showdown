@@ -899,7 +899,7 @@ class Pokemon {
   }
   transformInto(pokemon, effect) {
     const species = pokemon.species;
-    if (pokemon.fainted || this.illusion || pokemon.illusion || pokemon.volatiles["substitute"] && this.battle.gen >= 5 || pokemon.transformed && this.battle.gen >= 2 || this.transformed && this.battle.gen >= 5 || species.name === "Eternatus-Eternamax" || ["Ogerpon", "Terapagos"].includes(species.baseSpecies) && (this.terastallized || pokemon.terastallized) || this.terastallized === "stellar") {
+    if (pokemon.fainted || this.illusion || pokemon.illusion || pokemon.volatiles["substitute"] && this.battle.gen >= 5 || pokemon.transformed && this.battle.gen >= 2 || this.transformed && this.battle.gen >= 5 || species.name === "Eternatus-Eternamax" || ["Ogerpon", "Terapagos"].includes(species.baseSpecies) && (this.terastallized || pokemon.terastallized) || this.terastallized === "Stellar") {
       return false;
     }
     if (this.battle.dex.currentMod === "gen1stadium" && (species.name === "Ditto" || this.species.name === "Ditto" && pokemon.moves.includes("transform"))) {
@@ -1635,7 +1635,7 @@ class Pokemon {
    */
   setType(newType, enforce = false) {
     if (!enforce) {
-      if (typeof newType === "string" ? newType === "stellar" : newType.includes("stellar"))
+      if (typeof newType === "string" ? newType === "Stellar" : newType.includes("Stellar"))
         return false;
       if (this.battle.gen >= 5 && (this.species.num === 493 || this.species.num === 773) || this.battle.gen === 4 && this.hasAbility("multitype")) {
         return false;
@@ -1659,7 +1659,7 @@ class Pokemon {
     return true;
   }
   getTypes(excludeAdded, preterastallized) {
-    if (!preterastallized && this.terastallized && this.terastallized !== "stellar") {
+    if (!preterastallized && this.terastallized && this.terastallized !== "Stellar") {
       return [this.terastallized];
     }
     const types = this.battle.runEvent("Type", this, null, null, this.types);
@@ -1723,7 +1723,7 @@ class Pokemon {
     return weather;
   }
   runEffectiveness(move) {
-    if (this.terastallized && move.type === "stellar")
+    if (this.terastallized && move.type === "Stellar")
       return 1;
     let totalTypeMod = 0;
     for (const type of this.getTypes()) {

@@ -112,7 +112,7 @@ public class MegaLogic {
             }
 
             if(pk.getAspects().contains("mega_x") || pk.getAspects().contains("mega") || pk.getAspects().contains("mega_y")){
-                Devolve(pk.getPokemon(), player, false);
+                Devolve(pk.getPokemon(), false);
             }else {
                 Evolve(pk, player, false);
             }
@@ -250,10 +250,8 @@ public class MegaLogic {
 
     }
 
-    public static void Devolve(Pokemon context, Player player, Boolean fromBattle){
-        if(player.level().isClientSide || context == null){
-            return;
-        }
+    public static void Devolve(Pokemon context, Boolean fromBattle){
+        ServerPlayer player = context.getOwnerPlayer();
 
         if(context instanceof Pokemon pk){
             if(pk.getOwnerPlayer() != player){

@@ -20,11 +20,13 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
@@ -32,10 +34,12 @@ import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -56,6 +60,7 @@ import top.theillusivec4.curios.api.SlotResult;
 import java.util.*;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class CobbleEventsHandler {
     public static Unit onHeldItemChange(HeldItemEvent.Post event) {
@@ -67,7 +72,6 @@ public class CobbleEventsHandler {
         HeldItemChangeFormes.silvallyChange(event);
         HeldItemChangeFormes.arcuesChange(event);
         HeldItemChangeFormes.ultraEvent(event);
-        HeldItemChangeFormes.primalEvent(event);
         HeldItemChangeFormes.crownedEvent(event);
         HeldItemChangeFormes.ogerponChange(event);
         HeldItemChangeFormes.eternamaxChange(event);
@@ -82,18 +86,28 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if (post.getPlayer().level().isClientSide) {
+    public static Unit onHeldItemChangePrimals(HeldItemEvent.Pre event) {
+        if(event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null){
             return Unit.INSTANCE;
         }
 
-        Pokemon released = post.getPokemon();
-        Player player = post.getPlayer();
+        HeldItemChangeFormes.primalEvent(event);
 
-        PokeHandler megaRef = player.getData(DataManage.MEGA_POKEMON);
-        if (megaRef != null && megaRef.getPokemon() == released) {
+        return Unit.INSTANCE;
+    }
+
+    public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
+        Pokemon released = post.getPokemon();
+        ServerPlayer player = post.getPlayer();
+
+        if (player.getData(DataManage.MEGA_POKEMON).getPokemon() == released) {
             player.setData(DataManage.MEGA_DATA, false);
             player.removeData(DataManage.MEGA_POKEMON);
+        }
+
+        if (player.getData(DataManage.PRIMAL_POKEMON).getPokemon() == released) {
+            player.setData(DataManage.PRIMAL_DATA, false);
+            player.removeData(DataManage.PRIMAL_POKEMON);
         }
 
         return Unit.INSTANCE;
@@ -265,8 +279,6 @@ public class CobbleEventsHandler {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
         PokemonBattle battle = formeChangeEvent.getBattle();
 
-        MegaShowdown.LOGGER.info(formeChangeEvent.getFormeName());
-
         switch (pokemon.getSpecies().getName()) {
             case "Aegislash" -> {
                 if (formeChangeEvent.getFormeName().equals("blade")) {
@@ -383,28 +395,28 @@ public class CobbleEventsHandler {
                 }
             }
             case "Terapagos" -> {
-                if(formeChangeEvent.getFormeName().equals("terastal")){
+                if (formeChangeEvent.getFormeName().equals("terastal")) {
                     new StringSpeciesFeature("tera_form", "terastal").apply(pokemon);
                     EventUtils.playEvolveAnimation(pokemon.getEntity());
                 }
             }
             case "Meloetta" -> {
-                if(formeChangeEvent.getFormeName().equals("pirouette")){
+                if (formeChangeEvent.getFormeName().equals("pirouette")) {
                     new StringSpeciesFeature("song_forme", "pirouette").apply(pokemon);
                     EventUtils.playEvolveAnimation(pokemon.getEntity());
-                }else {
+                } else {
                     new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
                 }
             }
             case "Zygarde" -> {
-                if(formeChangeEvent.getFormeName().equals("complete")){
+                if (formeChangeEvent.getFormeName().equals("complete")) {
                     new FlagSpeciesFeature("complete-percent", true).apply(pokemon);
                     playZygardeTransformation(pokemon.getEntity());
                 }
             }
         }
 
-        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+        updatePackets(battle, formeChangeEvent.getPokemon(), false);
 
         formeChangeEvent.getBattle().dispatchWaitingToFront(3F, () -> {
             LazyLib.Companion.cryAnimation(pokemon.getEntity());

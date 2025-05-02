@@ -12,6 +12,7 @@ import net.neoforged.neoforge.common.NeoForge;
 public class CobbleEvents {
     public static void register(){
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChange);
+        CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChangePrimals);
 
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onReleasePokemon);
 

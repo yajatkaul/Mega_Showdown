@@ -32,8 +32,32 @@ public class DataManage {
                     )
     );
 
+    public static final AttachmentType<Boolean> PRIMAL_DATA = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "primal_data"),
+            builder -> builder
+                    .copyOnDeath()
+                    .initializer(() -> Boolean.FALSE)
+                    .persistent(Codec.BOOL)
+                    .syncWith(
+                            PacketCodecs.BOOL,
+                            AttachmentSyncPredicate.all()
+                    )
+    );
+
     public static final AttachmentType<PokeHandler> MEGA_POKEMON = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "mega_pokemon"),
+            builder -> builder
+                    .copyOnDeath()
+                    .initializer(() -> new PokeHandler(new Pokemon()))
+                    .persistent(PokeHandler.CODEC)
+                    .syncWith(
+                            PokeHandler.S2C_CODEC,
+                            AttachmentSyncPredicate.all()
+                    )
+    );
+
+    public static final AttachmentType<PokeHandler> PRIMAL_POKEMON = AttachmentRegistry.create(
+            Identifier.of(MegaShowdown.MOD_ID, "primal_pokemon"),
             builder -> builder
                     .copyOnDeath()
                     .initializer(() -> new PokeHandler(new Pokemon()))

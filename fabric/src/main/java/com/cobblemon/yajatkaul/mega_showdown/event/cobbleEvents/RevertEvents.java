@@ -34,6 +34,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class RevertEvents {
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
+        battleEvent.getBattle().setMute(false);
         for(ServerPlayerEntity player: battleEvent.getBattle().getPlayers()){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
@@ -42,7 +43,7 @@ public class RevertEvents {
                 for (Pokemon pokemon : playerPartyStore) {
                     EventUtils.revertFormesEnd(pokemon);
                     if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                        MegaLogic.Devolve(pokemon, player, true);
+                        MegaLogic.Devolve(pokemon, true);
                     }
                 }
             }
@@ -134,7 +135,7 @@ public class RevertEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, serverPlayer, true);
+                    MegaLogic.Devolve(pokemon, true);
                 }
 
                 EventUtils.revertFormesEnd(pokemon);
@@ -157,7 +158,7 @@ public class RevertEvents {
         }
 
         if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-            MegaLogic.Devolve(pokemon, serverPlayer, true);
+            MegaLogic.Devolve(pokemon, true);
         }
 
         return Unit.INSTANCE;
@@ -170,7 +171,7 @@ public class RevertEvents {
                 EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, serverPlayer, true);
+                    MegaLogic.Devolve(pokemon, true);
                 }
 
                 if(pokemon.getEntity() != null){

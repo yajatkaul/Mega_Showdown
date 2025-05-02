@@ -22,6 +22,7 @@ public class ShowdownConfig {
     public static final Supplier<Integer> powerSpotRange;
     public static final Supplier<Integer> dynamaxScaleFactor;
     public static final Supplier<Boolean> showdownFilesLoading;
+    public static final Supplier<Boolean> multiplePrimals;
 
     static{
         // construct a new config builder
@@ -48,6 +49,7 @@ public class ShowdownConfig {
                      this it will stop overwriting it ever load\
                     , this is for people who want to edit showdown\s
                      but can't since mega showdown keeps overriding the files""").define("showdownFilesLoading", true);
+        multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", false);
 
         builder.build();
     }

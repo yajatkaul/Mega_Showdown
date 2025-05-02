@@ -72,7 +72,6 @@ public class CobbleEventHandler {
         HeldItemChangeFormes.silvallyChange(post);
         HeldItemChangeFormes.arcuesChange(post);
         HeldItemChangeFormes.ultraEvent(post);
-        HeldItemChangeFormes.primalEvent(post);
         HeldItemChangeFormes.crownedEvent(post);
         HeldItemChangeFormes.ogerponChange(post);
         HeldItemChangeFormes.eternamaxChange(post);
@@ -87,18 +86,25 @@ public class CobbleEventHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if(post.getPlayer().getWorld().isClient){
+    public static Unit onHeldItemChangePrimals(HeldItemEvent.Pre event) {
+        if(event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null){
             return Unit.INSTANCE;
         }
 
-        if(!post.getPlayer().hasAttached(DataManage.MEGA_POKEMON)){
-            post.getPlayer().setAttached(DataManage.MEGA_POKEMON, new PokeHandler(new Pokemon()));
-        }
+        HeldItemChangeFormes.primalEvent(event);
 
+        return Unit.INSTANCE;
+    }
+
+    public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
         if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON).getPokemon() == post.getPokemon()){
             post.getPlayer().removeAttached(DataManage.MEGA_DATA);
             post.getPlayer().removeAttached(DataManage.MEGA_POKEMON);
+        }
+
+        if(post.getPlayer().getAttached(DataManage.PRIMAL_POKEMON).getPokemon() == post.getPokemon()){
+            post.getPlayer().removeAttached(DataManage.PRIMAL_DATA);
+            post.getPlayer().removeAttached(DataManage.PRIMAL_POKEMON);
         }
 
         return Unit.INSTANCE;

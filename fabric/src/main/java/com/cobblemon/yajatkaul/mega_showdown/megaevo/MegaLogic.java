@@ -111,7 +111,7 @@ public class MegaLogic {
             }
 
             if(pk.getAspects().contains("mega_x") || pk.getAspects().contains("mega") || pk.getAspects().contains("mega_y")){
-                Devolve(pk.getPokemon(), player, false);
+                Devolve(pk.getPokemon(), false);
             }else {
                 Evolve(pk, player, false);
             }
@@ -270,10 +270,8 @@ public class MegaLogic {
         }
     }
 
-    public static void Devolve(Pokemon context, PlayerEntity player, Boolean fromBattle){
-        if(player.getWorld().isClient || context == null || context.getOwnerPlayer() != player){
-            return;
-        }
+    public static void Devolve(Pokemon context, Boolean fromBattle){
+        ServerPlayerEntity player = context.getOwnerPlayer();
 
         if(context.getEntity() != null && context.getEntity().isBattling() && !fromBattle){
             player.sendMessage(
