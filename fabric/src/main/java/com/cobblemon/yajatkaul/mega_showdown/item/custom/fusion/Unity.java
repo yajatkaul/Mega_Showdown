@@ -103,7 +103,6 @@ public class Unity extends Item {
             player.setAttached(DataManage.DATA_MAP, map);
 
             arg.set(DataManage.CALYREX_DATA, null);
-            AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "fusion");
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
             arg.set(DataManage.CALYREX_DATA, pk.getPokemon());

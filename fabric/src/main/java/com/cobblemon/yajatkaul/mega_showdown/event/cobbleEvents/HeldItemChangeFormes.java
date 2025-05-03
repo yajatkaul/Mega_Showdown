@@ -368,7 +368,6 @@ public class HeldItemChangeFormes {
         if((!player.getAttached(DataManage.PRIMAL_DATA) || ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().isOf(MegaStones.BLUE_ORB)){
             new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
-            AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setAttached(DataManage.PRIMAL_DATA, true);
             player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
             setTradable(pre.getPokemon(), false);
@@ -376,7 +375,6 @@ public class HeldItemChangeFormes {
         else if((!player.getAttached(DataManage.PRIMAL_DATA) || ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("groudon").getName()) && pre.getReceiving().isOf(MegaStones.RED_ORB)){
             new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
-            AdvancementHelper.grantAdvancement(player, "primal_evo");
             player.setAttached(DataManage.PRIMAL_DATA, true);
             player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
             setTradable(pre.getPokemon(), false);

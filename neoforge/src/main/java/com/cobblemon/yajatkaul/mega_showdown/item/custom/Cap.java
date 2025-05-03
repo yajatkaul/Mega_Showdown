@@ -2,9 +2,11 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -32,6 +34,7 @@ public class Cap extends Item {
                 }
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("league_cap", "partner").apply(pk);
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "ash_cap_bond");
                 arg.shrink(1);
             }
             else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
@@ -42,6 +45,7 @@ public class Cap extends Item {
                 }
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("battle_bond", "bond").apply(pk);
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "ash_cap_bond");
                 arg.shrink(1);
             }
         }

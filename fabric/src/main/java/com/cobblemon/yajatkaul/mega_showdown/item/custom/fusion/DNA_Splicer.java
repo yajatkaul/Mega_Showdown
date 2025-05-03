@@ -103,7 +103,6 @@ public class DNA_Splicer extends Item {
             player.setAttached(DataManage.DATA_MAP, map);
 
             arg.set(DataManage.KYUREM_DATA, null);
-            AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "fusion");
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
             arg.set(DataManage.KYUREM_DATA, pk.getPokemon());

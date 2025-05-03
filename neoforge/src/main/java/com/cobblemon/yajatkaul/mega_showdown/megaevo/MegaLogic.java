@@ -119,14 +119,12 @@ public class MegaLogic {
         }
     }
 
-    public static void Evolve(LivingEntity context, Player player, Boolean fromBattle){
-        if(context instanceof PokemonEntity pk){
-            if(pk.getPokemon().getOwnerPlayer() != player){
-                return;
-            }
+    public static void Evolve(PokemonEntity context, Player player, Boolean fromBattle){
+        if(context.getPokemon().getOwnerPlayer() != player){
+            return;
         }
 
-        Pokemon pokemon = ((PokemonEntity) context).getPokemon();
+        Pokemon pokemon = context.getPokemon();
         Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
         if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
@@ -153,7 +151,6 @@ public class MegaLogic {
 
                     new StringSpeciesFeature("mega_evolution", "mega").apply(pokemon);
                     setTradable(pokemon, false);
-                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                     found = true;
                 }
             }
@@ -192,7 +189,6 @@ public class MegaLogic {
                     new StringSpeciesFeature("mega_evolution", "mega_x").apply(pokemon);
                     setTradable(pokemon, false);
 
-                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }else if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
@@ -202,7 +198,6 @@ public class MegaLogic {
                     new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
                     setTradable(pokemon, false);
 
-                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }
             }
             else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
@@ -215,7 +210,6 @@ public class MegaLogic {
                     new StringSpeciesFeature("mega_evolution", "mega_x").apply(pokemon);
                     setTradable(pokemon, false);
 
-                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }else if(pokemon.heldItem().is(MegaStones.MEWTWONITE_Y)){
                     player.setData(DataManage.MEGA_DATA, true);
                     player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
@@ -224,8 +218,6 @@ public class MegaLogic {
 
                     new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
                     setTradable(pokemon, false);
-
-                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
                 }
             }
             else{
@@ -237,8 +229,6 @@ public class MegaLogic {
                 setTradable(pokemon, false);
 
                 playEvolveAnimation(context);
-
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "mega_evolve");
             }
         }else if(species.getName().equals(pokemon.getSpecies().getName()) && player.getData(DataManage.MEGA_DATA)){
             player.displayClientMessage(Component.literal("You can only have one mega at a time")
@@ -276,7 +266,9 @@ public class MegaLogic {
             setTradable(pk, true);
         }
     }
-    public static void playEvolveAnimation(LivingEntity context) {
+    public static void playEvolveAnimation(PokemonEntity context) {
+        AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega_evolve");
+
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
 

@@ -49,7 +49,7 @@ public class ShowdownConfig {
                      this it will stop overwriting it ever load\
                     , this is for people who want to edit showdown\s
                      but can't since mega showdown keeps overriding the files""").define("showdownFilesLoading", true);
-        multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", false);
+        multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", true);
 
         builder.build();
     }

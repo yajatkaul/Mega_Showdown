@@ -135,10 +135,15 @@ public class CobbleEventsHandler {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
+        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");
+
+        if(pk.getSpecies().getName().equals("Pikachu") && pk.getAspects().contains("partner-cap")){
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "ash_pikachu");
+        }
+
         pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 115, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
-            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
             String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
@@ -166,6 +171,8 @@ public class CobbleEventsHandler {
         Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
         Vec3 entityPos = pokemon.position();
 
+        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "terastallized");
+
         pokemon.level().playSound(
                 null, entityPos.x, entityPos.y, entityPos.z,
                 ModSounds.TERASTALLIZATION.get(),
@@ -188,7 +195,6 @@ public class CobbleEventsHandler {
         pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
-            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "terastallized");
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
             String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
 
@@ -327,6 +333,9 @@ public class CobbleEventsHandler {
                 if (formeChangeEvent.getFormeName().equals("ash")) {
                     EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                     new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "ash_greninja");
+                }else {
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "ash_battle_bond");
                 }
             }
             case "Cherrim" -> {

@@ -80,7 +80,6 @@ public class N_Solarizer extends Item {
             particleEffect(pokemon.getEntity());
             setTradable(pokemon, false);
 
-            AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
             arg.set(DataManage.N_SOLAR, new PokeHandler(pokemon));

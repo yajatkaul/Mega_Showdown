@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:ash_cap"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.ash_greninja.title",
+      "fallback": "Robbed in Kalos League"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.ash_greninja.description",
+      "fallback": "Ash Greninja Transformation"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/bonding/ash_battle_bond",
+  "criteria": {
+    "ash_greninja": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "sends_telemetry_event": false,
+  "requirements": [
+    [
+      "ash_greninja"
+    ]
+  ]
+}

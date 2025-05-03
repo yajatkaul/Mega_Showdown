@@ -62,7 +62,6 @@ public class Unbound extends Item {
                 playEvolveAnimation(pokemon.getEntity());
                 return InteractionResult.SUCCESS;
             }else{
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "prison_escape");
                 new StringSpeciesFeature("djinn_state", "unbound").apply(pokemon);
                 unboundAnimation(pokemon.getEntity());
                 return InteractionResult.SUCCESS;

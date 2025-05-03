@@ -1,0 +1,235 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:maxie_glasses"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.craft_mega_accessories.title",
+      "fallback": "Mega Accessory Overload!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.craft_mega_bracelets.description",
+      "fallback": "Collect every variant of Mega Accessories"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/mega/craft_mega_bracelets",
+  "criteria": {
+    "archie_anchor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:archie_anchor"
+            ]
+          }
+        ]
+      }
+    },
+    "maxie_glasses": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:maxie_glasses"
+            ]
+          }
+        ]
+      }
+    },
+    "korrina_glove": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:korrina_glove"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet"
+            ]
+          }
+        ]
+      }
+    },
+    "may_bracelet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:may_bracelet"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet_black": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet_black"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet_pink": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet_pink"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet_green": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet_green"
+            ]
+          }
+        ]
+      }
+    },
+    "megaring": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megaring"
+            ]
+          }
+        ]
+      }
+    },
+    "lysandre_ring": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:lysandre_ring"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet_red"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet_blue": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet_blue"
+            ]
+          }
+        ]
+      }
+    },
+    "megabracelet_yellow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:megabracelet_yellow"
+            ]
+          }
+        ]
+      }
+    },
+    "brendan_mega_cuff": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:brendan_mega_cuff"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "archie_anchor"
+    ],
+    [
+      "maxie_glasses"
+    ],
+    [
+      "korrina_glove"
+    ],
+    [
+      "megabracelet"
+    ],
+    [
+      "may_bracelet"
+    ],
+    [
+      "megabracelet_black"
+    ],
+    [
+      "megabracelet_pink"
+    ],
+    [
+      "megabracelet_green"
+    ],
+    [
+      "megaring"
+    ],
+    [
+      "lysandre_ring"
+    ],
+    [
+      "megabracelet_red"
+    ],
+    [
+      "megabracelet_blue"
+    ],
+    [
+      "megabracelet_yellow"
+    ],
+    [
+      "brendan_mega_cuff"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

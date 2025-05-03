@@ -3,8 +3,10 @@ package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
@@ -32,7 +34,7 @@ public class DynamaxEventListener {
 
     @SubscribeEvent
     public void onDynamax(DynamaxEvent event) {
-        LivingEntity entity = event.getPokemon().getEntity();
+        PokemonEntity entity = event.getPokemon().getEntity();
         Vec3 entityPos = entity.position(); // Get entity position
 
         entity.level().playSound(
@@ -57,6 +59,9 @@ public class DynamaxEventListener {
 
                 }
             }
+            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "gigantamax");
+        }else {
+            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax");
         }
 
         entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));

@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:dynamax_band"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.get_dynamax_band.title",
+      "fallback": "Go Big or Go Home!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.get_dynamax_band.description",
+      "fallback": "Craft a Dynamax Band"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/dynamax/find_wishing_star",
+  "criteria": {
+    "obtained_dynamax_band": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "mega_showdown:dynamax_band"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [["obtained_dynamax_band"]],
+  "sends_telemetry_event": false
+}

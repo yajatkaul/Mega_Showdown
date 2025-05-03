@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:rotom_catalogue"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.obtained_rotom_appliance.title",
+      "fallback": "Just Plug It In and Hope for the Best!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.obtained_rotom_appliance.description",
+      "fallback": "Rotom, Meet Your New Job!"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/root",
+  "criteria": {
+    "obtained_rotom_appliance": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#mega_showdown:rotom_appliances"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [["obtained_rotom_appliance"]],
+  "sends_telemetry_event": false
+}

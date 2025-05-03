@@ -114,7 +114,6 @@ public class UltraLogic {
 
                 new FlagSpeciesFeature("ultra", true).apply(pokemon);
                 setTradable(pokemon, false);
-                AdvancementHelper.grantAdvancement(player, "ultra_necrom");
                 ultraAnimation(pokemon.getEntity());
             }
         }

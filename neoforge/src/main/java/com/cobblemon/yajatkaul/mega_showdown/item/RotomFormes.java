@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import net.minecraft.core.particles.ParticleTypes;
@@ -65,6 +66,7 @@ public class RotomFormes {
                             }
 
                             new StringSpeciesFeature("appliance","fan").apply(pk);
+                            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                             return InteractionResult.SUCCESS;
                         }
                     }
@@ -92,6 +94,7 @@ public class RotomFormes {
                             }
 
                             new StringSpeciesFeature("appliance","frost").apply(pk);
+                            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                             return InteractionResult.SUCCESS;
                         }
                     }
@@ -119,6 +122,7 @@ public class RotomFormes {
                             }
 
                             new StringSpeciesFeature("appliance","mow").apply(pk);
+                            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                             return InteractionResult.SUCCESS;
                         }
 
@@ -147,6 +151,7 @@ public class RotomFormes {
                             }
 
                             new StringSpeciesFeature("appliance","heat").apply(pk);
+                            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                             return InteractionResult.SUCCESS;
                         }
                     }
@@ -174,6 +179,7 @@ public class RotomFormes {
                             }
 
                             new StringSpeciesFeature("appliance","wash").apply(pk);
+                            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                             return InteractionResult.SUCCESS;
                         }
                     }
@@ -202,18 +208,23 @@ public class RotomFormes {
                             switch (currentPage) {
                                 case 1:
                                     new StringSpeciesFeature("appliance", "heat").apply(pk);
+                                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                                     break;
                                 case 2:
                                     new StringSpeciesFeature("appliance", "fan").apply(pk);
+                                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                                     break;
                                 case 3:
                                     new StringSpeciesFeature("appliance", "mow").apply(pk);
+                                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                                     break;
                                 case 4:
                                     new StringSpeciesFeature("appliance", "frost").apply(pk);
+                                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                                     break;
                                 case 5:
                                     new StringSpeciesFeature("appliance", "wash").apply(pk);
+                                    AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom_form_change");
                                     break;
                                 default:
                                     new StringSpeciesFeature("appliance", "none").apply(pk); // Fallback

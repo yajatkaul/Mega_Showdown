@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:ash_cap"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.ash_battle_bond.title",
+      "fallback": "Bonded for Life!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.ash_battle_bond.description",
+      "fallback": "Battle Bond Stats up"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/bonding/ash_cap_bond",
+  "criteria": {
+    "battle_bond": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "sends_telemetry_event": false,
+  "requirements": [
+    [
+      "battle_bond"
+    ]
+  ]
+}

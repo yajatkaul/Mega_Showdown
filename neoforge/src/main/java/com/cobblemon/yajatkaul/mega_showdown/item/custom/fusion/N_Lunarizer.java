@@ -81,7 +81,6 @@ public class N_Lunarizer extends Item {
             particleEffect(pokemon.getEntity());
             setTradable(pokemon, false);
 
-            AdvancementHelper.grantAdvancement((ServerPlayer) player, "fusion");
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Lunala")) {
             arg.set(DataManage.N_LUNAR, new PokeHandler(pokemon));

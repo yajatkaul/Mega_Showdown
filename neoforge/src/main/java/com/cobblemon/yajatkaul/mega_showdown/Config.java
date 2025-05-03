@@ -26,7 +26,7 @@ public class Config
 
     private static final ModConfigSpec.BooleanValue MULTIPLE_PRIMALS = BUILDER
             .comment("Allows you to have multiple primals in your team")
-            .define("multiplePrimals", false);
+            .define("multiplePrimals", true);
 
     private static final ModConfigSpec.BooleanValue SCUFFED_MODE = BUILDER
             .comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this")
