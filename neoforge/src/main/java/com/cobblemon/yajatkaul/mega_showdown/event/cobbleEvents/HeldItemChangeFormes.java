@@ -330,6 +330,15 @@ public class HeldItemChangeFormes {
         ServerPlayer player = pre.getPokemon().getOwnerPlayer();
         Species species = pre.getPokemon().getSpecies();
 
+        if(!species.getName().equals("Kyogre") && !species.getName().equals("Groudon")){
+            return;
+        }
+
+        if(!player.hasData(DataManage.PRIMAL_DATA)){
+            pre.cancel();
+            player.setData(DataManage.PRIMAL_DATA, false);
+        }
+
         if((player.getData(DataManage.PRIMAL_DATA) && !Config.multiplePrimals) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().is(MegaStones.BLUE_ORB)){
             pre.cancel();
             player.displayClientMessage(Component.literal("You already have one primal")

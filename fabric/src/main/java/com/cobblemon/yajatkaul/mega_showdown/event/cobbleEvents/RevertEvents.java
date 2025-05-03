@@ -34,7 +34,6 @@ import net.minecraft.util.math.BlockPos;
 
 public class RevertEvents {
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
-        battleEvent.getBattle().setMute(false);
         for(ServerPlayerEntity player: battleEvent.getBattle().getPlayers()){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 

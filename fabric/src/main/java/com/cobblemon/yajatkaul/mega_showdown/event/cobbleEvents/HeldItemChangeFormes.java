@@ -348,6 +348,15 @@ public class HeldItemChangeFormes {
         ServerPlayerEntity player = pre.getPokemon().getOwnerPlayer();
         Species species = pre.getPokemon().getSpecies();
 
+        if(!species.getName().equals("Kyogre") && !species.getName().equals("Groudon")){
+            return;
+        }
+
+        if(!player.hasAttached(DataManage.PRIMAL_DATA)){
+            pre.cancel();
+            player.setAttached(DataManage.PRIMAL_DATA, false);
+        }
+
         if((player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().isOf(MegaStones.BLUE_ORB)){
             pre.cancel();
             player.sendMessage(
