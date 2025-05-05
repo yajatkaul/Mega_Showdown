@@ -66,7 +66,7 @@ public class RotomFormes {
                     }
 
                     new StringSpeciesFeature("appliance","fan").apply(pk);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
             }
@@ -93,7 +93,7 @@ public class RotomFormes {
                     }
 
                     new StringSpeciesFeature("appliance","frost").apply(pk);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
             }
@@ -120,7 +120,7 @@ public class RotomFormes {
                     }
 
                     new StringSpeciesFeature("appliance","mow").apply(pk);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
             }
@@ -147,7 +147,7 @@ public class RotomFormes {
                     }
 
                     new StringSpeciesFeature("appliance","heat").apply(pk);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
             }
@@ -174,7 +174,7 @@ public class RotomFormes {
                     }
 
                     new StringSpeciesFeature("appliance","wash").apply(pk);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
             }
@@ -202,23 +202,23 @@ public class RotomFormes {
                     switch (currentPage) {
                         case 1:
                             new StringSpeciesFeature("appliance", "heat").apply(pk);
-                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                             break;
                         case 2:
                             new StringSpeciesFeature("appliance", "fan").apply(pk);
-                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                             break;
                         case 3:
                             new StringSpeciesFeature("appliance", "mow").apply(pk);
-                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                             break;
                         case 4:
                             new StringSpeciesFeature("appliance", "frost").apply(pk);
-                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                             break;
                         case 5:
                             new StringSpeciesFeature("appliance", "wash").apply(pk);
-                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom_form_change");
+                            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                             break;
                         default:
                             new StringSpeciesFeature("appliance", "none").apply(pk); // Fallback

@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-21T16:51:53.1268226	Item Models: mega_showdown
+// 1.21.1	2025-05-05T19:30:51.7491589	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -14,6 +14,7 @@ d82b65de7185e92cb6ff2518fc5121f89702c04d assets/mega_showdown/models/item/ash_ca
 78265943e3ef48b58e35915d12522d004418b09b assets/mega_showdown/models/item/audinite.json
 51c4dca6dd515cd224d9bb24399fd3c890ecf9ef assets/mega_showdown/models/item/azure_flute.json
 2ba8c31fd0e1ec9dc255480dd67709453ab83c90 assets/mega_showdown/models/item/banettite.json
+6929a5ec54d875ed236de5a30b1ac7d360127a26 assets/mega_showdown/models/item/battle_bond_sprite.json
 d7ba66a5617c1c9c36444e515157d1fad28ec9b6 assets/mega_showdown/models/item/beedrillite.json
 29ebbbbde0fad6f0bdb52988e5a06c2ec12a5e55 assets/mega_showdown/models/item/blank-z.json
 9699d5c9b5dc0caf7cbbb46eba82b6fc3c145969 assets/mega_showdown/models/item/blastoisinite.json
@@ -43,6 +44,7 @@ a3bf05a58badbf83f4d6d427c2efc390b76839db assets/mega_showdown/models/item/dragon
 b0bc40f3f9331cf8b3f523486bb3d39513751445 assets/mega_showdown/models/item/dragon_tera_shard.json
 e5877a4c96403bb619c7e7ebcc1eca8aabb800df assets/mega_showdown/models/item/dreadplate.json
 ab073e6ee2fc7e9dea1279ed8f8fb648fad0209b assets/mega_showdown/models/item/dynamax_candy.json
+27d749a088d376ad3e632482b40abf6c86fef6df assets/mega_showdown/models/item/dynamax_sprite.json
 0234f390adb5c288064fad8f32d5248c305f5fcb assets/mega_showdown/models/item/earthplate.json
 167f6b08b27be48a94a8142ff3511d5c3ff637ad assets/mega_showdown/models/item/eevium-z.json
 3644c3c51292700a3c0c4b9fb91a2f54282d4bff assets/mega_showdown/models/item/electricmemory.json
@@ -114,6 +116,7 @@ ec2c865e072247419fef7cb4616214a948e7a463 assets/mega_showdown/models/item/mawili
 a815198f9bb0f16768091c3768398fc7400104b4 assets/mega_showdown/models/item/max_soup.json
 eb5a1f10e27442e28c354947ff0f5ce2c5e93e57 assets/mega_showdown/models/item/meadowplate.json
 bdef710f84d07b951d14be7f36eca22fd27023c6 assets/mega_showdown/models/item/medichamite.json
+29c68a4fcf1a3b1a58dc311793a098ceaeac33ce assets/mega_showdown/models/item/mega_mode_sprite.json
 d65c980c696ed90f0980a3b02449879da7b754c8 assets/mega_showdown/models/item/mega_stone.json
 40d70542c2f871e0c75ba250d47fdfe827baa254 assets/mega_showdown/models/item/metagrossite.json
 e67ecc2371f0734f5722d475c5ac4a05a88b0485 assets/mega_showdown/models/item/mewnium-z.json

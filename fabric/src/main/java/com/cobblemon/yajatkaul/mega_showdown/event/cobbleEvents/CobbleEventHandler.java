@@ -96,14 +96,17 @@ public class CobbleEventHandler {
     }
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        if(post.getPlayer().getAttached(DataManage.MEGA_POKEMON).getPokemon() == post.getPokemon()){
-            post.getPlayer().removeAttached(DataManage.MEGA_DATA);
-            post.getPlayer().removeAttached(DataManage.MEGA_POKEMON);
-        }
+        ServerPlayerEntity player = post.getPlayer();
 
-        if(post.getPlayer().getAttached(DataManage.PRIMAL_POKEMON).getPokemon() == post.getPokemon()){
-            post.getPlayer().removeAttached(DataManage.PRIMAL_DATA);
-            post.getPlayer().removeAttached(DataManage.PRIMAL_POKEMON);
+        PokeHandler megaPoke = player.getAttached(DataManage.MEGA_POKEMON);
+        PokeHandler primalPoke = player.getAttached(DataManage.PRIMAL_POKEMON);
+
+        if(megaPoke != null && megaPoke.getPokemon() == post.getPokemon()){
+            player.removeAttached(DataManage.MEGA_DATA);
+            player.removeAttached(DataManage.MEGA_POKEMON);
+        }else if(primalPoke != null && primalPoke.getPokemon() == post.getPokemon()){
+            player.removeAttached(DataManage.PRIMAL_DATA);
+            player.removeAttached(DataManage.PRIMAL_POKEMON);
         }
 
         return Unit.INSTANCE;
@@ -155,10 +158,10 @@ public class CobbleEventHandler {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
-        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");
+        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z/z_moves");
 
         if(pk.getSpecies().getName().equals("Pikachu") && pk.getAspects().contains("partner-cap")){
-            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "ash_pikachu");
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
         pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 115, 0,false, false));
@@ -188,7 +191,7 @@ public class CobbleEventHandler {
         LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
 
-        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "terastallized");
+        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "tera/terastallized");
 
         Vec3d entityPos = pokemon.getPos();
 
@@ -364,9 +367,9 @@ public class CobbleEventHandler {
                 if (formeChangeEvent.getFormeName().equals("ash")) {
                     EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                     new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "ash_greninja");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_greninja");
                 }else{
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "ash_battle_bond");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_battle_bond");
                 }
             }
             case "Cherrim" -> {

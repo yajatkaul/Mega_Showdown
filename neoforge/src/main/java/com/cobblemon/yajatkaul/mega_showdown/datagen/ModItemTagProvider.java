@@ -77,7 +77,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
 
         tag(ModTags.Items.MEGA_STONES)
-                .add(MegaStones.MEGA_STONE.get())
                 .add(MegaStones.ABSOLITE.get())
                 .add(MegaStones.AERODACTYLITE.get())
                 .add(MegaStones.AGGRONITE.get())

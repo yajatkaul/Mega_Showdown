@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:keystone"
+      "id": "mega_showdown:mega_mode_sprite"
     },
     "title": {
       "translate": "advancement.mega_showdown.mega_evolve.title",

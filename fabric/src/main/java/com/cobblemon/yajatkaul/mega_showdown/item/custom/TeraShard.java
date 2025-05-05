@@ -53,12 +53,12 @@ public class TeraShard extends Item {
                 if(stack.getItem() != TeraMoves.STELLAR_TERA_SHARD.asItem()){
                     particleEffect(pokemon.getEntity());
                     pokemon.setTeraType(getType(shard));
-                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "change_tera");
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera");
                 }else{
                     particleEffect(pokemon.getEntity());
                     pokemon.setTeraType(TeraTypes.getSTELLAR());
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "change_tera");
-                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "change_tera_stellar");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera");
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera_stellar");
                 }
             }else if (pokemon.getOwnerPlayer() == player && stack.getCount() != 50) {
                 player.sendMessage(

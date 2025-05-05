@@ -135,10 +135,10 @@ public class CobbleEventsHandler {
         LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
-        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z_moves");
+        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z/z_moves");
 
         if(pk.getSpecies().getName().equals("Pikachu") && pk.getAspects().contains("partner-cap")){
-            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "ash_pikachu");
+            AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
         pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 115, 0,false, false));
@@ -171,7 +171,7 @@ public class CobbleEventsHandler {
         Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
         Vec3 entityPos = pokemon.position();
 
-        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "terastallized");
+        AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "tera/terastallized");
 
         pokemon.level().playSound(
                 null, entityPos.x, entityPos.y, entityPos.z,
@@ -333,9 +333,9 @@ public class CobbleEventsHandler {
                 if (formeChangeEvent.getFormeName().equals("ash")) {
                     EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                     new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "ash_greninja");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_greninja");
                 }else {
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "ash_battle_bond");
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_battle_bond");
                 }
             }
             case "Cherrim" -> {

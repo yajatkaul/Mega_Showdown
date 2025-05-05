@@ -13,5 +13,6 @@ public class ItemsRegistration {
         FormeChangeItems.register();
         KeyItems.register();
         DynamaxItems.register();
+        Sprites.register();
     }
 }

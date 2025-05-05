@@ -40,7 +40,7 @@ public class DynamaxCandy extends Item {
             if(pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10){
                 pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
                 if(pokemon.getDmaxLevel() == 10){
-                    AdvancementHelper.grantAdvancement(pk.getPokemon().getOwnerPlayer(), "dynamax_candy_max");
+                    AdvancementHelper.grantAdvancement(pk.getPokemon().getOwnerPlayer(), "dynamax/dynamax_candy_max");
                 }
                 if(pokemon.getSpecies().getName().equals("Calyrex")){
                     particleEffect(pokemon.getEntity(), ParticleTypes.SOUL_FIRE_FLAME);

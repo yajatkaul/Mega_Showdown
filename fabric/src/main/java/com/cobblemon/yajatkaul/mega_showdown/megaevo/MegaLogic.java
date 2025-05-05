@@ -289,7 +289,7 @@ public class MegaLogic {
 
     public static void playEvolveAnimation(PokemonEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
-            AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega_evolve");
+            AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
             Vec3d entityPos = context.getPos(); // Get entity position
 

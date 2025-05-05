@@ -34,7 +34,7 @@ public class Cap extends Item {
                 }
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("league_cap", "partner").apply(pk);
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "ash_cap_bond");
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
                 arg.shrink(1);
             }
             else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
@@ -45,7 +45,7 @@ public class Cap extends Item {
                 }
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("battle_bond", "bond").apply(pk);
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "ash_cap_bond");
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
                 arg.shrink(1);
             }
         }

@@ -11,5 +11,6 @@ public class ItemRegister {
         FormeChangeItems.registerModItem();
         KeyItems.registerModItem();
         DynamaxItems.registerModItem();
+        Sprites.registerModItem();
     }
 }

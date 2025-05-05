@@ -1,7 +1,15 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:ash_cap"
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:greninja",
+          "aspects": [
+            "ash"
+          ]
+        }
+      }
     },
     "title": {
       "translate": "advancement.mega_showdown.ash_greninja.title",

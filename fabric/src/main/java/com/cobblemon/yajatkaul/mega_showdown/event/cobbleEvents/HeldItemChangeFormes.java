@@ -16,6 +16,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusPlates;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
@@ -353,45 +354,46 @@ public class HeldItemChangeFormes {
         }
 
         if(!player.hasAttached(DataManage.PRIMAL_DATA)){
-            pre.cancel();
             player.setAttached(DataManage.PRIMAL_DATA, false);
         }
 
-        if((player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().isOf(MegaStones.BLUE_ORB)){
-            pre.cancel();
-            player.sendMessage(
-                    Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
-            return;
-        }
-        else if((player.getAttached(DataManage.PRIMAL_DATA) && !ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("groudon").getName()) && pre.getReceiving().isOf(MegaStones.RED_ORB)){
-            pre.cancel();
-            player.sendMessage(
-                    Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
-            return;
-        }
+        boolean primalData = player.getAttached(DataManage.PRIMAL_DATA);
 
-        if((!player.getAttached(DataManage.PRIMAL_DATA) || ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("kyogre").getName()) && pre.getReceiving().isOf(MegaStones.BLUE_ORB)){
-            new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
-            primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
-            player.setAttached(DataManage.PRIMAL_DATA, true);
-            player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
-            setTradable(pre.getPokemon(), false);
-        }
-        else if((!player.getAttached(DataManage.PRIMAL_DATA) || ShowdownConfig.multiplePrimals.get()) && species.getName().equals(Utils.getSpecies("groudon").getName()) && pre.getReceiving().isOf(MegaStones.RED_ORB)){
-            new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
-            primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
-            player.setAttached(DataManage.PRIMAL_DATA, true);
-            player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
-            setTradable(pre.getPokemon(), false);
-        }else{
-            if(!pre.getPokemon().getAspects().contains("primal")){
-                return;
+        if(species.getName().equals("Kyogre") && pre.getReceiving().isOf(MegaStones.BLUE_ORB) && !pre.getPokemon().getAspects().contains("primal")){
+            if(!primalData || ShowdownConfig.multiplePrimals.get()){
+                new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
+                primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
+                player.setAttached(DataManage.PRIMAL_DATA, true);
+                player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
+                setTradable(pre.getPokemon(), false);
+            }else{
+                pre.cancel();
+                player.sendMessage(
+                        Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
             }
-
+        } else if (species.getName().equals("Groudon") && pre.getReceiving().isOf(MegaStones.RED_ORB) && !pre.getPokemon().getAspects().contains("primal")) {
+            if(!primalData || ShowdownConfig.multiplePrimals.get()){
+                new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
+                primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
+                player.setAttached(DataManage.PRIMAL_DATA, true);
+                player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
+                setTradable(pre.getPokemon(), false);
+            }else{
+                pre.cancel();
+                player.sendMessage(
+                        Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+            }
+        } else if (species.getName().equals("Kyogre") && !pre.getReceiving().isOf(MegaStones.BLUE_ORB)) {
+            new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
+            primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
+            player.setAttached(DataManage.PRIMAL_DATA, false);
+            player.removeAttached(DataManage.PRIMAL_POKEMON);
+            setTradable(pre.getPokemon(), true);
+        } else if (species.getName().equals("Groudon") && !pre.getReceiving().isOf(MegaStones.RED_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
             player.setAttached(DataManage.PRIMAL_DATA, false);

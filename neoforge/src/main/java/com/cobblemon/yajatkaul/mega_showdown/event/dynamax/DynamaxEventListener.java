@@ -59,9 +59,9 @@ public class DynamaxEventListener {
 
                 }
             }
-            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "gigantamax");
+            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax/gigantamax");
         }else {
-            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax");
+            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax/dynamax");
         }
 
         entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));

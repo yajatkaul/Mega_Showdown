@@ -47,9 +47,9 @@ public class DynamaxEventLogic {
 
                     }
                 }
-                AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "gigantamax");
+                AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "dynamax/gigantamax");
             }else{
-                AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "dynamax");
+                AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "dynamax/dynamax");
             }
 
             pokemon.getEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));

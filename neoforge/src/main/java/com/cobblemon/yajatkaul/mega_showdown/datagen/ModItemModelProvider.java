@@ -236,5 +236,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(FormeChangeItems.ZYGARDE_CELL.get());
         basicItem(FormeChangeItems.ZYGARDE_CORE.get());
         basicItem(FormeChangeItems.REVEAL_GLASS.get());
+
+        basicItem(Sprites.MEGA_MODE_SPRITE.get());
+        basicItem(Sprites.BATTLE_BOND_SPRITE.get());
+        basicItem(Sprites.DYNAMAX_SPRITE.get());
     }
 }
