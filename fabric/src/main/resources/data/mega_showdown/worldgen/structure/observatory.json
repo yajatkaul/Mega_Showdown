@@ -1,9 +1,6 @@
 {
     "type": "minecraft:jigsaw",
-    "biomes": [
-      "minecraft:plains",
-      "minecraft:jungle"
-    ],
+    "biomes": "#cobblemon:is_jungle",
     "step": "surface_structures",
     "terrain_adaptation": "beard_thin",
     "spawn_overrides": {},

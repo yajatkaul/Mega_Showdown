@@ -1,8 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": [
-    "minecraft:desert"
-  ],
+  "biomes": "#cobblemon:is_desert",
   "step": "strongholds",
   "terrain_adaptation": "none",
   "spawn_overrides": {},

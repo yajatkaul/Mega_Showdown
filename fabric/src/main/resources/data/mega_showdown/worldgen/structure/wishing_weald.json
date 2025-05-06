@@ -1,8 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": [
-    "minecraft:dark_forest"
-  ],
+  "biomes": "#cobblemon:is_spooky",
   "step": "strongholds",
   "terrain_adaptation": "beard_thin",
   "spawn_overrides": {},
