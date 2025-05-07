@@ -28,7 +28,7 @@ public class Cap extends Item {
         if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()){
             if(pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")){
                 if(pk.getFriendship() < 200){
-                    player.displayClientMessage(Component.literal("Need 200+ friendship to bond")
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
                             .withColor(0xFF0000), true);
                     return InteractionResult.PASS;
                 }
@@ -39,7 +39,7 @@ public class Cap extends Item {
             }
             else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
                 if(pk.getFriendship() < 200){
-                    player.displayClientMessage(Component.literal("Need 200+ friendship to bond")
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
                             .withColor(0xFF0000), true);
                     return InteractionResult.PASS;
                 }

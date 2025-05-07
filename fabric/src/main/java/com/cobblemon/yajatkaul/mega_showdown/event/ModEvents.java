@@ -134,9 +134,9 @@ public class ModEvents {
         mapStack = mapFunction.apply(mapStack, lootContext);
 
         // Set the map name and lore
-        mapStack.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Lost map"));
+        mapStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("message.mega_showdown.lost_map"));
         List<Text> loreLines = List.of(
-                Text.literal("This map leads you to the lost stone")
+                Text.translatable("message.mega_showdown.lost_map.desc")
         );
         mapStack.set(DataComponentTypes.LORE, new LoreComponent(loreLines));
 

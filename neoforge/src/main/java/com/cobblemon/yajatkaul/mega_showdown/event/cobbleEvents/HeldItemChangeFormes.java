@@ -349,7 +349,7 @@ public class HeldItemChangeFormes {
                 setTradable(pre.getPokemon(), false);
             }else{
                 pre.cancel();
-                player.displayClientMessage(Component.literal("You already have one primal")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.primal_limit")
                         .withColor(0xFF0000), true);
             }
         } else if (species.getName().equals("Groudon") && pre.getReceiving().is(MegaStones.RED_ORB) && !pre.getPokemon().getAspects().contains("primal")) {
@@ -361,7 +361,7 @@ public class HeldItemChangeFormes {
                 setTradable(pre.getPokemon(), false);
             }else{
                 pre.cancel();
-                player.displayClientMessage(Component.literal("You already have one primal")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.primal_limit")
                         .withColor(0xFF0000), true);
             }
         } else if (species.getName().equals("Kyogre") && !pre.getReceiving().is(MegaStones.BLUE_ORB)) {

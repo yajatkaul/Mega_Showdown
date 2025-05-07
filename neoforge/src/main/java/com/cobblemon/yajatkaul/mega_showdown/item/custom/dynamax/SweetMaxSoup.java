@@ -52,7 +52,7 @@ public class SweetMaxSoup extends Item {
                         SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
                 );
 
-                player.displayClientMessage(Component.literal("Your pokemon cannot gmax now")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.gmax_not_possible")
                         .withColor(0xFFFFFF), true);
                 return InteractionResult.SUCCESS;
             }else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()){
@@ -67,7 +67,7 @@ public class SweetMaxSoup extends Item {
                         SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
                 );
 
-                player.displayClientMessage(Component.literal("Your pokemon can gmax now")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.gmax_possible")
                         .withColor(0xFFFFFF), true);
                 return InteractionResult.SUCCESS;
             }

@@ -34,7 +34,7 @@ public class MegaCommands {
         player.removeData(DataManage.PRIMAL_POKEMON);
 
         // Send success message to the command source
-        player.sendSystemMessage(Component.literal("Reset completed!"));
+        player.sendSystemMessage(Component.translatable("message.mega_showdown.reset_completed"));
         return 1;
     }
 
@@ -66,7 +66,7 @@ public class MegaCommands {
         }
 
         // Send success message to the command source
-        player.sendSystemMessage(Component.literal("Reset completed!"));
+        player.sendSystemMessage(Component.translatable("message.mega_showdown.reset_completed"));
         return 1;
     }
 }

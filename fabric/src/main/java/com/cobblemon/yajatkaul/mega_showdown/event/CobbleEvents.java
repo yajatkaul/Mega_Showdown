@@ -39,9 +39,7 @@ public class CobbleEvents {
         DynamaxEventLogic.register();
         UltraEventLogic.register();
 
-        if(ShowdownConfig.battleModeOnly.get() || ShowdownConfig.battleMode.get()){
-            CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, RevertEvents::getBattleEndInfo);
-            CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, RevertEvents::deVolveFlee);
-        }
+        CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, RevertEvents::getBattleEndInfo);
+        CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, RevertEvents::deVolveFlee);
     }
 }

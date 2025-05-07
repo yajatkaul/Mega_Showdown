@@ -33,7 +33,7 @@ public class Cap extends Item {
             if(pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")){
                 if(pk.getFriendship() < 200){
                     user.sendMessage(
-                            Text.literal("Need 200+ friendship to bond").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            Text.translatable("message.mega_showdown.friendship_requirement").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
                     );
                     return ActionResult.PASS;
@@ -46,7 +46,7 @@ public class Cap extends Item {
             else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
                 if(pk.getFriendship() < 200){
                     user.sendMessage(
-                            Text.literal("Need 200+ friendship to bond").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            Text.translatable("message.mega_showdown.friendship_requirement").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
                     );
                     return ActionResult.PASS;

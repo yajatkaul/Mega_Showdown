@@ -62,7 +62,7 @@ public class TeraShard extends Item {
                 }
             }else if (pokemon.getOwnerPlayer() == player && stack.getCount() != 50) {
                 player.sendMessage(
-                        Text.literal("You need 50 of these to be used").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.tera_requirements").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }

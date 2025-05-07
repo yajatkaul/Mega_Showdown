@@ -22,7 +22,6 @@
     "ItemRendererMixin",
     "ModelLoaderMixin",
     "UI.SummaryMixin",
-    "UI.PokemonInfoWidgetMixin",
     "UI.StatWidgetMixin"
   ],
   "injectors": {

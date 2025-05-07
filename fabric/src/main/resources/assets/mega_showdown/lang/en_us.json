@@ -492,5 +492,28 @@
   "menu.zygade_cube": "Zygarde Cube",
 
   "block.mega_showdown.reassembly_unit": "Reassembly Unit",
-  "block.mega_showdown.wishing_star_crystal": "Wishing Star Crystal"
+  "block.mega_showdown.wishing_star_crystal": "Wishing Star Crystal",
+
+  "message.mega_showdown.not_enough_cells_core": "You don't have enough cells/core",
+  "message.mega_showdown.reset_completed" : "Reset completed!",
+  "message.mega_showdown.not_so_fast": "Not so fast!",
+  "message.mega_showdown.bond_not_close_mega": "You are not close enough with your pokemon to mega outside",
+  "message.mega_showdown.rayquaza_no_dragonascent": "Rayquaza doesn't have dragonascent",
+  "message.mega_showdown.mega_limit" : "You can only have one mega at a time",
+  "message.mega_showdown.incorrect_mega_stone": "Don't have the correct stone",
+  "message.mega_showdown.battle_not_allowed": "Not allowed in battle",
+  "message.mega_showdown.already_fused": "Already fused!",
+  "message.mega_showdown.you_aint_slick": "Bro thought he could get away with it",
+  "message.mega_showdown.tera_requirements": "You need 50 of these to be used",
+  "message.mega_showdown.primal_limit" : "You can only have one primal at a time",
+  "message.mega_showdown.friendship_requirement" : "Need 200+ friendship to bond",
+  "message.mega_showdown.resassembly_zygarde_req": "You need a zygarde with power-construct",
+  "message.mega_showdown.cube_full": "Cube already has a zygarde",
+  "message.mega_showdown.gyrados_jump_mega": "Gyrados Jumping Mega",
+  "message.mega_showdown.zygarde_missing": "Put your zygarde in the cube",
+  "message.mega_showdown.lost_map": "Lost map",
+  "message.mega_showdown.lost_map.desc": "This map leads you to the lost stone",
+  "message.mega_showdown.gmax_not_possible": "Your pokemon cannot gmax now",
+  "message.mega_showdown.gmax_possible": "Your pokemon can gmax now",
+  "message.mega_showdown.dmax_level_cap": "Your pokemon has max dynamax level"
 }

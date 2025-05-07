@@ -37,7 +37,7 @@ public class RotomFormes {
 
         if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
             player.sendMessage(
-                    Text.literal("Not so fast!").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.not_so_fast").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return false;

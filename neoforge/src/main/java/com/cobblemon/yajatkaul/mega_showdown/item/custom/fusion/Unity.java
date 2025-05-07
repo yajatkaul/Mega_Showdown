@@ -64,7 +64,7 @@ public class Unity extends Item {
 
         if(pokemon.getSpecies().getName().equals("Calyrex") && checkEnabled(pokemon)){
             if(arg.get(DataManage.CALYREX_DATA) != null){
-                player.displayClientMessage(Component.literal("Already fused!")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
                         .withColor(0xFF0000), true);
                 return InteractionResult.PASS;
             }

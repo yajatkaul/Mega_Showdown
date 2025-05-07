@@ -61,7 +61,7 @@ public class TeraShard extends Item {
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera_stellar");
                 }
             } else if (pokemon.getOwnerPlayer() == player && arg.getCount() != 50) {
-                player.displayClientMessage(Component.literal("You need 50 of these to be used")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.tera_requirements")
                         .withColor(0xFF0000), true);
             }
 

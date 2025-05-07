@@ -20,17 +20,9 @@ public class Config
             .comment("Enable mega evolution only for battles")
             .define("battleModeOnly", false);
 
-    private static final ModConfigSpec.BooleanValue BATTLE_MODE = BUILDER
-            .comment("Allows you to have outside megas but they devolve on battle and then you can have battle mode style theme")
-            .define("battleMode", true);
-
     private static final ModConfigSpec.BooleanValue MULTIPLE_PRIMALS = BUILDER
             .comment("Allows you to have multiple primals in your team")
             .define("multiplePrimals", true);
-
-    private static final ModConfigSpec.BooleanValue SCUFFED_MODE = BUILDER
-            .comment("Allows you to have both the mega btn and allows u to carry your mega's into the battle, battleMode should be false for this")
-            .define("scuffedMode", false);
 
     private static final ModConfigSpec.BooleanValue FRIENDSHIP_MODE = BUILDER
             .comment("Makes it so that you need to have 200+ friendship in order to mega outside")
@@ -55,6 +47,10 @@ public class Config
     private static final ModConfigSpec.BooleanValue DYNAMAX = BUILDER
             .comment("Enables/Disables dmax in game")
             .define("dynamax", true);
+
+    private static final ModConfigSpec.BooleanValue MEGA = BUILDER
+            .comment("Enables/Disables dmax in game")
+            .define("mega", true);
 
     private static final ModConfigSpec.BooleanValue DYNAMAX_ANYWHERE = BUILDER
             .comment("Allows you to dynamax anywhere you dont need to be near the dynamax area")
@@ -85,9 +81,7 @@ public class Config
 
     public static boolean multipleMegas;
     public static boolean battleModeOnly;
-    public static boolean battleMode;
     public static boolean multiplePrimals;
-    public static boolean scuffedMode;
     public static boolean friendshipMode;
     public static boolean zMoves;
     public static boolean disableTeraShardDrop;
@@ -95,6 +89,7 @@ public class Config
     public static boolean tradeForm;
     public static boolean etermaxForme;
     public static boolean dynamax;
+    public static boolean mega;
     public static boolean dynamaxAnywhere;
     public static int powerSpotRange;
     public static int dynamaxScaleFactor;
@@ -105,9 +100,7 @@ public class Config
     {
         multipleMegas = MULTIPLE_MEGAS.get();
         battleModeOnly = BATTLE_MODE_ONLY.get();
-        battleMode = BATTLE_MODE.get();
         multiplePrimals = MULTIPLE_PRIMALS.get();
-        scuffedMode = SCUFFED_MODE.get();
         friendshipMode = FRIENDSHIP_MODE.get();
         zMoves = Z_MOVES.get();
         teralization = TERA_EVO.get();
@@ -119,5 +112,6 @@ public class Config
         powerSpotRange = POWER_SPOT_RANGE.get();
         dynamaxScaleFactor = DMAX_SCALE_FACTOR.get();
         showdownFilesLoading = SHOWDOWN_FILES_LOADING.get();
+        mega = MEGA.get();
     }
 }

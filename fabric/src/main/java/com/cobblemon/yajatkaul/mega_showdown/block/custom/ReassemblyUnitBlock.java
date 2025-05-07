@@ -148,7 +148,7 @@ public class ReassemblyUnitBlock extends Block {
             if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube cube){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
                     player.sendMessage(
-                            Text.literal("Put your zygarde in the cube").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            Text.translatable("message.mega_showdown.zygarde_missing").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
                     );
                     return ItemActionResult.SUCCESS;
@@ -220,7 +220,7 @@ public class ReassemblyUnitBlock extends Block {
                     stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
                             player.getWorld().getRegistryManager()));
                 } else {
-                    player.sendMessage(Text.literal("You don't have enough cells/core").styled(s -> s.withColor(Formatting.RED)), true);
+                    player.sendMessage(Text.translatable("message.mega_showdown.not_enough_cells_core").styled(s -> s.withColor(Formatting.RED)), true);
                 }
             }
 

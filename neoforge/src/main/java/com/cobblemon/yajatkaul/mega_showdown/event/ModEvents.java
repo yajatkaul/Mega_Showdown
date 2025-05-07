@@ -101,9 +101,9 @@ public class ModEvents {
         // Apply the function to the map
         mapStack = mapFunction.apply(mapStack, lootContext);
 
-        mapStack.set(DataComponents.CUSTOM_NAME, Component.literal("Lost map"));
+        mapStack.set(DataComponents.CUSTOM_NAME, Component.translatable("message.mega_showdown.lost_map"));
         List<Component> loreLines = List.of(
-                Component.literal("This map leads you to the lost stone")
+                Component.translatable("message.mega_showdown.lost_map.desc")
         );
         mapStack.set(DataComponents.LORE, new ItemLore(loreLines));
 

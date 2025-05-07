@@ -159,7 +159,7 @@ public class ReassemblyUnitBlock extends Block {
         if(hand == InteractionHand.OFF_HAND){
             if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
-                    player.displayClientMessage(Component.literal("Put your zygarde in the cube")
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.zygarde_missing")
                             .withColor(0xFF0000), true);
                     return ItemInteractionResult.SUCCESS;
                 }
@@ -231,7 +231,7 @@ public class ReassemblyUnitBlock extends Block {
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 2); // 2 minutes in ticks
                 } else{
-                    player.displayClientMessage(Component.literal("You dont have enough cells/core")
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.not_enough_cells_core")
                             .withColor(0xFF0000), true);
                 }
             }

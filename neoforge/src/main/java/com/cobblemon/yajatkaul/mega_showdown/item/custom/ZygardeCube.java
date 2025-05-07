@@ -140,7 +140,7 @@ public class ZygardeCube extends Item {
 
             if(arg4 == InteractionHand.OFF_HAND && !pk.getAspects().contains("power-construct")){
                 if(arg.get(DataManage.ZYGARDE_CUBE_DATA) != null){
-                    player.displayClientMessage(Component.literal("Cube already has a zygarde")
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
                             .withColor(0xFF0000), true);
                     return InteractionResult.FAIL;
                 }
@@ -160,7 +160,7 @@ public class ZygardeCube extends Item {
                     new StringSpeciesFeature("percent_cells","10-percent").apply(pk);
                 }
             }else {
-                player.displayClientMessage(Component.literal("You need a zygarde with power-construct")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.resassembly_zygarde_req")
                         .withColor(0xFF0000), true);
             }
 

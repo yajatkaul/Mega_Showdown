@@ -60,7 +60,7 @@ public class DNA_Splicer extends Item {
         if(pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)){
             if(arg.get(DataManage.KYUREM_DATA) != null){
                 player.sendMessage(
-                        Text.literal("Already fused!").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
                 return ActionResult.PASS;

@@ -37,7 +37,7 @@ public class TrinketEvent implements Trinket {
 
             if(!hasTeraItemTrinkets && battle != null){
                 player.sendMessage(
-                        Text.literal("Bro thought he could get away with it").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.you_aint_slick").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
                 battle.end();

@@ -369,7 +369,7 @@ public class HeldItemChangeFormes {
             }else{
                 pre.cancel();
                 player.sendMessage(
-                        Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.primal_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }
@@ -383,7 +383,7 @@ public class HeldItemChangeFormes {
             }else{
                 pre.cancel();
                 player.sendMessage(
-                        Text.literal("You already have one primal").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.primal_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }

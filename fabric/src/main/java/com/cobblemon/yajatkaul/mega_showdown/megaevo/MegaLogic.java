@@ -48,7 +48,7 @@ public class MegaLogic {
 
         if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId) && !fromBattle) {
             player.sendMessage(
-                    Text.literal("Not so fast!").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.not_so_fast").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return false;
@@ -106,7 +106,7 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.getPokemon().getOwnerPlayer() != player || !Possible(player, false)){
+            if(!ShowdownConfig.mega.get() || pk.getPokemon().getOwnerPlayer() != player || !Utils.MEGA_POKEMONS.contains(pk.getPokemon().getSpecies().getName()) || !Possible(player, false)){
                 return;
             }
 
@@ -126,7 +126,7 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = (context).getPokemon();
-        Species species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+        String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
         Boolean playerData = player.getAttached(DataManage.MEGA_DATA);
         if(playerData == null){
             playerData = false;
@@ -134,16 +134,16 @@ public class MegaLogic {
 
         if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
             player.sendMessage(
-                    Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.battle_not_allowed").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;
         }
 
-        if(pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
+        if(pokemon.getSpecies().getName().equals("Rayquaza") && (!playerData || ShowdownConfig.multipleMegas.get())){
             if(ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
                 player.sendMessage(
-                        Text.literal("You are not close enough with your pokemon to mega outside").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
                 return;
@@ -165,14 +165,14 @@ public class MegaLogic {
             }
             if(!found){
                 player.sendMessage(
-                        Text.literal("Rayquaza doesn't have dragonascent").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.rayquaza_no_dragonascent").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }
             return;
-        } else if (pokemon.getSpecies().getName().equals(Utils.getSpecies("rayquaza").getName()) && playerData) {
+        } else if (pokemon.getSpecies().getName().equals("Rayquaza") && playerData) {
             player.sendMessage(
-                    Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;
@@ -180,7 +180,7 @@ public class MegaLogic {
 
         if(species == null){
             player.sendMessage(
-                    Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;
@@ -188,15 +188,15 @@ public class MegaLogic {
 
         if(ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
             player.sendMessage(
-                    Text.literal("You are not close enough with your pokemon to mega outside").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;
         }
 
         //Multiple megas
-        if(species.getName().equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
-            if(species.getName().equals(Utils.getSpecies("charizard").getName())){
+        if(species.equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
+            if(species.equals("Charizard")){
                 if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
@@ -217,7 +217,7 @@ public class MegaLogic {
 
                 }
             }
-            else if(species.getName().equals(Utils.getSpecies("mewtwo").getName())){
+            else if(species.equals("Mewtwo")){
                 if(pokemon.heldItem().isOf(MegaStones.MEWTWONITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
@@ -251,14 +251,14 @@ public class MegaLogic {
                 setTradable(pokemon, false);
 
             }
-        } else if(species.getName().equals(pokemon.getSpecies().getName()) && playerData){
+        } else if(species.equals(pokemon.getSpecies().getName()) && playerData){
             player.sendMessage(
-                    Text.literal("You can only have one mega at a time").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
         }else{
             player.sendMessage(
-                    Text.literal("Don't have the correct stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
         }
@@ -269,7 +269,7 @@ public class MegaLogic {
 
         if(context.getEntity() != null && context.getEntity().isBattling() && !fromBattle){
             player.sendMessage(
-                    Text.literal("Not allowed in battle").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.battle_not_allowed").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
             );
             return;

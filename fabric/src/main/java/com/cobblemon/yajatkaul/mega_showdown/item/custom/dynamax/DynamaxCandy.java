@@ -54,7 +54,7 @@ public class DynamaxCandy extends Item {
                 return ActionResult.SUCCESS;
             } else if (pokemon.getDmaxLevel() >= 10 && pokemon.getOwnerPlayer() == player) {
                 player.sendMessage(
-                        Text.literal("Your pokemon has max dynamax level").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }

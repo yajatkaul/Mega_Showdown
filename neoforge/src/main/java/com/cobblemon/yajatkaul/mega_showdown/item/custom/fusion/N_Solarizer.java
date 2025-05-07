@@ -65,7 +65,7 @@ public class N_Solarizer extends Item {
 
         if (currentValue != null && pokemon.getSpecies().getName().equals("Necrozma")) {
             if (checkFused(pokemon)){
-                player.displayClientMessage(Component.literal("Already fused!")
+                player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
                         .withColor(0xFF0000), true);
                 return InteractionResult.PASS;
             }

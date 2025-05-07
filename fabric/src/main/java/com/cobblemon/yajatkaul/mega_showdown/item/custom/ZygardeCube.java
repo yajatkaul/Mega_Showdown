@@ -182,7 +182,7 @@ public class ZygardeCube extends Item {
             if(hand == Hand.OFF_HAND && !pk.getAspects().contains("power-construct")){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) != null){
                     player.sendMessage(
-                            Text.literal("Cube already has a zygarde").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            Text.translatable("message.mega_showdown.cube_full").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
                     );
                     return ActionResult.FAIL;
@@ -204,7 +204,7 @@ public class ZygardeCube extends Item {
                 }
             }else {
                 player.sendMessage(
-                        Text.literal("You need a zygarde with power-construct").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.resassembly_zygarde_req").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }

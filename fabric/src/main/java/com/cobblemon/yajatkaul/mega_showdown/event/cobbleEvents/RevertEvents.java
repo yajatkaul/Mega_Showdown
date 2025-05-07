@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -38,20 +39,17 @@ public class RevertEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             checkKeldeo(playerPartyStore);
-            if(ShowdownConfig.battleMode.get()){
-                for (Pokemon pokemon : playerPartyStore) {
-                    EventUtils.revertFormesEnd(pokemon);
-                    if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                        MegaLogic.Devolve(pokemon, true);
-                    }
+            for (Pokemon pokemon : playerPartyStore) {
+                EventUtils.revertFormesEnd(pokemon);
+                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
+                    MegaLogic.Devolve(pokemon, true);
                 }
             }
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
             boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> item.getItem() instanceof Dynamax
-                            || item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
+                    trinkets.isEquipped(item -> item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
 
             if(isBlockNearby(player, ModBlocks.POWER_SPOT, ShowdownConfig.powerSpotRange.get()) || ShowdownConfig.dynamaxAnywhere.get()) {
                 if ((player.getOffHandStack().getItem() instanceof Dynamax
@@ -87,8 +85,7 @@ public class RevertEvents {
                 data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
             }
 
-            if((ShowdownConfig.scuffedMode.get() || ShowdownConfig.battleMode.get()
-                    || ShowdownConfig.battleModeOnly.get()) && MegaLogic.Possible(player, true)
+            if(ShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
                     && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
                 data.getKeyItems().add(Identifier.of("cobblemon","key_stone"));
             }else{

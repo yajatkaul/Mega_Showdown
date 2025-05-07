@@ -91,7 +91,7 @@ public class MaxSoup extends Item {
                 );
 
                 player.sendMessage(
-                        Text.literal("Your pokemon cannot gmax now").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))),
+                        Text.translatable("message.mega_showdown.gmax_not_possible").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))),
                         true
                 );
                 return ActionResult.SUCCESS;
@@ -108,7 +108,7 @@ public class MaxSoup extends Item {
                 );
 
                 player.sendMessage(
-                        Text.literal("Your pokemon can gmax now").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))),
+                        Text.translatable("message.mega_showdown.gmax_possible").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFFFFFF))),
                         true
                 );
                 return ActionResult.SUCCESS;

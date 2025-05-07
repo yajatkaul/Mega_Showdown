@@ -50,7 +50,7 @@ public class UltraLogic {
         }
 
         if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
-            player.displayClientMessage(Component.literal("Not so fast!")
+            player.displayClientMessage(Component.translatable("message.mega_showdown.not_so_fast")
                     .withColor(0xFF0000), true);
             return false;
         }
