@@ -25,11 +25,13 @@ public class ShowdownActionRequestMixin {
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
             boolean hasBand = data.getKeyItems().contains(dynamaxBandId);
 
-            List<ShowdownMoveset> activeMovesets = ((ShowdownActionRequestAccessor) this).getActive();
-            if (!hasBand && activeMovesets != null) {
-                for (ShowdownMoveset moveset : activeMovesets) {
-                    moveset.blockGimmick(ShowdownMoveset.Gimmick.DYNAMAX);
-                    moveset.setMaxMoves(null);
+            if (player.getUuid().equals(battleActor.getUuid())) {
+                List<ShowdownMoveset> activeMovesets = ((ShowdownActionRequestAccessor) this).getActive();
+                if (!hasBand && activeMovesets != null) {
+                    for (ShowdownMoveset moveset : activeMovesets) {
+                        moveset.blockGimmick(ShowdownMoveset.Gimmick.DYNAMAX);
+                        moveset.setMaxMoves(null);
+                    }
                 }
             }
         }
