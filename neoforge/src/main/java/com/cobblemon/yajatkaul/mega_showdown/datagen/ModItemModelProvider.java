@@ -240,5 +240,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(Sprites.MEGA_MODE_SPRITE.get());
         basicItem(Sprites.BATTLE_BOND_SPRITE.get());
         basicItem(Sprites.DYNAMAX_SPRITE.get());
+        basicItem(Sprites.ROOT_SPRITE.get());
     }
 }

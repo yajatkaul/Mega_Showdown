@@ -13,6 +13,8 @@ public class Sprites {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> DYNAMAX_SPRITE = ITEMS.register("dynamax_sprite",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ROOT_SPRITE = ITEMS.register("root_sprite",
+            () -> new Item(new Item.Properties()));
 
     public static void register(){
     }

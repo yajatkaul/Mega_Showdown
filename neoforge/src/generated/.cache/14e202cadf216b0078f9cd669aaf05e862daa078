@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-05T19:30:51.7491589	Item Models: mega_showdown
+// 1.21.1	2025-05-08T15:06:22.35738	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -153,6 +153,7 @@ ca746f3addd87bf5bfd97842408a4c5865da393a assets/mega_showdown/models/item/reveal
 8a94794b9d829168efb489a3fb9285f2c153ee26 assets/mega_showdown/models/item/rockium-z.json
 998746591affe2a677aa3e8708dfeb6d8eb0c1f8 assets/mega_showdown/models/item/rockmemory.json
 e1ebf73b84517b9a9d418d7a5852305bedacdb07 assets/mega_showdown/models/item/rock_tera_shard.json
+68c9638d6de302a9be9b6cbec5044079559902c7 assets/mega_showdown/models/item/root_sprite.json
 d7c581f59921db9e84e30ff2b0b3bae5ac497201 assets/mega_showdown/models/item/rotom_catalogue.json
 4ef5a56420a6e56ad2b7e0ac79909f80f557f698 assets/mega_showdown/models/item/rusted_shield.json
 4af02ad6f1e06fbcbc675736bc3979fed2667422 assets/mega_showdown/models/item/rusted_sword.json

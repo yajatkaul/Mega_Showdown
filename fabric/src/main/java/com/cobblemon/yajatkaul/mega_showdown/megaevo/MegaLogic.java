@@ -106,7 +106,7 @@ public class MegaLogic {
                 return;
             }
 
-            if(!ShowdownConfig.mega.get() || pk.getPokemon().getOwnerPlayer() != player || !Utils.MEGA_POKEMONS.contains(pk.getPokemon().getSpecies().getName()) || !Possible(player, false)){
+            if(!ShowdownConfig.mega.get() || pk.getPokemon().getOwnerPlayer() != player || (!Utils.MEGA_POKEMONS.contains(pk.getPokemon().getSpecies().getName()) && !pk.getPokemon().getSpecies().getName().equals("Rayquaza")) || !Possible(player, false)){
                 return;
             }
 
