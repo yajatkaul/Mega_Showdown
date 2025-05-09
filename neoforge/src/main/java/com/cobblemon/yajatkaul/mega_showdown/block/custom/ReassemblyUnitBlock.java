@@ -64,7 +64,8 @@ public class ReassemblyUnitBlock extends Block {
     public static final EnumProperty<ReassembleStage> REASSEMBLE_STAGE
             = EnumProperty.create("reassemble_stage", ReassembleStage.class);
 
-    private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape UPPER_SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape LOWER_SHAPE = Block.box(1, 0, 1, 15, 16, 15);
 
     public ReassemblyUnitBlock(Properties properties) {
         super(properties);
@@ -76,7 +77,7 @@ public class ReassemblyUnitBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
-        return SHAPE;
+        return state.getValue(HALF) == DoubleBlockHalf.UPPER ? UPPER_SHAPE : LOWER_SHAPE;
     }
 
     @Override
@@ -156,6 +157,8 @@ public class ReassemblyUnitBlock extends Block {
             state = level.getBlockState(pos);// Ensure we're always working with the lower half
         }
 
+        BlockState upper = level.getBlockState(pos.above());
+
         if(hand == InteractionHand.OFF_HAND){
             if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
@@ -194,7 +197,6 @@ public class ReassemblyUnitBlock extends Block {
         if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.is(FormeChangeItems.ZYGARDE_CUBE)) {
             if(stack.getItem() instanceof ZygardeCube cube){
                 ItemStackHandler inv = cube.getInventory(stack, level, player);
-                HolderLookup.Provider provider = level.registryAccess();
 
                 ItemStack slot0 = inv.getStackInSlot(0);
                 ItemStack slot1 = inv.getStackInSlot(1);
@@ -204,8 +206,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(1, ItemStack.EMPTY);
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.UPDATE_ALL);
+                    level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 10); // 10 minutes in ticks
-
+                    level.scheduleTick(pos.above(), this, 20 * 60 * 10); // 10 minutes in ticks
                 } else if (slot0.getCount() >= 49 && slot1.getCount() >= 1) {
                     ItemStack newSlot0 = slot0.copy();
                     ItemStack newSlot1 = slot1.copy();
@@ -217,7 +220,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(1, newSlot1);
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.UPDATE_ALL);
+                    level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 5); // 5 minutes in ticks
+                    level.scheduleTick(pos.above(), this, 20 * 60 * 5); // 5 minutes in ticks
                 } else if (slot0.getCount() >= 9 && slot1.getCount() >= 1) {
                     ItemStack newSlot0 = slot0.copy();
                     ItemStack newSlot1 = slot1.copy();
@@ -229,7 +234,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStackInSlot(1, newSlot1);
 
                     level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.UPDATE_ALL);
+                    level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.UPDATE_ALL);
                     level.scheduleTick(pos, this, 20 * 60 * 2); // 2 minutes in ticks
+                    level.scheduleTick(pos.above(), this, 20 * 60 * 2); // 2 minutes in ticks
                 } else{
                     player.displayClientMessage(Component.translatable("message.mega_showdown.not_enough_cells_core")
                             .withColor(0xFF0000), true);
@@ -240,43 +247,46 @@ public class ReassemblyUnitBlock extends Block {
         }
 
         if(stack.getItem() instanceof PokeBallItem){
-            int shinyRoll = ThreadLocalRandom.current().nextInt(1, 8193); // 8193 is exclusive
+            int shinyRoll = ThreadLocalRandom.current().nextInt(1, (int) (Cobblemon.config.getShinyRate() + 1)); // 8193 is exclusive
 
             if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_10) {
                 if(!level.isClientSide){
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
 
-                    if(shinyRoll == 8192){
+                    if(shinyRoll == 1){
                         zygarde.setShiny(true);
                     }
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
                 }
                 level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
+                level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
             } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
                 if(!level.isClientSide){
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
 
-                    if(shinyRoll == 8192){
+                    if(shinyRoll == 1){
                         zygarde.setShiny(true);
                     }
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
                 }
                 level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
+                level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
             } else if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
                 if(!level.isClientSide){
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
 
-                    if(shinyRoll == 8192){
+                    if(shinyRoll == 1){
                         zygarde.setShiny(true);
                     }
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
                 }
                 level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
+                level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
             }
         }
@@ -288,9 +298,18 @@ public class ReassemblyUnitBlock extends Block {
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         switch (state.getValue(REASSEMBLE_STAGE)) {
-            case COOKING_10 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), Block.UPDATE_ALL);
-            case COOKING_50 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), Block.UPDATE_ALL);
-            case COOKING_100 -> level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), Block.UPDATE_ALL);
+            case COOKING_10: {
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), Block.UPDATE_ALL);
+                break;
+            }
+            case COOKING_50: {
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), Block.UPDATE_ALL);
+                break;
+            }
+            case COOKING_100: {
+                level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), Block.UPDATE_ALL);
+                break;
+            }
         }
     }
 

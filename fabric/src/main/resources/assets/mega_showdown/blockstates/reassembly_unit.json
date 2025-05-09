@@ -1,13 +1,79 @@
 {
   "variants": {
-    "half=lower,facing=north": { "model": "mega_showdown:block/reassembly_unit", "y": 0 },
-    "half=lower,facing=south": { "model": "mega_showdown:block/reassembly_unit", "y": 180 },
-    "half=lower,facing=west":  { "model": "mega_showdown:block/reassembly_unit", "y": 270 },
-    "half=lower,facing=east":  { "model": "mega_showdown:block/reassembly_unit", "y": 90 },
+    "reassemble_stage=idle,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower", "y": 0 },
+    "reassemble_stage=idle,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower", "y": 180 },
+    "reassemble_stage=idle,half=lower,facing=west":  { "model": "mega_showdown:block/reassembly_lower", "y": 270 },
+    "reassemble_stage=idle,half=lower,facing=east":  { "model": "mega_showdown:block/reassembly_lower", "y": 90 },
 
-    "half=upper,facing=north": { "model": "mega_showdown:block/reassembly_unit_top", "y": 0 },
-    "half=upper,facing=south": { "model": "mega_showdown:block/reassembly_unit_top", "y": 180 },
-    "half=upper,facing=west":  { "model": "mega_showdown:block/reassembly_unit_top", "y": 270 },
-    "half=upper,facing=east":  { "model": "mega_showdown:block/reassembly_unit_top", "y": 90 }
+    "reassemble_stage=idle,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper", "y": 0 },
+    "reassemble_stage=idle,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper", "y": 180 },
+    "reassemble_stage=idle,half=upper,facing=west":  { "model": "mega_showdown:block/reassembly_upper", "y": 270 },
+    "reassemble_stage=idle,half=upper,facing=east":  { "model": "mega_showdown:block/reassembly_upper", "y": 90 },
+
+
+
+    "reassemble_stage=cooking_10,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 0 },
+    "reassemble_stage=cooking_10,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 180 },
+    "reassemble_stage=cooking_10,half=upper,facing=west": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 270 },
+    "reassemble_stage=cooking_10,half=upper,facing=east": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 90 },
+
+    "reassemble_stage=cooking_10,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower_on", "y": 0 },
+    "reassemble_stage=cooking_10,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower_on", "y": 180 },
+    "reassemble_stage=cooking_10,half=lower,facing=west": { "model": "mega_showdown:block/reassembly_lower_on", "y": 270 },
+    "reassemble_stage=cooking_10,half=lower,facing=east": { "model": "mega_showdown:block/reassembly_lower_on", "y": 90 },
+
+
+    "reassemble_stage=cooking_50,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 0 },
+    "reassemble_stage=cooking_50,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 180 },
+    "reassemble_stage=cooking_50,half=upper,facing=west": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 270 },
+    "reassemble_stage=cooking_50,half=upper,facing=east": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 90 },
+
+    "reassemble_stage=cooking_50,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower_on", "y": 0 },
+    "reassemble_stage=cooking_50,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower_on", "y": 180 },
+    "reassemble_stage=cooking_50,half=lower,facing=west": { "model": "mega_showdown:block/reassembly_lower_on", "y": 270 },
+    "reassemble_stage=cooking_50,half=lower,facing=east": { "model": "mega_showdown:block/reassembly_lower_on", "y": 90 },
+
+
+    "reassemble_stage=cooking_100,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 0 },
+    "reassemble_stage=cooking_100,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 180 },
+    "reassemble_stage=cooking_100,half=upper,facing=west": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 270 },
+    "reassemble_stage=cooking_100,half=upper,facing=east": { "model": "mega_showdown:block/reassembly_upper_animated", "y": 90 },
+
+    "reassemble_stage=cooking_100,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower_on", "y": 0 },
+    "reassemble_stage=cooking_100,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower_on", "y": 180 },
+    "reassemble_stage=cooking_100,half=lower,facing=west": { "model": "mega_showdown:block/reassembly_lower_on", "y": 270 },
+    "reassemble_stage=cooking_100,half=lower,facing=east": { "model": "mega_showdown:block/reassembly_lower_on", "y": 90 },
+
+
+
+    "reassemble_stage=finished_10,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower_done", "y": 0 },
+    "reassemble_stage=finished_10,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower_done", "y": 180 },
+    "reassemble_stage=finished_10,half=lower,facing=west": { "model": "mega_showdown:block/reassembly_lower_done", "y": 270 },
+    "reassemble_stage=finished_10,half=lower,facing=east": { "model": "mega_showdown:block/reassembly_lower_done", "y": 90 },
+
+    "reassemble_stage=finished_50,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower_done", "y": 0 },
+    "reassemble_stage=finished_50,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower_done", "y": 180 },
+    "reassemble_stage=finished_50,half=lower,facing=west": { "model": "mega_showdown:block/reassembly_lower_done", "y": 270 },
+    "reassemble_stage=finished_50,half=lower,facing=east": { "model": "mega_showdown:block/reassembly_lower_done", "y": 90 },
+
+    "reassemble_stage=finished_100,half=lower,facing=north": { "model": "mega_showdown:block/reassembly_lower_done", "y": 0 },
+    "reassemble_stage=finished_100,half=lower,facing=south": { "model": "mega_showdown:block/reassembly_lower_done", "y": 180 },
+    "reassemble_stage=finished_100,half=lower,facing=west": { "model": "mega_showdown:block/reassembly_lower_done", "y": 270 },
+    "reassemble_stage=finished_100,half=lower,facing=east": { "model": "mega_showdown:block/reassembly_lower_done", "y": 90 },
+
+    "reassemble_stage=finished_10,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper", "y": 0 },
+    "reassemble_stage=finished_10,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper", "y": 180 },
+    "reassemble_stage=finished_10,half=upper,facing=west": { "model": "mega_showdown:block/reassembly_upper", "y": 270 },
+    "reassemble_stage=finished_10,half=upper,facing=east": { "model": "mega_showdown:block/reassembly_upper", "y": 90 },
+
+    "reassemble_stage=finished_50,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper", "y": 0 },
+    "reassemble_stage=finished_50,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper", "y": 180 },
+    "reassemble_stage=finished_50,half=upper,facing=west": { "model": "mega_showdown:block/reassembly_upper", "y": 270 },
+    "reassemble_stage=finished_50,half=upper,facing=east": { "model": "mega_showdown:block/reassembly_upper", "y": 90 },
+
+    "reassemble_stage=finished_100,half=upper,facing=north": { "model": "mega_showdown:block/reassembly_upper", "y": 0 },
+    "reassemble_stage=finished_100,half=upper,facing=south": { "model": "mega_showdown:block/reassembly_upper", "y": 180 },
+    "reassemble_stage=finished_100,half=upper,facing=west": { "model": "mega_showdown:block/reassembly_upper", "y": 270 },
+    "reassemble_stage=finished_100,half=upper,facing=east": { "model": "mega_showdown:block/reassembly_upper", "y": 90 }
   }
 }

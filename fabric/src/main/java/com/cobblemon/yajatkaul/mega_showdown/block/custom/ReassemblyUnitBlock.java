@@ -53,7 +53,8 @@ public class ReassemblyUnitBlock extends Block {
     public static final EnumProperty<ReassembleStage> REASSEMBLE_STAGE
             = EnumProperty.of("reassemble_stage", ReassembleStage.class);
 
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape UPPER_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape LOWER_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
 
     public ReassemblyUnitBlock(Settings settings) {
         super(settings);
@@ -65,7 +66,7 @@ public class ReassemblyUnitBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        return state.get(HALF) == DoubleBlockHalf.UPPER ? UPPER_SHAPE : LOWER_SHAPE;
     }
 
     @Override
@@ -144,6 +145,8 @@ public class ReassemblyUnitBlock extends Block {
             state = world.getBlockState(pos); // Ensure working with lower half
         }
 
+        BlockState upper = world.getBlockState(pos.up());
+
         if(hand == Hand.OFF_HAND){
             if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube cube){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
@@ -194,7 +197,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStack(0, ItemStack.EMPTY);
                     inv.setStack(1, ItemStack.EMPTY);
                     world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.NOTIFY_ALL);
+                    world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_100), Block.NOTIFY_ALL);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 10);
+                    world.scheduleBlockTick(pos.up(), this, 20 * 60 * 10);
 
                     stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
                             player.getWorld().getRegistryManager()));
@@ -205,7 +210,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStack(0, slot0);
                     inv.setStack(1, slot1);
                     world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.NOTIFY_ALL);
+                    world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_50), Block.NOTIFY_ALL);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 5);
+                    world.scheduleBlockTick(pos.up(), this, 20 * 60 * 5);
 
                     stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
                             player.getWorld().getRegistryManager()));
@@ -215,7 +222,9 @@ public class ReassemblyUnitBlock extends Block {
                     inv.setStack(0, slot0);
                     inv.setStack(1, slot1);
                     world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.NOTIFY_ALL);
+                    world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.COOKING_10), Block.NOTIFY_ALL);
                     world.scheduleBlockTick(pos, this, 20 * 60 * 2);
+                    world.scheduleBlockTick(pos.up(), this, 20 * 60 * 2);
 
                     stack.set(DataManage.ZYGARDE_CUBE_INV, ZygardeCube.serializeInventory(inv,
                             player.getWorld().getRegistryManager()));
@@ -228,43 +237,46 @@ public class ReassemblyUnitBlock extends Block {
         }
 
         if (stack.getItem() instanceof PokeBallItem) {
-            int shinyRoll = ThreadLocalRandom.current().nextInt(1, 8193); // 8193 is exclusive
+            int shinyRoll = ThreadLocalRandom.current().nextInt(1, (int) (Cobblemon.config.getShinyRate() + 1)); // 8193 is exclusive
 
             if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_10) {
                 if (!world.isClient()) {
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
 
-                    if(shinyRoll == 8192){
+                    if(shinyRoll == 1){
                         zygarde.setShiny(true);
                     }
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
+                world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.success(world.isClient());
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
                 if (!world.isClient()) {
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
 
-                    if(shinyRoll == 8192){
+                    if(shinyRoll == 1){
                         zygarde.setShiny(true);
                     }
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
+                world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.success(world.isClient());
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
                 if (!world.isClient()) {
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
 
-                    if(shinyRoll == 8192){
+                    if(shinyRoll == 1){
                         zygarde.setShiny(true);
                     }
 
                     Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 }
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
+                world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.success(world.isClient());
             }
         }

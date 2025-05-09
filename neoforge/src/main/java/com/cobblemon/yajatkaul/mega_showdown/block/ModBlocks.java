@@ -132,6 +132,7 @@ public class ModBlocks {
                     .strength(3f)
                     .mapColor(MapColor.TERRACOTTA_WHITE)
                     .requiresCorrectToolForDrops()
+                    .noOcclusion()
                     .sound(SoundType.METAL)));
 
     public static final DeferredBlock<AmethystClusterBlock> WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
