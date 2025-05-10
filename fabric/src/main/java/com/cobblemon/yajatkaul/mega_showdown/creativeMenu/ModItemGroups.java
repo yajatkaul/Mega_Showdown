@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 public class ModItemGroups {
     public static final ItemGroup MEGA_SHOWDOWN_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "mega_showdown_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.KEYSTONE))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.MEGA_BRACELET))
                     .displayName(Text.translatable("creativeTab.mega_showdown.mega_showdown_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(MegaStones.MEGA_STONE);
@@ -112,7 +112,7 @@ public class ModItemGroups {
 
     public static final ItemGroup Z_MOVES_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "z_moves_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ZCrystals.BLANK_Z))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ZCrystals.Z_RING_POWER))
                     .displayName(Text.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ZCrystals.Z_RING);
@@ -296,18 +296,16 @@ public class ModItemGroups {
 
     public static final ItemGroup KEY_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "key_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(KeyItems.AZURE_FLUTE))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.PEDESTAL))
                     .displayName(Text.translatable("creativeTab.mega_showdown.key_tab"))
                     .entries(((displayContext, entries) -> {
-                        entries.add(KeyItems.AZURE_FLUTE);
-                        entries.add(KeyItems.RED_CHAIN);
                         entries.add(ModBlocks.PEDESTAL);
                     }))
                     .build());
 
     public static final ItemGroup DYNAMAX_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "dynamax_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(DynamaxItems.WISHING_STAR))
+            FabricItemGroup.builder().icon(() -> new ItemStack(DynamaxItems.DYNAMAX_BAND))
                     .displayName(Text.translatable("creativeTab.mega_showdown.dynamax_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(DynamaxItems.DYNAMAX_BAND);

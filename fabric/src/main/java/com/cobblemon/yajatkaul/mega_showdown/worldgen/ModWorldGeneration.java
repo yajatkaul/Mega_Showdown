@@ -10,7 +10,7 @@ public class ModWorldGeneration {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.MAX_MUSHROOM_PLACED_KEY);
 
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS),
-                GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GRACIDEA_FLOWER_PLACED_KEY);
+//        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS),
+//                GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GRACIDEA_FLOWER_PLACED_KEY);
     }
 }

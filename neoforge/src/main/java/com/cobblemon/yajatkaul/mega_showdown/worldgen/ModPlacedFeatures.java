@@ -28,12 +28,12 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-59), VerticalAnchor.absolute(64)),
                         BiomeFilter.biome()));
 
-        register(context, GRACIDEA_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GRACIDEA_FLOWER_KEY),
-                List.of(RarityFilter.onAverageOnceEvery(900),
-                        CountPlacement.of(1),
-                        InSquarePlacement.spread(),
-                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                        BiomeFilter.biome()));
+//        register(context, GRACIDEA_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GRACIDEA_FLOWER_KEY),
+//                List.of(RarityFilter.onAverageOnceEvery(900),
+//                        CountPlacement.of(1),
+//                        InSquarePlacement.spread(),
+//                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+//                        BiomeFilter.biome()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

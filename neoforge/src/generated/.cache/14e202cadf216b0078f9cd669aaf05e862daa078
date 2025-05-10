@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-08T15:06:22.35738	Item Models: mega_showdown
+// 1.21.1	2025-05-10T11:36:55.8886274	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -12,7 +12,6 @@ dfdbb32813fd9d9c73c48c3b9c30c98be466e0ee assets/mega_showdown/models/item/aggron
 be52d1ed0e0f18119a7ad55a64b4d11bbd7f951c assets/mega_showdown/models/item/ampharosite.json
 d82b65de7185e92cb6ff2518fc5121f89702c04d assets/mega_showdown/models/item/ash_cap.json
 78265943e3ef48b58e35915d12522d004418b09b assets/mega_showdown/models/item/audinite.json
-51c4dca6dd515cd224d9bb24399fd3c890ecf9ef assets/mega_showdown/models/item/azure_flute.json
 2ba8c31fd0e1ec9dc255480dd67709453ab83c90 assets/mega_showdown/models/item/banettite.json
 6929a5ec54d875ed236de5a30b1ac7d360127a26 assets/mega_showdown/models/item/battle_bond_sprite.json
 d7ba66a5617c1c9c36444e515157d1fad28ec9b6 assets/mega_showdown/models/item/beedrillite.json
@@ -146,7 +145,6 @@ bfc4655c44ec41069a3f21e3249cebc81980bffb assets/mega_showdown/models/item/psychi
 db7d50db0d8d42fe8e0bb673c56d29c2a936630a assets/mega_showdown/models/item/psychium-z.json
 44174d0def3736b1fdaa08cd0baeacc6793929f4 assets/mega_showdown/models/item/purple_nectar.json
 da3b1f4be002ac09f90358f221be83387b0ad59d assets/mega_showdown/models/item/redorb.json
-f78576c452ce817d31e7edf2afe1265ce7247a33 assets/mega_showdown/models/item/red_chain.json
 dded8dd14f6dc4664a9bdc621c53948975d0a545 assets/mega_showdown/models/item/red_nectar.json
 5876bf1095ab123be88755a7b577be789abf50af assets/mega_showdown/models/item/reins_of_unity.json
 ca746f3addd87bf5bfd97842408a4c5865da393a assets/mega_showdown/models/item/reveal_glass.json

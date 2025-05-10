@@ -100,7 +100,6 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
     }
 
     @Override
-    @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
         return this.getDefaultState().with(FACING, direction);

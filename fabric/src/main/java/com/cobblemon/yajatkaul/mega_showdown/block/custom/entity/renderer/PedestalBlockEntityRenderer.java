@@ -20,16 +20,15 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
     @Override
     public void render(PedestalBlockEntity blockEntity, float tickDelta, MatrixStack matrices,
                        VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        ItemStack stack = blockEntity.getStack(0); // Assuming slot 0 holds the item
+        ItemStack stack = blockEntity.getStack(0);
         if (stack.isEmpty()) return;
 
         Direction facing = blockEntity.getCachedState().get(PedestalBlock.FACING);
         float angle = switch (facing) {
-            case NORTH -> 180f;
+            case NORTH -> 0f;
             case EAST  -> 270f;
-            case SOUTH -> 0f;
             case WEST  -> 90f;
-            default    -> 0f;
+            default    -> 180f;
         };
 
         matrices.push();

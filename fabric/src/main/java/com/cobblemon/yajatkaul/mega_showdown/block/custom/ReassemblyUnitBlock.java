@@ -38,7 +38,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -67,6 +66,11 @@ public class ReassemblyUnitBlock extends Block {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return state.get(HALF) == DoubleBlockHalf.UPPER ? UPPER_SHAPE : LOWER_SHAPE;
+    }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Override
@@ -148,7 +152,7 @@ public class ReassemblyUnitBlock extends Block {
         BlockState upper = world.getBlockState(pos.up());
 
         if(hand == Hand.OFF_HAND){
-            if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube cube){
+            if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube){
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
                     player.sendMessage(
                             Text.translatable("message.mega_showdown.zygarde_missing").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
@@ -183,8 +187,6 @@ public class ReassemblyUnitBlock extends Block {
                 return ItemActionResult.SUCCESS;
             }
         }
-
-        MegaShowdown.LOGGER.info(String.valueOf(state.get(REASSEMBLE_STAGE)));
 
         if (state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.isOf(FormeChangeItems.ZYGARDE_CUBE)) {
             if (stack.getItem() instanceof ZygardeCube cube) {
@@ -299,5 +301,10 @@ public class ReassemblyUnitBlock extends Block {
             case COOKING_10, COOKING_50, COOKING_100 -> true;
             default -> false;
         };
+    }
+
+    @Override
+    protected float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
+        return 1;
     }
 }

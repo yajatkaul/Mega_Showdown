@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": { "model": "mega_showdown:block/pedestal", "x": 0 },
-    "facing=south": { "model": "mega_showdown:block/pedestal", "x": 0, "y": 180 },
-    "facing=east":  { "model": "mega_showdown:block/pedestal", "x": 0, "y": 90 },
-    "facing=west":  { "model": "mega_showdown:block/pedestal", "x": 0, "y": 270 }
+    "facing=north": { "model": "mega_showdown:block/pedestal", "y": 0 },
+    "facing=south": { "model": "mega_showdown:block/pedestal", "y": 180 },
+    "facing=east":  { "model": "mega_showdown:block/pedestal", "y": 270 },
+    "facing=west":  { "model": "mega_showdown:block/pedestal", "y": 90 }
   }
 }

@@ -19,7 +19,7 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MegaShowdown.MOD_ID);
 
     public static final Supplier<CreativeModeTab> MEGA_SHOWDOWN_TAB = CREATIVE_MODE_TAB.register("mega_showdown_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(MegaStones.KEYSTONE.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.MEGA_BRACELET.get()))
                     .title(Component.translatable("creativeTab.mega_showdown.mega_showdown_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         // Stones
@@ -117,7 +117,7 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final Supplier<CreativeModeTab> Z_MOVES_TAB = CREATIVE_MODE_TAB.register("z_moves_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ZCrystals.BLANK_Z.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ZCrystals.Z_RING_POWER.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_showdown_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.z_moves_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
@@ -301,18 +301,16 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final Supplier<CreativeModeTab> KEY_TAB = CREATIVE_MODE_TAB.register("key_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(KeyItems.AZURE_FLUTE.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PEDESTAL.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "compi_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.key_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(KeyItems.RED_CHAIN);
-                        output.accept(KeyItems.AZURE_FLUTE);
                         output.accept(ModBlocks.PEDESTAL);
                     })
                     .build());
 
     public static final Supplier<CreativeModeTab> DYNAMAX_TAB = CREATIVE_MODE_TAB.register("dynamax_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(DynamaxItems.WISHING_STAR.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(DynamaxItems.DYNAMAX_BAND.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.dynamax_tab"))
                     .displayItems((itemDisplayParameters, output) -> {

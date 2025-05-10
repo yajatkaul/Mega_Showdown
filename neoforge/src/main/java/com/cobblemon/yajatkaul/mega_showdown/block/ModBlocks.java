@@ -32,7 +32,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MegaShowdown.MOD_ID);
 
     public static final DeferredBlock<Block> KEYSTONE_BLOCK = registerBlock("keystone_block",
-            () -> new Block(
+            () -> new KeyStoneBlock(
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)

@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.DustParticleEffect;
@@ -13,13 +14,17 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -54,7 +59,7 @@ public class ModBlocks {
                     .sounds(BlockSoundGroup.STONE)));
 
     public static final Block KEYSTONE_BLOCK = registerBlock("keystone_block",
-            new Block(AbstractBlock.Settings.create()
+            new KeyStoneBlock(AbstractBlock.Settings.create()
                     .strength(4f)
                     .mapColor(MapColor.PURPLE)
                     .requiresTool()
@@ -128,6 +133,7 @@ public class ModBlocks {
                     .strength(3f)
                     .requiresTool()
                     .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .nonOpaque()
                     .pistonBehavior(PistonBehavior.PUSH_ONLY)
                     .sounds(BlockSoundGroup.METAL)));
 

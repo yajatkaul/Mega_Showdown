@@ -26,11 +26,10 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
 
         Direction facing = blockEntity.getBlockState().getValue(PedestalBlock.FACING);
         float angle = switch (facing) {
-            case NORTH -> 180f;
+            case NORTH -> 0f;
             case EAST -> 270f;
-            case SOUTH -> 0f;
             case WEST -> 90f;
-            default -> 0f;
+            default -> 180f;
         };
 
         poseStack.pushPose();

@@ -5,6 +5,7 @@
 		"0": "mega_showdown:block/reassembly",
 		"particle": "mega_showdown:block/reassembly"
 	},
+	"ambientocclusion": false,
 	"elements": [
 		{
 			"from": [0, 7, 5],

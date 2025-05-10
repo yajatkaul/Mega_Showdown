@@ -20,7 +20,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(MegaOres.KEYSTONE_ORE);
 
         blockWithItem(ModBlocks.MEGA_METEOROID_BLOCK);
-        blockWithItem(ModBlocks.KEYSTONE_BLOCK);
         blockWithItem(ModBlocks.MEGA_EVO_BLOCK);
 
         //Custom stones

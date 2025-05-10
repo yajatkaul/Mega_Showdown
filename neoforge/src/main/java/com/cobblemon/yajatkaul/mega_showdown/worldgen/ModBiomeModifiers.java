@@ -27,11 +27,11 @@ public class ModBiomeModifiers {
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 
-        context.register(ADD_GRACIDEA_FLOWER, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GRACIDEA_FLOWER_PLACED_KEY)),
-                GenerationStep.Decoration.VEGETAL_DECORATION
-        ));
+//        context.register(ADD_GRACIDEA_FLOWER, new BiomeModifiers.AddFeaturesBiomeModifier(
+//                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
+//                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GRACIDEA_FLOWER_PLACED_KEY)),
+//                GenerationStep.Decoration.VEGETAL_DECORATION
+//        ));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

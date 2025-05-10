@@ -39,17 +39,17 @@ public class ModConfiguredFeatures {
                         ), List.of(Blocks.MOSS_BLOCK)
                 ));
 
-        register(context, GRACIDEA_FLOWER_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(
-                        3,
-                        1,
-                        2,
-                        PlacementUtils.onlyWhenEmpty(
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GRACIDEA_FLOWER.get().defaultBlockState()))
-                        )
-                )
-        );
+//        register(context, GRACIDEA_FLOWER_KEY, Feature.RANDOM_PATCH,
+//                new RandomPatchConfiguration(
+//                        3,
+//                        1,
+//                        2,
+//                        PlacementUtils.onlyWhenEmpty(
+//                                Feature.SIMPLE_BLOCK,
+//                                new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GRACIDEA_FLOWER.get().defaultBlockState()))
+//                        )
+//                )
+//        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

@@ -26,16 +26,16 @@ public class ModConfiguredFeatures {
                                 .getDefaultState().with(SweetBerryBushBlock.AGE, 3))),
                         List.of(Blocks.MOSS_BLOCK)));
 
-        register(context, GRACIDEA_FLOWER_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchFeatureConfig(
-                        3,
-                        1,
-                        2,
-                        PlacedFeatures.createEntry(
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.GRACIDEA_FLOWER.getDefaultState()))
-                        )
-                ));
+//        register(context, GRACIDEA_FLOWER_KEY, Feature.RANDOM_PATCH,
+//                new RandomPatchFeatureConfig(
+//                        3,
+//                        1,
+//                        2,
+//                        PlacedFeatures.createEntry(
+//                                Feature.SIMPLE_BLOCK,
+//                                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.GRACIDEA_FLOWER.getDefaultState()))
+//                        )
+//                ));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

@@ -1,8 +1,7 @@
-// 1.21.1	2025-04-22T16:35:02.7332683	Block States: mega_showdown
+// 1.21.1	2025-05-10T11:36:55.8986127	Block States: mega_showdown
 974d10ab0142b22082a8b2270fcc8639a04e4376 assets/mega_showdown/blockstates/chiseled_mega_evo_block.json
 f8969b2498d0c95e2906f091ccc4ba6ff51fb5c7 assets/mega_showdown/blockstates/chiseled_mega_evo_brick.json
 a73d0bac7cc11a143715bf4df3f636767a33f5a2 assets/mega_showdown/blockstates/deoxys_meteorite.json
-03206172097eac6349d746add214165f2d5f684a assets/mega_showdown/blockstates/keystone_block.json
 b24c08f803f21165ac199cde96d4e912cdaa1150 assets/mega_showdown/blockstates/keystone_ore.json
 a782d2516bf0ec759abee1597454202204bb130a assets/mega_showdown/blockstates/mega_evo_block.json
 4cb8d8dd5a7352c501aa846f6017d424b2293d86 assets/mega_showdown/blockstates/mega_evo_brick.json
@@ -21,7 +20,6 @@ a646c6fa46635e91053e99d5b6573639f0df3f23 assets/mega_showdown/blockstates/mega_m
 b62a9369fc7bf0b037104d1ca4e1a668e46612ba assets/mega_showdown/models/block/chiseled_mega_evo_block.json
 27442a223181d0d13d9c6110d07b56a13d2268ff assets/mega_showdown/models/block/chiseled_mega_evo_brick.json
 6d5f5e157f5a8ec6c97f3df20345041fcf9388a0 assets/mega_showdown/models/block/deoxys_meteorite.json
-f33f398a93b982b01b3e57aae00599a26160ee89 assets/mega_showdown/models/block/keystone_block.json
 da005a100a0af5237afbb0798e7da711ca64e580 assets/mega_showdown/models/block/keystone_ore.json
 789cff7b24b19669cfe68586b903bcdef7b2e285 assets/mega_showdown/models/block/mega_evo_block.json
 3c703590bfa5112b572afb9da384ef00fff17a03 assets/mega_showdown/models/block/mega_evo_brick.json
@@ -40,7 +38,6 @@ c0617edd16be81e37aa9753d73ffbd4969c7b12e assets/mega_showdown/models/block/mega_
 3b408dd0ef72f6d8ce65f639190415aab41d8665 assets/mega_showdown/models/item/chiseled_mega_evo_block.json
 81a128f5fc1a969d4ab47d966f36b5eabe6fbbd5 assets/mega_showdown/models/item/chiseled_mega_evo_brick.json
 d35bfaf15edf4171d78159c320d6e8617a7aa73b assets/mega_showdown/models/item/deoxys_meteorite.json
-4379fec51327a07dbe0252e56b4e73aabcfc3ccf assets/mega_showdown/models/item/keystone_block.json
 c5e9dd9cc7b9a4c8e21c5884a680c523ef8de3a5 assets/mega_showdown/models/item/keystone_ore.json
 ac58caa5a889ff82883e45e88f4022c19a2d1a79 assets/mega_showdown/models/item/mega_evo_block.json
 8181aeaa559738a5643f197d058c4104951817dd assets/mega_showdown/models/item/mega_evo_brick.json
