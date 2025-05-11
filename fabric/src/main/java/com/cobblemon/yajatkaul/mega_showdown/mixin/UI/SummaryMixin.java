@@ -26,6 +26,8 @@ public abstract class SummaryMixin {
         int x = (summary.width - Summary.BASE_WIDTH) / 2;
         int y = (summary.height - Summary.BASE_HEIGHT) / 2;
         MatrixStack matrices = context.getMatrices();
+        matrices.push();
+        matrices.translate(0.0, 0.0, 2000.0);
 
         Pokemon pokemon = summary.getSelectedPokemon$common();
 
@@ -50,5 +52,7 @@ public abstract class SummaryMixin {
                     SCALE
             );
         }
+
+        matrices.pop();
     }
 }

@@ -1,0 +1,19 @@
+{
+  "implemented": true,
+  "target": "cobblemon:enamorus",
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
+  "hitbox": {
+    "width": 2,
+    "height": 3,
+    "fixed": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:thundurus",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["therian-forme"],
+      "poser": "cobblemon:thundurustherian",
+      "model": "cobblemon:thundurustherian.geo",
+      "texture": "cobblemon:textures/pokemon/0642_thundurus/thundurustherian.png",
+      "layers": []
+    },
+    {
+      "aspects": ["shiny","therian-forme"],
+      "texture": "cobblemon:textures/pokemon/0642_thundurus/thundurustherian_shiny.png",
+      "layers": []
+    }
+  ]
+}

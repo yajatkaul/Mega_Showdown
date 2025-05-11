@@ -1,0 +1,19 @@
+{
+  "implemented": true,
+  "target": "cobblemon:landorus",
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
+  "hitbox": {
+    "width": 2,
+    "height": 4,
+    "fixed": false
+  }
+}

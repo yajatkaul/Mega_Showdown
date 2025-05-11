@@ -1,0 +1,9 @@
+{
+  "implemented": true,
+  "target": "cobblemon:zygarde",
+  "hitbox": {
+    "width": 2,
+    "height": 3,
+    "fixed": false
+  }
+}

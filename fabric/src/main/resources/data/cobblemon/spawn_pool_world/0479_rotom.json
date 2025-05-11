@@ -8,7 +8,7 @@
             "pokemon": "rotom",
             "type": "pokemon",
             "context": "grounded",
-            "bucket": "common",
+            "bucket": "rare",
             "level": "20-75",
             "weight": 7.0,
             "condition": {

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "9.4.3-release-fabric"
+version = "9.5.0-release-fabric"
 
 architectury {
     platformSetupLoomIde()
@@ -39,16 +39,9 @@ repositories {
         url = uri("https://maven.ladysnake.org/releases")
     }
 
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth"
-                url = uri("https://api.modrinth.com/maven")
-            }
-        }
-        filter {
-            includeGroup("maven.modrinth")
-        }
+    maven {
+        name = "Modrinth"
+        url = uri("https://api.modrinth.com/maven")
     }
 }
 
