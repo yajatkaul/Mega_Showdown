@@ -44,6 +44,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ReassemblyUnitBlock extends Block {
@@ -144,6 +145,10 @@ public class ReassemblyUnitBlock extends Block {
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if(world.isClient){
+            return ItemActionResult.SUCCESS;
+        }
+
         if (state.get(HALF) == DoubleBlockHalf.UPPER) {
             pos = pos.down();
             state = world.getBlockState(pos); // Ensure working with lower half
@@ -171,17 +176,15 @@ public class ReassemblyUnitBlock extends Block {
                     cores.setCount(1);
                 }
 
-                if (!world.isClient) {
-                    ItemEntity cellDrop = new ItemEntity(world,
-                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
-                            cells.copy());
-                    world.spawnEntity(cellDrop);
+                ItemEntity cellDrop = new ItemEntity(world,
+                        pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
+                        cells.copy());
+                world.spawnEntity(cellDrop);
 
-                    ItemEntity coreDrop = new ItemEntity(world,
-                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
-                            cores.copy());
-                    world.spawnEntity(coreDrop);
-                }
+                ItemEntity coreDrop = new ItemEntity(world,
+                        pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
+                        cores.copy());
+                world.spawnEntity(coreDrop);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
                 stack.set(DataManage.ZYGARDE_CUBE_DATA, null);
                 return ItemActionResult.SUCCESS;
@@ -235,51 +238,48 @@ public class ReassemblyUnitBlock extends Block {
                 }
             }
 
-            return ItemActionResult.success(world.isClient());
+            return ItemActionResult.SUCCESS;
         }
 
-        if (stack.getItem() instanceof PokeBallItem) {
+        if (stack.getItem() instanceof PokeBallItem ball) {
             int shinyRoll = ThreadLocalRandom.current().nextInt(1, (int) (Cobblemon.config.getShinyRate() + 1)); // 8193 is exclusive
 
             if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_10) {
-                if (!world.isClient()) {
-                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
+                Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
+                zygarde.setCaughtBall(ball.getPokeBall());
 
-                    if(shinyRoll == 1){
-                        zygarde.setShiny(true);
-                    }
-
-                    Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
+                if(shinyRoll == 1){
+                    zygarde.setShiny(true);
                 }
+
+                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
-                return ItemActionResult.success(world.isClient());
+                return ItemActionResult.SUCCESS;
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_50) {
-                if (!world.isClient()) {
-                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
+                Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
+                zygarde.setCaughtBall(ball.getPokeBall());
 
-                    if(shinyRoll == 1){
-                        zygarde.setShiny(true);
-                    }
-
-                    Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
+                if(shinyRoll == 1){
+                    zygarde.setShiny(true);
                 }
+
+                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
-                return ItemActionResult.success(world.isClient());
+                return ItemActionResult.SUCCESS;
             } else if (state.get(REASSEMBLE_STAGE) == ReassembleStage.FINISHED_100) {
-                if (!world.isClient()) {
-                    Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
+                Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
+                zygarde.setCaughtBall(ball.getPokeBall());
 
-                    if(shinyRoll == 1){
-                        zygarde.setShiny(true);
-                    }
-
-                    Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
+                if(shinyRoll == 1){
+                    zygarde.setShiny(true);
                 }
+
+                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
-                return ItemActionResult.success(world.isClient());
+                return ItemActionResult.SUCCESS;
             }
         }
 
