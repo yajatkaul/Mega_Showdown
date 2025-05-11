@@ -1,0 +1,37 @@
+{
+  "species": "cobblemon:eevee",
+  "order": 2,
+  "variations": [
+    {
+      "aspects": [
+        "gmax"
+      ],
+      "poser": "cobblemon:eevee_gigantamax",
+      "model": "cobblemon:eevee_gigantamax.geo",
+      "texture": "cobblemon:textures/pokemon/0133_eevee/eevee_gigantamax.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0133_eevee/eevee_gigantamax_emissive.png",
+          "translucent": false
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0133_eevee/eevee_gigantamax_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0133_eevee/eevee_gigantamax_emissive.png",
+          "translucent": false
+        }
+      ]
+    }
+  ]
+}

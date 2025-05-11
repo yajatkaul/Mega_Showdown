@@ -51,10 +51,32 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 public class ZygardeCube extends Item {
     private final SimpleInventory inventory;
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final long COOLDOWN_TIME = 2000; // 2 sec
+
+    public static boolean possible(ServerPlayerEntity player) {
+        UUID playerId = player.getUuid();
+        long currentTime = System.currentTimeMillis();
+
+        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
+            player.sendMessage(
+                    Text.translatable("message.mega_showdown.not_so_fast").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return false;
+        }
+
+        // Apply cooldown
+        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
+        return true;
+    }
 
     public ZygardeCube(Settings settings) {
         super(settings);
@@ -193,14 +215,16 @@ public class ZygardeCube extends Item {
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
                 return ActionResult.SUCCESS;
             }
-
+            MegaShowdown.LOGGER.info(pk.getAspects().toString());
             if(pk.getAspects().contains("power-construct")){
-                if(pk.getAspects().contains("percent_cells=10-percent")){
+                if(!possible((ServerPlayerEntity) player)){
+                    return ActionResult.PASS;
+                } else if(pk.getAspects().contains("10-percent")){
                     particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","50-percent").apply(pk);
+                    new StringSpeciesFeature("percent_cells","50").apply(pk);
                 }else{
                     particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","10-percent").apply(pk);
+                    new StringSpeciesFeature("percent_cells","10").apply(pk);
                 }
             }else {
                 player.sendMessage(

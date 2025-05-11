@@ -19,7 +19,8 @@
         "swimSpeed": 1.2,
         "canSwimInWater": true,
         "canBreatheUnderwater": true
-      }
+      },
+      "canFly": true
     }
   }
 }

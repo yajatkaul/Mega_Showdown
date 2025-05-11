@@ -38,7 +38,29 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class ZygardeCube extends Item {
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final long COOLDOWN_TIME = 2000; // 2 sec
+
+    public static boolean possible(ServerPlayer player) {
+        UUID playerId = player.getUUID();
+        long currentTime = System.currentTimeMillis();
+
+        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
+            player.displayClientMessage(Component.translatable("message.mega_showdown.not_so_fast")
+                    .withColor(0xFF0000), true);
+            return false;
+        }
+
+        // Apply cooldown
+        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
+        return true;
+    }
+
     public ZygardeCube(Properties arg) {
         super(arg);
     }
@@ -152,12 +174,14 @@ public class ZygardeCube extends Item {
             }
 
             if(pk.getAspects().contains("power-construct")){
-                if(pk.getAspects().contains("percent_cells=10-percent")){
+                if(!possible((ServerPlayer) player)){
+                    return InteractionResult.PASS;
+                } else if(pk.getAspects().contains("10-percent")){
                     particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","50-percent").apply(pk);
+                    new StringSpeciesFeature("percent_cells","50").apply(pk);
                 }else{
                     particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","10-percent").apply(pk);
+                    new StringSpeciesFeature("percent_cells","10").apply(pk);
                 }
             }else {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.resassembly_zygarde_req")

@@ -1,0 +1,192 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 905,
+  "name": "Enamorus",
+  "primaryType": "fairy",
+  "secondaryType": "flying",
+  "maleRatio": 0,
+  "height": 16,
+  "weight": 480,
+  "pokedex": [
+    "cobblemon.species.enamorus.desc"
+  ],
+  "labels": [
+    "gen8a",
+    "legendary"
+  ],
+  "aspects": [
+    "incarnate-forme"
+  ],
+  "abilities": [
+    "cutecharm",
+    "h:contrary"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
+  "baseScale": 1,
+  "hitbox": {
+    "width": 2,
+    "height": 3,
+    "fixed": false
+  },
+  "baseStats": {
+    "hp": 74,
+    "attack": 115,
+    "defence": 70,
+    "special_attack": 135,
+    "special_defence": 80,
+    "speed": 106
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 3,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 116,
+  "experienceGroup": "slow",
+  "catchRate": 3,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "moves": [
+    "1:astonish",
+    "1:fairywind",
+    "5:torment",
+    "10:flatter",
+    "15:twister",
+    "20:drainingkiss",
+    "25:irondefense",
+    "30:imprison",
+    "35:mysticalfire",
+    "40:dazzlinggleam",
+    "45:extrasensory",
+    "50:uproar",
+    "55:superpower",
+    "60:healingwish",
+    "65:moonblast",
+    "70:outrage",
+    "75:springtidestorm",
+    "tm:agility",
+    "tm:alluringvoice",
+    "tm:bodyslam",
+    "tm:calmmind",
+    "tm:dazzlinggleam",
+    "tm:disarmingvoice",
+    "tm:drainingkiss",
+    "tm:earthpower",
+    "tm:endure",
+    "tm:facade",
+    "tm:fly",
+    "tm:focusblast",
+    "tm:gigaimpact",
+    "tm:grassknot",
+    "tm:grassyterrain",
+    "tm:hyperbeam",
+    "tm:imprison",
+    "tm:irondefense",
+    "tm:ironhead",
+    "tm:mistyexplosion",
+    "tm:mistyterrain",
+    "tm:mysticalfire",
+    "tm:outrage",
+    "tm:playrough",
+    "tm:powershift",
+    "tm:protect",
+    "tm:psychic",
+    "tm:psychup",
+    "tm:raindance",
+    "tm:rest",
+    "tm:rocksmash",
+    "tm:scaryface",
+    "tm:sleeptalk",
+    "tm:sludgebomb",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:superpower",
+    "tm:tailwind",
+    "tm:takedown",
+    "tm:taunt",
+    "tm:terablast",
+    "tm:torment",
+    "tm:twister",
+    "tm:uproar",
+    "tm:weatherball",
+    "tm:zenheadbutt",
+    "tutor:calmmind",
+    "tutor:dazzlinggleam",
+    "tutor:earthpower",
+    "tutor:gigaimpact",
+    "tutor:hyperbeam",
+    "tutor:irondefense",
+    "tutor:ironhead",
+    "tutor:mistyexplosion",
+    "tutor:mysticalfire",
+    "tutor:outrage",
+    "tutor:playrough",
+    "tutor:powershift",
+    "tutor:psychic",
+    "tutor:rest",
+    "tutor:rocksmash",
+    "tutor:sleeptalk",
+    "tutor:sludgebomb",
+    "tutor:superpower",
+    "tutor:tailwind",
+    "tutor:twister",
+    "tutor:uproar",
+    "tutor:zenheadbutt"
+  ],
+  "evolutions": [],
+  "forms": [
+    {
+      "name": "Therian",
+      "primaryType": "fairy",
+      "secondaryType": "flying",
+      "maleRatio": 0,
+      "height": 16,
+      "weight": 480,
+      "pokedex": [
+        "cobblemon.species.enamorus-therian.desc"
+      ],
+      "labels": [
+        "gen8a",
+        "legendary"
+      ],
+      "aspects": [
+        "therian-forme"
+      ],
+      "abilities": [
+        "overcoat",
+        "h:overcoat"
+      ],
+      "baseScale": 1.1,
+      "hitbox": {
+        "width": 2,
+        "height": 1,
+        "fixed": false
+      },
+      "baseStats": {
+        "hp": 74,
+        "attack": 115,
+        "defence": 110,
+        "special_attack": 135,
+        "special_defence": 100,
+        "speed": 46
+      },
+      "evolutions": [],
+      "battleOnly": false
+    }
+  ]
+}
