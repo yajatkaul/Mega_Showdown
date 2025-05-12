@@ -163,8 +163,9 @@ public class ReassemblyUnitBlock extends Block {
 
         BlockState upper = level.getBlockState(pos.above());
 
-        if(hand == InteractionHand.OFF_HAND){
-            if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube){
+        if(hand == InteractionHand.MAIN_HAND && player.getOffhandItem().getItem() instanceof ZygardeCube){
+            if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE){
+                stack = player.getOffhandItem();
                 if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
                     player.displayClientMessage(Component.translatable("message.mega_showdown.zygarde_missing")
                             .withColor(0xFF0000), true);
@@ -260,6 +261,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
 
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                stack.shrink(1);
                 level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
@@ -272,6 +274,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
 
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                stack.shrink(1);
                 level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;
@@ -284,6 +287,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
 
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).add(zygarde);
+                stack.shrink(1);
                 level.setBlock(pos, state.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 level.setBlock(pos.above(), upper.setValue(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.UPDATE_ALL);
                 return ItemInteractionResult.SUCCESS;

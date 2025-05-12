@@ -173,7 +173,7 @@ public class CobbleEventHandler {
             Team team = scoreboard.getTeam(teamName);
             if (team == null) {
                 team = scoreboard.addTeam(teamName);
-                team.setColor(getGlowColorForType(zMoveUsedEvent.getPokemon().getOriginalPokemon()));
+                team.setColor(getGlowColorForType(pk.getHeldItem$common()));
             }
 
             scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);

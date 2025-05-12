@@ -215,7 +215,6 @@ public class ZygardeCube extends Item {
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
                 return ActionResult.SUCCESS;
             }
-            MegaShowdown.LOGGER.info(pk.getAspects().toString());
             if(pk.getAspects().contains("power-construct")){
                 if(!possible((ServerPlayerEntity) player)){
                     return ActionResult.PASS;

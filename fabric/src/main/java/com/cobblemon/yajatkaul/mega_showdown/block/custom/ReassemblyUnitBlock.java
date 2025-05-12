@@ -156,16 +156,17 @@ public class ReassemblyUnitBlock extends Block {
 
         BlockState upper = world.getBlockState(pos.up());
 
-        if(hand == Hand.OFF_HAND){
-            if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.getItem() instanceof ZygardeCube){
-                if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
+        if(hand == Hand.MAIN_HAND && player.getOffHandStack().getItem() instanceof ZygardeCube){
+            if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE){
+                stack = player.getOffHandStack();
+                Pokemon pokemon = stack.get(DataManage.ZYGARDE_CUBE_DATA);
+                if(pokemon == null){
                     player.sendMessage(
                             Text.translatable("message.mega_showdown.zygarde_missing").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
                     );
                     return ItemActionResult.SUCCESS;
                 }
-                Pokemon pokemon = stack.get(DataManage.ZYGARDE_CUBE_DATA);
                 ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL);
                 ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE);
                 if(pokemon.getAspects().contains("10-percent")){
@@ -253,6 +254,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
 
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
+                stack.decrement(1);
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.SUCCESS;
@@ -265,6 +267,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
 
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
+                stack.decrement(1);
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.SUCCESS;
@@ -277,6 +280,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
 
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).add(zygarde);
+                stack.decrement(1);
                 world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 world.setBlockState(pos.up(), upper.with(REASSEMBLE_STAGE, ReassembleStage.IDLE), Block.NOTIFY_ALL);
                 return ItemActionResult.SUCCESS;

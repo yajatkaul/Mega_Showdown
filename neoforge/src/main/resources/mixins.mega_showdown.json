@@ -22,7 +22,8 @@
   ],
   "client": [
     "UI.SummaryMixin",
-    "UI.StatWidgetMixin"
+    "UI.StatWidgetMixin",
+    "UI.PCGUIMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -22,7 +22,8 @@
     "ItemRendererMixin",
     "ModelLoaderMixin",
     "UI.StatWidgetMixin",
-    "UI.SummaryMixin"
+    "UI.SummaryMixin",
+    "UI.PCGUIMixin"
   ],
   "injectors": {
     "defaultRequire": 1

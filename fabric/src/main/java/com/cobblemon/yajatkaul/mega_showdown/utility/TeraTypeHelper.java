@@ -6,7 +6,9 @@ import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Formatting;
 
 import java.util.HashMap;
@@ -65,29 +67,28 @@ public class TeraTypeHelper {
         return TeraMoves.NORMAL_TERA_SHARD;
     }
 
-    public static Formatting getGlowColorForType(Pokemon pokemon) {
-        Iterable<ElementalType> types = pokemon.getTypes();
+    public static Formatting getGlowColorForType(ItemStack heldItem) {
+        if (heldItem.isOf(ZCrystals.ALORAICHIUM_Z)) return Formatting.YELLOW;
+        if (heldItem.isOf(ZCrystals.BUGINIUM_Z)) return Formatting.DARK_GREEN;
+        if (heldItem.isOf(ZCrystals.DARKINIUM_Z)) return Formatting.BLACK;
+        if (heldItem.isOf(ZCrystals.DRAGONIUM_Z) || heldItem.isOf(ZCrystals.KOMMONIUM_Z)) return Formatting.DARK_BLUE;
+        if (heldItem.isOf(ZCrystals.EEVIVIUM_Z) || heldItem.isOf(ZCrystals.SNORLIUM_Z) || heldItem.isOf(ZCrystals.NORMALIUM_Z)) return Formatting.WHITE;
+        if (heldItem.isOf(ZCrystals.ELECTRIUM_Z) || heldItem.isOf(ZCrystals.PIKANIUM_Z) || heldItem.isOf(ZCrystals.PIKASHUNIUM_Z)) return Formatting.YELLOW;
+        if (heldItem.isOf(ZCrystals.FAIRIUM_Z) || heldItem.isOf(ZCrystals.TAPUNIUM_Z)) return Formatting.LIGHT_PURPLE;
+        if (heldItem.isOf(ZCrystals.FIGHTINIUM_Z)) return Formatting.DARK_RED;
+        if (heldItem.isOf(ZCrystals.FIRIUM_Z) || heldItem.isOf(ZCrystals.INCINIUM_Z)) return Formatting.RED;
+        if (heldItem.isOf(ZCrystals.FLYINIUM_Z)) return Formatting.GRAY;
+        if (heldItem.isOf(ZCrystals.GHOSTIUM_Z) || heldItem.isOf(ZCrystals.MARSHADIUM_Z) || heldItem.isOf(ZCrystals.MIMIKIUM_Z)) return Formatting.DARK_PURPLE;
+        if (heldItem.isOf(ZCrystals.GRASSIUM_Z) || heldItem.isOf(ZCrystals.DECIDIUM_Z)) return Formatting.GREEN;
+        if (heldItem.isOf(ZCrystals.GROUNDIUM_Z) || heldItem.isOf(ZCrystals.LYCANIUM_Z)) return Formatting.DARK_RED;
+        if (heldItem.isOf(ZCrystals.ICIUM_Z)) return Formatting.BLUE;
+        if (heldItem.isOf(ZCrystals.POISONIUM_Z)) return Formatting.DARK_PURPLE;
+        if (heldItem.isOf(ZCrystals.PSYCHIUM_Z) || heldItem.isOf(ZCrystals.MEWNIUM_Z)) return Formatting.LIGHT_PURPLE;
+        if (heldItem.isOf(ZCrystals.ROCKIUM_Z)) return Formatting.DARK_GRAY;
+        if (heldItem.isOf(ZCrystals.STEELIUM_Z)) return Formatting.GRAY;
+        if (heldItem.isOf(ZCrystals.WATERIUM_Z) || heldItem.isOf(ZCrystals.PRIMARIUM_Z)) return Formatting.BLUE;
+        if (heldItem.isOf(ZCrystals.SOLGANIUM_Z) || heldItem.isOf(ZCrystals.LUNALIUM_Z) || heldItem.isOf(ZCrystals.ULTRANECROZIUM_Z)) return Formatting.GOLD;
 
-        for (ElementalType type : types) {
-            if (type.equals(ElementalTypes.INSTANCE.getBUG())) return Formatting.DARK_GREEN;
-            if (type.equals(ElementalTypes.INSTANCE.getDARK())) return Formatting.BLACK;
-            if (type.equals(ElementalTypes.INSTANCE.getDRAGON())) return Formatting.DARK_BLUE;
-            if (type.equals(ElementalTypes.INSTANCE.getELECTRIC())) return Formatting.YELLOW;
-            if (type.equals(ElementalTypes.INSTANCE.getFAIRY())) return Formatting.LIGHT_PURPLE;
-            if (type.equals(ElementalTypes.INSTANCE.getFIGHTING())) return Formatting.DARK_RED;
-            if (type.equals(ElementalTypes.INSTANCE.getFIRE())) return Formatting.RED;
-            if (type.equals(ElementalTypes.INSTANCE.getFLYING())) return Formatting.GRAY;
-            if (type.equals(ElementalTypes.INSTANCE.getGHOST())) return Formatting.DARK_PURPLE;
-            if (type.equals(ElementalTypes.INSTANCE.getGRASS())) return Formatting.GREEN;
-            if (type.equals(ElementalTypes.INSTANCE.getGROUND())) return Formatting.DARK_RED;
-            if (type.equals(ElementalTypes.INSTANCE.getICE())) return Formatting.BLUE;
-            if (type.equals(ElementalTypes.INSTANCE.getNORMAL())) return Formatting.WHITE;
-            if (type.equals(ElementalTypes.INSTANCE.getPOISON())) return Formatting.DARK_PURPLE;
-            if (type.equals(ElementalTypes.INSTANCE.getPSYCHIC())) return Formatting.LIGHT_PURPLE;
-            if (type.equals(ElementalTypes.INSTANCE.getROCK())) return Formatting.DARK_GRAY;
-            if (type.equals(ElementalTypes.INSTANCE.getSTEEL())) return Formatting.GRAY;
-            if (type.equals(ElementalTypes.INSTANCE.getWATER())) return Formatting.BLUE;
-        }
         return Formatting.WHITE;
     }
 

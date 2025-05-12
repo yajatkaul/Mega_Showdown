@@ -1,8 +1,8 @@
 {
-  "portraitScale": 2.1,
-  "portraitTranslation": [-1.0, 3.05, 0],
-  "profileScale": 0.51,
-  "profileTranslation": [0.05, 0.99, -10],
+  "portraitScale": 0.97,
+  "portraitTranslation": [-0.32, 1.57, 0.97],
+  "profileScale": 0.45,
+  "profileTranslation": [-0.05, 1.08, -10],
   "rootBone": "eevee_gigantamax",
   "poses": {
     "portrait": {

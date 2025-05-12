@@ -150,7 +150,7 @@ public class CobbleEventsHandler {
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(getGlowColorForType(zMoveUsedEvent.getPokemon().getOriginalPokemon()));
+                team.setColor(getGlowColorForType(pk.getHeldItem$common()));
                 team.setSeeFriendlyInvisibles(false);
                 team.setAllowFriendlyFire(true);
             }
