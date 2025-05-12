@@ -162,7 +162,7 @@ public class RevertEvents {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
             }
 
-            if(Config.revertMegas && Config.mega &&
+            if(Config.revertMegas && Config.mega && !Config.multipleMegas &&
                     MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }else{

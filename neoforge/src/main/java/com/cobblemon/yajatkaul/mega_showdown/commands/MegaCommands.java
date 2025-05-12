@@ -25,6 +25,10 @@ public class MegaCommands {
         event.getDispatcher().register(Commands.literal("msdresetlock")
                 .requires(source -> source.hasPermission(0)) // Requires no OP permission level (0)
                 .executes(context -> executeResetCommon(context.getSource().getPlayer()))); // Self execution
+
+        event.getDispatcher().register(Commands.literal("msdresetmega")
+                .requires(source -> source.hasPermission(0)) // Requires no OP permission level (0)
+                .executes(context -> executeResetMega(context.getSource().getPlayer()))); // Self execution
     }
 
     private static int executeReset(Player player) {
@@ -62,6 +66,30 @@ public class MegaCommands {
             }
             if(pokemon.getAspects().contains("primal")){
                 new StringSpeciesFeature("reversion_state", "standard").apply(pokemon);
+            }
+        }
+
+        // Send success message to the command source
+        player.sendSystemMessage(Component.translatable("message.mega_showdown.reset_completed"));
+        return 1;
+    }
+
+    private static int executeResetMega(Player player) {
+        player.removeData(DataManage.MEGA_DATA);
+        player.removeData(DataManage.MEGA_POKEMON);
+
+        PCStore storge = Cobblemon.INSTANCE.getStorage().getPC((ServerPlayer) player);
+        PlayerPartyStore party = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+
+        for (Pokemon pokemon: storge){
+            if(pokemon.getAspects().contains("mega") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega_x")){
+                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
+            }
+        }
+
+        for (Pokemon pokemon: party){
+            if(pokemon.getAspects().contains("mega") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega_x")){
+                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
             }
         }
 

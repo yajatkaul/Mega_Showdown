@@ -25,9 +25,12 @@ public class MegaCommands {
                     ));
         });
 
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("msdresetlock")
+                .requires(source -> source.hasPermissionLevel(0)).executes(context -> executeResetCommon(context.getSource().getPlayer()))));
+
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(CommandManager.literal("msdresetlock")
-                    .requires(source -> source.hasPermissionLevel(0)).executes(context -> executeResetCommon(context.getSource().getPlayer())));
+            dispatcher.register(CommandManager.literal("msdresetmega")
+                    .requires(source -> source.hasPermissionLevel(0)).executes(context -> executeResetMega(context.getSource().getPlayer())));
         });
     }
 
@@ -64,6 +67,29 @@ public class MegaCommands {
             }
             if(pokemon.getAspects().contains("primal")){
                 new StringSpeciesFeature("reversion_state", "standard").apply(pokemon);
+            }
+        }
+
+        player.sendMessage(Text.translatable("message.mega_showdown.reset_completed"));
+        return 1;
+    }
+
+    private static int executeResetMega(PlayerEntity player) {
+        player.removeAttached(DataManage.MEGA_DATA);
+        player.removeAttached(DataManage.MEGA_POKEMON);
+
+        PCStore storge = Cobblemon.INSTANCE.getStorage().getPC((ServerPlayerEntity) player);
+        PlayerPartyStore party = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+
+        for (Pokemon pokemon: storge){
+            if(pokemon.getAspects().contains("mega") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega_x")){
+                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
+            }
+        }
+
+        for (Pokemon pokemon: party){
+            if(pokemon.getAspects().contains("mega") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega_x")){
+                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
             }
         }
 

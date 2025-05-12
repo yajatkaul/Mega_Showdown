@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -28,8 +29,15 @@ public class EventUtils {
             pk.setTeraEnabled(false);
         }
 
-        if(ShowdownConfig.revertMegas.get() && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
+        if(ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get() && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
             MegaLogic.Devolve(pokemon, true);
+        }
+
+        if (ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get()) {
+            ServerPlayerEntity player = pokemon.getOwnerPlayer();
+            if(player != null){
+                player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), "/msdresetmega");
+            }
         }
 
         if(pokemon.getSpecies().getName().equals("Castform")){

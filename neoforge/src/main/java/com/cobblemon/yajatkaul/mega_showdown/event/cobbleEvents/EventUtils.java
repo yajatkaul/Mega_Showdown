@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
@@ -11,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffects;
@@ -30,8 +32,15 @@ public class EventUtils {
             pk.setTeraEnabled(false);
         }
 
-        if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
+        if(Config.revertMegas && !Config.multipleMegas && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
             MegaLogic.Devolve(pokemon, true);
+        }
+
+        if (Config.revertMegas && !Config.multipleMegas) {
+            ServerPlayer player = pokemon.getOwnerPlayer();
+            if(player != null){
+                player.getServer().getCommands().performPrefixedCommand(player.createCommandSourceStack(), "/msdresetmega");
+            }
         }
 
         new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);

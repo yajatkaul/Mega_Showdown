@@ -37,7 +37,6 @@ public class RevertEvents {
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
         for(ServerPlayerEntity player: battleEvent.getBattle().getPlayers()){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
             checkKeldeo(playerPartyStore);
             for (Pokemon pokemon : playerPartyStore) {
                 EventUtils.revertFormesEnd(pokemon);

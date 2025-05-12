@@ -11,17 +11,7 @@
                 {
                     "name": "emissive",
                     "texture": "cobblemon:textures/pokemon/0890_eternatus/eternatus_emissive.png",
-                    "emissive": true
-                },
-                {
-                    "name": "emissive_translucent",
-                    "texture": "cobblemon:textures/pokemon/0890_eternatus/eternatus_translucent_emissive.png",
                     "emissive": true,
-                    "translucent": true
-                },
-                {
-                    "name": "translucent",
-                    "texture": "cobblemon:textures/pokemon/0890_eternatus/eternatus_translucent.png",
                     "translucent": true
                 }
             ]
@@ -37,17 +27,7 @@
                 {
                     "name": "emissive",
                     "texture": "cobblemon:textures/pokemon/0890_eternatus/eternatus_shiny_emissive.png",
-                    "emissive": true
-                },
-				                {
-                    "name": "emissive_translucent",
-                    "texture": "cobblemon:textures/pokemon/0890_eternatus/eternatus_translucent_emissive_shiny.png",
                     "emissive": true,
-                    "translucent": true
-                },
-                {
-                    "name": "translucent",
-                    "texture": "cobblemon:textures/pokemon/0890_eternatus/eternatus_translucent_shiny.png",
                     "translucent": true
                 }
             ]
