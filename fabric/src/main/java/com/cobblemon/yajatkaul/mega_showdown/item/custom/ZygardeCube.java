@@ -57,7 +57,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class ZygardeCube extends Item {
-    private final SimpleInventory inventory;
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
 
@@ -80,7 +79,6 @@ public class ZygardeCube extends Item {
 
     public ZygardeCube(Settings settings) {
         super(settings);
-        this.inventory = new SimpleInventory(2);
     }
 
     @Override
@@ -105,7 +103,7 @@ public class ZygardeCube extends Item {
 
         NbtCompound tag = stack.getOrDefault(DataManage.ZYGARDE_CUBE_INV, new NbtCompound());
 
-        deserializeInventory(tag, inventory, registries);
+        SimpleInventory inventory = deserializeInventory(tag, registries);
 
         user.openHandledScreen(new SimpleNamedScreenHandlerFactory(
                 (syncId, inv, player) -> new ZygardeCubeScreenHandler(syncId, inv, inventory, player, stack),
@@ -152,9 +150,9 @@ public class ZygardeCube extends Item {
         return tag;
     }
 
-    public static void deserializeInventory(NbtCompound tag, SimpleInventory inventory, RegistryWrapper.WrapperLookup registries) {
+    public static SimpleInventory deserializeInventory(NbtCompound tag, RegistryWrapper.WrapperLookup registries) {
+        SimpleInventory inventory = new SimpleInventory(2);
         NbtList itemsList = tag.getList("Items", NbtElement.COMPOUND_TYPE);
-        inventory.clear();
 
         for (int i = 0; i < itemsList.size(); i++) {
             NbtCompound entry = itemsList.getCompound(i);
@@ -172,14 +170,17 @@ public class ZygardeCube extends Item {
                 }
             });
         }
+
+        return inventory;
     }
 
     public SimpleInventory getInventory(ItemStack stack, PlayerEntity player){
         NbtCompound tag = stack.get(DataManage.ZYGARDE_CUBE_INV);
         RegistryWrapper.WrapperLookup registries = player.getWorld().getRegistryManager();
 
+        SimpleInventory inventory = new SimpleInventory(2);
         if(tag != null){
-            deserializeInventory(tag, inventory, registries);
+            deserializeInventory(tag, registries);
         }
 
         return inventory;

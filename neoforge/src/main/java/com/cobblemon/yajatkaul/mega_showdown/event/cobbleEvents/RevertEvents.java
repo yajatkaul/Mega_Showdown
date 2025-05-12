@@ -41,9 +41,6 @@ public class RevertEvents {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, true);
-                }
 
                 EventUtils.revertFormesEnd(pokemon);
 
@@ -76,10 +73,6 @@ public class RevertEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 EventUtils.revertFormesEnd(pokemon);
-
-                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, true);
-                }
 
                 if(pokemon.getEntity() != null){
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
@@ -127,10 +120,6 @@ public class RevertEvents {
 
             for (Pokemon pokemon : playerPartyStore) {
                 EventUtils.revertFormesEnd(pokemon);
-
-                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, true);
-                }
             }
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
@@ -173,7 +162,7 @@ public class RevertEvents {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
             }
 
-            if(Config.mega &&
+            if(Config.revertMegas && Config.mega &&
                     MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
             }else{

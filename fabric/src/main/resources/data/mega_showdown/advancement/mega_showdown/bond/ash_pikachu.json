@@ -16,7 +16,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "mega_showdown:mega_showdown/bonding/ash_cap_bond",
+  "parent": "mega_showdown:mega_showdown/bond/ash_cap_bond",
   "criteria": {
     "ash_pikachu": {
       "trigger": "minecraft:impossible"

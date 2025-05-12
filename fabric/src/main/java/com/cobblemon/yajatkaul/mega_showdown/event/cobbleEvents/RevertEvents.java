@@ -41,9 +41,6 @@ public class RevertEvents {
             checkKeldeo(playerPartyStore);
             for (Pokemon pokemon : playerPartyStore) {
                 EventUtils.revertFormesEnd(pokemon);
-                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, true);
-                }
             }
 
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
@@ -85,7 +82,7 @@ public class RevertEvents {
                 data.getKeyItems().remove(Identifier.of("cobblemon","tera_orb"));
             }
 
-            if(ShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
+            if(ShowdownConfig.revertMegas.get() && ShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
                     && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))){
                 data.getKeyItems().add(Identifier.of("cobblemon","key_stone"));
             }else{
@@ -130,10 +127,6 @@ public class RevertEvents {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, true);
-                }
-
                 EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getEntity() != null){
@@ -165,10 +158,6 @@ public class RevertEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
                 EventUtils.revertFormesEnd(pokemon);
-
-                if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-                    MegaLogic.Devolve(pokemon, true);
-                }
 
                 if(pokemon.getEntity() != null){
                     pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);

@@ -77,6 +77,10 @@ public class Config
             .comment("Disables pokemons from dropping tera shards")
             .define("disableTeraShardDrop", false);
 
+    private static final ModConfigSpec.BooleanValue REVERT_MEGAS = BUILDER
+            .comment("Enable/Disable mega pokemons form reverting when battle starts")
+            .define("revertMegas", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
@@ -94,6 +98,7 @@ public class Config
     public static int powerSpotRange;
     public static int dynamaxScaleFactor;
     public static boolean showdownFilesLoading;
+    public static boolean revertMegas;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -113,5 +118,6 @@ public class Config
         dynamaxScaleFactor = DMAX_SCALE_FACTOR.get();
         showdownFilesLoading = SHOWDOWN_FILES_LOADING.get();
         mega = MEGA.get();
+        revertMegas = REVERT_MEGAS.get();
     }
 }

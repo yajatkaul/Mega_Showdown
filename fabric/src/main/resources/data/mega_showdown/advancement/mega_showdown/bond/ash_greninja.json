@@ -24,7 +24,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "mega_showdown:mega_showdown/bonding/ash_battle_bond",
+  "parent": "mega_showdown:mega_showdown/bond/ash_battle_bond",
   "criteria": {
     "ash_greninja": {
       "trigger": "minecraft:impossible"
