@@ -502,21 +502,21 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item N_LUNARIZER = registerItem("n_lunarizer", new N_Lunarizer(new Item.Settings().maxCount(1).component(DataManage.N_LUNAR, null)){
+    public static final Item N_LUNARIZER = registerItem("n_lunarizer", new N_Lunarizer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.n_lunarizer.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item N_SOLARIZER = registerItem("n_solarizer", new N_Solarizer(new Item.Settings().maxCount(1).component(DataManage.N_SOLAR, null)){
+    public static final Item N_SOLARIZER = registerItem("n_solarizer", new N_Solarizer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.n_solarizer.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item DNA_SPLICER = registerItem("dna_splicer", new DNA_Splicer(new Item.Settings().maxCount(1).component(DataManage.KYUREM_DATA, null)){
+    public static final Item DNA_SPLICER = registerItem("dna_splicer", new DNA_Splicer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dna_splicer.tooltip"));
@@ -548,7 +548,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item REINS_OF_UNITY = registerItem("reins_of_unity", new Unity(new Item.Settings().maxCount(1).component(DataManage.CALYREX_DATA, null)){
+    public static final Item REINS_OF_UNITY = registerItem("reins_of_unity", new Unity(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
@@ -598,7 +598,7 @@ public class FormeChangeItems {
 
     public static final Item ZYGARDE_CUBE = registerItem("zygarde_cube",
             new ZygardeCube(new Item.Settings().maxCount(1).component(DataManage.ZYGARDE_CUBE_INV, null)
-                    .component(DataManage.ZYGARDE_CUBE_DATA, null)){
+                    .component(DataManage.POKEMON_STORAGE, null)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));

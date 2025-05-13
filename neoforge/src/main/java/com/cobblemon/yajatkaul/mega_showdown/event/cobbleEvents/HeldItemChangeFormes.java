@@ -296,8 +296,10 @@ public class HeldItemChangeFormes {
         if(pokemon.getSpecies().getName().equals("Eternatus") && post.getReceived().is(FormeChangeItems.STAR_CORE)){
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
             new FlagSpeciesFeature("eternamax",true).apply(pokemon);
+            setTradable(pokemon, false);
         } else if (pokemon.getSpecies().getName().equals("Eternatus")) {
             new FlagSpeciesFeature("eternamax",false).apply(pokemon);
+            setTradable(pokemon, true);
         }
     }
 
@@ -364,13 +366,13 @@ public class HeldItemChangeFormes {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.primal_limit")
                         .withColor(0xFF0000), true);
             }
-        } else if (species.getName().equals("Kyogre") && !pre.getReceiving().is(MegaStones.BLUE_ORB)) {
+        } else if (species.getName().equals("Kyogre") && !pre.getReceiving().is(MegaStones.BLUE_ORB) && pre.getReturning().is(MegaStones.BLUE_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
             player.setData(DataManage.PRIMAL_DATA, false);
             player.removeData(DataManage.PRIMAL_POKEMON);
             setTradable(pre.getPokemon(), true);
-        } else if (species.getName().equals("Groudon") && !pre.getReceiving().is(MegaStones.RED_ORB)) {
+        } else if (species.getName().equals("Groudon") && !pre.getReceiving().is(MegaStones.RED_ORB) && pre.getReturning().is(MegaStones.RED_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
             player.setData(DataManage.PRIMAL_DATA, false);

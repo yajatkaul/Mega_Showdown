@@ -12,6 +12,9 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.Structure.FormeChange;
+import com.cobblemon.yajatkaul.mega_showdown.config.Structure.HeldItem;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
@@ -25,11 +28,15 @@ import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -37,10 +44,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.List;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -299,8 +305,10 @@ public class HeldItemChangeFormes {
         if(pokemon.getSpecies().getName().equals("Eternatus") && post.getReceived().isOf(FormeChangeItems.STAR_CORE)){
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
             new FlagSpeciesFeature("eternamax",true).apply(pokemon);
+            setTradable(pokemon, false);
         } else if (pokemon.getSpecies().getName().equals("Eternatus")) {
             new FlagSpeciesFeature("eternamax",false).apply(pokemon);
+            setTradable(pokemon, true);
         }
     }
 
@@ -387,13 +395,13 @@ public class HeldItemChangeFormes {
                         true
                 );
             }
-        } else if (species.getName().equals("Kyogre") && !pre.getReceiving().isOf(MegaStones.BLUE_ORB)) {
+        } else if (species.getName().equals("Kyogre") && !pre.getReceiving().isOf(MegaStones.BLUE_ORB) && pre.getReturning().isOf(MegaStones.BLUE_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
             player.setAttached(DataManage.PRIMAL_DATA, false);
             player.removeAttached(DataManage.PRIMAL_POKEMON);
             setTradable(pre.getPokemon(), true);
-        } else if (species.getName().equals("Groudon") && !pre.getReceiving().isOf(MegaStones.RED_ORB)) {
+        } else if (species.getName().equals("Groudon") && !pre.getReceiving().isOf(MegaStones.RED_ORB) && pre.getReturning().isOf(MegaStones.RED_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
             player.setAttached(DataManage.PRIMAL_DATA, false);
@@ -449,6 +457,54 @@ public class HeldItemChangeFormes {
         }
     }
 
+    public static void customEvents(HeldItemEvent.Post event){
+        Pokemon pokemon = event.getPokemon();
+
+        for(FormeChange heldItem: ShowdownCustomsConfig.formeChange){
+            if(!heldItem.battleModeOnly){
+                if(heldItem.pokemons.contains(pokemon.getSpecies().getName())){
+                    if(!pokemon.getEntity().isBattling()){
+                        ItemStack receivedItem = event.getReceived();
+                        String[] nameSpace = heldItem.item_id.split(":");
+                        Identifier customItem = Identifier.of(nameSpace[0], nameSpace[1]);
+                        Item item = Registries.ITEM.get(customItem);
+                        if(receivedItem.isOf(item) && receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
+                                && receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
+                                == heldItem.custom_model_data){
+                            if(!heldItem.tradableForm){
+                                setTradable(pokemon, false);
+                            }
+                            for(String aspects: heldItem.aspects){
+                                String[] aspectsDiv = aspects.split("=");
+                                if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                                    new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                                }else{
+                                    new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                                }
+                            }
+                            playHeldItemFormeChange(pokemon.getEntity());
+                            return;
+                        }else if (!receivedItem.isOf(item) ||
+                                receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == heldItem.custom_model_data){
+                            if(!heldItem.tradableForm){
+                                setTradable(pokemon, true);
+                            }
+                            for(String aspects: heldItem.default_aspect_values){
+                                String[] aspectsDiv = aspects.split("=");
+                                if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                                    new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                                }else{
+                                    new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                                }
+                            }
+                            playHeldItemFormeChange(pokemon.getEntity());
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     private static void playHeldItemFormeChange(LivingEntity context) {
         LazyLib.Companion.cryAnimation(context);

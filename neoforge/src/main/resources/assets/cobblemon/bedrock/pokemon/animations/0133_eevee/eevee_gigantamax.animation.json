@@ -24,7 +24,7 @@
 					"rotation": ["0+math.sin(q.anim_time*90)*2.5", 0, "math.sin(q.anim_time*90)*1.5"]
 				},
 				"swirlies": {
-					"rotation": [0, "math.lerp(0,22.5,query.anim_time)", 0]
+					"rotation": [0, "query.anim_time*22.5", 0]
 				},
 				"ear_left1": {
 					"rotation": ["0+math.sin(q.anim_time*90)*2", 0, "-(math.sin(q.anim_time*45)*4)"]

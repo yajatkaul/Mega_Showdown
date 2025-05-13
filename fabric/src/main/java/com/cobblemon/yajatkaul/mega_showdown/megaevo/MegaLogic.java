@@ -6,8 +6,11 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.Structure.MegaItem;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -16,10 +19,15 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -27,6 +35,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
@@ -119,17 +128,59 @@ public class MegaLogic {
     }
 
     public static void Evolve(PokemonEntity context, PlayerEntity player, Boolean fromBattle){
-        if(context instanceof PokemonEntity pk){
-            if(pk.getPokemon().getOwnerPlayer() != player){
-                return;
-            }
+        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() != player){
+            return;
+        }
+        if(player.getWorld().isClient){
+            return;
         }
 
-        Pokemon pokemon = (context).getPokemon();
-        String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
         Boolean playerData = player.getAttached(DataManage.MEGA_DATA);
         if(playerData == null){
             playerData = false;
+        }
+
+        Pokemon pokemon = (context).getPokemon();
+        String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem());
+        if(species == null){
+            for(MegaItem megaPok: ShowdownCustomsConfig.megaItems){
+                String[] parts = megaPok.item_id.split(":");
+                Identifier paperId = Identifier.of(parts[0], parts[1]);
+                Item paperItem = Registries.ITEM.get(paperId);
+                if(paperItem == pokemon.heldItem().getItem()
+                        && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
+                        == megaPok.custom_model_data){
+                    species = megaPok.pokemon;
+                }
+                if(species == null){
+                    continue;
+                }
+                if(species.equals(pokemon.getSpecies().getName()) && !playerData){
+                    player.setAttached(DataManage.MEGA_DATA, true);
+                    player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
+
+                    playEvolveAnimation(context);
+
+                    for(String aspect: megaPok.aspects){
+                        String[] aspectDiv = aspect.split("=");
+                        new StringSpeciesFeature(aspectDiv[0], aspectDiv[1]).apply(pokemon);
+                    }
+                    setTradable(pokemon, false);
+
+                    return;
+                }else if(species.equals(pokemon.getSpecies().getName()) && playerData){
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                }else{
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                }
+            }
+
         }
 
         if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
@@ -214,7 +265,6 @@ public class MegaLogic {
 
                     new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
                     setTradable(pokemon, false);
-
                 }
             }
             else if(species.equals("Mewtwo")){

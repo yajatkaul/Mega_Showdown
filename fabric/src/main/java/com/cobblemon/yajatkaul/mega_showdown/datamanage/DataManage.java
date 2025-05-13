@@ -96,15 +96,9 @@ public class DataManage {
 
     //Data Component
 
-    public static final ComponentType<Pokemon> N_LUNAR = Registry.register(
+    public static final ComponentType<Pokemon> POKEMON_STORAGE = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(MegaShowdown.MOD_ID, "n_lunar"),
-            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
-    );
-
-    public static final ComponentType<Pokemon> N_SOLAR = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(MegaShowdown.MOD_ID, "n_solar"),
+            Identifier.of(MegaShowdown.MOD_ID, "pokemon_storage"),
             ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
@@ -130,18 +124,6 @@ public class DataManage {
                     )
     );
 
-    public static final ComponentType<Pokemon> KYUREM_DATA = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(MegaShowdown.MOD_ID, "kyurem_data"),
-            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
-    );
-
-    public static final ComponentType<Pokemon> ZYGARDE_CUBE_DATA = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube_data"),
-            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
-    );
-
     public static final AttachmentType<PokeHandler> KYUREM_FUSED_WITH = AttachmentRegistry.create(
             Identifier.of(MegaShowdown.MOD_ID, "kyurem_fused_with"),
             builder -> builder
@@ -151,12 +133,6 @@ public class DataManage {
                             PokeHandler.S2C_CODEC,
                             AttachmentSyncPredicate.all()
                     )
-    );
-
-    public static final ComponentType<Pokemon> CALYREX_DATA = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(MegaShowdown.MOD_ID, "calyrex_data"),
-            ComponentType.<Pokemon>builder().codec(Pokemon.getCODEC()).build()
     );
 
     public static final ComponentType<NbtCompound> ZYGARDE_CUBE_INV = Registry.register(

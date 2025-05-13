@@ -54,7 +54,7 @@ public class N_Solarizer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokeHandler refValue = arg.getOrDefault(DataManage.N_SOLAR, null);
+        PokeHandler refValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
         Pokemon currentValue;
 
         if(refValue == null){
@@ -75,14 +75,14 @@ public class N_Solarizer extends Item {
             player.setData(DataManage.DATA_MAP, map);
 
             pk.setData(DataManage.N_SOLAR_POKEMON, new PokeHandler(currentValue));
-            arg.set(DataManage.N_SOLAR, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
             particleEffect(pokemon.getEntity());
             setTradable(pokemon, false);
 
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
-            arg.set(DataManage.N_SOLAR, new PokeHandler(pokemon));
+            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
             playerPartyStore.remove(pokemon);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.charged"));
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
@@ -123,46 +123,18 @@ public class N_Solarizer extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon){
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            return featureProvider.get(pokemon).getEnabled();
-        }
-        return false;
+        return pokemon.getAspects().contains("dusk-fusion");
     }
 
     private boolean checkFused(Pokemon pokemon){
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled){
-                return true;
-            }
-        }
-
-        featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
-        feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled){
-                return true;
-            }
-        }
-
-        return false;
+        return pokemon.getAspects().contains("dusk-fusion") || pokemon.getAspects().contains("dawn-fusion");
     }
 
 
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.N_SOLAR, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
             Pokemon currentValue;
 
             if(refValue == null){
@@ -175,7 +147,7 @@ public class N_Solarizer extends Item {
 
             if(currentValue != null){
                 playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.N_SOLAR, null);
+                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
             }
         }
 

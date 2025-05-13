@@ -55,10 +55,10 @@ public class DNA_Splicer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
-        Pokemon currentValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
+        Pokemon currentValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
 
         if(pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)){
-            if(arg.get(DataManage.KYUREM_DATA) != null){
+            if(arg.get(DataManage.POKEMON_STORAGE) != null){
                 player.sendMessage(
                         Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
@@ -81,7 +81,7 @@ public class DNA_Splicer extends Item {
                 pokemon.getEntity().removeAttached(DataManage.KYUREM_FUSED_WITH);
             }
 
-            arg.set(DataManage.KYUREM_DATA, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
             if(currentValue.getSpecies().getName().equals("Reshiram")){
@@ -102,14 +102,14 @@ public class DNA_Splicer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setAttached(DataManage.DATA_MAP, map);
 
-            arg.set(DataManage.KYUREM_DATA, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
-            arg.set(DataManage.KYUREM_DATA, pk.getPokemon());
+            arg.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
         }else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
-            arg.set(DataManage.KYUREM_DATA, pk.getPokemon());
+            arg.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
         } else {
@@ -121,40 +121,18 @@ public class DNA_Splicer extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon){
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("black"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled) {
-                return true;
-            }
-        }
-
-        featureProvider = new FlagSpeciesFeatureProvider(List.of("white"));
-        feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled){
-                return true;
-            }
-        }
-
-        return false;
+        return pokemon.getAspects().contains("black") || pokemon.getAspects().contains("white");
     }
 
     @Override
     public void onItemEntityDestroyed(ItemEntity entity) {
         if(entity.getOwner() instanceof ServerPlayerEntity player){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.KYUREM_DATA, null);
+            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.POKEMON_STORAGE, null);
 
             if(currentValue != null){
                 playerPartyStore.add(currentValue);
-                entity.getStack().set(DataManage.KYUREM_DATA, null);
+                entity.getStack().set(DataManage.POKEMON_STORAGE, null);
             }
         }
 

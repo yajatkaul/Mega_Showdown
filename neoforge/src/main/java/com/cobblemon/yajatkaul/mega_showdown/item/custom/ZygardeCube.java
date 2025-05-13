@@ -161,13 +161,13 @@ public class ZygardeCube extends Item {
             }
 
             if(arg4 == InteractionHand.OFF_HAND && !pk.getAspects().contains("power-construct")){
-                if(arg.get(DataManage.ZYGARDE_CUBE_DATA) != null){
+                if(arg.get(DataManage.POKEMON_STORAGE) != null){
                     player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
                             .withColor(0xFF0000), true);
                     return InteractionResult.FAIL;
                 }
                 arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
-                arg.set(DataManage.ZYGARDE_CUBE_DATA, new PokeHandler(pokemon));
+                arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
                 player.setItemInHand(arg4, arg);
                 return InteractionResult.SUCCESS;
@@ -240,7 +240,7 @@ public class ZygardeCube extends Item {
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.ZYGARDE_CUBE_DATA, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
             Pokemon currentValue;
 
             if(refValue == null){
@@ -253,7 +253,7 @@ public class ZygardeCube extends Item {
 
             if(currentValue != null){
                 playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.ZYGARDE_CUBE_DATA, null);
+                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
             }
         }
 

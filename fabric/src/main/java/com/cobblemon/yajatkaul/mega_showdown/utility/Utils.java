@@ -7,14 +7,16 @@ import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 
 public class Utils {
-    public static final Map<Item, String> MEGA_STONE_IDS = new HashMap<>();
+    public static final Map<ItemStack, String> MEGA_STONE_IDS = new HashMap<>();
 
     public static void registerRemapping(){
         zMovesRegister();
@@ -27,56 +29,56 @@ public class Utils {
     }
 
     public static void loadMegaStoneIds() {
-        MEGA_STONE_IDS.put(MegaStones.VENUSAURITE.asItem(), "Venusaur");
-        MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_X.asItem(), "Charizard");
-        MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_Y.asItem(), "Charizard");
-        MEGA_STONE_IDS.put(MegaStones.BLASTOISINITE.asItem(), "Blastoise");
-        MEGA_STONE_IDS.put(MegaStones.ALAKAZITE.asItem(), "Alakazam");
-        MEGA_STONE_IDS.put(MegaStones.GENGARITE.asItem(), "Gengar");
-        MEGA_STONE_IDS.put(MegaStones.KANGASKHANITE.asItem(), "Kangaskhan");
-        MEGA_STONE_IDS.put(MegaStones.PINSIRITE.asItem(), "Pinsir");
-        MEGA_STONE_IDS.put(MegaStones.GYARADOSITE.asItem(), "Gyarados");
-        MEGA_STONE_IDS.put(MegaStones.AERODACTYLITE.asItem(), "Aerodactyl");
-        MEGA_STONE_IDS.put(MegaStones.MEWTWONITE_X.asItem(), "Mewtwo");
-        MEGA_STONE_IDS.put(MegaStones.MEWTWONITE_Y.asItem(), "Mewtwo");
-        MEGA_STONE_IDS.put(MegaStones.AMPHAROSITE.asItem(), "Ampharos");
-        MEGA_STONE_IDS.put(MegaStones.SCIZORITE.asItem(), "Scizor");
-        MEGA_STONE_IDS.put(MegaStones.HERACRONITE.asItem(), "Heracross");
-        MEGA_STONE_IDS.put(MegaStones.HOUNDOOMINITE.asItem(), "Houndoom");
-        MEGA_STONE_IDS.put(MegaStones.TYRANITARITE.asItem(), "Tyranitar");
-        MEGA_STONE_IDS.put(MegaStones.BLAZIKENITE.asItem(), "Blaziken");
-        MEGA_STONE_IDS.put(MegaStones.GARDEVOIRITE.asItem(), "Gardevoir");
-        MEGA_STONE_IDS.put(MegaStones.MAWILITE.asItem(), "Mawile");
-        MEGA_STONE_IDS.put(MegaStones.AGGRONITE.asItem(), "Aggron");
-        MEGA_STONE_IDS.put(MegaStones.MEDICHAMITE.asItem(), "Medicham");
-        MEGA_STONE_IDS.put(MegaStones.MANECTITE.asItem(), "Manectric");
-        MEGA_STONE_IDS.put(MegaStones.BANETTITE.asItem(), "Banette");
-        MEGA_STONE_IDS.put(MegaStones.ABSOLITE.asItem(), "Absol");
-        MEGA_STONE_IDS.put(MegaStones.LATIASITE.asItem(), "Latias");
-        MEGA_STONE_IDS.put(MegaStones.LATIOSITE.asItem(), "Latios");
-        MEGA_STONE_IDS.put(MegaStones.GARCHOMPITE.asItem(), "Garchomp");
-        MEGA_STONE_IDS.put(MegaStones.LUCARIONITE.asItem(), "Lucario");
-        MEGA_STONE_IDS.put(MegaStones.ABOMASITE.asItem(), "Abomasnow");
-        MEGA_STONE_IDS.put(MegaStones.BEEDRILLITE.asItem(), "Beedrill");
-        MEGA_STONE_IDS.put(MegaStones.PIDGEOTITE.asItem(), "Pidgeot");
-        MEGA_STONE_IDS.put(MegaStones.SLOWBRONITE.asItem(), "Slowbro");
-        MEGA_STONE_IDS.put(MegaStones.STEELIXITE.asItem(), "Steelix");
-        MEGA_STONE_IDS.put(MegaStones.SCEPTILITE.asItem(), "Sceptile");
-        MEGA_STONE_IDS.put(MegaStones.SWAMPERTITE.asItem(), "Swampert");
-        MEGA_STONE_IDS.put(MegaStones.SABLENITE.asItem(), "Sableye");
-        MEGA_STONE_IDS.put(MegaStones.SHARPEDONITE.asItem(), "Sharpedo");
-        MEGA_STONE_IDS.put(MegaStones.CAMERUPTITE.asItem(), "Camerupt");
-        MEGA_STONE_IDS.put(MegaStones.ALTARIANITE.asItem(), "Altaria");
-        MEGA_STONE_IDS.put(MegaStones.GLALITITE.asItem(), "Glalie");
-        MEGA_STONE_IDS.put(MegaStones.SALAMENCITE.asItem(), "Salamence");
-        MEGA_STONE_IDS.put(MegaStones.METAGROSSITE.asItem(), "Metagross");
-        MEGA_STONE_IDS.put(MegaStones.LOPUNNITE.asItem(), "Lopunny");
-        MEGA_STONE_IDS.put(MegaStones.GALLADITE.asItem(), "Gallade");
-        MEGA_STONE_IDS.put(MegaStones.AUDINITE.asItem(), "Audino");
-        MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), "Diancie");
+        MEGA_STONE_IDS.put(MegaStones.VENUSAURITE.getDefaultStack(), "Venusaur");
+        MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_X.getDefaultStack(), "Charizard");
+        MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_Y.getDefaultStack(), "Charizard");
+        MEGA_STONE_IDS.put(MegaStones.BLASTOISINITE.getDefaultStack(), "Blastoise");
+        MEGA_STONE_IDS.put(MegaStones.ALAKAZITE.getDefaultStack(), "Alakazam");
+        MEGA_STONE_IDS.put(MegaStones.GENGARITE.getDefaultStack(), "Gengar");
+        MEGA_STONE_IDS.put(MegaStones.KANGASKHANITE.getDefaultStack(), "Kangaskhan");
+        MEGA_STONE_IDS.put(MegaStones.PINSIRITE.getDefaultStack(), "Pinsir");
+        MEGA_STONE_IDS.put(MegaStones.GYARADOSITE.getDefaultStack(), "Gyarados");
+        MEGA_STONE_IDS.put(MegaStones.AERODACTYLITE.getDefaultStack(), "Aerodactyl");
+        MEGA_STONE_IDS.put(MegaStones.MEWTWONITE_X.getDefaultStack(), "Mewtwo");
+        MEGA_STONE_IDS.put(MegaStones.MEWTWONITE_Y.getDefaultStack(), "Mewtwo");
+        MEGA_STONE_IDS.put(MegaStones.AMPHAROSITE.getDefaultStack(), "Ampharos");
+        MEGA_STONE_IDS.put(MegaStones.SCIZORITE.getDefaultStack(), "Scizor");
+        MEGA_STONE_IDS.put(MegaStones.HERACRONITE.getDefaultStack(), "Heracross");
+        MEGA_STONE_IDS.put(MegaStones.HOUNDOOMINITE.getDefaultStack(), "Houndoom");
+        MEGA_STONE_IDS.put(MegaStones.TYRANITARITE.getDefaultStack(), "Tyranitar");
+        MEGA_STONE_IDS.put(MegaStones.BLAZIKENITE.getDefaultStack(), "Blaziken");
+        MEGA_STONE_IDS.put(MegaStones.GARDEVOIRITE.getDefaultStack(), "Gardevoir");
+        MEGA_STONE_IDS.put(MegaStones.MAWILITE.getDefaultStack(), "Mawile");
+        MEGA_STONE_IDS.put(MegaStones.AGGRONITE.getDefaultStack(), "Aggron");
+        MEGA_STONE_IDS.put(MegaStones.MEDICHAMITE.getDefaultStack(), "Medicham");
+        MEGA_STONE_IDS.put(MegaStones.MANECTITE.getDefaultStack(), "Manectric");
+        MEGA_STONE_IDS.put(MegaStones.BANETTITE.getDefaultStack(), "Banette");
+        MEGA_STONE_IDS.put(MegaStones.ABSOLITE.getDefaultStack(), "Absol");
+        MEGA_STONE_IDS.put(MegaStones.LATIASITE.getDefaultStack(), "Latias");
+        MEGA_STONE_IDS.put(MegaStones.LATIOSITE.getDefaultStack(), "Latios");
+        MEGA_STONE_IDS.put(MegaStones.GARCHOMPITE.getDefaultStack(), "Garchomp");
+        MEGA_STONE_IDS.put(MegaStones.LUCARIONITE.getDefaultStack(), "Lucario");
+        MEGA_STONE_IDS.put(MegaStones.ABOMASITE.getDefaultStack(), "Abomasnow");
+        MEGA_STONE_IDS.put(MegaStones.BEEDRILLITE.getDefaultStack(), "Beedrill");
+        MEGA_STONE_IDS.put(MegaStones.PIDGEOTITE.getDefaultStack(), "Pidgeot");
+        MEGA_STONE_IDS.put(MegaStones.SLOWBRONITE.getDefaultStack(), "Slowbro");
+        MEGA_STONE_IDS.put(MegaStones.STEELIXITE.getDefaultStack(), "Steelix");
+        MEGA_STONE_IDS.put(MegaStones.SCEPTILITE.getDefaultStack(), "Sceptile");
+        MEGA_STONE_IDS.put(MegaStones.SWAMPERTITE.getDefaultStack(), "Swampert");
+        MEGA_STONE_IDS.put(MegaStones.SABLENITE.getDefaultStack(), "Sableye");
+        MEGA_STONE_IDS.put(MegaStones.SHARPEDONITE.getDefaultStack(), "Sharpedo");
+        MEGA_STONE_IDS.put(MegaStones.CAMERUPTITE.getDefaultStack(), "Camerupt");
+        MEGA_STONE_IDS.put(MegaStones.ALTARIANITE.getDefaultStack(), "Altaria");
+        MEGA_STONE_IDS.put(MegaStones.GLALITITE.getDefaultStack(), "Glalie");
+        MEGA_STONE_IDS.put(MegaStones.SALAMENCITE.getDefaultStack(), "Salamence");
+        MEGA_STONE_IDS.put(MegaStones.METAGROSSITE.getDefaultStack(), "Metagross");
+        MEGA_STONE_IDS.put(MegaStones.LOPUNNITE.getDefaultStack(), "Lopunny");
+        MEGA_STONE_IDS.put(MegaStones.GALLADITE.getDefaultStack(), "Gallade");
+        MEGA_STONE_IDS.put(MegaStones.AUDINITE.getDefaultStack(), "Audino");
+        MEGA_STONE_IDS.put(MegaStones.DIANCITE.getDefaultStack(), "Diancie");
     }
 
-    public static final Set<String> MEGA_POKEMONS = Set.of(
+    public static final Set<String> MEGA_POKEMONS = new HashSet<>(Set.of(
             "Venusaur", "Charizard", "Blastoise", "Alakazam", "Gengar", "Kangaskhan", "Pinsir",
             "Gyarados", "Aerodactyl", "Mewtwo", "Ampharos", "Scizor", "Heracross", "Houndoom",
             "Tyranitar", "Blaziken", "Gardevoir", "Mawile", "Aggron", "Medicham", "Manectric",
@@ -84,7 +86,43 @@ public class Utils {
             "Beedrill", "Pidgeot", "Slowbro", "Steelix", "Sceptile", "Swampert", "Sableye",
             "Sharpedo", "Camerupt", "Altaria", "Glalie", "Salamence", "Metagross", "Lopunny",
             "Gallade", "Audino", "Diancie"
-    );
+    ));
+
+    public static final Set<String> GMAX_SPECIES = new HashSet<>();
+
+    static {
+        GMAX_SPECIES.add("Venusaur");
+        GMAX_SPECIES.add("Charizard");
+        GMAX_SPECIES.add("Blastoise");
+        GMAX_SPECIES.add("Butterfree");
+        GMAX_SPECIES.add("Pikachu");
+        GMAX_SPECIES.add("Meowth");
+        GMAX_SPECIES.add("Machamp");
+        GMAX_SPECIES.add("Gengar");
+        GMAX_SPECIES.add("Kingler");
+        GMAX_SPECIES.add("Lapras");
+        GMAX_SPECIES.add("Eevee");
+        GMAX_SPECIES.add("Snorlax");
+        GMAX_SPECIES.add("Garbodor");
+        GMAX_SPECIES.add("Melmetal");
+        GMAX_SPECIES.add("Rillaboom");
+        GMAX_SPECIES.add("Cinderace");
+        GMAX_SPECIES.add("Inteleon");
+        GMAX_SPECIES.add("Corviknight");
+        GMAX_SPECIES.add("Orbeetle");
+        GMAX_SPECIES.add("Drednaw");
+        GMAX_SPECIES.add("Coalossal");
+        GMAX_SPECIES.add("Flapple");
+        GMAX_SPECIES.add("Appletun");
+        GMAX_SPECIES.add("Sandaconda");
+        GMAX_SPECIES.add("Toxtricity");
+        GMAX_SPECIES.add("Centiskorch");
+        GMAX_SPECIES.add("Hatterene");
+        GMAX_SPECIES.add("Grimmsnarl");
+        GMAX_SPECIES.add("Alcremie");
+        GMAX_SPECIES.add("Copperajah");
+        GMAX_SPECIES.add("Duraludon");
+    }
 
     public static void megaStonesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABSOLITE.asItem(), "Absolite");

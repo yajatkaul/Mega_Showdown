@@ -55,7 +55,7 @@ public class DNA_Splicer extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokeHandler refValue = arg.getOrDefault(DataManage.KYUREM_DATA, null);
+        PokeHandler refValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
         Pokemon currentValue;
 
         if(refValue == null){
@@ -65,7 +65,7 @@ public class DNA_Splicer extends Item {
         }
 
         if(pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)){
-            if(arg.get(DataManage.KYUREM_DATA) != null){
+            if(arg.get(DataManage.POKEMON_STORAGE) != null){
                 player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
                         .withColor(0xFF0000), true);
                 return InteractionResult.PASS;
@@ -86,7 +86,7 @@ public class DNA_Splicer extends Item {
                 pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
             }
 
-            arg.set(DataManage.KYUREM_DATA, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
             if(currentValue.getSpecies().getName().equals("Reshiram")){
@@ -107,14 +107,14 @@ public class DNA_Splicer extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setData(DataManage.DATA_MAP, map);
 
-            arg.set(DataManage.KYUREM_DATA, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
-            arg.set(DataManage.KYUREM_DATA, new PokeHandler(pk.getPokemon()));
+            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.charged"));
         }else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
-            arg.set(DataManage.KYUREM_DATA, new PokeHandler(pk.getPokemon()));
+            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.charged"));
         } else {
@@ -127,29 +127,7 @@ public class DNA_Splicer extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon){
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("black"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled) {
-                return true;
-            }
-        }
-
-        featureProvider = new FlagSpeciesFeatureProvider(List.of("white"));
-        feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled){
-                return true;
-            }
-        }
-
-        return false;
+        return pokemon.getAspects().contains("black") || pokemon.getAspects().contains("white");
     }
 
     public static void particleEffect(LivingEntity conComponent, SimpleParticleType particleType) {
@@ -198,7 +176,7 @@ public class DNA_Splicer extends Item {
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.KYUREM_DATA, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
             Pokemon currentValue;
 
             if(refValue == null){
@@ -211,7 +189,7 @@ public class DNA_Splicer extends Item {
 
             if(currentValue != null){
                 playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.KYUREM_DATA, null);
+                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
             }
         }
 

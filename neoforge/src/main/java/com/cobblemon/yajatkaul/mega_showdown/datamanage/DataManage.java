@@ -62,8 +62,8 @@ public class DataManage {
                     .serialize(PokeHandler.CODEC).build()
     );
 
-    public static final Supplier<DataComponentType<PokeHandler>> KYUREM_DATA = REGISTRAR.registerComponentType(
-            "kyurem_data",
+    public static final Supplier<DataComponentType<PokeHandler>> POKEMON_STORAGE = REGISTRAR.registerComponentType(
+            "pokemon_storage",
             builder -> builder
                     .persistent(PokeHandler.CODEC)
                     .networkSynchronized(PokeHandler.S2C_CODEC)
@@ -72,27 +72,6 @@ public class DataManage {
     public static final Supplier<AttachmentType<PokeHandler>> CALYREX_FUSED_WITH = ATTACHMENT_TYPES.register(
             "calyrex_fusion_with", () -> AttachmentType.builder(() -> new PokeHandler(new Pokemon()))
                     .serialize(PokeHandler.CODEC).build()
-    );
-
-    public static final Supplier<DataComponentType<PokeHandler>> CALYREX_DATA = REGISTRAR.registerComponentType(
-            "calyrex_data",
-            builder -> builder
-                    .persistent(PokeHandler.CODEC)
-                    .networkSynchronized(PokeHandler.S2C_CODEC)
-    );
-
-    public static final Supplier<DataComponentType<PokeHandler>> N_LUNAR = REGISTRAR.registerComponentType(
-            "n_lunar",
-            builder -> builder
-                    .persistent(PokeHandler.CODEC)
-                    .networkSynchronized(PokeHandler.S2C_CODEC)
-    );
-
-    public static final Supplier<DataComponentType<PokeHandler>> N_SOLAR = REGISTRAR.registerComponentType(
-            "n_solar",
-            builder -> builder
-                    .persistent(PokeHandler.CODEC)
-                    .networkSynchronized(PokeHandler.S2C_CODEC)
     );
 
     public static final Supplier<DataComponentType<Integer>> CATALOGUE_PAGE = REGISTRAR.registerComponentType(
@@ -120,13 +99,6 @@ public class DataManage {
     public static final Supplier<AttachmentType<PokeHandler>> N_SOLAR_POKEMON = ATTACHMENT_TYPES.register(
             "n_solar_pokemon", () -> AttachmentType.builder(() -> new PokeHandler(new Pokemon()))
                     .serialize(PokeHandler.CODEC).build()
-    );
-
-    public static final Supplier<DataComponentType<PokeHandler>> ZYGARDE_CUBE_DATA = REGISTRAR.registerComponentType(
-            "zygarde_cube_data",
-            builder -> builder
-                    .persistent(PokeHandler.CODEC)
-                    .networkSynchronized(PokeHandler.S2C_CODEC)
     );
 
 

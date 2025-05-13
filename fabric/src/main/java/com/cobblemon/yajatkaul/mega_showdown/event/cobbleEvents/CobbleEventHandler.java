@@ -26,6 +26,8 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.Structure.FormeChange;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
@@ -75,6 +77,7 @@ public class CobbleEventHandler {
         HeldItemChangeFormes.ogerponChange(post);
         HeldItemChangeFormes.eternamaxChange(post);
         HeldItemChangeFormes.originChange(post);
+        HeldItemChangeFormes.customEvents(post);
 
         if(ShowdownConfig.battleModeOnly.get()){
             return Unit.INSTANCE;
@@ -451,6 +454,24 @@ public class CobbleEventHandler {
                 if(formeChangeEvent.getFormeName().equals("complete")){
                     new FlagSpeciesFeature("complete-percent", true).apply(pokemon);
                     playZygardeTransformation(pokemon.getEntity());
+                }
+            }
+        }
+
+        for(FormeChange forme: ShowdownCustomsConfig.formeChange){
+            if(forme.battleModeOnly){
+                if(forme.pokemons.contains(formeChangeEvent.getPokemon().getEffectedPokemon().getSpecies().getName())
+                        && formeChangeEvent.getFormeName().equals(forme.formName)){
+                    for(String aspects: forme.aspects){
+                        String[] aspectsDiv = aspects.split("=");
+                        if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                            new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                        }else{
+                            new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                        }
+                    }
+                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                    break;
                 }
             }
         }

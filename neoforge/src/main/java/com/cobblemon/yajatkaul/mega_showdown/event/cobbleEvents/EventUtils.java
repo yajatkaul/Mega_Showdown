@@ -36,13 +36,6 @@ public class EventUtils {
             MegaLogic.Devolve(pokemon, true);
         }
 
-        if (Config.revertMegas && !Config.multipleMegas) {
-            ServerPlayer player = pokemon.getOwnerPlayer();
-            if(player != null){
-                player.getServer().getCommands().performPrefixedCommand(player.createCommandSourceStack(), "/msdresetmega");
-            }
-        }
-
         new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
 
         if(pokemon.getSpecies().getName().equals("Castform")){

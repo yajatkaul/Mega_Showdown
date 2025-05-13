@@ -53,7 +53,7 @@ public class Unity extends Item {
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokeHandler refValue = arg.getOrDefault(DataManage.CALYREX_DATA, null);
+        PokeHandler refValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
         Pokemon currentValue;
 
         if(refValue == null){
@@ -63,7 +63,7 @@ public class Unity extends Item {
         }
 
         if(pokemon.getSpecies().getName().equals("Calyrex") && checkEnabled(pokemon)){
-            if(arg.get(DataManage.CALYREX_DATA) != null){
+            if(arg.get(DataManage.POKEMON_STORAGE) != null){
                 player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
                         .withColor(0xFF0000), true);
                 return InteractionResult.PASS;
@@ -84,7 +84,7 @@ public class Unity extends Item {
                 pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
             }
 
-            arg.set(DataManage.CALYREX_DATA, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
         }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
             if(currentValue.getSpecies().getName().equals("Spectrier")){
@@ -102,14 +102,14 @@ public class Unity extends Item {
             map.put(pokemon.getUuid(), currentValue);
             player.setData(DataManage.DATA_MAP, map);
 
-            arg.set(DataManage.CALYREX_DATA, null);
+            arg.set(DataManage.POKEMON_STORAGE, null);
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
         } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
-            arg.set(DataManage.CALYREX_DATA, new PokeHandler(pk.getPokemon()));
+            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
         }else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
-            arg.set(DataManage.CALYREX_DATA, new PokeHandler(pk.getPokemon()));
+            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
             playerPartyStore.remove(pk.getPokemon());
             arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
         } else {
@@ -122,29 +122,7 @@ public class Unity extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon){
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("shadow"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled) {
-                return true;
-            }
-        }
-
-        featureProvider = new FlagSpeciesFeatureProvider(List.of("ice"));
-        feature = featureProvider.get(pokemon);
-
-        if(feature != null){
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if(enabled){
-                return true;
-            }
-        }
-
-        return false;
+        return pokemon.getAspects().contains("shadow") || pokemon.getAspects().contains("ice");
     }
 
     public static void particleEffect(LivingEntity conComponent, SimpleParticleType particleType) {
@@ -193,7 +171,7 @@ public class Unity extends Item {
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
         if(entity.getOwner() instanceof ServerPlayer player){
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.CALYREX_DATA, null);
+            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
             Pokemon currentValue;
 
             if(refValue == null){
@@ -206,7 +184,7 @@ public class Unity extends Item {
 
             if(currentValue != null){
                 playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.CALYREX_DATA, null);
+                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
             }
         }
 

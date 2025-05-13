@@ -180,7 +180,7 @@ public class ZygardeCube extends Item {
 
         SimpleInventory inventory = new SimpleInventory(2);
         if(tag != null){
-            deserializeInventory(tag, registries);
+            inventory = deserializeInventory(tag, registries);
         }
 
         return inventory;
@@ -203,7 +203,7 @@ public class ZygardeCube extends Item {
             }
 
             if(hand == Hand.OFF_HAND && !pk.getAspects().contains("power-construct")){
-                if(stack.get(DataManage.ZYGARDE_CUBE_DATA) != null){
+                if(stack.get(DataManage.POKEMON_STORAGE) != null){
                     player.sendMessage(
                             Text.translatable("message.mega_showdown.cube_full").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
@@ -211,7 +211,7 @@ public class ZygardeCube extends Item {
                     return ActionResult.FAIL;
                 }
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
-                stack.set(DataManage.ZYGARDE_CUBE_DATA, pokemon);
+                stack.set(DataManage.POKEMON_STORAGE, pokemon);
                 player.setStackInHand(hand, stack);
                 Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
                 return ActionResult.SUCCESS;
@@ -286,11 +286,11 @@ public class ZygardeCube extends Item {
     public void onItemEntityDestroyed(ItemEntity entity) {
         if(entity.getOwner() instanceof ServerPlayerEntity player){
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.ZYGARDE_CUBE_DATA, null);
+            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.POKEMON_STORAGE, null);
 
             if(currentValue != null){
                 playerPartyStore.add(currentValue);
-                entity.getStack().set(DataManage.ZYGARDE_CUBE_DATA, null);
+                entity.getStack().set(DataManage.POKEMON_STORAGE, null);
             }
         }
 

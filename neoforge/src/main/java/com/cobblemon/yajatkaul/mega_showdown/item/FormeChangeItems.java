@@ -545,7 +545,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> N_LUNARIZER = ITEMS.register("n_lunarizer",
-            () -> new N_Lunarizer(new Item.Properties().stacksTo(1).component(DataManage.N_LUNAR, null)){
+            () -> new N_Lunarizer(new Item.Properties().stacksTo(1).component(DataManage.POKEMON_STORAGE, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.n_lunarizer.tooltip"));
@@ -554,7 +554,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> N_SOLARIZER = ITEMS.register("n_solarizer",
-            () -> new N_Solarizer(new Item.Properties().stacksTo(1).component(DataManage.N_SOLAR, null)){
+            () -> new N_Solarizer(new Item.Properties().stacksTo(1).component(DataManage.POKEMON_STORAGE, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.n_solarizer.tooltip"));
@@ -563,7 +563,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DNA_SPLICER = ITEMS.register("dna_splicer",
-            () -> new DNA_Splicer(new Item.Properties().stacksTo(1).component(DataManage.KYUREM_DATA, null)){
+            () -> new DNA_Splicer(new Item.Properties().stacksTo(1).component(DataManage.POKEMON_STORAGE, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dna_splicer.tooltip"));
@@ -599,7 +599,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> REINS_OF_UNITY = ITEMS.register("reins_of_unity",
-            () -> new Unity(new Item.Properties().stacksTo(1).component(DataManage.CALYREX_DATA, null)){
+            () -> new Unity(new Item.Properties().stacksTo(1).component(DataManage.POKEMON_STORAGE, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
@@ -617,7 +617,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ZYGARDE_CUBE = ITEMS.register("zygarde_cube",
-            () -> new ZygardeCube(new Item.Properties().stacksTo(1).component(DataManage.ZYGARDE_INV, null).component(DataManage.ZYGARDE_CUBE_DATA, null)){
+            () -> new ZygardeCube(new Item.Properties().stacksTo(1).component(DataManage.ZYGARDE_INV, null).component(DataManage.POKEMON_STORAGE, null)){
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag){
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));

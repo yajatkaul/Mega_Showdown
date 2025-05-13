@@ -166,12 +166,12 @@ public class ReassemblyUnitBlock extends Block {
         if(hand == InteractionHand.MAIN_HAND && player.getOffhandItem().getItem() instanceof ZygardeCube){
             if(state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE){
                 stack = player.getOffhandItem();
-                if(stack.get(DataManage.ZYGARDE_CUBE_DATA) == null){
+                if(stack.get(DataManage.POKEMON_STORAGE) == null){
                     player.displayClientMessage(Component.translatable("message.mega_showdown.zygarde_missing")
                             .withColor(0xFF0000), true);
                     return ItemInteractionResult.SUCCESS;
                 }
-                Pokemon pokemon = stack.get(DataManage.ZYGARDE_CUBE_DATA).getPokemon();
+                Pokemon pokemon = stack.get(DataManage.POKEMON_STORAGE).getPokemon();
                 ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL.get());
                 ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE.get());
                 if(pokemon.getAspects().contains("10-percent")){
@@ -192,7 +192,7 @@ public class ReassemblyUnitBlock extends Block {
                         cores.copy());
                 level.addFreshEntity(coreDrop);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube"));
-                stack.set(DataManage.ZYGARDE_CUBE_DATA, null);
+                stack.set(DataManage.POKEMON_STORAGE, null);
                 return ItemInteractionResult.SUCCESS;
             }
         }
