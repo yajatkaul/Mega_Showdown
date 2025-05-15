@@ -4,6 +4,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls;
+import com.cobblemon.yajatkaul.mega_showdown.networking.PacketRegister;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
 import com.cobblemon.yajatkaul.mega_showdown.trinket.TrinketsRegisteration;
@@ -17,6 +18,8 @@ public class MegaShowdownClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        PacketRegister.registerS2CPackets();
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRACIDEA_FLOWER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_GRACIDEA, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.REASSEMBLY_UNIT, RenderLayer.getTranslucent());

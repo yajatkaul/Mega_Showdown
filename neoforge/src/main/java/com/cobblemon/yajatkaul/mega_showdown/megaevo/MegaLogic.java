@@ -1,21 +1,22 @@
 package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.CustomConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.MegaItem;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -23,13 +24,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -120,9 +121,11 @@ public class MegaLogic {
     }
 
     public static void Evolve(PokemonEntity context, Player player, Boolean fromBattle){
-        if(context.getPokemon().getOwnerPlayer() != player){
+        if(context.getPokemon().getOwnerPlayer() != player || player.level().isClientSide){
             return;
         }
+
+        boolean playerData = player.getData(DataManage.MEGA_DATA);
 
         Pokemon pokemon = context.getPokemon();
         String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
@@ -134,7 +137,7 @@ public class MegaLogic {
         }
 
         if(pokemon.getSpecies().getName().equals("Rayquaza") &&
-                (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
+                (!playerData || Config.multipleMegas)){
             if(Config.friendshipMode && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
                 player.displayClientMessage(Component.translatable("message.mega_showdown.bond_not_close_mega")
                         .withColor(0xFF0000), true);
@@ -159,15 +162,48 @@ public class MegaLogic {
                         .withColor(0xFF0000), true);
             }
             return;
-        }else if(pokemon.getSpecies().getName().equals("Rayquaza") && player.getData(DataManage.MEGA_DATA)){
+        }else if(pokemon.getSpecies().getName().equals("Rayquaza") && playerData){
             player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
                     .withColor(0xFF0000), true);
             return;
         }
 
         if(species == null){
-            player.displayClientMessage(Component.translatable( "message.mega_showdown.incorrect_mega_stone")
-                    .withColor(0xFF0000), true);
+            for(MegaItem megaPok: CustomConfig.megaItems){
+                String[] parts = megaPok.item_id.split(":");
+                ResourceLocation paperId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
+                Item paperItem = BuiltInRegistries.ITEM.get(paperId);
+                if(paperItem == pokemon.heldItem().getItem()
+                        && pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA).value()
+                        == megaPok.custom_model_data){
+                    species = megaPok.pokemon;
+                }
+                if(species == null){
+                    continue;
+                }
+                if(species.equals(pokemon.getSpecies().getName()) && !playerData){
+                    player.setData(DataManage.MEGA_DATA, true);
+                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
+
+                    playEvolveAnimation(context);
+
+                    for(String aspect: megaPok.aspects){
+                        String[] aspectDiv = aspect.split("=");
+                        new StringSpeciesFeature(aspectDiv[0], aspectDiv[1]).apply(pokemon);
+                    }
+                    setTradable(pokemon, false);
+
+                    return;
+                }else if(species.equals(pokemon.getSpecies().getName()) && playerData){
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
+                            .withColor(0xFF0000), true);
+                    return;
+                }else{
+                    player.displayClientMessage(Component.translatable( "message.mega_showdown.incorrect_mega_stone")
+                            .withColor(0xFF0000), true);
+                    return;
+                }
+            }
             return;
         }
 
@@ -178,7 +214,7 @@ public class MegaLogic {
         }
 
         if(species.equals(pokemon.getSpecies().getName()) &&
-                (!player.getData(DataManage.MEGA_DATA) || Config.multipleMegas)){
+                (!playerData || Config.multipleMegas)){
             if(species.equals("Charizard")){
                 if(pokemon.heldItem().is(MegaStones.CHARIZARDITE_X)){
                     player.setData(DataManage.MEGA_DATA, true);
@@ -230,7 +266,7 @@ public class MegaLogic {
 
                 playEvolveAnimation(context);
             }
-        }else if(species.equals(pokemon.getSpecies().getName()) && player.getData(DataManage.MEGA_DATA)){
+        }else if(species.equals(pokemon.getSpecies().getName()) && playerData){
             player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
                     .withColor(0xFF0000), true);
         }else{

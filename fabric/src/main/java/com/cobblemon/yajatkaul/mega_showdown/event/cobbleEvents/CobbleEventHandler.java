@@ -20,17 +20,16 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
-import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.Structure.FormeChange;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.FormeChange;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
@@ -53,13 +52,11 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
 
@@ -459,9 +456,9 @@ public class CobbleEventHandler {
         }
 
         for(FormeChange forme: ShowdownCustomsConfig.formeChange){
-            if(forme.battleModeOnly){
+            if(forme.battle_mode_only){
                 if(forme.pokemons.contains(formeChangeEvent.getPokemon().getEffectedPokemon().getSpecies().getName())
-                        && formeChangeEvent.getFormeName().equals(forme.formName)){
+                        && formeChangeEvent.getFormeName().equals(forme.form_name)){
                     for(String aspects: forme.aspects){
                         String[] aspectsDiv = aspects.split("=");
                         if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
@@ -470,7 +467,7 @@ public class CobbleEventHandler {
                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                         }
                     }
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                    ConfigResults.particleEffect(pokemon.getEntity(), forme.effects, true);
                     break;
                 }
             }

@@ -4,8 +4,11 @@ import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.KeyItemData;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
@@ -15,7 +18,14 @@ import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -26,7 +36,9 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,14 +86,14 @@ public final class MegaShowdown {
 
         ModCreativeModeTabs.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC, "mega_showdown/mega_showdown-common.toml");
         modEventBus.addListener(NetworkHandler::register);
 
         NeoForge.EVENT_BUS.addListener(MegaCommands::register);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerCapabilities);
+        modEventBus.addListener(this::registerDatapackRegistries);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -91,6 +103,7 @@ public final class MegaShowdown {
                     ModBlocks.POTTED_GRACIDEA
             );
         });
+        ConfigResults.registerCustomShowdown();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -107,6 +120,34 @@ public final class MegaShowdown {
         TeraTypeHelper.loadShardData();
         CobbleEvents.register();
     }
+
+    @SubscribeEvent
+    public void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        Player player = event.getEntity();
+        InteractionHand hand = event.getHand();
+        ItemStack itemStack = event.getItemStack();
+        Level level = event.getLevel();
+
+        // Call your custom logic
+        boolean consumed = ConfigResults.useItem(player, level, hand, itemStack);
+
+        if (consumed) {
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+        }
+    }
+
+    public void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+        final ResourceKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
+
+        event.dataPackRegistry(
+                KEY_ITEM_REGISTRY_KEY,
+                KeyItemData.CODEC,
+                KeyItemData.CODEC
+        );
+    }
+
 
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {

@@ -1,16 +1,12 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility;
 
-import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.world.item.Item;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Utils {
     public static final Map<Item, String> MEGA_STONE_IDS = new HashMap<>();
@@ -65,15 +61,53 @@ public class Utils {
         MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), "Diancie");
     }
 
-    public static final Set<String> MEGA_POKEMONS = Set.of(
-            "Venusaur", "Charizard", "Blastoise", "Alakazam", "Gengar", "Kangaskhan", "Pinsir",
-            "Gyarados", "Aerodactyl", "Mewtwo", "Ampharos", "Scizor", "Heracross", "Houndoom",
-            "Tyranitar", "Blaziken", "Gardevoir", "Mawile", "Aggron", "Medicham", "Manectric",
-            "Banette", "Absol", "Latias", "Latios", "Garchomp", "Lucario", "Abomasnow",
-            "Beedrill", "Pidgeot", "Slowbro", "Steelix", "Sceptile", "Swampert", "Sableye",
-            "Sharpedo", "Camerupt", "Altaria", "Glalie", "Salamence", "Metagross", "Lopunny",
-            "Gallade", "Audino", "Diancie"
-    );
+    public static final Set<String> MEGA_POKEMONS = new HashSet<>();;
+    public static final Set<String> GMAX_SPECIES = new HashSet<>();
+
+    public static void addGmaxToMap(){
+        GMAX_SPECIES.add("Venusaur");
+        GMAX_SPECIES.add("Charizard");
+        GMAX_SPECIES.add("Blastoise");
+        GMAX_SPECIES.add("Butterfree");
+        GMAX_SPECIES.add("Pikachu");
+        GMAX_SPECIES.add("Meowth");
+        GMAX_SPECIES.add("Machamp");
+        GMAX_SPECIES.add("Gengar");
+        GMAX_SPECIES.add("Kingler");
+        GMAX_SPECIES.add("Lapras");
+        GMAX_SPECIES.add("Eevee");
+        GMAX_SPECIES.add("Snorlax");
+        GMAX_SPECIES.add("Garbodor");
+        GMAX_SPECIES.add("Melmetal");
+        GMAX_SPECIES.add("Rillaboom");
+        GMAX_SPECIES.add("Cinderace");
+        GMAX_SPECIES.add("Inteleon");
+        GMAX_SPECIES.add("Corviknight");
+        GMAX_SPECIES.add("Orbeetle");
+        GMAX_SPECIES.add("Drednaw");
+        GMAX_SPECIES.add("Coalossal");
+        GMAX_SPECIES.add("Flapple");
+        GMAX_SPECIES.add("Appletun");
+        GMAX_SPECIES.add("Sandaconda");
+        GMAX_SPECIES.add("Toxtricity");
+        GMAX_SPECIES.add("Centiskorch");
+        GMAX_SPECIES.add("Hatterene");
+        GMAX_SPECIES.add("Grimmsnarl");
+        GMAX_SPECIES.add("Alcremie");
+        GMAX_SPECIES.add("Copperajah");
+        GMAX_SPECIES.add("Duraludon");
+    }
+    public static void addMegaList() {
+        Collections.addAll(MEGA_POKEMONS,
+                "Venusaur", "Charizard", "Blastoise", "Alakazam", "Gengar", "Kangaskhan", "Pinsir",
+                "Gyarados", "Aerodactyl", "Mewtwo", "Ampharos", "Scizor", "Heracross", "Houndoom",
+                "Tyranitar", "Blaziken", "Gardevoir", "Mawile", "Aggron", "Medicham", "Manectric",
+                "Banette", "Absol", "Latias", "Latios", "Garchomp", "Lucario", "Abomasnow",
+                "Beedrill", "Pidgeot", "Slowbro", "Steelix", "Sceptile", "Swampert", "Sableye",
+                "Sharpedo", "Camerupt", "Altaria", "Glalie", "Salamence", "Metagross", "Lopunny",
+                "Gallade", "Audino", "Diancie"
+        );
+    }
 
     public static void megaStonesRegister(){
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABSOLITE.asItem(), "Absolite");

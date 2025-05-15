@@ -5,9 +5,10 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.Structure.FormeChange;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.FormeChange;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +20,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class EventUtils {
-    public static void revertFormesEnd(Pokemon pokemon){
+    public static void revertFormesEnd(Pokemon pokemon, boolean joinedEvent){
         if(pokemon.getEntity() != null){
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
             DynamaxEventLogic.startGradualScaling(pokemon.getEntity(), 1.0f);
@@ -30,8 +31,14 @@ public class EventUtils {
             pk.setTeraEnabled(false);
         }
 
-        if(ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get() && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
-            MegaLogic.Devolve(pokemon, true);
+        if(!joinedEvent){
+            if(ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get() && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
+                MegaLogic.Devolve(pokemon, true);
+            }
+        }else{
+            if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
+                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
+            }
         }
 
         if(pokemon.getSpecies().getName().equals("Castform")){
@@ -76,9 +83,9 @@ public class EventUtils {
         }
 
         for(FormeChange forme: ShowdownCustomsConfig.formeChange){
-            if(forme.battleModeOnly){
+            if(forme.battle_mode_only){
                 if(forme.pokemons.contains(pokemon.getSpecies().getName())){
-                    for(String aspects: forme.default_aspect_values){
+                    for(String aspects: forme.default_aspects){
                         String[] aspectsDiv = aspects.split("=");
                         if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                             new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -86,6 +93,7 @@ public class EventUtils {
                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                         }
                     }
+                    ConfigResults.particleEffect(pokemon.getEntity(), forme.effects, false);
                 }
             }
         }

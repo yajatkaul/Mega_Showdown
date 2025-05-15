@@ -1,31 +1,23 @@
 package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.mod.common.pokemon.Species;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.Structure.MegaItem;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.MegaItem;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -40,7 +32,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -141,47 +132,7 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = (context).getPokemon();
-        String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem());
-        if(species == null){
-            for(MegaItem megaPok: ShowdownCustomsConfig.megaItems){
-                String[] parts = megaPok.item_id.split(":");
-                Identifier paperId = Identifier.of(parts[0], parts[1]);
-                Item paperItem = Registries.ITEM.get(paperId);
-                if(paperItem == pokemon.heldItem().getItem()
-                        && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                        == megaPok.custom_model_data){
-                    species = megaPok.pokemon;
-                }
-                if(species == null){
-                    continue;
-                }
-                if(species.equals(pokemon.getSpecies().getName()) && !playerData){
-                    player.setAttached(DataManage.MEGA_DATA, true);
-                    player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
-
-                    playEvolveAnimation(context);
-
-                    for(String aspect: megaPok.aspects){
-                        String[] aspectDiv = aspect.split("=");
-                        new StringSpeciesFeature(aspectDiv[0], aspectDiv[1]).apply(pokemon);
-                    }
-                    setTradable(pokemon, false);
-
-                    return;
-                }else if(species.equals(pokemon.getSpecies().getName()) && playerData){
-                    player.sendMessage(
-                            Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
-                }else{
-                    player.sendMessage(
-                            Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
-                }
-            }
-
-        }
+        String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
         if(context instanceof PokemonEntity pk && (pk.isBattling() && !fromBattle)){
             player.sendMessage(
@@ -230,10 +181,45 @@ public class MegaLogic {
         }
 
         if(species == null){
-            player.sendMessage(
-                    Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
+            for(MegaItem megaPok: ShowdownCustomsConfig.megaItems){
+                String[] parts = megaPok.item_id.split(":");
+                Identifier paperId = Identifier.of(parts[0], parts[1]);
+                Item paperItem = Registries.ITEM.get(paperId);
+                if(paperItem == pokemon.heldItem().getItem()
+                        && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
+                        == megaPok.custom_model_data){
+                    species = megaPok.pokemon;
+                }
+                if(species == null){
+                    continue;
+                }
+                if(species.equals(pokemon.getSpecies().getName()) && !playerData){
+                    player.setAttached(DataManage.MEGA_DATA, true);
+                    player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
+
+                    playEvolveAnimation(context);
+
+                    for(String aspect: megaPok.aspects){
+                        String[] aspectDiv = aspect.split("=");
+                        new StringSpeciesFeature(aspectDiv[0], aspectDiv[1]).apply(pokemon);
+                    }
+                    setTradable(pokemon, false);
+
+                    return;
+                }else if(species.equals(pokemon.getSpecies().getName()) && playerData){
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return;
+                }else{
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return;
+                }
+            }
             return;
         }
 
@@ -245,7 +231,6 @@ public class MegaLogic {
             return;
         }
 
-        //Multiple megas
         if(species.equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
             if(species.equals("Charizard")){
                 if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_X)){

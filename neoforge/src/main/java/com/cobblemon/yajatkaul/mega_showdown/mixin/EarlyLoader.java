@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.mixin;
 
 import com.cobblemon.mod.common.battles.ShowdownThread;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

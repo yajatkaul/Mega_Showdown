@@ -11,41 +11,41 @@ import net.minecraft.util.Identifier;
 
 public class EvoPacket implements CustomPayload{
     private static final Identifier PACKET_ID = Identifier.of(MegaShowdown.MOD_ID, "mega_evo");
-    public static final CustomPayload.Id<com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket> MEGA_EVO = new CustomPayload.Id<>(PACKET_ID);
+    public static final CustomPayload.Id<EvoPacket> MEGA_EVO = new CustomPayload.Id<>(PACKET_ID);
 
     // Add constructor - can be empty since we don't need to send any data
     public EvoPacket() {
     }
 
     // Factory method to create new instances
-    public static com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket create() {
-        return new com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket();
+    public static EvoPacket create() {
+        return new EvoPacket();
     }
 
-    public static final PacketCodec<PacketByteBuf, com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket> CODEC = new PacketCodec<>() {
+    public static final PacketCodec<PacketByteBuf, EvoPacket> CODEC = new PacketCodec<>() {
         @Override
-        public void encode(PacketByteBuf buf, com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket packet) {
+        public void encode(PacketByteBuf buf, EvoPacket packet) {
             // No data to write
         }
 
         @Override
-        public com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket decode(PacketByteBuf buf) {
-            return new com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket();
+        public EvoPacket decode(PacketByteBuf buf) {
+            return new EvoPacket();
         }
     };
 
-    public static ServerPlayNetworking.PlayPayloadHandler<com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket> recieve() {
+    public static ServerPlayNetworking.PlayPayloadHandler<EvoPacket> recieve() {
         return (server, player) -> {
             MegaLogic.EvoLogic(player.player());
         };
     }
 
     @Override
-    public Id<com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket> getId() {
+    public Id<EvoPacket> getId() {
         return MEGA_EVO;
     }
 
     public static void send() {
-        ClientPlayNetworking.send(new com.cobblemon.yajatkaul.mega_showdown.networking.packets.EvoPacket());
+        ClientPlayNetworking.send(new EvoPacket());
     }
 }

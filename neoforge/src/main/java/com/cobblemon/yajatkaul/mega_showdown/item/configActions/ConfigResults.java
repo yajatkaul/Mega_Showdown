@@ -9,35 +9,35 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
 import com.cobblemon.yajatkaul.mega_showdown.config.structure.*;
 import com.cobblemon.yajatkaul.mega_showdown.config.structure.abstracts.Effects;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.CustomModelDataComponent;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.registry.Registries;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomModelData;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
@@ -47,15 +47,13 @@ public class ConfigResults {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 1000; // 1 sec
 
-    public static boolean Possible(ServerPlayerEntity player){
-        UUID playerId = player.getUuid();
+    public static boolean Possible(ServerPlayer player){
+        UUID playerId = player.getUUID();
         long currentTime = System.currentTimeMillis();
 
         if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
-            player.sendMessage(
-                    Text.translatable("message.mega_showdown.not_so_fast").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
+            player.displayClientMessage(Component.translatable("message.mega_showdown.not_so_fast")
+                    .withColor(0xFF0000), true);
             return false;
         }
 
@@ -64,30 +62,121 @@ public class ConfigResults {
         return true;
     }
 
-    public static TypedActionResult<ItemStack> useItem(PlayerEntity player, World world, Hand hand){
-        ItemStack itemStack = player.getStackInHand(hand);
-        if(world.isClient || player.isCrawling()){
-            return TypedActionResult.pass(itemStack);
+    public static void registerCustomShowdown(){
+        CustomConfig.load();
+        Utils.GMAX_SPECIES.clear();
+        Utils.addGmaxToMap();
+        Utils.MEGA_POKEMONS.clear();
+        Utils.addMegaList();
+        Utils.MEGA_STONE_IDS.clear();
+        Utils.loadMegaStoneIds();
+        MegaCommands.VALID_ITEMS.clear();
+
+        //MEGA
+        for(MegaItem pokemon: CustomConfig.megaItems){
+            //COMMAND UTILS
+            MegaCommands.VALID_ITEMS.add(pokemon.msd_id);
+            //
+
+            Utils.MEGA_POKEMONS.add(pokemon.pokemon);
+            String[] parts = pokemon.item_id.split(":");
+            ResourceLocation custom_stone_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
+            Item customStone = BuiltInRegistries.ITEM.get(custom_stone_item_id);
+
+            CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
+                if (stack.getItem().equals(customStone) &&
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data) {
+                    return pokemon.showdown_id;
+                }
+                return null;
+            });
+        }
+
+        //HELD ITEMS
+        for(HeldItem items: CustomConfig.heldItems){
+            //COMMAND UTILS
+            MegaCommands.VALID_ITEMS.add(items.msd_id);
+            //
+
+            String[] parts = items.item_id.split(":");
+            ResourceLocation custom_held_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
+            Item customHeldItem = BuiltInRegistries.ITEM.get(custom_held_item_id);
+
+            CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
+                if (stack.getItem().equals(customHeldItem) &&
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data) {
+                    return items.showdown_id;
+                }
+                return null;
+            });
+        }
+
+        //BATTLE ONLY FORME CHANGE
+        for(FormeChange items: CustomConfig.formeChange){
+            //COMMAND UTILS
+            MegaCommands.VALID_ITEMS.add(items.msd_id);
+            //
+
+            if(items.battle_mode_only){
+                String[] parts = items.item_id.split(":");
+                ResourceLocation custom_held_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
+                Item customHeldItem = BuiltInRegistries.ITEM.get(custom_held_item_id);
+
+                CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
+                    if (stack.getItem().equals(customHeldItem) &&
+                            stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                            stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data) {
+                        return items.showdown_id;
+                    }
+                    return null;
+                });
+            }
+        }
+
+        //GMAX
+        for(Gmax pokemon: CustomConfig.gmax){
+            Utils.GMAX_SPECIES.add(pokemon.pokemon);
+        }
+
+        //FUSIONS
+        for(Fusion fusion: CustomConfig.fusionItems){
+            MegaCommands.VALID_ITEMS.add(fusion.msd_id);
+        }
+
+        //KEY ITEMS
+        for(KeyItems keyItems: CustomConfig.keyItems){
+            MegaCommands.VALID_ITEMS.add(keyItems.msd_id);
+        }
+    }
+
+    public static boolean useItem(Player player, Level level, InteractionHand hand, ItemStack itemStack) {
+        if(level.isClientSide || player.isCrouching()){
+            return false;
         }
         if (!itemStack.isEmpty()) {
-            CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
-            for(Fusion fusion: ShowdownCustomsConfig.fusionItems){
+            CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
+            for(Fusion fusion: CustomConfig.fusionItems){
                 if(nbt != null && fusion.custom_model_data == nbt.value()){
-                    EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
+                    EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();
 
                         if (!(context instanceof PokemonEntity pk)) {
-                            return TypedActionResult.pass(itemStack);
+                            return false;
                         }
 
                         Pokemon pokemon = pk.getPokemon();
                         if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
-                            return TypedActionResult.pass(itemStack);
+                            return false;
                         }
 
-                        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
-                        Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+                        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                        Pokemon currentValue = null;
+                        if(itemStack.get(DataManage.POKEMON_STORAGE) != null){
+                            currentValue = itemStack.get(DataManage.POKEMON_STORAGE).getPokemon();
+                        }
 
                         if (checkEnabled(fusion ,pokemon) && fusion.fusion_mon.contains(pokemon.getSpecies().getName())) {
                             if(!fusion.required_aspects_fusion_mon.isEmpty()){
@@ -117,16 +206,14 @@ public class ConfigResults {
                                 }
 
                                 if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
+                                    return false;
                                 }
                             }
 
                             if (itemStack.get(DataManage.POKEMON_STORAGE) != null) {
-                                player.sendMessage(
-                                        Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                                        true
-                                );
-                                return TypedActionResult.success(itemStack);
+                                player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
+                                        .withColor(0xFF0000), true);
+                                return false;
                             }
 
                             particleEffect(pk, fusion.effects, false);
@@ -143,18 +230,18 @@ public class ConfigResults {
                                 setTradable(pokemon, true);
                             }
 
-                            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
                             if(map == null){
                                 map = new HashMap<>();
                             }
                             Pokemon toAdd = map.get(pokemon.getUuid());
                             playerPartyStore.add(toAdd);
                             map.remove(pokemon.getUuid());
-                            player.setAttached(DataManage.DATA_MAP, map);
+                            player.setData(DataManage.DATA_MAP, map);
 
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
-                            itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.custom.inactive"));
-                            return TypedActionResult.success(itemStack);
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.custom.inactive"));
+                            return true;
                         } else if (currentValue != null && fusion.fusion_mon.contains(pokemon.getSpecies().getName())) {
                             if(!fusion.required_aspects_fusion_mon.isEmpty()){
                                 List<String> aspectList = new ArrayList<>();
@@ -183,7 +270,7 @@ public class ConfigResults {
                                 }
 
                                 if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
+                                    return false;
                                 }
                             }
 
@@ -201,16 +288,16 @@ public class ConfigResults {
                                 setTradable(pokemon, false);
                             }
 
-                            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
                             if (map == null) {
                                 map = new HashMap<>();
                             }
                             map.put(pokemon.getUuid(), currentValue);
-                            player.setAttached(DataManage.DATA_MAP, map);
+                            player.setData(DataManage.DATA_MAP, map);
 
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
-                            itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
-                            return TypedActionResult.success(itemStack);
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
+                            return true;
                         } else if (currentValue == null && fusion.fuse_with_mon.contains(pokemon.getSpecies().getName())) {
                             if(!fusion.required_aspects_fuse_with_mon.isEmpty()){
                                 List<String> aspectList = new ArrayList<>();
@@ -239,34 +326,34 @@ public class ConfigResults {
                                 }
 
                                 if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
+                                    return false;
                                 }
                             }
 
-                            itemStack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
+                            itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
                             playerPartyStore.remove(pk.getPokemon());
-                            itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.charged"));
-                            return TypedActionResult.success(itemStack);
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
+                            return true;
                         }
 
-                        player.setStackInHand(hand, itemStack);
+                        player.setItemInHand(hand, itemStack);
                     }
                 }
             }
 
-            for(KeyItems keyItems: ShowdownCustomsConfig.keyItems){
+            for(KeyItems keyItems: CustomConfig.keyItems){
                 if(nbt != null && keyItems.custom_model_data == nbt.value()) {
-                    EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
+                    EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();
 
                         if (!(context instanceof PokemonEntity pk)) {
-                            return TypedActionResult.pass(itemStack);
+                            return false;
                         }
 
                         Pokemon pokemon = pk.getPokemon();
                         if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
-                            return TypedActionResult.pass(itemStack);
+                            return false;
                         }
 
                         if(keyItems.pokemons.contains(pokemon.getSpecies().getName())){
@@ -297,12 +384,12 @@ public class ConfigResults {
                                 }
 
                                 if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
+                                    return false;
                                 }
                             }
 
-                            if(!Possible((ServerPlayerEntity) player)){
-                                return TypedActionResult.pass(itemStack);
+                            if(!Possible((ServerPlayer) player)){
+                                return false;
                             }
 
                             if (keyItems.toggle_aspects.isEmpty()) {
@@ -405,96 +492,7 @@ public class ConfigResults {
             }
         }
 
-        return TypedActionResult.pass(itemStack);
-    }
-
-    public static void registerCustomShowdown(){
-        ShowdownCustomsConfig.load();
-        Utils.GMAX_SPECIES.clear();
-        Utils.addGmaxToMap();
-        Utils.MEGA_POKEMONS.clear();
-        Utils.addMegaList();
-        Utils.MEGA_STONE_IDS.clear();
-        Utils.loadMegaStoneIds();
-        MegaCommands.VALID_ITEMS.clear();
-
-        //MEGA
-        for(MegaItem pokemon: ShowdownCustomsConfig.megaItems){
-            //COMMAND UTILS
-                MegaCommands.VALID_ITEMS.add(pokemon.msd_id);
-            //
-
-            Utils.MEGA_POKEMONS.add(pokemon.pokemon);
-            String[] parts = pokemon.item_id.split(":");
-            Identifier custom_stone_item_id = Identifier.of(parts[0], parts[1]);
-            Item customStone = Registries.ITEM.get(custom_stone_item_id);
-
-            CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                if (stack.getItem().equals(customStone) &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data) {
-                    return pokemon.showdown_id;
-                }
-                return null;
-            });
-        }
-
-        //HELD ITEMS
-        for(HeldItem items: ShowdownCustomsConfig.heldItems){
-            //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id);
-            //
-
-            String[] parts = items.item_id.split(":");
-            Identifier custom_held_item_id = Identifier.of(parts[0], parts[1]);
-            Item customHeldItem = Registries.ITEM.get(custom_held_item_id);
-
-            CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                if (stack.getItem().equals(customHeldItem) &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data) {
-                    return items.showdown_id;
-                }
-                return null;
-            });
-        }
-
-        //BATTLE ONLY FORME CHANGE
-        for(FormeChange items: ShowdownCustomsConfig.formeChange){
-            //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id);
-            //
-
-            if(items.battle_mode_only){
-                String[] parts = items.item_id.split(":");
-                Identifier custom_held_item_id = Identifier.of(parts[0], parts[1]);
-                Item customHeldItem = Registries.ITEM.get(custom_held_item_id);
-
-                CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                    if (stack.getItem().equals(customHeldItem) &&
-                            stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                            stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data) {
-                        return items.showdown_id;
-                    }
-                    return null;
-                });
-            }
-        }
-
-        //GMAX
-        for(Gmax pokemon: ShowdownCustomsConfig.gmax){
-            Utils.GMAX_SPECIES.add(pokemon.pokemon);
-        }
-
-        //FUSIONS
-        for(Fusion fusion: ShowdownCustomsConfig.fusionItems){
-            MegaCommands.VALID_ITEMS.add(fusion.msd_id);
-        }
-
-        //KEY ITEMS
-        for(KeyItems keyItems: ShowdownCustomsConfig.keyItems){
-            MegaCommands.VALID_ITEMS.add(keyItems.msd_id);
-        }
+        return false;
     }
 
 
@@ -513,23 +511,26 @@ public class ConfigResults {
         return false;
     }
 
-    public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
-        Vec3d eyePos = player.getEyePos();
-        Vec3d lookVec = player.getRotationVec(1.0F);
-        Vec3d targetPos = eyePos.add(lookVec.multiply(distance));
+    public static EntityHitResult getEntityLookingAt(Player player, float distance) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 lookVec = player.getViewVector(1.0F);
+        Vec3 targetPos = eyePos.add(lookVec.scale(distance));
 
-        return ProjectileUtil.raycast(
+        AABB rayTraceBox = new AABB(eyePos, targetPos);
+
+        return ProjectileUtil.getEntityHitResult(
+                player.level(),
                 player,
                 eyePos,
                 targetPos,
-                player.getBoundingBox().stretch(lookVec.multiply(distance)).expand(1.0, 1.0, 1.0),
-                entity -> !entity.isSpectator() && entity.canHit() && entity instanceof LivingEntity,
-                distance * distance
+                rayTraceBox, // Use the ray trace box directly
+                entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
+                0.3f // Smaller collision expansion value for more precise detection
         );
     }
 
     public static void particleEffect(LivingEntity context, Effects effects, Boolean apply) {
-        if (context.getWorld() instanceof ServerWorld serverWorld) {
+        if (context.level() instanceof ServerLevel serverLevel) {
             String[] partsParticle;
             String[] partsSound;
             if(apply){
@@ -539,21 +540,17 @@ public class ConfigResults {
                 partsParticle = effects.particle_revert.split(":");
                 partsSound = effects.sound_revert.split(":");
             }
-            Identifier custom_particle_id = Identifier.of(partsParticle[0], partsParticle[1]);
-            ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(custom_particle_id);
+            ResourceLocation custom_particle_id = ResourceLocation.fromNamespaceAndPath(partsParticle[0], partsParticle[1]);
+            ParticleType<?> particleType = BuiltInRegistries.PARTICLE_TYPE.get(custom_particle_id);
 
-            Identifier custom_sound_id = Identifier.of(partsSound[0], partsSound[1]);
-            SoundEvent soundEvent = Registries.SOUND_EVENT.get(custom_sound_id);
+            ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
+            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
 
-            Vec3d entityPos = context.getPos();
+            Vec3 entityPos = context.position(); // Get entity position
 
-            double entityWidth = context.getWidth();
-            double entityHeight = context.getHeight();
-
-            double scaleFactor = apply ? effects.particle_apply_amplifier : effects.particle_revert_amplifier;
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityWidth * scaleFactor;
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
 
             if(soundEvent == null){
                 if(apply && !effects.sound_apply.isEmpty()){
@@ -566,29 +563,33 @@ public class ConfigResults {
                             , effects.sound_revert);
                 }
             }else {
-                serverWorld.playSound(
+                serverLevel.playSound(
                         null, entityPos.x, entityPos.y, entityPos.z,
-                        soundEvent,
-                        SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+                        soundEvent, // Change this if needed
+                        SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
                 );
             }
 
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight);
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
 
-            if(particleType instanceof ParticleEffect particle){
+
+            if(particleType instanceof ParticleOptions particle){
                 for (int i = 0; i < particleCount; i++) {
-                    double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                    double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                    double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+                    double angle = Math.random() * 2 * Math.PI;
+                    double xOffset = Math.cos(angle) * radius;
+                    double zOffset = Math.sin(angle) * radius;
+                    double yOffset = Math.random() * entityHeight; // Spread particles vertically
 
-                    serverWorld.spawnParticles(
-                            particle,
+                    serverLevel.sendParticles(
+                            particle, // Change this to any particle type
                             entityPos.x + xOffset,
                             entityPos.y + yOffset,
                             entityPos.z + zOffset,
-                            1,
-                            0, 0, 0,
-                            0.1
+                            1, // One particle per call for better spread
+                            0, 0, 0, // No movement velocity
+                            0.1 // Slight motion
                     );
                 }
             }else {

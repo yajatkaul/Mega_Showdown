@@ -1,19 +1,22 @@
-package com.cobblemon.yajatkaul.mega_showdown.config;
+package com.cobblemon.yajatkaul.mega_showdown.config.structure;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.*;
 import com.google.gson.*;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.registry.Registries;
+import net.neoforged.fml.loading.FMLPaths;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowdownCustomsConfig {
-
+public class CustomConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "mega_showdown/mega_showdown-customs.json");
+    private static final File CONFIG_FILE;
+
+    static {
+        Path configDir = FMLPaths.CONFIGDIR.get(); // NeoForge's way to get config dir
+        CONFIG_FILE = new File(configDir.toFile(), "mega_showdown/mega_showdown-customs.json");
+    }
 
     private static final String DEFAULT_JSON = "{ \"items\": [] }";
 

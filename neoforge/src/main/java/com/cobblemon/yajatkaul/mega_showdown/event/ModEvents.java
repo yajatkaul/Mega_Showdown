@@ -3,16 +3,16 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.BattleRegistry;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.CustomConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
-import com.cobblemon.yajatkaul.mega_showdown.mixin.LootPoolAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MSDCustomPacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -34,8 +34,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
 import net.minecraft.world.level.storage.loot.*;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -125,6 +123,19 @@ public class ModEvents {
     private static void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
         if(!playerLoggedInEvent.getEntity().level().isClientSide){
             ServerPlayer player = (ServerPlayer) playerLoggedInEvent.getEntity();
+
+            //SYNC CUSTOMS
+            MSDCustomPacket packet = new MSDCustomPacket(
+                    CustomConfig.fusionItems,
+                    CustomConfig.formeChange,
+                    CustomConfig.heldItems,
+                    CustomConfig.megaItems,
+                    CustomConfig.gmax,
+                    CustomConfig.keyItems
+            );
+
+            player.connection.send(packet);
+
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {

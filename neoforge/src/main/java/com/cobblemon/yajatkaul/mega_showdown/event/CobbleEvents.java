@@ -2,7 +2,6 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.RevertEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;

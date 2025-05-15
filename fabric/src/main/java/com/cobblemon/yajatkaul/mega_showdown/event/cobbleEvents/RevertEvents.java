@@ -39,10 +39,10 @@ public class RevertEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             checkKeldeo(playerPartyStore);
             for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon);
+                EventUtils.revertFormesEnd(pokemon, false);
             }
 
-            if (ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get()) {
+            if ((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && !ShowdownConfig.multipleMegas.get()) {
                 player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), "/msdresetmega");
             }
 
@@ -130,7 +130,7 @@ public class RevertEvents {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                EventUtils.revertFormesEnd(pokemon);
+                EventUtils.revertFormesEnd(pokemon, false);
 
                 if(pokemon.getEntity() != null){
                     pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
@@ -160,7 +160,7 @@ public class RevertEvents {
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                EventUtils.revertFormesEnd(pokemon);
+                EventUtils.revertFormesEnd(pokemon, false);
 
                 if(pokemon.getEntity() != null){
                     pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);

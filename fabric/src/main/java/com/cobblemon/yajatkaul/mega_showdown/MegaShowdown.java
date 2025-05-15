@@ -4,7 +4,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.BlockRegister;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
@@ -12,7 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.TrinketEvent;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.networking.BattleNetwork;
+import com.cobblemon.yajatkaul.mega_showdown.networking.PacketRegister;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
@@ -48,7 +47,7 @@ public class MegaShowdown implements ModInitializer {
 
         DataManage.registerDataComponentTypes();
 
-        BattleNetwork.registerC2SPackets();
+        PacketRegister.registerC2SPackets();
 
         Reflection.initialize(ShowdownConfig.class);
 
@@ -64,9 +63,8 @@ public class MegaShowdown implements ModInitializer {
                 ResourcePackActivationType.NORMAL
         );
 
-        ShowdownCustomsConfig.load();
-
-        UseItemCallback.EVENT.register((player, world, hand) -> ConfigResults.useItem(player, world, hand));
+        ConfigResults.registerCustomShowdown();
+        UseItemCallback.EVENT.register(ConfigResults::useItem);
     }
 
     private void onServerStarted(MinecraftServer server) {
@@ -75,6 +73,5 @@ public class MegaShowdown implements ModInitializer {
 
         CobbleEvents.register();
         TrinketEvent.register();
-        ConfigResults.registerCustomShowdown();
     }
 }

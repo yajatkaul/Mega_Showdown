@@ -3,21 +3,19 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.CustomConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.structure.FormeChange;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
@@ -77,6 +75,22 @@ public class EventUtils {
             new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Zygarde")) {
             new FlagSpeciesFeature("complete-percent", false).apply(pokemon);
+        }
+
+        for(FormeChange forme: CustomConfig.formeChange){
+            if(forme.battle_mode_only){
+                if(forme.pokemons.contains(pokemon.getSpecies().getName())){
+                    for(String aspects: forme.default_aspects){
+                        String[] aspectsDiv = aspects.split("=");
+                        if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                            new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                        }else{
+                            new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                        }
+                    }
+                    ConfigResults.particleEffect(pokemon.getEntity(), forme.effects, false);
+                }
+            }
         }
     }
 

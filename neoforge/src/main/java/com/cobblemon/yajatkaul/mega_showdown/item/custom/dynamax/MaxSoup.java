@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -22,42 +23,6 @@ import java.util.List;
 import java.util.Set;
 
 public class MaxSoup extends Item {
-    private static final Set<String> GMAX_SPECIES = new HashSet<>();
-
-    static {
-        GMAX_SPECIES.add("Venusaur");
-        GMAX_SPECIES.add("Charizard");
-        GMAX_SPECIES.add("Blastoise");
-        GMAX_SPECIES.add("Butterfree");
-        GMAX_SPECIES.add("Pikachu");
-        GMAX_SPECIES.add("Meowth");
-        GMAX_SPECIES.add("Machamp");
-        GMAX_SPECIES.add("Gengar");
-        GMAX_SPECIES.add("Kingler");
-        GMAX_SPECIES.add("Lapras");
-        GMAX_SPECIES.add("Eevee");
-        GMAX_SPECIES.add("Snorlax");
-        GMAX_SPECIES.add("Garbodor");
-        GMAX_SPECIES.add("Melmetal");
-        GMAX_SPECIES.add("Rillaboom");
-        GMAX_SPECIES.add("Cinderace");
-        GMAX_SPECIES.add("Inteleon");
-        GMAX_SPECIES.add("Corviknight");
-        GMAX_SPECIES.add("Orbeetle");
-        GMAX_SPECIES.add("Drednaw");
-        GMAX_SPECIES.add("Coalossal");
-        GMAX_SPECIES.add("Flapple");
-        GMAX_SPECIES.add("Appletun");
-        GMAX_SPECIES.add("Sandaconda");
-        GMAX_SPECIES.add("Toxtricity");
-        GMAX_SPECIES.add("Centiskorch");
-        GMAX_SPECIES.add("Hatterene");
-        GMAX_SPECIES.add("Grimmsnarl");
-        GMAX_SPECIES.add("Alcremie");
-        GMAX_SPECIES.add("Copperajah");
-        GMAX_SPECIES.add("Duraludon");
-    }
-
     public MaxSoup(Properties arg) {
         super(arg);
     }
@@ -74,7 +39,7 @@ public class MaxSoup extends Item {
                 return InteractionResult.PASS;
             }
 
-            if(!GMAX_SPECIES.contains(pokemon.getSpecies().getName())){
+            if(!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())){
                 return InteractionResult.PASS;
             }
 

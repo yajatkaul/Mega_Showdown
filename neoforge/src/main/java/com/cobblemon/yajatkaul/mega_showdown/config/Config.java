@@ -1,5 +1,6 @@
-package com.cobblemon.yajatkaul.mega_showdown;
+package com.cobblemon.yajatkaul.mega_showdown.config;
 
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
@@ -81,7 +82,7 @@ public class Config
             .comment("Enable/Disable mega pokemons form reverting when battle starts")
             .define("revertMegas", true);
 
-    static final ModConfigSpec SPEC = BUILDER.build();
+    public static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean multipleMegas;
     public static boolean battleModeOnly;
