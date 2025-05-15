@@ -5,10 +5,9 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.MegaItem;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -181,14 +180,14 @@ public class MegaLogic {
         }
 
         if(species == null){
-            for(MegaItem megaPok: ShowdownCustomsConfig.megaItems){
-                String[] parts = megaPok.item_id.split(":");
+            for(MegaData megaPok: Utils.megaRegistry){
+                String[] parts = megaPok.item_id().split(":");
                 Identifier paperId = Identifier.of(parts[0], parts[1]);
                 Item paperItem = Registries.ITEM.get(paperId);
                 if(paperItem == pokemon.heldItem().getItem()
                         && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                        == megaPok.custom_model_data){
-                    species = megaPok.pokemon;
+                        == megaPok.custom_model_data()){
+                    species = megaPok.pokemon();
                 }
                 if(species == null){
                     continue;
@@ -199,7 +198,7 @@ public class MegaLogic {
 
                     playEvolveAnimation(context);
 
-                    for(String aspect: megaPok.aspects){
+                    for(String aspect: megaPok.aspects()){
                         String[] aspectDiv = aspect.split("=");
                         new StringSpeciesFeature(aspectDiv[0], aspectDiv[1]).apply(pokemon);
                     }

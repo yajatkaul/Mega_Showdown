@@ -9,17 +9,18 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.*;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.abstracts.Effects;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -63,7 +64,6 @@ public class ConfigResults {
     }
 
     public static void registerCustomShowdown(){
-        CustomConfig.load();
         Utils.GMAX_SPECIES.clear();
         Utils.addGmaxToMap();
         Utils.MEGA_POKEMONS.clear();
@@ -73,62 +73,62 @@ public class ConfigResults {
         MegaCommands.VALID_ITEMS.clear();
 
         //MEGA
-        for(MegaItem pokemon: CustomConfig.megaItems){
+        for(MegaData pokemon: Utils.megaRegistry){
             //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(pokemon.msd_id);
+            MegaCommands.VALID_ITEMS.add(pokemon.msd_id());
             //
 
-            Utils.MEGA_POKEMONS.add(pokemon.pokemon);
-            String[] parts = pokemon.item_id.split(":");
+            Utils.MEGA_POKEMONS.add(pokemon.pokemon());
+            String[] parts = pokemon.item_id().split(":");
             ResourceLocation custom_stone_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
             Item customStone = BuiltInRegistries.ITEM.get(custom_stone_item_id);
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customStone) &&
                         stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data) {
-                    return pokemon.showdown_id;
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data()) {
+                    return pokemon.showdown_id();
                 }
                 return null;
             });
         }
 
         //HELD ITEMS
-        for(HeldItem items: CustomConfig.heldItems){
+        for(HeldItemData items: Utils.heldItemsRegistry){
             //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id);
+            MegaCommands.VALID_ITEMS.add(items.msd_id());
             //
 
-            String[] parts = items.item_id.split(":");
+            String[] parts = items.item_id().split(":");
             ResourceLocation custom_held_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
             Item customHeldItem = BuiltInRegistries.ITEM.get(custom_held_item_id);
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customHeldItem) &&
                         stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data) {
-                    return items.showdown_id;
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) {
+                    return items.showdown_id();
                 }
                 return null;
             });
         }
 
         //BATTLE ONLY FORME CHANGE
-        for(FormeChange items: CustomConfig.formeChange){
+        for(FormChangeData items: Utils.formChangeRegistry){
             //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id);
+            MegaCommands.VALID_ITEMS.add(items.msd_id());
             //
 
-            if(items.battle_mode_only){
-                String[] parts = items.item_id.split(":");
+            if(items.battle_mode_only()){
+                String[] parts = items.item_id().split(":");
                 ResourceLocation custom_held_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
                 Item customHeldItem = BuiltInRegistries.ITEM.get(custom_held_item_id);
 
                 CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                     if (stack.getItem().equals(customHeldItem) &&
                             stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                            stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data) {
-                        return items.showdown_id;
+                            stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) {
+                        return items.showdown_id();
                     }
                     return null;
                 });
@@ -136,18 +136,18 @@ public class ConfigResults {
         }
 
         //GMAX
-        for(Gmax pokemon: CustomConfig.gmax){
-            Utils.GMAX_SPECIES.add(pokemon.pokemon);
+        for(GmaxData pokemon: Utils.gmaxRegistry){
+            Utils.GMAX_SPECIES.add(pokemon.pokemon());
         }
 
         //FUSIONS
-        for(Fusion fusion: CustomConfig.fusionItems){
-            MegaCommands.VALID_ITEMS.add(fusion.msd_id);
+        for(FusionData fusion: Utils.fusionRegistry){
+            MegaCommands.VALID_ITEMS.add(fusion.msd_id());
         }
 
         //KEY ITEMS
-        for(KeyItems keyItems: CustomConfig.keyItems){
-            MegaCommands.VALID_ITEMS.add(keyItems.msd_id);
+        for(KeyItemData keyItem: Utils.keyItemsRegistry){
+            MegaCommands.VALID_ITEMS.add(keyItem.msd_id());
         }
     }
 
@@ -157,8 +157,8 @@ public class ConfigResults {
         }
         if (!itemStack.isEmpty()) {
             CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
-            for(Fusion fusion: CustomConfig.fusionItems){
-                if(nbt != null && fusion.custom_model_data == nbt.value()){
+            for(FusionData fusion: Utils.fusionRegistry){
+                if(nbt != null && fusion.custom_model_data() == nbt.value()){
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();
@@ -178,10 +178,10 @@ public class ConfigResults {
                             currentValue = itemStack.get(DataManage.POKEMON_STORAGE).getPokemon();
                         }
 
-                        if (checkEnabled(fusion ,pokemon) && fusion.fusion_mon.contains(pokemon.getSpecies().getName())) {
-                            if(!fusion.required_aspects_fusion_mon.isEmpty()){
+                        if (checkEnabled(fusion ,pokemon) && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
+                            if(!fusion.required_aspects_fusion_mon().isEmpty()){
                                 List<String> aspectList = new ArrayList<>();
-                                for (String aspects : fusion.required_aspects_fusion_mon) {
+                                for (String aspects : fusion.required_aspects_fusion_mon()) {
                                     String[] aspectDiv = aspects.split("=");
                                     if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
                                         aspectList.add(aspectDiv[0]);
@@ -216,9 +216,9 @@ public class ConfigResults {
                                 return false;
                             }
 
-                            particleEffect(pk, fusion.effects, false);
+                            particleEffect(pk, fusion.effects(), false);
 
-                            for(String aspects: fusion.default_aspects){
+                            for(String aspects: fusion.default_aspects()){
                                 String[] aspectsDiv = aspects.split("=");
                                 if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                                     new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -226,7 +226,7 @@ public class ConfigResults {
                                     new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                                 }
                             }
-                            if(!fusion.tradable_form){
+                            if(!fusion.tradable_form()){
                                 setTradable(pokemon, true);
                             }
 
@@ -242,10 +242,10 @@ public class ConfigResults {
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
                             itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.custom.inactive"));
                             return true;
-                        } else if (currentValue != null && fusion.fusion_mon.contains(pokemon.getSpecies().getName())) {
-                            if(!fusion.required_aspects_fusion_mon.isEmpty()){
+                        } else if (currentValue != null && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
+                            if(!fusion.required_aspects_fusion_mon().isEmpty()){
                                 List<String> aspectList = new ArrayList<>();
-                                for (String aspects : fusion.required_aspects_fusion_mon) {
+                                for (String aspects : fusion.required_aspects_fusion_mon()) {
                                     String[] aspectDiv = aspects.split("=");
                                     if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
                                         aspectList.add(aspectDiv[0]);
@@ -274,7 +274,7 @@ public class ConfigResults {
                                 }
                             }
 
-                            for(String aspects: fusion.fusion_aspects){
+                            for(String aspects: fusion.fusion_aspects()){
                                 String[] aspectsDiv = aspects.split("=");
                                 if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                                     new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -282,9 +282,9 @@ public class ConfigResults {
                                     new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                                 }
                             }
-                            particleEffect(pk, fusion.effects, true);
+                            particleEffect(pk, fusion.effects(), true);
 
-                            if(!fusion.tradable_form){
+                            if(!fusion.tradable_form()){
                                 setTradable(pokemon, false);
                             }
 
@@ -298,10 +298,10 @@ public class ConfigResults {
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
                             itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
                             return true;
-                        } else if (currentValue == null && fusion.fuse_with_mon.contains(pokemon.getSpecies().getName())) {
-                            if(!fusion.required_aspects_fuse_with_mon.isEmpty()){
+                        } else if (currentValue == null && fusion.fuse_with_mon().contains(pokemon.getSpecies().getName())) {
+                            if(!fusion.required_aspects_fuse_with_mon().isEmpty()){
                                 List<String> aspectList = new ArrayList<>();
-                                for (String aspects : fusion.required_aspects_fuse_with_mon) {
+                                for (String aspects : fusion.required_aspects_fuse_with_mon()) {
                                     String[] aspectDiv = aspects.split("=");
                                     if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
                                         aspectList.add(aspectDiv[0]);
@@ -341,8 +341,8 @@ public class ConfigResults {
                 }
             }
 
-            for(KeyItems keyItems: CustomConfig.keyItems){
-                if(nbt != null && keyItems.custom_model_data == nbt.value()) {
+            for(KeyItemData keyItems: Utils.keyItemsRegistry){
+                if(nbt != null && keyItems.custom_model_data() == nbt.value()) {
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();
@@ -356,10 +356,10 @@ public class ConfigResults {
                             return false;
                         }
 
-                        if(keyItems.pokemons.contains(pokemon.getSpecies().getName())){
-                            if(!keyItems.required_aspects.isEmpty()){
+                        if(keyItems.pokemons().contains(pokemon.getSpecies().getName())){
+                            if(!keyItems.required_aspects().isEmpty()){
                                 List<String> aspectList = new ArrayList<>();
-                                for (String aspects : keyItems.required_aspects) {
+                                for (String aspects : keyItems.required_aspects()) {
                                     String[] aspectDiv = aspects.split("=");
                                     if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
                                         aspectList.add(aspectDiv[0]);
@@ -392,9 +392,9 @@ public class ConfigResults {
                                 return false;
                             }
 
-                            if (keyItems.toggle_aspects.isEmpty()) {
+                            if (keyItems.toggle_aspects().isEmpty()) {
                                 List<String> aspectList = new ArrayList<>();
-                                for (String aspects : keyItems.aspects) {
+                                for (String aspects : keyItems.aspects()) {
                                     String[] aspectDiv = aspects.split("=");
                                     if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
                                         aspectList.add(aspectDiv[0]);
@@ -419,30 +419,30 @@ public class ConfigResults {
                                 }
 
                                 if (allMatch) {
-                                    for (String aspects : keyItems.default_aspects) {
+                                    for (String aspects : keyItems.default_aspects()) {
                                         String[] aspectsDiv = aspects.split("=");
                                         if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
                                             new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
                                         } else {
                                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                                         }
-                                        if(!keyItems.tradable_form){
+                                        if(!keyItems.tradable_form()){
                                             setTradable(pokemon, true);
                                         }
-                                        particleEffect(pk, keyItems.effects, false);
+                                        particleEffect(pk, keyItems.effects(), false);
                                     }
                                 }else{
-                                    for(String aspects: keyItems.aspects){
+                                    for(String aspects: keyItems.aspects()){
                                         String[] aspectsDiv = aspects.split("=");
                                         if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                                             new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
                                         }else{
                                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                                         }
-                                        if(!keyItems.tradable_form){
+                                        if(!keyItems.tradable_form()){
                                             setTradable(pokemon, false);
                                         }
-                                        particleEffect(pk, keyItems.effects, true);
+                                        particleEffect(pk, keyItems.effects(), true);
                                     }
                                 }
                             }else{
@@ -452,8 +452,8 @@ public class ConfigResults {
                                         .map(String::toLowerCase)
                                         .toList();
 
-                                for (int i = 0; i < keyItems.toggle_aspects.size(); i++) {
-                                    List<String> sublist = keyItems.toggle_aspects.get(i);
+                                for (int i = 0; i < keyItems.toggle_aspects().size(); i++) {
+                                    List<String> sublist = keyItems.toggle_aspects().get(i);
                                     for (String aspect : sublist) {
                                         String value = aspect.split("=")[1].toLowerCase();
 
@@ -468,8 +468,8 @@ public class ConfigResults {
                                     if (currentIndex != -1) break;
                                 }
 
-                                int nextIndex = (currentIndex + 1) % keyItems.toggle_aspects.size();
-                                List<String> nextAspects = keyItems.toggle_aspects.get(nextIndex);
+                                int nextIndex = (currentIndex + 1) % keyItems.toggle_aspects().size();
+                                List<String> nextAspects = keyItems.toggle_aspects().get(nextIndex);
 
                                 for (String aspect : nextAspects) {
                                     String[] parts = aspect.split("=");
@@ -483,8 +483,8 @@ public class ConfigResults {
                                     }
                                 }
 
-                                particleEffect(pk, keyItems.effects, true);
-                                setTradable(pokemon, !keyItems.tradable_form);
+                                particleEffect(pk, keyItems.effects(), true);
+                                setTradable(pokemon, !keyItems.tradable_form());
                             }
                         }
                     }
@@ -497,8 +497,8 @@ public class ConfigResults {
 
 
     //Helpers
-    private static boolean checkEnabled(Fusion fusion, Pokemon pk){
-        for(String aspects: fusion.fusion_aspects){
+    private static boolean checkEnabled(FusionData fusion, Pokemon pk){
+        for(String aspects: fusion.fusion_aspects()){
             String[] aspectsDiv = aspects.split("=");
             if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                 if(pk.getAspects().contains(aspectsDiv[0])) return true;
@@ -529,16 +529,16 @@ public class ConfigResults {
         );
     }
 
-    public static void particleEffect(LivingEntity context, Effects effects, Boolean apply) {
+    public static void particleEffect(LivingEntity context, EffectsData effects, Boolean apply) {
         if (context.level() instanceof ServerLevel serverLevel) {
             String[] partsParticle;
             String[] partsSound;
             if(apply){
-                partsParticle = effects.particle_apply.split(":");
-                partsSound = effects.sound_apply.split(":");
+                partsParticle = effects.particle_apply().split(":");
+                partsSound = effects.sound_apply().split(":");
             }else {
-                partsParticle = effects.particle_revert.split(":");
-                partsSound = effects.sound_revert.split(":");
+                partsParticle = effects.particle_revert().split(":");
+                partsSound = effects.sound_revert().split(":");
             }
             ResourceLocation custom_particle_id = ResourceLocation.fromNamespaceAndPath(partsParticle[0], partsParticle[1]);
             ParticleType<?> particleType = BuiltInRegistries.PARTICLE_TYPE.get(custom_particle_id);
@@ -553,14 +553,14 @@ public class ConfigResults {
             double entityHeight = context.getBbHeight();
 
             if(soundEvent == null){
-                if(apply && !effects.sound_apply.isEmpty()){
+                if(apply && !effects.sound_apply().isEmpty()){
                     MegaShowdown.LOGGER.error("A: Invalid Sound used for pokemon: {}, sound id: {}"
                             , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.sound_apply);
-                }else if(!apply && !effects.sound_revert.isEmpty()){
+                            , effects.sound_apply());
+                }else if(!apply && !effects.sound_revert().isEmpty()){
                     MegaShowdown.LOGGER.error("R: Invalid Sound used for pokemon: {}, sound id: {}"
                             , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.sound_revert);
+                            , effects.sound_revert());
                 }
             }else {
                 serverLevel.playSound(
@@ -593,14 +593,14 @@ public class ConfigResults {
                     );
                 }
             }else {
-                if(apply && !effects.particle_apply.isEmpty()){
+                if(apply && !effects.particle_apply().isEmpty()){
                     MegaShowdown.LOGGER.error("A: Invalid Particle used for pokemon: {}, sound id: {}"
                             , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.particle_apply);
-                }else if(!apply && !effects.particle_revert.isEmpty()){
+                            , effects.particle_apply());
+                }else if(!apply && !effects.particle_revert().isEmpty()){
                     MegaShowdown.LOGGER.error("R: Invalid Particle used for pokemon: {}, sound id: {}"
                             , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.particle_revert);
+                            , effects.particle_revert());
                 }
             }
         }

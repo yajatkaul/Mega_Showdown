@@ -8,11 +8,9 @@ import com.cobblemon.mod.common.battles.BattleRegistry;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.CustomConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MSDCustomPacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -123,18 +121,6 @@ public class ModEvents {
     private static void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
         if(!playerLoggedInEvent.getEntity().level().isClientSide){
             ServerPlayer player = (ServerPlayer) playerLoggedInEvent.getEntity();
-
-            //SYNC CUSTOMS
-            MSDCustomPacket packet = new MSDCustomPacket(
-                    CustomConfig.fusionItems,
-                    CustomConfig.formeChange,
-                    CustomConfig.heldItems,
-                    CustomConfig.megaItems,
-                    CustomConfig.gmax,
-                    CustomConfig.keyItems
-            );
-
-            player.connection.send(packet);
 
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 

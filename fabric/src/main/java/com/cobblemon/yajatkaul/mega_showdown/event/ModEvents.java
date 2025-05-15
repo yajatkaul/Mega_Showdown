@@ -4,12 +4,11 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MSDCustomPacket;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -25,6 +24,8 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.function.ExplorationMapLootFunction;
 import net.minecraft.loot.function.LootFunction;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -56,17 +57,6 @@ public class ModEvents {
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
             ServerPlayerEntity player = handler.player;
-
-//          SYNC CUSTOMS
-            MSDCustomPacket packet = new MSDCustomPacket(
-                    ShowdownCustomsConfig.fusionItems,
-                    ShowdownCustomsConfig.formeChange,
-                    ShowdownCustomsConfig.heldItems,
-                    ShowdownCustomsConfig.megaItems,
-                    ShowdownCustomsConfig.gmax,
-                    ShowdownCustomsConfig.keyItems
-            );
-            MSDCustomPacket.sendToClient(player, packet);
 
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 

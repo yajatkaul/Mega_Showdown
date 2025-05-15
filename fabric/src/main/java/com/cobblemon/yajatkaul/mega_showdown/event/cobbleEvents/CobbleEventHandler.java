@@ -24,10 +24,9 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.FormeChange;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
@@ -35,6 +34,7 @@ import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
 import net.minecraft.entity.LivingEntity;
@@ -455,11 +455,11 @@ public class CobbleEventHandler {
             }
         }
 
-        for(FormeChange forme: ShowdownCustomsConfig.formeChange){
-            if(forme.battle_mode_only){
-                if(forme.pokemons.contains(formeChangeEvent.getPokemon().getEffectedPokemon().getSpecies().getName())
-                        && formeChangeEvent.getFormeName().equals(forme.form_name)){
-                    for(String aspects: forme.aspects){
+        for(FormChangeData forme: Utils.formChangeRegistry){
+            if(forme.battle_mode_only()){
+                if(forme.pokemons().contains(formeChangeEvent.getPokemon().getEffectedPokemon().getSpecies().getName())
+                        && formeChangeEvent.getFormeName().equals(forme.form_name())){
+                    for(String aspects: forme.aspects()){
                         String[] aspectsDiv = aspects.split("=");
                         if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                             new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -467,7 +467,7 @@ public class CobbleEventHandler {
                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                         }
                     }
-                    ConfigResults.particleEffect(pokemon.getEntity(), forme.effects, true);
+                    ConfigResults.particleEffect(pokemon.getEntity(), forme.effects(), true);
                     break;
                 }
             }

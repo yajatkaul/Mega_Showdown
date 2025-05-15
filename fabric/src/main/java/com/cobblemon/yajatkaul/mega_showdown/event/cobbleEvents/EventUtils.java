@@ -4,13 +4,13 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.FormeChange;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
@@ -82,10 +82,10 @@ public class EventUtils {
             new FlagSpeciesFeature("complete-percent", false).apply(pokemon);
         }
 
-        for(FormeChange forme: ShowdownCustomsConfig.formeChange){
-            if(forme.battle_mode_only){
-                if(forme.pokemons.contains(pokemon.getSpecies().getName())){
-                    for(String aspects: forme.default_aspects){
+        for(FormChangeData forme: Utils.formChangeRegistry){
+            if(forme.battle_mode_only()){
+                if(forme.pokemons().contains(pokemon.getSpecies().getName())){
+                    for(String aspects: forme.default_aspects()){
                         String[] aspectsDiv = aspects.split("=");
                         if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                             new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -93,7 +93,9 @@ public class EventUtils {
                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                         }
                     }
-                    ConfigResults.particleEffect(pokemon.getEntity(), forme.effects, false);
+                    if(pokemon.getEntity() != null){
+                        ConfigResults.particleEffect(pokemon.getEntity(), forme.effects(), false);
+                    }
                 }
             }
         }

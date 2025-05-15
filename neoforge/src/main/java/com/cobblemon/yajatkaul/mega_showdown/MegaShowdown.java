@@ -5,7 +5,8 @@ import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.Config;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.KeyItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
@@ -19,8 +20,13 @@ import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -36,9 +42,11 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,7 +94,7 @@ public final class MegaShowdown {
 
         ModCreativeModeTabs.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC, "mega_showdown/mega_showdown-common.toml");
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC, "mega_showdown-common.toml");
         modEventBus.addListener(NetworkHandler::register);
 
         NeoForge.EVENT_BUS.addListener(MegaCommands::register);
@@ -103,7 +111,6 @@ public final class MegaShowdown {
                     ModBlocks.POTTED_GRACIDEA
             );
         });
-        ConfigResults.registerCustomShowdown();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -119,6 +126,8 @@ public final class MegaShowdown {
         Utils.registerRemapping();
         TeraTypeHelper.loadShardData();
         CobbleEvents.register();
+        event.getServer().reloadableRegistries();
+        Utils.registryLoader(event.getServer().registryAccess());
     }
 
     @SubscribeEvent
@@ -128,7 +137,6 @@ public final class MegaShowdown {
         ItemStack itemStack = event.getItemStack();
         Level level = event.getLevel();
 
-        // Call your custom logic
         boolean consumed = ConfigResults.useItem(player, level, hand, itemStack);
 
         if (consumed) {
@@ -137,15 +145,28 @@ public final class MegaShowdown {
         }
     }
 
-    public void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        final ResourceKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
+    private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+        DatapacksLoader.register(event);
+    }
 
-        event.dataPackRegistry(
-                KEY_ITEM_REGISTRY_KEY,
-                KeyItemData.CODEC,
-                KeyItemData.CODEC
-        );
+    @SubscribeEvent
+    private void onAddReloadListener(AddReloadListenerEvent event) {
+        event.addListener(new SimplePreparableReloadListener<Void>() {
+
+            @Override
+            protected Void prepare(ResourceManager arg, ProfilerFiller arg2) {
+                return null;
+            }
+
+            @Override
+            protected void apply(Void object, ResourceManager arg, ProfilerFiller arg2) {
+                MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+                if (server != null) {
+                    RegistryAccess registryAccess = server.registryAccess();
+                    Utils.registryLoader(registryAccess);
+                }
+            }
+        });
     }
 
 

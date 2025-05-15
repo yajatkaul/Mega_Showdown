@@ -9,10 +9,9 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.FormeChange;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
@@ -22,6 +21,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
@@ -464,12 +464,15 @@ public class HeldItemChangeFormes {
     public static void customEvents(HeldItemEvent.Post event){
         Pokemon pokemon = event.getPokemon();
 
-        for(FormeChange heldItem: ShowdownCustomsConfig.formeChange){
-            if(heldItem.pokemons.contains(pokemon.getSpecies().getName())){
+        for(FormChangeData heldItem: Utils.formChangeRegistry){
+            if(heldItem.battle_mode_only()){
+                return;
+            }
+            if(heldItem.pokemons().contains(pokemon.getSpecies().getName())){
                 if(!pokemon.getEntity().isBattling()){
-                    if(!heldItem.required_aspects.isEmpty()){
+                    if(!heldItem.required_aspects().isEmpty()){
                         List<String> aspectList = new ArrayList<>();
-                        for (String aspects : heldItem.required_aspects) {
+                        for (String aspects : heldItem.required_aspects()) {
                             aspectList.add(aspects.split("=")[1]);
                         }
 
@@ -494,16 +497,16 @@ public class HeldItemChangeFormes {
                     }
 
                     ItemStack receivedItem = event.getReceived();
-                    String[] nameSpace = heldItem.item_id.split(":");
+                    String[] nameSpace = heldItem.item_id().split(":");
                     Identifier customItem = Identifier.of(nameSpace[0], nameSpace[1]);
                     Item item = Registries.ITEM.get(customItem);
                     if(receivedItem.isOf(item) && receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
                             && receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                            == heldItem.custom_model_data){
-                        if(!heldItem.tradable_form){
+                            == heldItem.custom_model_data()){
+                        if(!heldItem.tradable_form()){
                             setTradable(pokemon, false);
                         }
-                        for(String aspects: heldItem.aspects){
+                        for(String aspects: heldItem.aspects()){
                             String[] aspectsDiv = aspects.split("=");
                             if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                                 new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -511,17 +514,17 @@ public class HeldItemChangeFormes {
                                 new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                             }
                         }
-                        if(!heldItem.tradable_form){
+                        if(!heldItem.tradable_form()){
                             setTradable(pokemon, false);
                         }
-                        ConfigResults.particleEffect(pokemon.getEntity(), heldItem.effects, true);
+                        ConfigResults.particleEffect(pokemon.getEntity(), heldItem.effects(), true);
                         return;
                     }else if (!receivedItem.isOf(item) ||
-                            receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == heldItem.custom_model_data){
-                        if(!heldItem.tradable_form){
+                            receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == heldItem.custom_model_data()){
+                        if(!heldItem.tradable_form()){
                             setTradable(pokemon, true);
                         }
-                        for(String aspects: heldItem.default_aspects){
+                        for(String aspects: heldItem.default_aspects()){
                             String[] aspectsDiv = aspects.split("=");
                             if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
                                 new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
@@ -529,10 +532,10 @@ public class HeldItemChangeFormes {
                                 new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                             }
                         }
-                        if(!heldItem.tradable_form){
+                        if(!heldItem.tradable_form()){
                             setTradable(pokemon, true);
                         }
-                        ConfigResults.particleEffect(pokemon.getEntity(), heldItem.effects, false);
+                        ConfigResults.particleEffect(pokemon.getEntity(), heldItem.effects(), false);
                         return;
                     }
                 }

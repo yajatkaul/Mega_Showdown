@@ -18,8 +18,6 @@ public class MegaShowdownClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        PacketRegister.registerS2CPackets();
-
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GRACIDEA_FLOWER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_GRACIDEA, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.REASSEMBLY_UNIT, RenderLayer.getTranslucent());

@@ -1,6 +1,5 @@
-package com.cobblemon.yajatkaul.mega_showdown.datapack;
+package com.cobblemon.yajatkaul.mega_showdown.datapack.data;
 
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.abstracts.Effects;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 

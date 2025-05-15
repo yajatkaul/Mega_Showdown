@@ -1,29 +1,23 @@
 package com.cobblemon.yajatkaul.mega_showdown.commands;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.*;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.KeyItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MSDCustomPacket;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -56,8 +50,6 @@ public class MegaCommands {
         event.getDispatcher().register(
                 Commands.literal("msd")
                         .requires(source -> source.hasPermission(2))
-                        .then(Commands.literal("reload")
-                                .executes(context -> reloadCustomConfig(context.getSource())))
                         .then(Commands.literal("give")
                                 .then(Commands.argument("player", EntityArgument.player())
                                         .then(Commands.argument("item", StringArgumentType.word())
@@ -92,9 +84,9 @@ public class MegaCommands {
 
     private static int executeGive(ServerPlayer player, String item, int count) {
         //MEGA
-        for(MegaItem pokemon: CustomConfig.megaItems){
-            if(pokemon.msd_id.equals(item)){
-                item = pokemon.item_id;
+        for(MegaData pokemon: Utils.megaRegistry){
+            if(pokemon.msd_id().equals(item)){
+                item = pokemon.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
                     return 0;
@@ -103,10 +95,10 @@ public class MegaCommands {
                 ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
                 Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(pokemon.custom_model_data));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(pokemon.item_name));
+                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(pokemon.custom_model_data()));
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(pokemon.item_name()));
                 List<Component> lore = new ArrayList<>();
-                for(String line: pokemon.item_description){
+                for(String line: pokemon.item_description()){
                     lore.add(Component.translatable(line));
                 }
                 stack.set(DataComponents.LORE, new ItemLore(lore));
@@ -118,9 +110,9 @@ public class MegaCommands {
         }
 
         //HELD ITEMS
-        for(HeldItem items: CustomConfig.heldItems){
-            if(items.msd_id.equals(item)){
-                item = items.item_id;
+        for(HeldItemData items: Utils.heldItemsRegistry){
+            if(items.msd_id().equals(item)){
+                item = items.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
                     return 0;
@@ -129,10 +121,10 @@ public class MegaCommands {
                 ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
                 Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(items.custom_model_data));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(items.item_name));
+                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(items.custom_model_data()));
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(items.item_name()));
                 List<Component> lore = new ArrayList<>();
-                for(String line: items.item_description){
+                for(String line: items.item_description()){
                     lore.add(Component.translatable(line));
                 }
                 stack.set(DataComponents.LORE, new ItemLore(lore));
@@ -144,9 +136,9 @@ public class MegaCommands {
         }
 
         //FORME CHANGE
-        for(FormeChange items: CustomConfig.formeChange){
-            if(items.msd_id.equals(item)){
-                item = items.item_id;
+        for(FormChangeData items: Utils.formChangeRegistry){
+            if(items.msd_id().equals(item)){
+                item = items.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
                     return 0;
@@ -155,10 +147,10 @@ public class MegaCommands {
                 ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
                 Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(items.custom_model_data));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(items.item_name));
+                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(items.custom_model_data()));
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(items.item_name()));
                 List<Component> lore = new ArrayList<>();
-                for(String line: items.item_description){
+                for(String line: items.item_description()){
                     lore.add(Component.translatable(line));
                 }
                 stack.set(DataComponents.LORE, new ItemLore(lore));
@@ -170,9 +162,9 @@ public class MegaCommands {
         }
 
         //FUSIONS
-        for(Fusion fusion: CustomConfig.fusionItems){
-            if(fusion.msd_id.equals(item)){
-                item = fusion.item_id;
+        for(FusionData fusion: Utils.fusionRegistry){
+            if(fusion.msd_id().equals(item)){
+                item = fusion.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
                     return 0;
@@ -181,10 +173,10 @@ public class MegaCommands {
                 ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
                 Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(fusion.custom_model_data));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name));
+                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(fusion.custom_model_data()));
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name()));
                 List<Component> lore = new ArrayList<>();
-                for(String line: fusion.item_description){
+                for(String line: fusion.item_description()){
                     lore.add(Component.translatable(line));
                 }
                 stack.set(DataComponents.LORE, new ItemLore(lore));
@@ -196,9 +188,9 @@ public class MegaCommands {
         }
 
         //KEY ITEMS
-        for(KeyItems keyItems: CustomConfig.keyItems){
-            if(keyItems.msd_id.equals(item)){
-                item = keyItems.item_id;
+        for(KeyItemData keyItems: Utils.keyItemsRegistry){
+            if(keyItems.msd_id().equals(item)){
+                item = keyItems.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
                     return 0;
@@ -207,10 +199,10 @@ public class MegaCommands {
                 ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
                 Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(keyItems.custom_model_data));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(keyItems.item_name));
+                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(keyItems.custom_model_data()));
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(keyItems.item_name()));
                 List<Component> lore = new ArrayList<>();
-                for(String line: keyItems.item_description){
+                for(String line: keyItems.item_description()){
                     lore.add(Component.translatable(line));
                 }
                 stack.set(DataComponents.LORE, new ItemLore(lore));
@@ -224,34 +216,8 @@ public class MegaCommands {
     }
 
     private static int reloadCustomConfig(CommandSourceStack source){
-        ConfigResults.registerCustomShowdown();
-
-        MinecraftServer server = source.getServer();
-        Iterable<ServerPlayer> players = server.getPlayerList().getPlayers();
-
-        MSDCustomPacket packet = new MSDCustomPacket(
-                CustomConfig.fusionItems,
-                CustomConfig.formeChange,
-                CustomConfig.heldItems,
-                CustomConfig.megaItems,
-                CustomConfig.gmax,
-                CustomConfig.keyItems
-        );
-
-        final ResourceKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
-
-        RegistryAccess registryAccess = server.registryAccess();
-        Registry<KeyItemData> keyItemRegistry = registryAccess.registryOrThrow(KEY_ITEM_REGISTRY_KEY);
-        MegaShowdown.LOGGER.info(String.valueOf(keyItemRegistry.keySet()));
-        for (ResourceLocation id : keyItemRegistry.keySet()) {
-            KeyItemData data = keyItemRegistry.get(id);
-            MegaShowdown.LOGGER.info("KeyItem [{}]: {}", id, data);
-        }
-
-        for (ServerPlayer player : players) {
-            player.connection.send(packet);
-        }
+        source.getServer().reloadableRegistries();
+        Utils.registryLoader(source.registryAccess());
 
         return 1;
     }

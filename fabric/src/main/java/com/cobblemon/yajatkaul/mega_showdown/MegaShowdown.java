@@ -6,6 +6,7 @@ import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.ModDatapack;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.TrinketEvent;
@@ -21,14 +22,22 @@ import com.google.common.reflect.Reflection;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.profiler.Profiler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public class MegaShowdown implements ModInitializer {
     public static final String MOD_ID = "mega_showdown";
@@ -51,8 +60,6 @@ public class MegaShowdown implements ModInitializer {
 
         Reflection.initialize(ShowdownConfig.class);
 
-        ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
-
         MegaCommands.register();
         ModEvents.register();
 
@@ -63,8 +70,11 @@ public class MegaShowdown implements ModInitializer {
                 ResourcePackActivationType.NORMAL
         );
 
-        ConfigResults.registerCustomShowdown();
+        ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
+
+
         UseItemCallback.EVENT.register(ConfigResults::useItem);
+        ModDatapack.register();
     }
 
     private void onServerStarted(MinecraftServer server) {
@@ -73,5 +83,6 @@ public class MegaShowdown implements ModInitializer {
 
         CobbleEvents.register();
         TrinketEvent.register();
+        Utils.registryLoader(server.getRegistryManager());
     }
 }

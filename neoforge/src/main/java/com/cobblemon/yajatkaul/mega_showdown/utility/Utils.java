@@ -2,11 +2,26 @@ package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.Item;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.common.util.LogicalSidedProvider;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public class Utils {
     public static final Map<Item, String> MEGA_STONE_IDS = new HashMap<>();
@@ -288,5 +303,36 @@ public class Utils {
         if(!Config.tradeForm){
             pokemon.setTradeable(allow);
         }
+    }
+
+    public static Registry<KeyItemData> keyItemsRegistry;
+    public static Registry<FormChangeData> formChangeRegistry;
+    public static Registry<FusionData> fusionRegistry;
+    public static Registry<GmaxData> gmaxRegistry;
+    public static Registry<HeldItemData> heldItemsRegistry;
+    public static Registry<MegaData> megaRegistry;
+
+    public static void registryLoader(RegistryAccess registryAccess){
+        final ResourceKey<Registry<KeyItemData>> KEY_ITEMS_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
+        final ResourceKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change"));
+        final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "fusions"));
+        final ResourceKey<Registry<GmaxData>> GMAX_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "gmax"));
+        final ResourceKey<Registry<HeldItemData>> HELD_ITEMS_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "held_items"));
+        final ResourceKey<Registry<MegaData>> MEGA_REGISTRY_KEY =
+                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega"));
+
+        keyItemsRegistry = registryAccess.registryOrThrow(KEY_ITEMS_REGISTRY_KEY);
+        formChangeRegistry = registryAccess.registryOrThrow(FORM_CHANGE_REGISTRY_KEY);
+        fusionRegistry = registryAccess.registryOrThrow(FUSION_REGISTRY_KEY);
+        gmaxRegistry = registryAccess.registryOrThrow(GMAX_REGISTRY_KEY);
+        heldItemsRegistry = registryAccess.registryOrThrow(HELD_ITEMS_REGISTRY_KEY);
+        megaRegistry = registryAccess.registryOrThrow(MEGA_REGISTRY_KEY);
+
+        ConfigResults.registerCustomShowdown();
     }
 }

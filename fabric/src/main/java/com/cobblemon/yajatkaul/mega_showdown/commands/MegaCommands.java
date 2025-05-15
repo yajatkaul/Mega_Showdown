@@ -5,11 +5,10 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownCustomsConfig;
-import com.cobblemon.yajatkaul.mega_showdown.config.structure.*;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MSDCustomPacket;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -21,7 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -88,9 +87,9 @@ public class MegaCommands {
 
     private static int executeGive(ServerPlayerEntity player, String item, int count) {
         //MEGA
-        for(MegaItem pokemon: ShowdownCustomsConfig.megaItems){
-            if(pokemon.msd_id.equals(item)){
-                item = pokemon.item_id;
+        for(MegaData pokemon: Utils.megaRegistry){
+            if(pokemon.msd_id().equals(item)){
+                item = pokemon.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
                     return 0;
@@ -99,10 +98,10 @@ public class MegaCommands {
                 Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
                 Item msdItem = Registries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(pokemon.custom_model_data));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(pokemon.item_name));
+                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(pokemon.custom_model_data()));
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(pokemon.item_name()));
                 List<Text> lore = new ArrayList<>();
-                for(String line: pokemon.item_description){
+                for(String line: pokemon.item_description()){
                     lore.add(Text.translatable(line));
                 }
                 stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
@@ -114,9 +113,9 @@ public class MegaCommands {
         }
 
         //HELD ITEMS
-        for(HeldItem items: ShowdownCustomsConfig.heldItems){
-            if(items.msd_id.equals(item)){
-                item = items.item_id;
+        for(HeldItemData items: Utils.heldItemsRegistry){
+            if(items.msd_id().equals(item)){
+                item = items.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
                     return 0;
@@ -125,10 +124,10 @@ public class MegaCommands {
                 Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
                 Item msdItem = Registries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(items.custom_model_data));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(items.item_name));
+                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(items.custom_model_data()));
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(items.item_name()));
                 List<Text> lore = new ArrayList<>();
-                for(String line: items.item_description){
+                for(String line: items.item_description()){
                     lore.add(Text.translatable(line));
                 }
                 stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
@@ -140,9 +139,9 @@ public class MegaCommands {
         }
 
         //FORME CHANGE
-        for(FormeChange items: ShowdownCustomsConfig.formeChange){
-            if(items.msd_id.equals(item)){
-                item = items.item_id;
+        for(FormChangeData items: Utils.formChangeRegistry){
+            if(items.msd_id().equals(item)){
+                item = items.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
                     return 0;
@@ -151,10 +150,10 @@ public class MegaCommands {
                 Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
                 Item msdItem = Registries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(items.custom_model_data));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(items.item_name));
+                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(items.custom_model_data()));
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(items.item_name()));
                 List<Text> lore = new ArrayList<>();
-                for(String line: items.item_description){
+                for(String line: items.item_description()){
                     lore.add(Text.translatable(line));
                 }
                 stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
@@ -166,9 +165,9 @@ public class MegaCommands {
         }
 
         //FUSIONS
-        for(Fusion fusion: ShowdownCustomsConfig.fusionItems){
-            if(fusion.msd_id.equals(item)){
-                item = fusion.item_id;
+        for(FusionData fusion: Utils.fusionRegistry){
+            if(fusion.msd_id().equals(item)){
+                item = fusion.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
                     return 0;
@@ -177,10 +176,10 @@ public class MegaCommands {
                 Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
                 Item msdItem = Registries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(fusion.custom_model_data));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name));
+                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(fusion.custom_model_data()));
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name()));
                 List<Text> lore = new ArrayList<>();
-                for(String line: fusion.item_description){
+                for(String line: fusion.item_description()){
                     lore.add(Text.translatable(line));
                 }
                 stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
@@ -192,9 +191,9 @@ public class MegaCommands {
         }
 
         //KEY ITEMS
-        for(KeyItems keyItems: ShowdownCustomsConfig.keyItems){
-            if(keyItems.msd_id.equals(item)){
-                item = keyItems.item_id;
+        for(KeyItemData keyItems: Utils.keyItemsRegistry){
+            if(keyItems.msd_id().equals(item)){
+                item = keyItems.item_id();
                 if (VALID_ITEMS.contains(item)) {
                     player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
                     return 0;
@@ -203,10 +202,10 @@ public class MegaCommands {
                 Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
                 Item msdItem = Registries.ITEM.get(msdItemId);
                 ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(keyItems.custom_model_data));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(keyItems.item_name));
+                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(keyItems.custom_model_data()));
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(keyItems.item_name()));
                 List<Text> lore = new ArrayList<>();
-                for(String line: keyItems.item_description){
+                for(String line: keyItems.item_description()){
                     lore.add(Text.translatable(line));
                 }
                 stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
@@ -220,23 +219,11 @@ public class MegaCommands {
     }
 
     private static int reloadCustomConfig(ServerCommandSource source){
-        ConfigResults.registerCustomShowdown();
+        ResourcePackManager packManager = source.getServer().getDataPackManager();
+        source.getServer().reloadResources(packManager.getEnabledIds()).thenRun(() -> {
+            Utils.registryLoader(source.getRegistryManager());
+        });
 
-        MinecraftServer server = source.getServer();
-        Iterable<ServerPlayerEntity> players = server.getPlayerManager().getPlayerList();
-
-        MSDCustomPacket packet = new MSDCustomPacket(
-                ShowdownCustomsConfig.fusionItems,
-                ShowdownCustomsConfig.formeChange,
-                ShowdownCustomsConfig.heldItems,
-                ShowdownCustomsConfig.megaItems,
-                ShowdownCustomsConfig.gmax,
-                ShowdownCustomsConfig.keyItems
-        );
-
-        for (ServerPlayerEntity player : players) {
-            MSDCustomPacket.sendToClient(player, packet);
-        }
         return 1;
     }
 
