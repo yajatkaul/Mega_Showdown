@@ -84,6 +84,7 @@ public class ModItemGroups {
                         entries.add(ModItems.MAXIE_GLASSES);
                         entries.add(ModItems.ARCHIE_ANCHOR);
                         entries.add(ModItems.MAY_BRACELET);
+                        entries.add(ModItems.LISIA_MEGA_TIARA);
 
                         entries.add(MegaOres.KEYSTONE_ORE);
                         entries.add(ModBlocks.KEYSTONE_BLOCK);

@@ -24,6 +24,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.ARCHIE_ANCHOR.get())
 
                 .add(ModItems.MAXIE_GLASSES.get())
+                .add(ModItems.LISIA_MEGA_TIARA.get())
 
                 .add(ModItems.KORRINA_GLOVE.get())
                 .add(ModItems.MEGA_BRACELET.get())

@@ -19,6 +19,7 @@ import net.minecraft.component.type.LoreComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.server.command.CommandManager;
@@ -49,9 +50,6 @@ public class MegaCommands {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(CommandManager.literal("msd")
                     .requires(source -> source.hasPermissionLevel(2))
-                    .then(CommandManager.literal("reload")
-                            .executes(context -> reloadCustomConfig(context.getSource()))
-                    )
                     .then(CommandManager.literal("give")
                             .then(CommandManager.argument("player", EntityArgumentType.player())
                                     .then(CommandManager.argument("item", StringArgumentType.word())
@@ -216,15 +214,6 @@ public class MegaCommands {
             }
         }
         return 0;
-    }
-
-    private static int reloadCustomConfig(ServerCommandSource source){
-        ResourcePackManager packManager = source.getServer().getDataPackManager();
-        source.getServer().reloadResources(packManager.getEnabledIds()).thenRun(() -> {
-            Utils.registryLoader(source.getRegistryManager());
-        });
-
-        return 1;
     }
 
     private static int executeReset(ServerPlayerEntity player) {

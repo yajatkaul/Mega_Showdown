@@ -56,9 +56,13 @@ public class RevertEvents {
             return Unit.INSTANCE;
         }
 
-        if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
+        boolean isMega = pokemon.getAspects().stream()
+                .anyMatch(aspect -> aspect.startsWith("mega"));
+
+        if (isMega) {
             MegaLogic.Devolve(pokemon, true);
         }
+
 
         return Unit.INSTANCE;
     }

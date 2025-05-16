@@ -31,12 +31,15 @@ public class EventUtils {
             pk.setTeraEnabled(false);
         }
 
+        boolean isMega = pokemon.getAspects().stream()
+                .anyMatch(aspect -> aspect.startsWith("mega"));
+
         if(!joinedEvent){
-            if(ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get() && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
+            if(ShowdownConfig.revertMegas.get() && !ShowdownConfig.multipleMegas.get() && isMega){
                 MegaLogic.Devolve(pokemon, true);
             }
         }else{
-            if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
+            if(isMega){
                 new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
             }
         }

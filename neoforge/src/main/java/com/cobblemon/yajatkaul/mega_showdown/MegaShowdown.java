@@ -19,12 +19,14 @@ import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
+import com.google.gson.JsonElement;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.InteractionHand;
@@ -64,6 +66,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+
+import java.util.Map;
 
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
@@ -149,25 +153,16 @@ public final class MegaShowdown {
         DatapacksLoader.register(event);
     }
 
-    @SubscribeEvent
-    private void onAddReloadListener(AddReloadListenerEvent event) {
-        event.addListener(new SimplePreparableReloadListener<Void>() {
-
-            @Override
-            protected Void prepare(ResourceManager arg, ProfilerFiller arg2) {
-                return null;
-            }
-
-            @Override
-            protected void apply(Void object, ResourceManager arg, ProfilerFiller arg2) {
-                MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-                if (server != null) {
-                    RegistryAccess registryAccess = server.registryAccess();
-                    Utils.registryLoader(registryAccess);
-                }
-            }
-        });
-    }
+//    @SubscribeEvent
+//    private void onAddReloadListener(AddReloadListenerEvent event) {
+//        event.addListener(new SimpleJsonResourceReloadListener() {
+//
+//            @Override
+//            protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager arg, ProfilerFiller arg2) {
+//
+//            }
+//        }
+//    }
 
 
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

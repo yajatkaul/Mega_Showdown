@@ -94,6 +94,9 @@ public abstract class ItemRendererMixin {
         else if (stack.getItem() == FormeChangeItems.ZYGARDE_CUBE && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube")));
         }
+        else if (stack.getItem() == ModItems.LISIA_MEGA_TIARA && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.THIRD_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "lisia_mega_tiara")));
+        }
         return bakedModel;
     }
 
@@ -162,6 +165,9 @@ public abstract class ItemRendererMixin {
         }
         else if (stack.getItem() == FormeChangeItems.ZYGARDE_CUBE) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "zygarde_cube_3d")));
+        }
+        else if (stack.getItem() == ModItems.LISIA_MEGA_TIARA) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "lisia_mega_tiara_3d")));
         }
         return bakedModel;
     }

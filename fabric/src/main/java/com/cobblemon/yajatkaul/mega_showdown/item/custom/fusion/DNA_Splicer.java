@@ -2,15 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -29,7 +26,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
@@ -44,7 +40,6 @@ public class DNA_Splicer extends Item {
         if (player.getWorld().isClient || player.isCrawling()) {
             return ActionResult.PASS;
         }
-
         if (!(context instanceof PokemonEntity pk)) {
             return ActionResult.PASS;
         }
@@ -122,21 +117,6 @@ public class DNA_Splicer extends Item {
 
     private boolean checkEnabled(Pokemon pokemon){
         return pokemon.getAspects().contains("black") || pokemon.getAspects().contains("white");
-    }
-
-    @Override
-    public void onItemEntityDestroyed(ItemEntity entity) {
-        if(entity.getOwner() instanceof ServerPlayerEntity player){
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.POKEMON_STORAGE, null);
-
-            if(currentValue != null){
-                playerPartyStore.add(currentValue);
-                entity.getStack().set(DataManage.POKEMON_STORAGE, null);
-            }
-        }
-
-        super.onItemEntityDestroyed(entity);
     }
 
     public static void particleEffect(LivingEntity context, SimpleParticleType particleType) {

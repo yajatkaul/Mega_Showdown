@@ -160,7 +160,18 @@ public class ConfigResults {
             for(FusionData fusion: Utils.fusionRegistry){
                 if(nbt != null && fusion.custom_model_data() == nbt.value()){
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
-                    if (entityHit != null) {
+                    if (entityHit == null) {
+                        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                        PokeHandler currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+
+                        if(currentValue.getPokemon() != null){
+                            playerPartyStore.add(currentValue.getPokemon());
+                            itemStack.set(DataManage.POKEMON_STORAGE, null);
+                            return true;
+                        }
+
+                        return false;
+                    }
                         Entity context = entityHit.getEntity();
 
                         if (!(context instanceof PokemonEntity pk)) {
@@ -240,7 +251,7 @@ public class ConfigResults {
                             player.setData(DataManage.DATA_MAP, map);
 
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
-                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.custom.inactive"));
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name() + "inactive"));
                             return true;
                         } else if (currentValue != null && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
                             if(!fusion.required_aspects_fusion_mon().isEmpty()){
@@ -296,7 +307,7 @@ public class ConfigResults {
                             player.setData(DataManage.DATA_MAP, map);
 
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
-                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name() + "inactive"));
                             return true;
                         } else if (currentValue == null && fusion.fuse_with_mon().contains(pokemon.getSpecies().getName())) {
                             if(!fusion.required_aspects_fuse_with_mon().isEmpty()){
@@ -332,12 +343,11 @@ public class ConfigResults {
 
                             itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
                             playerPartyStore.remove(pk.getPokemon());
-                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name() + "charged"));
                             return true;
                         }
 
                         player.setItemInHand(hand, itemStack);
-                    }
                 }
             }
 
@@ -540,6 +550,7 @@ public class ConfigResults {
                 partsParticle = effects.particle_revert().split(":");
                 partsSound = effects.sound_revert().split(":");
             }
+
             ResourceLocation custom_particle_id = ResourceLocation.fromNamespaceAndPath(partsParticle[0], partsParticle[1]);
             ParticleType<?> particleType = BuiltInRegistries.PARTICLE_TYPE.get(custom_particle_id);
 

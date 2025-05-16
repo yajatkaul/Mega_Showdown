@@ -13,6 +13,7 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -25,7 +26,10 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.List;
@@ -124,21 +128,6 @@ public class N_Lunarizer extends Item {
 
     private boolean checkFused(Pokemon pokemon){
         return pokemon.getAspects().contains("dusk-fusion") || pokemon.getAspects().contains("dawn-fusion");
-    }
-
-    @Override
-    public void onItemEntityDestroyed(ItemEntity entity) {
-        if(entity.getOwner() instanceof ServerPlayerEntity player){
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            Pokemon currentValue = entity.getStack().getOrDefault(DataManage.POKEMON_STORAGE, null);
-
-            if(currentValue != null){
-                playerPartyStore.add(currentValue);
-                entity.getStack().set(DataManage.POKEMON_STORAGE, null);
-            }
-        }
-
-        super.onItemEntityDestroyed(entity);
     }
 
     public static void particleEffect(LivingEntity context) {

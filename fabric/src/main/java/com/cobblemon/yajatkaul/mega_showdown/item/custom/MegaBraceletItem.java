@@ -65,7 +65,7 @@ public class MegaBraceletItem extends Item {
                                         SoundEvents.ITEM_ARMOR_EQUIP_GENERIC.value(),
                                         SoundCategory.PLAYERS, 1.0f, 1.0f);
 
-                                return TypedActionResult.success(stack, world.isClient);
+                                return TypedActionResult.success(stack);
                             }
                         }
                     }

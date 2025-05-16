@@ -29,6 +29,7 @@ public class Register {
         CuriosRendererRegistry.register(ModItems.LYSANDRE_RING.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ModItems.MAXIE_GLASSES.get(), CurioHeadRenderer::new);
         CuriosRendererRegistry.register(ModItems.ARCHIE_ANCHOR.get(), CurioChestRenderer::new);
+        CuriosRendererRegistry.register(ModItems.LISIA_MEGA_TIARA.get(), CurioHeadRenderer::new);
 
         CuriosRendererRegistry.register(ZCrystals.Z_RING.get(), CurioHandRenderer::new);
         CuriosRendererRegistry.register(ZCrystals.Z_RING_BLACK.get(), CurioHandRenderer::new);

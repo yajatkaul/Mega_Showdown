@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "minecraft:plains",
-  "features": "mega_showdown:gracidea_flower_placed_key",
-  "step": "vegetal_decoration"
-}

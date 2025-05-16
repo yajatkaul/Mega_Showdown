@@ -89,6 +89,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ARCHIE_ANCHOR);
                         output.accept(ModItems.KORRINA_GLOVE);
                         output.accept(ModItems.MAY_BRACELET);
+                        output.accept(ModItems.LISIA_MEGA_TIARA);
 
                         output.accept(MegaOres.KEYSTONE_ORE);
 

@@ -30,7 +30,10 @@ public class EventUtils {
             pk.setTeraEnabled(false);
         }
 
-        if(Config.revertMegas && !Config.multipleMegas && (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega"))){
+        boolean isMega = pokemon.getAspects().stream()
+                .anyMatch(aspect -> aspect.startsWith("mega"));
+
+        if(Config.revertMegas && !Config.multipleMegas && isMega){
             MegaLogic.Devolve(pokemon, true);
         }
 

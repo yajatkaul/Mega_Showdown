@@ -22,6 +22,7 @@ public class TrinketsRegisteration {
         TrinketRendererRegistry.registerRenderer(ModItems.LYSANDRE_RING, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MAXIE_GLASSES, new RenderHeadTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.ARCHIE_ANCHOR, new RenderChestTrinkets());
+        TrinketRendererRegistry.registerRenderer(ModItems.LISIA_MEGA_TIARA, new RenderHeadTrinkets());
 
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_BLACK, new RenderHandTrinkets());

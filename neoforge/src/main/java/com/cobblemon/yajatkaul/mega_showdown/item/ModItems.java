@@ -57,6 +57,10 @@ public class ModItems {
     public static final DeferredItem<Item> ARCHIE_ANCHOR = ITEMS.register("archie_anchor",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> LISIA_MEGA_TIARA = ITEMS.register("lisia_mega_tiara",
+            () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
+
+
     public static final DeferredItem<Item> SCROLL_OF_DARKNESS = ITEMS.register("scroll_of_darkness",
             () -> new Item(new Item.Properties().stacksTo(1)){
                 @Override

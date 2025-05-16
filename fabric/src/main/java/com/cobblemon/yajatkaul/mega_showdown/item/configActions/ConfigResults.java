@@ -69,186 +69,196 @@ public class ConfigResults {
         }
         if (!itemStack.isEmpty()) {
             CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
+
             for(FusionData fusion: Utils.fusionRegistry){
                 if(nbt != null && fusion.custom_model_data() == nbt.value()){
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
-                    if (entityHit != null) {
-                        Entity context = entityHit.getEntity();
-
-                        if (!(context instanceof PokemonEntity pk)) {
-                            return TypedActionResult.pass(itemStack);
-                        }
-
-                        Pokemon pokemon = pk.getPokemon();
-                        if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
-                            return TypedActionResult.pass(itemStack);
-                        }
-
+                    if (entityHit == null) {
                         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
                         Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
-
-                        if (checkEnabled(fusion ,pokemon) && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
-                            if(!fusion.required_aspects_fusion_mon().isEmpty()){
-                                List<String> aspectList = new ArrayList<>();
-                                for (String aspects : fusion.required_aspects_fusion_mon()) {
-                                    String[] aspectDiv = aspects.split("=");
-                                    if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
-                                        aspectList.add(aspectDiv[0]);
-                                    }else{
-                                        aspectList.add(aspectDiv[1]);
-                                    }
-                                }
-
-                                boolean allMatch = true;
-                                for (String requiredAspect : aspectList) {
-                                    boolean matched = false;
-                                    for (String pokemonAspect : pokemon.getAspects()) {
-                                        if (pokemonAspect.startsWith(requiredAspect)) {
-                                            matched = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!matched) {
-                                        allMatch = false;
-                                        break;
-                                    }
-                                }
-
-                                if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
-                                }
-                            }
-
-                            if (itemStack.get(DataManage.POKEMON_STORAGE) != null) {
-                                player.sendMessage(
-                                        Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                                        true
-                                );
-                                return TypedActionResult.success(itemStack);
-                            }
-
-                            particleEffect(pk, fusion.effects(), false);
-
-                            for(String aspects: fusion.default_aspects()){
-                                String[] aspectsDiv = aspects.split("=");
-                                if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
-                                    new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                                }else{
-                                    new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                                }
-                            }
-                            if(!fusion.tradable_form()){
-                                setTradable(pokemon, true);
-                            }
-
-                            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                            if(map == null){
-                                map = new HashMap<>();
-                            }
-                            Pokemon toAdd = map.get(pokemon.getUuid());
-                            playerPartyStore.add(toAdd);
-                            map.remove(pokemon.getUuid());
-                            player.setAttached(DataManage.DATA_MAP, map);
-
+                        if(currentValue != null){
+                            playerPartyStore.add(currentValue);
                             itemStack.set(DataManage.POKEMON_STORAGE, null);
-                            itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.custom.inactive"));
-                            return TypedActionResult.success(itemStack);
-                        } else if (currentValue != null && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
-                            if(!fusion.required_aspects_fusion_mon().isEmpty()){
-                                List<String> aspectList = new ArrayList<>();
-                                for (String aspects : fusion.required_aspects_fusion_mon()) {
-                                    String[] aspectDiv = aspects.split("=");
-                                    if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
-                                        aspectList.add(aspectDiv[0]);
-                                    }else{
-                                        aspectList.add(aspectDiv[1]);
-                                    }
-                                }
+                        }
 
-                                boolean allMatch = true;
-                                for (String requiredAspect : aspectList) {
-                                    boolean matched = false;
-                                    for (String pokemonAspect : pokemon.getAspects()) {
-                                        if (pokemonAspect.startsWith(requiredAspect)) {
-                                            matched = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!matched) {
-                                        allMatch = false;
-                                        break;
-                                    }
-                                }
+                        return TypedActionResult.pass(itemStack);
+                    }
+                    Entity context = entityHit.getEntity();
 
-                                if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
-                                }
-                            }
+                    if (!(context instanceof PokemonEntity pk)) {
+                        return TypedActionResult.pass(itemStack);
+                    }
 
-                            for(String aspects: fusion.fusion_aspects()){
-                                String[] aspectsDiv = aspects.split("=");
-                                if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
-                                    new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                    Pokemon pokemon = pk.getPokemon();
+                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
+                        return TypedActionResult.pass(itemStack);
+                    }
+
+                    PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+                    Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+
+                    if (checkEnabled(fusion ,pokemon) && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
+                        if(!fusion.required_aspects_fusion_mon().isEmpty()){
+                            List<String> aspectList = new ArrayList<>();
+                            for (String aspects : fusion.required_aspects_fusion_mon()) {
+                                String[] aspectDiv = aspects.split("=");
+                                if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
+                                    aspectList.add(aspectDiv[0]);
                                 }else{
-                                    new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                                    aspectList.add(aspectDiv[1]);
                                 }
                             }
-                            particleEffect(pk, fusion.effects(), true);
 
-                            if(!fusion.tradable_form()){
-                                setTradable(pokemon, false);
-                            }
-
-                            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                            if (map == null) {
-                                map = new HashMap<>();
-                            }
-                            map.put(pokemon.getUuid(), currentValue);
-                            player.setAttached(DataManage.DATA_MAP, map);
-
-                            itemStack.set(DataManage.POKEMON_STORAGE, null);
-                            itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
-                            return TypedActionResult.success(itemStack);
-                        } else if (currentValue == null && fusion.fuse_with_mon().contains(pokemon.getSpecies().getName())) {
-                            if(!fusion.required_aspects_fuse_with_mon().isEmpty()){
-                                List<String> aspectList = new ArrayList<>();
-                                for (String aspects : fusion.required_aspects_fuse_with_mon()) {
-                                    String[] aspectDiv = aspects.split("=");
-                                    if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
-                                        aspectList.add(aspectDiv[0]);
-                                    }else{
-                                        aspectList.add(aspectDiv[1]);
-                                    }
-                                }
-
-                                boolean allMatch = true;
-                                for (String requiredAspect : aspectList) {
-                                    boolean matched = false;
-                                    for (String pokemonAspect : pokemon.getAspects()) {
-                                        if (pokemonAspect.startsWith(requiredAspect)) {
-                                            matched = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!matched) {
-                                        allMatch = false;
+                            boolean allMatch = true;
+                            for (String requiredAspect : aspectList) {
+                                boolean matched = false;
+                                for (String pokemonAspect : pokemon.getAspects()) {
+                                    if (pokemonAspect.startsWith(requiredAspect)) {
+                                        matched = true;
                                         break;
                                     }
                                 }
-
-                                if(!allMatch){
-                                    return TypedActionResult.pass(itemStack);
+                                if (!matched) {
+                                    allMatch = false;
+                                    break;
                                 }
                             }
 
-                            itemStack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
-                            playerPartyStore.remove(pk.getPokemon());
-                            itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.charged"));
+                            if(!allMatch){
+                                return TypedActionResult.pass(itemStack);
+                            }
+                        }
+
+                        if (itemStack.get(DataManage.POKEMON_STORAGE) != null) {
+                            player.sendMessage(
+                                    Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                                    true
+                            );
                             return TypedActionResult.success(itemStack);
                         }
 
-                        player.setStackInHand(hand, itemStack);
+                        particleEffect(pk, fusion.effects(), false);
+
+                        for(String aspects: fusion.default_aspects()){
+                            String[] aspectsDiv = aspects.split("=");
+                            if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                                new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                            }else{
+                                new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                            }
+                        }
+                        if(!fusion.tradable_form()){
+                            setTradable(pokemon, true);
+                        }
+
+                        HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                        if(map == null){
+                            map = new HashMap<>();
+                        }
+                        Pokemon toAdd = map.get(pokemon.getUuid());
+                        playerPartyStore.add(toAdd);
+                        map.remove(pokemon.getUuid());
+                        player.setAttached(DataManage.DATA_MAP, map);
+
+                        itemStack.set(DataManage.POKEMON_STORAGE, null);
+                        itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name() + ".inactive"));
+                        return TypedActionResult.success(itemStack);
+                    } else if (currentValue != null && fusion.fusion_mon().contains(pokemon.getSpecies().getName())) {
+                        if(!fusion.required_aspects_fusion_mon().isEmpty()){
+                            List<String> aspectList = new ArrayList<>();
+                            for (String aspects : fusion.required_aspects_fusion_mon()) {
+                                String[] aspectDiv = aspects.split("=");
+                                if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
+                                    aspectList.add(aspectDiv[0]);
+                                }else{
+                                    aspectList.add(aspectDiv[1]);
+                                }
+                            }
+
+                            boolean allMatch = true;
+                            for (String requiredAspect : aspectList) {
+                                boolean matched = false;
+                                for (String pokemonAspect : pokemon.getAspects()) {
+                                    if (pokemonAspect.startsWith(requiredAspect)) {
+                                        matched = true;
+                                        break;
+                                    }
+                                }
+                                if (!matched) {
+                                    allMatch = false;
+                                    break;
+                                }
+                            }
+
+                            if(!allMatch){
+                                return TypedActionResult.pass(itemStack);
+                            }
+                        }
+
+                        for(String aspects: fusion.fusion_aspects()){
+                            String[] aspectsDiv = aspects.split("=");
+                            if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                                new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                            }else{
+                                new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                            }
+                        }
+                        particleEffect(pk, fusion.effects(), true);
+
+                        if(!fusion.tradable_form()){
+                            setTradable(pokemon, false);
+                        }
+
+                        HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                        if (map == null) {
+                            map = new HashMap<>();
+                        }
+                        map.put(pokemon.getUuid(), currentValue);
+                        player.setAttached(DataManage.DATA_MAP, map);
+
+                        itemStack.set(DataManage.POKEMON_STORAGE, null);
+                        itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name() + ".inactive"));
+                        return TypedActionResult.success(itemStack);
+                    } else if (currentValue == null && fusion.fuse_with_mon().contains(pokemon.getSpecies().getName())) {
+                        if(!fusion.required_aspects_fuse_with_mon().isEmpty()){
+                            List<String> aspectList = new ArrayList<>();
+                            for (String aspects : fusion.required_aspects_fuse_with_mon()) {
+                                String[] aspectDiv = aspects.split("=");
+                                if(aspectDiv[1].equals("true") || aspectDiv[1].equals("false")){
+                                    aspectList.add(aspectDiv[0]);
+                                }else{
+                                    aspectList.add(aspectDiv[1]);
+                                }
+                            }
+
+                            boolean allMatch = true;
+                            for (String requiredAspect : aspectList) {
+                                boolean matched = false;
+                                for (String pokemonAspect : pokemon.getAspects()) {
+                                    if (pokemonAspect.startsWith(requiredAspect)) {
+                                        matched = true;
+                                        break;
+                                    }
+                                }
+                                if (!matched) {
+                                    allMatch = false;
+                                    break;
+                                }
+                            }
+
+                            if(!allMatch){
+                                return TypedActionResult.pass(itemStack);
+                            }
+                        }
+
+                        itemStack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
+                        playerPartyStore.remove(pk.getPokemon());
+                        itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name() + ".charged"));
+                        return TypedActionResult.success(itemStack);
                     }
+
+                    player.setStackInHand(hand, itemStack);
+
                 }
             }
 
@@ -418,7 +428,7 @@ public class ConfigResults {
         //MEGA
         for(MegaData pokemon: Utils.megaRegistry){
             //COMMAND UTILS
-                MegaCommands.VALID_ITEMS.add(pokemon.msd_id());
+            MegaCommands.VALID_ITEMS.add(pokemon.msd_id());
             //
 
             Utils.MEGA_POKEMONS.add(pokemon.pokemon());
