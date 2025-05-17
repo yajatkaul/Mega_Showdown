@@ -61,11 +61,6 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                if(ShowdownConfig.battleModeOnly.get()){
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
                 EventUtils.revertFormesEnd(pokemon, true);
             }
         });
@@ -82,11 +77,6 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                if(ShowdownConfig.battleModeOnly.get()){
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
                 EventUtils.revertFormesEnd(pokemon, true);
             }
         });

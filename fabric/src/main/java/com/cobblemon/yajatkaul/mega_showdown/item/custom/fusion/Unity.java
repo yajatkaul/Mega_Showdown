@@ -44,84 +44,105 @@ public class Unity extends Item {
     }
 
     @Override
-    public ActionResult useOnEntity(ItemStack arg, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (player.getWorld().isClient || player.isCrawling()) {
-            return ActionResult.PASS;
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+        if(world.isClient){
+            return TypedActionResult.fail(stack);
         }
 
-        if (!(context instanceof PokemonEntity pk)) {
-            return ActionResult.PASS;
-        }
+        EntityHitResult hitResult = getEntityLookingAt(player, 4.5f);
 
-        Pokemon pokemon = pk.getPokemon();
-        if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null) {
-            return ActionResult.PASS;
-        }
+        Pokemon currentValue = stack.get(DataManage.POKEMON_STORAGE);
 
-        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
-        Pokemon currentValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
+        if (hitResult == null && currentValue != null) {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
 
-        if(pokemon.getSpecies().getName().equals("Calyrex") && checkEnabled(pokemon)){
-            if(arg.get(DataManage.POKEMON_STORAGE) != null){
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return ActionResult.PASS;
-            }
-            particleEffect(pk, ParticleTypes.END_ROD);
-            new FlagSpeciesFeature("shadow", false).apply(pokemon);
-            new FlagSpeciesFeature("ice", false).apply(pokemon);
-            setTradable(pokemon, true);
+            playerPartyStore.add(currentValue);
+            stack.set(DataManage.POKEMON_STORAGE, null);
+            player.setStackInHand(hand, stack);
+            return TypedActionResult.consume(stack);
+        }else if(hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
+            Pokemon context = pkmn.getPokemon();
 
-            if(!pokemon.getEntity().hasAttached(DataManage.CALYREX_FUSED_WITH)){
-                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                Pokemon toAdd = map.get(pokemon.getUuid());
-                playerPartyStore.add(toAdd);
-                map.remove(pokemon.getUuid());
-                player.setAttached(DataManage.DATA_MAP, map);
-            }else{
-                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.CALYREX_FUSED_WITH).getPokemon());
-                pokemon.getEntity().removeAttached(DataManage.CALYREX_FUSED_WITH);
+            if (player.isCrawling()) {
+                return TypedActionResult.pass(stack);
             }
 
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
-        }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
-            if(currentValue.getSpecies().getName().equals("Spectrier")){
-                particleEffect(pk, ParticleTypes.SMOKE);
-                new FlagSpeciesFeature("shadow", true).apply(pokemon);
-            }else{
+            if (!(context.getEntity() instanceof PokemonEntity pk)) {
+                return TypedActionResult.pass(stack);
+            }
+
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null) {
+                return TypedActionResult.pass(stack);
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+
+            if(pokemon.getSpecies().getName().equals("Calyrex") && checkEnabled(pokemon)){
+                if(stack.get(DataManage.POKEMON_STORAGE) != null){
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return TypedActionResult.pass(stack);
+                }
                 particleEffect(pk, ParticleTypes.END_ROD);
-                new FlagSpeciesFeature("ice", true).apply(pokemon);
+                new FlagSpeciesFeature("shadow", false).apply(pokemon);
+                new FlagSpeciesFeature("ice", false).apply(pokemon);
+                setTradable(pokemon, true);
+
+                if(!pokemon.getEntity().hasAttached(DataManage.CALYREX_FUSED_WITH)){
+                    HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                    Pokemon toAdd = map.get(pokemon.getUuid());
+                    playerPartyStore.add(toAdd);
+                    map.remove(pokemon.getUuid());
+                    player.setAttached(DataManage.DATA_MAP, map);
+                }else{
+                    playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.CALYREX_FUSED_WITH).getPokemon());
+                    pokemon.getEntity().removeAttached(DataManage.CALYREX_FUSED_WITH);
+                }
+
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
+            }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
+                if(currentValue.getSpecies().getName().equals("Spectrier")){
+                    particleEffect(pk, ParticleTypes.SMOKE);
+                    new FlagSpeciesFeature("shadow", true).apply(pokemon);
+                }else{
+                    particleEffect(pk, ParticleTypes.END_ROD);
+                    new FlagSpeciesFeature("ice", true).apply(pokemon);
+                }
+                setTradable(pokemon, false);
+
+                pokemon.getEntity().setAttached(DataManage.CALYREX_FUSED_WITH, new PokeHandler(currentValue));
+
+                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                if(map == null){
+                    map = new HashMap<>();
+                }
+                map.put(pokemon.getUuid(), currentValue);
+                player.setAttached(DataManage.DATA_MAP, map);
+
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
+                stack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
+                playerPartyStore.remove(pk.getPokemon());
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.charged"));
+            }else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
+                stack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
+                playerPartyStore.remove(pk.getPokemon());
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.charged"));
+            } else {
+                return TypedActionResult.pass(stack);
             }
-            setTradable(pokemon, false);
 
-            pokemon.getEntity().setAttached(DataManage.CALYREX_FUSED_WITH, new PokeHandler(currentValue));
-
-            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-            if(map == null){
-                map = new HashMap<>();
-            }
-            map.put(pokemon.getUuid(), currentValue);
-            player.setAttached(DataManage.DATA_MAP, map);
-
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
-        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
-            arg.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
-            playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.charged"));
-        }else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
-            arg.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
-            playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.charged"));
-        } else {
-            return ActionResult.PASS;
+            player.setStackInHand(hand, stack);
+            return TypedActionResult.success(stack);
         }
 
-        player.setStackInHand(hand, arg);
-        return ActionResult.SUCCESS;
+        return TypedActionResult.pass(stack);
     }
 
     private boolean checkEnabled(Pokemon pokemon){
@@ -169,5 +190,20 @@ public class Unity extends Item {
                 );
             }
         }
+    }
+
+    public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
+        Vec3d eyePos = player.getEyePos();
+        Vec3d lookVec = player.getRotationVec(1.0F);
+        Vec3d targetPos = eyePos.add(lookVec.multiply(distance));
+
+        return ProjectileUtil.raycast(
+                player,
+                eyePos,
+                targetPos,
+                player.getBoundingBox().stretch(lookVec.multiply(distance)).expand(1.0, 1.0, 1.0),
+                entity -> !entity.isSpectator() && entity.canHit() && entity instanceof LivingEntity,
+                distance * distance
+        );
     }
 }

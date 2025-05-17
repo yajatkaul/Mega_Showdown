@@ -125,16 +125,7 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                if(Config.battleModeOnly){
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-                EventUtils.revertFormesEnd(pokemon);
-            }
-
-            if(Config.battleModeOnly){
-                player.setData(DataManage.MEGA_DATA, false);
+                EventUtils.revertFormesEnd(pokemon, true);
             }
         }
     }
@@ -146,12 +137,7 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                if(Config.battleModeOnly){
-                    new FlagSpeciesFeature("mega", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-x", false).apply(pokemon);
-                    new FlagSpeciesFeature("mega-y", false).apply(pokemon);
-                }
-                EventUtils.revertFormesEnd(pokemon);
+                EventUtils.revertFormesEnd(pokemon, false);
             }
 
             if(Config.battleModeOnly){

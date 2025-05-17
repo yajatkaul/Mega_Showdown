@@ -443,9 +443,9 @@ public class HeldItemChangeFormes {
                     String[] nameSpace = heldItem.item_id().split(":");
                     ResourceLocation customItem = ResourceLocation.fromNamespaceAndPath(nameSpace[0], nameSpace[1]);
                     Item item = BuiltInRegistries.ITEM.get(customItem);
-                    if(receivedItem.is(item) && receivedItem.get(DataComponents.CUSTOM_MODEL_DATA) != null
+                    if(receivedItem.is(item) && ((receivedItem.get(DataComponents.CUSTOM_MODEL_DATA) != null
                             && receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value()
-                            == heldItem.custom_model_data()){
+                            == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)){
                         if(!heldItem.tradable_form()){
                             setTradable(pokemon, false);
                         }
@@ -463,7 +463,9 @@ public class HeldItemChangeFormes {
                         ConfigResults.particleEffect(pokemon.getEntity(), heldItem.effects(), true);
                         return;
                     }else if (!receivedItem.is(item) ||
-                            receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value() == heldItem.custom_model_data()){
+                            (( receivedItem.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                                    receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value()
+                                            == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)){
                         if(!heldItem.tradable_form()){
                             setTradable(pokemon, true);
                         }

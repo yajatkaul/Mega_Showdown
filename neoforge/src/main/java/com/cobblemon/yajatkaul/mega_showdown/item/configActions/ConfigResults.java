@@ -85,8 +85,9 @@ public class ConfigResults {
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customStone) &&
-                        stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data()) {
+                        ((stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data())
+                                || pokemon.custom_model_data() == 0)) {
                     return pokemon.showdown_id();
                 }
                 return null;
@@ -105,8 +106,9 @@ public class ConfigResults {
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customHeldItem) &&
-                        stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) {
+                        ((stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                        stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data())
+                                || items.custom_model_data() == 0)) {
                     return items.showdown_id();
                 }
                 return null;
@@ -126,8 +128,9 @@ public class ConfigResults {
 
                 CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                     if (stack.getItem().equals(customHeldItem) &&
-                            stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                            stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) {
+                            ((stack.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
+                            stack.get(DataComponents.CUSTOM_MODEL_DATA).value() == items.custom_model_data())
+                                    || items.custom_model_data() == 0)) {
                         return items.showdown_id();
                     }
                     return null;
@@ -158,7 +161,7 @@ public class ConfigResults {
         if (!itemStack.isEmpty()) {
             CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
             for(FusionData fusion: Utils.fusionRegistry){
-                if(nbt != null && fusion.custom_model_data() == nbt.value()){
+                if((nbt != null && fusion.custom_model_data() == nbt.value()) || fusion.custom_model_data() == 0){
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
                     if (entityHit == null) {
                         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
@@ -352,7 +355,7 @@ public class ConfigResults {
             }
 
             for(KeyItemData keyItems: Utils.keyItemsRegistry){
-                if(nbt != null && keyItems.custom_model_data() == nbt.value()) {
+                if((nbt != null && keyItems.custom_model_data() == nbt.value()) || keyItems.custom_model_data() == 0) {
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();

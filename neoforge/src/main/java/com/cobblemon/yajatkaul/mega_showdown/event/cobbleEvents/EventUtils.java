@@ -20,7 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
 public class EventUtils {
-    public static void revertFormesEnd(Pokemon pokemon){
+    public static void revertFormesEnd(Pokemon pokemon, boolean joinedEvent){
         if(pokemon.getEntity() != null){
             pokemon.getEntity().removeEffect(MobEffects.GLOWING);
             DynamaxEventListener.startGradualScaling(pokemon.getEntity(), 1.0f);
@@ -33,8 +33,14 @@ public class EventUtils {
         boolean isMega = pokemon.getAspects().stream()
                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
-        if(Config.revertMegas && !Config.multipleMegas && isMega){
-            MegaLogic.Devolve(pokemon, true);
+        if(!joinedEvent){
+            if((Config.revertMegas || Config.battleModeOnly) && isMega){
+                MegaLogic.Devolve(pokemon, true);
+            }
+        }else{
+            if((Config.battleModeOnly || Config.revertMegas) && isMega){
+                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
+            }
         }
 
         new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);

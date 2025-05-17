@@ -71,7 +71,7 @@ public class ConfigResults {
             CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
 
             for(FusionData fusion: Utils.fusionRegistry){
-                if(nbt != null && fusion.custom_model_data() == nbt.value()){
+                if((nbt != null && fusion.custom_model_data() == nbt.value()) || fusion.custom_model_data() == 0){
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
                     if (entityHit == null) {
                         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
@@ -263,7 +263,7 @@ public class ConfigResults {
             }
 
             for(KeyItemData keyItems: Utils.keyItemsRegistry){
-                if(nbt != null && keyItems.custom_model_data() == nbt.value()) {
+                if((nbt != null && keyItems.custom_model_data() == nbt.value()) || keyItems.custom_model_data() == 0) {
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();
@@ -438,8 +438,9 @@ public class ConfigResults {
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customStone) &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data()) {
+                        ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
+                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data()) ||
+                                pokemon.custom_model_data() == 0)) {
                     return pokemon.showdown_id();
                 }
                 return null;
@@ -458,8 +459,8 @@ public class ConfigResults {
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customHeldItem) &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) {
+                        ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
+                        stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) || items.custom_model_data() == 0)) {
                     return items.showdown_id();
                 }
                 return null;
@@ -479,8 +480,9 @@ public class ConfigResults {
 
                 CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                     if (stack.getItem().equals(customHeldItem) &&
-                            stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                            stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) {
+                            ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
+                            stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data())
+                                    || items.custom_model_data() == 0)) {
                         return items.showdown_id();
                     }
                     return null;

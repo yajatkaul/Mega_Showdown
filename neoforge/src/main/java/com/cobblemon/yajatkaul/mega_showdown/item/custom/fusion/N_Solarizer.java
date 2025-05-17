@@ -18,12 +18,17 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,102 +44,41 @@ public class N_Solarizer extends Item {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if (player.level().isClientSide || player.isCrouching()) {
-            return InteractionResult.PASS;
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if(level.isClientSide){
+            return InteractionResultHolder.fail(stack);
         }
 
-        if (!(context instanceof PokemonEntity pk)) {
-            return InteractionResult.PASS;
-        }
+        EntityHitResult hitResult = getEntityLookingAt(player, 4.5f);
 
-        Pokemon pokemon = pk.getPokemon();
-        if (pokemon.getOwnerPlayer() != player) {
-            return InteractionResult.PASS;
-        }
+        PokeHandler pokeHandler = stack.get(DataManage.POKEMON_STORAGE);
 
-        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokeHandler refValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
-        Pokemon currentValue;
+        if (hitResult == null && pokeHandler != null) {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
-        if(refValue == null){
-            currentValue = null;
-        }else{
-            currentValue = refValue.getPokemon();
-        }
+            playerPartyStore.add(pokeHandler.getPokemon());
+            stack.set(DataManage.POKEMON_STORAGE, null);
+            player.setItemInHand(hand, stack);
+            return InteractionResultHolder.consume(stack);
+        }else if(hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
+            Pokemon context = pkmn.getPokemon();
 
-        if (currentValue != null && pokemon.getSpecies().getName().equals("Necrozma")) {
-            if (checkFused(pokemon)){
-                player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
-                        .withColor(0xFF0000), true);
-                return InteractionResult.PASS;
+            if(player.isCrouching()){
+                return InteractionResultHolder.pass(stack);
             }
 
-            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-            map.put(pokemon.getUuid(), currentValue);
-            player.setData(DataManage.DATA_MAP, map);
-
-            pk.setData(DataManage.N_SOLAR_POKEMON, new PokeHandler(currentValue));
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
-            particleEffect(pokemon.getEntity());
-            setTradable(pokemon, false);
-
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
-        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
-            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
-            playerPartyStore.remove(pokemon);
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.charged"));
-        } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
-            FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
-            FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-            if(feature != null){
-                boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                if(enabled) {
-                    return InteractionResult.PASS;
-                }
+            if (!(context.getEntity() instanceof PokemonEntity pk)) {
+                return InteractionResultHolder.pass(stack);
             }
 
-            if(!pokemon.getEntity().hasData(DataManage.N_SOLAR_POKEMON)){
-                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-                Pokemon toAdd = map.get(pokemon.getUuid());
-                playerPartyStore.add(toAdd);
-                map.remove(pokemon.getUuid());
-                player.setData(DataManage.DATA_MAP, map);
-            }else{
-                playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_SOLAR_POKEMON).getPokemon());
-                pk.removeData(DataManage.N_SOLAR_POKEMON);
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getOwnerPlayer() != player) {
+                return InteractionResultHolder.pass(stack);
             }
 
-            new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
-            setTradable(pokemon, true);
-            particleEffect(pokemon.getEntity());
-
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
-        } else {
-            return InteractionResult.PASS;
-        }
-
-        player.setItemInHand(hand, arg);
-        player.getInventory().setChanged();
-        return InteractionResult.SUCCESS;
-    }
-
-    private boolean checkEnabled(Pokemon pokemon){
-        return pokemon.getAspects().contains("dusk-fusion");
-    }
-
-    private boolean checkFused(Pokemon pokemon){
-        return pokemon.getAspects().contains("dusk-fusion") || pokemon.getAspects().contains("dawn-fusion");
-    }
-
-
-    @Override
-    public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
-        if(entity.getOwner() instanceof ServerPlayer player){
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+            PokeHandler refValue = stack.getOrDefault(DataManage.POKEMON_STORAGE, null);
             Pokemon currentValue;
 
             if(refValue == null){
@@ -143,15 +87,92 @@ public class N_Solarizer extends Item {
                 currentValue = refValue.getPokemon();
             }
 
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            if (currentValue != null && pokemon.getSpecies().getName().equals("Necrozma")) {
+                if (checkFused(pokemon)){
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
+                            .withColor(0xFF0000), true);
+                    return InteractionResultHolder.pass(stack);
+                }
 
-            if(currentValue != null){
-                playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
+                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                map.put(pokemon.getUuid(), currentValue);
+                player.setData(DataManage.DATA_MAP, map);
+
+                pk.setData(DataManage.N_SOLAR_POKEMON, new PokeHandler(currentValue));
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
+                particleEffect(pokemon.getEntity());
+                setTradable(pokemon, false);
+
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
+                stack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
+                playerPartyStore.remove(pokemon);
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.charged"));
+            } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
+                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
+                FlagSpeciesFeature feature = featureProvider.get(pokemon);
+
+                if(feature != null){
+                    boolean enabled = featureProvider.get(pokemon).getEnabled();
+
+                    if(enabled) {
+                        return InteractionResultHolder.pass(stack);
+                    }
+                }
+
+                if(!pokemon.getEntity().hasData(DataManage.N_SOLAR_POKEMON)){
+                    HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                    Pokemon toAdd = map.get(pokemon.getUuid());
+                    playerPartyStore.add(toAdd);
+                    map.remove(pokemon.getUuid());
+                    player.setData(DataManage.DATA_MAP, map);
+                }else{
+                    playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_SOLAR_POKEMON).getPokemon());
+                    pk.removeData(DataManage.N_SOLAR_POKEMON);
+                }
+
+                new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
+                setTradable(pokemon, true);
+                particleEffect(pokemon.getEntity());
+
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_solarizer.inactive"));
+            } else {
+                return InteractionResultHolder.pass(stack);
             }
+
+            player.setItemInHand(hand, stack);
+            player.getInventory().setChanged();
+            return InteractionResultHolder.success(stack);
         }
 
-        super.onDestroyed(entity, damageSource);
+        return InteractionResultHolder.pass(stack);
+    }
+
+    public static EntityHitResult getEntityLookingAt(Player player, float distance) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 lookVec = player.getViewVector(1.0F);
+        Vec3 targetPos = eyePos.add(lookVec.scale(distance));
+
+        AABB rayTraceBox = new AABB(eyePos, targetPos);
+
+        return ProjectileUtil.getEntityHitResult(
+                player.level(),
+                player,
+                eyePos,
+                targetPos,
+                rayTraceBox, // Use the ray trace box directly
+                entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
+                0.3f // Smaller collision expansion value for more precise detection
+        );
+    }
+
+    private boolean checkEnabled(Pokemon pokemon){
+        return pokemon.getAspects().contains("dusk-fusion");
+    }
+
+    private boolean checkFused(Pokemon pokemon){
+        return pokemon.getAspects().contains("dusk-fusion") || pokemon.getAspects().contains("dawn-fusion");
     }
 
     public static void particleEffect(LivingEntity conComponent) {

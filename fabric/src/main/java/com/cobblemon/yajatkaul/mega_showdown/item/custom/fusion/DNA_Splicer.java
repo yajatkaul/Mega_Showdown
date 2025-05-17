@@ -5,11 +5,13 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -23,7 +25,10 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -36,83 +41,120 @@ public class DNA_Splicer extends Item {
     }
 
     @Override
-    public ActionResult useOnEntity(ItemStack arg, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (player.getWorld().isClient || player.isCrawling()) {
-            return ActionResult.PASS;
-        }
-        if (!(context instanceof PokemonEntity pk)) {
-            return ActionResult.PASS;
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+        if(world.isClient){
+            return TypedActionResult.fail(stack);
         }
 
-        Pokemon pokemon = pk.getPokemon();
-        if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null) {
-            return ActionResult.PASS;
-        }
+        EntityHitResult hitResult = getEntityLookingAt(player, 4.5f);
 
-        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
-        Pokemon currentValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
+        Pokemon currentValue = stack.get(DataManage.POKEMON_STORAGE);
 
-        if(pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)){
-            if(arg.get(DataManage.POKEMON_STORAGE) != null){
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return ActionResult.PASS;
+        if (hitResult == null && currentValue != null) {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+
+            playerPartyStore.add(currentValue);
+            stack.set(DataManage.POKEMON_STORAGE, null);
+            player.setStackInHand(hand, stack);
+            return TypedActionResult.consume(stack);
+        }else if(hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
+            Pokemon context = pkmn.getPokemon();
+
+            if (player.isCrawling()) {
+                return TypedActionResult.pass(stack);
             }
-            particleEffect(pk, ParticleTypes.ASH);
-            new FlagSpeciesFeature("white", false).apply(pokemon);
-            new FlagSpeciesFeature("black", false).apply(pokemon);
-            setTradable(pokemon, true);
 
-            if(!pokemon.getEntity().hasAttached(DataManage.KYUREM_FUSED_WITH)){
+            if (!(context.getEntity() instanceof PokemonEntity pk)) {
+                return TypedActionResult.pass(stack);
+            }
+
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null) {
+                return TypedActionResult.pass(stack);
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+
+            if(pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)){
+                if(stack.get(DataManage.POKEMON_STORAGE) != null){
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.already_fused").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return TypedActionResult.pass(stack);
+                }
+                particleEffect(pk, ParticleTypes.ASH);
+                new FlagSpeciesFeature("white", false).apply(pokemon);
+                new FlagSpeciesFeature("black", false).apply(pokemon);
+                setTradable(pokemon, true);
+
+                if(!pokemon.getEntity().hasAttached(DataManage.KYUREM_FUSED_WITH)){
+                    HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
+                    Pokemon toAdd = map.get(pokemon.getUuid());
+                    playerPartyStore.add(toAdd);
+                    map.remove(pokemon.getUuid());
+                    player.setAttached(DataManage.DATA_MAP, map);
+                }else{
+                    playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.KYUREM_FUSED_WITH).getPokemon());
+                    pokemon.getEntity().removeAttached(DataManage.KYUREM_FUSED_WITH);
+                }
+
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
+            }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
+                if(currentValue.getSpecies().getName().equals("Reshiram")){
+                    particleEffect(pk, ParticleTypes.END_ROD);
+                    new FlagSpeciesFeature("white", true).apply(pokemon);
+                }else{
+                    particleEffect(pk, ParticleTypes.SMOKE);
+                    new FlagSpeciesFeature("black", true).apply(pokemon);
+                }
+                setTradable(pokemon, false);
+
+                pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));
+
                 HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                Pokemon toAdd = map.get(pokemon.getUuid());
-                playerPartyStore.add(toAdd);
-                map.remove(pokemon.getUuid());
+                if(map == null){
+                    map = new HashMap<>();
+                }
+                map.put(pokemon.getUuid(), currentValue);
                 player.setAttached(DataManage.DATA_MAP, map);
-            }else{
-                playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.KYUREM_FUSED_WITH).getPokemon());
-                pokemon.getEntity().removeAttached(DataManage.KYUREM_FUSED_WITH);
+
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
+                stack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
+                playerPartyStore.remove(pk.getPokemon());
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
+            }else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
+                stack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
+                playerPartyStore.remove(pk.getPokemon());
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
+            } else {
+                return TypedActionResult.pass(stack);
             }
 
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
-        }else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
-            if(currentValue.getSpecies().getName().equals("Reshiram")){
-                particleEffect(pk, ParticleTypes.END_ROD);
-                new FlagSpeciesFeature("white", true).apply(pokemon);
-            }else{
-                particleEffect(pk, ParticleTypes.SMOKE);
-                new FlagSpeciesFeature("black", true).apply(pokemon);
-            }
-            setTradable(pokemon, false);
-
-            pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));
-
-            HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-            if(map == null){
-                map = new HashMap<>();
-            }
-            map.put(pokemon.getUuid(), currentValue);
-            player.setAttached(DataManage.DATA_MAP, map);
-
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
-        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
-            arg.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
-            playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
-        }else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
-            arg.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
-            playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
-        } else {
-            return ActionResult.PASS;
+            player.setStackInHand(hand, stack);
+            return TypedActionResult.success(stack);
         }
 
-        player.setStackInHand(hand, arg);
-        return ActionResult.SUCCESS;
+        return TypedActionResult.pass(stack);
+    }
+
+    public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
+        Vec3d eyePos = player.getEyePos();
+        Vec3d lookVec = player.getRotationVec(1.0F);
+        Vec3d targetPos = eyePos.add(lookVec.multiply(distance));
+
+        return ProjectileUtil.raycast(
+                player,
+                eyePos,
+                targetPos,
+                player.getBoundingBox().stretch(lookVec.multiply(distance)).expand(1.0, 1.0, 1.0),
+                entity -> !entity.isSpectator() && entity.canHit() && entity instanceof LivingEntity,
+                distance * distance
+        );
     }
 
     private boolean checkEnabled(Pokemon pokemon){

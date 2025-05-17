@@ -19,12 +19,17 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,89 +43,129 @@ public class Unity extends Item {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity conComponent, InteractionHand hand) {
-        if (player.level().isClientSide || player.isCrouching()) {
-            return InteractionResult.PASS;
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if(level.isClientSide){
+            return InteractionResultHolder.fail(stack);
         }
 
-        if (!(conComponent instanceof PokemonEntity pk)) {
-            return InteractionResult.PASS;
-        }
+        EntityHitResult hitResult = getEntityLookingAt(player, 4.5f);
 
-        Pokemon pokemon = pk.getPokemon();
-        if (pokemon.getOwnerPlayer() != player) {
-            return InteractionResult.PASS;
-        }
+        PokeHandler pokeHandler = stack.get(DataManage.POKEMON_STORAGE);
 
-        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-        PokeHandler refValue = arg.getOrDefault(DataManage.POKEMON_STORAGE, null);
-        Pokemon currentValue;
+        if (hitResult == null && pokeHandler != null) {
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
-        if(refValue == null){
-            currentValue = null;
-        }else{
-            currentValue = refValue.getPokemon();
-        }
+            playerPartyStore.add(pokeHandler.getPokemon());
+            stack.set(DataManage.POKEMON_STORAGE, null);
+            player.setItemInHand(hand, stack);
+            return InteractionResultHolder.consume(stack);
+        }else if(hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
+            Pokemon context = pkmn.getPokemon();
 
-        if(pokemon.getSpecies().getName().equals("Calyrex") && checkEnabled(pokemon)){
-            if(arg.get(DataManage.POKEMON_STORAGE) != null){
-                player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
-                        .withColor(0xFF0000), true);
-                return InteractionResult.PASS;
-            }
-            particleEffect(pk, ParticleTypes.END_ROD);
-            new FlagSpeciesFeature("shadow", false).apply(pokemon);
-            new FlagSpeciesFeature("ice", false).apply(pokemon);
-            pokemon.setTradeable(true);
-
-            if(!pokemon.getEntity().hasData(DataManage.CALYREX_FUSED_WITH)){
-                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-                Pokemon toAdd = map.get(pokemon.getUuid());
-                playerPartyStore.add(toAdd);
-                map.remove(pokemon.getUuid());
-                player.setData(DataManage.DATA_MAP, map);
-            }else{
-                playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH).getPokemon());
-                pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
+            if (player.isCrouching()) {
+                return InteractionResultHolder.pass(stack);
             }
 
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
-        }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
-            if(currentValue.getSpecies().getName().equals("Spectrier")){
-                particleEffect(pk, ParticleTypes.SMOKE);
-                new FlagSpeciesFeature("shadow", true).apply(pokemon);
+            if (!(context.getEntity() instanceof PokemonEntity pk)) {
+                return InteractionResultHolder.pass(stack);
+            }
+
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getOwnerPlayer() != player) {
+                return InteractionResultHolder.pass(stack);
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+            PokeHandler refValue = stack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+            Pokemon currentValue;
+
+            if(refValue == null){
+                currentValue = null;
             }else{
+                currentValue = refValue.getPokemon();
+            }
+
+            if(pokemon.getSpecies().getName().equals("Calyrex") && checkEnabled(pokemon)){
+                if(stack.get(DataManage.POKEMON_STORAGE) != null){
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
+                            .withColor(0xFF0000), true);
+                    return InteractionResultHolder.pass(stack);
+                }
                 particleEffect(pk, ParticleTypes.END_ROD);
-                new FlagSpeciesFeature("ice", true).apply(pokemon);
+                new FlagSpeciesFeature("shadow", false).apply(pokemon);
+                new FlagSpeciesFeature("ice", false).apply(pokemon);
+                pokemon.setTradeable(true);
+
+                if(!pokemon.getEntity().hasData(DataManage.CALYREX_FUSED_WITH)){
+                    HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                    Pokemon toAdd = map.get(pokemon.getUuid());
+                    playerPartyStore.add(toAdd);
+                    map.remove(pokemon.getUuid());
+                    player.setData(DataManage.DATA_MAP, map);
+                }else{
+                    playerPartyStore.add(pokemon.getEntity().getData(DataManage.CALYREX_FUSED_WITH).getPokemon());
+                    pokemon.getEntity().removeData(DataManage.CALYREX_FUSED_WITH);
+                }
+
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
+            }else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
+                if(currentValue.getSpecies().getName().equals("Spectrier")){
+                    particleEffect(pk, ParticleTypes.SMOKE);
+                    new FlagSpeciesFeature("shadow", true).apply(pokemon);
+                }else{
+                    particleEffect(pk, ParticleTypes.END_ROD);
+                    new FlagSpeciesFeature("ice", true).apply(pokemon);
+                }
+                pokemon.setTradeable(false);
+
+                pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, new PokeHandler(currentValue));
+
+                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
+                map.put(pokemon.getUuid(), currentValue);
+                player.setData(DataManage.DATA_MAP, map);
+
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
+                stack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
+                playerPartyStore.remove(pk.getPokemon());
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
+            }else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
+                stack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
+                playerPartyStore.remove(pk.getPokemon());
+                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
+            } else {
+                return InteractionResultHolder.pass(stack);
             }
-            pokemon.setTradeable(false);
 
-            pokemon.getEntity().setData(DataManage.CALYREX_FUSED_WITH, new PokeHandler(currentValue));
-
-            HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-            map.put(pokemon.getUuid(), currentValue);
-            player.setData(DataManage.DATA_MAP, map);
-
-            arg.set(DataManage.POKEMON_STORAGE, null);
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
-        } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
-            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
-            playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
-        }else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
-            arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
-            playerPartyStore.remove(pk.getPokemon());
-            arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
-        } else {
-            return InteractionResult.PASS;
+            player.setItemInHand(hand, stack);
+            player.getInventory().setChanged();
+            return InteractionResultHolder.success(stack);
         }
 
-        player.setItemInHand(hand, arg);
-        player.getInventory().setChanged();
-        return InteractionResult.SUCCESS;
+        return InteractionResultHolder.pass(stack);
     }
 
+    public static EntityHitResult getEntityLookingAt(Player player, float distance) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 lookVec = player.getViewVector(1.0F);
+        Vec3 targetPos = eyePos.add(lookVec.scale(distance));
+
+        AABB rayTraceBox = new AABB(eyePos, targetPos);
+
+        return ProjectileUtil.getEntityHitResult(
+                player.level(),
+                player,
+                eyePos,
+                targetPos,
+                rayTraceBox, // Use the ray trace box directly
+                entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
+                0.3f // Smaller collision expansion value for more precise detection
+        );
+    }
+    
     private boolean checkEnabled(Pokemon pokemon){
         return pokemon.getAspects().contains("shadow") || pokemon.getAspects().contains("ice");
     }
@@ -166,28 +211,5 @@ public class Unity extends Item {
                 );
             }
         }
-    }
-
-    @Override
-    public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
-        if(entity.getOwner() instanceof ServerPlayer player){
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
-            Pokemon currentValue;
-
-            if(refValue == null){
-                currentValue = null;
-            }else{
-                currentValue = refValue.getPokemon();
-            }
-
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-            if(currentValue != null){
-                playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
-            }
-        }
-
-        super.onDestroyed(entity, damageSource);
     }
 }
