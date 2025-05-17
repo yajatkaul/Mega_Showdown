@@ -1,6 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
@@ -8,6 +10,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
@@ -119,7 +122,7 @@ public class MegaLogic {
             if(isMega){
                 Devolve(pk.getPokemon(), false);
             }else {
-                megaEvolve(pk, false);
+                megaEvolve(pk);
             }
         }
     }
@@ -323,7 +326,7 @@ public class MegaLogic {
         setTradable(context, true);
     }
 
-    public static void megaEvolve(PokemonEntity context, boolean fromBattle) {
+    public static void megaEvolve(PokemonEntity context) {
         ServerPlayerEntity player = context.getPokemon().getOwnerPlayer();
 
         if(!player.hasAttached(DataManage.MEGA_DATA)){
@@ -343,8 +346,38 @@ public class MegaLogic {
 
             context.after(4.8F, () ->{
                 LazyLib.Companion.cryAnimation(context);
-                MegaLogic.Evolve(context, player, fromBattle);
+                MegaLogic.Evolve(context, player, false);
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        }else {
+            player.sendMessage(
+                    Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+        }
+    }
+    public static void megaEvolve(PokemonEntity context, PokemonBattle battle, BattlePokemon pokemon) {
+        ServerPlayerEntity player = context.getPokemon().getOwnerPlayer();
+
+        if(!player.hasAttached(DataManage.MEGA_DATA)){
+            player.setAttached(DataManage.MEGA_DATA, false);
+        }
+
+        if(!player.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get()){
+            LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution");
+
+            BlockPos entityPos = context.getBlockPos();
+            context.getWorld().playSound(
+                    null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                    ModSounds.MEGA,
+                    SoundCategory.PLAYERS, 0.2f, 0.8f
+            );
+
+            context.after(4.7F, () ->{
+                LazyLib.Companion.cryAnimation(context);
+                MegaLogic.Evolve(context, player, true);
+                CobbleEventHandler.updatePackets(battle, pokemon, true);
                 return Unit.INSTANCE;
             });
         }else {

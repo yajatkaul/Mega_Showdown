@@ -114,11 +114,9 @@ public class CobbleEventsHandler {
         PokemonBattle battle = megaEvolutionEvent.getBattle();
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
-        battle.dispatchWaitingToFront(5.5F, () -> Unit.INSTANCE);
+        battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
-        MegaLogic.megaEvolve(pokemon.getEntity(), true);
-
-        updatePackets(battle, megaEvolutionEvent.getPokemon(), true);
+        MegaLogic.megaEvolve(pokemon.getEntity(), battle, megaEvolutionEvent.getPokemon());
 
         return Unit.INSTANCE;
     }
