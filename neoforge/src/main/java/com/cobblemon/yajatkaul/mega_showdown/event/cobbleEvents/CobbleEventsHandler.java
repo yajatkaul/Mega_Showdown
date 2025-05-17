@@ -54,6 +54,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
 
@@ -113,14 +114,9 @@ public class CobbleEventsHandler {
         PokemonBattle battle = megaEvolutionEvent.getBattle();
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
-        battle.dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            return Unit.INSTANCE;
-        });
+        battle.dispatchWaitingToFront(5.5F, () -> Unit.INSTANCE);
 
-        ServerPlayer player = megaEvolutionEvent.getPokemon().getOriginalPokemon().getOwnerPlayer();
-
-        MegaLogic.Evolve(pokemon.getEntity(), player, true);
+        MegaLogic.megaEvolve(pokemon.getEntity(), true);
 
         updatePackets(battle, megaEvolutionEvent.getPokemon(), true);
 

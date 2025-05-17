@@ -10,5 +10,11 @@
     "sounds": [
       "mega_showdown:terastallization"
     ]
+  },
+  "mega": {
+    "subtitle": "Mega!",
+    "sounds": [
+      "mega_showdown:mega"
+    ]
   }
 }

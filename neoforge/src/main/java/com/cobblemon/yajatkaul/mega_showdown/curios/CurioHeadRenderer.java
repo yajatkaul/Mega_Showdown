@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.curios;
 
 import com.mojang.math.Axis;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
@@ -23,10 +24,17 @@ public class CurioHeadRenderer implements ICurioRenderer {
 
         if (!stack.isEmpty()) {
             matrixStack.pushPose();
+            LivingEntity entity = slotContext.entity();
+
+            ItemStack headArmor = entity.getItemBySlot(EquipmentSlot.HEAD);
+            float z_axis = 0.0f;
+            if (!headArmor.isEmpty()) {
+                z_axis = -0.05f;
+            }
 
             // Scale for baby entities
             if (renderLayerParent.getModel().young) {
-                matrixStack.translate(0.0F, 0.75F, 0.0F);
+                matrixStack.translate(0.0F, 0.75F, z_axis);
                 matrixStack.scale(0.5F, 0.5F, 0.5F);
             }
 
@@ -36,11 +44,11 @@ public class CurioHeadRenderer implements ICurioRenderer {
             } else if (renderLayerParent.getModel() instanceof EntityModel) {
                 // Try to find and use a head part if available
                 // This is a fallback for non-humanoid models
-                matrixStack.translate(0.0F, 0.25F, 0.0F);
+                matrixStack.translate(0.0F, 0.25F, z_axis);
             }
 
             // Position adjustments for the item
-            matrixStack.translate(0.0F, -0.25F, 0.0F);
+            matrixStack.translate(0.0F, -0.25F, z_axis);
             matrixStack.scale(0.625F, 0.625F, 0.625F);
 
             matrixStack.mulPose(Axis.YP.rotationDegrees(180));

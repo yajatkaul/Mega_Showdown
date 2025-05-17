@@ -63,7 +63,6 @@ public class RevertEvents {
             MegaLogic.Devolve(pokemon, true);
         }
 
-
         return Unit.INSTANCE;
     }
 

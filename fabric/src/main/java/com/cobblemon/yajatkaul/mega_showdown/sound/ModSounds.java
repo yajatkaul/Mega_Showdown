@@ -11,12 +11,14 @@ public class ModSounds {
 
     public static final SoundEvent DYNAMAX = registerSoundEvent("dynamaxing");
     public static final SoundEvent TERASTALLIZATION = registerSoundEvent("terastallization");
+    public static final SoundEvent MEGA = registerSoundEvent("mega");
 
     public static final BlockSoundGroup BATTLE_SOUNDS_DMAX = new BlockSoundGroup(0.7F, 1F,
             DYNAMAX, DYNAMAX, DYNAMAX, DYNAMAX, DYNAMAX);
     public static final BlockSoundGroup BATTLE_SOUNDS_TERA = new BlockSoundGroup(1.0F, 1.0F,
             TERASTALLIZATION, TERASTALLIZATION, TERASTALLIZATION, TERASTALLIZATION, TERASTALLIZATION);
-
+    public static final BlockSoundGroup BATTLE_SOUNDS_MEGA = new BlockSoundGroup(1.0F, 1.0F,
+            MEGA, MEGA, MEGA, MEGA, MEGA);
 
     private static SoundEvent registerSoundEvent(String name){
         Identifier id = Identifier.of(MegaShowdown.MOD_ID, name);

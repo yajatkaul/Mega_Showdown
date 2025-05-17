@@ -174,6 +174,7 @@ public class DynamaxEventListener {
                 if (scaleAttr != null) {
                     float progress = Math.min(1.0f, (float) data.currentTick / data.durationTicks);
                     float newScale = data.startScale + (data.targetScale - data.startScale) * progress;
+
                     scaleAttr.setBaseValue(newScale);
                 }
 

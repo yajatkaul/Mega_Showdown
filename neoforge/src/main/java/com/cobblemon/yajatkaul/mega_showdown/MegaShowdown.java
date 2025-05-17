@@ -98,7 +98,7 @@ public final class MegaShowdown {
 
         ModCreativeModeTabs.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC, "mega_showdown-common.toml");
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modEventBus.addListener(NetworkHandler::register);
 
         NeoForge.EVENT_BUS.addListener(MegaCommands::register);

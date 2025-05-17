@@ -116,18 +116,9 @@ public class CobbleEventHandler {
         PokemonBattle battle = megaEvolutionEvent.getBattle();
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
-        ServerPlayerEntity player = megaEvolutionEvent.getPokemon().getOriginalPokemon().getOwnerPlayer();
+        battle.dispatchWaitingToFront(5.5F, () -> Unit.INSTANCE);
 
-        if(player == null){
-            return Unit.INSTANCE;
-        }
-
-        battle.dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            return Unit.INSTANCE;
-        });
-
-        MegaLogic.Evolve(pokemon.getEntity(), player, true);
+        MegaLogic.megaEvolve(pokemon.getEntity(), true);
 
         updatePackets(battle, megaEvolutionEvent.getPokemon(), true);
 

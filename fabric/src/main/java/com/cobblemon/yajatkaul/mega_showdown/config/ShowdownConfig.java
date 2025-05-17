@@ -26,7 +26,7 @@ public class ShowdownConfig {
 
     static{
         // construct a new config builder
-        IConfigBuilder builder = ConfigBuilders.newTomlConfig(MegaShowdown.MOD_ID, "mega_showdown-common", false);
+        IConfigBuilder builder = ConfigBuilders.newTomlConfig(MegaShowdown.MOD_ID, "common", false);
 
         // a boolean value
         multipleMegas = builder.comment("Enable multiple mega's at one time").define("multipleMegas", false);

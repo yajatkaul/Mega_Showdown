@@ -16,7 +16,8 @@
     "ShowdownSpeciesMixin",
     "StartInstructionAccessor",
     "StartInstructionMixin",
-    "pokemon.PokemonMixin"
+    "pokemon.PokemonMixin",
+    "pokemon.PokemonClientDelegateMixin"
   ],
   "client": [
     "ItemRendererMixin",

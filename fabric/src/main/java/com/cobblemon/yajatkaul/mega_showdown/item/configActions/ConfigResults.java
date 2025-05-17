@@ -71,7 +71,8 @@ public class ConfigResults {
             CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
 
             for(FusionData fusion: Utils.fusionRegistry){
-                if((nbt != null && fusion.custom_model_data() == nbt.value()) || fusion.custom_model_data() == 0){
+                Item item = Registries.ITEM.get(Identifier.tryParse(fusion.item_id()));
+                if(itemStack.isOf(item) && ((nbt != null && fusion.custom_model_data() == nbt.value()) || fusion.custom_model_data() == 0)){
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
                     if (entityHit == null) {
                         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
@@ -263,7 +264,8 @@ public class ConfigResults {
             }
 
             for(KeyItemData keyItems: Utils.keyItemsRegistry){
-                if((nbt != null && keyItems.custom_model_data() == nbt.value()) || keyItems.custom_model_data() == 0) {
+                Item item = Registries.ITEM.get(Identifier.tryParse(keyItems.item_id()));
+                if(itemStack.isOf(item) && ((nbt != null && keyItems.custom_model_data() == nbt.value()) || keyItems.custom_model_data() == 0)) {
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
                     if (entityHit != null) {
                         Entity context = entityHit.getEntity();
@@ -350,8 +352,11 @@ public class ConfigResults {
                                         if(!keyItems.tradable_form()){
                                             setTradable(pokemon, true);
                                         }
-                                        particleEffect(pk, keyItems.effects(), false);
                                     }
+                                    if(keyItems.consume()){
+                                        itemStack.decrement(1);
+                                    }
+                                    particleEffect(pk, keyItems.effects(), false);
                                 }else{
                                     for(String aspects: keyItems.aspects()){
                                         String[] aspectsDiv = aspects.split("=");
@@ -363,7 +368,10 @@ public class ConfigResults {
                                         if(!keyItems.tradable_form()){
                                             setTradable(pokemon, false);
                                         }
-                                        particleEffect(pk, keyItems.effects(), true);
+                                    }
+                                    particleEffect(pk, keyItems.effects(), true);
+                                    if(keyItems.consume()){
+                                        itemStack.decrement(1);
                                     }
                                 }
                             }else{
@@ -406,6 +414,9 @@ public class ConfigResults {
 
                                 particleEffect(pk, keyItems.effects(), true);
                                 setTradable(pokemon, !keyItems.tradable_form());
+                                if(keyItems.consume()){
+                                    itemStack.decrement(1);
+                                }
                             }
                         }
                     }

@@ -561,5 +561,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('T', CobblemonItems.RESTORATION_TANK)
                 .define('I', Items.IRON_BLOCK)
                 .unlockedBy("has_restoration_tank", has(CobblemonItems.RESTORATION_TANK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LISIA_MEGA_TIARA.get())
+                .pattern("L L")
+                .pattern("IKI")
+                .pattern("L L")
+                .define('K', MegaStones.KEYSTONE)
+                .define('L', Items.LAPIS_LAZULI)
+                .define('I', Items.IRON_INGOT)
+                .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
     }
 }

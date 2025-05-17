@@ -9,9 +9,12 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import dev.emi.trinkets.api.TrinketsApi;
+import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +31,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
@@ -109,10 +113,13 @@ public class MegaLogic {
                 return;
             }
 
-            if(pk.getAspects().contains("mega_x") || pk.getAspects().contains("mega") || pk.getAspects().contains("mega_y")){
+            boolean isMega = pk.getAspects().stream()
+                    .anyMatch(aspect -> aspect.startsWith("mega"));
+
+            if(isMega){
                 Devolve(pk.getPokemon(), false);
             }else {
-                Evolve(pk, player, false);
+                megaEvolve(pk, false);
             }
         }
     }
@@ -123,11 +130,6 @@ public class MegaLogic {
         }
         if(player.getWorld().isClient){
             return;
-        }
-
-        Boolean playerData = player.getAttached(DataManage.MEGA_DATA);
-        if(playerData == null){
-            playerData = false;
         }
 
         Pokemon pokemon = (context).getPokemon();
@@ -141,7 +143,7 @@ public class MegaLogic {
             return;
         }
 
-        if(pokemon.getSpecies().getName().equals("Rayquaza") && (!playerData || ShowdownConfig.multipleMegas.get())){
+        if(pokemon.getSpecies().getName().equals("Rayquaza")){
             if(ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()){
                 player.sendMessage(
                         Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
@@ -159,7 +161,7 @@ public class MegaLogic {
                     new StringSpeciesFeature("mega_evolution", "mega").apply(pokemon);
                     setTradable(pokemon, false);
 
-                    playEvolveAnimation(context);
+                    AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
                     
                     found = true;
                 }
@@ -171,7 +173,7 @@ public class MegaLogic {
                 );
             }
             return;
-        } else if (pokemon.getSpecies().getName().equals("Rayquaza") && playerData) {
+        } else if (pokemon.getSpecies().getName().equals("Rayquaza")) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -192,11 +194,11 @@ public class MegaLogic {
                 if(species == null){
                     continue;
                 }
-                if(species.equals(pokemon.getSpecies().getName()) && !playerData){
+                if(species.equals(pokemon.getSpecies().getName())){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
-                    playEvolveAnimation(context);
+                    AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
                     for(String aspect: megaPok.aspects()){
                         String[] aspectDiv = aspect.split("=");
@@ -205,7 +207,7 @@ public class MegaLogic {
                     setTradable(pokemon, false);
 
                     return;
-                }else if(species.equals(pokemon.getSpecies().getName()) && playerData){
+                }else if(species.equals(pokemon.getSpecies().getName())){
                     player.sendMessage(
                             Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
@@ -230,13 +232,13 @@ public class MegaLogic {
             return;
         }
 
-        if(species.equals(pokemon.getSpecies().getName()) && (!playerData || ShowdownConfig.multipleMegas.get())){
+        if(species.equals(pokemon.getSpecies().getName())){
             if(species.equals("Charizard")){
                 if(pokemon.heldItem().isOf(MegaStones.CHARIZARDITE_X)){
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
-                    playEvolveAnimation(context);
+                    AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
                     new StringSpeciesFeature("mega_evolution", "mega_x").apply(pokemon);
                     setTradable(pokemon, false);
@@ -245,7 +247,7 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
-                    playEvolveAnimation(context);
+                    AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
                     new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
                     setTradable(pokemon, false);
@@ -256,7 +258,7 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
-                    playEvolveAnimation(context);
+                    AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
                     new StringSpeciesFeature("mega_evolution", "mega_x").apply(pokemon);
 
@@ -266,7 +268,7 @@ public class MegaLogic {
                     player.setAttached(DataManage.MEGA_DATA, true);
                     player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
-                    playEvolveAnimation(context);
+                    AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
                     new StringSpeciesFeature("mega_evolution", "mega_y").apply(pokemon);
 
@@ -278,14 +280,14 @@ public class MegaLogic {
                 player.setAttached(DataManage.MEGA_DATA, true);
                 player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
-                playEvolveAnimation(context);
+                AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
                 new StringSpeciesFeature("mega_evolution", "mega").apply(pokemon);
 
                 setTradable(pokemon, false);
 
             }
-        } else if(species.equals(pokemon.getSpecies().getName()) && playerData){
+        } else if(species.equals(pokemon.getSpecies().getName())){
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -321,43 +323,35 @@ public class MegaLogic {
         setTradable(context, true);
     }
 
-    public static void playEvolveAnimation(PokemonEntity context) {
-        if (context.getWorld() instanceof ServerWorld serverWorld) {
-            AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
+    public static void megaEvolve(PokemonEntity context, boolean fromBattle) {
+        ServerPlayerEntity player = context.getPokemon().getOwnerPlayer();
 
-            Vec3d entityPos = context.getPos(); // Get entity position
+        if(!player.hasAttached(DataManage.MEGA_DATA)){
+            player.setAttached(DataManage.MEGA_DATA, false);
+        }
 
-            // Get entity's size
-            double entityWidth = context.getWidth();
-            double entityHeight = context.getHeight();
+        if(!player.getAttached(DataManage.MEGA_DATA) || ShowdownConfig.multipleMegas.get()){
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution");
 
-            // Play sound effect
-            serverWorld.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_BEACON_ACTIVATE, // Yarn mapping for BEACON_ACTIVATE
-                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            BlockPos entityPos = context.getBlockPos();
+            context.getWorld().playSound(
+                    null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                    ModSounds.MEGA,
+                    SoundCategory.PLAYERS, 0.2f, 0.8f
             );
 
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
-            double radius = entityWidth * 0.8; // Adjust radius based on width
-
-            for (int i = 0; i < particleCount; i++) {
-                double angle = Math.random() * 2 * Math.PI;
-                double xOffset = Math.cos(angle) * radius;
-                double zOffset = Math.sin(angle) * radius;
-                double yOffset = Math.random() * entityHeight; // Spread particles vertically
-
-                serverWorld.spawnParticles(
-                        ParticleTypes.END_ROD, // Same particle type
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
+            context.after(4.8F, () ->{
+                LazyLib.Companion.cryAnimation(context);
+                MegaLogic.Evolve(context, player, fromBattle);
+                context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        }else {
+            player.sendMessage(
+                    Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
         }
     }
 

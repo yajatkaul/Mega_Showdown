@@ -416,7 +416,12 @@ public class HeldItemChangeFormes {
                     if(!heldItem.required_aspects().isEmpty()){
                         List<String> aspectList = new ArrayList<>();
                         for (String aspects : heldItem.required_aspects()) {
-                            aspectList.add(aspects.split("=")[1]);
+                            String[] aspectsDiv = aspects.split("=");
+                            if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
+                                aspectList.add(aspects.split("=")[0]);
+                            }else{
+                                aspectList.add(aspects.split("=")[1]);
+                            }
                         }
 
                         boolean allMatch = true;
