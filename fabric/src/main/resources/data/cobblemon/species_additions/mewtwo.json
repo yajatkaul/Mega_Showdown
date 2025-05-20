@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:mewtwo",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1.5,
+    "height": 3,
+    "fixed": false
+  }
+}

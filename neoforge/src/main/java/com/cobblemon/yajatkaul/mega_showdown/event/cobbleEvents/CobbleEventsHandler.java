@@ -34,6 +34,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.ServerScoreboard;
@@ -116,7 +117,7 @@ public class CobbleEventsHandler {
 
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
-        MegaLogic.megaEvolve(pokemon.getEntity(), battle, megaEvolutionEvent.getPokemon());
+        MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer(), megaEvolutionEvent.getPokemon(), battle);
 
         return Unit.INSTANCE;
     }
@@ -131,7 +132,7 @@ public class CobbleEventsHandler {
             AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
-        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 115, 0,false, false));
+        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 140, 0,false, false));
 
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
@@ -148,8 +149,18 @@ public class CobbleEventsHandler {
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
         }
 
-        zMoveUsedEvent.getBattle().dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(pokemon);
+        LazyLib.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves");
+
+        BlockPos entityPos = pokemon.getOnPos();
+        pokemon.level().playSound(
+                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                ModSounds.ZMOVE.get(),
+                SoundSource.PLAYERS, 0.2f, 0.7f
+        );
+
+        zMoveUsedEvent.getBattle().dispatchWaitingToFront(4F, () -> Unit.INSTANCE);
+        pk.getEntity().after(2.5f, () -> {
+            LazyLib.Companion.cryAnimation(pk.getEntity());
             return Unit.INSTANCE;
         });
 

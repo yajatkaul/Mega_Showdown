@@ -400,7 +400,7 @@ public class HeldItemChangeFormes {
         Pokemon pokemon = event.getPokemon();
 
         if(pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")){
-            MegaLogic.Devolve(pokemon, true);
+            MegaLogic.Devolve(pokemon, false);
         }
     }
 

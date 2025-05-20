@@ -112,6 +112,7 @@ public class ModBlocks {
             Identifier.of(MegaShowdown.MOD_ID, "max_mushroom"),
             new MaxMushroomBlock(AbstractBlock
                     .Settings.create()
+                    .noCollision()
                     .sounds(BlockSoundGroup.FLOWERING_AZALEA)));
 
     public static final Block GRACIDEA_FLOWER = Registry.register(

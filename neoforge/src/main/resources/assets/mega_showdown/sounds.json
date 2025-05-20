@@ -16,5 +16,11 @@
     "sounds": [
       "mega_showdown:mega"
     ]
+  },
+  "zmove": {
+    "subtitle": "ZMove!",
+    "sounds": [
+      "mega_showdown:zmove"
+    ]
   }
 }

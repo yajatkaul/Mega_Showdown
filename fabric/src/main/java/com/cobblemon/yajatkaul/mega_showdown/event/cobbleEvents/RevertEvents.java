@@ -44,7 +44,7 @@ public class RevertEvents {
                 EventUtils.revertFormesEnd(pokemon, false);
             }
 
-            if ((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && !ShowdownConfig.multipleMegas.get()) {
+            if (ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) {
                 player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), "/msdresetmega");
             }
 

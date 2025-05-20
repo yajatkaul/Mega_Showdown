@@ -10,7 +10,7 @@ public class AdvancementHelper {
     public static void grantAdvancement(ServerPlayer player, String advancementId) {
         ResourceLocation advancementLocation = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega_showdown/" + advancementId);
 
-        if(player.getServer() == null){
+        if(player == null || player.getServer() == null){
             return;
         }
         AdvancementHolder advancementHolder = player.getServer().getAdvancements().get(advancementLocation);

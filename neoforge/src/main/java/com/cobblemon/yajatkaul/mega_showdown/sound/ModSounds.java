@@ -17,6 +17,7 @@ public class ModSounds {
     public static final Supplier<SoundEvent> DYNAMAX = registerSoundEvent("dynamaxing");
     public static final Supplier<SoundEvent> TERASTALLIZATION = registerSoundEvent("terastallization");
     public static final Supplier<SoundEvent> MEGA = registerSoundEvent("mega");
+    public static final Supplier<SoundEvent> ZMOVE = registerSoundEvent("zmove");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name){
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name);
@@ -51,6 +52,16 @@ public class ModSounds {
             MEGA,
             MEGA,
             MEGA
+    );
+
+    public static final DeferredSoundType BATTLE_SOUNDS_Z_MOVE = new DeferredSoundType(
+            1.0F,
+            1.0F,
+            ZMOVE,
+            ZMOVE,
+            ZMOVE,
+            ZMOVE,
+            ZMOVE
     );
 
     public static void register(IEventBus eventBus){

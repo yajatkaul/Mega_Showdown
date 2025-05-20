@@ -115,6 +115,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MAX_MUSHROOM = BLOCKS.register("max_mushroom", () ->
             new MaxMushroomBlock(BlockBehaviour
                     .Properties.of()
+                    .noCollission()
                     .sound(SoundType.FLOWERING_AZALEA)));
 
     public static final DeferredBlock<Block> GRACIDEA_FLOWER = BLOCKS.register("gracidea_flower", GracideaBlock::new);

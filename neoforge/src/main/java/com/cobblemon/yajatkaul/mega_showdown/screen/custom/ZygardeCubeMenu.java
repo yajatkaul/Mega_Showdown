@@ -1,11 +1,16 @@
 package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -62,29 +67,39 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // Check if the slot clicked is one of the vanilla container slots
+        boolean moved = false;
+
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
-            }
+            // Move from player inventory to custom inventory
+            moved = moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
+                    TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false);
         } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;
-            }
+            // Move from custom inventory to player inventory
+            moved = moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
+                    VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false);
         } else {
-            System.out.println("Invalid slotIndex:" + pIndex);
+            MegaShowdown.LOGGER.info("Invalid slotIndex: {}", pIndex);
             return ItemStack.EMPTY;
         }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
-        if (sourceStack.getCount() == 0) {
+
+        if (!moved) return ItemStack.EMPTY;
+
+        if (sourceStack.isEmpty()) {
             sourceSlot.set(ItemStack.EMPTY);
         } else {
             sourceSlot.setChanged();
         }
+
         sourceSlot.onTake(playerIn, sourceStack);
+
+        // Force persistence update if the item is the Zygarde Cube
+        ItemStack cube = playerIn.getItemInHand(InteractionHand.MAIN_HAND);
+        if (cube.is(FormeChangeItems.ZYGARDE_CUBE)) {
+            CompoundTag updatedTag = inventory.serializeNBT(playerIn.level().registryAccess());
+            cube.set(DataManage.ZYGARDE_INV, updatedTag);
+            playerIn.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, cube);
+        }
+
         return copyOfSourceStack;
     }
 

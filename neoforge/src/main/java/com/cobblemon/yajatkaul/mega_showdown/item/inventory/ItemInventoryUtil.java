@@ -25,8 +25,7 @@ public class ItemInventoryUtil {
         this.handler = new ItemStackHandler(2) {
             @Override
             protected int getStackLimit(int slot, ItemStack stack) {
-                if (slot == 1) return 5;
-                return 95;
+                return slot == 1 ? 5 : 95;
             }
 
             @Override

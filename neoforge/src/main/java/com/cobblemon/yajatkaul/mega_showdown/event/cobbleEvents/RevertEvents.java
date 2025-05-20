@@ -37,7 +37,7 @@ public class RevertEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
 
-                EventUtils.revertFormesEnd(pokemon, false);
+                EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getEntity() != null){
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
@@ -70,7 +70,7 @@ public class RevertEvents {
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon: playerPartyStore){
-                EventUtils.revertFormesEnd(pokemon, false);
+                EventUtils.revertFormesEnd(pokemon);
 
                 if(pokemon.getEntity() != null){
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
@@ -117,10 +117,10 @@ public class RevertEvents {
             checkKeldeo(playerPartyStore);
 
             for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon, false);
+                EventUtils.revertFormesEnd(pokemon);
             }
 
-            if (Config.revertMegas && !Config.multipleMegas) {
+            if (Config.revertMegas || Config.battleModeOnly) {
                 player.getServer().getCommands().performPrefixedCommand(player.createCommandSourceStack(), "/msdresetmega");
             }
 

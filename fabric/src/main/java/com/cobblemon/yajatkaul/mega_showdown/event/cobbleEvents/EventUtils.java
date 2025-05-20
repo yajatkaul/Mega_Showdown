@@ -34,13 +34,11 @@ public class EventUtils {
         boolean isMega = pokemon.getAspects().stream()
                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
-        if(!joinedEvent){
-            if((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && isMega){
-                MegaLogic.Devolve(pokemon, true);
-            }
-        }else{
-            if((ShowdownConfig.battleModeOnly.get() || ShowdownConfig.revertMegas.get()) && isMega){
+        if((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && isMega){
+            if(joinedEvent){
                 new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
+            }else {
+                MegaLogic.Devolve(pokemon, true);
             }
         }
 

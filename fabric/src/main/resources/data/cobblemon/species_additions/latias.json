@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:latias",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 2.2,
+    "height": 2.5,
+    "fixed": false
+  }
+}

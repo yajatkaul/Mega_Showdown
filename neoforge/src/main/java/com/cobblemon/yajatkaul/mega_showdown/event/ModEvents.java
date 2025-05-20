@@ -125,7 +125,7 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon, true);
+                EventUtils.revertFormesEnd(pokemon);
             }
         }
     }
@@ -137,11 +137,7 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon, false);
-            }
-
-            if(Config.battleModeOnly){
-                player.setData(DataManage.MEGA_DATA, false);
+                EventUtils.revertFormesEnd(pokemon);
             }
         }
     }

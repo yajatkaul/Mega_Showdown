@@ -23,6 +23,7 @@ public class EarlyLoader {
         if(ShowdownConfig.showdownFilesLoading.get()){
             Path showdown_sim = Path.of("./showdown/sim");
             Path showdown_data = Path.of("./showdown/data");
+            Path showdown = Path.of("./showdown");
 
             try {
                 Files.createDirectories(showdown_sim);
@@ -35,7 +36,7 @@ public class EarlyLoader {
                 yoink("/assets/mega_showdown/showdown/items.js", showdown_data.resolve("items.js"));
                 yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
                 yoink("/assets/mega_showdown/showdown/conditions.js", showdown_sim.resolve("conditions.js"));
-
+                yoink("/assets/mega_showdown/showdown/index.js", showdown.resolve("index.js"));
 
                 MegaShowdown.LOGGER.info("All files are ready!");
             } catch (IOException e) {

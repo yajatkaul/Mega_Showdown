@@ -22,6 +22,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -53,6 +54,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Pair;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
@@ -117,8 +119,7 @@ public class CobbleEventHandler {
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
-
-        MegaLogic.megaEvolve(pokemon.getEntity(), battle, megaEvolutionEvent.getPokemon());
+        MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer(), megaEvolutionEvent.getPokemon(), battle);
 
         return Unit.INSTANCE;
     }
@@ -153,7 +154,7 @@ public class CobbleEventHandler {
             AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
-        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 115, 0,false, false));
+        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 140, 0,false, false));
 
         if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
@@ -168,8 +169,19 @@ public class CobbleEventHandler {
             scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);
         }
 
-        zMoveUsedEvent.getBattle().dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(pokemon);
+        LazyLib.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves");
+        zMoveUsedEvent.getBattle().dispatchWaitingToFront(4F, () -> Unit.INSTANCE);
+
+        BlockPos entityPos = pokemon.getBlockPos();
+        pokemon.getWorld().playSound(
+                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                ModSounds.ZMOVE,
+                SoundCategory.PLAYERS, 0.2f, 0.7f
+        );
+
+
+        pk.getEntity().after(2.5f, () -> {
+            LazyLib.Companion.cryAnimation(pk.getEntity());
             return Unit.INSTANCE;
         });
 

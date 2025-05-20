@@ -1,12 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
+import com.cobblemon.mod.common.data.CobblemonDataProvider;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
@@ -19,16 +20,7 @@ import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
-import com.google.gson.JsonElement;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
-import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -115,6 +107,11 @@ public final class MegaShowdown {
                     ModBlocks.POTTED_GRACIDEA
             );
         });
+
+        CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
+        CobbleEvents.register();
+        TeraTypeHelper.loadShardData();
+        Utils.registerRemapping();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -127,9 +124,6 @@ public final class MegaShowdown {
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        Utils.registerRemapping();
-        TeraTypeHelper.loadShardData();
-        CobbleEvents.register();
         event.getServer().reloadableRegistries();
         Utils.registryLoader(event.getServer().registryAccess());
     }

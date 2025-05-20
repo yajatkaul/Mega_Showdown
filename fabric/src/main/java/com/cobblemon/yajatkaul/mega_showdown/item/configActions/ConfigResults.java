@@ -436,7 +436,7 @@ public class ConfigResults {
         Utils.loadMegaStoneIds();
         MegaCommands.VALID_ITEMS.clear();
 
-        //MEGA
+        //MEGAW
         for(MegaData pokemon: Utils.megaRegistry){
             //COMMAND UTILS
             MegaCommands.VALID_ITEMS.add(pokemon.msd_id());
@@ -548,17 +548,21 @@ public class ConfigResults {
         );
     }
 
-    public static void particleEffect(LivingEntity context, EffectsData effects, Boolean apply) {
+    public static void particleEffect(LivingEntity context, EffectsData effects, boolean apply) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
+            int amplifier = apply ? effects.particle_apply_amplifier() : effects.particle_revert_amplifier();
+
             String[] partsParticle;
             String[] partsSound;
-            if(apply){
+
+            if (apply) {
                 partsParticle = effects.particle_apply().split(":");
                 partsSound = effects.sound_apply().split(":");
-            }else {
+            } else {
                 partsParticle = effects.particle_revert().split(":");
                 partsSound = effects.sound_revert().split(":");
             }
+
             Identifier custom_particle_id = Identifier.of(partsParticle[0], partsParticle[1]);
             ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(custom_particle_id);
 
@@ -571,21 +575,23 @@ public class ConfigResults {
             double entityHeight = context.getHeight();
 
             double scaleFactor = apply ? effects.particle_apply_amplifier() : effects.particle_revert_amplifier();
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityWidth * scaleFactor;
+            double ampFactor = Math.max(1, amplifier); // Ensure amplifier is at least 1
 
-            if(soundEvent == null){
-                if(apply && !effects.sound_apply().isEmpty()){
-                    MegaShowdown.LOGGER.error("A: Invalid Sound used for pokemon: {}, sound id: {}"
-                            , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.sound_apply());
-                }else if(!apply && !effects.sound_revert().isEmpty()){
-                    MegaShowdown.LOGGER.error("R: Invalid Sound used for pokemon: {}, sound id: {}"
-                            , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.sound_revert());
+            double adjustedWidth = entityWidth * scaleFactor * ampFactor;
+            double adjustedHeight = entityHeight * scaleFactor * ampFactor;
+            double adjustedDepth = entityWidth * scaleFactor * ampFactor;
+
+            if (soundEvent == null) {
+                if (apply && !effects.sound_apply().isEmpty()) {
+                    MegaShowdown.LOGGER.error("A: Invalid Sound used for pokemon: {}, sound id: {}",
+                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            effects.sound_apply());
+                } else if (!apply && !effects.sound_revert().isEmpty()) {
+                    MegaShowdown.LOGGER.error("R: Invalid Sound used for pokemon: {}, sound id: {}",
+                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            effects.sound_revert());
                 }
-            }else {
+            } else {
                 serverWorld.playSound(
                         null, entityPos.x, entityPos.y, entityPos.z,
                         soundEvent,
@@ -595,11 +601,11 @@ public class ConfigResults {
 
             int particleCount = (int) (175 * adjustedWidth * adjustedHeight);
 
-            if(particleType instanceof ParticleEffect particle){
+            if (particleType instanceof ParticleEffect particle) {
                 for (int i = 0; i < particleCount; i++) {
-                    double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                    double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                    double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+                    double xOffset = (Math.random() - 0.5) * adjustedWidth;
+                    double yOffset = Math.random() * adjustedHeight;
+                    double zOffset = (Math.random() - 0.5) * adjustedDepth;
 
                     serverWorld.spawnParticles(
                             particle,
@@ -611,15 +617,15 @@ public class ConfigResults {
                             0.1
                     );
                 }
-            }else {
-                if(apply && !effects.particle_apply().isEmpty()){
-                    MegaShowdown.LOGGER.error("A: Invalid Particle used for pokemon: {}, sound id: {}"
-                            , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.particle_apply());
-                }else if(!apply && !effects.particle_revert().isEmpty()){
-                    MegaShowdown.LOGGER.error("R: Invalid Particle used for pokemon: {}, sound id: {}"
-                            , ((PokemonEntity) context).getPokemon().getSpecies().getName()
-                            , effects.particle_revert());
+            } else {
+                if (apply && !effects.particle_apply().isEmpty()) {
+                    MegaShowdown.LOGGER.error("A: Invalid Particle used for pokemon: {}, sound id: {}",
+                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            effects.particle_apply());
+                } else if (!apply && !effects.particle_revert().isEmpty()) {
+                    MegaShowdown.LOGGER.error("R: Invalid Particle used for pokemon: {}, sound id: {}",
+                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            effects.particle_revert());
                 }
             }
         }
