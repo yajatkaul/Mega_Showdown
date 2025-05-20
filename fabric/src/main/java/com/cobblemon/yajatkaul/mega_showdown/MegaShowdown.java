@@ -76,8 +76,9 @@ public class MegaShowdown implements ModInitializer {
 
 
         UseItemCallback.EVENT.register(ConfigResults::useItem);
-        ModDatapack.register();
+
         CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
+        ModDatapack.register();
 
         CobbleEvents.register();
         TrinketEvent.register();

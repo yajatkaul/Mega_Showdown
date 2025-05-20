@@ -108,7 +108,6 @@ public final class MegaShowdown {
             );
         });
 
-        CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
         CobbleEvents.register();
         TeraTypeHelper.loadShardData();
         Utils.registerRemapping();
@@ -144,19 +143,9 @@ public final class MegaShowdown {
     }
 
     private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+        CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
         DatapacksLoader.register(event);
     }
-
-//    @SubscribeEvent
-//    private void onAddReloadListener(AddReloadListenerEvent event) {
-//        event.addListener(new SimpleJsonResourceReloadListener() {
-//
-//            @Override
-//            protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager arg, ProfilerFiller arg2) {
-//
-//            }
-//        }
-//    }
 
 
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

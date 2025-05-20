@@ -83,6 +83,7 @@ function receiveBagItemData(itemId, bagItem) {
 }
 
 function receiveHeldItemData(itemId, itemData) {
+  console.log(itemData);
   items.Items[itemId] = eval(`(${itemData})`);
 }
 
