@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
@@ -20,6 +21,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusPlates;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
@@ -269,27 +271,21 @@ public class HeldItemChangeFormes {
 
         if(pokemon.getSpecies().getName().equals("Giratina")){
             if(post.getReceived().isOf(FormeChangeItems.GRISEOUS_CORE)){
-                originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
-                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+                originAnimation(pokemon.getEntity(), true);
             }else if (post.getReturned().isOf(FormeChangeItems.GRISEOUS_CORE)){
-                originAnimation(pokemon.getEntity(), ParticleTypes.ASH);
-                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+                originAnimation(pokemon.getEntity(), false);
             }
         } else if (pokemon.getSpecies().getName().equals("Palkia")) {
             if(post.getReceived().isOf(FormeChangeItems.LUSTROUS_GLOBE)){
-                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
-                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+                originAnimation(pokemon.getEntity(), true);
             }else if (post.getReturned().isOf(FormeChangeItems.LUSTROUS_GLOBE)){
-                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
-                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+                originAnimation(pokemon.getEntity(), false);
             }
         }else if (pokemon.getSpecies().getName().equals("Dialga")) {
             if(post.getReceived().isOf(FormeChangeItems.ADAMANT_CRYSTAL)){
-                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
-                new StringSpeciesFeature("orb_forme","origin").apply(pokemon);
+                originAnimation(pokemon.getEntity(), true);
             }else if (post.getReturned().isOf(FormeChangeItems.ADAMANT_CRYSTAL)){
-                originAnimation(pokemon.getEntity(), ParticleTypes.END_ROD);
-                new StringSpeciesFeature("orb_forme","altered").apply(pokemon);
+                originAnimation(pokemon.getEntity(), false);
             }
         }
     }
@@ -588,48 +584,27 @@ public class HeldItemChangeFormes {
             }
         }
     }
-    private static void originAnimation(LivingEntity context, SimpleParticleType particleType) {
-        LazyLib.Companion.cryAnimation(context);
-        if (context.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3d entityPos = context.getPos(); // Get entity position
+    private static void originAnimation(PokemonEntity context, boolean enabled) {
+        BlockPos entityPos = context.getBlockPos();
+        context.getWorld().playSound(
+                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                ModSounds.ORIGIN_FORM,
+                SoundCategory.PLAYERS, 0.2f, 1.1f
+        );
 
-            // Get entity's size
-            double entityWidth = context.getWidth();
-            double entityHeight = context.getHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
+        LazyLib.Companion.snowStormPartileSpawner(context, "origin_effect", "target");
+        context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
-
-            // Play sound effect
-            serverWorld.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
-                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverWorld.spawnParticles(
-                        particleType,
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
+        context.after(4F, () -> {
+            if(enabled){
+                new StringSpeciesFeature("orb_forme", "origin").apply(context.getPokemon());
+            }else {
+                new StringSpeciesFeature("orb_forme", "altered").apply(context.getPokemon());
             }
-        }
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+            LazyLib.Companion.cryAnimation(context);
+            return Unit.INSTANCE;
+        });
     }
     private static void crownAnimation(ServerWorld level, BlockPos pos, LivingEntity context) {
         LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(level);

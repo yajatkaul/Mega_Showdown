@@ -8,7 +8,9 @@ import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.ModDatapack;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.TrinketEvent;
@@ -78,6 +80,8 @@ public class MegaShowdown implements ModInitializer {
         UseItemCallback.EVENT.register(ConfigResults::useItem);
 
         CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
+        CobblemonDataProvider.INSTANCE.register(Abilities.INSTANCE);
+        CobblemonDataProvider.INSTANCE.register(Moves.INSTANCE);
         ModDatapack.register();
 
         CobbleEvents.register();
@@ -85,9 +89,9 @@ public class MegaShowdown implements ModInitializer {
     }
 
     private void onServerStarted(MinecraftServer server) {
+        Utils.registryLoader(server.getRegistryManager());
+
         Utils.registerRemapping();
         TeraTypeHelper.loadShardData();
-
-        Utils.registryLoader(server.getRegistryManager());
     }
 }

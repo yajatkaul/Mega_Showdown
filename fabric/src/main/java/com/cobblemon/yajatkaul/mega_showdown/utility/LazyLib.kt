@@ -14,11 +14,11 @@ class LazyLib {
             playPoseableAnimationPacket.sendToPlayersAround(pokemon.x, pokemon.y, pokemon.z, 128.0, pokemon.world.registryKey)
         }
 
-        fun snowStormPartileSpawner(entity: Entity, particle: String){
+        fun snowStormPartileSpawner(entity: Entity, particle: String, location: String){
             val packet = SpawnSnowstormEntityParticlePacket(
                 Identifier.of("cobblemon", particle),
                 sourceEntityId = entity.id,
-                sourceLocators = listOf("target")
+                sourceLocators = listOf(location)
             )
 
             CobblemonNetwork.sendToAllPlayers(

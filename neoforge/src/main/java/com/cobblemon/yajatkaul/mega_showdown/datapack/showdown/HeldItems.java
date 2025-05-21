@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class HeldItems implements DataRegistry {
-    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "held_items");
+    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/held_items");
     private static final SimpleObservable<HeldItems> OBSERVABLE = new SimpleObservable<>();
 
     private final Map<String, String> heldItemsScripts = new HashMap<>();
@@ -75,7 +75,7 @@ public class HeldItems implements DataRegistry {
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
         heldItemsScripts.clear();
-        resourceManager.listResources("held_items", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
+        resourceManager.listResources("showdown/held_items", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.open(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
                 String itemId = new File(id.getPath()).getName().replace(".js", "");

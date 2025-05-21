@@ -1,26 +1,37 @@
 {
   "dynamaxing": {
-    "subtitle": "Dynamaxing!",
     "sounds": [
       "mega_showdown:dynamaxing"
     ]
   },
   "terastallization": {
-    "subtitle": "Tera!",
     "sounds": [
       "mega_showdown:terastallization"
     ]
   },
   "mega": {
-    "subtitle": "Mega!",
     "sounds": [
       "mega_showdown:mega"
     ]
   },
   "zmove": {
-    "subtitle": "ZMove!",
     "sounds": [
       "mega_showdown:zmove"
+    ]
+  },
+  "ash_greninja": {
+    "sounds": [
+      "mega_showdown:ash_greninja"
+    ]
+  },
+  "power-construct": {
+    "sounds": [
+      "mega_showdown:power-construct"
+    ]
+  },
+  "origin_form": {
+    "sounds": [
+      "mega_showdown:origin_form"
     ]
   }
 }

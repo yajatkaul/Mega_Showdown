@@ -16,6 +16,9 @@ const CobblemonCache = require("./sim/cobblemon-cache");
 const BagItems = require("./sim/bag-items");
 const items = require("./data/items");
 const pokedex = require("./data/pokedex");
+const battleActions = require("./sim/battle-actions");
+const moves = require("./data/moves");
+const abilities = require("./data/abilities");
 
 function startBattle(graalShowdown, battleId, requestMessages) {
   const battleStream = new BS.BattleStream();
@@ -86,6 +89,10 @@ function receiveHeldItemData(itemId, itemData) {
   items.Items[itemId] = eval(`(${itemData})`);
 }
 
-// function receivePokedexData(pokemonId, pokemonData) {
-//   pokedex.Pokedex[pokemonId] = eval(`(${pokemonData})`);
-// }
+function receiveMoveData(moveId, moveData) {
+  moves.Moves[moveId] = eval(`(${moveData})`);
+}
+
+function receiveAbilityData(abilityId, abilityData) {
+  abilities.Abilities[abilityId] = eval(`(${abilityData})`);
+}

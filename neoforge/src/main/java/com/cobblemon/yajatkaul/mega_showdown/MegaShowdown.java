@@ -7,7 +7,9 @@ import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlock
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
@@ -110,7 +112,6 @@ public final class MegaShowdown {
 
         CobbleEvents.register();
         TeraTypeHelper.loadShardData();
-        Utils.registerRemapping();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -125,6 +126,7 @@ public final class MegaShowdown {
     public void onServerStarting(ServerStartingEvent event) {
         event.getServer().reloadableRegistries();
         Utils.registryLoader(event.getServer().registryAccess());
+        Utils.registerRemapping();
     }
 
     @SubscribeEvent
@@ -144,6 +146,8 @@ public final class MegaShowdown {
 
     private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
         CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
+        CobblemonDataProvider.INSTANCE.register(Abilities.INSTANCE);
+        CobblemonDataProvider.INSTANCE.register(Moves.INSTANCE);
         DatapacksLoader.register(event);
     }
 

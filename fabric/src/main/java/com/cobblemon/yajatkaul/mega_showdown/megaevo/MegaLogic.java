@@ -311,7 +311,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution");
+        LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
 
         BlockPos entityPos = context.getBlockPos();
         context.getWorld().playSound(
@@ -483,7 +483,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution");
+        LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
 
         BlockPos entityPos = context.getBlockPos();
         context.getWorld().playSound(

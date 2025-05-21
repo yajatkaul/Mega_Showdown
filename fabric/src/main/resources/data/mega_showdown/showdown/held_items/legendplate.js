@@ -1,9 +1,9 @@
 {
     name: "legendplate",
     onTryMove(pokemon, target, move) {
-        if (!(pokemon.hasItem("legendplate") && move.id === "judgment")) return;
+        if (!(pokemon.hasItem('legendplate') && move.id === 'judgment')) return;
 
-          const targetTypes = target.getTypes();
+          const targetTypes = target.getTypes(); 
           let bestType = "Normal";
           let highestEffectiveness = -99;
 
@@ -49,17 +49,17 @@
                   highestEffectiveness = effectiveness;
               }
           }
-          if (pokemon.name === "Arceus") {
-              if (pokemon.species.name !== `Arceus-${bestType}`) {
-                  pokemon.formeChange(`Arceus-${bestType}`, null, true);
-              }
-              move.type = bestType;
-              move.ignoreAbility = true;
-          }
+          if (pokemon.name === 'Arceus') {
+			  if (pokemon.species.name !== `Arceus-${bestType}`) {
+			  	pokemon.formeChange(`Arceus-${bestType}`, null, true);
+			  }
+			  move.type = bestType;
+			  move.ignoreAbility = true;
+		  }
       },
       onUse(pokemon) {
-          if (pokemon.name === "Arceus") {
+          if (pokemon.name === 'Arceus') {
 
-          }
+		  }
       }
   }

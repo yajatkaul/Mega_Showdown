@@ -89,6 +89,11 @@ public class CobbleEventsHandler {
             return Unit.INSTANCE;
         }
 
+        if(event.getPokemon().getEntity().getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())){
+            event.cancel();
+            return Unit.INSTANCE;
+        }
+
         HeldItemChangeFormes.primalEvent(event);
 
         return Unit.INSTANCE;
@@ -149,7 +154,7 @@ public class CobbleEventsHandler {
             scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
         }
 
-        LazyLib.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves");
+        LazyLib.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", "target");
 
         BlockPos entityPos = pokemon.getOnPos();
         pokemon.level().playSound(
@@ -285,6 +290,8 @@ public class CobbleEventsHandler {
 
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
         PokemonBattle battle = formeChangeEvent.getBattle();
+        PokemonEntity pokemonEntity = pokemon.getEntity();
+        BlockPos entityPos = pokemonEntity.getOnPos();
 
         switch (pokemon.getSpecies().getName()) {
             case "Aegislash" -> {
@@ -332,8 +339,21 @@ public class CobbleEventsHandler {
             }
             case "Greninja" -> {
                 if (formeChangeEvent.getFormeName().equals("ash")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
+                    pokemonEntity.level().playSound(
+                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                            ModSounds.ASH_GRENINJA.get(),
+                            SoundSource.PLAYERS, 0.2f, 1f
+                    );
+                    battle.dispatchWaitingToFront(4.5F, () -> {
+                        LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "battlebond_effect", "root");
+                        return Unit.INSTANCE;
+                    });
+                    pokemonEntity.after(4F, () -> {
+                        new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
+                        LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                        return Unit.INSTANCE;
+                    });
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_greninja");
                 }else {
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_battle_bond");
@@ -420,8 +440,21 @@ public class CobbleEventsHandler {
             }
             case "Zygarde" -> {
                 if (formeChangeEvent.getFormeName().equals("complete")) {
-                    new FlagSpeciesFeature("complete-percent", true).apply(pokemon);
-                    playZygardeTransformation(pokemon.getEntity());
+                    pokemonEntity.level().playSound(
+                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                            ModSounds.POWER_CONSTRUCT.get(),
+                            SoundSource.PLAYERS, 0.2f, 0.8f
+                    );
+                    battle.dispatchWaitingToFront(4.5F, () -> {
+                        LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "power_construct_event", "root");
+                        return Unit.INSTANCE;
+                    });
+                    pokemonEntity.after(4F, () -> {
+                        new FlagSpeciesFeature("complete-percent", true).apply(pokemon);
+                        LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                        return Unit.INSTANCE;
+                    });
                 }
             }
         }
@@ -447,50 +480,7 @@ public class CobbleEventsHandler {
 
         updatePackets(battle, formeChangeEvent.getPokemon(), false);
 
-        formeChangeEvent.getBattle().dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            return Unit.INSTANCE;
-        });
-
         return Unit.INSTANCE;
-    }
-
-    public static void playZygardeTransformation(LivingEntity context) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getBbWidth() + 1;
-            double entityHeight = context.getBbHeight() + 4;
-
-            // Play sound effect
-            serverLevel.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
-                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
-            double radius = entityWidth * 0.8; // Adjust radius based on width
-
-            for (int i = 0; i < particleCount; i++) {
-                double angle = Math.random() * 2 * Math.PI;
-                double xOffset = Math.cos(angle) * radius;
-                double zOffset = Math.sin(angle) * radius;
-                double yOffset = Math.random() * entityHeight; // Spread particles vertically
-
-                serverLevel.sendParticles(
-                        ParticleTypes.END_ROD, // Change this to any particle type
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
     }
 
     public static Unit fixTera(PokemonCapturedEvent pokemonCapturedEvent) {

@@ -33,7 +33,6 @@ public class EarlyLoader {
                 yoink("/assets/mega_showdown/showdown/battle-actions.js", showdown_sim.resolve("battle-actions.js"));
                 yoink("/assets/mega_showdown/showdown/pokemon.js", showdown_sim.resolve("pokemon.js"));
                 yoink("/assets/mega_showdown/showdown/abilities.js", showdown_data.resolve("abilities.js"));
-                yoink("/assets/mega_showdown/showdown/items.js", showdown_data.resolve("items.js"));
                 yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
                 yoink("/assets/mega_showdown/showdown/conditions.js", showdown_sim.resolve("conditions.js"));
                 yoink("/assets/mega_showdown/showdown/index.js", showdown.resolve("index.js"));
