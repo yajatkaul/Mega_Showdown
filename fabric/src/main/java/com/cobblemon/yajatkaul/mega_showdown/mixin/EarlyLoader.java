@@ -24,6 +24,7 @@ public class EarlyLoader {
             Path showdown_sim = Path.of("./showdown/sim");
             Path showdown_data = Path.of("./showdown/data");
             Path showdown = Path.of("./showdown");
+            Path showdown_mod_data = Path.of("./showdown/data/mods/cobblemon");
 
             try {
                 Files.createDirectories(showdown_sim);
@@ -36,6 +37,16 @@ public class EarlyLoader {
                 yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
                 yoink("/assets/mega_showdown/showdown/conditions.js", showdown_sim.resolve("conditions.js"));
                 yoink("/assets/mega_showdown/showdown/index.js", showdown.resolve("index.js"));
+
+                if (!Files.exists(showdown_mod_data.resolve("items.js"))) {
+                    yoink("/assets/mega_showdown/showdown/mods/items.js", showdown_mod_data.resolve("items.js"));
+                }
+                if (!Files.exists(showdown_mod_data.resolve("abilities.js"))) {
+                    yoink("/assets/mega_showdown/showdown/mods/abilities.js", showdown_mod_data.resolve("abilities.js"));
+                }
+                if (!Files.exists(showdown_mod_data.resolve("moves.js"))) {
+                    yoink("/assets/mega_showdown/showdown/mods/moves.js", showdown_mod_data.resolve("moves.js"));
+                }
 
                 MegaShowdown.LOGGER.info("All files are ready!");
             } catch (IOException e) {

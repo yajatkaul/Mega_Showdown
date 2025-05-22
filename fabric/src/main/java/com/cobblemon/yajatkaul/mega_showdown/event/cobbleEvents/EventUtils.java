@@ -7,6 +7,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
@@ -82,6 +83,20 @@ public class EventUtils {
         } else if (pokemon.getSpecies().getName().equals("Zygarde")) {
             new FlagSpeciesFeature("complete-percent", false).apply(pokemon);
         }
+        // HELD ITEM
+        else if (pokemon.getSpecies().getName().equals("Palkia")
+                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.LUSTROUS_GLOBE)){
+            new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
+        }
+        else if (pokemon.getSpecies().getName().equals("Dialga")
+                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.ADAMANT_CRYSTAL)){
+            new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
+        }
+        else if (pokemon.getSpecies().getName().equals("Giratina")
+                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.GRISEOUS_CORE)){
+            new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
+        }
+
 
         for(FormChangeData forme: Utils.formChangeRegistry){
             if(forme.battle_mode_only()){

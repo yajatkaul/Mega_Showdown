@@ -19,7 +19,10 @@
     "GimmickTileMixin",
     "LootPoolAccessor",
     "pokemon.PokemonMixin",
-    "pokemon.PokemonClientDelegateMixin"
+    "pokemon.PokemonClientDelegateMixin",
+    "pokemon.PokemonEntityMixin",
+    "MovesAccessor",
+    "AbilitiesAccessor"
   ],
   "client": [
     "UI.SummaryMixin",

@@ -14,11 +14,10 @@ const battleMap = new Map();
 const cobbledModId = "cobblemon";
 const CobblemonCache = require("./sim/cobblemon-cache");
 const BagItems = require("./sim/bag-items");
-const items = require("./data/items");
-const pokedex = require("./data/pokedex");
+const items = require("./data/mods/cobblemon/items");
+const moves = require("./data/mods/cobblemon/moves");
+const abilities = require("./data/mods/cobblemon/abilities");
 const battleActions = require("./sim/battle-actions");
-const moves = require("./data/moves");
-const abilities = require("./data/abilities");
 
 function startBattle(graalShowdown, battleId, requestMessages) {
   const battleStream = new BS.BattleStream();
@@ -91,10 +90,12 @@ function receiveHeldItemData(itemId, itemData) {
 
 function receiveMoveData(moveId, moveData) {
   moves.Moves[moveId] = eval(`(${moveData})`);
+  return JSON.stringify(moves.Moves[moveId]);
 }
 
 function receiveAbilityData(abilityId, abilityData) {
   abilities.Abilities[abilityId] = eval(`(${abilityData})`);
+  return JSON.stringify(abilities.Abilities[abilityId]);
 }
 
 function receiveCustomGmaxMove(pokemonId, moveId) {

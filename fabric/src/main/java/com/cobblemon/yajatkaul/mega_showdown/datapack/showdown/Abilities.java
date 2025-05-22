@@ -7,6 +7,10 @@ import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.mixin.AbilitiesAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.utility.NewAbility;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import kotlin.Unit;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -31,6 +35,8 @@ public class Abilities implements DataRegistry {
 
     public static final Abilities INSTANCE = new Abilities();
 
+    Gson gson = new Gson();
+
     private Abilities() {
         OBSERVABLE.subscribe(Priority.NORMAL , this::abilitiesLoad);
     }
@@ -40,9 +46,13 @@ public class Abilities implements DataRegistry {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
                 for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
-                    String itemId = entry.getKey();
+                    String abilityId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    receiveAbilityDataFn.execute(itemId, js);
+                    receiveAbilityDataFn.execute(abilityId, js);
+                    JsonObject abilityData = gson.fromJson(receiveAbilityDataFn.execute(abilityId, js).asString(), JsonObject.class);
+                    String name = abilityData.get("name").getAsString();
+
+                    AbilitiesAccessor.getAllAbilities().put(name, NewAbility.INSTANCE.getAbility(name));
                 }
             }
             return Unit.INSTANCE;
@@ -73,8 +83,8 @@ public class Abilities implements DataRegistry {
         resourceManager.findAllResources("showdown/abilities", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getFirst().getInputStream(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
-                String itemId = new File(id.getPath()).getName().replace(".js", "");
-                abilityScripts.put(itemId, js);
+                String abilityId = new File(id.getPath()).getName().replace(".js", "");
+                abilityScripts.put(abilityId, js);
             } catch (IOException e) {
                 MegaShowdown.LOGGER.error("Failed to load abilities script: {} {}", id, e);
             }

@@ -17,7 +17,10 @@
     "StartInstructionAccessor",
     "StartInstructionMixin",
     "pokemon.PokemonMixin",
-    "pokemon.PokemonClientDelegateMixin"
+    "pokemon.PokemonClientDelegateMixin",
+    "pokemon.PokemonEntityMixin",
+    "MovesAccessor",
+    "AbilitiesAccessor"
   ],
   "client": [
     "ItemRendererMixin",

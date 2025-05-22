@@ -357,16 +357,16 @@ const Abilities = {
     rating: 1,
     num: 4
   },
-  battlebond: {
+  battlebond: { 
     onSourceAfterFaint(length, target, source, effect) {
       if (effect?.effectType !== "Move")
         return;
       if (source.abilityState.battleBondTriggered)
         return;
-	  if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness === 255) {
+	  if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness >= 250) {
 		  source.formeChange("Greninja-Ash", this.effect, false, "[msg]");
 	  }
-      if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness < 255) {
+      if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness < 250) {
         this.boost({ atk: 1, spa: 1, spe: 1 }, source, source, this.effect);
         this.add("-activate", source, "ability: Battle Bond");
         source.abilityState.battleBondTriggered = true;

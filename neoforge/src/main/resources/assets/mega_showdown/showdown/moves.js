@@ -21797,7 +21797,7 @@ const Moves = {
     accuracy: 100,
     basePower: 15,
     basePowerCallback(pokemon, target, move) {
-      if (pokemon.species.name === "Greninja-Ash" && pokemon.hasAbility("battlebond") && !pokemon.transformed) {
+      if (pokemon.species.name === "Greninja-Ash" && pokemon.hasAbility("battlebond") && !pokemon.transformed) {	
         return move.basePower + 5;
       }
       return move.basePower;
@@ -21808,6 +21808,11 @@ const Moves = {
     priority: 1,
     flags: { protect: 1, mirror: 1, metronome: 1 },
     multihit: [2, 5],
+	onModifyMove(move, pokemon) {
+	  if (pokemon.species.name === "Greninja-Ash" && pokemon.hasAbility("battlebond") && !pokemon.transformed) {	
+		move.multihit = [3, 5];
+	  }
+    },
     secondary: null,
     target: "normal",
     type: "Water",
