@@ -1,12 +1,16 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.common.data.CobblemonDataProvider;
+import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
@@ -22,6 +26,7 @@ import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
+import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -127,6 +132,16 @@ public final class MegaShowdown {
         event.getServer().reloadableRegistries();
         Utils.registryLoader(event.getServer().registryAccess());
         Utils.registerRemapping();
+
+        Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
+            if(showdownService instanceof GraalShowdownService service){
+                Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveCustomGmaxMove");
+                for (GmaxData gmax: Utils.gmaxRegistry) {
+                    receiveMoveDataFn.execute(gmax.pokemon(), gmax.gmaxMove());
+                }
+            }
+            return Unit.INSTANCE;
+        });
     }
 
     @SubscribeEvent

@@ -1,6 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.common.data.CobblemonDataProvider;
+import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.block.BlockRegister;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
@@ -8,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.ModDatapack;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
@@ -23,6 +27,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.worldgen.ModWorldGeneration;
 import com.google.common.reflect.Reflection;
+import kotlin.Unit;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
@@ -40,6 +45,7 @@ import net.minecraft.util.profiler.Profiler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -93,5 +99,15 @@ public class MegaShowdown implements ModInitializer {
 
         Utils.registerRemapping();
         TeraTypeHelper.loadShardData();
+
+        Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
+            if(showdownService instanceof GraalShowdownService service){
+                Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveCustomGmaxMove");
+                for (GmaxData gmax: Utils.gmaxRegistry) {
+                    receiveMoveDataFn.execute(gmax.pokemon(), gmax.gmaxMove());
+                }
+            }
+            return Unit.INSTANCE;
+        });
     }
 }

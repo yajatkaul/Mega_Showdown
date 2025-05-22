@@ -475,7 +475,7 @@ public class CobbleEventHandler {
                     pokemonEntity.getWorld().playSound(
                             null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                             ModSounds.POWER_CONSTRUCT,
-                            SoundCategory.PLAYERS, 0.2f, 1f
+                            SoundCategory.PLAYERS, 0.2f, 0.8f
                     );
                     battle.dispatchWaitingToFront(4.5F, () -> {
                         LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "power_construct_event", "root");

@@ -96,3 +96,8 @@ function receiveMoveData(moveId, moveData) {
 function receiveAbilityData(abilityId, abilityData) {
   abilities.Abilities[abilityId] = eval(`(${abilityData})`);
 }
+
+function receiveCustomGmaxMove(pokemonId, moveId) {
+  console.log(pokemonId, moveId);
+  battleActions.gmaxMap[pokemonId] = moveId;
+}
