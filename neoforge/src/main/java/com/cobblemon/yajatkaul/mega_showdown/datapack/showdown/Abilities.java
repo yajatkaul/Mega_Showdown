@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack.showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
+import com.cobblemon.mod.common.api.abilities.AbilityTemplate;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
@@ -36,8 +37,6 @@ public class Abilities implements DataRegistry {
 
     public static final Abilities INSTANCE = new Abilities();
 
-    Gson gson = new Gson();
-
     private Abilities() {
         OBSERVABLE.subscribe(Priority.NORMAL , this::abilitiesLoad);
     }
@@ -53,10 +52,11 @@ public class Abilities implements DataRegistry {
                 for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
                     String abilityId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    JsonObject abilityData = gson.fromJson(receiveAbilityDataFn.execute(abilityId, js).asString(), JsonObject.class);
-                    String name = abilityData.get("name").getAsString().toLowerCase(Locale.ROOT);
+                    receiveAbilityDataFn.execute(abilityId, js);
+                    AbilityTemplate newAbility = NewAbility.INSTANCE.getAbility(abilityId);
 
-                    AbilitiesAccessor.getAllAbilities().put(name, NewAbility.INSTANCE.getAbility(abilityId));
+                    AbilitiesAccessor.getAllAbilities().put(newAbility.getName().toLowerCase(Locale.ROOT)
+                            , NewAbility.INSTANCE.getAbility(abilityId));
                 }
             }
             return Unit.INSTANCE;

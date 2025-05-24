@@ -63,9 +63,7 @@ public class Moves implements DataRegistry {
                     String js = entry.getValue().replace("\n", " ");
                     JsonObject moveData = gson.fromJson(receiveMoveDataFn.execute(moveId, js).asString(), JsonObject.class);
                     MoveTemplate newMove = NewMove.INSTANCE.createMoveTemplate(moveData, moveId);
-
-                    MovesAccessor.getAllMoves().put(newMove.getName(), newMove);
-                    MovesAccessor.getIdMapping().put(newMove.getNum(), newMove);
+                    NewMove.INSTANCE.register(newMove);
                 }
             }
             return Unit.INSTANCE;

@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.moves.categories.DamageCategories
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.battles.MoveTarget
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
+import com.cobblemon.yajatkaul.mega_showdown.mixin.accessors.MovesAccessor
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 
@@ -44,5 +45,10 @@ object NewMove {
         val move = MoveTemplate(id, num, elementalType, damageCategory, power, target, accuracy, pp, priority, critRatio, effectChances.toTypedArray(), actionEffect)
 
         return move;
+    }
+
+    fun register(move: MoveTemplate){
+        MovesAccessor.getIdMapping()[move.num] = move;
+        MovesAccessor.getAllMoves()[move.name] = move;
     }
 }

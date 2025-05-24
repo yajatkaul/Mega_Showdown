@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.mixin;
+package com.cobblemon.yajatkaul.mega_showdown.mixin.accessors;
 
 import com.cobblemon.mod.common.battles.ShowdownActionRequest;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;

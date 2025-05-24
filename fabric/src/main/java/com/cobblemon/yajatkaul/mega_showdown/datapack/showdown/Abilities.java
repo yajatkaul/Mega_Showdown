@@ -2,15 +2,13 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack.showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
+import com.cobblemon.mod.common.api.abilities.AbilityTemplate;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.mixin.AbilitiesAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewAbility;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import kotlin.Unit;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -24,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -36,10 +33,8 @@ public class Abilities implements DataRegistry {
 
     public static final Abilities INSTANCE = new Abilities();
 
-    Gson gson = new Gson();
-
     private Abilities() {
-        OBSERVABLE.subscribe(Priority.NORMAL , this::abilitiesLoad);
+        OBSERVABLE.subscribe(Priority.HIGHEST , this::abilitiesLoad);
     }
 
     private Unit abilitiesLoad(Abilities abilities) {
@@ -53,11 +48,12 @@ public class Abilities implements DataRegistry {
                 for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
                     String abilityId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    JsonObject abilityData = gson.fromJson(receiveAbilityDataFn.execute(abilityId, js).asString(), JsonObject.class);
-                    String name = abilityData.get("name").getAsString().toLowerCase(Locale.ROOT);
+                    receiveAbilityDataFn.execute(abilityId, js);
+                    AbilityTemplate newAbility = NewAbility.INSTANCE.getAbility(abilityId);
 
-                    AbilitiesAccessor.getAllAbilities().put(name
-                            , NewAbility.INSTANCE.getAbility(abilityId));
+                    com.cobblemon.mod.common.api.abilities.Abilities.INSTANCE.register(newAbility);
+//                    AbilitiesAccessor.getAllAbilities().put(newAbility.getName().toLowerCase(Locale.ROOT)
+//                            , NewAbility.INSTANCE.getAbility(abilityId));
                 }
             }
             return Unit.INSTANCE;

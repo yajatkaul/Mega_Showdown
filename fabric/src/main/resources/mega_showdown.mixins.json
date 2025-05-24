@@ -5,22 +5,21 @@
   "mixins": [
     "BattleGimmickButtonMixin",
     "EarlyLoader",
-    "EndInstructionAccessor",
+    "accessors.EndInstructionAccessor",
     "EndInstructionMixin",
     "ExceptionHandlerMixin",
     "GimmickTileMixin",
     "MoveActionResponseMixin",
-    "ShowdownActionRequestAccessor",
+    "accessors.ShowdownActionRequestAccessor",
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin",
     "ShowdownSpeciesMixin",
-    "StartInstructionAccessor",
+    "accessors.StartInstructionAccessor",
     "StartInstructionMixin",
     "pokemon.PokemonMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
-    "MovesAccessor",
-    "AbilitiesAccessor"
+    "accessors.MovesAccessor"
   ],
   "client": [
     "ItemRendererMixin",

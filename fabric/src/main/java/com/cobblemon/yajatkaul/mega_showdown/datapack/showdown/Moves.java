@@ -4,22 +4,12 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
-import com.cobblemon.mod.common.api.moves.animations.ActionEffectTimeline;
-import com.cobblemon.mod.common.api.moves.animations.ActionEffects;
-import com.cobblemon.mod.common.api.moves.categories.DamageCategories;
-import com.cobblemon.mod.common.api.moves.categories.DamageCategory;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
-import com.cobblemon.mod.common.api.types.ElementalType;
-import com.cobblemon.mod.common.api.types.ElementalTypes;
-import com.cobblemon.mod.common.battles.MoveTarget;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.mixin.MovesAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewMove;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import kotlin.Unit;
 import net.minecraft.resource.ResourceManager;
@@ -33,9 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -66,9 +54,7 @@ public class Moves implements DataRegistry {
                     String js = entry.getValue().replace("\n", " ");
                     JsonObject moveData = gson.fromJson(receiveMoveDataFn.execute(moveId, js).asString(), JsonObject.class);
                     MoveTemplate newMove = NewMove.INSTANCE.createMoveTemplate(moveData, moveId);
-
-                    MovesAccessor.getAllMoves().put(newMove.getName(), newMove);
-                    MovesAccessor.getIdMapping().put(newMove.getNum(), newMove);
+                    NewMove.INSTANCE.register(newMove);
                 }
             }
             return Unit.INSTANCE;

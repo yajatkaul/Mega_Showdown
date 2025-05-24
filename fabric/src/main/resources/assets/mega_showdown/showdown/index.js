@@ -96,7 +96,6 @@ function receiveMoveData(moveId, moveData) {
 
 function receiveAbilityData(abilityId, abilityData) {
   abilities.Abilities[abilityId] = eval(`(${abilityData})`);
-  return JSON.stringify(abilities.Abilities[abilityId]);
 }
 
 function receiveCustomGmaxMove(pokemonId, moveId) {
