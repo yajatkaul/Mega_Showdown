@@ -1,12 +1,14 @@
 package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -570,5 +572,97 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('L', Items.LAPIS_LAZULI)
                 .define('I', Items.IRON_INGOT)
                 .unlockedBy("has_keystone", has(MegaStones.KEYSTONE)).save(recipeOutput);
+
+        // Heart Trim
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.PINK_DYE),            // addition (pink matches heart trim's pink fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.HEART_TRIM.get()         // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_heart"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.LIGHT_BLUE_DYE),
+                        RecipeCategory.MISC,
+                        FormeChangeItems.STAR_TRIM.get()          // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_star"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.ORANGE_DYE),            // addition (blue matches diamond trim's blue fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.DIAMOND_TRIM.get()       // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_diamond"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.CYAN_DYE),      // addition (light blue matches la reine's light blue fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.LA_REINE_TRIM.get()      // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_la_reine"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.RED_DYE),           // addition (white matches kabuki's primarily white fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.KABUKI_TRIM.get()        // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_kabuki"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.BLUE_DYE),            // addition (blue matches pharaoh's blue fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.PHARAOH_TRIM.get()       // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_pharaoh"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.MAGENTA_DYE),           // addition (green matches matron's dark green fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.MATRON_TRIM.get()        // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_matron"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.LIME_DYE),            // addition (lime matches dandy's light green fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.DANDY_TRIM.get()         // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_dandy"));
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE), // template
+                        Ingredient.of(Items.SHEARS),              // base item
+                        Ingredient.of(Items.YELLOW_DYE),          // addition (orange matches debutante's orange fur)
+                        RecipeCategory.MISC,
+                        FormeChangeItems.DEBUTANTE_TRIM.get()     // result
+                ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_debutante"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get())
+                .pattern("DTD")
+                .pattern("DWD")
+                .pattern("DDD")
+                .define('T', FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE)
+                .define('D', Items.DIAMOND)
+                .define('W', Items.WHITE_WOOL)
+                .unlockedBy("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE)).save(recipeOutput);
     }
+
 }

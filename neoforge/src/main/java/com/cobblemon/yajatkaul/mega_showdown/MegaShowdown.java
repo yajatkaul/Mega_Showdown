@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Conditions;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
@@ -65,8 +66,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-
-import java.util.Map;
 
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
 import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
@@ -163,6 +162,8 @@ public final class MegaShowdown {
         CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
         CobblemonDataProvider.INSTANCE.register(Abilities.INSTANCE);
         CobblemonDataProvider.INSTANCE.register(Moves.INSTANCE);
+        CobblemonDataProvider.INSTANCE.register(Conditions.INSTANCE);
+
         DatapacksLoader.register(event);
     }
 

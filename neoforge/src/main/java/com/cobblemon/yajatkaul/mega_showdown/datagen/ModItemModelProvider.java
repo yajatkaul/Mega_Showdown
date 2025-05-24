@@ -238,5 +238,16 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(Sprites.BATTLE_BOND_SPRITE.get());
         basicItem(Sprites.DYNAMAX_SPRITE.get());
         basicItem(Sprites.ROOT_SPRITE.get());
+
+        basicItem(FormeChangeItems.HEART_TRIM.get());
+        basicItem(FormeChangeItems.STAR_TRIM.get());
+        basicItem(FormeChangeItems.DIAMOND_TRIM.get());
+        basicItem(FormeChangeItems.DEBUTANTE_TRIM.get());
+        basicItem(FormeChangeItems.MATRON_TRIM.get());
+        basicItem(FormeChangeItems.DANDY_TRIM.get());
+        basicItem(FormeChangeItems.LA_REINE_TRIM.get());
+        basicItem(FormeChangeItems.KABUKI_TRIM.get());
+        basicItem(FormeChangeItems.PHARAOH_TRIM.get());
+        basicItem(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get());
     }
 }

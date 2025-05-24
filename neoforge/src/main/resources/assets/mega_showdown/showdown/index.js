@@ -18,6 +18,7 @@ const items = require("./data/mods/cobblemon/items");
 const moves = require("./data/mods/cobblemon/moves");
 const abilities = require("./data/mods/cobblemon/abilities");
 const battleActions = require("./sim/battle-actions");
+const conditions = require("./data/conditions");
 
 function startBattle(graalShowdown, battleId, requestMessages) {
   const battleStream = new BS.BattleStream();
@@ -100,4 +101,8 @@ function receiveAbilityData(abilityId, abilityData) {
 
 function receiveCustomGmaxMove(pokemonId, moveId) {
   battleActions.gmaxMap[pokemonId] = moveId;
+}
+
+function receiveConditionData(conditionId, conditionData) {
+  conditions.Conditions[conditionId] = conditionData;
 }

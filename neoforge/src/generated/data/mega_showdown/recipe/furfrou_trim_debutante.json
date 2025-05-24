@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:yellow_dye"
+  },
+  "base": {
+    "item": "minecraft:shears"
+  },
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:debutante_trim"
+  },
+  "template": {
+    "item": "mega_showdown:furfrou_upgrade"
+  }
+}

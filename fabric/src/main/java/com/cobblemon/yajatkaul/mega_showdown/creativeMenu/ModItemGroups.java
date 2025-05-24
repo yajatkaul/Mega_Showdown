@@ -273,6 +273,17 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.ZYGARDE_CELL);
                         entries.add(FormeChangeItems.ZYGARDE_CUBE);
                         entries.add(ModBlocks.REASSEMBLY_UNIT);
+
+                        entries.add(FormeChangeItems.HEART_TRIM);
+                        entries.add(FormeChangeItems.STAR_TRIM);
+                        entries.add(FormeChangeItems.DIAMOND_TRIM);
+                        entries.add(FormeChangeItems.DEBUTANTE_TRIM);
+                        entries.add(FormeChangeItems.MATRON_TRIM);
+                        entries.add(FormeChangeItems.DANDY_TRIM);
+                        entries.add(FormeChangeItems.LA_REINE_TRIM);
+                        entries.add(FormeChangeItems.KABUKI_TRIM);
+                        entries.add(FormeChangeItems.PHARAOH_TRIM);
+                        entries.add(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE);
                     }))
                     .build());
 

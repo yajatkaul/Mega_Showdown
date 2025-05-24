@@ -300,9 +300,7 @@ public class Utils {
     }
 
     public static void setTradable(Pokemon pokemon, boolean allow){
-        if(!Config.tradeForm){
-            pokemon.setTradeable(allow);
-        }
+        pokemon.setTradeable(allow);
     }
 
     public static Registry<KeyItemData> keyItemsRegistry;

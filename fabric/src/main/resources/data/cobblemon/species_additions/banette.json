@@ -1,0 +1,10 @@
+{
+  "target": "cobblemon:banette",
+  "implemented": true,
+  "baseScale": 0.9,
+  "hitbox": {
+	"width": 0.8,
+	"height": 1.1,
+	"fixed": false
+  }
+}

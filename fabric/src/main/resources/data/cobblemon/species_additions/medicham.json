@@ -1,0 +1,10 @@
+{
+  "target": "cobblemon:medicham",
+  "implemented": true,
+  "baseScale": 0.8,
+  "hitbox": {
+    "width": 1,
+    "height": 1.6,
+    "fixed": false
+  }
+}

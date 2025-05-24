@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:blue_dye"
+  },
+  "base": {
+    "item": "minecraft:shears"
+  },
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:pharaoh_trim"
+  },
+  "template": {
+    "item": "mega_showdown:furfrou_upgrade"
+  }
+}

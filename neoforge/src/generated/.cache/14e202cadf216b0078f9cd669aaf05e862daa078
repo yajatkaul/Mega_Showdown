@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-10T11:36:55.8886274	Item Models: mega_showdown
+// 1.21.1	2025-05-23T23:56:37.8235557	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -30,10 +30,13 @@ e3297ae4b723d9648a34f1df2798f73100356c0f assets/mega_showdown/models/item/chariz
 251ee64bc7c0b921456daca0cc6a61155d5c4a2f assets/mega_showdown/models/item/chilldrive.json
 98cd27ad822c7f7781dbf8b5eff51ad07b7a9f2b assets/mega_showdown/models/item/clear_amulet.json
 7f2c41612fe7867a378700c3a7e3332130dacad4 assets/mega_showdown/models/item/cornerstone_mask.json
+8af713c8a3a0314108c56d8823fb5a078473c2f4 assets/mega_showdown/models/item/dandy_trim.json
 c3f936650210788ca59963e5fa5289524d2fc6b5 assets/mega_showdown/models/item/darkinium-z.json
 f3b8c5beedf5649613f226037db4df3b9409bb19 assets/mega_showdown/models/item/darkmemory.json
 5c549a62e1854b937e8d0c5b928a593680779fef assets/mega_showdown/models/item/dark_tera_shard.json
+3beb8ffb321c68b9854c3033778ef2c4a9b30835 assets/mega_showdown/models/item/debutante_trim.json
 a75f4047ad27107cf48f5aac2fd390f3578be4eb assets/mega_showdown/models/item/decidium-z.json
+5239ce9fc4e5a02040d061a62bfe1502540b4cb1 assets/mega_showdown/models/item/diamond_trim.json
 8e53f610132573504ebc6795e063c336e44f086c assets/mega_showdown/models/item/diancite.json
 b0371e72b888fbaa1b3b680b412cc3ad14abddc7 assets/mega_showdown/models/item/dna_splicer.json
 d7c4ffa1d8ee728ebd2346f422827b3ab1cee13f assets/mega_showdown/models/item/dousedrive.json
@@ -65,6 +68,7 @@ b0fc24ca72eee57f2ca31f7d3e95df1ff6457d23 assets/mega_showdown/models/item/firium
 65b36acc13dc67885d132805b8ed292283ee830c assets/mega_showdown/models/item/flying_tera_shard.json
 facbe66dca2870c10554ccef304f6ff35806cd5a assets/mega_showdown/models/item/flyinium-z.json
 f71ef1ead793d40ec68860a787ce7d59209cd117 assets/mega_showdown/models/item/fridgeunit.json
+18a8300fc88b74656ea5a000e7ba3987f93d37be assets/mega_showdown/models/item/furfrou_upgrade.json
 603dc0494b668860f0b3ab237798b2b8e9450ad2 assets/mega_showdown/models/item/galladite.json
 cb30a9ce6aea879727a8cf75f8d3b234a61c26df assets/mega_showdown/models/item/garchompite.json
 d46f0b605428d77fd6e8e1c12c205dcbda693b67 assets/mega_showdown/models/item/gardevoirite.json
@@ -85,6 +89,7 @@ fc47ed7a2ab9b24782f72878a88f300a3314cdc9 assets/mega_showdown/models/item/ground
 212bfaefc7e6d9db9713b40ecbd7a57ecd974efd assets/mega_showdown/models/item/ground_tera_shard.json
 38818dc42a4b6bf9b5cf5047fd268466e995b5bf assets/mega_showdown/models/item/gyaradosite.json
 8d4100207d31414fc0538fdd32cff79a56eedb3b assets/mega_showdown/models/item/hearthflame_mask.json
+37be964232953295e0943af90f8b650ce1535885 assets/mega_showdown/models/item/heart_trim.json
 ae2a3ea197367cf922e5e799880dc19b49928446 assets/mega_showdown/models/item/heracronite.json
 1f4f309ae62a16d554f915e632d94a0a6d39a18d assets/mega_showdown/models/item/houndoominite.json
 d9848589f39278c8a5fff09650be5aa6e401cd95 assets/mega_showdown/models/item/icememory.json
@@ -94,12 +99,14 @@ d9848589f39278c8a5fff09650be5aa6e401cd95 assets/mega_showdown/models/item/icemem
 f32f50ef4e7de35fef32db4123abacf3256f418e assets/mega_showdown/models/item/incinium-z.json
 4d02b3508be6890edaf6ee211c9c73e7a4dac4d1 assets/mega_showdown/models/item/insectplate.json
 014e3897f7041422f364636404f6a0f738e97129 assets/mega_showdown/models/item/ironplate.json
+2a06e57e1c2ef6faac0cce6513fc75656793b69b assets/mega_showdown/models/item/kabuki_trim.json
 b5f1693c0c77700fe134b137ceaa7589169a9066 assets/mega_showdown/models/item/kangaskhanite.json
 de3f122de0fec463763c1a4526832c229742946d assets/mega_showdown/models/item/keystone.json
 e8e271134b083fef22413eb309a5ff0e54223141 assets/mega_showdown/models/item/kommonium-z.json
 3de1128327c11e7f162957b280214f748dad8590 assets/mega_showdown/models/item/lagging_tail.json
 269dce9fe63da1d21f904252ed66e0026d605a43 assets/mega_showdown/models/item/latiasite.json
 ac2ddb260169a7a2843108a75ea330839875d02b assets/mega_showdown/models/item/latiosite.json
+822c3bde26e7fa5e7539ec211cc80891660d8d1e assets/mega_showdown/models/item/la_reine_trim.json
 2baaa2c7ce7fa2e7eceabb6b841f39ff154e3a8c assets/mega_showdown/models/item/legend_plate.json
 6b68a35fee04802440ceb79aefc02f9b2f3241a2 assets/mega_showdown/models/item/lopunnite.json
 4177ac324c4d57e5043aac7727a0ce49f1d76e51 assets/mega_showdown/models/item/lucarionite.json
@@ -110,6 +117,7 @@ a23db1090e82fe09136fffb61a0e6817492b716d assets/mega_showdown/models/item/lumino
 4c71c128e7043f1e29b2a1a523327ed2fb11e224 assets/mega_showdown/models/item/lycanium-z.json
 4486b99bdcd236c3154acf082002f4db131fe69f assets/mega_showdown/models/item/manectite.json
 52ad93657e4f0f4b29ac46b9623a4b6ba70f963a assets/mega_showdown/models/item/marshadium-z.json
+cd30e8eed478f9dca394280ad79b148e31962191 assets/mega_showdown/models/item/matron_trim.json
 ec2c865e072247419fef7cb4616214a948e7a463 assets/mega_showdown/models/item/mawilite.json
 99e6711873862507a0d46c0a10a584d0207d5bba assets/mega_showdown/models/item/max_honey.json
 a815198f9bb0f16768091c3768398fc7400104b4 assets/mega_showdown/models/item/max_soup.json
@@ -129,6 +137,7 @@ f583db16c7f69fa4e71fac138483d12c696c6ea9 assets/mega_showdown/models/item/mindpl
 bca43824bec988010f300e55d01c1a25af93ddfe assets/mega_showdown/models/item/n_lunarizer.json
 f15c42022126b60b6e788ff251edcdba6f1d0baa assets/mega_showdown/models/item/n_solarizer.json
 82902ced44d6b254dc234aa5946e61133be907fe assets/mega_showdown/models/item/ovenunit.json
+a4f3d0f8703abbd6ef02b259f2a6bc6b71f51f27 assets/mega_showdown/models/item/pharaoh_trim.json
 6ad66abc876feb4cc03a562c7f1be7d24e02f4e2 assets/mega_showdown/models/item/pidgeotite.json
 09054ce39dd29db659a9e9f8dae2bb25d690a9a2 assets/mega_showdown/models/item/pikanium-z.json
 df20cc318724f28fa3a85b6f519342e94585766a assets/mega_showdown/models/item/pikashunium-z.json
@@ -173,6 +182,7 @@ f56a42d62bc63586f0461928dc41fb4ff80bdae8 assets/mega_showdown/models/item/sparkl
 5cecbc94fff916570aee191f3406d1e0dc742edc assets/mega_showdown/models/item/splashplate.json
 85f11dfdafe950f031bfa08d07a77d1cac4f84dc assets/mega_showdown/models/item/spookyplate.json
 ab8e8f12af4a81befe61898899d6c73bdbe85ddc assets/mega_showdown/models/item/star_core.json
+fad2a8b2fa2291230cc50ac1e98c92479ee6d9d3 assets/mega_showdown/models/item/star_trim.json
 fb2cca4bcdc5b5f7690deefd6aed74b82d4eac0d assets/mega_showdown/models/item/steelium-z.json
 1f4c9bfcfcc039d110a7a7bfcab2d52cfd008ced assets/mega_showdown/models/item/steelixite.json
 06124b8a05b9ff1702f25c474a8cdc020f61633f assets/mega_showdown/models/item/steelmemory.json

@@ -8,8 +8,10 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.component.DataComponentTypes;
@@ -22,6 +24,7 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ExplorationMapLootFunction;
 import net.minecraft.loot.function.LootFunction;
 import net.minecraft.registry.Registry;
@@ -64,6 +67,16 @@ public class ModEvents {
                 EventUtils.revertFormesEnd(pokemon, true);
             }
         });
+
+        LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
+            Identifier cobblemonLunaHengeRuinLootTable = Identifier.of("cobblemon", "ruins/common/luna_henge_ruins");
+
+            if (cobblemonLunaHengeRuinLootTable.equals(key.getValue())) {
+                tableBuilder.modifyPools(poolBuilder -> {
+                    poolBuilder.with(ItemEntry.builder(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE).weight(5));
+                });
+            }
+        }));
 
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
             ServerPlayerEntity player;

@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.mixin.Loot.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -32,6 +33,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
 import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -40,6 +43,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
+import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
@@ -138,6 +142,49 @@ public class ModEvents {
 
             for (Pokemon pokemon : playerPartyStore) {
                 EventUtils.revertFormesEnd(pokemon);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLootTableLoad(LootTableLoadEvent event) {
+        ResourceLocation lootTableId = event.getName();
+        ResourceLocation cobblemonLunaHengeRuinLootTable = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/luna_henge_ruins");
+
+        LootTable table = event.getTable();
+        LootPool mainPool = table.getPool("main");
+
+        if (cobblemonLunaHengeRuinLootTable.equals(lootTableId)) {
+            if (mainPool != null && !mainPool.isFrozen()) {
+                LootPoolAccessor poolAccessor = (LootPoolAccessor) mainPool;
+
+                LootPool.Builder newPoolBuilder = LootPool.lootPool()
+                        .setRolls(mainPool.getRolls())
+                        .setBonusRolls(mainPool.getBonusRolls());
+
+                poolAccessor.getEntries().forEach(entry ->
+                        newPoolBuilder.add(new LootPoolEntryContainer.Builder() {
+                            @Override
+                            protected LootPoolEntryContainer.Builder getThis() {
+                                return null;
+                            }
+
+                            @Override
+                            public LootPoolEntryContainer build() {
+                                return entry;
+                            }
+                        })
+                );
+
+                newPoolBuilder.add(LootItem.lootTableItem(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE)
+                        .setWeight(5));
+
+                if (mainPool.getName() != null) {
+                    newPoolBuilder.name(mainPool.getName());
+                }
+
+                table.removePool("main");
+                table.addPool(newPoolBuilder.build());
             }
         }
     }

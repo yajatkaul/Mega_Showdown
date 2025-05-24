@@ -1,0 +1,10 @@
+{
+ "target": "cobblemon:glalie",
+ "implemented": true,
+	"baseScale": 0.8,
+	"hitbox": {
+		"width": 1.8,
+		"height": 1.9,
+		"fixed": false
+   }
+}

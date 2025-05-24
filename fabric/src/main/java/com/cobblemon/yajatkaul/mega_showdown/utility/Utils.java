@@ -298,9 +298,7 @@ public class Utils {
     }
 
     public static void setTradable(Pokemon pokemon, boolean allow){
-        if(!ShowdownConfig.tradeForm.get()){
-            pokemon.setTradeable(allow);
-        }
+        pokemon.setTradeable(allow);
     }
 
     public static Registry<KeyItemData> keyItemsRegistry;

@@ -38,6 +38,11 @@
           "type": "minecraft:item",
           "name": "cobblemon:fire_gem",
           "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "mega_showdown:furfrou_upgrade",
+          "weight": 2
         }
       ]
     }

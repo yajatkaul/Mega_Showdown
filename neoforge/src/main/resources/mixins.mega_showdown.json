@@ -22,7 +22,8 @@
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "MovesAccessor",
-    "AbilitiesAccessor"
+    "AbilitiesAccessor",
+    "Loot.LootPoolAccessor"
   ],
   "client": [
     "UI.SummaryMixin",

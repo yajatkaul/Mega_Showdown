@@ -516,5 +516,22 @@
   "message.mega_showdown.lost_map.desc": "This map leads you to the lost stone",
   "message.mega_showdown.gmax_not_possible": "Your pokemon cannot gmax now",
   "message.mega_showdown.gmax_possible": "Your pokemon can gmax now",
-  "message.mega_showdown.dmax_level_cap": "Your pokemon has max dynamax level"
+  "message.mega_showdown.dmax_level_cap": "Your pokemon has max dynamax level",
+
+  "item.mega_showdown.heart_trim": "Heart Trim",
+  "item.mega_showdown.star_trim": "Star Trim",
+  "item.mega_showdown.diamond_trim": "Diamond Trim",
+  "item.mega_showdown.debutante_trim": "Debutante Trim",
+  "item.mega_showdown.matron_trim": "Matron Trim",
+  "item.mega_showdown.dandy_trim": "Dandy Trim",
+  "item.mega_showdown.la_reine_trim": "La Reine Trim",
+  "item.mega_showdown.kabuki_trim": "Kabuki Trim",
+  "item.mega_showdown.pharaoh_trim": "Pharaoh Trim",
+
+  "item.mega_showdown.furfrou_upgrade": "Smithing Template",
+  "item.mega_showdown.furfrou_trim_smithing_template.applies_to": "Shears",
+  "item.mega_showdown.furfrou_trim_smithing_template.ingredients": "Dye Item",
+  "item.mega_showdown.furfrou_trim_smithing_template.upgrade": "Furfrou Style Trim",
+  "item.mega_showdown.furfrou_trim_smithing_template.base_slot": "Base Item",
+  "item.mega_showdown.furfrou_trim_smithing_template.additions_slot": "Trim Material"
 }

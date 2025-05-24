@@ -12,15 +12,15 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
 import net.minecraft.block.Block;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -31,6 +31,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 
@@ -626,6 +628,451 @@ public class FormeChangeItems {
 
     public static final Item REVEAL_GLASS = registerItem("reveal_glass",
             new RevealGlass(new Item.Settings().maxCount(1)));
+
+    //TRIMS
+    private static final List<String> furfrouAspects = List.of(
+            "heart-trim",
+            "star-trim",
+            "diamond-trim",
+            "debutante-trim",
+            "matron-trim",
+            "dandy-trim",
+            "la_reine-trim",
+            "kabuki-trim",
+            "pharaoh-trim"
+    );
+    public static final Item HEART_TRIM = registerItem("heart_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "heart").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item STAR_TRIM = registerItem("star_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "star").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item DIAMOND_TRIM = registerItem("diamond_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "diamond").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item DEBUTANTE_TRIM = registerItem("debutante_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "debutante").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item MATRON_TRIM = registerItem("matron_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "matron").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item DANDY_TRIM = registerItem("dandy_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "dandy").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item LA_REINE_TRIM = registerItem("la_reine_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "la_reine").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.SUCCESS;
+                }
+            });
+
+    public static final Item KABUKI_TRIM = registerItem("kabuki_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "kabuki").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item PHARAOH_TRIM = registerItem("pharaoh_trim",
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+                @Override
+                public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+                    if(user.getWorld().isClient || user.isCrawling()){
+                        return ActionResult.PASS;
+                    }
+
+                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                        new StringSpeciesFeature("poodle_trim", "pharaoh").apply(pk.getPokemon());
+                        stack.setDamage(stack.getDamage() + 20);
+                        Vec3d pos = pk.getPos();
+                        user.getWorld().playSound(
+                                null, pos.x, pos.y, pos.z,
+                                SoundEvents.ENTITY_SHEEP_SHEAR,
+                                SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                        );
+
+                        Random random = new Random();
+                        int woolCount = random.nextInt(2) + 1;
+                        ItemStack drops = pk.getPokemon().getShiny() ?
+                                new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
+
+                        ItemEntity woolDrop = new ItemEntity(
+                                user.getWorld(),
+                                pos.x, pos.y + 0.5, pos.z,
+                                drops
+                        );
+
+                        user.getWorld().spawnEntity(woolDrop);
+
+                        if(stack.getDamage() >= stack.getMaxDamage()){
+                            stack.decrement(1);
+                            user.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_ITEM_BREAK,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                        }
+                        return ActionResult.SUCCESS;
+                    }
+
+                    return ActionResult.PASS;
+                }
+            });
+
+    public static final Item FURFROU_TRIM_SMITHING_TEMPLATE = Registry.register(
+            Registries.ITEM,
+            Identifier.of(MegaShowdown.MOD_ID, "furfrou_upgrade"),
+            new SmithingTemplateItem(
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.applies_to"),       // Applies to
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.ingredients"),       // Ingredients
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.upgrade"),           // Description title
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.base_slot"),         // Base slot text
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.additions_slot"),    // Additions slot text
+                    List.of(
+                            Identifier.of(MegaShowdown.MOD_ID, "item/shears")
+                    ),
+                    List.of(
+                            Identifier.of(MegaShowdown.MOD_ID, "item/dye")
+                    )
+            )
+    );
 
     public static void registerModItem(){
 

@@ -6,7 +6,9 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.mod.common.pokemon.activestate.PokemonState;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
+import com.cobblemon.mod.common.util.CompoundTagExtensionsKt;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -14,12 +16,15 @@ import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
@@ -27,6 +32,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
@@ -62,12 +68,50 @@ public class ConfigResults {
         return true;
     }
 
+    private static final List<String> furfrouAspects = List.of(
+            "heart-trim",
+            "star-trim",
+            "diamond-trim",
+            "debutante-trim",
+            "matron-trim",
+            "dandy-trim",
+            "la_reine-trim",
+            "kabuki-trim",
+            "pharaoh-trim"
+    );
+
     public static TypedActionResult<ItemStack> useItem(PlayerEntity player, World world, Hand hand){
         ItemStack itemStack = player.getStackInHand(hand);
         if(world.isClient || player.isCrawling()){
             return TypedActionResult.pass(itemStack);
         }
         if (!itemStack.isEmpty()) {
+            if(itemStack.isOf(Items.WHEAT_SEEDS)){
+                EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
+                if (entityHit != null) {
+                    Entity context = entityHit.getEntity();
+                    if(player.getWorld().isClient || player.isCrawling()){
+                        return TypedActionResult.pass(itemStack);
+                    }
+
+                    if(context instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().anyMatch(furfrouAspects::contains)){
+                        if(itemStack.getCount() >= 5){
+                            new StringSpeciesFeature("poodle_trim", "natural").apply(pk.getPokemon());
+                            Vec3d pos = pk.getPos();
+                            player.getWorld().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.ENTITY_GOAT_EAT,
+                                    SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                            itemStack.decrement(5);
+                            return TypedActionResult.success(itemStack);
+                        }
+                    }
+                }
+
+                return TypedActionResult.pass(itemStack);
+            }
             CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
 
             for(FusionData fusion: Utils.fusionRegistry){

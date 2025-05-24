@@ -28,12 +28,14 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -154,11 +156,49 @@ public class ConfigResults {
         }
     }
 
+    private static final List<String> furfrouAspects = List.of(
+            "heart-trim",
+            "star-trim",
+            "diamond-trim",
+            "debutante-trim",
+            "matron-trim",
+            "dandy-trim",
+            "la_reine-trim",
+            "kabuki-trim",
+            "pharaoh-trim"
+    );
+
     public static boolean useItem(Player player, Level level, InteractionHand hand, ItemStack itemStack) {
         if(level.isClientSide || player.isCrouching()){
             return false;
         }
         if (!itemStack.isEmpty()) {
+            if(itemStack.is(Items.WHEAT_SEEDS)){
+                EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
+                if (entityHit != null) {
+                    Entity context = entityHit.getEntity();
+                    if(player.level().isClientSide || player.isCrouching()){
+                        return false;
+                    }
+
+                    if(context instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().anyMatch(furfrouAspects::contains)){
+                        if(itemStack.getCount() >= 5){
+                            new StringSpeciesFeature("poodle_trim", "natural").apply(pk.getPokemon());
+                            Vec3 pos = pk.position();
+                            player.level().playSound(
+                                    null, pos.x, pos.y, pos.z,
+                                    SoundEvents.GOAT_EAT,
+                                    SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+                            );
+                            itemStack.shrink(5);
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
             CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
             for(FusionData fusion: Utils.fusionRegistry){
                 Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(fusion.item_id()));

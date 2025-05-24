@@ -39,6 +39,10 @@ public class HeldItems implements DataRegistry {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveHeldItemDataFn = service.context.getBindings("js").getMember("receiveHeldItemData");
+                //TODO FIX THIS
+                if(receiveHeldItemDataFn == null){
+                    return Unit.INSTANCE;
+                }
                 for (Map.Entry<String, String> entry : HeldItems.INSTANCE.getHeldItemsScripts().entrySet()) {
                     String itemId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");

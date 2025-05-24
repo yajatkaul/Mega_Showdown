@@ -15,7 +15,6 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> disableTeraShardDrop;
     public static final Supplier<Boolean> dynamax;
     public static final Supplier<Boolean> mega;
-    public static final Supplier<Boolean> tradeForm;
     public static final Supplier<Boolean> etermaxForme;
     public static final Supplier<Boolean> dynamaxAnywhere;
     public static final Supplier<Integer> powerSpotRange;
@@ -35,7 +34,6 @@ public class ShowdownConfig {
         zMoves = builder.comment("Enables/Disables zMoves in game").define("zMoves", true);
         teralization = builder.comment("Enables/Disables teralization in game").define("teralization", true);
         disableTeraShardDrop = builder.comment("Disables pokemons from dropping tera shards").define("disableTeraShardDrop", false);
-        tradeForm = builder.comment("Allows you to trade even if your pokemon is not in base form").define("tradeForm", false);
         etermaxForme = builder.comment("Enables etermax eternus forme").define("etermaxForme", true);
         dynamax = builder.comment("Enables/Disables Dmaxing in game").define("dynamax", true);
         mega = builder.comment("Enables/Disables Mega in game").define("mega", true);

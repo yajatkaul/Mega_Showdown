@@ -279,6 +279,17 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.ZYGARDE_CELL);
                         output.accept(FormeChangeItems.ZYGARDE_CUBE);
                         output.accept(ModBlocks.REASSEMBLY_UNIT);
+
+                        output.accept(FormeChangeItems.HEART_TRIM);
+                        output.accept(FormeChangeItems.STAR_TRIM);
+                        output.accept(FormeChangeItems.DIAMOND_TRIM);
+                        output.accept(FormeChangeItems.DEBUTANTE_TRIM);
+                        output.accept(FormeChangeItems.MATRON_TRIM);
+                        output.accept(FormeChangeItems.DANDY_TRIM);
+                        output.accept(FormeChangeItems.LA_REINE_TRIM);
+                        output.accept(FormeChangeItems.KABUKI_TRIM);
+                        output.accept(FormeChangeItems.PHARAOH_TRIM);
+                        output.accept(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE);
                     })
                     .build());
 

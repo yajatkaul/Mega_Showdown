@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.MovesAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewMove;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -56,49 +57,23 @@ public class Moves implements DataRegistry {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveMoveData");
+                //TODO FIX THIS
+                if(receiveMoveDataFn == null){
+                    return Unit.INSTANCE;
+                }
                 for (Map.Entry<String, String> entry : Moves.INSTANCE.getMoveScripts().entrySet()) {
                     String moveId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
                     JsonObject moveData = gson.fromJson(receiveMoveDataFn.execute(moveId, js).asString(), JsonObject.class);
-                    MoveTemplate newMove = newTemplateMove(moveData);
-                    String name = moveData.get("name").getAsString();
-                    int num = moveData.get("num").getAsInt();
+                    MoveTemplate newMove = NewMove.INSTANCE.createMoveTemplate(moveData, moveId);
 
-                    MovesAccessor.getAllMoves().put(name, newMove);
-                    MovesAccessor.getIdMapping().put(num, newMove);
+                    MovesAccessor.getAllMoves().put(newMove.getName(), newMove);
+                    MovesAccessor.getIdMapping().put(newMove.getNum(), newMove);
                 }
             }
             return Unit.INSTANCE;
         });
         return Unit.INSTANCE;
-    }
-
-    private MoveTemplate newTemplateMove(JsonObject moveData){
-        String name = moveData.get("name").getAsString();
-        int num = moveData.get("num").getAsInt();
-        ElementalType elementalType = ElementalTypes.INSTANCE.getOrException(moveData.get("type").getAsString());
-        DamageCategory damageCategory = DamageCategories.INSTANCE.getOrException((moveData.get("category").getAsString()));
-        double power = moveData.get("basePower").getAsDouble();
-        MoveTarget target = MoveTarget.valueOf(moveData.get("target").getAsString());
-
-        JsonElement accuracyElem = moveData.get("accuracy");
-        double accuracy = accuracyElem.isJsonPrimitive() && accuracyElem.getAsJsonPrimitive().isNumber()
-                ? accuracyElem.getAsDouble()
-                : -1.0;
-
-        int pp = moveData.get("pp").getAsInt();
-        int priority = moveData.get("priority").getAsInt();
-        double critRatio = 1.0;
-        Double[] effectChances = new Double[0];
-
-        Identifier id = Identifier.of("cobblemon", "generic_move");
-        ActionEffectTimeline actionEffect = ActionEffects.INSTANCE.getActionEffects().get(id);
-
-        return new MoveTemplate(
-                name, num, elementalType, damageCategory,
-                power, target, accuracy, pp, priority,
-                critRatio, effectChances, actionEffect
-        );
     }
 
     public Map<String, String> getMoveScripts() {

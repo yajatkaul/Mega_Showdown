@@ -37,10 +37,6 @@ public class Config
             .comment("Enables/Disables teralization in game")
             .define("teralization", true);
 
-    private static final ModConfigSpec.BooleanValue TRADE_FORM = BUILDER
-            .comment("Allows you to trade even if your pokemon is not in base form")
-            .define("tradeForm", false);
-
     private static final ModConfigSpec.BooleanValue ETERMAX_FORME = BUILDER
             .comment("Enables etermax eternus forme")
             .define("etermaxForme", true);
@@ -91,7 +87,6 @@ public class Config
     public static boolean zMoves;
     public static boolean disableTeraShardDrop;
     public static boolean teralization;
-    public static boolean tradeForm;
     public static boolean etermaxForme;
     public static boolean dynamax;
     public static boolean mega;
@@ -111,7 +106,6 @@ public class Config
         zMoves = Z_MOVES.get();
         teralization = TERA_EVO.get();
         disableTeraShardDrop = DISABLE_TERASHARD_DROP.get();
-        tradeForm = TRADE_FORM.get();
         etermaxForme = ETERMAX_FORME.get();
         dynamax = DYNAMAX.get();
         dynamaxAnywhere = DYNAMAX_ANYWHERE.get();

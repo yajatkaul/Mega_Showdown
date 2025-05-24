@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.AbilitiesAccessor;
-import com.cobblemon.yajatkaul.mega_showdown.utility.NewAbility;
+import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewAbility;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import kotlin.Unit;
@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -45,14 +46,18 @@ public class Abilities implements DataRegistry {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
+                //TODO FIX THIS
+                if(receiveAbilityDataFn == null){
+                    return Unit.INSTANCE;
+                }
                 for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
                     String abilityId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    receiveAbilityDataFn.execute(abilityId, js);
                     JsonObject abilityData = gson.fromJson(receiveAbilityDataFn.execute(abilityId, js).asString(), JsonObject.class);
-                    String name = abilityData.get("name").getAsString();
+                    String name = abilityData.get("name").getAsString().toLowerCase(Locale.ROOT);
 
-                    AbilitiesAccessor.getAllAbilities().put(name, NewAbility.INSTANCE.getAbility(name));
+                    AbilitiesAccessor.getAllAbilities().put(name
+                            , NewAbility.INSTANCE.getAbility(abilityId));
                 }
             }
             return Unit.INSTANCE;
