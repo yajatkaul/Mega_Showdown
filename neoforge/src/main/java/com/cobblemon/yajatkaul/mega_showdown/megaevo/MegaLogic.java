@@ -180,9 +180,10 @@ public class MegaLogic {
                 String[] parts = megaPok.item_id().split(":");
                 ResourceLocation paperId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
                 Item paperItem = BuiltInRegistries.ITEM.get(paperId);
-                if(paperItem == pokemon.heldItem().getItem()
+                if(paperItem == pokemon.heldItem().getItem() &&
+                        ((pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA) != null
                         && pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA).value()
-                        == megaPok.custom_model_data()){
+                        == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)){
                     species = megaPok.pokemon();
                 }
                 if(species == null){
@@ -362,9 +363,10 @@ public class MegaLogic {
                 String[] parts = megaPok.item_id().split(":");
                 ResourceLocation paperId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
                 Item paperItem = BuiltInRegistries.ITEM.get(paperId);
-                if(paperItem == pokemon.heldItem().getItem()
-                        && pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA).value()
-                        == megaPok.custom_model_data()){
+                if(paperItem == pokemon.heldItem().getItem() &&
+                        ((pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA) != null
+                                && pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA).value()
+                                == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)){
                     species = megaPok.pokemon();
                 }
                 if(species == null){

@@ -59,10 +59,6 @@ public class Moves implements DataRegistry {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveMoveData");
-                //TODO FIX THIS
-                if(receiveMoveDataFn == null){
-                    return Unit.INSTANCE;
-                }
                 for (Map.Entry<String, String> entry : Moves.INSTANCE.getMoveScripts().entrySet()) {
                     String moveId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");

@@ -78,10 +78,6 @@ public class Abilities implements DataRegistry {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
-                //TODO FIX THIS
-                if(receiveAbilityDataFn == null){
-                    return Unit.INSTANCE;
-                }
                 for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
                     String abilityId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");

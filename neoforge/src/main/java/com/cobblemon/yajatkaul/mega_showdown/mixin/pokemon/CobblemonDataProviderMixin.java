@@ -4,6 +4,8 @@ import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.scripting.CobblemonScripts;
 import com.cobblemon.mod.common.data.CobblemonDataProvider;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Conditions;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,6 +25,8 @@ public class CobblemonDataProviderMixin {
             if (registry == CobblemonScripts.INSTANCE) {
                 instance.register(Abilities.INSTANCE);
                 instance.register(Moves.INSTANCE);
+                instance.register(Conditions.INSTANCE);
+                instance.register(HeldItems.INSTANCE);
             }
             return instance.register(registry);
         }

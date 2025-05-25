@@ -29,18 +29,23 @@ public class CurioChestRenderer implements ICurioRenderer {
         ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
         float z_axis = 0.0f;
         if (!chestArmor.isEmpty()) {
-            z_axis = -0.05f;
+            z_axis = -0.0f;
         }
+
         matrixStack.pushPose();
 
-        matrixStack.translate(0.0, -0.25, z_axis); // Adjust this value as needed
+        matrixStack.translate(0.0f, -0.25f, z_axis);
 
         matrixStack.mulPose(Axis.YP.rotationDegrees(180));
         matrixStack.mulPose(Axis.XP.rotationDegrees(180));
 
-        matrixStack.scale(0.58f, 0.58f, 0.58f); // Scale item
+        matrixStack.scale(0.58f, 0.58f, 0.58f);
 
-        // Render the item
+        if(entity.isCrouching()){
+            matrixStack.mulPose(Axis.XP.rotationDegrees(-30));
+            matrixStack.translate(0.0f, -0.2f, z_axis - 0.4f);
+        }
+
         Minecraft.getInstance().getItemRenderer().renderStatic(
                 stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, entity.level(), 0
         );

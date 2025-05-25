@@ -12,6 +12,7 @@
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin",
     "ShowdownSpeciesMixin",
+    "ShowdownThreadMixin",
     "StartInstructionMixin",
     "accessors.EndInstructionAccessor",
     "accessors.MovesAccessor",

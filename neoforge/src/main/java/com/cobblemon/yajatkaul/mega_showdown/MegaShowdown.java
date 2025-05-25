@@ -159,11 +159,6 @@ public final class MegaShowdown {
     }
 
     private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
-        CobblemonDataProvider.INSTANCE.register(Abilities.INSTANCE);
-        CobblemonDataProvider.INSTANCE.register(Moves.INSTANCE);
-        CobblemonDataProvider.INSTANCE.register(Conditions.INSTANCE);
-
         DatapacksLoader.register(event);
     }
 

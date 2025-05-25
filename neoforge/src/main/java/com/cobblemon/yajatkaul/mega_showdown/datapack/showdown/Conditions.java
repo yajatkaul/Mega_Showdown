@@ -40,10 +40,6 @@ public class Conditions implements DataRegistry {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveConditionDataFn = service.context.getBindings("js").getMember("receiveConditionData");
-                //TODO FIX THIS
-                if(receiveConditionDataFn == null){
-                    return Unit.INSTANCE;
-                }
                 for (Map.Entry<String, String> entry : Conditions.INSTANCE.getConditionScripts().entrySet()) {
                     String conditionId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");

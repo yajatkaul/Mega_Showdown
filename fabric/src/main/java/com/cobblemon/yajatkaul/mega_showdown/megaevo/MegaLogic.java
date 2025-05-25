@@ -191,9 +191,10 @@ public class MegaLogic {
                 String[] parts = megaPok.item_id().split(":");
                 Identifier paperId = Identifier.of(parts[0], parts[1]);
                 Item paperItem = Registries.ITEM.get(paperId);
-                if(paperItem == pokemon.heldItem().getItem()
-                        && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                        == megaPok.custom_model_data()){
+                if(paperItem == pokemon.heldItem().getItem() &&
+                        ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
+                                && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
+                                == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)){
                     species = megaPok.pokemon();
                 }
                 if(species == null){
@@ -340,7 +341,7 @@ public class MegaLogic {
         if(!player.hasAttached(DataManage.MEGA_DATA)){
             player.setAttached(DataManage.MEGA_DATA, false);
         }
-        MegaShowdown.LOGGER.info(String.valueOf(context));
+
         if(player.getAttached(DataManage.MEGA_DATA) && !ShowdownConfig.multipleMegas.get()){
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
@@ -384,9 +385,10 @@ public class MegaLogic {
                 String[] parts = megaPok.item_id().split(":");
                 Identifier paperId = Identifier.of(parts[0], parts[1]);
                 Item paperItem = Registries.ITEM.get(paperId);
-                if(paperItem == pokemon.heldItem().getItem()
-                        && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                        == megaPok.custom_model_data()){
+                if(paperItem == pokemon.heldItem().getItem() &&
+                        ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
+                                && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
+                                == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)){
                     species = megaPok.pokemon();
                 }
                 if(species == null){

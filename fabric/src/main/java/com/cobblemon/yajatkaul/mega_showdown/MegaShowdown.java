@@ -52,11 +52,6 @@ public class MegaShowdown implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        CobblemonDataProvider.INSTANCE.register(HeldItems.INSTANCE);
-        CobblemonDataProvider.INSTANCE.register(Abilities.INSTANCE);
-        CobblemonDataProvider.INSTANCE.register(Moves.INSTANCE);
-        CobblemonDataProvider.INSTANCE.register(Conditions.INSTANCE);
-
         ModItemGroups.registerItemGroups();
         ItemRegister.register();
         BlockRegister.register();

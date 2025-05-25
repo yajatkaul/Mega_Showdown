@@ -18,6 +18,7 @@
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin",
     "ShowdownSpeciesMixin",
+    "ShowdownThreadMixin",
     "StartInstructionAccessor",
     "StartInstructionMixin",
     "Loot.LootPoolAccessor",

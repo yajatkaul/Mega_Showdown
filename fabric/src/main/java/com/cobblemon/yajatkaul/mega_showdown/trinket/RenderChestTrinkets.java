@@ -29,17 +29,22 @@ public class RenderChestTrinkets implements TrinketRenderer {
 
         float z_axis = 0.0f;
         if (!chestArmor.isEmpty()) {
-            z_axis = -0.05f;
+            z_axis = -0.06f;
         }
 
         matrices.push();
 
-        matrices.translate(0.0, -0.25, z_axis); // Adjust this value as needed
+        matrices.translate(0.0f, -0.25f, z_axis);
 
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
 
         matrices.scale(0.58f, 0.58f, 0.58f); // Scale item
+
+        if (entity.isInSneakingPose()) {
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-30));
+            matrices.translate(0.0f, -0.2f, z_axis - 0.4f);
+        }
 
         // Render the item
         MinecraftClient.getInstance().getItemRenderer().renderItem(
