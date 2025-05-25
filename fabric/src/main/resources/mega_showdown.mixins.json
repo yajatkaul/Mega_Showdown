@@ -5,28 +5,30 @@
   "mixins": [
     "BattleGimmickButtonMixin",
     "EarlyLoader",
-    "accessors.EndInstructionAccessor",
     "EndInstructionMixin",
     "ExceptionHandlerMixin",
     "GimmickTileMixin",
     "MoveActionResponseMixin",
-    "accessors.ShowdownActionRequestAccessor",
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin",
     "ShowdownSpeciesMixin",
-    "accessors.StartInstructionAccessor",
     "StartInstructionMixin",
-    "pokemon.PokemonMixin",
+    "accessors.EndInstructionAccessor",
+    "accessors.MovesAccessor",
+    "accessors.ShowdownActionRequestAccessor",
+    "accessors.StartInstructionAccessor",
+    "pokemon.CobblemonDataProviderMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
-    "accessors.MovesAccessor"
+    "pokemon.PokemonMixin",
+    "pokemon.ShowdownReloadMixin"
   ],
   "client": [
     "ItemRendererMixin",
     "ModelLoaderMixin",
+    "UI.PCGUIMixin",
     "UI.StatWidgetMixin",
-    "UI.SummaryMixin",
-    "UI.PCGUIMixin"
+    "UI.SummaryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

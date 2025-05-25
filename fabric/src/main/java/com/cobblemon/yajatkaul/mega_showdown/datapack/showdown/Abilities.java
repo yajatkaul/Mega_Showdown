@@ -37,27 +37,8 @@ public class Abilities implements DataRegistry {
         OBSERVABLE.subscribe(Priority.HIGHEST , this::abilitiesLoad);
     }
 
-    private Unit abilitiesLoad(Abilities abilities) {
-        Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
-                Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
-                //TODO FIX THIS
-                if(receiveAbilityDataFn == null){
-                    return Unit.INSTANCE;
-                }
-                for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
-                    String abilityId = entry.getKey();
-                    String js = entry.getValue().replace("\n", " ");
-                    receiveAbilityDataFn.execute(abilityId, js);
-                    AbilityTemplate newAbility = NewAbility.INSTANCE.getAbility(abilityId);
-
-                    com.cobblemon.mod.common.api.abilities.Abilities.INSTANCE.register(newAbility);
-//                    AbilitiesAccessor.getAllAbilities().put(newAbility.getName().toLowerCase(Locale.ROOT)
-//                            , NewAbility.INSTANCE.getAbility(abilityId));
-                }
-            }
-            return Unit.INSTANCE;
-        });
+    public Unit abilitiesLoad(DataRegistry abilities) {
+        registerAbilities();
         return Unit.INSTANCE;
     }
 
@@ -91,6 +72,27 @@ public class Abilities implements DataRegistry {
             }
         });
         OBSERVABLE.emit(this);
+    }
+
+    public void registerAbilities(){
+        Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
+            if(showdownService instanceof GraalShowdownService service){
+                Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
+                //TODO FIX THIS
+                if(receiveAbilityDataFn == null){
+                    return Unit.INSTANCE;
+                }
+                for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
+                    String abilityId = entry.getKey();
+                    String js = entry.getValue().replace("\n", " ");
+                    receiveAbilityDataFn.execute(abilityId, js);
+                    AbilityTemplate newAbility = NewAbility.INSTANCE.getAbility(abilityId);
+
+                    com.cobblemon.mod.common.api.abilities.Abilities.INSTANCE.register(newAbility);
+                }
+            }
+            return Unit.INSTANCE;
+        });
     }
 
     @NotNull

@@ -4,31 +4,33 @@
   "package": "com.cobblemon.yajatkaul.mega_showdown.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ShowdownSpeciesMixin",
+    "AbilitiesAccessor",
+    "BattleGimmickButtonMixin",
     "EarlyLoader",
-    "ShowdownActionRequestMixin",
-    "ShowdownActionRequestAccessor",
-    "StartInstructionMixin",
-    "StartInstructionAccessor",
     "EndInstructionAccessor",
     "EndInstructionMixin",
     "ExceptionHandlerMixin",
-    "BattleGimmickButtonMixin",
-    "ShowdownInterpreterMixin",
-    "MoveActionResponseMixin",
     "GimmickTileMixin",
     "LootPoolAccessor",
-    "pokemon.PokemonMixin",
+    "MoveActionResponseMixin",
+    "MovesAccessor",
+    "ShowdownActionRequestAccessor",
+    "ShowdownActionRequestMixin",
+    "ShowdownInterpreterMixin",
+    "ShowdownSpeciesMixin",
+    "StartInstructionAccessor",
+    "StartInstructionMixin",
+    "Loot.LootPoolAccessor",
+    "pokemon.CobblemonDataProviderMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
-    "MovesAccessor",
-    "AbilitiesAccessor",
-    "Loot.LootPoolAccessor"
+    "pokemon.PokemonMixin",
+    "pokemon.ShowdownReloadMixin"
   ],
   "client": [
-    "UI.SummaryMixin",
+    "UI.PCGUIMixin",
     "UI.StatWidgetMixin",
-    "UI.PCGUIMixin"
+    "UI.SummaryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

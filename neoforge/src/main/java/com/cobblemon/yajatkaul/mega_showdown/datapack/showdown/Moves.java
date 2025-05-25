@@ -51,6 +51,11 @@ public class Moves implements DataRegistry {
     }
 
     private Unit movesLoad(Moves move) {
+        registerMoves();
+        return Unit.INSTANCE;
+    }
+
+    public void registerMoves(){
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveMoveData");
@@ -68,7 +73,6 @@ public class Moves implements DataRegistry {
             }
             return Unit.INSTANCE;
         });
-        return Unit.INSTANCE;
     }
 
     public Map<String, String> getMoveScripts() {

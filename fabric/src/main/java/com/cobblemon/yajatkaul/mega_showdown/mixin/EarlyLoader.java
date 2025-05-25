@@ -35,7 +35,7 @@ public class EarlyLoader {
                 yoink("/assets/mega_showdown/showdown/pokemon.js", showdown_sim.resolve("pokemon.js"));
                 yoink("/assets/mega_showdown/showdown/abilities.js", showdown_data.resolve("abilities.js"));
                 yoink("/assets/mega_showdown/showdown/side.js", showdown_sim.resolve("side.js"));
-                yoink("/assets/mega_showdown/showdown/conditions.js", showdown_sim.resolve("conditions.js"));
+                yoink("/assets/mega_showdown/showdown/conditions.js", showdown_data.resolve("conditions.js"));
                 yoink("/assets/mega_showdown/showdown/index.js", showdown.resolve("index.js"));
 
                 if (!Files.exists(showdown_mod_data.resolve("items.js"))) {
@@ -46,6 +46,9 @@ public class EarlyLoader {
                 }
                 if (!Files.exists(showdown_mod_data.resolve("moves.js"))) {
                     yoink("/assets/mega_showdown/showdown/mods/moves.js", showdown_mod_data.resolve("moves.js"));
+                }
+                if (!Files.exists(showdown_mod_data.resolve("conditions.js"))) {
+                    yoink("/assets/mega_showdown/showdown/mods/conditions.js", showdown_mod_data.resolve("conditions.js"));
                 }
 
                 MegaShowdown.LOGGER.info("All files are ready!");

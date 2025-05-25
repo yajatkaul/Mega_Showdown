@@ -42,6 +42,11 @@ public class Abilities implements DataRegistry {
     }
 
     private Unit abilitiesLoad(Abilities abilities) {
+        registerAbilities();
+        return Unit.INSTANCE;
+    }
+
+    public void registerAbilities(){
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
@@ -61,7 +66,6 @@ public class Abilities implements DataRegistry {
             }
             return Unit.INSTANCE;
         });
-        return Unit.INSTANCE;
     }
 
     public Map<String, String> getAbilityScripts() {

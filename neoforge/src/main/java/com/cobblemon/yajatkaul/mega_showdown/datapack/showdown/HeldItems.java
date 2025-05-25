@@ -36,6 +36,11 @@ public class HeldItems implements DataRegistry {
     }
 
     private Unit heldItemsLoad(HeldItems heldItems) {
+        registerItems();
+        return Unit.INSTANCE;
+    }
+
+    public void registerItems(){
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if(showdownService instanceof GraalShowdownService service){
                 Value receiveHeldItemDataFn = service.context.getBindings("js").getMember("receiveHeldItemData");
@@ -51,7 +56,6 @@ public class HeldItems implements DataRegistry {
             }
             return Unit.INSTANCE;
         });
-        return Unit.INSTANCE;
     }
 
     public Map<String, String> getHeldItemsScripts() {
