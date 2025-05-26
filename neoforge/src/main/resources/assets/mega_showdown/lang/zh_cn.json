@@ -529,5 +529,17 @@
   "item.mega_showdown.azure_flute": "天界之笛",
   "tooltip.mega_showdown.azure_flute.tooltip": "一支传说中能召唤神秘宝可梦的笛子。",
   "block.mega_showdown.deoxys_meteorite": "代欧奇希斯陨石",
-  "tooltip.mega_showdown.deoxys_meteorite.tooltip": "一块陨石，可让代欧奇希斯改变形态。"
+  "tooltip.mega_showdown.deoxys_meteorite.tooltip": "一块陨石，可让代欧奇希斯改变形态。",
+
+  "block.mega_showdown.gracidea_flower": "葛拉西蒂亚花",
+  "item.mega_showdown.adrenalineorb": "胆怯球",
+  "item.mega_showdown.souldew": "心之水滴",
+  "item.mega_showdown.gripclaw": "紧缠钩爪",
+  "item.mega_showdown.dynamax_band": "极巨腕带",
+  "item.mega_showdown.dynamax_candy": "极巨糖果",
+  "item.mega_showdown.zygarde_cube": "基格尔德多面体",
+  "item.mega_showdown.zygarde_cell": "基格尔德・细胞",
+  "item.mega_showdown.zygarde_core": "基格尔德核心",
+  "item.mega_showdown.reveal_glass": "现形镜",
+  "menu.zygade_cube": "基格尔德多面体"
 }
