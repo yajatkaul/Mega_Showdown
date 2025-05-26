@@ -376,7 +376,7 @@ public class CobbleEventHandler {
                     pokemonEntity.getWorld().playSound(
                             null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                             ModSounds.ASH_GRENINJA,
-                            SoundCategory.PLAYERS, 0.2f, 1f
+                            SoundCategory.PLAYERS, 0.2f, 1.3f
                     );
 
                     battle.dispatchWaitingToFront(4.5F, () -> {

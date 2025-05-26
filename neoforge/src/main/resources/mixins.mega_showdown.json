@@ -6,7 +6,6 @@
   "mixins": [
     "AbilitiesAccessor",
     "BattleGimmickButtonMixin",
-    "EarlyLoader",
     "EndInstructionAccessor",
     "EndInstructionMixin",
     "ExceptionHandlerMixin",
@@ -18,7 +17,7 @@
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin",
     "ShowdownSpeciesMixin",
-    "ShowdownThreadMixin",
+    "GraalShowdownUnbundlerMixin",
     "StartInstructionAccessor",
     "StartInstructionMixin",
     "Loot.LootPoolAccessor",

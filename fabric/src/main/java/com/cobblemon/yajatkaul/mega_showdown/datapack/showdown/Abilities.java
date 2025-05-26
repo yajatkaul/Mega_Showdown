@@ -10,6 +10,7 @@ import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewAbility;
 import kotlin.Unit;
+import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -62,8 +63,8 @@ public class Abilities implements DataRegistry {
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
         abilityScripts.clear();
-        resourceManager.findAllResources("showdown/abilities", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getFirst().getInputStream(), StandardCharsets.UTF_8))) {
+        resourceManager.findAllResources("showdown/abilities", path -> path.getPath().endsWith(".js")).forEach((id, resources) -> {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resources.getLast().getInputStream(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
                 String abilityId = new File(id.getPath()).getName().replace(".js", "");
                 abilityScripts.put(abilityId, js);

@@ -55,7 +55,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.*;
 
@@ -342,7 +341,7 @@ public class CobbleEventsHandler {
                     pokemonEntity.level().playSound(
                             null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                             ModSounds.ASH_GRENINJA.get(),
-                            SoundSource.PLAYERS, 0.2f, 1f
+                            SoundSource.PLAYERS, 0.2f, 1.3f
                     );
                     battle.dispatchWaitingToFront(4.5F, () -> {
                         LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "battlebond_effect", "root");

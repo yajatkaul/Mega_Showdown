@@ -10,6 +10,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import kotlin.Unit;
+import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -72,8 +73,8 @@ public class Conditions implements DataRegistry {
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
         conditionScripts.clear();
-        resourceManager.findAllResources("showdown/conditions", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getFirst().getInputStream(), StandardCharsets.UTF_8))) {
+        resourceManager.findAllResources("showdown/conditions", path -> path.getPath().endsWith(".js")).forEach((id, resources) -> {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resources.getLast().getInputStream(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
                 String conditionId = new File(id.getPath()).getName().replace(".js", "");
                 conditionScripts.put(conditionId, js);

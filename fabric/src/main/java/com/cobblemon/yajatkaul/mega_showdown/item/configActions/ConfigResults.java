@@ -480,7 +480,7 @@ public class ConfigResults {
         Utils.loadMegaStoneIds();
         MegaCommands.VALID_ITEMS.clear();
 
-        //MEGAW
+        //MEGA
         for(MegaData pokemon: Utils.megaRegistry){
             //COMMAND UTILS
             MegaCommands.VALID_ITEMS.add(pokemon.msd_id());
@@ -490,7 +490,6 @@ public class ConfigResults {
             String[] parts = pokemon.item_id().split(":");
             Identifier custom_stone_item_id = Identifier.of(parts[0], parts[1]);
             Item customStone = Registries.ITEM.get(custom_stone_item_id);
-
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customStone) &&
                         ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&

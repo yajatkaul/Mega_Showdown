@@ -11,6 +11,7 @@ public class ModTags {
         public static final TagKey<Item> MEGA_BRACELETS = createTag("mega_bracelets");
         public static final TagKey<Item> Z_RINGS = createTag("z_rings");
         public static final TagKey<Item> DYNAMAX_BAND = createTag("dynamax_bands");
+        public static final TagKey<Item> ARCEUS_FORM_CHANGE = createTag("arceus_form_change");
 
 
         private static TagKey<Item> createTag(String name) {

@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BattleGimmickButtonMixin",
-    "EarlyLoader",
+    "GraalShowdownUnbundlerMixin",
     "EndInstructionMixin",
     "ExceptionHandlerMixin",
     "GimmickTileMixin",
@@ -12,7 +12,6 @@
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin",
     "ShowdownSpeciesMixin",
-    "ShowdownThreadMixin",
     "StartInstructionMixin",
     "accessors.EndInstructionAccessor",
     "accessors.MovesAccessor",

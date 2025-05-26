@@ -18,12 +18,12 @@ import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusPlates;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
@@ -260,7 +260,7 @@ public class HeldItemChangeFormes {
             } else if(post.getReceived().isOf(ZCrystals.WATERIUM_Z)) {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "water").apply(pokemon);
-            } else if(!(post.getReceived().getItem() instanceof ArceusPlates) && post.getReturned().getItem() instanceof ArceusPlates){
+            } else if(!post.getReceived().isIn(ModTags.Items.ARCEUS_FORM_CHANGE) && post.getReturned().isIn(ModTags.Items.ARCEUS_FORM_CHANGE)){
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","normal").apply(pokemon);
             }

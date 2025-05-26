@@ -22,6 +22,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
@@ -256,7 +257,7 @@ public class HeldItemChangeFormes {
             } else if(post.getReceived().is(ZCrystals.WATERIUM_Z)) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "water").apply(pokemon);
-            } else if(!(post.getReceived().getItem() instanceof ArceusPlates) && post.getReturned().getItem() instanceof ArceusPlates){
+            } else if(!post.getReceived().is(ModTags.Items.ARCEUS_FORM_CHANGE) && post.getReturned().is(ModTags.Items.ARCEUS_FORM_CHANGE)){
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype","normal").apply(pokemon);
             }

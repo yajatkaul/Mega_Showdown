@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import kotlin.Unit;
+import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -74,8 +75,8 @@ public class HeldItems implements DataRegistry {
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
         heldItemsScripts.clear();
-        resourceManager.findAllResources("showdown/held_items", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getFirst().getInputStream(), StandardCharsets.UTF_8))) {
+        resourceManager.findAllResources("showdown/held_items", path -> path.getPath().endsWith(".js")).forEach((id, resources) -> {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resources.getLast().getInputStream(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
                 String itemId = new File(id.getPath()).getName().replace(".js", "");
                 heldItemsScripts.put(itemId, js);
