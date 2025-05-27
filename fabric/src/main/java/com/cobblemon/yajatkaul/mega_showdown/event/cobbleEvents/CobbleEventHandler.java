@@ -88,11 +88,13 @@ public class CobbleEventHandler {
     }
 
     public static Unit onHeldItemChangePrimals(HeldItemEvent.Pre event) {
-        if(event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null){
+        if (event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null) {
             return Unit.INSTANCE;
         }
 
-        if(event.getPokemon().getEntity().getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())){
+        // Check if the Pokémon entity exists before accessing its DataTracker
+        PokemonEntity pokemonEntity = event.getPokemon().getEntity();
+        if (pokemonEntity != null && pokemonEntity.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
             event.cancel();
             return Unit.INSTANCE;
         }
