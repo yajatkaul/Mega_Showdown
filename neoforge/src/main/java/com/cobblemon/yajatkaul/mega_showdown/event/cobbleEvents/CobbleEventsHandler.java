@@ -88,7 +88,9 @@ public class CobbleEventsHandler {
             return Unit.INSTANCE;
         }
 
-        if(event.getPokemon().getEntity().getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())){
+        // Check if the Pokémon entity exists before accessing its data
+        PokemonEntity pokemonEntity = event.getPokemon().getEntity();
+        if(pokemonEntity != null && pokemonEntity.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())){
             event.cancel();
             return Unit.INSTANCE;
         }
