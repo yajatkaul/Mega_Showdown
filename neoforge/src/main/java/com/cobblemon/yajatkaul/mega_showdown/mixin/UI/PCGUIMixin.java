@@ -32,10 +32,10 @@ public class PCGUIMixin {
 
         Pokemon pokemon = pcgui.getPreviewPokemon$common();
 
-        if(pokemon != null){
+        if (pokemon != null) {
             gimmikInfo(
                     matrices,
-                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/"+ pokemon.getTeraType().showdownId() + ".png"),
+                    ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/" + pokemon.getTeraType().showdownId() + ".png"),
                     (x + 48.5) / SCALE,
                     (y + 57) / SCALE,
                     32,
@@ -43,7 +43,7 @@ public class PCGUIMixin {
                     SCALE
             );
 
-            if(pokemon.getGmaxFactor()){
+            if (pokemon.getGmaxFactor()) {
                 gimmikInfo(
                         matrices,
                         ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/summary/gmax.png"),

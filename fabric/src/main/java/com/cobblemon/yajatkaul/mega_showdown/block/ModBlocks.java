@@ -6,25 +6,19 @@ import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -92,7 +86,7 @@ public class ModBlocks {
                     .requiresTool()
                     .mapColor(MapColor.PURPLE)
                     .luminance((state) -> 15)
-                    .sounds(BlockSoundGroup.STONE)){
+                    .sounds(BlockSoundGroup.STONE)) {
                 private static final VoxelShape SHAPE =
                         Block.createCuboidShape(2, 0, 2, 14, 4, 14);
 
@@ -146,7 +140,7 @@ public class ModBlocks {
                             .nonOpaque()
                             .requiresTool()
                             .pistonBehavior(PistonBehavior.PUSH_ONLY)
-                            .luminance((state) -> 15)){
+                            .luminance((state) -> 15)) {
                 private static final VoxelShape SHAPE =
                         Block.createCuboidShape(2, 0, 2, 14, 9, 14);
 
@@ -186,31 +180,31 @@ public class ModBlocks {
                 }
             });
 
-    public static Block registerBlock(String name, Block block){
+    public static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
     }
 
-    public static Block registerBlockWithToolTip(String name, Block block){
+    public static Block registerBlockWithToolTip(String name, Block block) {
         registerBlockItemWithToolTip(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
     }
 
-    private static void registerBlockItemWithToolTip(String name, Block block){
-        Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()){
+    private static void registerBlockItemWithToolTip(String name, Block block) {
+        Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()) {
             @Override
             public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-                tooltip.add(Text.translatable("tooltip.mega_showdown."  + name + ".tooltip"));
+                tooltip.add(Text.translatable("tooltip.mega_showdown." + name + ".tooltip"));
                 super.appendTooltip(stack, context, tooltip, type);
             }
         });
     }
 
-    private static void registerBlockItem(String name, Block block){
+    private static void registerBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()));
     }
 
-    public static void registerBlocks(){
+    public static void registerBlocks() {
 
     }
 }

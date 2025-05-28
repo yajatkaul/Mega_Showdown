@@ -4,14 +4,12 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
 import com.cobblemon.mod.common.item.PokeBallItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.properties.ReassembleStage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +17,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -44,7 +41,6 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ReassemblyUnitBlock extends Block {
@@ -62,6 +58,19 @@ public class ReassemblyUnitBlock extends Block {
                 .with(FACING, Direction.NORTH)
                 .with(HALF, DoubleBlockHalf.LOWER)
                 .with(REASSEMBLE_STAGE, ReassembleStage.IDLE));
+    }
+
+    protected static void preventDropFromBottomPart(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        DoubleBlockHalf half = state.get(HALF);
+        if (half == DoubleBlockHalf.UPPER) {
+            BlockPos belowPos = pos.down();
+            BlockState belowState = world.getBlockState(belowPos);
+            if (belowState.isOf(state.getBlock()) && belowState.get(HALF) == DoubleBlockHalf.LOWER) {
+                BlockState newState = belowState.getFluidState().isIn(FluidTags.WATER) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
+                world.setBlockState(belowPos, newState, Block.NOTIFY_ALL);
+                world.syncWorldEvent(player, 2001, belowPos, Block.getRawIdFromState(belowState));
+            }
+        }
     }
 
     @Override
@@ -125,19 +134,6 @@ public class ReassemblyUnitBlock extends Block {
         return state;
     }
 
-    protected static void preventDropFromBottomPart(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        DoubleBlockHalf half = state.get(HALF);
-        if (half == DoubleBlockHalf.UPPER) {
-            BlockPos belowPos = pos.down();
-            BlockState belowState = world.getBlockState(belowPos);
-            if (belowState.isOf(state.getBlock()) && belowState.get(HALF) == DoubleBlockHalf.LOWER) {
-                BlockState newState = belowState.getFluidState().isIn(FluidTags.WATER) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
-                world.setBlockState(belowPos, newState, Block.NOTIFY_ALL);
-                world.syncWorldEvent(player, 2001, belowPos, Block.getRawIdFromState(belowState));
-            }
-        }
-    }
-
     @Override
     public boolean shouldDropItemsOnExplosion(Explosion explosion) {
         return true;
@@ -145,7 +141,7 @@ public class ReassemblyUnitBlock extends Block {
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.isClient){
+        if (world.isClient) {
             return ItemActionResult.SUCCESS;
         }
 
@@ -156,11 +152,11 @@ public class ReassemblyUnitBlock extends Block {
 
         BlockState upper = world.getBlockState(pos.up());
 
-        if(hand == Hand.MAIN_HAND && player.getOffHandStack().getItem() instanceof ZygardeCube){
-            if(state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE){
+        if (hand == Hand.MAIN_HAND && player.getOffHandStack().getItem() instanceof ZygardeCube) {
+            if (state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE) {
                 stack = player.getOffHandStack();
                 Pokemon pokemon = stack.get(DataManage.POKEMON_STORAGE);
-                if(pokemon == null){
+                if (pokemon == null) {
                     player.sendMessage(
                             Text.translatable("message.mega_showdown.zygarde_missing").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true
@@ -169,7 +165,7 @@ public class ReassemblyUnitBlock extends Block {
                 }
                 ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL);
                 ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE);
-                if(pokemon.getAspects().contains("10-percent")){
+                if (pokemon.getAspects().contains("10-percent")) {
                     cells.setCount(9);
                     cores.setCount(1);
                 } else if (pokemon.getAspects().contains("50-percent")) {
@@ -249,7 +245,7 @@ public class ReassemblyUnitBlock extends Block {
                 Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=10").create();
                 zygarde.setCaughtBall(ball.getPokeBall());
 
-                if(shinyRoll == 1){
+                if (shinyRoll == 1) {
                     zygarde.setShiny(true);
                 }
 
@@ -262,7 +258,7 @@ public class ReassemblyUnitBlock extends Block {
                 Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50").create();
                 zygarde.setCaughtBall(ball.getPokeBall());
 
-                if(shinyRoll == 1){
+                if (shinyRoll == 1) {
                     zygarde.setShiny(true);
                 }
 
@@ -275,7 +271,7 @@ public class ReassemblyUnitBlock extends Block {
                 Pokemon zygarde = PokemonProperties.Companion.parse("zygarde percent_cells=50 power-construct").create();
                 zygarde.setCaughtBall(ball.getPokeBall());
 
-                if(shinyRoll == 1){
+                if (shinyRoll == 1) {
                     zygarde.setShiny(true);
                 }
 
@@ -293,9 +289,12 @@ public class ReassemblyUnitBlock extends Block {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         switch (state.get(REASSEMBLE_STAGE)) {
-            case COOKING_10 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), Block.NOTIFY_ALL);
-            case COOKING_50 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), Block.NOTIFY_ALL);
-            case COOKING_100 -> world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), Block.NOTIFY_ALL);
+            case COOKING_10 ->
+                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_10), Block.NOTIFY_ALL);
+            case COOKING_50 ->
+                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_50), Block.NOTIFY_ALL);
+            case COOKING_100 ->
+                    world.setBlockState(pos, state.with(REASSEMBLE_STAGE, ReassembleStage.FINISHED_100), Block.NOTIFY_ALL);
         }
     }
 

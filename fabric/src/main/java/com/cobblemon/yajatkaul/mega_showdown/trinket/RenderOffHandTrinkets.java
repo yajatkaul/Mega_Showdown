@@ -19,7 +19,7 @@ public class RenderOffHandTrinkets implements TrinketRenderer {
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
         Arm arm = Arm.RIGHT;
-        if(entity.getMainArm() != Arm.RIGHT){
+        if (entity.getMainArm() != Arm.RIGHT) {
             arm = Arm.LEFT;
         }
 
@@ -39,7 +39,7 @@ public class RenderOffHandTrinkets implements TrinketRenderer {
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-90.0F));
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
 
-            matrices.translate((float)(bl ? -1 : 1) / 16.0F, 0.125F, -0.625F);
+            matrices.translate((float) (bl ? -1 : 1) / 16.0F, 0.125F, -0.625F);
 
             MinecraftClient.getInstance().getItemRenderer().renderItem(entity, stack, ModelTransformationMode.THIRD_PERSON_LEFT_HAND
                     , bl, matrices, vertexConsumers, entity.getWorld(), light, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformationMode.THIRD_PERSON_LEFT_HAND.ordinal());

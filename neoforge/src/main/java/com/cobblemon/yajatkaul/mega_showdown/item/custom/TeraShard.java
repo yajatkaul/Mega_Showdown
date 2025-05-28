@@ -1,16 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
-import com.cobblemon.mod.common.api.pokemon.feature.ChoiceSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -31,30 +28,30 @@ public class TeraShard extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if (player.level().isClientSide || player.isCrouching()){
+        if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
                 return InteractionResult.PASS;
             }
 
             Item shard = arg.getItem().asItem();
 
-            if(pokemon.getSpecies().getName().equals("Ogerpon")
-                    || pokemon.getSpecies().getName().equals("Terapagos")){
+            if (pokemon.getSpecies().getName().equals("Ogerpon")
+                    || pokemon.getSpecies().getName().equals("Terapagos")) {
                 return InteractionResult.PASS;
             }
 
-            if(pokemon.getOwnerPlayer() == player && arg.getCount() == 50){
+            if (pokemon.getOwnerPlayer() == player && arg.getCount() == 50) {
                 arg.shrink(50);
-                if(arg.getItem() != TeraMoves.STELLAR_TERA_SHARD.get()){
+                if (arg.getItem() != TeraMoves.STELLAR_TERA_SHARD.get()) {
                     particleEffect(pokemon.getEntity());
                     pokemon.setTeraType(getType(shard));
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera");
-                }else{
+                } else {
                     particleEffect(pokemon.getEntity());
                     pokemon.setTeraType(TeraTypes.getSTELLAR());
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera");

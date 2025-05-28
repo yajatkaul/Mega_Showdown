@@ -10,7 +10,7 @@ public class AdvancementHelper {
     public static void grantAdvancement(ServerPlayerEntity player, String advancementId) {
         Identifier advancementIdentifier = Identifier.of(MegaShowdown.MOD_ID, "mega_showdown/" + advancementId);
 
-        if(player == null || player.getServer() == null){
+        if (player == null || player.getServer() == null) {
             return;
         }
         AdvancementEntry advancement = player.getServer().getAdvancementLoader().get(advancementIdentifier);

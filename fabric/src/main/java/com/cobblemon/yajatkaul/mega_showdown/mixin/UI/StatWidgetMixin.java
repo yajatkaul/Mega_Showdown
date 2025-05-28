@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin.UI;
 import com.cobblemon.mod.common.client.CobblemonResources;
 import com.cobblemon.mod.common.client.gui.summary.widgets.screens.stats.StatWidget;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
@@ -25,7 +24,9 @@ import static com.cobblemon.yajatkaul.mega_showdown.screen.GimmikInfoKt.gimmikTe
 @Mixin(value = StatWidget.class, remap = false)
 public abstract class StatWidgetMixin {
 
-    @Shadow @Final public static float SCALE;
+    @Shadow
+    @Final
+    public static float SCALE;
 
     @Inject(
             method = "drawFriendship",
@@ -34,13 +35,13 @@ public abstract class StatWidgetMixin {
     private void injectCustomWidget(int moduleX, int moduleY, MatrixStack matrices, DrawContext context, int friendship, CallbackInfo ci) {
         StatWidget self = (StatWidget) (Object) this;
         int barWidth = 10 * self.getPokemon().getDmaxLevel();
-        if(self.getPokemon().getDmaxLevel() == 10){
+        if (self.getPokemon().getDmaxLevel() == 10) {
             barWidth += 10;
         }
         int yLevel = moduleY + 30;
 
         if (self.getStatTabIndex() == 3) { // "OTHER" tab
-            if(self.getPokemon().getSpecies().getName().equals("Gimmighoul")){
+            if (self.getPokemon().getSpecies().getName().equals("Gimmighoul")) {
                 yLevel += 60;
             }
 
@@ -73,9 +74,9 @@ public abstract class StatWidgetMixin {
             );
 
             String maxFeature;
-            if(self.getPokemon().getGmaxFactor()){
+            if (self.getPokemon().getGmaxFactor()) {
                 maxFeature = "gmax";
-            }else {
+            } else {
                 maxFeature = "dmax";
             }
 
@@ -90,9 +91,9 @@ public abstract class StatWidgetMixin {
 
             float level = self.getPokemon().getDmaxLevel() / 10f; // 0.0 to 1.0
 
-            float red   = 0.5f - (0.1f * level);
+            float red = 0.5f - (0.1f * level);
             float green = 0.05f * level;
-            float blue  = 0.1f * level;
+            float blue = 0.1f * level;
 
             gimmikBar(
                     matrices,

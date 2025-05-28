@@ -16,7 +16,7 @@ import java.util.List;
 public class ModConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> MAX_MUSHROOM_KEY = registerKey("max_mushroom");
-    public static final RegistryKey<ConfiguredFeature<?,?>> GRACIDEA_FLOWER_KEY = registerKey("gracidea_flower");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> GRACIDEA_FLOWER_KEY = registerKey("gracidea_flower");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 

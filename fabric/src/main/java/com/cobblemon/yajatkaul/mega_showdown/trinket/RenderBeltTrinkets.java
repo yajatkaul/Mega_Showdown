@@ -1,7 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.trinket;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -20,7 +18,7 @@ public class RenderBeltTrinkets implements TrinketRenderer {
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel,
                        MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity,
                        float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if(stack.isEmpty()){
+        if (stack.isEmpty()) {
             return;
         }
 

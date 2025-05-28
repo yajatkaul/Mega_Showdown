@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.curios;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -19,8 +18,8 @@ public class CurioChestRenderer implements ICurioRenderer {
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
-            , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)  {
-        if(stack.isEmpty()){
+            , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (stack.isEmpty()) {
             return;
         }
 
@@ -41,7 +40,7 @@ public class CurioChestRenderer implements ICurioRenderer {
 
         matrixStack.scale(0.58f, 0.58f, 0.58f);
 
-        if(entity.isCrouching()){
+        if (entity.isCrouching()) {
             matrixStack.mulPose(Axis.XP.rotationDegrees(-30));
             matrixStack.translate(0.0f, -0.2f, z_axis - 0.4f);
         }

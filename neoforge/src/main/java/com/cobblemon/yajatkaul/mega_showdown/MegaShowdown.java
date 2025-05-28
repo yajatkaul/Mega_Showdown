@@ -133,9 +133,9 @@ public final class MegaShowdown {
         Utils.registerRemapping();
 
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveCustomGmaxMove");
-                for (GmaxData gmax: Utils.gmaxRegistry) {
+                for (GmaxData gmax : Utils.gmaxRegistry) {
                     receiveMoveDataFn.execute(gmax.pokemon(), gmax.gmaxMove());
                 }
             }
@@ -198,7 +198,7 @@ public final class MegaShowdown {
         }
 
         @SubscribeEvent
-        public static void registerScreens(RegisterMenuScreensEvent event){
+        public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
         }
     }

@@ -2,7 +2,6 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,40 +23,6 @@ public class Cap extends Item {
 
     public Cap(Settings settings) {
         super(settings);
-    }
-
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-
-        if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()){
-            if(pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")){
-                if(pk.getFriendship() < 200){
-                    user.sendMessage(
-                            Text.translatable("message.mega_showdown.friendship_requirement").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
-                    return ActionResult.PASS;
-                }
-                playFormeChangeAnimation(entity);
-                new StringSpeciesFeature("league_cap", "partner").apply(pk);
-                AdvancementHelper.grantAdvancement((ServerPlayerEntity) user, "bond/ash_cap_bond");
-                stack.decrement(1);
-            }
-            else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
-                if(pk.getFriendship() < 200){
-                    user.sendMessage(
-                            Text.translatable("message.mega_showdown.friendship_requirement").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
-                    return ActionResult.PASS;
-                }
-                playFormeChangeAnimation(entity);
-                new StringSpeciesFeature("battle_bond", "bond").apply(pk);
-                AdvancementHelper.grantAdvancement((ServerPlayerEntity) user, "bond/ash_cap_bond");
-                stack.decrement(1);
-            }
-        }
-        return super.useOnEntity(stack, user, entity, hand);
     }
 
     public static void playFormeChangeAnimation(LivingEntity context) {
@@ -96,6 +61,39 @@ public class Cap extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+
+        if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+            if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")) {
+                if (pk.getFriendship() < 200) {
+                    user.sendMessage(
+                            Text.translatable("message.mega_showdown.friendship_requirement").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.PASS;
+                }
+                playFormeChangeAnimation(entity);
+                new StringSpeciesFeature("league_cap", "partner").apply(pk);
+                AdvancementHelper.grantAdvancement((ServerPlayerEntity) user, "bond/ash_cap_bond");
+                stack.decrement(1);
+            } else if (pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")) {
+                if (pk.getFriendship() < 200) {
+                    user.sendMessage(
+                            Text.translatable("message.mega_showdown.friendship_requirement").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.PASS;
+                }
+                playFormeChangeAnimation(entity);
+                new StringSpeciesFeature("battle_bond", "bond").apply(pk);
+                AdvancementHelper.grantAdvancement((ServerPlayerEntity) user, "bond/ash_cap_bond");
+                stack.decrement(1);
+            }
+        }
+        return super.useOnEntity(stack, user, entity, hand);
     }
 
 }

@@ -142,10 +142,10 @@
         "special_defence": 250,
         "speed": 130
       },
-      "baseScale": 1,
+      "baseScale": 4,
       "hitbox": {
-        "width": 23,
-        "height": 24,
+        "width": 10,
+        "height": 15,
         "fixed": false
       },
       "baseExperienceYield": 563,

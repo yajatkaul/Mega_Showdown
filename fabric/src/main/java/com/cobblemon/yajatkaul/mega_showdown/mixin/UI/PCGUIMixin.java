@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static com.cobblemon.yajatkaul.mega_showdown.screen.GimmikInfoKt.gimmikInfo;
 
 @Mixin(value = PCGUI.class)
-public class PCGUIMixin{
+public class PCGUIMixin {
     @Inject(
             method = "render",
             at = @At("RETURN")
@@ -32,10 +32,10 @@ public class PCGUIMixin{
 
         Pokemon pokemon = pcgui.getPreviewPokemon$common();
 
-        if(pokemon != null){
+        if (pokemon != null) {
             gimmikInfo(
                     matrices,
-                    Identifier.of(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/"+ pokemon.getTeraType().showdownId() + ".png"),
+                    Identifier.of(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/" + pokemon.getTeraType().showdownId() + ".png"),
                     (x + 48.5) / SCALE,
                     (y + 57) / SCALE,
                     32,
@@ -43,7 +43,7 @@ public class PCGUIMixin{
                     SCALE
             );
 
-            if(pokemon.getGmaxFactor()){
+            if (pokemon.getGmaxFactor()) {
                 gimmikInfo(
                         matrices,
                         Identifier.of(MegaShowdown.MOD_ID, "textures/gui/summary/gmax.png"),

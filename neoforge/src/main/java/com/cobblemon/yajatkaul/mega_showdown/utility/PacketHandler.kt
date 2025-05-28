@@ -8,22 +8,28 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdat
 
 object PacketHandler {
     fun handleCobblemonPacket(list: MutableList<PacketRegisterInfo<*>>) {
-        list.add(PacketRegisterInfo(
-            TeraTypeUpdatePacket.ID,
-            TeraTypeUpdatePacket::decode,
-            PokemonUpdatePacketHandler()
-        ))
+        list.add(
+            PacketRegisterInfo(
+                TeraTypeUpdatePacket.ID,
+                TeraTypeUpdatePacket::decode,
+                PokemonUpdatePacketHandler()
+            )
+        )
 
-        list.add(PacketRegisterInfo(
-            DmaxLevelUpdatePacket.ID,
-            DmaxLevelUpdatePacket::decode,
-            PokemonUpdatePacketHandler()
-        ))
+        list.add(
+            PacketRegisterInfo(
+                DmaxLevelUpdatePacket.ID,
+                DmaxLevelUpdatePacket::decode,
+                PokemonUpdatePacketHandler()
+            )
+        )
 
-        list.add(PacketRegisterInfo(
-            GmaxFactorUpdatePacket.ID,
-            GmaxFactorUpdatePacket::decode,
-            PokemonUpdatePacketHandler()
-        ))
+        list.add(
+            PacketRegisterInfo(
+                GmaxFactorUpdatePacket.ID,
+                GmaxFactorUpdatePacket::decode,
+                PokemonUpdatePacketHandler()
+            )
+        )
     }
 }

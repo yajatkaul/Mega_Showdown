@@ -2,15 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.BattleRegistry;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
@@ -18,16 +15,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 
 public class TrinketEvent implements Trinket {
-    @Override
-    public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        handleTrinketChange(entity);
-    }
-
-    @Override
-    public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        handleTrinketChange(entity);
-    }
-
     private static void handleTrinketChange(LivingEntity entity) {
         if (entity instanceof ServerPlayerEntity player) {
             boolean hasTeraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
@@ -35,7 +22,7 @@ public class TrinketEvent implements Trinket {
 
             PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
 
-            if(!hasTeraItemTrinkets && battle != null){
+            if (!hasTeraItemTrinkets && battle != null) {
                 player.sendMessage(
                         Text.translatable("message.mega_showdown.you_aint_slick").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
@@ -45,7 +32,17 @@ public class TrinketEvent implements Trinket {
         }
     }
 
-    public static void register(){
+    public static void register() {
         TrinketsApi.registerTrinket(TeraMoves.TERA_ORB, new TrinketEvent());
+    }
+
+    @Override
+    public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        handleTrinketChange(entity);
+    }
+
+    @Override
+    public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        handleTrinketChange(entity);
     }
 }

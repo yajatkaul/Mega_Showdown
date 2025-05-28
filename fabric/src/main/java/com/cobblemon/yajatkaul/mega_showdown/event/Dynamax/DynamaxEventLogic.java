@@ -2,9 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
@@ -21,7 +19,6 @@ import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 
@@ -35,12 +32,12 @@ public class DynamaxEventLogic {
 
     public static void register() {
         DynamaxEvent.EVENT.register((battle, pokemon, gmax) -> {
-            if(gmax){
+            if (gmax) {
                 new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon.getEffectedPokemon());
-                for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-                    if(activeBattlePokemon.getBattlePokemon() != null &&
+                for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
+                    if (activeBattlePokemon.getBattlePokemon() != null &&
                             activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
-                            && activeBattlePokemon.getBattlePokemon() == pokemon){
+                            && activeBattlePokemon.getBattlePokemon() == pokemon) {
                         battle.sendSidedUpdate(activeBattlePokemon.getActor(),
                                 new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
                                 new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
@@ -49,7 +46,7 @@ public class DynamaxEventLogic {
                     }
                 }
                 AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "dynamax/gigantamax");
-            }else{
+            } else {
                 AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "dynamax/dynamax");
             }
 
@@ -75,9 +72,9 @@ public class DynamaxEventLogic {
                 Team team = scoreboard.getTeam(teamName);
                 if (team == null) {
                     team = scoreboard.addTeam(teamName);
-                    if(pokemon.getEffectedPokemon().getSpecies().getName().equals("Calyrex")){
+                    if (pokemon.getEffectedPokemon().getSpecies().getName().equals("Calyrex")) {
                         team.setColor(Formatting.BLUE);
-                    }else{
+                    } else {
                         team.setColor(Formatting.RED);
                     }
                 }
@@ -92,10 +89,10 @@ public class DynamaxEventLogic {
 
         DynamaxEventEnd.EVENT.register((battle, pokemon) -> {
             new StringSpeciesFeature("dynamax_form", "none").apply(pokemon.getEffectedPokemon());
-            for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()){
-                if(activeBattlePokemon.getBattlePokemon() != null &&
+            for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
+                if (activeBattlePokemon.getBattlePokemon() != null &&
                         activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
-                        && activeBattlePokemon.getBattlePokemon() == pokemon){
+                        && activeBattlePokemon.getBattlePokemon() == pokemon) {
                     battle.sendSidedUpdate(activeBattlePokemon.getActor(),
                             new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
                             new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),

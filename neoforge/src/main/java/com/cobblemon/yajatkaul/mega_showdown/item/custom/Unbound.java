@@ -1,11 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -22,17 +19,15 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 public class Unbound extends Item {
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final long COOLDOWN_TIME = 3000; // 3 sec
     public Unbound(Properties arg) {
         super(arg);
     }
-
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_TIME = 3000; // 3 sec
 
     public static boolean Possible(ServerPlayer player) {
         UUID playerId = player.getUUID();
@@ -46,29 +41,6 @@ public class Unbound extends Item {
         // Apply cooldown
         cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
         return true;
-    }
-
-    @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if (player.level().isClientSide || player.isCrouching()){
-            return InteractionResult.PASS;
-        }
-
-        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayer) player) && pk.getPokemon().getSpecies().getName().equals("Hoopa")){
-            Pokemon pokemon = pk.getPokemon();
-
-            if(pokemon.getAspects().contains("unbound")){
-                new StringSpeciesFeature("djinn_state", "confined").apply(pokemon);
-                playEvolveAnimation(pokemon.getEntity());
-                return InteractionResult.SUCCESS;
-            }else{
-                new StringSpeciesFeature("djinn_state", "unbound").apply(pokemon);
-                unboundAnimation(pokemon.getEntity());
-                return InteractionResult.SUCCESS;
-            }
-        }
-
-        return InteractionResult.PASS;
     }
 
     public static void playEvolveAnimation(LivingEntity context) {
@@ -108,6 +80,7 @@ public class Unbound extends Item {
             }
         }
     }
+
     private static void unboundAnimation(LivingEntity context) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
@@ -149,5 +122,28 @@ public class Unbound extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
+        if (player.level().isClientSide || player.isCrouching()) {
+            return InteractionResult.PASS;
+        }
+
+        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayer) player) && pk.getPokemon().getSpecies().getName().equals("Hoopa")) {
+            Pokemon pokemon = pk.getPokemon();
+
+            if (pokemon.getAspects().contains("unbound")) {
+                new StringSpeciesFeature("djinn_state", "confined").apply(pokemon);
+                playEvolveAnimation(pokemon.getEntity());
+                return InteractionResult.SUCCESS;
+            } else {
+                new StringSpeciesFeature("djinn_state", "unbound").apply(pokemon);
+                unboundAnimation(pokemon.getEntity());
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        return InteractionResult.PASS;
     }
 }

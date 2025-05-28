@@ -1,10 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.block.custom;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,16 +23,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Collections;
-import java.util.List;
 
 public class MaxMushroomBlock extends SweetBerryBushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
@@ -77,10 +68,14 @@ public class MaxMushroomBlock extends SweetBerryBushBlock implements Bonemealabl
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         switch (state.getValue(AGE)) {
-            case 0: return SHAPE_AGE_0;
-            case 1: return SHAPE_AGE_1;
-            case 2: return SHAPE_AGE_2;
-            default: return SHAPE_AGE_3;
+            case 0:
+                return SHAPE_AGE_0;
+            case 1:
+                return SHAPE_AGE_1;
+            case 2:
+                return SHAPE_AGE_2;
+            default:
+                return SHAPE_AGE_3;
         }
     }
 

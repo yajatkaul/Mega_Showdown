@@ -70,7 +70,7 @@ public class PokemonStones {
                     .requiresTool()
                     .sounds(BlockSoundGroup.STONE)));
 
-    public static void registerBlocks(){
+    public static void registerBlocks() {
 
     }
 }

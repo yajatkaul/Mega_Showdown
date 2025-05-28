@@ -12,7 +12,6 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewMove;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import kotlin.Unit;
-import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -31,15 +30,12 @@ import java.util.stream.Collectors;
 public class Moves implements DataRegistry {
     private static final Identifier ID = Identifier.of(MegaShowdown.MOD_ID, "showdown/moves");
     private static final SimpleObservable<Moves> OBSERVABLE = new SimpleObservable<>();
-
-    private final Map<String, String> moveScripts = new HashMap<>();
-
     public static final Moves INSTANCE = new Moves();
-
+    private final Map<String, String> moveScripts = new HashMap<>();
     Gson gson = new Gson();
 
     private Moves() {
-        OBSERVABLE.subscribe(Priority.NORMAL , this::movesLoad);
+        OBSERVABLE.subscribe(Priority.NORMAL, this::movesLoad);
     }
 
     private Unit movesLoad(Moves move) {
@@ -47,9 +43,9 @@ public class Moves implements DataRegistry {
         return Unit.INSTANCE;
     }
 
-    public void registerMoves(){
+    public void registerMoves() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveMoveData");
                 for (Map.Entry<String, String> entry : Moves.INSTANCE.getMoveScripts().entrySet()) {
                     String moveId = entry.getKey();

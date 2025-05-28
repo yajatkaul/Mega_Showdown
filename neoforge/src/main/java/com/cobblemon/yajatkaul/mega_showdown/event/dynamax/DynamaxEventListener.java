@@ -5,8 +5,8 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
@@ -31,100 +31,6 @@ public class DynamaxEventListener {
     private static final Map<UUID, ScalingData> activeScalingAnimations = new HashMap<>();
     private static final WeakHashMap<UUID, LivingEntity> entityCache = new WeakHashMap<>();
     private static MinecraftServer server;
-
-    @SubscribeEvent
-    public void onDynamax(DynamaxEvent event) {
-        PokemonEntity entity = event.getPokemon().getEntity();
-        Vec3 entityPos = entity.position(); // Get entity position
-
-        entity.level().playSound(
-                null, entityPos.x, entityPos.y, entityPos.z,
-                ModSounds.DYNAMAX.get(),
-                SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
-        );
-
-        if (entity == null) return;
-
-        if(event.getGmax()){
-            new StringSpeciesFeature("dynamax_form", "gmax").apply(event.getPokemon().getEffectedPokemon());
-            BattlePokemon pokemon = event.getPokemon();
-            for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()){
-                if(activeBattlePokemon.getBattlePokemon() != null &&
-                        activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
-                        && activeBattlePokemon.getBattlePokemon() == pokemon){
-                    event.getBattle().sendSidedUpdate(activeBattlePokemon.getActor(),
-                            new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
-                            new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
-                            false);
-
-                }
-            }
-            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax/gigantamax");
-        }else {
-            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax/dynamax");
-        }
-
-        entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
-
-        if (server == null && entity.level() instanceof ServerLevel serverLevel) {
-            server = serverLevel.getServer();
-        }
-
-        startGradualScaling(entity, Config.dynamaxScaleFactor);
-
-        if (entity.level() instanceof ServerLevel serverLevel) {
-            ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-            PlayerTeam team = scoreboard.getPlayerTeam(teamName);
-            if (team == null) {
-                team = scoreboard.addPlayerTeam(teamName);
-                if (event.getPokemon().getEffectedPokemon().getSpecies().getName().equals("Calyrex")) {
-                    team.setColor(ChatFormatting.BLUE);
-                } else {
-                    team.setColor(ChatFormatting.RED);
-                }
-            }
-            scoreboard.addPlayerToTeam(entity.getUUID().toString(), team);
-        }
-
-        event.getBattle().dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
-            return Unit.INSTANCE;
-        });
-    }
-
-    @SubscribeEvent
-    public void onDynamaxEnd(DynamaxEventEnd event) {
-        new StringSpeciesFeature("dynamax_form", "none").apply(event.getPokemon().getEffectedPokemon());
-        BattlePokemon pokemon = event.getPokemon();
-        for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon() != null &&
-                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
-                    && activeBattlePokemon.getBattlePokemon() == pokemon){
-                event.getBattle().sendSidedUpdate(activeBattlePokemon.getActor(),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
-                        false);
-
-            }
-        }
-
-        LivingEntity entity = event.getPokemon().getEntity();
-        if (entity == null) return;
-
-        entity.removeEffect(MobEffects.GLOWING);
-
-        if (server == null && entity.level() instanceof ServerLevel serverLevel) {
-            server = serverLevel.getServer();
-        }
-
-        startGradualScaling(entity, 1.0f);
-    }
-
-    @SubscribeEvent
-    public void onServerTick(ServerTickEvent.Post event) {
-        updateScalingAnimations();
-    }
 
     public static void startGradualScaling(LivingEntity entity, float targetScale) {
         UUID entityId = entity.getUUID();
@@ -187,6 +93,100 @@ public class DynamaxEventListener {
                 entityCache.remove(entityId);
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onDynamax(DynamaxEvent event) {
+        PokemonEntity entity = event.getPokemon().getEntity();
+        Vec3 entityPos = entity.position(); // Get entity position
+
+        entity.level().playSound(
+                null, entityPos.x, entityPos.y, entityPos.z,
+                ModSounds.DYNAMAX.get(),
+                SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
+        );
+
+        if (entity == null) return;
+
+        if (event.getGmax()) {
+            new StringSpeciesFeature("dynamax_form", "gmax").apply(event.getPokemon().getEffectedPokemon());
+            BattlePokemon pokemon = event.getPokemon();
+            for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()) {
+                if (activeBattlePokemon.getBattlePokemon() != null &&
+                        activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
+                        && activeBattlePokemon.getBattlePokemon() == pokemon) {
+                    event.getBattle().sendSidedUpdate(activeBattlePokemon.getActor(),
+                            new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
+                            new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
+                            false);
+
+                }
+            }
+            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax/gigantamax");
+        } else {
+            AdvancementHelper.grantAdvancement(entity.getPokemon().getOwnerPlayer(), "dynamax/dynamax");
+        }
+
+        entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
+
+        if (server == null && entity.level() instanceof ServerLevel serverLevel) {
+            server = serverLevel.getServer();
+        }
+
+        startGradualScaling(entity, Config.dynamaxScaleFactor);
+
+        if (entity.level() instanceof ServerLevel serverLevel) {
+            ServerScoreboard scoreboard = serverLevel.getScoreboard();
+            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
+            PlayerTeam team = scoreboard.getPlayerTeam(teamName);
+            if (team == null) {
+                team = scoreboard.addPlayerTeam(teamName);
+                if (event.getPokemon().getEffectedPokemon().getSpecies().getName().equals("Calyrex")) {
+                    team.setColor(ChatFormatting.BLUE);
+                } else {
+                    team.setColor(ChatFormatting.RED);
+                }
+            }
+            scoreboard.addPlayerToTeam(entity.getUUID().toString(), team);
+        }
+
+        event.getBattle().dispatchWaitingToFront(3F, () -> {
+            LazyLib.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
+            return Unit.INSTANCE;
+        });
+    }
+
+    @SubscribeEvent
+    public void onDynamaxEnd(DynamaxEventEnd event) {
+        new StringSpeciesFeature("dynamax_form", "none").apply(event.getPokemon().getEffectedPokemon());
+        BattlePokemon pokemon = event.getPokemon();
+        for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()) {
+            if (activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == pokemon) {
+                event.getBattle().sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
+                        false);
+
+            }
+        }
+
+        LivingEntity entity = event.getPokemon().getEntity();
+        if (entity == null) return;
+
+        entity.removeEffect(MobEffects.GLOWING);
+
+        if (server == null && entity.level() instanceof ServerLevel serverLevel) {
+            server = serverLevel.getServer();
+        }
+
+        startGradualScaling(entity, 1.0f);
+    }
+
+    @SubscribeEvent
+    public void onServerTick(ServerTickEvent.Post event) {
+        updateScalingAnimations();
     }
 
     private static class ScalingData {

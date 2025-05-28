@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
 
-public record FormChangeData (
+public record FormChangeData(
         String msd_id,
         String showdown_id,
         String item_id,

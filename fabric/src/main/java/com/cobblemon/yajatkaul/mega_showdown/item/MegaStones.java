@@ -410,7 +410,7 @@ public class MegaStones {
         }
     });
 
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 }

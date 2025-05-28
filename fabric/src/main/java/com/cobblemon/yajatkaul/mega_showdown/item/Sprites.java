@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraShard;
 import net.minecraft.item.Item;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
@@ -12,7 +11,7 @@ public class Sprites {
     public static final Item DYNAMAX_SPRITE = registerItem("dynamax_sprite", new Item(new Item.Settings()));
     public static final Item ROOT_SPRITE = registerItem("root_sprite", new Item(new Item.Settings()));
 
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 }

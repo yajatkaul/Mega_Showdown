@@ -8,7 +8,6 @@ import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import kotlin.Unit;
-import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,13 +26,11 @@ import java.util.stream.Collectors;
 public class HeldItems implements DataRegistry {
     private static final Identifier ID = Identifier.of(MegaShowdown.MOD_ID, "showdown/held_items");
     private static final SimpleObservable<HeldItems> OBSERVABLE = new SimpleObservable<>();
-
+    public static final HeldItems INSTANCE = new HeldItems();
     private final Map<String, String> heldItemsScripts = new HashMap<>();
 
-    public static final HeldItems INSTANCE = new HeldItems();
-
     private HeldItems() {
-        OBSERVABLE.subscribe(Priority.NORMAL , this::heldItemsLoad);
+        OBSERVABLE.subscribe(Priority.NORMAL, this::heldItemsLoad);
     }
 
     private Unit heldItemsLoad(HeldItems heldItems) {
@@ -41,9 +38,9 @@ public class HeldItems implements DataRegistry {
         return Unit.INSTANCE;
     }
 
-    public void registerItems(){
+    public void registerItems() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveHeldItemDataFn = service.context.getBindings("js").getMember("receiveHeldItemData");
                 for (Map.Entry<String, String> entry : HeldItems.INSTANCE.getHeldItemsScripts().entrySet()) {
                     String itemId = entry.getKey();

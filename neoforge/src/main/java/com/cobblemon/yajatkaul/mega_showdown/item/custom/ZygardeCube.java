@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
@@ -31,7 +30,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
@@ -45,6 +43,10 @@ import java.util.UUID;
 public class ZygardeCube extends Item {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
+
+    public ZygardeCube(Properties arg) {
+        super(arg);
+    }
 
     public static boolean possible(ServerPlayer player) {
         UUID playerId = player.getUUID();
@@ -61,8 +63,22 @@ public class ZygardeCube extends Item {
         return true;
     }
 
-    public ZygardeCube(Properties arg) {
-        super(arg);
+    public static EntityHitResult getEntityLookingAt(Player player, float distance) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 lookVec = player.getViewVector(1.0F);
+        Vec3 targetPos = eyePos.add(lookVec.scale(distance));
+
+        AABB rayTraceBox = new AABB(eyePos, targetPos);
+
+        return ProjectileUtil.getEntityHitResult(
+                player.level(),
+                player,
+                eyePos,
+                targetPos,
+                rayTraceBox, // Use the ray trace box directly
+                entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
+                0.3f // Smaller collision expansion value for more precise detection
+        );
     }
 
     @Override
@@ -109,25 +125,7 @@ public class ZygardeCube extends Item {
         return InteractionResultHolder.success(stack);
     }
 
-    public static EntityHitResult getEntityLookingAt(Player player, float distance) {
-        Vec3 eyePos = player.getEyePosition();
-        Vec3 lookVec = player.getViewVector(1.0F);
-        Vec3 targetPos = eyePos.add(lookVec.scale(distance));
-
-        AABB rayTraceBox = new AABB(eyePos, targetPos);
-
-        return ProjectileUtil.getEntityHitResult(
-                player.level(),
-                player,
-                eyePos,
-                targetPos,
-                rayTraceBox, // Use the ray trace box directly
-                entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
-                0.3f // Smaller collision expansion value for more precise detection
-        );
-    }
-
-    public ItemStackHandler getInventory(ItemStack stack, Level level, Player player){
+    public ItemStackHandler getInventory(ItemStack stack, Level level, Player player) {
         CompoundTag capTag = stack.get(DataManage.ZYGARDE_INV);
         HolderLookup.Provider provider = level.registryAccess();
 
@@ -146,22 +144,22 @@ public class ZygardeCube extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity entity, InteractionHand arg4) {
-        if(player.level().isClientSide || player.isCrouching()){
+        if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.FAIL;
         }
 
-        if(entity instanceof PokemonEntity pk){
+        if (entity instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
                 return InteractionResult.PASS;
             }
 
-            if(!pokemon.getSpecies().getName().equals("Zygarde")){
+            if (!pokemon.getSpecies().getName().equals("Zygarde")) {
                 return InteractionResult.PASS;
             }
 
-            if(arg4 == InteractionHand.OFF_HAND && !pk.getAspects().contains("power-construct")){
-                if(arg.get(DataManage.POKEMON_STORAGE) != null){
+            if (arg4 == InteractionHand.OFF_HAND && !pk.getAspects().contains("power-construct")) {
+                if (arg.get(DataManage.POKEMON_STORAGE) != null) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
                             .withColor(0xFF0000), true);
                     return InteractionResult.FAIL;
@@ -173,17 +171,17 @@ public class ZygardeCube extends Item {
                 return InteractionResult.SUCCESS;
             }
 
-            if(pk.getAspects().contains("power-construct")){
-                if(!possible((ServerPlayer) player)){
+            if (pk.getAspects().contains("power-construct")) {
+                if (!possible((ServerPlayer) player)) {
                     return InteractionResult.PASS;
-                } else if(pk.getAspects().contains("10-percent")){
+                } else if (pk.getAspects().contains("10-percent")) {
                     particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","50").apply(pk);
-                }else{
+                    new StringSpeciesFeature("percent_cells", "50").apply(pk);
+                } else {
                     particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","10").apply(pk);
+                    new StringSpeciesFeature("percent_cells", "10").apply(pk);
                 }
-            }else {
+            } else {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.resassembly_zygarde_req")
                         .withColor(0xFF0000), true);
             }
@@ -239,19 +237,19 @@ public class ZygardeCube extends Item {
 
     @Override
     public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
-        if(entity.getOwner() instanceof ServerPlayer player){
+        if (entity.getOwner() instanceof ServerPlayer player) {
             PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
             Pokemon currentValue;
 
-            if(refValue == null){
+            if (refValue == null) {
                 currentValue = null;
-            }else{
+            } else {
                 currentValue = refValue.getPokemon();
             }
 
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
-            if(currentValue != null){
+            if (currentValue != null) {
                 playerPartyStore.add(currentValue);
                 entity.getItem().set(DataManage.POKEMON_STORAGE, null);
             }

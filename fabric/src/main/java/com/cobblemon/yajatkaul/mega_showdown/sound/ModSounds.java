@@ -32,12 +32,12 @@ public class ModSounds {
     public static final BlockSoundGroup SOUNDS_ORIGIN_FORM = new BlockSoundGroup(1.0F, 1.0F,
             ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM);
 
-    private static SoundEvent registerSoundEvent(String name){
+    private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(MegaShowdown.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
 
-    public static void registerSounds(){
+    public static void registerSounds() {
 
     }
 }

@@ -1,12 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -27,8 +23,6 @@ import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ExplorationMapLootFunction;
 import net.minecraft.loot.function.LootFunction;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -47,7 +41,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ModEvents {
-    public static void register(){
+    public static void register() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.CARTOGRAPHER, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(MegaStones.MEGA_STONE, 1), // Assuming MegaStones.KEYSTONE is an Item
@@ -81,9 +75,9 @@ public class ModEvents {
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
             ServerPlayerEntity player;
 
-            if(alive){
+            if (alive) {
                 player = oldPlayer;
-            }else{
+            } else {
                 player = newPlayer;
             }
 

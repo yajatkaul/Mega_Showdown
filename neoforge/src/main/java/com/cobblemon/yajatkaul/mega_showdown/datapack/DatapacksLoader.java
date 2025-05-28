@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 
 public class DatapacksLoader {
-    public static void register(DataPackRegistryEvent.NewRegistry event){
+    public static void register(DataPackRegistryEvent.NewRegistry event) {
         final ResourceKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
 

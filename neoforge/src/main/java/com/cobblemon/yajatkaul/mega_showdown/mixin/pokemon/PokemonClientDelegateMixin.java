@@ -23,7 +23,7 @@ public class PokemonClientDelegateMixin {
             ),
             remap = false
     )
-    public void inject(EntityDataAccessor<?> data, CallbackInfo ci){
+    public void inject(EntityDataAccessor<?> data, CallbackInfo ci) {
         var currentAspects = currentEntity.getAspects();
         var pokemon = currentEntity.getPokemon();
         pokemon.setForcedAspects(currentAspects);

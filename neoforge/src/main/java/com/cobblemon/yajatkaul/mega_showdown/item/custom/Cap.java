@@ -22,37 +22,6 @@ public class Cap extends Item {
         super(arg);
     }
 
-    @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-
-        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()){
-            if(pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")){
-                if(pk.getFriendship() < 200){
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
-                            .withColor(0xFF0000), true);
-                    return InteractionResult.PASS;
-                }
-                playFormeChangeAnimation(context);
-                new StringSpeciesFeature("league_cap", "partner").apply(pk);
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
-                arg.shrink(1);
-            }
-            else if(pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")){
-                if(pk.getFriendship() < 200){
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
-                            .withColor(0xFF0000), true);
-                    return InteractionResult.PASS;
-                }
-                playFormeChangeAnimation(context);
-                new StringSpeciesFeature("battle_bond", "bond").apply(pk);
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
-                arg.shrink(1);
-            }
-        }
-
-        return super.interactLivingEntity(arg, player, context, arg4);
-    }
-
     public static void playFormeChangeAnimation(LivingEntity context) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
@@ -89,5 +58,35 @@ public class Cap extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
+
+        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()) {
+            if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")) {
+                if (pk.getFriendship() < 200) {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
+                            .withColor(0xFF0000), true);
+                    return InteractionResult.PASS;
+                }
+                playFormeChangeAnimation(context);
+                new StringSpeciesFeature("league_cap", "partner").apply(pk);
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
+                arg.shrink(1);
+            } else if (pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")) {
+                if (pk.getFriendship() < 200) {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
+                            .withColor(0xFF0000), true);
+                    return InteractionResult.PASS;
+                }
+                playFormeChangeAnimation(context);
+                new StringSpeciesFeature("battle_bond", "bond").apply(pk);
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
+                arg.shrink(1);
+            }
+        }
+
+        return super.interactLivingEntity(arg, player, context, arg4);
     }
 }

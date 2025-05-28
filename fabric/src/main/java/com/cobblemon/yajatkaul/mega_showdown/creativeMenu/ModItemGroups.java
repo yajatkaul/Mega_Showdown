@@ -332,7 +332,7 @@ public class ModItemGroups {
                     }))
                     .build());
 
-    public static void registerItemGroups(){
+    public static void registerItemGroups() {
 
     }
 }

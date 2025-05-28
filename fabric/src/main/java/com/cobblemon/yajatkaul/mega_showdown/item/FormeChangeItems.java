@@ -11,7 +11,6 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Solarizer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.Unity;
-import net.minecraft.block.Block;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +19,6 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -32,13 +30,12 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 
 public class FormeChangeItems {
 
-    public static final Item ADAMANT_CRYSTAL = registerItem("adamant_crystal", new Item(new Item.Settings().maxCount(1)){
+    public static final Item ADAMANT_CRYSTAL = registerItem("adamant_crystal", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.adamant_crystal.tooltip"));
@@ -47,7 +44,7 @@ public class FormeChangeItems {
     });
 
 
-    public static final Item LUSTROUS_GLOBE = registerItem("lustrous_globe", new Item(new Item.Settings().maxCount(1)){
+    public static final Item LUSTROUS_GLOBE = registerItem("lustrous_globe", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.lustrous_globe.tooltip"));
@@ -55,7 +52,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FLAME_PLATE = registerItem("flameplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item FLAME_PLATE = registerItem("flameplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.flameplate.tooltip"));
@@ -63,7 +60,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SPLASH_PLATE = registerItem("splashplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item SPLASH_PLATE = registerItem("splashplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.splashplate.tooltip"));
@@ -71,7 +68,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ZAP_PLATE = registerItem("zapplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item ZAP_PLATE = registerItem("zapplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.zapplate.tooltip"));
@@ -79,7 +76,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item MEADOW_PLATE = registerItem("meadowplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item MEADOW_PLATE = registerItem("meadowplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.meadowplate.tooltip"));
@@ -87,7 +84,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ICICLE_PLATE = registerItem("icicleplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item ICICLE_PLATE = registerItem("icicleplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.icicleplate.tooltip"));
@@ -95,7 +92,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIST_PLATE = registerItem("fistplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item FIST_PLATE = registerItem("fistplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fistplate.tooltip"));
@@ -103,7 +100,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item TOXIC_PLATE = registerItem("toxicplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item TOXIC_PLATE = registerItem("toxicplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.toxicplate.tooltip"));
@@ -111,7 +108,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item EARTH_PLATE = registerItem("earthplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item EARTH_PLATE = registerItem("earthplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.earthplate.tooltip"));
@@ -119,7 +116,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SKY_PLATE = registerItem("skyplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item SKY_PLATE = registerItem("skyplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.skyplate.tooltip"));
@@ -127,7 +124,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item MIND_PLATE = registerItem("mindplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item MIND_PLATE = registerItem("mindplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.mindplate.tooltip"));
@@ -135,7 +132,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item INSECT_PLATE = registerItem("insectplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item INSECT_PLATE = registerItem("insectplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.insectplate.tooltip"));
@@ -143,7 +140,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item STONE_PLATE = registerItem("stoneplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item STONE_PLATE = registerItem("stoneplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.stoneplate.tooltip"));
@@ -151,7 +148,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SPOOKY_PLATE = registerItem("spookyplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item SPOOKY_PLATE = registerItem("spookyplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.spookyplate.tooltip"));
@@ -159,7 +156,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DRACO_PLATE = registerItem("dracoplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item DRACO_PLATE = registerItem("dracoplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dracoplate.tooltip"));
@@ -167,7 +164,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DREAD_PLATE = registerItem("dreadplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item DREAD_PLATE = registerItem("dreadplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dreadplate.tooltip"));
@@ -175,7 +172,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item IRON_PLATE = registerItem("ironplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item IRON_PLATE = registerItem("ironplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ironplate.tooltip"));
@@ -183,7 +180,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PIXIE_PLATE = registerItem("pixieplate", new Item(new Item.Settings().maxCount(1)){
+    public static final Item PIXIE_PLATE = registerItem("pixieplate", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.pixieplate.tooltip"));
@@ -191,7 +188,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item BUG_MEMORY = registerItem("bugmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item BUG_MEMORY = registerItem("bugmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
@@ -199,7 +196,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DARK_MEMORY = registerItem("darkmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item DARK_MEMORY = registerItem("darkmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
@@ -207,7 +204,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DRAGON_MEMORY = registerItem("dragonmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item DRAGON_MEMORY = registerItem("dragonmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
@@ -215,7 +212,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ELECTRIC_MEMORY = registerItem("electricmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item ELECTRIC_MEMORY = registerItem("electricmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
@@ -223,7 +220,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FAIRY_MEMORY = registerItem("fairymemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item FAIRY_MEMORY = registerItem("fairymemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fairymemory.tooltip"));
@@ -231,7 +228,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIGHTING_MEMORY = registerItem("fightingmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item FIGHTING_MEMORY = registerItem("fightingmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fightingmemory.tooltip"));
@@ -239,7 +236,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIRE_MEMORY = registerItem("firememory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item FIRE_MEMORY = registerItem("firememory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.firememory.tooltip"));
@@ -247,7 +244,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FLYING_MEMORY = registerItem("flyingmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item FLYING_MEMORY = registerItem("flyingmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.flyingmemory.tooltip"));
@@ -255,7 +252,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GHOST_MEMORY = registerItem("ghostmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item GHOST_MEMORY = registerItem("ghostmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ghostmemory.tooltip"));
@@ -263,7 +260,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GRASS_MEMORY = registerItem("grassmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item GRASS_MEMORY = registerItem("grassmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.grassmemory.tooltip"));
@@ -271,7 +268,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GROUND_MEMORY = registerItem("groundmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item GROUND_MEMORY = registerItem("groundmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.groundmemory.tooltip"));
@@ -279,7 +276,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ICE_MEMORY = registerItem("icememory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item ICE_MEMORY = registerItem("icememory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.icememory.tooltip"));
@@ -287,7 +284,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item POISON_MEMORY = registerItem("poisonmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item POISON_MEMORY = registerItem("poisonmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.poisonmemory.tooltip"));
@@ -295,7 +292,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PSYCHIC_MEMORY = registerItem("psychicmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item PSYCHIC_MEMORY = registerItem("psychicmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.psychicmemory.tooltip"));
@@ -303,7 +300,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ROCK_MEMORY = registerItem("rockmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item ROCK_MEMORY = registerItem("rockmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rockmemory.tooltip"));
@@ -311,7 +308,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item STEEL_MEMORY = registerItem("steelmemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item STEEL_MEMORY = registerItem("steelmemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.steelmemory.tooltip"));
@@ -319,7 +316,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item WATER_MEMORY = registerItem("watermemory", new Memories(new Item.Settings().maxCount(1)){
+    public static final Item WATER_MEMORY = registerItem("watermemory", new Memories(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.watermemory.tooltip"));
@@ -327,7 +324,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item BURN_DRIVE = registerItem("burndrive", new Drives(new Item.Settings().maxCount(1)){
+    public static final Item BURN_DRIVE = registerItem("burndrive", new Drives(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.burndrive.tooltip"));
@@ -335,7 +332,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item CHILL_DRIVE = registerItem("chilldrive", new Drives(new Item.Settings().maxCount(1)){
+    public static final Item CHILL_DRIVE = registerItem("chilldrive", new Drives(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.chilldrive.tooltip"));
@@ -343,7 +340,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DOUSE_DRIVE = registerItem("dousedrive", new Drives(new Item.Settings().maxCount(1)){
+    public static final Item DOUSE_DRIVE = registerItem("dousedrive", new Drives(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dousedrive.tooltip"));
@@ -351,7 +348,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SHOCK_DRIVE = registerItem("shockdrive", new Drives(new Item.Settings().maxCount(1)){
+    public static final Item SHOCK_DRIVE = registerItem("shockdrive", new Drives(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.shockdrive.tooltip"));
@@ -359,7 +356,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PINK_NECTAR = registerItem("pink_nectar", new Item(new Item.Settings().maxCount(1)){
+    public static final Item PINK_NECTAR = registerItem("pink_nectar", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.pink_nectar.tooltip"));
@@ -368,10 +365,10 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
+            if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
-                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                if (pokemon.getSpecies().getName().equals("Oricorio")) {
                     new StringSpeciesFeature("dance_style", "pau").apply(pokemon);
                     stack.decrement(1);
                     playFormeChangeAnimation(pk);
@@ -383,7 +380,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PURPLE_NECTAR = registerItem("purple_nectar", new Item(new Item.Settings().maxCount(1)){
+    public static final Item PURPLE_NECTAR = registerItem("purple_nectar", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.purple_nectar.tooltip"));
@@ -392,10 +389,10 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
+            if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
-                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                if (pokemon.getSpecies().getName().equals("Oricorio")) {
                     new StringSpeciesFeature("dance_style", "sensu").apply(pokemon);
                     playFormeChangeAnimation(pk);
                     stack.decrement(1);
@@ -407,7 +404,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item RED_NECTAR = registerItem("red_nectar", new Item(new Item.Settings().maxCount(1)){
+    public static final Item RED_NECTAR = registerItem("red_nectar", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.red_nectar.tooltip"));
@@ -416,10 +413,10 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
+            if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
-                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                if (pokemon.getSpecies().getName().equals("Oricorio")) {
                     new StringSpeciesFeature("dance_style", "baile").apply(pokemon);
                     stack.decrement(1);
                     playFormeChangeAnimation(pk);
@@ -431,7 +428,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item YELLOW_DRIVE = registerItem("yellow_nectar", new Item(new Item.Settings().maxCount(1)){
+    public static final Item YELLOW_DRIVE = registerItem("yellow_nectar", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.yellow_nectar.tooltip"));
@@ -440,10 +437,10 @@ public class FormeChangeItems {
 
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
+            if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
-                if(pokemon.getSpecies().getName().equals("Oricorio")){
+                if (pokemon.getSpecies().getName().equals("Oricorio")) {
                     new StringSpeciesFeature("dance_style", "pom-pom").apply(pokemon);
                     playFormeChangeAnimation(pk);
                     stack.decrement(1);
@@ -455,7 +452,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item CORNERSTONE_MASK = registerItem("cornerstone_mask", new Item(new Item.Settings().maxCount(1)){
+    public static final Item CORNERSTONE_MASK = registerItem("cornerstone_mask", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.cornerstone_mask.tooltip"));
@@ -464,7 +461,7 @@ public class FormeChangeItems {
     });
 
 
-    public static final Item WELLSPRING_MASK = registerItem("wellspring_mask", new Item(new Item.Settings().maxCount(1)){
+    public static final Item WELLSPRING_MASK = registerItem("wellspring_mask", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.wellspring_mask.tooltip"));
@@ -472,7 +469,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item HEARTHFLAME_MASK = registerItem("hearthflame_mask", new Item(new Item.Settings().maxCount(1)){
+    public static final Item HEARTHFLAME_MASK = registerItem("hearthflame_mask", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.hearthflame_mask.tooltip"));
@@ -480,7 +477,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item STAR_CORE = registerItem("star_core", new Item(new Item.Settings().maxCount(1)){
+    public static final Item STAR_CORE = registerItem("star_core", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.star_core.tooltip"));
@@ -488,7 +485,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GRISEOUS_CORE = registerItem("griseous_core", new Item(new Item.Settings().maxCount(1)){
+    public static final Item GRISEOUS_CORE = registerItem("griseous_core", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.griseous_core.tooltip"));
@@ -496,7 +493,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ASH_CAP = registerItem("ash_cap", new Cap(new Item.Settings().maxCount(1)){
+    public static final Item ASH_CAP = registerItem("ash_cap", new Cap(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ash_cap.tooltip"));
@@ -504,21 +501,21 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item N_LUNARIZER = registerItem("n_lunarizer", new N_Lunarizer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
+    public static final Item N_LUNARIZER = registerItem("n_lunarizer", new N_Lunarizer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.n_lunarizer.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item N_SOLARIZER = registerItem("n_solarizer", new N_Solarizer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
+    public static final Item N_SOLARIZER = registerItem("n_solarizer", new N_Solarizer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.n_solarizer.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item DNA_SPLICER = registerItem("dna_splicer", new DNA_Splicer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
+    public static final Item DNA_SPLICER = registerItem("dna_splicer", new DNA_Splicer(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dna_splicer.tooltip"));
@@ -526,7 +523,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item RUSTED_SWORD = registerItem("rusted_sword", new Item(new Item.Settings().maxCount(1)){
+    public static final Item RUSTED_SWORD = registerItem("rusted_sword", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rusted_sword.tooltip"));
@@ -534,7 +531,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item RUSTED_SHIELD = registerItem("rusted_shield", new Item(new Item.Settings().maxCount(1)){
+    public static final Item RUSTED_SHIELD = registerItem("rusted_shield", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rusted_shield.tooltip"));
@@ -542,7 +539,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PRISON_BOTTLE = registerItem("prison_bottle", new Unbound(new Item.Settings().maxCount(1)){
+    public static final Item PRISON_BOTTLE = registerItem("prison_bottle", new Unbound(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.prison_bottle.tooltip"));
@@ -550,7 +547,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item REINS_OF_UNITY = registerItem("reins_of_unity", new Unity(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)){
+    public static final Item REINS_OF_UNITY = registerItem("reins_of_unity", new Unity(new Item.Settings().maxCount(1).component(DataManage.POKEMON_STORAGE, null)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.reins_of_unity.tooltip"));
@@ -558,7 +555,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GRACIDEA_FLOWER = registerItem("gracidea_flower", new Gracidea(new Item.Settings()){
+    public static final Item GRACIDEA_FLOWER = registerItem("gracidea_flower", new Gracidea(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.gracidea_flower.tooltip"));
@@ -566,20 +563,20 @@ public class FormeChangeItems {
         }
     });
 
-    public static final BlockItem DEOXYS_METEORITE = Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"), new BlockItem(ModBlocks.DEOXYS_METEORITE, new Item.Settings()){
+    public static final BlockItem DEOXYS_METEORITE = Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"), new BlockItem(ModBlocks.DEOXYS_METEORITE, new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
+            if (!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
 
-                if(pokemon.getSpecies().getName().equals("Deoxys")){
-                    if(pokemon.getAspects().contains("normal-forme")){
+                if (pokemon.getSpecies().getName().equals("Deoxys")) {
+                    if (pokemon.getAspects().contains("normal-forme")) {
                         new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
                     } else if (pokemon.getAspects().contains("attack-forme")) {
                         new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
                     } else if (pokemon.getAspects().contains("speed-forme")) {
                         new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                    }else if (pokemon.getAspects().contains("defense-forme")) {
+                    } else if (pokemon.getAspects().contains("defense-forme")) {
                         new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
                     }
 
@@ -600,16 +597,16 @@ public class FormeChangeItems {
 
     public static final Item ZYGARDE_CUBE = registerItem("zygarde_cube",
             new ZygardeCube(new Item.Settings().maxCount(1).component(DataManage.ZYGARDE_CUBE_INV, null)
-                    .component(DataManage.POKEMON_STORAGE, null)){
-        @Override
-        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));
-            super.appendTooltip(stack, context, tooltip, type);
-        }
-    });
+                    .component(DataManage.POKEMON_STORAGE, null)) {
+                @Override
+                public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+                    tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cube.tooltip"));
+                    super.appendTooltip(stack, context, tooltip, type);
+                }
+            });
 
     public static final Item ZYGARDE_CELL = registerItem("zygarde_cell",
-            new Item(new Item.Settings().maxCount(95)){
+            new Item(new Item.Settings().maxCount(95)) {
                 @Override
                 public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
                     tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_cell.tooltip"));
@@ -618,7 +615,7 @@ public class FormeChangeItems {
             });
 
     public static final Item ZYGARDE_CORE = registerItem("zygarde_core",
-            new Item(new Item.Settings().maxCount(5)){
+            new Item(new Item.Settings().maxCount(5)) {
                 @Override
                 public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
                     tooltip.add(Text.translatable("tooltip.mega_showdown.zygarde_core.tooltip"));
@@ -628,7 +625,23 @@ public class FormeChangeItems {
 
     public static final Item REVEAL_GLASS = registerItem("reveal_glass",
             new RevealGlass(new Item.Settings().maxCount(1)));
-
+    public static final Item FURFROU_TRIM_SMITHING_TEMPLATE = Registry.register(
+            Registries.ITEM,
+            Identifier.of(MegaShowdown.MOD_ID, "furfrou_upgrade"),
+            new SmithingTemplateItem(
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.applies_to"),       // Applies to
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.ingredients"),       // Ingredients
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.upgrade"),           // Description title
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.base_slot"),         // Base slot text
+                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.additions_slot"),    // Additions slot text
+                    List.of(
+                            Identifier.of(MegaShowdown.MOD_ID, "item/shears")
+                    ),
+                    List.of(
+                            Identifier.of(MegaShowdown.MOD_ID, "item/dye")
+                    )
+            )
+    );
     //TRIMS
     private static final List<String> furfrouAspects = List.of(
             "heart-trim",
@@ -642,15 +655,15 @@ public class FormeChangeItems {
             "pharaoh-trim"
     );
     public static final Item HEART_TRIM = registerItem("heart_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "heart").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -672,7 +685,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -686,17 +699,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item STAR_TRIM = registerItem("star_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "star").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -718,7 +730,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -732,17 +744,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item DIAMOND_TRIM = registerItem("diamond_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "diamond").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -764,7 +775,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -778,17 +789,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item DEBUTANTE_TRIM = registerItem("debutante_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "debutante").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -810,7 +820,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -824,17 +834,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item MATRON_TRIM = registerItem("matron_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "matron").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -856,7 +865,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -870,17 +879,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item DANDY_TRIM = registerItem("dandy_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "dandy").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -902,7 +910,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -916,17 +924,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item LA_REINE_TRIM = registerItem("la_reine_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "la_reine").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -948,7 +955,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -962,17 +969,16 @@ public class FormeChangeItems {
                     return ActionResult.SUCCESS;
                 }
             });
-
     public static final Item KABUKI_TRIM = registerItem("kabuki_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "kabuki").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -994,7 +1000,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -1008,17 +1014,16 @@ public class FormeChangeItems {
                     return ActionResult.PASS;
                 }
             });
-
     public static final Item PHARAOH_TRIM = registerItem("pharaoh_trim",
-            new Item(new Item.Settings().maxCount(1).maxDamage(100)){
+            new Item(new Item.Settings().maxCount(1).maxDamage(100)) {
                 @Override
                 public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-                    if(user.getWorld().isClient || user.isCrawling()){
+                    if (user.getWorld().isClient || user.isCrawling()) {
                         return ActionResult.PASS;
                     }
 
-                    if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)){
+                    if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
+                            && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "pharaoh").apply(pk.getPokemon());
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
@@ -1041,7 +1046,7 @@ public class FormeChangeItems {
 
                         user.getWorld().spawnEntity(woolDrop);
 
-                        if(stack.getDamage() >= stack.getMaxDamage()){
+                        if (stack.getDamage() >= stack.getMaxDamage()) {
                             stack.decrement(1);
                             user.getWorld().playSound(
                                     null, pos.x, pos.y, pos.z,
@@ -1056,25 +1061,7 @@ public class FormeChangeItems {
                 }
             });
 
-    public static final Item FURFROU_TRIM_SMITHING_TEMPLATE = Registry.register(
-            Registries.ITEM,
-            Identifier.of(MegaShowdown.MOD_ID, "furfrou_upgrade"),
-            new SmithingTemplateItem(
-                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.applies_to"),       // Applies to
-                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.ingredients"),       // Ingredients
-                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.upgrade"),           // Description title
-                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.base_slot"),         // Base slot text
-                    Text.translatable("item.mega_showdown.furfrou_trim_smithing_template.additions_slot"),    // Additions slot text
-                    List.of(
-                            Identifier.of(MegaShowdown.MOD_ID, "item/shears")
-                    ),
-                    List.of(
-                            Identifier.of(MegaShowdown.MOD_ID, "item/dye")
-                    )
-            )
-    );
-
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 

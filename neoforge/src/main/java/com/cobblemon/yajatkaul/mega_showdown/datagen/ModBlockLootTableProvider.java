@@ -6,7 +6,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.ReassemblyUnitBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;

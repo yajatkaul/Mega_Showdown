@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -28,18 +27,12 @@ import java.util.UUID;
 
 public class RevealGlass extends Item {
 
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final long COOLDOWN_TIME = 3000; // 3 sec
+
     public RevealGlass(Settings settings) {
         super(settings);
     }
-
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
-        super.appendTooltip(stack, context, tooltip, type);
-    }
-
-    private static final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_TIME = 3000; // 3 sec
 
     public static boolean Possible(ServerPlayerEntity player) {
         UUID playerId = player.getUuid();
@@ -55,35 +48,6 @@ public class RevealGlass extends Item {
         // Apply cooldown
         cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
         return true;
-    }
-
-    @Override
-    public ActionResult useOnEntity(ItemStack arg, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (player.getWorld().isClient || player.isCrawling()){
-            return ActionResult.PASS;
-        }
-
-        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayerEntity) player)){
-            Pokemon pokemon = pk.getPokemon();
-
-            if(!pokemon.getSpecies().getName().equals("Tornadus") &&
-                    !pokemon.getSpecies().getName().equals("Thundurus") &&
-                    !pokemon.getSpecies().getName().equals("Landorus") &&
-                    !pokemon.getSpecies().getName().equals("Enamorus")){
-                return ActionResult.PASS;
-            }
-
-            if(pokemon.getAspects().contains("therian-forme")){
-                new StringSpeciesFeature("mirror_forme","incarnate").apply(pokemon);
-                playEvolveAnimation(pokemon.getEntity());
-                return ActionResult.SUCCESS;
-            }else{
-                new StringSpeciesFeature("mirror_forme", "therian").apply(pokemon);
-                playEvolveAnimation(pokemon.getEntity());
-                return ActionResult.SUCCESS;
-            }
-        }
-        return super.useOnEntity(arg, player, context, hand);
     }
 
     public static void playEvolveAnimation(LivingEntity context) {
@@ -122,5 +86,40 @@ public class RevealGlass extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        tooltip.add(Text.translatable("tooltip.mega_showdown.reveal_glass.tooltip"));
+        super.appendTooltip(stack, context, tooltip, type);
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack arg, PlayerEntity player, LivingEntity context, Hand hand) {
+        if (player.getWorld().isClient || player.isCrawling()) {
+            return ActionResult.PASS;
+        }
+
+        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && Possible((ServerPlayerEntity) player)) {
+            Pokemon pokemon = pk.getPokemon();
+
+            if (!pokemon.getSpecies().getName().equals("Tornadus") &&
+                    !pokemon.getSpecies().getName().equals("Thundurus") &&
+                    !pokemon.getSpecies().getName().equals("Landorus") &&
+                    !pokemon.getSpecies().getName().equals("Enamorus")) {
+                return ActionResult.PASS;
+            }
+
+            if (pokemon.getAspects().contains("therian-forme")) {
+                new StringSpeciesFeature("mirror_forme", "incarnate").apply(pokemon);
+                playEvolveAnimation(pokemon.getEntity());
+                return ActionResult.SUCCESS;
+            } else {
+                new StringSpeciesFeature("mirror_forme", "therian").apply(pokemon);
+                playEvolveAnimation(pokemon.getEntity());
+                return ActionResult.SUCCESS;
+            }
+        }
+        return super.useOnEntity(arg, player, context, hand);
     }
 }

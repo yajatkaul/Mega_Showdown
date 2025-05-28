@@ -10,8 +10,6 @@ import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.AbilitiesAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewAbility;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,13 +30,11 @@ import java.util.stream.Collectors;
 public class Abilities implements DataRegistry {
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/abilities");
     private static final SimpleObservable<Abilities> OBSERVABLE = new SimpleObservable<>();
-
+    public static final Abilities INSTANCE = new Abilities();
     private final Map<String, String> abilityScripts = new HashMap<>();
 
-    public static final Abilities INSTANCE = new Abilities();
-
     private Abilities() {
-        OBSERVABLE.subscribe(Priority.NORMAL , this::abilitiesLoad);
+        OBSERVABLE.subscribe(Priority.NORMAL, this::abilitiesLoad);
     }
 
     private Unit abilitiesLoad(Abilities abilities) {
@@ -46,9 +42,9 @@ public class Abilities implements DataRegistry {
         return Unit.INSTANCE;
     }
 
-    public void registerAbilities(){
+    public void registerAbilities() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
                 for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
                     String abilityId = entry.getKey();

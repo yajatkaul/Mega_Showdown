@@ -16,9 +16,9 @@ public class Controls {
     public static KeyBinding megaKey;
     public static KeyBinding ultraKey;
 
-    public static void registerKeyInputs(){
+    public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(megaKey.wasPressed()) {
+            if (megaKey.wasPressed()) {
                 EvoPacket.send();
             } else if (ultraKey.wasPressed()) {
                 UltraPacket.send();
@@ -26,7 +26,7 @@ public class Controls {
         });
     }
 
-    public static void register(){
+    public static void register() {
         megaKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_MEGA,
                 InputUtil.Type.KEYSYM,

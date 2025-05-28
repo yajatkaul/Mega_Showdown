@@ -5,7 +5,6 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraShard;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.ITEMS;
 
 public class TeraMoves {
@@ -69,6 +68,6 @@ public class TeraMoves {
     public static final DeferredItem<Item> WATER_TERA_SHARD = ITEMS.register("water_tera_shard",
             () -> new TeraShard(new Item.Properties().stacksTo(50)));
 
-    public static void register(){
+    public static void register() {
     }
 }

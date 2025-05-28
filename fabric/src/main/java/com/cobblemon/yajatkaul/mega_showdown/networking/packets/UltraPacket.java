@@ -9,7 +9,18 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
-public class UltraPacket implements CustomPayload{
+public class UltraPacket implements CustomPayload {
+    public static final PacketCodec<PacketByteBuf, UltraPacket> CODEC = new PacketCodec<>() {
+        @Override
+        public void encode(PacketByteBuf buf, UltraPacket packet) {
+            // No data to write
+        }
+
+        @Override
+        public UltraPacket decode(PacketByteBuf buf) {
+            return new UltraPacket();
+        }
+    };
     private static final Identifier PACKET_ID = Identifier.of(MegaShowdown.MOD_ID, "ultra_trans");
     public static final Id<UltraPacket> ULTRA_TRANS = new Id<>(PACKET_ID);
 
@@ -22,30 +33,18 @@ public class UltraPacket implements CustomPayload{
         return new UltraPacket();
     }
 
-    public static final PacketCodec<PacketByteBuf, UltraPacket> CODEC = new PacketCodec<>() {
-        @Override
-        public void encode(PacketByteBuf buf, UltraPacket packet) {
-            // No data to write
-        }
-
-        @Override
-        public UltraPacket decode(PacketByteBuf buf) {
-            return new UltraPacket();
-        }
-    };
-
     public static ServerPlayNetworking.PlayPayloadHandler<UltraPacket> recieve() {
         return (server, player) -> {
             UltraLogic.ultraTransform(player.player());
         };
     }
 
+    public static void send() {
+        ClientPlayNetworking.send(new UltraPacket());
+    }
+
     @Override
     public Id<UltraPacket> getId() {
         return ULTRA_TRANS;
-    }
-
-    public static void send() {
-        ClientPlayNetworking.send(new UltraPacket());
     }
 }

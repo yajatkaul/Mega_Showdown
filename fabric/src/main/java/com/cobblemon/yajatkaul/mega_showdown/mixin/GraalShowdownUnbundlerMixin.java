@@ -12,9 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GraalShowdownUnbundlerMixin {
     @Unique
     private boolean fabric$loaded = false;
+
     @Inject(method = "attemptUnbundle", at = @At("TAIL"), remap = false)
     private void beforeShowdownStarts(CallbackInfo ci) {
-        if(!fabric$loaded){
+        if (!fabric$loaded) {
             new LoadMethods().load();
             fabric$loaded = true;
         }

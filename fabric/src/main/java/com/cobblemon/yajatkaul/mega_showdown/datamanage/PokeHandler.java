@@ -6,6 +6,10 @@ import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 
 public class PokeHandler {
+    public static final Codec<PokeHandler> CODEC =
+            Pokemon.getCODEC().xmap(PokeHandler::new, PokeHandler::getPokemon);
+    public static final PacketCodec<RegistryByteBuf, PokeHandler> S2C_CODEC =
+            Pokemon.getS2C_CODEC().xmap(PokeHandler::new, PokeHandler::getPokemon);
     private final Pokemon pokemon;
 
     public PokeHandler(Pokemon pokemon) {
@@ -25,10 +29,4 @@ public class PokeHandler {
     public int hashCode() {
         return System.identityHashCode(this);
     }
-
-    public static final Codec<PokeHandler> CODEC =
-            Pokemon.getCODEC().xmap(PokeHandler::new, PokeHandler::getPokemon);
-
-    public static final PacketCodec<RegistryByteBuf, PokeHandler> S2C_CODEC =
-            Pokemon.getS2C_CODEC().xmap(PokeHandler::new, PokeHandler::getPokemon);
 }

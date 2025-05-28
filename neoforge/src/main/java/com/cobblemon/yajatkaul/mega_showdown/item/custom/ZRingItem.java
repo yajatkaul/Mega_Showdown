@@ -19,9 +19,10 @@ import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-public class ZRingItem extends Item{
+public class ZRingItem extends Item {
     public ZRingItem(Properties arg) {
         super(arg);
     }
@@ -64,11 +65,11 @@ public class ZRingItem extends Item{
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if (player.level().isClientSide){
+        if (player.level().isClientSide) {
             return InteractionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player){
+        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
             UltraLogic.ultraTransform(player);
         }
 

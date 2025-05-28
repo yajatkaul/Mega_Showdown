@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.curios;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -19,8 +18,8 @@ public class CurioBeltRenderer implements ICurioRenderer {
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
-            , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)  {
-        if(stack.isEmpty()){
+            , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (stack.isEmpty()) {
             return;
         }
         LivingEntity entity = slotContext.entity();
@@ -42,7 +41,7 @@ public class CurioBeltRenderer implements ICurioRenderer {
 
         matrixStack.scale(0.18f, 0.18f, 0.18f); // Scale item
 
-        if(entity.isCrouching()){
+        if (entity.isCrouching()) {
             matrixStack.mulPose(Axis.XP.rotationDegrees(-30));
             matrixStack.translate(-0.1f, -1.2f, 0.72f);
         }

@@ -32,8 +32,7 @@ object NewMove {
                     effectChances += element.get("chance").asDouble
                 }
             }
-        }
-        else if (secondaryMember != null && secondaryMember is JsonObject) {
+        } else if (secondaryMember != null && secondaryMember is JsonObject) {
             if (secondaryMember.has("chance")) {
                 effectChances += secondaryMember.get("chance").asDouble
             }
@@ -42,13 +41,26 @@ object NewMove {
             ?: run {
                 ActionEffects.actionEffects["generic_move".asIdentifierDefaultingNamespace()]
             }
-        val move = MoveTemplate(id, num, elementalType, damageCategory, power, target, accuracy, pp, priority, critRatio, effectChances.toTypedArray(), actionEffect)
+        val move = MoveTemplate(
+            id,
+            num,
+            elementalType,
+            damageCategory,
+            power,
+            target,
+            accuracy,
+            pp,
+            priority,
+            critRatio,
+            effectChances.toTypedArray(),
+            actionEffect
+        )
 
-        return move;
+        return move
     }
 
-    fun register(move: MoveTemplate){
-        MovesAccessor.getIdMapping()[move.num] = move;
-        MovesAccessor.getAllMoves()[move.name] = move;
+    fun register(move: MoveTemplate) {
+        MovesAccessor.getIdMapping()[move.num] = move
+        MovesAccessor.getAllMoves()[move.name] = move
     }
 }

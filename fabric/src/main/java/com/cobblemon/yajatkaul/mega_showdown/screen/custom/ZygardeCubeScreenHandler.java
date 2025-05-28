@@ -2,7 +2,6 @@ package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.CubeInventoryListener;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -22,7 +21,7 @@ public class ZygardeCubeScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.ZYGARDE_CUBE_SCREEN_HANDLER_TYPE, syncId);
         this.inventory = (SimpleInventory) inventory;
 
-        if(playerEntity != null && itemStack != null && !playerEntity.getWorld().isClient){
+        if (playerEntity != null && itemStack != null && !playerEntity.getWorld().isClient) {
             ((SimpleInventory) inventory).addListener(new CubeInventoryListener(itemStack, playerEntity));
         }
 

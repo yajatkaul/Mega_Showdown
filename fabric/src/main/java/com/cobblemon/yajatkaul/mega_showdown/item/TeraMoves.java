@@ -29,7 +29,7 @@ public class TeraMoves {
     public static final Item STELLAR_TERA_SHARD = registerItem("stellar_tera_shard", new TeraShard(new Item.Settings().maxCount(50)));
     public static final Item WATER_TERA_SHARD = registerItem("water_tera_shard", new TeraShard(new Item.Settings().maxCount(50)));
 
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 }

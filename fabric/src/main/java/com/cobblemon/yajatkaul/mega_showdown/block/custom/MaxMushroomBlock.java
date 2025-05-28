@@ -1,16 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.block.custom;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -21,9 +18,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
-
-import java.util.Collections;
-import java.util.List;
 
 public class MaxMushroomBlock extends SweetBerryBushBlock implements Fertilizable {
     private static final VoxelShape SHAPE_AGE_0 = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 6.0, 12.0);

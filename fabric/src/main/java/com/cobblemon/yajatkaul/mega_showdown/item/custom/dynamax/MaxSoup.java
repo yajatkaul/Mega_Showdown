@@ -18,9 +18,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class MaxSoup extends Item {
     public MaxSoup(Settings settings) {
@@ -29,21 +27,21 @@ public class MaxSoup extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if(player.getWorld().isClient || player.isCrawling()){
+        if (player.getWorld().isClient || player.isCrawling()) {
             return ActionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
                 return ActionResult.PASS;
             }
 
-            if(!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())){
+            if (!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())) {
                 return ActionResult.PASS;
             }
 
-            if(pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()){
+            if (pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(false);
 
                 player.setStackInHand(hand, new ItemStack(Items.BOWL));
@@ -60,7 +58,7 @@ public class MaxSoup extends Item {
                         true
                 );
                 return ActionResult.SUCCESS;
-            }else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()){
+            } else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(true);
 
                 player.setStackInHand(hand, new ItemStack(Items.BOWL));

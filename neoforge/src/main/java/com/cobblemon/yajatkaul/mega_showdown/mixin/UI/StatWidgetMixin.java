@@ -36,13 +36,13 @@ public abstract class StatWidgetMixin {
     private void injectCustomWidget(int moduleX, int moduleY, PoseStack matrices, GuiGraphics context, int friendship, CallbackInfo ci) {
         StatWidget self = (StatWidget) (Object) this;
         int barWidth = 10 * self.getPokemon().getDmaxLevel();
-        if(self.getPokemon().getDmaxLevel() == 10){
+        if (self.getPokemon().getDmaxLevel() == 10) {
             barWidth += 10;
         }
         int yLevel = moduleY + 30;
 
         if (self.getStatTabIndex() == 3) { // "OTHER" tab
-            if(self.getPokemon().getSpecies().getName().equals("Gimmighoul")){
+            if (self.getPokemon().getSpecies().getName().equals("Gimmighoul")) {
                 yLevel += 60;
             }
 
@@ -75,9 +75,9 @@ public abstract class StatWidgetMixin {
             );
 
             String maxFeature;
-            if(self.getPokemon().getGmaxFactor()){
+            if (self.getPokemon().getGmaxFactor()) {
                 maxFeature = "gmax";
-            }else {
+            } else {
                 maxFeature = "dmax";
             }
 
@@ -92,9 +92,9 @@ public abstract class StatWidgetMixin {
 
             float level = self.getPokemon().getDmaxLevel() / 10f; // 0.0 to 1.0
 
-            float red   = 0.5f - (0.1f * level);
+            float red = 0.5f - (0.1f * level);
             float green = 0.05f * level;
-            float blue  = 0.1f * level;
+            float blue = 0.1f * level;
 
             gimmikBar(
                     matrices,

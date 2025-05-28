@@ -2,15 +2,14 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.BattleRegistry;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
-import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.Loot.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
@@ -32,7 +31,10 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
-import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
@@ -54,8 +56,8 @@ import java.util.Optional;
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class ModEvents {
     @SubscribeEvent
-    public static void addCustomTrades(VillagerTradesEvent event){
-        if(event.getType() == VillagerProfession.CARTOGRAPHER){
+    public static void addCustomTrades(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.CARTOGRAPHER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
             // get(3) = villager level required
@@ -115,7 +117,7 @@ public class ModEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
 
-            if(battle != null && event.getStack().is(TeraMoves.TERA_ORB)){
+            if (battle != null && event.getStack().is(TeraMoves.TERA_ORB)) {
                 event.setUnequipResult(TriState.FALSE);
             }
         }
@@ -123,7 +125,7 @@ public class ModEvents {
 
     @SubscribeEvent
     private static void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
-        if(!playerLoggedInEvent.getEntity().level().isClientSide){
+        if (!playerLoggedInEvent.getEntity().level().isClientSide) {
             ServerPlayer player = (ServerPlayer) playerLoggedInEvent.getEntity();
 
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
@@ -135,8 +137,8 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
-        if(!event.getEntity().level().isClientSide){
+    private static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (!event.getEntity().level().isClientSide) {
             ServerPlayer player = (ServerPlayer) event.getEntity();
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 

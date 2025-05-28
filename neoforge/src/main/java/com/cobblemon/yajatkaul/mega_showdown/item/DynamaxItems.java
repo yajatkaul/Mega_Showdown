@@ -42,7 +42,7 @@ public class DynamaxItems {
     public static final DeferredItem<Item> SWEET_MAX_SOUP = ITEMS.register("sweet_max_soup",
             () -> new SweetMaxSoup(new Item.Properties().stacksTo(1)));
 
-    public static void register(){
+    public static void register() {
 
     }
 }

@@ -30,7 +30,7 @@ public class MegaOres {
                             .nonOpaque()
                             .requiresTool()
                             .pistonBehavior(PistonBehavior.PUSH_ONLY)
-                            .luminance((state) -> 15)){
+                            .luminance((state) -> 15)) {
                 private static final VoxelShape SHAPE =
                         Block.createCuboidShape(2, 0, 2, 14, 13, 14);
 
@@ -71,7 +71,7 @@ public class MegaOres {
                 }
             });
 
-    public static void registerBlocks(){
+    public static void registerBlocks() {
 
     }
 }

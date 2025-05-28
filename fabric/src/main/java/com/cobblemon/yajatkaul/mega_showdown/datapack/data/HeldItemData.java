@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
 
-public record HeldItemData (
+public record HeldItemData(
         String msd_id,
         String showdown_id,
         String item_id,

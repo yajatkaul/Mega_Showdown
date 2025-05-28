@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 
 public class MegaOres {
     public static final DeferredBlock<Block> KEYSTONE_ORE = registerBlock("keystone_ore",
-            () -> new DropExperienceBlock(UniformInt.of(6,9),
+            () -> new DropExperienceBlock(UniformInt.of(6, 9),
                     BlockBehaviour
                             .Properties.of()
                             .strength(3f)
@@ -43,7 +43,7 @@ public class MegaOres {
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
                             .pushReaction(PushReaction.PUSH_ONLY)
-                            .lightLevel((state) -> 15)){
+                            .lightLevel((state) -> 15)) {
                 public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 13, 14);
 
                 @Override
@@ -159,16 +159,16 @@ public class MegaOres {
                     .sound(SoundType.STONE)));
 
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = ModBlocks.BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
-        return  toReturn;
+        return toReturn;
     }
 
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block){
+    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void register(){
+    public static void register() {
     }
 }

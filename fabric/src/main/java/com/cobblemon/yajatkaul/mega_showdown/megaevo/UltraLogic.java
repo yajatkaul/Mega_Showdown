@@ -1,14 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown.megaevo;
 
-import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage;
-import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
-import com.cobblemon.mod.common.battles.dispatch.InstructionSet;
-import com.cobblemon.mod.common.battles.dispatch.InterpreterInstruction;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
@@ -27,7 +22,10 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -62,7 +60,7 @@ public class UltraLogic {
         return true;
     }
 
-    public static void ultraTransform(ServerPlayerEntity player){
+    public static void ultraTransform(ServerPlayerEntity player) {
         double range = 5.0;
 
         Vec3d startPos = player.getEyePos();
@@ -78,29 +76,29 @@ public class UltraLogic {
                 range * range
         );
 
-        if(entityHit == null || ShowdownConfig.battleModeOnly.get()){
+        if (entityHit == null || ShowdownConfig.battleModeOnly.get()) {
             return;
         }
 
-        if(entityHit.getEntity() instanceof PokemonEntity pk) {
+        if (entityHit.getEntity() instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
                 return;
             }
 
-            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().isOf(ZCrystals.ULTRANECROZIUM_Z)
-                    && checkFused(pokemon)){
-                if(!Possible(player)){
+            if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().isOf(ZCrystals.ULTRANECROZIUM_Z)
+                    && checkFused(pokemon)) {
+                if (!Possible(player)) {
                     return;
                 }
 
                 FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
                 FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
-                if(feature != null){
+                if (feature != null) {
                     boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-                    if(enabled) {
+                    if (enabled) {
                         new FlagSpeciesFeature("ultra", false).apply(pokemon);
                         setTradable(pokemon, true);
                         ultraAnimation(pokemon.getEntity());
@@ -115,14 +113,14 @@ public class UltraLogic {
         }
     }
 
-    private static boolean checkFused(Pokemon pokemon){
+    private static boolean checkFused(Pokemon pokemon) {
         FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
         FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
-        if(feature != null){
+        if (feature != null) {
             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-            if(enabled){
+            if (enabled) {
                 return true;
             }
         }
@@ -130,12 +128,10 @@ public class UltraLogic {
         featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
         feature = featureProvider.get(pokemon);
 
-        if(feature != null){
+        if (feature != null) {
             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-            if(enabled){
-                return true;
-            }
+            return enabled;
         }
 
         return false;

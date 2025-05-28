@@ -27,24 +27,24 @@ public class DynamaxCandy extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand arg4) {
-        if(player.level().isClientSide || player.isCrouching()){
+        if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
                 return InteractionResult.PASS;
             }
 
-            if(pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10){
+            if (pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10) {
                 pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
-                if(pokemon.getDmaxLevel() == 10){
+                if (pokemon.getDmaxLevel() == 10) {
                     AdvancementHelper.grantAdvancement(pk.getPokemon().getOwnerPlayer(), "dynamax/dynamax_candy_max");
                 }
-                if(pokemon.getSpecies().getName().equals("Calyrex")){
+                if (pokemon.getSpecies().getName().equals("Calyrex")) {
                     particleEffect(pokemon.getEntity(), ParticleTypes.SOUL_FIRE_FLAME);
-                }else{
+                } else {
                     particleEffect(pokemon.getEntity(), ParticleTypes.FLAME);
                 }
                 stack.shrink(1);

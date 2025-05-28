@@ -19,10 +19,10 @@ public class CurioHandRenderer implements ICurioRenderer {
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
-            , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)  {
+            , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
         HumanoidArm arm = HumanoidArm.RIGHT;
-        if(slotContext.entity().getMainArm() != HumanoidArm.RIGHT){
+        if (slotContext.entity().getMainArm() != HumanoidArm.RIGHT) {
             arm = HumanoidArm.LEFT;
         }
         boolean bl = slotContext.entity().getMainArm() != arm; //false if only right hand
@@ -35,13 +35,13 @@ public class CurioHandRenderer implements ICurioRenderer {
                 matrixStack.scale(0.5F, 0.5F, 0.5F);
             }
 
-            if(renderLayerParent.getModel() instanceof ArmedModel model){
+            if (renderLayerParent.getModel() instanceof ArmedModel model) {
                 model.translateToHand(HumanoidArm.RIGHT, matrixStack);
             }
             matrixStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
             matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 
-            matrixStack.translate((float)(bl ? -1 : 1) / 16.0F, 0.125F, -0.625F);
+            matrixStack.translate((float) (bl ? -1 : 1) / 16.0F, 0.125F, -0.625F);
 
             Minecraft.getInstance().getItemRenderer().renderStatic(slotContext.entity(), stack, ItemDisplayContext.THIRD_PERSON_RIGHT_HAND
                     , bl, matrixStack, renderTypeBuffer, slotContext.entity().level(), light, OverlayTexture.NO_OVERLAY, slotContext.entity().getId() + ItemDisplayContext.THIRD_PERSON_RIGHT_HAND.ordinal());

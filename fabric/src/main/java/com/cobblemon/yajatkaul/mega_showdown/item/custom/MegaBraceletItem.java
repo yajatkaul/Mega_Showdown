@@ -1,12 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
-import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -17,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -79,13 +75,13 @@ public class MegaBraceletItem extends Item {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
         //Battle Mode only
-        if (player.getWorld().isClient || ShowdownConfig.battleModeOnly.get()){
+        if (player.getWorld().isClient || ShowdownConfig.battleModeOnly.get()) {
             return ActionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient){
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient) {
                 return super.useOnEntity(stack, player, context, hand);
             }
 

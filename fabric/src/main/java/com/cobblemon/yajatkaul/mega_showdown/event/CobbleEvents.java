@@ -2,16 +2,13 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.HeldItemChangeFormes;
-import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventHandler;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.RevertEvents;
-import com.cobblemon.yajatkaul.mega_showdown.event.ultra.UltraEvent;
+import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.event.ultra.UltraEventLogic;
 
 public class CobbleEvents {
-    public static void register(){
+    public static void register() {
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChange);
         CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventHandler::onHeldItemChangePrimals);
 

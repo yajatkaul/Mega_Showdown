@@ -21,33 +21,33 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class EventUtils {
-    public static void revertFormesEnd(Pokemon pokemon, boolean joinedEvent){
-        if(pokemon.getEntity() != null){
+    public static void revertFormesEnd(Pokemon pokemon, boolean joinedEvent) {
+        if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
             DynamaxEventLogic.startGradualScaling(pokemon.getEntity(), 1.0f);
         }
         new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
 
-        if(pokemon instanceof TeraAccessor pk){
+        if (pokemon instanceof TeraAccessor pk) {
             pk.setTeraEnabled(false);
         }
 
         boolean isMega = pokemon.getAspects().stream()
                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
-        if((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && isMega){
-            if(joinedEvent){
+        if ((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && isMega) {
+            if (joinedEvent) {
                 new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
-            }else {
+            } else {
                 MegaLogic.Devolve(pokemon, true);
             }
         }
 
-        if(pokemon.getSpecies().getName().equals("Castform")){
+        if (pokemon.getSpecies().getName().equals("Castform")) {
             new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Aegislash")) {
             new StringSpeciesFeature("stance_forme", "shield").apply(pokemon);
-        } else if(pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")){
+        } else if (pokemon.getSpecies().getName().equals("Greninja") && pokemon.getAspects().contains("ash")) {
             new StringSpeciesFeature("battle_bond", "bond").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Morpeko")) {
             new StringSpeciesFeature("hunger_mode", "full_belly").apply(pokemon);
@@ -67,12 +67,12 @@ public class EventUtils {
             new StringSpeciesFeature("blossom_form", "overcast").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Darmanitan")) {
             new StringSpeciesFeature("blazing_mode", "standard").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Arceus") && pokemon.heldItem().isOf(CompiItems.LEGEND_PLATE)){
+        } else if (pokemon.getSpecies().getName().equals("Arceus") && pokemon.heldItem().isOf(CompiItems.LEGEND_PLATE)) {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Xerneas")) {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
-            if(pokemon.getEntity() != null){
+            if (pokemon.getEntity() != null) {
                 ultraAnimation(pokemon.getEntity());
             }
             new FlagSpeciesFeature("ultra", false).apply(pokemon);
@@ -85,31 +85,29 @@ public class EventUtils {
         }
         // HELD ITEM
         else if (pokemon.getSpecies().getName().equals("Palkia")
-                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.LUSTROUS_GLOBE)){
+                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        }
-        else if (pokemon.getSpecies().getName().equals("Dialga")
-                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.ADAMANT_CRYSTAL)){
+        } else if (pokemon.getSpecies().getName().equals("Dialga")
+                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        }
-        else if (pokemon.getSpecies().getName().equals("Giratina")
-                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.GRISEOUS_CORE)){
+        } else if (pokemon.getSpecies().getName().equals("Giratina")
+                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
         }
 
 
-        for(FormChangeData forme: Utils.formChangeRegistry){
-            if(forme.battle_mode_only()){
-                if(forme.pokemons().contains(pokemon.getSpecies().getName())){
-                    for(String aspects: forme.default_aspects()){
+        for (FormChangeData forme : Utils.formChangeRegistry) {
+            if (forme.battle_mode_only()) {
+                if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
+                    for (String aspects : forme.default_aspects()) {
                         String[] aspectsDiv = aspects.split("=");
-                        if(aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")){
-                            new FlagSpeciesFeature(aspectsDiv[0],Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                        }else{
+                        if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
+                            new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                        } else {
                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                         }
                     }
-                    if(pokemon.getEntity() != null){
+                    if (pokemon.getEntity() != null) {
                         ConfigResults.particleEffect(pokemon.getEntity(), forme.effects(), false);
                     }
                 }
@@ -154,6 +152,7 @@ public class EventUtils {
             }
         }
     }
+
     public static void playFormeChangeAngryAnimation(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
@@ -191,6 +190,7 @@ public class EventUtils {
             }
         }
     }
+
     public static void ultraAnimation(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
@@ -233,6 +233,7 @@ public class EventUtils {
             }
         }
     }
+
     public static void playEvolveAnimation(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position

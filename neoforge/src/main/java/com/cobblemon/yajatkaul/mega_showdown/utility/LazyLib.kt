@@ -10,10 +10,16 @@ class LazyLib {
     companion object {
         fun cryAnimation(pokemon: Entity) {
             val playPoseableAnimationPacket = PlayPosableAnimationPacket(pokemon.id, setOf("cry"), emptyList())
-            playPoseableAnimationPacket.sendToPlayersAround(pokemon.x, pokemon.y, pokemon.z, 128.0, pokemon.level().dimension())
+            playPoseableAnimationPacket.sendToPlayersAround(
+                pokemon.x,
+                pokemon.y,
+                pokemon.z,
+                128.0,
+                pokemon.level().dimension()
+            )
         }
 
-        fun snowStormPartileSpawner(entity: Entity, particle: String, location: String){
+        fun snowStormPartileSpawner(entity: Entity, particle: String, location: String) {
             val packet = SpawnSnowstormEntityParticlePacket(
                 ResourceLocation.fromNamespaceAndPath("cobblemon", particle),
                 sourceEntityId = entity.id,

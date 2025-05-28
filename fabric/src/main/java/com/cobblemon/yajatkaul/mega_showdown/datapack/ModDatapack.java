@@ -26,7 +26,7 @@ public class ModDatapack {
     public static final RegistryKey<Registry<MegaData>> MEGA_REGISTRY_KEY =
             RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "mega"));
 
-    public static void register(){
+    public static void register() {
         DynamicRegistries.registerSynced(FORM_CHANGE_REGISTRY_KEY, FormChangeData.CODEC);
         DynamicRegistries.registerSynced(KEY_ITEM_REGISTRY_KEY, KeyItemData.CODEC);
         DynamicRegistries.registerSynced(FUSION_REGISTRY_KEY, FusionData.CODEC);

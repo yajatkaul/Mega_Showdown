@@ -3,28 +3,30 @@ package com.cobblemon.yajatkaul.mega_showdown.utility;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
-import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
+import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.packs.resources.PreparableReloadListener;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.Item;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.common.util.LogicalSidedProvider;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 
 public class Utils {
     public static final Map<Item, String> MEGA_STONE_IDS = new HashMap<>();
+    public static final Set<String> MEGA_POKEMONS = new HashSet<>();
+    public static final Set<String> GMAX_SPECIES = new HashSet<>();
+    public static Registry<KeyItemData> keyItemsRegistry;
+    public static Registry<FormChangeData> formChangeRegistry;
+    public static Registry<FusionData> fusionRegistry;
+    public static Registry<GmaxData> gmaxRegistry;
+    public static Registry<HeldItemData> heldItemsRegistry;
+    public static Registry<MegaData> megaRegistry;
 
     public static void loadMegaStoneIds() {
         MEGA_STONE_IDS.put(MegaStones.VENUSAURITE.asItem(), "Venusaur");
@@ -76,10 +78,7 @@ public class Utils {
         MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), "Diancie");
     }
 
-    public static final Set<String> MEGA_POKEMONS = new HashSet<>();;
-    public static final Set<String> GMAX_SPECIES = new HashSet<>();
-
-    public static void addGmaxToMap(){
+    public static void addGmaxToMap() {
         GMAX_SPECIES.add("Venusaur");
         GMAX_SPECIES.add("Charizard");
         GMAX_SPECIES.add("Blastoise");
@@ -112,6 +111,7 @@ public class Utils {
         GMAX_SPECIES.add("Copperajah");
         GMAX_SPECIES.add("Duraludon");
     }
+
     public static void addMegaList() {
         Collections.addAll(MEGA_POKEMONS,
                 "Venusaur", "Charizard", "Blastoise", "Alakazam", "Gengar", "Kangaskhan", "Pinsir",
@@ -124,7 +124,7 @@ public class Utils {
         );
     }
 
-    public static void megaStonesRegister(){
+    public static void megaStonesRegister() {
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ABSOLITE.asItem(), "Absolite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.AGGRONITE.asItem(), "Aggronite");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.ALAKAZITE.asItem(), "Alakazite");
@@ -174,7 +174,7 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaStones.VENUSAURITE.get(), "Venusaurite");
     }
 
-    public static void zMovesRegister(){
+    public static void zMovesRegister() {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.ALORAICHIUM_Z.asItem(), "aloraichiumz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.BLANK_Z.asItem(), "blankz");
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.BUGINIUM_Z.asItem(), "buginiumz");
@@ -213,7 +213,7 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(ZCrystals.WATERIUM_Z.asItem(), "wateriumz");
     }
 
-    public static void formeChangeheldItems(){
+    public static void formeChangeheldItems() {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.GRISEOUS_CORE.get(), "griseouscore");
 
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.LUSTROUS_GLOBE.get(), "lustrousglobe");
@@ -230,7 +230,7 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.HEARTHFLAME_MASK.get(), "hearthflamemask");
     }
 
-    public static void registerRemapping(){
+    public static void registerRemapping() {
         megaStonesRegister();
         zMovesRegister();
         loadMegaStoneIds();
@@ -240,7 +240,7 @@ public class Utils {
         formeChangeheldItems();
     }
 
-    public static void heldItems(){
+    public static void heldItems() {
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.BOOSTER_ENERGY.get(), "boosterenergy");
 
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LEGEND_PLATE.get(), "legendplate");
@@ -259,7 +259,7 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(CompiItems.LUMINOUS_MOSS.get(), "luminousmoss");
     }
 
-    public static void platesRegister(){
+    public static void platesRegister() {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.FLAME_PLATE.get(), "flameplate");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRACO_PLATE.get(), "dracoplate");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DREAD_PLATE.get(), "dreadplate");
@@ -279,7 +279,7 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.ZAP_PLATE.get(), "zapplate");
     }
 
-    public static void memoriesRegister(){
+    public static void memoriesRegister() {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.BUG_MEMORY.get(), "bugmemory");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DARK_MEMORY.get(), "darkmemory");
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.DRAGON_MEMORY.get(), "dragonmemory");
@@ -299,18 +299,11 @@ public class Utils {
         CobblemonHeldItemManager.INSTANCE.registerRemap(FormeChangeItems.WATER_MEMORY.get(), "watermemory");
     }
 
-    public static void setTradable(Pokemon pokemon, boolean allow){
+    public static void setTradable(Pokemon pokemon, boolean allow) {
         pokemon.setTradeable(allow);
     }
 
-    public static Registry<KeyItemData> keyItemsRegistry;
-    public static Registry<FormChangeData> formChangeRegistry;
-    public static Registry<FusionData> fusionRegistry;
-    public static Registry<GmaxData> gmaxRegistry;
-    public static Registry<HeldItemData> heldItemsRegistry;
-    public static Registry<MegaData> megaRegistry;
-
-    public static void registryLoader(RegistryAccess registryAccess){
+    public static void registryLoader(RegistryAccess registryAccess) {
         final ResourceKey<Registry<KeyItemData>> KEY_ITEMS_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
         final ResourceKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =

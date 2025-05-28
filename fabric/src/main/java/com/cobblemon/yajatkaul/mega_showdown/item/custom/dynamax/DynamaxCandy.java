@@ -27,42 +27,6 @@ public class DynamaxCandy extends Item {
         super(settings);
     }
 
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if(player.getWorld().isClient || player.isCrawling()){
-            return ActionResult.PASS;
-        }
-
-        if(context instanceof PokemonEntity pk){
-            Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
-                return ActionResult.PASS;
-            }
-
-            if(pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10){
-                pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
-                if(pokemon.getDmaxLevel() == 10){
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax_candy_max");
-                }
-                if(pokemon.getSpecies().getName().equals("Calyrex")){
-                    particleEffect(pokemon.getEntity(), ParticleTypes.SOUL_FIRE_FLAME);
-                }else{
-                    particleEffect(pokemon.getEntity(), ParticleTypes.FLAME);
-                }
-                stack.decrement(1);
-
-                return ActionResult.SUCCESS;
-            } else if (pokemon.getDmaxLevel() >= 10 && pokemon.getOwnerPlayer() == player) {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-            }
-        }
-
-        return super.useOnEntity(stack, player, context, hand);
-    }
-
     public static void particleEffect(LivingEntity context, SimpleParticleType particleType) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
@@ -104,6 +68,42 @@ public class DynamaxCandy extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
+        if (player.getWorld().isClient || player.isCrawling()) {
+            return ActionResult.PASS;
+        }
+
+        if (context instanceof PokemonEntity pk) {
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
+                return ActionResult.PASS;
+            }
+
+            if (pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10) {
+                pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
+                if (pokemon.getDmaxLevel() == 10) {
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax_candy_max");
+                }
+                if (pokemon.getSpecies().getName().equals("Calyrex")) {
+                    particleEffect(pokemon.getEntity(), ParticleTypes.SOUL_FIRE_FLAME);
+                } else {
+                    particleEffect(pokemon.getEntity(), ParticleTypes.FLAME);
+                }
+                stack.decrement(1);
+
+                return ActionResult.SUCCESS;
+            } else if (pokemon.getDmaxLevel() >= 10 && pokemon.getOwnerPlayer() == player) {
+                player.sendMessage(
+                        Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+            }
+        }
+
+        return super.useOnEntity(stack, player, context, hand);
     }
 
     @Override

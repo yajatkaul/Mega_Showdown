@@ -21,10 +21,10 @@ public class UltraEventListener {
         new FlagSpeciesFeature("ultra", true).apply(pokemon.getEffectedPokemon());
         UltraLogic.ultraAnimation(event.getPokemon().getEntity());
 
-        for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()){
-            if(activeBattlePokemon.getBattlePokemon() != null &&
+        for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()) {
+            if (activeBattlePokemon.getBattlePokemon() != null &&
                     activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
-                    && activeBattlePokemon.getBattlePokemon() == pokemon){
+                    && activeBattlePokemon.getBattlePokemon() == pokemon) {
                 event.getBattle().sendSidedUpdate(activeBattlePokemon.getActor(),
                         new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
                         new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),

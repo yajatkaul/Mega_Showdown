@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class LoadMethods {
-    public void load(){
-        if(Config.showdownFilesLoading){
+    public void load() {
+        if (Config.showdownFilesLoading) {
             Path showdown_sim = Path.of("./showdown/sim");
             Path showdown_data = Path.of("./showdown/data");
             Path showdown = Path.of("./showdown");

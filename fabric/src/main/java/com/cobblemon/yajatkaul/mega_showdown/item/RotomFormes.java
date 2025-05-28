@@ -30,42 +30,24 @@ import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 public class RotomFormes {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
-
-    public static boolean possible(ServerPlayerEntity player) {
-        UUID playerId = player.getUuid();
-        long currentTime = System.currentTimeMillis();
-
-        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
-            player.sendMessage(
-                    Text.translatable("message.mega_showdown.not_so_fast").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
-            return false;
-        }
-
-        // Apply cooldown
-        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
-        return true;
-    }
-
-    public static final Item FAN = registerItem("fanunit", new Item(new Item.Settings()){
+    public static final Item FAN = registerItem("fanunit", new Item(new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
+            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
-                if(pokemon.getSpecies().getName().equals("Rotom")){
-                    if(!possible((ServerPlayerEntity) player)){
+                if (pokemon.getSpecies().getName().equals("Rotom")) {
+                    if (!possible((ServerPlayerEntity) player)) {
                         return ActionResult.PASS;
                     }
 
                     playFormeChangeAnimation(pk);
 
-                    if(pokemon.getAspects().contains("fan-appliance")){
-                        new StringSpeciesFeature("appliance","none").apply(pk);
+                    if (pokemon.getAspects().contains("fan-appliance")) {
+                        new StringSpeciesFeature("appliance", "none").apply(pk);
                         return ActionResult.SUCCESS;
                     }
 
-                    new StringSpeciesFeature("appliance","fan").apply(pk);
+                    new StringSpeciesFeature("appliance", "fan").apply(pk);
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
@@ -74,25 +56,24 @@ public class RotomFormes {
             return super.useOnEntity(stack, player, context, hand);
         }
     });
-
-    public static final Item FRIDGEUNIT = registerItem("fridgeunit", new Item(new Item.Settings()){
+    public static final Item FRIDGEUNIT = registerItem("fridgeunit", new Item(new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
+            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
-                if(pokemon.getSpecies().getName().equals("Rotom")){
-                    if(!possible((ServerPlayerEntity) player)){
+                if (pokemon.getSpecies().getName().equals("Rotom")) {
+                    if (!possible((ServerPlayerEntity) player)) {
                         return ActionResult.PASS;
                     }
 
                     playFormeChangeAnimation(pk);
 
-                    if(pokemon.getAspects().contains("frost-appliance")){
-                        new StringSpeciesFeature("appliance","none").apply(pk);
+                    if (pokemon.getAspects().contains("frost-appliance")) {
+                        new StringSpeciesFeature("appliance", "none").apply(pk);
                         return ActionResult.SUCCESS;
                     }
 
-                    new StringSpeciesFeature("appliance","frost").apply(pk);
+                    new StringSpeciesFeature("appliance", "frost").apply(pk);
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
@@ -101,25 +82,24 @@ public class RotomFormes {
             return super.useOnEntity(stack, player, context, hand);
         }
     });
-
-    public static final Item MOWUNIT = registerItem("mowunit", new Item(new Item.Settings()){
+    public static final Item MOWUNIT = registerItem("mowunit", new Item(new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
+            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
-                if(pokemon.getSpecies().getName().equals("Rotom")){
-                    if(!possible((ServerPlayerEntity) player)){
+                if (pokemon.getSpecies().getName().equals("Rotom")) {
+                    if (!possible((ServerPlayerEntity) player)) {
                         return ActionResult.PASS;
                     }
 
                     playFormeChangeAnimation(pk);
 
-                    if(pokemon.getAspects().contains("mow-appliance")){
-                        new StringSpeciesFeature("appliance","none").apply(pk);
+                    if (pokemon.getAspects().contains("mow-appliance")) {
+                        new StringSpeciesFeature("appliance", "none").apply(pk);
                         return ActionResult.SUCCESS;
                     }
 
-                    new StringSpeciesFeature("appliance","mow").apply(pk);
+                    new StringSpeciesFeature("appliance", "mow").apply(pk);
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
@@ -128,25 +108,24 @@ public class RotomFormes {
             return super.useOnEntity(stack, player, context, hand);
         }
     });
-
-    public static final Item OVENUNIT = registerItem("ovenunit", new Item(new Item.Settings()){
+    public static final Item OVENUNIT = registerItem("ovenunit", new Item(new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
+            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
-                if(pokemon.getSpecies().getName().equals("Rotom")){
-                    if(!possible((ServerPlayerEntity) player)){
+                if (pokemon.getSpecies().getName().equals("Rotom")) {
+                    if (!possible((ServerPlayerEntity) player)) {
                         return ActionResult.PASS;
                     }
 
                     playFormeChangeAnimation(pk);
 
-                    if(pokemon.getAspects().contains("heat-appliance")){
-                        new StringSpeciesFeature("appliance","none").apply(pk);
+                    if (pokemon.getAspects().contains("heat-appliance")) {
+                        new StringSpeciesFeature("appliance", "none").apply(pk);
                         return ActionResult.SUCCESS;
                     }
 
-                    new StringSpeciesFeature("appliance","heat").apply(pk);
+                    new StringSpeciesFeature("appliance", "heat").apply(pk);
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
@@ -155,25 +134,24 @@ public class RotomFormes {
             return super.useOnEntity(stack, player, context, hand);
         }
     });
-
-    public static final Item WASHUNIT = registerItem("washunit", new Item(new Item.Settings()){
+    public static final Item WASHUNIT = registerItem("washunit", new Item(new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-            if(context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()){
+            if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
-                if(pokemon.getSpecies().getName().equals("Rotom")){
-                    if(!possible((ServerPlayerEntity) player)){
+                if (pokemon.getSpecies().getName().equals("Rotom")) {
+                    if (!possible((ServerPlayerEntity) player)) {
                         return ActionResult.PASS;
                     }
 
                     playFormeChangeAnimation(pk);
 
-                    if(pokemon.getAspects().contains("wash-appliance")){
-                        new StringSpeciesFeature("appliance","none").apply(pk);
+                    if (pokemon.getAspects().contains("wash-appliance")) {
+                        new StringSpeciesFeature("appliance", "none").apply(pk);
                         return ActionResult.SUCCESS;
                     }
 
-                    new StringSpeciesFeature("appliance","wash").apply(pk);
+                    new StringSpeciesFeature("appliance", "wash").apply(pk);
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                     return ActionResult.SUCCESS;
                 }
@@ -182,15 +160,14 @@ public class RotomFormes {
             return super.useOnEntity(stack, player, context, hand);
         }
     });
-
-    public static final Item ROTOM_CATALOGUE = registerItem("rotom_catalogue", new Item(new Item.Settings()){
+    public static final Item ROTOM_CATALOGUE = registerItem("rotom_catalogue", new Item(new Item.Settings()) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
             if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
                 Pokemon pokemon = pk.getPokemon();
                 if (pokemon.getSpecies().getName().equals("Rotom")) {
 
-                    if(!possible((ServerPlayerEntity) player)){
+                    if (!possible((ServerPlayerEntity) player)) {
                         return ActionResult.PASS;
                     }
 
@@ -226,7 +203,7 @@ public class RotomFormes {
                     }
 
                     int nextPage = currentPage + 1;
-                    if(nextPage == 7){
+                    if (nextPage == 7) {
                         nextPage = 1;
                     }
                     stack.set(DataManage.CATALOGUE_PAGE, nextPage);
@@ -239,6 +216,23 @@ public class RotomFormes {
             return super.useOnEntity(stack, player, context, hand);
         }
     });
+
+    public static boolean possible(ServerPlayerEntity player) {
+        UUID playerId = player.getUuid();
+        long currentTime = System.currentTimeMillis();
+
+        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
+            player.sendMessage(
+                    Text.translatable("message.mega_showdown.not_so_fast").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
+            return false;
+        }
+
+        // Apply cooldown
+        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
+        return true;
+    }
 
     public static void playFormeChangeAnimation(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
@@ -278,6 +272,6 @@ public class RotomFormes {
         }
     }
 
-    public static void registerModItem(){
+    public static void registerModItem() {
     }
 }

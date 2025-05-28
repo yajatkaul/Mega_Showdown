@@ -319,7 +319,7 @@ public class ZCrystals {
     public static final Item Z_RING_BLACK = registerItem("z-ring_black", new ZRingItem(new Item.Settings().maxCount(1)));
     public static final Item Z_RING_POWER = registerItem("z-power_ring", new ZRingItem(new Item.Settings().maxCount(1)));
 
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 }

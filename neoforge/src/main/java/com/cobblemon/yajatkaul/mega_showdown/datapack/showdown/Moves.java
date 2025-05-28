@@ -4,21 +4,12 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
-import com.cobblemon.mod.common.api.moves.animations.ActionEffectTimeline;
-import com.cobblemon.mod.common.api.moves.animations.ActionEffects;
-import com.cobblemon.mod.common.api.moves.categories.DamageCategories;
-import com.cobblemon.mod.common.api.moves.categories.DamageCategory;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
-import com.cobblemon.mod.common.api.types.ElementalType;
-import com.cobblemon.mod.common.api.types.ElementalTypes;
-import com.cobblemon.mod.common.battles.MoveTarget;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.mixin.MovesAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewMove;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
@@ -39,15 +30,12 @@ import java.util.stream.Collectors;
 public class Moves implements DataRegistry {
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/moves");
     private static final SimpleObservable<Moves> OBSERVABLE = new SimpleObservable<>();
-
-    private final Map<String, String> moveScripts = new HashMap<>();
-
     public static final Moves INSTANCE = new Moves();
-
+    private final Map<String, String> moveScripts = new HashMap<>();
     Gson gson = new Gson();
 
     private Moves() {
-        OBSERVABLE.subscribe(Priority.NORMAL , this::movesLoad);
+        OBSERVABLE.subscribe(Priority.NORMAL, this::movesLoad);
     }
 
     private Unit movesLoad(Moves move) {
@@ -55,9 +43,9 @@ public class Moves implements DataRegistry {
         return Unit.INSTANCE;
     }
 
-    public void registerMoves(){
+    public void registerMoves() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveMoveData");
                 for (Map.Entry<String, String> entry : Moves.INSTANCE.getMoveScripts().entrySet()) {
                     String moveId = entry.getKey();

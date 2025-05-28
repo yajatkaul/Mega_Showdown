@@ -29,7 +29,7 @@ public class EndInstructionMixin {
         boolean containsDynamax = Arrays.stream(parts).anyMatch(part -> part.contains("Dynamax"));
 
         if (containsDynamax) {
-            BattlePokemon pokemon =  message.battlePokemon(0, battle);
+            BattlePokemon pokemon = message.battlePokemon(0, battle);
             DynamaxEventEnd.EVENT.invoker().onDynamaxEnd(battle, pokemon);
         }
     }

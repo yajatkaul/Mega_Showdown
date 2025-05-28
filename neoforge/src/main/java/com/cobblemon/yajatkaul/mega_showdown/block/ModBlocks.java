@@ -41,11 +41,11 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MEGA_METEOROID_BLOCK = registerBlock("mega_meteorid_block",
             () -> new Block(BlockBehaviour
-                            .Properties.of()
-                            .strength(3f)
-                            .requiresCorrectToolForDrops()
-                            .mapColor(MapColor.COLOR_PURPLE)
-                            .sound(SoundType.STONE)));
+                    .Properties.of()
+                    .strength(3f)
+                    .requiresCorrectToolForDrops()
+                    .mapColor(MapColor.COLOR_PURPLE)
+                    .sound(SoundType.STONE)));
 
     public static final DeferredBlock<Block> MEGA_EVO_BLOCK = registerBlock("mega_evo_block",
             () -> new Block(BlockBehaviour
@@ -103,7 +103,7 @@ public class ModBlocks {
                     .lightLevel((state) -> 15)
                     .mapColor(MapColor.COLOR_PURPLE)
                     .requiresCorrectToolForDrops()
-                    .sound(SoundType.STONE)){
+                    .sound(SoundType.STONE)) {
                 public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 4, 14);
 
                 @Override
@@ -144,7 +144,7 @@ public class ModBlocks {
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
                             .pushReaction(PushReaction.PUSH_ONLY)
-                            .lightLevel((state) -> 15)){
+                            .lightLevel((state) -> 15)) {
                 public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 9, 14);
 
                 @Override
@@ -182,34 +182,34 @@ public class ModBlocks {
                 }
             });
 
-    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block> DeferredBlock<T> registerBlockWithToolTip(String name, Supplier<T> block){
+    private static <T extends Block> DeferredBlock<T> registerBlockWithToolTip(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItemWithToolTip(name, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block){
+    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    private static <T extends Block> void registerBlockItemWithToolTip(String name, DeferredBlock<T> block){
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()){
+    private static <T extends Block> void registerBlockItemWithToolTip(String name, DeferredBlock<T> block) {
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()) {
             @Override
             public void appendHoverText(ItemStack arg, TooltipContext arg2, List<Component> list, TooltipFlag arg3) {
-                list.add(Component.translatable("tooltip.mega_showdown."  + name + ".tooltip"));
+                list.add(Component.translatable("tooltip.mega_showdown." + name + ".tooltip"));
                 super.appendHoverText(arg, arg2, list, arg3);
             }
         });
     }
 
 
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
 }

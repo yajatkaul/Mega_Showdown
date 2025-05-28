@@ -26,7 +26,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item ADAMANT_ORB = registerItem("adamant_orb", new Item(new Item.Settings().maxCount(1)){
+    public static final Item ADAMANT_ORB = registerItem("adamant_orb", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.adamant_orb.tooltip"));
@@ -34,7 +34,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item GRISEOUS_ORB = registerItem("griseous_orb", new Item(new Item.Settings().maxCount(1)){
+    public static final Item GRISEOUS_ORB = registerItem("griseous_orb", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.griseous_orb.tooltip"));
@@ -42,7 +42,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item LUSTROUS_ORB = registerItem("lustrous_orb", new Item(new Item.Settings().maxCount(1)){
+    public static final Item LUSTROUS_ORB = registerItem("lustrous_orb", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.lustrous_orb.tooltip"));
@@ -50,7 +50,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item CLEAR_AMULET = registerItem("clear_amulet", new Item(new Item.Settings()){
+    public static final Item CLEAR_AMULET = registerItem("clear_amulet", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.clear_amulet.tooltip"));
@@ -58,7 +58,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item LAGGING_TAIL = registerItem("lagging_tail", new Item(new Item.Settings()){
+    public static final Item LAGGING_TAIL = registerItem("lagging_tail", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.lagging_tail.tooltip"));
@@ -66,7 +66,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item ADRENALINEORB = registerItem("adrenalineorb", new Item(new Item.Settings()){
+    public static final Item ADRENALINEORB = registerItem("adrenalineorb", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.adrenalineorb.tooltip"));
@@ -74,7 +74,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item SOULDEW = registerItem("souldew", new Item(new Item.Settings()){
+    public static final Item SOULDEW = registerItem("souldew", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.souldew.tooltip"));
@@ -82,7 +82,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item GRIPCLAW = registerItem("gripclaw", new Item(new Item.Settings()){
+    public static final Item GRIPCLAW = registerItem("gripclaw", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.gripclaw.tooltip"));
@@ -90,7 +90,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item LUMINOUS_MOSS = registerItem("luminous_moss", new Item(new Item.Settings()){
+    public static final Item LUMINOUS_MOSS = registerItem("luminous_moss", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.luminous_moss.tooltip"));
@@ -98,7 +98,7 @@ public class CompiItems {
         }
     });
 
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 }

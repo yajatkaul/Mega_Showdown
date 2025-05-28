@@ -33,7 +33,7 @@ public abstract class SummaryMixin {
 
         gimmikInfo(
                 matrices,
-                Identifier.of(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/"+ pokemon.getTeraType().showdownId() + ".png"),
+                Identifier.of(MegaShowdown.MOD_ID, "textures/gui/summary/tera_types/" + pokemon.getTeraType().showdownId() + ".png"),
                 (x + 58) / SCALE,
                 (y + 84) / SCALE,
                 32,
@@ -41,7 +41,7 @@ public abstract class SummaryMixin {
                 SCALE
         );
 
-        if(pokemon.getGmaxFactor()){
+        if (pokemon.getGmaxFactor()) {
             gimmikInfo(
                     matrices,
                     Identifier.of(MegaShowdown.MOD_ID, "textures/gui/summary/gmax.png"),

@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import net.minecraft.core.HolderLookup;
@@ -19,8 +18,15 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class ZygardeCubeMenu extends AbstractContainerMenu {
+    private static final int HOTBAR_SLOT_COUNT = 9;
+    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
+    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
+    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
+    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
+    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
+    private static final int TE_INVENTORY_SLOT_COUNT = 2;
     private final ItemStackHandler inventory;
-
     public ZygardeCubeMenu(int id, Inventory inv, FriendlyByteBuf buf) {
         super(ModMenuTypes.ZYGARDE_CUBE_MENU.get(), id);
 
@@ -49,16 +55,6 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         this.addSlot(new SlotItemType(inventory, 0, 62, 36));
         this.addSlot(new SlotItemType(inventory, 1, 98, 36));
     }
-
-    private static final int HOTBAR_SLOT_COUNT = 9;
-    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {

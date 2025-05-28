@@ -9,7 +9,10 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.item.battle.SimpleBagItemLike
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.*
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
+import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.block.Block
 
 class MaxMushroom(

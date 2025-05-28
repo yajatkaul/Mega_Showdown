@@ -11,12 +11,12 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
+import com.cobblemon.yajatkaul.mega_showdown.config.Config;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import kotlin.Unit;
@@ -35,11 +35,11 @@ public class RevertEvents {
     public static Unit battleEnded(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-            for (Pokemon pokemon: playerPartyStore){
+            for (Pokemon pokemon : playerPartyStore) {
 
                 EventUtils.revertFormesEnd(pokemon);
 
-                if(pokemon.getEntity() != null){
+                if (pokemon.getEntity() != null) {
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
             }
@@ -52,7 +52,7 @@ public class RevertEvents {
         Pokemon pokemon = battleFaintedEvent.getKilled().getOriginalPokemon();
         ServerPlayer serverPlayer = battleFaintedEvent.getKilled().getOriginalPokemon().getOwnerPlayer();
 
-        if(serverPlayer == null){
+        if (serverPlayer == null) {
             return Unit.INSTANCE;
         }
 
@@ -69,10 +69,10 @@ public class RevertEvents {
     public static Unit deVolveFlee(BattleFledEvent battleFledEvent) {
         battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-            for (Pokemon pokemon: playerPartyStore){
+            for (Pokemon pokemon : playerPartyStore) {
                 EventUtils.revertFormesEnd(pokemon);
 
-                if(pokemon.getEntity() != null){
+                if (pokemon.getEntity() != null) {
                     pokemon.getEntity().removeEffect(MobEffects.GLOWING);
                 }
             }
@@ -81,28 +81,28 @@ public class RevertEvents {
         return Unit.INSTANCE;
     }
 
-    public static void checkKeldeo(PlayerPartyStore pokemons){
-        for(Pokemon pokemon: pokemons){
-            if(pokemon.getSpecies().getName().equals("Keldeo")){
+    public static void checkKeldeo(PlayerPartyStore pokemons) {
+        for (Pokemon pokemon : pokemons) {
+            if (pokemon.getSpecies().getName().equals("Keldeo")) {
                 boolean hasMove = false;
 
-                for(Move move: pokemon.getMoveSet().getMoves()){
-                    if(move.getName().equals(Moves.INSTANCE.getByName("secretsword").getName())){
+                for (Move move : pokemon.getMoveSet().getMoves()) {
+                    if (move.getName().equals(Moves.INSTANCE.getByName("secretsword").getName())) {
                         hasMove = true;
                     }
                 }
 
-                if(pokemon.getAspects().contains("resolute")){
-                    if(!hasMove){
+                if (pokemon.getAspects().contains("resolute")) {
+                    if (!hasMove) {
                         new FlagSpeciesFeature("resolute", false).apply(pokemon);
-                        if(pokemon.getEntity() != null){
+                        if (pokemon.getEntity() != null) {
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
                     }
-                }else {
-                    if(hasMove){
+                } else {
+                    if (hasMove) {
                         new FlagSpeciesFeature("resolute", true).apply(pokemon);
-                        if(pokemon.getEntity() != null){
+                        if (pokemon.getEntity() != null) {
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
                     }
@@ -112,7 +112,7 @@ public class RevertEvents {
     }
 
     public static Unit battleStarted(@NotNull BattleStartedPreEvent battleEvent) {
-        for(ServerPlayer player: battleEvent.getBattle().getPlayers()){
+        for (ServerPlayer player : battleEvent.getBattle().getPlayers()) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             checkKeldeo(playerPartyStore);
 
@@ -131,16 +131,16 @@ public class RevertEvents {
                             (stack.getItem() instanceof Dynamax || stack.is(ModTags.Items.DYNAMAX_BAND))))
                     .orElse(false);
 
-            if(isBlockNearby(player, ModBlocks.POWER_SPOT.get(), Config.powerSpotRange) || Config.dynamaxAnywhere){
-                if((player.getOffhandItem().getItem() instanceof Dynamax
+            if (isBlockNearby(player, ModBlocks.POWER_SPOT.get(), Config.powerSpotRange) || Config.dynamaxAnywhere) {
+                if ((player.getOffhandItem().getItem() instanceof Dynamax
                         || player.getOffhandItem().is(ModTags.Items.DYNAMAX_BAND)
-                        || hasDMAXItemCurios) && Config.dynamax){
-                    data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
-                }else {
-                    data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+                        || hasDMAXItemCurios) && Config.dynamax) {
+                    data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
+                } else {
+                    data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
                 }
-            }else {
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","dynamax_band"));
+            } else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
             }
 
             boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
@@ -154,31 +154,31 @@ public class RevertEvents {
                     .map(SlotResult::stack)
                     .orElse(null);
 
-            if(teraOrb == null || teraOrb.getDamageValue() >= 100){
+            if (teraOrb == null || teraOrb.getDamageValue() >= 100) {
                 hasTeraItemCurios = false;
             }
 
-            if(hasTeraItemCurios && Config.teralization){
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
-            }else {
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","tera_orb"));
+            if (hasTeraItemCurios && Config.teralization) {
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_orb"));
+            } else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_orb"));
             }
 
-            if(Config.revertMegas && Config.mega && !Config.multipleMegas &&
-                    MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)){
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
-            }else{
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","key_stone"));
+            if (Config.revertMegas && Config.mega && !Config.multipleMegas &&
+                    MegaLogic.Possible(player, true) && !player.getData(DataManage.MEGA_DATA)) {
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
+            } else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
             }
 
             boolean hasZItemCurios = CuriosApi.getCuriosInventory(player)
                     .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof ZRingItem || stack.is(ModTags.Items.Z_RINGS))))
                     .orElse(false);
 
-            if((player.getOffhandItem().getItem() instanceof ZRingItem || player.getOffhandItem().is(ModTags.Items.Z_CRYSTALS) || hasZItemCurios) && Config.zMoves){
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
-            }else{
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon","z_ring"));
+            if ((player.getOffhandItem().getItem() instanceof ZRingItem || player.getOffhandItem().is(ModTags.Items.Z_CRYSTALS) || hasZItemCurios) && Config.zMoves) {
+                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "z_ring"));
+            } else {
+                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "z_ring"));
             }
         }
 

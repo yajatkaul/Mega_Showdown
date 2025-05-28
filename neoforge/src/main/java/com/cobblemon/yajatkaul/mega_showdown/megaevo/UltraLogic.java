@@ -14,7 +14,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -27,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class UltraLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
@@ -59,7 +60,7 @@ public class UltraLogic {
         return true;
     }
 
-    public static void ultraTransform(Player playerContext){
+    public static void ultraTransform(Player playerContext) {
         ServerPlayer player = (ServerPlayer) playerContext;
 
         double range = 5.0;
@@ -85,25 +86,25 @@ public class UltraLogic {
             return;
         }
 
-        if(entityHit.getEntity() instanceof PokemonEntity pk){
+        if (entityHit.getEntity() instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
 
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
                 return;
             }
 
-            if(pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZCrystals.ULTRANECROZIUM_Z) && checkFused(pokemon)){
-                if(!Possible(player)){
+            if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.heldItem().is(ZCrystals.ULTRANECROZIUM_Z) && checkFused(pokemon)) {
+                if (!Possible(player)) {
                     return;
                 }
 
                 FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
                 FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
-                if(feature != null){
+                if (feature != null) {
                     boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-                    if(enabled) {
+                    if (enabled) {
                         new FlagSpeciesFeature("ultra", false).apply(pokemon);
                         setTradable(pokemon, true);
                         ultraAnimation(pokemon.getEntity());
@@ -118,14 +119,14 @@ public class UltraLogic {
         }
     }
 
-    private static boolean checkFused(Pokemon pokemon){
+    private static boolean checkFused(Pokemon pokemon) {
         FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
         FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
-        if(feature != null){
+        if (feature != null) {
             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-            if(enabled){
+            if (enabled) {
                 return true;
             }
         }
@@ -133,12 +134,10 @@ public class UltraLogic {
         featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
         feature = featureProvider.get(pokemon);
 
-        if(feature != null){
+        if (feature != null) {
             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-            if(enabled){
-                return true;
-            }
+            return enabled;
         }
 
         return false;

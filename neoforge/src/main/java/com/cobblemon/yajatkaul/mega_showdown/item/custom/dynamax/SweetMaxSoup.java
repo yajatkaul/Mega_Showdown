@@ -15,9 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SweetMaxSoup extends Item {
     public SweetMaxSoup(Properties arg) {
@@ -26,21 +24,21 @@ public class SweetMaxSoup extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand arg4) {
-        if(player.level().isClientSide || player.isCrouching()){
+        if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
                 return InteractionResult.PASS;
             }
 
-            if(!pokemon.getSpecies().getName().equals("Urshifu")){
+            if (!pokemon.getSpecies().getName().equals("Urshifu")) {
                 return InteractionResult.PASS;
             }
 
-            if(pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()){
+            if (pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(false);
 
                 player.setItemInHand(arg4, new ItemStack(Items.BOWL));
@@ -55,7 +53,7 @@ public class SweetMaxSoup extends Item {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.gmax_not_possible")
                         .withColor(0xFFFFFF), true);
                 return InteractionResult.SUCCESS;
-            }else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()){
+            } else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(true);
 
                 player.setItemInHand(arg4, new ItemStack(Items.BOWL));

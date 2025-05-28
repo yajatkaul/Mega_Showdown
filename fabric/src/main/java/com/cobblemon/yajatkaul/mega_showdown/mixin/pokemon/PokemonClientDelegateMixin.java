@@ -2,7 +2,6 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin.pokemon;
 
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.data.TrackedData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,7 +23,7 @@ public class PokemonClientDelegateMixin {
             ),
             remap = false
     )
-    public void inject(TrackedData<?> data, CallbackInfo ci){
+    public void inject(TrackedData<?> data, CallbackInfo ci) {
         var currentAspects = currentEntity.getAspects();
         var pokemon = currentEntity.getPokemon();
         pokemon.setForcedAspects(currentAspects);

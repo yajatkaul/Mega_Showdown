@@ -6,17 +6,16 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ModBlockStateProvider extends BlockStateProvider {
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper){
-       super(output, MegaShowdown.MOD_ID, existingFileHelper);
+    public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, MegaShowdown.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void registerStatesAndModels(){
+    protected void registerStatesAndModels() {
         blockWithItem(MegaOres.KEYSTONE_ORE);
 
         blockWithItem(ModBlocks.MEGA_METEOROID_BLOCK);
@@ -41,7 +40,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.DEOXYS_METEORITE);
     }
 
-    private void blockWithItem(DeferredBlock<?> deferredBlock){
+    private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
 

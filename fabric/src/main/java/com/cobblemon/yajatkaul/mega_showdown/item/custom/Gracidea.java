@@ -8,7 +8,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -27,21 +26,21 @@ public class Gracidea extends BlockItem {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if(player.getWorld().isClient || player.isCrawling()){
+        if (player.getWorld().isClient || player.isCrawling()) {
             return ActionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
                 return ActionResult.PASS;
             }
 
-            if(pokemon.getOwnerPlayer() != player){
+            if (pokemon.getOwnerPlayer() != player) {
                 return ActionResult.PASS;
             }
 
-            if(pokemon.getSpecies().getName().equals("Shaymin")){
+            if (pokemon.getSpecies().getName().equals("Shaymin")) {
                 long timeOfDay = player.getWorld().getTimeOfDay() % 24000;
                 boolean isDaytime = timeOfDay < 12000;
                 boolean isSkyFormActive = checkFlag(pokemon);
@@ -63,16 +62,14 @@ public class Gracidea extends BlockItem {
         return super.useOnEntity(stack, player, context, hand);
     }
 
-    private boolean checkFlag(Pokemon pokemon){
+    private boolean checkFlag(Pokemon pokemon) {
         FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("sky-forme"));
         FlagSpeciesFeature feature = featureProvider.get(pokemon);
 
-        if(feature != null){
+        if (feature != null) {
             boolean enabled = featureProvider.get(pokemon).getEnabled();
 
-            if(enabled){
-                return true;
-            }
+            return enabled;
         }
 
         return false;

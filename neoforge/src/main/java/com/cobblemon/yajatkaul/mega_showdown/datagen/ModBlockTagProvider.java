@@ -2,13 +2,10 @@ package com.cobblemon.yajatkaul.mega_showdown.datagen;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
-import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -17,9 +14,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagProvider extends BlockTagsProvider {
     public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider
-                               ,@Nullable ExistingFileHelper existingFileHelper){
+            , @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, MegaShowdown.MOD_ID, existingFileHelper);
     }
+
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)

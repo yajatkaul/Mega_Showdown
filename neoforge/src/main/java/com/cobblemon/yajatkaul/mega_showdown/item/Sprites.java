@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraShard;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -16,6 +15,6 @@ public class Sprites {
     public static final DeferredItem<Item> ROOT_SPRITE = ITEMS.register("root_sprite",
             () -> new Item(new Item.Properties()));
 
-    public static void register(){
+    public static void register() {
     }
 }

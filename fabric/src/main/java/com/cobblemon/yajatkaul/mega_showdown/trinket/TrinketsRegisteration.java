@@ -7,7 +7,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 
 public class TrinketsRegisteration {
-    public static void register(){
+    public static void register() {
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_RED_BRACELET, new RenderHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ModItems.MEGA_BLUE_BRACELET, new RenderHandTrinkets());

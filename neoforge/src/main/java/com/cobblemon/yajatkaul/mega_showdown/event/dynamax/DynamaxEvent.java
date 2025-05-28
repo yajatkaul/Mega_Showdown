@@ -24,7 +24,7 @@ public class DynamaxEvent extends Event {
         return pokemon;
     }
 
-    public Boolean getGmax(){
+    public Boolean getGmax() {
         return gmax;
     }
 }

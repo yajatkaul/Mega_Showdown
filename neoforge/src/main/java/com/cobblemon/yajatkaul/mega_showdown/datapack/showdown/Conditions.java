@@ -7,7 +7,6 @@ import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.google.gson.Gson;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,18 +26,16 @@ import java.util.stream.Collectors;
 public class Conditions implements DataRegistry {
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/conditions");
     private static final SimpleObservable<Conditions> OBSERVABLE = new SimpleObservable<>();
-
+    public static final Conditions INSTANCE = new Conditions();
     private final Map<String, String> conditionScripts = new HashMap<>();
 
-    public static final Conditions INSTANCE = new Conditions();
-
     private Conditions() {
-        OBSERVABLE.subscribe(Priority.NORMAL , this::conditionsLoad);
+        OBSERVABLE.subscribe(Priority.NORMAL, this::conditionsLoad);
     }
 
     private Unit conditionsLoad(Conditions conditions) {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveConditionDataFn = service.context.getBindings("js").getMember("receiveConditionData");
                 for (Map.Entry<String, String> entry : Conditions.INSTANCE.getConditionScripts().entrySet()) {
                     String conditionId = entry.getKey();

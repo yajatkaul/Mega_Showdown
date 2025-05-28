@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.interpreter.instructions.EndInstruction;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEvent;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventEnd;
 import net.neoforged.neoforge.common.NeoForge;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +29,7 @@ public class EndInstructionMixin {
         boolean containsDynamax = Arrays.stream(parts).anyMatch(part -> part.contains("Dynamax"));
 
         if (containsDynamax) {
-            BattlePokemon pokemon =  message.battlePokemon(0, battle);
+            BattlePokemon pokemon = message.battlePokemon(0, battle);
             DynamaxEventEnd event = new DynamaxEventEnd(battle, pokemon);
             NeoForge.EVENT_BUS.post(event);
         }

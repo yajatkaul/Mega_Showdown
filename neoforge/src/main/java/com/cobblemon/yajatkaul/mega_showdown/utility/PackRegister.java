@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 import java.nio.file.Path;
 
 public class PackRegister {
-    public static void register(AddPackFindersEvent event){
+    public static void register(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             // Get the mod's file path
             var modContainer = ModList.get().getModContainerById(MegaShowdown.MOD_ID)

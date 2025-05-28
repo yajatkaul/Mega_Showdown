@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Mixin(value = StartInstruction.class, remap = false)
-public class StartInstructionMixin  {
+public class StartInstructionMixin {
     @Inject(method = "invoke", at = @At("HEAD"), remap = false)
     private void injectBeforeInvoke(PokemonBattle battle, CallbackInfo ci) {
         BattleMessage message = ((StartInstructionAccessor) this).getMessage();
@@ -30,7 +30,7 @@ public class StartInstructionMixin  {
         boolean containsGmax = Arrays.stream(parts).anyMatch(part -> part.contains("Gmax"));
 
         if (containsDynamax) {
-            BattlePokemon pokemon =  message.battlePokemon(0, battle);
+            BattlePokemon pokemon = message.battlePokemon(0, battle);
             DynamaxEvent.EVENT.invoker().onDynamax(battle, pokemon, containsGmax);
         }
     }

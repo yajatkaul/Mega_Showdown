@@ -2,9 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,9 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class MaxSoup extends Item {
     public MaxSoup(Properties arg) {
@@ -29,21 +25,21 @@ public class MaxSoup extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand arg4) {
-        if(player.level().isClientSide || player.isCrouching()){
+        if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.PASS;
         }
 
-        if(context instanceof PokemonEntity pk){
+        if (context instanceof PokemonEntity pk) {
             Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()){
+            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
                 return InteractionResult.PASS;
             }
 
-            if(!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())){
+            if (!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())) {
                 return InteractionResult.PASS;
             }
 
-            if(pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()){
+            if (pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(false);
 
                 player.setItemInHand(arg4, new ItemStack(Items.BOWL));
@@ -59,7 +55,7 @@ public class MaxSoup extends Item {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.gmax_not_possible")
                         .withColor(0xFFFFFF), true);
                 return InteractionResult.SUCCESS;
-            }else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()){
+            } else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(true);
 
                 player.setItemInHand(arg4, new ItemStack(Items.BOWL));

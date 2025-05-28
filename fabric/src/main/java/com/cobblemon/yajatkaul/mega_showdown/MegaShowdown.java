@@ -1,26 +1,20 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
-import com.cobblemon.mod.common.data.CobblemonDataProvider;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.block.BlockRegister;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.ModDatapack;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Conditions;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.TrinketEvent;
-import com.cobblemon.yajatkaul.mega_showdown.item.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.ItemRegister;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.networking.PacketRegister;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
@@ -32,17 +26,13 @@ import com.google.common.reflect.Reflection;
 import kotlin.Unit;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,9 +83,9 @@ public class MegaShowdown implements ModInitializer {
         TeraTypeHelper.loadShardData();
 
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
-            if(showdownService instanceof GraalShowdownService service){
+            if (showdownService instanceof GraalShowdownService service) {
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveCustomGmaxMove");
-                for (GmaxData gmax: Utils.gmaxRegistry) {
+                for (GmaxData gmax : Utils.gmaxRegistry) {
                     receiveMoveDataFn.execute(gmax.pokemon(), gmax.gmaxMove());
                 }
             }

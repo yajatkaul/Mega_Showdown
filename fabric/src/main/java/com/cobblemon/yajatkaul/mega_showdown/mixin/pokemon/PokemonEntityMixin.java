@@ -17,7 +17,7 @@ public abstract class PokemonEntityMixin {
             cancellable = true
     )
     private void cancelRecallDuringEvolution(CallbackInfoReturnable<CompletableFuture<Pokemon>> cir) {
-        PokemonEntity self = (PokemonEntity)(Object)this;
+        PokemonEntity self = (PokemonEntity) (Object) this;
 
         if (self.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
             CompletableFuture<Pokemon> future = new CompletableFuture<>();

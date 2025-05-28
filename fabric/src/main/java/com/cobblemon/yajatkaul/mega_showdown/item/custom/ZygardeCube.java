@@ -3,37 +3,24 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
-import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.inventory.CubeInventoryListener;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreenHandler;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -58,6 +45,10 @@ public class ZygardeCube extends Item {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
 
+    public ZygardeCube(Settings settings) {
+        super(settings);
+    }
+
     public static boolean possible(ServerPlayerEntity player) {
         UUID playerId = player.getUuid();
         long currentTime = System.currentTimeMillis();
@@ -73,42 +64,6 @@ public class ZygardeCube extends Item {
         // Apply cooldown
         cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
         return true;
-    }
-
-    public ZygardeCube(Settings settings) {
-        super(settings);
-    }
-
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if(world.isClient || hand == Hand.OFF_HAND){
-            return TypedActionResult.fail(user.getStackInHand(hand));
-        }
-
-        EntityHitResult entityHit = getEntityLookingAt(user, 4.5);
-        if (entityHit != null) {
-            Entity entity = entityHit.getEntity();
-            if (entity instanceof PokemonEntity pk) {
-                if (pk.getPokemon().getSpecies().getName().equals("Zygarde")) {
-                    return TypedActionResult.pass(user.getStackInHand(hand));
-                }
-            }
-        }
-
-        RegistryWrapper.WrapperLookup registries = user.getWorld().getRegistryManager();
-
-        ItemStack stack = user.getStackInHand(hand);
-
-        NbtCompound tag = stack.getOrDefault(DataManage.ZYGARDE_CUBE_INV, new NbtCompound());
-
-        SimpleInventory inventory = deserializeInventory(tag, registries);
-
-        user.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-                (syncId, inv, player) -> new ZygardeCubeScreenHandler(syncId, inv, inventory, player, stack),
-                Text.translatable("menu.zygade_cube")
-        ));
-
-        return TypedActionResult.pass(user.getStackInHand(hand));
     }
 
     public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
@@ -172,71 +127,6 @@ public class ZygardeCube extends Item {
         return inventory;
     }
 
-    public SimpleInventory getInventory(ItemStack stack, PlayerEntity player){
-        NbtCompound tag = stack.get(DataManage.ZYGARDE_CUBE_INV);
-        RegistryWrapper.WrapperLookup registries = player.getWorld().getRegistryManager();
-
-        SimpleInventory inventory = new SimpleInventory(2);
-        if(tag != null){
-            inventory = deserializeInventory(tag, registries);
-        }
-
-        return inventory;
-    }
-
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
-        if(player.getWorld().isClient || player.isCrawling()){
-            return ActionResult.FAIL;
-        }
-
-        if(entity instanceof PokemonEntity pk){
-            Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
-                return ActionResult.PASS;
-            }
-
-            if(!pokemon.getSpecies().getName().equals("Zygarde")){
-                return ActionResult.PASS;
-            }
-
-            if(hand == Hand.OFF_HAND && !pk.getAspects().contains("power-construct")){
-                if(stack.get(DataManage.POKEMON_STORAGE) != null){
-                    player.sendMessage(
-                            Text.translatable("message.mega_showdown.cube_full").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
-                    return ActionResult.FAIL;
-                }
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
-                stack.set(DataManage.POKEMON_STORAGE, pokemon);
-                player.setStackInHand(hand, stack);
-                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
-                return ActionResult.SUCCESS;
-            }
-            if(pk.getAspects().contains("power-construct")){
-                if(!possible((ServerPlayerEntity) player)){
-                    return ActionResult.PASS;
-                } else if(pk.getAspects().contains("10-percent")){
-                    particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","50").apply(pk);
-                }else{
-                    particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells","10").apply(pk);
-                }
-            }else {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.resassembly_zygarde_req").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-            }
-
-            return ActionResult.SUCCESS;
-        }
-
-        return ActionResult.FAIL;
-    }
-
     public static void particleEffect(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
@@ -281,12 +171,109 @@ public class ZygardeCube extends Item {
     }
 
     @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.isClient || hand == Hand.OFF_HAND) {
+            return TypedActionResult.fail(user.getStackInHand(hand));
+        }
+
+        EntityHitResult entityHit = getEntityLookingAt(user, 4.5);
+        if (entityHit != null) {
+            Entity entity = entityHit.getEntity();
+            if (entity instanceof PokemonEntity pk) {
+                if (pk.getPokemon().getSpecies().getName().equals("Zygarde")) {
+                    return TypedActionResult.pass(user.getStackInHand(hand));
+                }
+            }
+        }
+
+        RegistryWrapper.WrapperLookup registries = user.getWorld().getRegistryManager();
+
+        ItemStack stack = user.getStackInHand(hand);
+
+        NbtCompound tag = stack.getOrDefault(DataManage.ZYGARDE_CUBE_INV, new NbtCompound());
+
+        SimpleInventory inventory = deserializeInventory(tag, registries);
+
+        user.openHandledScreen(new SimpleNamedScreenHandlerFactory(
+                (syncId, inv, player) -> new ZygardeCubeScreenHandler(syncId, inv, inventory, player, stack),
+                Text.translatable("menu.zygade_cube")
+        ));
+
+        return TypedActionResult.pass(user.getStackInHand(hand));
+    }
+
+    public SimpleInventory getInventory(ItemStack stack, PlayerEntity player) {
+        NbtCompound tag = stack.get(DataManage.ZYGARDE_CUBE_INV);
+        RegistryWrapper.WrapperLookup registries = player.getWorld().getRegistryManager();
+
+        SimpleInventory inventory = new SimpleInventory(2);
+        if (tag != null) {
+            inventory = deserializeInventory(tag, registries);
+        }
+
+        return inventory;
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
+        if (player.getWorld().isClient || player.isCrawling()) {
+            return ActionResult.FAIL;
+        }
+
+        if (entity instanceof PokemonEntity pk) {
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
+                return ActionResult.PASS;
+            }
+
+            if (!pokemon.getSpecies().getName().equals("Zygarde")) {
+                return ActionResult.PASS;
+            }
+
+            if (hand == Hand.OFF_HAND && !pk.getAspects().contains("power-construct")) {
+                if (stack.get(DataManage.POKEMON_STORAGE) != null) {
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.cube_full").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.FAIL;
+                }
+                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
+                stack.set(DataManage.POKEMON_STORAGE, pokemon);
+                player.setStackInHand(hand, stack);
+                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
+                return ActionResult.SUCCESS;
+            }
+            if (pk.getAspects().contains("power-construct")) {
+                if (!possible((ServerPlayerEntity) player)) {
+                    return ActionResult.PASS;
+                } else if (pk.getAspects().contains("10-percent")) {
+                    particleEffect(pokemon.getEntity());
+                    new StringSpeciesFeature("percent_cells", "50").apply(pk);
+                } else {
+                    particleEffect(pokemon.getEntity());
+                    new StringSpeciesFeature("percent_cells", "10").apply(pk);
+                }
+            } else {
+                player.sendMessage(
+                        Text.translatable("message.mega_showdown.resassembly_zygarde_req").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+            }
+
+            return ActionResult.SUCCESS;
+        }
+
+        return ActionResult.FAIL;
+    }
+
+    @Override
     public void onItemEntityDestroyed(ItemEntity entity) {
-        if(entity.getOwner() instanceof ServerPlayerEntity player){
+        if (entity.getOwner() instanceof ServerPlayerEntity player) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             Pokemon currentValue = entity.getStack().getOrDefault(DataManage.POKEMON_STORAGE, null);
 
-            if(currentValue != null){
+            if (currentValue != null) {
                 playerPartyStore.add(currentValue);
                 entity.getStack().set(DataManage.POKEMON_STORAGE, null);
             }

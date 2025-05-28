@@ -9,7 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.event.ultra.UltraEventListener;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class CobbleEvents {
-    public static void register(){
+    public static void register() {
         CobblemonEvents.HELD_ITEM_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChange);
         CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChangePrimals);
 

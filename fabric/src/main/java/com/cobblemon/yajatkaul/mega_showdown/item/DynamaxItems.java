@@ -1,7 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ public class DynamaxItems {
 
     public static final Item DYNAMAX_CANDY = registerItem("dynamax_candy", new DynamaxCandy(new Item.Settings()));
 
-    public static final Item WISHING_STAR = registerItem("wishing_star", new Item(new Item.Settings()){
+    public static final Item WISHING_STAR = registerItem("wishing_star", new Item(new Item.Settings()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.wishing_star.tooltip"));
@@ -34,7 +33,7 @@ public class DynamaxItems {
 
     public static final Item SWEET_MAX_SOUP = registerItem("sweet_max_soup", new SweetMaxSoup(new Item.Settings().maxCount(1)));
 
-    public static void registerModItem(){
+    public static void registerModItem() {
 
     }
 }

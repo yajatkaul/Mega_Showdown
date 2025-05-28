@@ -5,13 +5,11 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -28,50 +26,6 @@ import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTy
 public class TeraShard extends Item {
     public TeraShard(Settings settings) {
         super(settings);
-    }
-
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if(player.getWorld().isClient || player.isCrawling()){
-            return ActionResult.PASS;
-        }
-
-        if(context instanceof PokemonEntity pk){
-            Pokemon pokemon = pk.getPokemon();
-            if(pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()){
-                return ActionResult.PASS;
-            }
-
-            Item shard = stack.getItem().asItem();
-
-            if(pokemon.getSpecies().getName().equals("Ogerpon")
-                    || pokemon.getSpecies().getName().equals("Terapagos")){
-                return ActionResult.PASS;
-            }
-
-            if(pokemon.getOwnerPlayer() == player && stack.getCount() == 50){
-                stack.decrement(50);
-                if(stack.getItem() != TeraMoves.STELLAR_TERA_SHARD.asItem()){
-                    particleEffect(pokemon.getEntity());
-                    pokemon.setTeraType(getType(shard));
-                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera");
-                }else{
-                    particleEffect(pokemon.getEntity());
-                    pokemon.setTeraType(TeraTypes.getSTELLAR());
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera");
-                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera_stellar");
-                }
-            }else if (pokemon.getOwnerPlayer() == player && stack.getCount() != 50) {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.tera_requirements").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-            }
-
-            return ActionResult.SUCCESS;
-        }
-
-        return super.useOnEntity(stack, player, context, hand);
     }
 
     public static void particleEffect(LivingEntity context) {
@@ -115,5 +69,49 @@ public class TeraShard extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
+        if (player.getWorld().isClient || player.isCrawling()) {
+            return ActionResult.PASS;
+        }
+
+        if (context instanceof PokemonEntity pk) {
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
+                return ActionResult.PASS;
+            }
+
+            Item shard = stack.getItem().asItem();
+
+            if (pokemon.getSpecies().getName().equals("Ogerpon")
+                    || pokemon.getSpecies().getName().equals("Terapagos")) {
+                return ActionResult.PASS;
+            }
+
+            if (pokemon.getOwnerPlayer() == player && stack.getCount() == 50) {
+                stack.decrement(50);
+                if (stack.getItem() != TeraMoves.STELLAR_TERA_SHARD.asItem()) {
+                    particleEffect(pokemon.getEntity());
+                    pokemon.setTeraType(getType(shard));
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera");
+                } else {
+                    particleEffect(pokemon.getEntity());
+                    pokemon.setTeraType(TeraTypes.getSTELLAR());
+                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera");
+                    AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera_stellar");
+                }
+            } else if (pokemon.getOwnerPlayer() == player && stack.getCount() != 50) {
+                player.sendMessage(
+                        Text.translatable("message.mega_showdown.tera_requirements").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        true
+                );
+            }
+
+            return ActionResult.SUCCESS;
+        }
+
+        return super.useOnEntity(stack, player, context, hand);
     }
 }
