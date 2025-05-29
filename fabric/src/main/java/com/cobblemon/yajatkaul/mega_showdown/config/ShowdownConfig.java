@@ -22,6 +22,8 @@ public class ShowdownConfig {
     public static final Supplier<Boolean> showdownFilesLoading;
     public static final Supplier<Boolean> multiplePrimals;
     public static final Supplier<Boolean> revertMegas;
+    public static final Supplier<Double> teraShardDropChance;
+    public static final Supplier<Double> stellarTeraShardDropChance;
 
     static {
         // construct a new config builder
@@ -48,6 +50,11 @@ public class ShowdownConfig {
                  but can't since mega showdown keeps overriding the files""").define("showdownFilesLoading", true);
         multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", true);
         revertMegas = builder.comment("Enable/Disable mega pokemons form reverting when battle starts").define("revertMegas", true);
+
+        teraShardDropChance = builder.comment("Drop chance for regular Tera Shards (default is 0.1 = 10%)")
+                .define("teraShardDropChance", 0.10, 0, 1);
+        stellarTeraShardDropChance = builder.comment("Drop chance for Stellar Tera Shards (default is 0.01 = 1%)")
+                .define("stellarTeraShardDropChance", 0.01, 0, 1);
 
         builder.build();
     }

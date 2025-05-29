@@ -272,12 +272,18 @@ public class CobbleEventHandler {
         ItemDropEntry teraShardDropEntry = new ItemDropEntry();
         teraShardDropEntry.setItem(Registries.ITEM.getId(correspondingTeraShard));
 
-        int randomValue = new Random().nextInt(101);
-        if (randomValue >= 10 && randomValue <= 20) {
+        double teraShardChance = ShowdownConfig.teraShardDropChance.get();
+        double stellarTeraShardChance = ShowdownConfig.stellarTeraShardDropChance.get();
+
+        double randomValue = new Random().nextDouble();
+        if (randomValue <= teraShardChance) {
             lootDroppedEvent.getDrops().add(teraShardDropEntry);
-        } else if (randomValue == 33) {
-            teraShardDropEntry.setItem(Registries.ITEM.getId(TeraMoves.STELLAR_TERA_SHARD));
-            lootDroppedEvent.getDrops().add(teraShardDropEntry);
+        }
+        randomValue = new Random().nextDouble();
+        if (randomValue <= stellarTeraShardChance) {
+            ItemDropEntry stellarDropEntry = new ItemDropEntry();
+            stellarDropEntry.setItem(Registries.ITEM.getId(TeraMoves.STELLAR_TERA_SHARD));
+            lootDroppedEvent.getDrops().add(stellarDropEntry);
         }
 
         return Unit.INSTANCE;
