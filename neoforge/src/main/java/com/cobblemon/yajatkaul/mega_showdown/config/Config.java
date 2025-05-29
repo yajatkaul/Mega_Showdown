@@ -62,6 +62,14 @@ public class Config {
     private static final ModConfigSpec.BooleanValue REVERT_MEGAS = BUILDER
             .comment("Enable/Disable mega pokemons form reverting when battle starts")
             .define("revertMegas", true);
+
+    private static final ModConfigSpec.DoubleValue TERA_SHARD_DROP_CHANCE = BUILDER
+            .comment("Drop chance for regular Tera Shards (0 to 1, default is 0.1 = 10%)")
+            .defineInRange("teraShardDropChance", 0.1, 0, 1);
+    private static final ModConfigSpec.DoubleValue STELLAR_TERA_SHARD_DROP_CHANCE = BUILDER
+            .comment("Drop chance for Stellar Tera Shards (0 to 1, default is 0.01 = 1%)")
+            .defineInRange("teraShardDropChance", 0.01, 0, 1);
+
     public static boolean multipleMegas;
     public static boolean battleModeOnly;
     public static boolean multiplePrimals;
@@ -77,6 +85,8 @@ public class Config {
     public static int dynamaxScaleFactor;
     public static boolean showdownFilesLoading;
     public static boolean revertMegas;
+    public static double teraShardDropChance;
+    public static double stellarTeraShardDropChance;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -95,5 +105,7 @@ public class Config {
         showdownFilesLoading = SHOWDOWN_FILES_LOADING.get();
         mega = MEGA.get();
         revertMegas = REVERT_MEGAS.get();
+        teraShardDropChance = TERA_SHARD_DROP_CHANCE.get();
+        stellarTeraShardDropChance = STELLAR_TERA_SHARD_DROP_CHANCE.get();
     }
 }
