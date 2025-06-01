@@ -203,7 +203,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FLAME_PLATE = ITEMS.register("flameplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "fire") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.flameplate.tooltip"));
@@ -212,7 +212,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> SPLASH_PLATE = ITEMS.register("splashplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "water") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.splashplate.tooltip"));
@@ -221,7 +221,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ZAP_PLATE = ITEMS.register("zapplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "electric") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.zapplate.tooltip"));
@@ -230,7 +230,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> MEADOW_PLATE = ITEMS.register("meadowplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "grass") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.meadowplate.tooltip"));
@@ -239,7 +239,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ICICLE_PLATE = ITEMS.register("icicleplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "ice") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.icicleplate.tooltip"));
@@ -248,7 +248,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FIST_PLATE = ITEMS.register("fistplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "fighting") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fistplate.tooltip"));
@@ -257,7 +257,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> TOXIC_PLATE = ITEMS.register("toxicplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "poison") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.toxicplate.tooltip"));
@@ -266,7 +266,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> EARTH_PLATE = ITEMS.register("earthplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "ground") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.earthplate.tooltip"));
@@ -275,7 +275,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> SKY_PLATE = ITEMS.register("skyplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "flying") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.skyplate.tooltip"));
@@ -284,7 +284,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> MIND_PLATE = ITEMS.register("mindplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "physic") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.mindplate.tooltip"));
@@ -293,7 +293,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> INSECT_PLATE = ITEMS.register("insectplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "bug") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.insectplate.tooltip"));
@@ -302,7 +302,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> STONE_PLATE = ITEMS.register("stoneplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "rock") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.stoneplate.tooltip"));
@@ -311,7 +311,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> SPOOKY_PLATE = ITEMS.register("spookyplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "ghost") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.spookyplate.tooltip"));
@@ -320,7 +320,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DRACO_PLATE = ITEMS.register("dracoplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "dragon") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dracoplate.tooltip"));
@@ -329,7 +329,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DREAD_PLATE = ITEMS.register("dreadplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "dark") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dreadplate.tooltip"));
@@ -338,7 +338,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> IRON_PLATE = ITEMS.register("ironplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "steel") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ironplate.tooltip"));
@@ -347,7 +347,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> PIXIE_PLATE = ITEMS.register("pixieplate",
-            () -> new Item(new Item.Properties().stacksTo(1)) {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "fairy") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.pixieplate.tooltip"));
@@ -356,7 +356,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> BUG_MEMORY = ITEMS.register("bugmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
@@ -365,7 +365,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DARK_MEMORY = ITEMS.register("darkmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
@@ -374,7 +374,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DRAGON_MEMORY = ITEMS.register("dragonmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
@@ -383,7 +383,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ELECTRIC_MEMORY = ITEMS.register("electricmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
@@ -392,7 +392,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FAIRY_MEMORY = ITEMS.register("fairymemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fairymemory.tooltip"));
@@ -401,7 +401,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FIGHTING_MEMORY = ITEMS.register("fightingmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fightingmemory.tooltip"));
@@ -410,7 +410,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FIRE_MEMORY = ITEMS.register("firememory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.firememory.tooltip"));
@@ -419,7 +419,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FLYING_MEMORY = ITEMS.register("flyingmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.flyingmemory.tooltip"));
@@ -428,7 +428,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GHOST_MEMORY = ITEMS.register("ghostmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ghostmemory.tooltip"));
@@ -437,7 +437,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GRASS_MEMORY = ITEMS.register("grassmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.grassmemory.tooltip"));
@@ -446,7 +446,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GROUND_MEMORY = ITEMS.register("groundmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.groundmemory.tooltip"));
@@ -455,7 +455,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ICE_MEMORY = ITEMS.register("icememory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.icememory.tooltip"));
@@ -464,7 +464,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> POISON_MEMORY = ITEMS.register("poisonmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.poisonmemory.tooltip"));
@@ -473,7 +473,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> PSYCHIC_MEMORY = ITEMS.register("psychicmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.psychicmemory.tooltip"));
@@ -482,7 +482,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ROCK_MEMORY = ITEMS.register("rockmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.rockmemory.tooltip"));
@@ -491,7 +491,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> STEEL_MEMORY = ITEMS.register("steelmemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.steelmemory.tooltip"));
@@ -500,7 +500,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> WATER_MEMORY = ITEMS.register("watermemory",
-            () -> new Memories(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1)) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.watermemory.tooltip"));

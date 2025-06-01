@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
 import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
@@ -24,7 +25,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
@@ -76,7 +77,7 @@ public class CobbleEventsHandler {
         HeldItemChangeFormes.originChange(event);
         HeldItemChangeFormes.customEvents(event);
 
-        if (Config.battleModeOnly) {
+        if (MegaShowdownConfig.battleModeOnly) {
             return Unit.INSTANCE;
         }
 
@@ -267,7 +268,7 @@ public class CobbleEventsHandler {
     }
 
     public static Unit dropShardPokemon(LootDroppedEvent lootDroppedEvent) {
-        if (!Config.teralization || Config.disableTeraShardDrop || !(lootDroppedEvent.getEntity() instanceof PokemonEntity)) {
+        if (!MegaShowdownConfig.teralization || MegaShowdownConfig.disableTeraShardDrop || !(lootDroppedEvent.getEntity() instanceof PokemonEntity)) {
             return Unit.INSTANCE;
         }
         Pokemon pokemon = ((PokemonEntity) lootDroppedEvent.getEntity()).getPokemon();
@@ -535,11 +536,16 @@ public class CobbleEventsHandler {
         Pokemon pokemon = pk.getEntity().getPokemon();
 
         if (abilities) {
-            battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
-            battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+            if(pk.actor.getType().equals(ActorType.PLAYER)){
+                battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+                battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+            }
         }
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
+            if(!pk.actor.getType().equals(ActorType.PLAYER)) {
+                continue;
+            }
             if (activeBattlePokemon.getBattlePokemon() != null &&
                     activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pk.getEffectedPokemon().getOwnerPlayer()
                     && activeBattlePokemon.getBattlePokemon() == pk) {

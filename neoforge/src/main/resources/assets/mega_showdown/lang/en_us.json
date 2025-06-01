@@ -603,5 +603,8 @@
   "advancement.mega_showdown.get_all_z_move.title": "Crystal Collector Extraordinaire!",
   "advancement.mega_showdown.get_all_z_move.description": "Collect all types of Z-Crystals",
   "advancement.mega_showdown.get_blank_move.title": "Crystal Clear Confusion!",
-  "advancement.mega_showdown.get_blank_move.description": "Obtain the blank-z"
+  "advancement.mega_showdown.get_blank_move.description": "Obtain the blank-z",
+
+  "item.mega_showdown.likos_pendant": "Liko's Pendant",
+  "tooltip.mega_showdown.likos_pendant.tooltip": "A pendant said to resonate with ancient energy. It quietly empowers the heart of a true Trainer."
 }

@@ -2,23 +2,19 @@ package com.cobblemon.yajatkaul.mega_showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
-import com.cobblemon.mod.common.data.CobblemonDataProvider;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Abilities;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Conditions;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
+import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
@@ -44,11 +40,9 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,7 +77,6 @@ public final class MegaShowdown {
 
     public MegaShowdown(IEventBus modEventBus, @NotNull ModContainer modContainer) {
         NeoForge.EVENT_BUS.register(this);
-
         ModBlocks.register(modEventBus);
         MegaOres.register();
         ModSounds.register(modEventBus);
@@ -96,7 +89,7 @@ public final class MegaShowdown {
 
         ModCreativeModeTabs.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, MegaShowdownConfig.SPEC);
         modEventBus.addListener(NetworkHandler::register);
 
         NeoForge.EVENT_BUS.addListener(MegaCommands::register);
@@ -160,46 +153,5 @@ public final class MegaShowdown {
 
     private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
         DatapacksLoader.register(event);
-    }
-
-
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            NeoForge.EVENT_BUS.addListener(ClientModEvents::onClientTick);
-        }
-
-        @SubscribeEvent
-        public static void onAddPackFinders(AddPackFindersEvent event) {
-            PackRegister.register(event);
-        }
-
-        // Register the key binding
-        @SubscribeEvent
-        public static void registerBindings(RegisterKeyMappingsEvent event) {
-            event.register(MEGA_ITEM_KEY.get());
-            event.register(ULTRA_KEY.get());
-        }
-
-        public static void onClientTick(ClientTickEvent.Post event) {
-            while (MEGA_ITEM_KEY.get().consumeClick()) {
-                PacketDistributor.sendToServer(new MegaEvo("mega_evo"));
-            }
-            while (ULTRA_KEY.get().consumeClick()) {
-                PacketDistributor.sendToServer(new UltraTrans("ultra_trans"));
-            }
-        }
-
-        @SubscribeEvent
-        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
-        }
-
-        @SubscribeEvent
-        public static void registerScreens(RegisterMenuScreensEvent event) {
-            event.register(ModMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
-        }
     }
 }

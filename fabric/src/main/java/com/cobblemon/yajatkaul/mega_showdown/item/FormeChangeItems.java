@@ -188,7 +188,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item BUG_MEMORY = registerItem("bugmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item BUG_MEMORY = registerItem("bugmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
@@ -196,7 +196,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DARK_MEMORY = registerItem("darkmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item DARK_MEMORY = registerItem("darkmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
@@ -204,7 +204,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DRAGON_MEMORY = registerItem("dragonmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item DRAGON_MEMORY = registerItem("dragonmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
@@ -212,7 +212,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ELECTRIC_MEMORY = registerItem("electricmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item ELECTRIC_MEMORY = registerItem("electricmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
@@ -220,7 +220,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FAIRY_MEMORY = registerItem("fairymemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item FAIRY_MEMORY = registerItem("fairymemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fairymemory.tooltip"));
@@ -228,7 +228,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIGHTING_MEMORY = registerItem("fightingmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item FIGHTING_MEMORY = registerItem("fightingmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fightingmemory.tooltip"));
@@ -236,7 +236,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIRE_MEMORY = registerItem("firememory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item FIRE_MEMORY = registerItem("firememory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.firememory.tooltip"));
@@ -244,7 +244,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FLYING_MEMORY = registerItem("flyingmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item FLYING_MEMORY = registerItem("flyingmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.flyingmemory.tooltip"));
@@ -252,7 +252,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GHOST_MEMORY = registerItem("ghostmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item GHOST_MEMORY = registerItem("ghostmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ghostmemory.tooltip"));
@@ -260,7 +260,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GRASS_MEMORY = registerItem("grassmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item GRASS_MEMORY = registerItem("grassmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.grassmemory.tooltip"));
@@ -268,7 +268,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GROUND_MEMORY = registerItem("groundmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item GROUND_MEMORY = registerItem("groundmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.groundmemory.tooltip"));
@@ -276,7 +276,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ICE_MEMORY = registerItem("icememory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item ICE_MEMORY = registerItem("icememory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.icememory.tooltip"));
@@ -284,7 +284,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item POISON_MEMORY = registerItem("poisonmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item POISON_MEMORY = registerItem("poisonmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.poisonmemory.tooltip"));
@@ -292,7 +292,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PSYCHIC_MEMORY = registerItem("psychicmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item PSYCHIC_MEMORY = registerItem("psychicmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.psychicmemory.tooltip"));
@@ -300,7 +300,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ROCK_MEMORY = registerItem("rockmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item ROCK_MEMORY = registerItem("rockmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rockmemory.tooltip"));
@@ -308,7 +308,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item STEEL_MEMORY = registerItem("steelmemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item STEEL_MEMORY = registerItem("steelmemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.steelmemory.tooltip"));
@@ -316,7 +316,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item WATER_MEMORY = registerItem("watermemory", new Memories(new Item.Settings().maxCount(1)) {
+    public static final Item WATER_MEMORY = registerItem("watermemory", new Memory(new Item.Settings().maxCount(1)) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.watermemory.tooltip"));

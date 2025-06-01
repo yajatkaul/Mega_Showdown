@@ -21,13 +21,6 @@ public class LikosPendantRenderer implements ArmorRenderer {
             return;
         }
 
-        ItemStack chestArmor = entity.getEquippedStack(EquipmentSlot.CHEST);
-
-        float z_axis = -0.1f;
-        if (!chestArmor.isEmpty()) {
-            z_axis = -0.16f;
-        }
-
         matrices.push();
 
         matrices.translate(0.0f, 0.3f, -0.15f);

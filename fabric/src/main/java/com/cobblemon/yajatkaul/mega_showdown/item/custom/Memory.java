@@ -2,8 +2,8 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import net.minecraft.item.Item;
 
-public class Memories extends Item {
-    public Memories(Settings settings) {
+public class Memory extends Item {
+    public Memory(Settings settings) {
         super(settings);
     }
 }

@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility.showdown;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import java.nio.file.StandardCopyOption;
 
 public class LoadMethods {
     public void load() {
-        if (Config.showdownFilesLoading) {
+        if (MegaShowdownConfig.showdownFilesLoading) {
             Path showdown_sim = Path.of("./showdown/sim");
             Path showdown_data = Path.of("./showdown/data");
             Path showdown = Path.of("./showdown");

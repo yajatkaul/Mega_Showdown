@@ -318,6 +318,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativeTab.mega_showdown.key_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.PEDESTAL);
+                        output.accept(KeyItems.LIKOS_PENDANT);
                     })
                     .build());
 

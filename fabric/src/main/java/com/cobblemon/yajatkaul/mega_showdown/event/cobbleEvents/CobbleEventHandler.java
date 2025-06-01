@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
 import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
@@ -136,11 +137,16 @@ public class CobbleEventHandler {
         Pokemon pokemon = pk.getEntity().getPokemon();
 
         if (abilities) {
-            battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
-            battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+            if(pk.actor.getType().equals(ActorType.PLAYER)){
+                battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+                battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+            }
         }
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
+            if(!pk.actor.getType().equals(ActorType.PLAYER)) {
+                continue;
+            }
             if (activeBattlePokemon.getBattlePokemon() != null &&
                     activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pk.getEffectedPokemon().getOwnerPlayer()
                     && activeBattlePokemon.getBattlePokemon() == pk) {

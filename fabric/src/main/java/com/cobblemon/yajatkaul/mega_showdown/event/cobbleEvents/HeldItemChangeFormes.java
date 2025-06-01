@@ -18,7 +18,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memories;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memory;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
@@ -127,7 +127,7 @@ public class HeldItemChangeFormes {
             } else if (post.getReceived().isOf(FormeChangeItems.WATER_MEMORY)) {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "water").apply(pokemon);
-            } else if (!(post.getReceived().getItem() instanceof Memories) && post.getReturned().getItem() instanceof Memories) {
+            } else if (!(post.getReceived().getItem() instanceof Memory) && post.getReturned().getItem() instanceof Memory) {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "normal").apply(pokemon);
             }

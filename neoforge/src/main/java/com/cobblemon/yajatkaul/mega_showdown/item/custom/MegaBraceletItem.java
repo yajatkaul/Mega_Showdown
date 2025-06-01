@@ -2,7 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.Config;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -68,7 +68,7 @@ public class MegaBraceletItem extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
-        if (player.level().isClientSide || Config.battleModeOnly) {
+        if (player.level().isClientSide || MegaShowdownConfig.battleModeOnly) {
             return InteractionResult.PASS;
         }
 

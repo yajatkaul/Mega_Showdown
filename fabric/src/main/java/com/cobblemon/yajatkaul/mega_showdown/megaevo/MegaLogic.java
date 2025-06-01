@@ -544,13 +544,10 @@ public class MegaLogic {
         String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-            boolean found = false;
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
                     megaEvolve(context, "mega", battlePokemon, pokemonBattle);
                     setTradable(pokemon, false);
-
-                    found = true;
                 }
             }
             return;

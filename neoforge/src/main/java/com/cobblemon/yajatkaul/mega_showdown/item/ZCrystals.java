@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -31,7 +32,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> BUGINIUM_Z = ITEMS.register("buginium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "bug") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.buginium-z.tooltip"));
@@ -40,7 +41,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> DARKINIUM_Z = ITEMS.register("darkinium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "dark") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.darkinium-z.tooltip"));
@@ -58,7 +59,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> DRAGONIUM_Z = ITEMS.register("dragonium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "dragon") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dragonium-z.tooltip"));
@@ -76,7 +77,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> ELECTRIUM_Z = ITEMS.register("electrium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "electric") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electrium-z.tooltip"));
@@ -85,7 +86,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> FAIRIUM_Z = ITEMS.register("fairium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "fairy") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fairium-z.tooltip"));
@@ -94,7 +95,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> FIGHTINIUM_Z = ITEMS.register("fightinium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "fighting") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fightinium-z.tooltip"));
@@ -103,7 +104,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> FIRIUM_Z = ITEMS.register("firium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "fire") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.firium-z.tooltip"));
@@ -112,7 +113,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> FLYINIUM_Z = ITEMS.register("flyinium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "flying") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.flyinium-z.tooltip"));
@@ -121,7 +122,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> GHOSTIUM_Z = ITEMS.register("ghostium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "ghost") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ghostium-z.tooltip"));
@@ -130,7 +131,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> GRASSIUM_Z = ITEMS.register("grassium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "grass") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.grassium-z.tooltip"));
@@ -139,7 +140,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> GROUNDIUM_Z = ITEMS.register("groundium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "ground") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.groundium-z.tooltip"));
@@ -148,7 +149,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> ICIUM_Z = ITEMS.register("icium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "ice") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.icium-z.tooltip"));
@@ -247,7 +248,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> POISONIUM_Z = ITEMS.register("poisonium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "poison") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.poisonium-z.tooltip"));
@@ -265,7 +266,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> PSYCHIUM_Z = ITEMS.register("psychium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "physic") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.psychium-z.tooltip"));
@@ -274,7 +275,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> ROCKIUM_Z = ITEMS.register("rockium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "rock") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.rockium-z.tooltip"));
@@ -301,7 +302,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> STEELIUM_Z = ITEMS.register("steelium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "steel") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.steelium-z.tooltip"));
@@ -328,7 +329,7 @@ public class ZCrystals {
             });
 
     public static final DeferredItem<Item> WATERIUM_Z = ITEMS.register("waterium-z",
-            () -> new Item(new Item.Properties()) {
+            () -> new ArceusType(new Item.Properties(), "water") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.waterium-z.tooltip"));

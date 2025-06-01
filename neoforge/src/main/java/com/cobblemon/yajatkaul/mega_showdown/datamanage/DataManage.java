@@ -35,6 +35,16 @@ public class DataManage {
                             FriendlyByteBuf::readInt
                     ))
     );
+    public static final Supplier<DataComponentType<Integer>> LIKO_PENDANT_TICK = REGISTRAR.registerComponentType(
+            "liko_pendant",
+            builder -> builder
+                    .persistent(Codec.INT)
+                    .networkSynchronized(StreamCodec.of(
+                            FriendlyByteBuf::writeInt,
+                            FriendlyByteBuf::readInt
+                    ))
+    );
+
     public static final Supplier<DataComponentType<CompoundTag>> ZYGARDE_INV = REGISTRAR.registerComponentType(
             "zygarde_inventory",
             builder -> builder
