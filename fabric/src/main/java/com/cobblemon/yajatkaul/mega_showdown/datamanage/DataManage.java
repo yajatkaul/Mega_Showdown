@@ -158,6 +158,12 @@ public class DataManage {
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
 
+    public static final ComponentType<Integer> LIKO_PENDANT_TICK = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MegaShowdown.MOD_ID, "liko_pendant"),
+            ComponentType.<Integer>builder().codec(Codec.INT).build()
+    );
+
     public static void registerDataComponentTypes() {
         MEGA_DATA.initializer();
         MEGA_POKEMON.initializer();

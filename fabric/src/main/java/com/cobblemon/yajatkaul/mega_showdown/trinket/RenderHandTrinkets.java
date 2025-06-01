@@ -27,7 +27,6 @@ public class RenderHandTrinkets implements TrinketRenderer {
         if (!stack.isEmpty()) {
             matrices.push();
             if (contextModel.child) {
-                float m = 0.5F;
                 matrices.translate(0.0F, 0.75F, 0.0F);
                 matrices.scale(0.5F, 0.5F, 0.5F);
             }

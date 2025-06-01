@@ -312,6 +312,7 @@ public class ModItemGroups {
                     .displayName(Text.translatable("creativeTab.mega_showdown.key_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ModBlocks.PEDESTAL);
+                        entries.add(KeyItems.LIKOS_PENDANT);
                     }))
                     .build());
 

@@ -124,5 +124,23 @@
   },
   "pokemon.zekrom.cry": {
     "sounds": [ { "name": "cobblemon:pokemon/zekrom_cry", "volume": 0.8 } ]
+  },
+  "pokemon.rotom.cry": {
+    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+  },
+  "pokemon.rotom_heat.cry": {
+    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+  },
+  "pokemon.rotom_frost.cry": {
+    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+  },
+  "pokemon.rotom_fan.cry": {
+    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+  },
+  "pokemon.rotom_wash.cry": {
+    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+  },
+  "pokemon.rotom_mow.cry": {
+    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
   }
 }

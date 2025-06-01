@@ -124,12 +124,12 @@ public class MegaLogic {
             if (isMega) {
                 Devolve(pk.getPokemon(), false);
             } else {
-                Evolve(pk, playerContext, false);
+                Evolve(pk, playerContext);
             }
         }
     }
 
-    public static void Evolve(PokemonEntity context, Player player, boolean fromBattle) {
+    public static void Evolve(PokemonEntity context, Player player) {
         if (player.level().isClientSide) {
             return;
         }
@@ -143,7 +143,7 @@ public class MegaLogic {
             return;
         }
 
-        if (pokemon.getEntity().isBattling() && !fromBattle) {
+        if (pokemon.getEntity().isBattling()) {
             player.displayClientMessage(Component.translatable("message.mega_showdown.battle_not_allowed")
                     .withColor(0xFF0000), true);
             return;
@@ -511,4 +511,86 @@ public class MegaLogic {
             }
         }
     }
+
+    //NPC
+    public static void NPCEvolve(PokemonEntity context, BattlePokemon battlePokemon, PokemonBattle pokemonBattle) {
+        Pokemon pokemon = context.getPokemon();
+        String species = Utils.MEGA_STONE_IDS.get(pokemon.heldItem().getItem());
+
+        if (pokemon.getSpecies().getName().equals("Rayquaza")) {
+            for (int i = 0; i < 4; i++) {
+                if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
+                    megaEvolve(context, "mega", battlePokemon, pokemonBattle);
+
+                    setTradable(pokemon, false);
+                }
+            }
+            return;
+        }
+
+        if (species == null) {
+            for (MegaData megaPok : Utils.megaRegistry) {
+                String[] parts = megaPok.item_id().split(":");
+                ResourceLocation paperId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
+                Item paperItem = BuiltInRegistries.ITEM.get(paperId);
+                if (paperItem == pokemon.heldItem().getItem() &&
+                        ((pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA) != null
+                                && pokemon.heldItem().get(DataComponents.CUSTOM_MODEL_DATA).value()
+                                == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)) {
+                    species = megaPok.pokemon();
+                }
+                if (species == null) {
+                    continue;
+                }
+                if (species.equals(pokemon.getSpecies().getName())) {
+                    for (String aspect : megaPok.aspects()) {
+                        String[] aspectDiv = aspect.split("=");
+                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                            megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
+                        } else {
+                            megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
+                        }
+                    }
+                    setTradable(pokemon, false);
+
+                    return;
+                } else {
+                    return;
+                }
+            }
+            return;
+        }
+
+        if (species.equals(pokemon.getSpecies().getName())) {
+            if (species.equals("Charizard")) {
+                if (pokemon.heldItem().is(MegaStones.CHARIZARDITE_X)) {
+                    megaEvolve(context, "mega_x", battlePokemon, pokemonBattle);
+
+                    setTradable(pokemon, false);
+
+                } else if (pokemon.heldItem().is(MegaStones.CHARIZARDITE_Y)) {
+                    megaEvolve(context, "mega_y", battlePokemon, pokemonBattle);
+
+                    setTradable(pokemon, false);
+
+                }
+            } else if (species.equals("Mewtwo")) {
+                if (pokemon.heldItem().is(MegaStones.MEWTWONITE_X)) {
+                    megaEvolve(context, "mega_x", battlePokemon, pokemonBattle);
+
+                    setTradable(pokemon, false);
+
+                } else if (pokemon.heldItem().is(MegaStones.MEWTWONITE_Y)) {
+                    megaEvolve(context, "mega_y", battlePokemon, pokemonBattle);
+
+                    setTradable(pokemon, false);
+                }
+            } else {
+                setTradable(pokemon, false);
+
+                megaEvolve(context, "mega", battlePokemon, pokemonBattle);
+            }
+        }
+    }
+
 }

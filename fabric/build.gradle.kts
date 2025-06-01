@@ -50,8 +50,8 @@ dependencies {
     mappings("net.fabricmc:yarn:1.21.1+build.3:v2")
     modImplementation("net.fabricmc:fabric-loader:0.16.5")
 
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.115.6+1.21.1")
-    modImplementation(fabricApi.module("fabric-command-api-v2", "0.115.6+1.21.1"))
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.116.1+1.21.1")
+    modImplementation(fabricApi.module("fabric-command-api-v2", "0.116.1+1.21.1"))
 
     modImplementation("net.fabricmc:fabric-language-kotlin:1.12.3+kotlin.2.0.21")
 

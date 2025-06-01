@@ -122,12 +122,12 @@ public class MegaLogic {
             if (isMega) {
                 Devolve(pk.getPokemon(), false);
             } else {
-                Evolve(pk, player, false);
+                Evolve(pk, player);
             }
         }
     }
 
-    public static void Evolve(PokemonEntity context, PlayerEntity player, Boolean fromBattle) {
+    public static void Evolve(PokemonEntity context, PlayerEntity player) {
         if (context.getPokemon().getOwnerPlayer() != player || player.getWorld().isClient) {
             return;
         }
@@ -147,7 +147,7 @@ public class MegaLogic {
             return;
         }
 
-        if (context.isBattling() && !fromBattle) {
+        if (context.isBattling()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.battle_not_allowed").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true

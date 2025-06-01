@@ -10,7 +10,7 @@
             "context": "grounded",
             "bucket": "uncommon",
             "level": "23-34",
-            "weight": 7.0,
+            "weight": 5.0,
             "condition": {
                 "biomes": [
                     "biomesoplenty:dryland",
@@ -26,7 +26,7 @@
             "context": "grounded",
             "bucket": "common",
             "level": "7-19",
-            "weight": 9,
+            "weight": 4,
             "condition": {
                 "biomes": [
                     "#cobblemon:is_desert"

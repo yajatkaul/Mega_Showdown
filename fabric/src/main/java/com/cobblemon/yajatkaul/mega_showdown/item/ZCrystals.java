@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item BUGINIUM_Z = registerItem("buginium-z", new Item(new Item.Settings()) {
+    public static final Item BUGINIUM_Z = registerItem("buginium-z", new ArceusType(new Item.Settings(), "bug") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.buginium-z.tooltip"));
@@ -35,7 +36,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item DARKINIUM_Z = registerItem("darkinium-z", new Item(new Item.Settings()) {
+    public static final Item DARKINIUM_Z = registerItem("darkinium-z", new ArceusType(new Item.Settings(), "dark") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.darkinium-z.tooltip"));
@@ -51,7 +52,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item DRAGONIUM_Z = registerItem("dragonium-z", new Item(new Item.Settings()) {
+    public static final Item DRAGONIUM_Z = registerItem("dragonium-z", new ArceusType(new Item.Settings(), "dragon") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dragonium-z.tooltip"));
@@ -67,7 +68,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item ELECTRIUM_Z = registerItem("electrium-z", new Item(new Item.Settings()) {
+    public static final Item ELECTRIUM_Z = registerItem("electrium-z", new ArceusType(new Item.Settings(), "electric") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.electrium-z.tooltip"));
@@ -75,7 +76,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item FAIRIUM_Z = registerItem("fairium-z", new Item(new Item.Settings()) {
+    public static final Item FAIRIUM_Z = registerItem("fairium-z", new ArceusType(new Item.Settings(), "fairy") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fairium-z.tooltip"));
@@ -83,7 +84,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item FIGHTINIUM_Z = registerItem("fightinium-z", new Item(new Item.Settings()) {
+    public static final Item FIGHTINIUM_Z = registerItem("fightinium-z", new ArceusType(new Item.Settings(), "fighting") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fightinium-z.tooltip"));
@@ -91,7 +92,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item FIRIUM_Z = registerItem("firium-z", new Item(new Item.Settings()) {
+    public static final Item FIRIUM_Z = registerItem("firium-z", new ArceusType(new Item.Settings(), "fire") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.firium-z.tooltip"));
@@ -99,7 +100,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item FLYINIUM_Z = registerItem("flyinium-z", new Item(new Item.Settings()) {
+    public static final Item FLYINIUM_Z = registerItem("flyinium-z", new ArceusType(new Item.Settings(), "flying") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.flyinium-z.tooltip"));
@@ -107,7 +108,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item GHOSTIUM_Z = registerItem("ghostium-z", new Item(new Item.Settings()) {
+    public static final Item GHOSTIUM_Z = registerItem("ghostium-z", new ArceusType(new Item.Settings(), "ghost") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ghostium-z.tooltip"));
@@ -115,7 +116,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item GRASSIUM_Z = registerItem("grassium-z", new Item(new Item.Settings()) {
+    public static final Item GRASSIUM_Z = registerItem("grassium-z", new ArceusType(new Item.Settings(), "grass") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.grassium-z.tooltip"));
@@ -123,7 +124,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item GROUNDIUM_Z = registerItem("groundium-z", new Item(new Item.Settings()) {
+    public static final Item GROUNDIUM_Z = registerItem("groundium-z", new ArceusType(new Item.Settings(), "ground") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.groundium-z.tooltip"));
@@ -131,7 +132,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item ICIUM_Z = registerItem("icium-z", new Item(new Item.Settings()) {
+    public static final Item ICIUM_Z = registerItem("icium-z", new ArceusType(new Item.Settings(), "ice") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.icium-z.tooltip"));
@@ -219,7 +220,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item POISONIUM_Z = registerItem("poisonium-z", new Item(new Item.Settings()) {
+    public static final Item POISONIUM_Z = registerItem("poisonium-z", new ArceusType(new Item.Settings(), "poison") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.poisonium-z.tooltip"));
@@ -235,7 +236,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item PSYCHIUM_Z = registerItem("psychium-z", new Item(new Item.Settings()) {
+    public static final Item PSYCHIUM_Z = registerItem("psychium-z", new ArceusType(new Item.Settings(), "physic") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.psychium-z.tooltip"));
@@ -243,7 +244,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item ROCKIUM_Z = registerItem("rockium-z", new Item(new Item.Settings()) {
+    public static final Item ROCKIUM_Z = registerItem("rockium-z", new ArceusType(new Item.Settings(), "rock") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rockium-z.tooltip"));
@@ -267,7 +268,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item STEELIUM_Z = registerItem("steelium-z", new Item(new Item.Settings()) {
+    public static final Item STEELIUM_Z = registerItem("steelium-z", new ArceusType(new Item.Settings(), "steel") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.steelium-z.tooltip"));
@@ -291,7 +292,7 @@ public class ZCrystals {
         }
     });
 
-    public static final Item WATERIUM_Z = registerItem("waterium-z", new Item(new Item.Settings()) {
+    public static final Item WATERIUM_Z = registerItem("waterium-z", new ArceusType(new Item.Settings(), "water") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.waterium-z.tooltip"));

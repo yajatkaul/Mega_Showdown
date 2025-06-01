@@ -3,15 +3,20 @@ package com.cobblemon.yajatkaul.mega_showdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.renderer.PedestalBlockEntityRenderer;
+import com.cobblemon.yajatkaul.mega_showdown.item.KeyItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.LikosPendant;
+import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
 import com.cobblemon.yajatkaul.mega_showdown.trinket.TrinketsRegisteration;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.item.Item;
 
 public class MegaShowdownClient implements ClientModInitializer {
 
@@ -28,5 +33,7 @@ public class MegaShowdownClient implements ClientModInitializer {
 
         BlockEntityRendererFactories.register(ModBlockEntities.PEDESTAL_BE, PedestalBlockEntityRenderer::new);
         HandledScreens.register(ModScreenHandlers.ZYGARDE_CUBE_SCREEN_HANDLER_TYPE, ZygardeCubeScreen::new);
+
+        ArmorRenderer.register(new LikosPendantRenderer(), KeyItems.LIKOS_PENDANT);
     }
 }

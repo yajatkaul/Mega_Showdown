@@ -532,6 +532,10 @@
         "neuroforce",
         "h:neuroforce"
       ],
+      "moves": [
+        "tm:moongeistbeam",
+        "tm:sunsteelstrike"
+      ],
       "hitbox": {
         "width": 3,
         "height": 4.45,

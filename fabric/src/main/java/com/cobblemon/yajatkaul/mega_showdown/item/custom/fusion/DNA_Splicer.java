@@ -2,11 +2,14 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,7 +56,7 @@ public class DNA_Splicer extends Item {
         );
     }
 
-    public static void particleEffect(LivingEntity context, SimpleParticleType particleType) {
+    public static void particleEffect(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
 
@@ -84,7 +87,7 @@ public class DNA_Splicer extends Item {
                 double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
 
                 serverWorld.spawnParticles(
-                        particleType,
+                        ParticleTypes.ASH,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,
@@ -94,6 +97,19 @@ public class DNA_Splicer extends Item {
                 );
             }
         }
+    }
+
+    public static void fuseEffect(PokemonEntity pokemon, boolean black) {
+        LazyLib.Companion.snowStormPartileSpawner(pokemon,
+                black ? "kyurem_b_effect" : "kyurem_w_effect", "target");
+        pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+        pokemon.after(4F, () -> {
+            new FlagSpeciesFeature(black ? "black" : "white", true).apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon);
+            pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+            return Unit.INSTANCE;
+        });
     }
 
     @Override
@@ -140,7 +156,7 @@ public class DNA_Splicer extends Item {
                     );
                     return TypedActionResult.pass(stack);
                 }
-                particleEffect(pk, ParticleTypes.ASH);
+                particleEffect(pk);
                 new FlagSpeciesFeature("white", false).apply(pokemon);
                 new FlagSpeciesFeature("black", false).apply(pokemon);
                 setTradable(pokemon, true);
@@ -160,11 +176,9 @@ public class DNA_Splicer extends Item {
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
             } else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
                 if (currentValue.getSpecies().getName().equals("Reshiram")) {
-                    particleEffect(pk, ParticleTypes.END_ROD);
-                    new FlagSpeciesFeature("white", true).apply(pokemon);
+                    fuseEffect(pk, false);
                 } else {
-                    particleEffect(pk, ParticleTypes.SMOKE);
-                    new FlagSpeciesFeature("black", true).apply(pokemon);
+                    fuseEffect(pk, true);
                 }
                 setTradable(pokemon, false);
 

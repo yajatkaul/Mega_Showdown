@@ -21,7 +21,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class EventUtils {
-    public static void revertFormesEnd(Pokemon pokemon, boolean joinedEvent) {
+    public static void revertFormesEnd(Pokemon pokemon) {
         if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
             DynamaxEventLogic.startGradualScaling(pokemon.getEntity(), 1.0f);
@@ -36,11 +36,7 @@ public class EventUtils {
                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
         if ((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && isMega) {
-            if (joinedEvent) {
-                new StringSpeciesFeature("mega_evolution", "none").apply(pokemon);
-            } else {
-                MegaLogic.Devolve(pokemon, true);
-            }
+            MegaLogic.Devolve(pokemon, true);
         }
 
         if (pokemon.getSpecies().getName().equals("Castform")) {

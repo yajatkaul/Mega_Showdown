@@ -10,7 +10,7 @@
             "context": "grounded",
             "bucket": "common",
             "level": "15-40",
-            "weight": 6.0,
+            "weight": 3.0,
             "condition": {
                 "biomes": [
                     "#cobblemon:is_swamp"

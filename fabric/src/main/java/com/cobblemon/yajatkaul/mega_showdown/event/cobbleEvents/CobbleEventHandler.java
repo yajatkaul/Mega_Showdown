@@ -326,8 +326,23 @@ public class CobbleEventHandler {
                 }
             }
             case "Arceus" -> {
-                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+                pokemonEntity.getWorld().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        ModSounds.ASH_GRENINJA,
+                        SoundCategory.PLAYERS, 0.2f, 1.3f
+                );
+
+                battle.dispatchWaitingToFront(4.5F, () -> {
+                    LazyLib.Companion.snowStormPartileSpawner(pokemonEntity,
+                            "arceus_" + formeChangeEvent.getFormeName(), "target");
+                    return Unit.INSTANCE;
+                });
+                pokemonEntity.after(4F, () -> {
+                    new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+                    LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                    updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                    return Unit.INSTANCE;
+                });
             }
             case "Minior" -> {
                 if (formeChangeEvent.getFormeName().equals("meteor")) {
@@ -355,13 +370,40 @@ public class CobbleEventHandler {
                 }
             }
             case "Wishiwashi" -> {
-                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 if (formeChangeEvent.getFormeName().equals("school")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("schooling_form", "school").apply(pokemon);
+                    pokemonEntity.getWorld().playSound(
+                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                            ModSounds.ASH_GRENINJA,
+                            SoundCategory.PLAYERS, 0.2f, 1.3f
+                    );
+
+                    battle.dispatchWaitingToFront(4.5F, () -> {
+                        LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", "target");
+                        return Unit.INSTANCE;
+                    });
+                    pokemonEntity.after(5F, () -> {
+                        new StringSpeciesFeature("schooling_form", "school").apply(pokemon);
+                        LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                        return Unit.INSTANCE;
+                    });
                 } else if (formeChangeEvent.getFormeName().equals("wishiwashi")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                    pokemonEntity.getWorld().playSound(
+                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                            ModSounds.ASH_GRENINJA,
+                            SoundCategory.PLAYERS, 0.2f, 1.3f
+                    );
+
+                    battle.dispatchWaitingToFront(4.5F, () -> {
+                        LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", "target");
+                        return Unit.INSTANCE;
+                    });
+                    pokemonEntity.after(5F, () -> {
+                        new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                        LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                        return Unit.INSTANCE;
+                    });
                 }
             }
             case "Mimikyu" -> {

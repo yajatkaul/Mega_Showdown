@@ -52,7 +52,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FLAME_PLATE = registerItem("flameplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item FLAME_PLATE = registerItem("flameplate", new ArceusType(new Item.Settings().maxCount(1), "fire") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.flameplate.tooltip"));
@@ -60,7 +60,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SPLASH_PLATE = registerItem("splashplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item SPLASH_PLATE = registerItem("splashplate", new ArceusType(new Item.Settings().maxCount(1), "water") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.splashplate.tooltip"));
@@ -68,7 +68,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ZAP_PLATE = registerItem("zapplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item ZAP_PLATE = registerItem("zapplate", new ArceusType(new Item.Settings().maxCount(1), "electric") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.zapplate.tooltip"));
@@ -76,7 +76,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item MEADOW_PLATE = registerItem("meadowplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item MEADOW_PLATE = registerItem("meadowplate", new ArceusType(new Item.Settings().maxCount(1), "grass") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.meadowplate.tooltip"));
@@ -84,7 +84,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ICICLE_PLATE = registerItem("icicleplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item ICICLE_PLATE = registerItem("icicleplate", new ArceusType(new Item.Settings().maxCount(1), "ice") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.icicleplate.tooltip"));
@@ -92,7 +92,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIST_PLATE = registerItem("fistplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item FIST_PLATE = registerItem("fistplate", new ArceusType(new Item.Settings().maxCount(1), "fighting") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fistplate.tooltip"));
@@ -100,7 +100,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item TOXIC_PLATE = registerItem("toxicplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item TOXIC_PLATE = registerItem("toxicplate", new ArceusType(new Item.Settings().maxCount(1), "poison") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.toxicplate.tooltip"));
@@ -108,7 +108,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item EARTH_PLATE = registerItem("earthplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item EARTH_PLATE = registerItem("earthplate", new ArceusType(new Item.Settings().maxCount(1), "ground") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.earthplate.tooltip"));
@@ -116,7 +116,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SKY_PLATE = registerItem("skyplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item SKY_PLATE = registerItem("skyplate", new ArceusType(new Item.Settings().maxCount(1), "flying") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.skyplate.tooltip"));
@@ -124,7 +124,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item MIND_PLATE = registerItem("mindplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item MIND_PLATE = registerItem("mindplate", new ArceusType(new Item.Settings().maxCount(1), "physic") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.mindplate.tooltip"));
@@ -132,7 +132,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item INSECT_PLATE = registerItem("insectplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item INSECT_PLATE = registerItem("insectplate", new ArceusType(new Item.Settings().maxCount(1), "bug") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.insectplate.tooltip"));
@@ -140,7 +140,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item STONE_PLATE = registerItem("stoneplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item STONE_PLATE = registerItem("stoneplate", new ArceusType(new Item.Settings().maxCount(1), "rock") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.stoneplate.tooltip"));
@@ -148,7 +148,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item SPOOKY_PLATE = registerItem("spookyplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item SPOOKY_PLATE = registerItem("spookyplate", new ArceusType(new Item.Settings().maxCount(1), "ghost") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.spookyplate.tooltip"));
@@ -156,7 +156,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DRACO_PLATE = registerItem("dracoplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item DRACO_PLATE = registerItem("dracoplate", new ArceusType(new Item.Settings().maxCount(1), "dragon") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dracoplate.tooltip"));
@@ -164,7 +164,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DREAD_PLATE = registerItem("dreadplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item DREAD_PLATE = registerItem("dreadplate", new ArceusType(new Item.Settings().maxCount(1), "dark") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dreadplate.tooltip"));
@@ -172,7 +172,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item IRON_PLATE = registerItem("ironplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item IRON_PLATE = registerItem("ironplate", new ArceusType(new Item.Settings().maxCount(1), "steel") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ironplate.tooltip"));
@@ -180,7 +180,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PIXIE_PLATE = registerItem("pixieplate", new Item(new Item.Settings().maxCount(1)) {
+    public static final Item PIXIE_PLATE = registerItem("pixieplate", new ArceusType(new Item.Settings().maxCount(1), "fairy") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.pixieplate.tooltip"));

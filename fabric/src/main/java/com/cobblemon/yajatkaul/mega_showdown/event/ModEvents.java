@@ -52,13 +52,11 @@ public class ModEvents {
             ));
         });
 
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, serverJoin) -> {
-            ServerPlayerEntity player = handler.player;
-
+        ServerPlayerEvents.JOIN.register((player) -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon, true);
+                EventUtils.revertFormesEnd(pokemon);
             }
         });
 
@@ -84,7 +82,7 @@ public class ModEvents {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
             for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon, true);
+                EventUtils.revertFormesEnd(pokemon);
             }
         });
     }

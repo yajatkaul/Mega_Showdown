@@ -18,6 +18,23 @@
     {
       "aspects": ["wellspring-mask","shiny"],
       "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_water_shiny.png"
+    },
+    {
+      "aspects": ["wellspring-mask","embody-aspect"],
+      "poser": "cobblemon:ogerpon_watertera",
+      "model": "cobblemon:ogerpon_watertera.geo",
+      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_watertera.png",
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_watertera_emissive.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": ["wellspring-mask","embody-aspect","shiny"],
+      "texture": "cobblemon:textures/pokemon/1017_ogerpon/ogerpon_watertera_shiny.png"
     }
   ]
 }

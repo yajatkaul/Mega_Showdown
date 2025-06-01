@@ -33,5 +33,10 @@
     "sounds": [
       "mega_showdown:origin_form"
     ]
+  },
+  "giratina": {
+    "sounds": [
+      "mega_showdown:giratina"
+    ]
   }
 }

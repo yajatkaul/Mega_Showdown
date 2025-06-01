@@ -16,6 +16,7 @@ public class ModSounds {
     public static final SoundEvent ASH_GRENINJA = registerSoundEvent("ash_greninja");
     public static final SoundEvent POWER_CONSTRUCT = registerSoundEvent("power-construct");
     public static final SoundEvent ORIGIN_FORM = registerSoundEvent("origin_form");
+    public static final SoundEvent GIRATINIA_FORM = registerSoundEvent("giratina");
 
     public static final BlockSoundGroup BATTLE_SOUNDS_DMAX = new BlockSoundGroup(0.7F, 1F,
             DYNAMAX, DYNAMAX, DYNAMAX, DYNAMAX, DYNAMAX);
@@ -31,6 +32,8 @@ public class ModSounds {
             POWER_CONSTRUCT, POWER_CONSTRUCT, POWER_CONSTRUCT, POWER_CONSTRUCT, POWER_CONSTRUCT);
     public static final BlockSoundGroup SOUNDS_ORIGIN_FORM = new BlockSoundGroup(1.0F, 1.0F,
             ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM);
+    public static final BlockSoundGroup SOUNDS_GIRTINIA_ORIGIN_FORM = new BlockSoundGroup(1.0F, 1.0F,
+            GIRATINIA_FORM, GIRATINIA_FORM, GIRATINIA_FORM, GIRATINIA_FORM, GIRATINIA_FORM);
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(MegaShowdown.MOD_ID, name);
