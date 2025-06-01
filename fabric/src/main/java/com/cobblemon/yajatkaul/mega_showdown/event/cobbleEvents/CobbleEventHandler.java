@@ -122,7 +122,12 @@ public class CobbleEventHandler {
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();
 
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
-        MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer(), megaEvolutionEvent.getPokemon(), battle);
+
+        if(pokemon.getOwnerPlayer() == null){
+            MegaLogic.NPCEvolve(pokemon.getEntity(), megaEvolutionEvent.getPokemon(), battle);
+        }else {
+            MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer(), megaEvolutionEvent.getPokemon(), battle);
+        }
 
         return Unit.INSTANCE;
     }
