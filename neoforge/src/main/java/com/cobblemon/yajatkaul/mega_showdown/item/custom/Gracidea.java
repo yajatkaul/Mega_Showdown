@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
@@ -43,14 +44,14 @@ public class Gracidea extends BlockItem {
             if (pokemon.getSpecies().getName().equals("Shaymin")) {
                 long timeOfDay = player.level().getDayTime() % 24000;
                 boolean isDaytime = timeOfDay < 12000;
-                boolean isSkyFormActive = checkFlag(pokemon);
+                boolean isSkyFormActive = pokemon.getAspects().contains("sky-forme");
 
                 if (isDaytime && !isSkyFormActive) {
                     particleEffect(context);
-                    new FlagSpeciesFeature("sky-forme", true).apply(pokemon);
+                    new StringSpeciesFeature("gracidea_forme", "sky").apply(pokemon);
                 } else if (!isDaytime && isSkyFormActive) {
                     particleEffect(context);
-                    new FlagSpeciesFeature("sky-forme", false).apply(pokemon);
+                    new StringSpeciesFeature("gracidea_forme", "land").apply(pokemon);
                 }
 
                 return InteractionResult.SUCCESS;
@@ -62,19 +63,6 @@ public class Gracidea extends BlockItem {
         return super.interactLivingEntity(arg, player, context, arg4);
     }
 
-    private boolean checkFlag(Pokemon pokemon) {
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("sky-forme"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if (feature != null) {
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            return enabled;
-        }
-
-        return false;
-    }
-
     public void particleEffect(LivingEntity context) {
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
@@ -82,13 +70,12 @@ public class Gracidea extends BlockItem {
             // Get entity's size
             double entityWidth = context.getBbWidth();
             double entityHeight = context.getBbHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
             double scaleFactor = 1.2; // Adjust this for more spread
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
+            double adjustedDepth = entityWidth * scaleFactor;
 
             // Play sound effect
             serverLevel.playSound(

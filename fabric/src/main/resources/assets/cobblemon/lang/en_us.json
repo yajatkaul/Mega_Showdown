@@ -706,5 +706,8 @@
 	"cobblemon.species.calyrex-shadow.desc": "Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.",
 
 	"cobblemon.species.kyurem-white.desc": "It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.",
-	"cobblemon.species.kyurem-black.desc": "The sameness of Zekrom's and Kyurem's genes allowed Kyurem to absorb Zekrom. Kyurem can now use the power of both electricity and ice."
+	"cobblemon.species.kyurem-black.desc": "The sameness of Zekrom's and Kyurem's genes allowed Kyurem to absorb Zekrom. Kyurem can now use the power of both electricity and ice.",
+
+	"cobblemon.battle.activate.terashift": "A glow surrounds %1$s!",
+	"cobblemon.battle.activate.terashell": "%1$s made its shell gleam! It's distorting type matchups!"
 }

@@ -5,13 +5,12 @@
     {
       "aspects": ["galarian"],
       "poser": "cobblemon:darumaka",
-      "model": "cobblemon:darumaka_galarian.geo",
-      "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galarian.png",
+      "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galar.png",
       "layers": []
     },
     {
       "aspects": ["shiny", "galarian"],
-      "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galarian_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galar_shiny.png"
     }
   ]
 }

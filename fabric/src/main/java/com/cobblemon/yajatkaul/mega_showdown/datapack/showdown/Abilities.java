@@ -35,7 +35,7 @@ public class Abilities implements DataRegistry {
         OBSERVABLE.subscribe(Priority.NORMAL, this::abilitiesLoad);
     }
 
-    public Unit abilitiesLoad(DataRegistry abilities) {
+    public Unit abilitiesLoad(DataRegistry abilitie) {
         registerAbilities();
         return Unit.INSTANCE;
     }
@@ -66,7 +66,7 @@ public class Abilities implements DataRegistry {
                 String abilityId = new File(id.getPath()).getName().replace(".js", "");
                 abilityScripts.put(abilityId, js);
             } catch (IOException e) {
-                MegaShowdown.LOGGER.error("Failed to load abilities script: {} {}", id, e);
+                MegaShowdown.LOGGER.error("Failed to load abilitie script: {} {}", id, e);
             }
         });
         OBSERVABLE.emit(this);

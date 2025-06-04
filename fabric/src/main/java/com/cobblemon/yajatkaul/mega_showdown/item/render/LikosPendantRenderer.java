@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.render;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
@@ -11,7 +10,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Arm;
 import net.minecraft.util.math.RotationAxis;
 
 public class LikosPendantRenderer implements ArmorRenderer {

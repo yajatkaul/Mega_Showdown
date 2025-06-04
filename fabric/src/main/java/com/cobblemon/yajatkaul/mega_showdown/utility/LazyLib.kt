@@ -24,7 +24,7 @@ class LazyLib {
             val packet = SpawnSnowstormEntityParticlePacket(
                 Identifier.of("cobblemon", particle),
                 sourceEntityId = entity.id,
-                sourceLocators = listOf(location)
+                sourceLocators = if (location == "") listOf() else listOf(location)
             )
 
             CobblemonNetwork.sendToAllPlayers(

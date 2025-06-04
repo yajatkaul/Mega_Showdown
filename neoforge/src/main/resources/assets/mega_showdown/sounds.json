@@ -19,9 +19,9 @@
       "mega_showdown:zmove"
     ]
   },
-  "ash_greninja": {
+  "form_change_basic": {
     "sounds": [
-      "mega_showdown:ash_greninja"
+      "mega_showdown:form_change_basic"
     ]
   },
   "power-construct": {
@@ -32,6 +32,21 @@
   "origin_form": {
     "sounds": [
       "mega_showdown:origin_form"
+    ]
+  },
+  "giratina": {
+    "sounds": [
+      "mega_showdown:giratina"
+    ]
+  },
+  "kyurem_fusion": {
+    "sounds": [
+      "mega_showdown:kyurem_fusion"
+    ]
+  },
+  "arceus_multitype": {
+    "sounds": [
+      "mega_showdown:arceus_multitype"
     ]
   }
 }

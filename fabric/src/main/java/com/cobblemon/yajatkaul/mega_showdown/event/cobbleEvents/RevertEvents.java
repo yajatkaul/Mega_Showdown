@@ -12,7 +12,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
@@ -39,7 +39,7 @@ public class RevertEvents {
                 EventUtils.revertFormesEnd(pokemon);
             }
 
-            if (ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) {
+            if (MegaShowdownConfig.revertMegas.get() || MegaShowdownConfig.battleModeOnly.get()) {
                 player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), "/msdresetmega");
             }
 
@@ -48,10 +48,10 @@ public class RevertEvents {
             boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
                     trinkets.isEquipped(item -> item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
 
-            if (isBlockNearby(player, ModBlocks.POWER_SPOT, ShowdownConfig.powerSpotRange.get()) || ShowdownConfig.dynamaxAnywhere.get()) {
+            if (isBlockNearby(player, ModBlocks.POWER_SPOT, MegaShowdownConfig.powerSpotRange.get()) || MegaShowdownConfig.dynamaxAnywhere.get()) {
                 if ((player.getOffHandStack().getItem() instanceof Dynamax
                         || player.getOffHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
-                        || hasDMaxItemTrinkets) && ShowdownConfig.dynamax.get()) {
+                        || hasDMaxItemTrinkets) && MegaShowdownConfig.dynamax.get()) {
                     data.getKeyItems().add(Identifier.of("cobblemon", "dynamax_band"));
                 } else {
                     data.getKeyItems().remove(Identifier.of("cobblemon", "dynamax_band"));
@@ -76,13 +76,13 @@ public class RevertEvents {
                 hasTeraItemTrinkets = false;
             }
 
-            if (hasTeraItemTrinkets && ShowdownConfig.teralization.get()) {
+            if (hasTeraItemTrinkets && MegaShowdownConfig.teralization.get()) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "tera_orb"));
             } else {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "tera_orb"));
             }
 
-            if (ShowdownConfig.revertMegas.get() && ShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
+            if (MegaShowdownConfig.revertMegas.get() && MegaShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
                     && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "key_stone"));
             } else {
@@ -95,7 +95,7 @@ public class RevertEvents {
 
             if ((player.getOffHandStack().getItem() instanceof ZRingItem
                     || player.getOffHandStack().isIn(ModTags.Items.Z_RINGS)
-                    || hasZItemTrinkets) && ShowdownConfig.zMoves.get()) {
+                    || hasZItemTrinkets) && MegaShowdownConfig.zMoves.get()) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "z_ring"));
             } else {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "z_ring"));

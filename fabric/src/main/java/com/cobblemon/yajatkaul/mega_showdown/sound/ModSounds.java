@@ -13,27 +13,12 @@ public class ModSounds {
     public static final SoundEvent TERASTALLIZATION = registerSoundEvent("terastallization");
     public static final SoundEvent MEGA = registerSoundEvent("mega");
     public static final SoundEvent ZMOVE = registerSoundEvent("zmove");
-    public static final SoundEvent ASH_GRENINJA = registerSoundEvent("ash_greninja");
+    public static final SoundEvent FORM_CHANGE_BASIC = registerSoundEvent("form_change_basic");
     public static final SoundEvent POWER_CONSTRUCT = registerSoundEvent("power-construct");
     public static final SoundEvent ORIGIN_FORM = registerSoundEvent("origin_form");
     public static final SoundEvent GIRATINIA_FORM = registerSoundEvent("giratina");
-
-    public static final BlockSoundGroup BATTLE_SOUNDS_DMAX = new BlockSoundGroup(0.7F, 1F,
-            DYNAMAX, DYNAMAX, DYNAMAX, DYNAMAX, DYNAMAX);
-    public static final BlockSoundGroup BATTLE_SOUNDS_TERA = new BlockSoundGroup(1.0F, 1.0F,
-            TERASTALLIZATION, TERASTALLIZATION, TERASTALLIZATION, TERASTALLIZATION, TERASTALLIZATION);
-    public static final BlockSoundGroup BATTLE_SOUNDS_MEGA = new BlockSoundGroup(1.0F, 1.0F,
-            MEGA, MEGA, MEGA, MEGA, MEGA);
-    public static final BlockSoundGroup BATTLE_SOUNDS_ZMOVE = new BlockSoundGroup(1.0F, 1.0F,
-            ZMOVE, ZMOVE, ZMOVE, ZMOVE, ZMOVE);
-    public static final BlockSoundGroup BATTLE_SOUNDS_ASH_GRENINJA = new BlockSoundGroup(1.0F, 1.0F,
-            ASH_GRENINJA, ASH_GRENINJA, ASH_GRENINJA, ASH_GRENINJA, ASH_GRENINJA);
-    public static final BlockSoundGroup BATTLE_SOUNDS_POWER_CONSTRUCT = new BlockSoundGroup(1.0F, 1.0F,
-            POWER_CONSTRUCT, POWER_CONSTRUCT, POWER_CONSTRUCT, POWER_CONSTRUCT, POWER_CONSTRUCT);
-    public static final BlockSoundGroup SOUNDS_ORIGIN_FORM = new BlockSoundGroup(1.0F, 1.0F,
-            ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM, ORIGIN_FORM);
-    public static final BlockSoundGroup SOUNDS_GIRTINIA_ORIGIN_FORM = new BlockSoundGroup(1.0F, 1.0F,
-            GIRATINIA_FORM, GIRATINIA_FORM, GIRATINIA_FORM, GIRATINIA_FORM, GIRATINIA_FORM);
+    public static final SoundEvent KYUREM_FUSION = registerSoundEvent("kyurem_fusion");
+    public static final SoundEvent ARCEUS_MULTITYPE = registerSoundEvent("arceus_multitype");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(MegaShowdown.MOD_ID, name);

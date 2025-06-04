@@ -187,6 +187,12 @@
       "pokedex": [
         "cobblemon.species.necrozma-duskmane.desc"
       ],
+      "baseScale": 1,
+      "hitbox": {
+        "width": 4,
+        "height": 4,
+        "fixed": false
+      },
       "labels": [
         "gen7",
         "legendary",
@@ -353,6 +359,12 @@
       "pokedex": [
         "cobblemon.species.necrozma-dawnwings.desc"
       ],
+      "baseScale": 1,
+      "hitbox": {
+        "width": 4,
+        "height": 5,
+        "fixed": false
+      },
       "labels": [
         "gen7",
         "legendary",

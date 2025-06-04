@@ -124,7 +124,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item MIND_PLATE = registerItem("mindplate", new ArceusType(new Item.Settings().maxCount(1), "physic") {
+    public static final Item MIND_PLATE = registerItem("mindplate", new ArceusType(new Item.Settings().maxCount(1), "psychic") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.mindplate.tooltip"));
@@ -188,7 +188,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item BUG_MEMORY = registerItem("bugmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item BUG_MEMORY = registerItem("bugmemory", new Memory(new Item.Settings().maxCount(1), "bug") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
@@ -196,7 +196,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DARK_MEMORY = registerItem("darkmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item DARK_MEMORY = registerItem("darkmemory", new Memory(new Item.Settings().maxCount(1), "dark") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
@@ -204,7 +204,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item DRAGON_MEMORY = registerItem("dragonmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item DRAGON_MEMORY = registerItem("dragonmemory", new Memory(new Item.Settings().maxCount(1), "dragon") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
@@ -212,7 +212,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ELECTRIC_MEMORY = registerItem("electricmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item ELECTRIC_MEMORY = registerItem("electricmemory", new Memory(new Item.Settings().maxCount(1), "electric") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
@@ -220,7 +220,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FAIRY_MEMORY = registerItem("fairymemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item FAIRY_MEMORY = registerItem("fairymemory", new Memory(new Item.Settings().maxCount(1), "fairy") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fairymemory.tooltip"));
@@ -228,7 +228,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIGHTING_MEMORY = registerItem("fightingmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item FIGHTING_MEMORY = registerItem("fightingmemory", new Memory(new Item.Settings().maxCount(1), "fighting") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.fightingmemory.tooltip"));
@@ -236,7 +236,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FIRE_MEMORY = registerItem("firememory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item FIRE_MEMORY = registerItem("firememory", new Memory(new Item.Settings().maxCount(1), "fire") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.firememory.tooltip"));
@@ -244,7 +244,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item FLYING_MEMORY = registerItem("flyingmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item FLYING_MEMORY = registerItem("flyingmemory", new Memory(new Item.Settings().maxCount(1), "flying") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.flyingmemory.tooltip"));
@@ -252,7 +252,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GHOST_MEMORY = registerItem("ghostmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item GHOST_MEMORY = registerItem("ghostmemory", new Memory(new Item.Settings().maxCount(1), "ghost") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.ghostmemory.tooltip"));
@@ -260,7 +260,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GRASS_MEMORY = registerItem("grassmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item GRASS_MEMORY = registerItem("grassmemory", new Memory(new Item.Settings().maxCount(1), "grass") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.grassmemory.tooltip"));
@@ -268,7 +268,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item GROUND_MEMORY = registerItem("groundmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item GROUND_MEMORY = registerItem("groundmemory", new Memory(new Item.Settings().maxCount(1), "ground") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.groundmemory.tooltip"));
@@ -276,7 +276,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ICE_MEMORY = registerItem("icememory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item ICE_MEMORY = registerItem("icememory", new Memory(new Item.Settings().maxCount(1), "ice") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.icememory.tooltip"));
@@ -284,7 +284,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item POISON_MEMORY = registerItem("poisonmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item POISON_MEMORY = registerItem("poisonmemory", new Memory(new Item.Settings().maxCount(1), "poison") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.poisonmemory.tooltip"));
@@ -292,7 +292,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item PSYCHIC_MEMORY = registerItem("psychicmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item PSYCHIC_MEMORY = registerItem("psychicmemory", new Memory(new Item.Settings().maxCount(1), "psychic") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.psychicmemory.tooltip"));
@@ -300,7 +300,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item ROCK_MEMORY = registerItem("rockmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item ROCK_MEMORY = registerItem("rockmemory", new Memory(new Item.Settings().maxCount(1), "rock") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.rockmemory.tooltip"));
@@ -308,7 +308,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item STEEL_MEMORY = registerItem("steelmemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item STEEL_MEMORY = registerItem("steelmemory", new Memory(new Item.Settings().maxCount(1), "steel") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.steelmemory.tooltip"));
@@ -316,7 +316,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final Item WATER_MEMORY = registerItem("watermemory", new Memory(new Item.Settings().maxCount(1)) {
+    public static final Item WATER_MEMORY = registerItem("watermemory", new Memory(new Item.Settings().maxCount(1), "water") {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.watermemory.tooltip"));
@@ -643,7 +643,7 @@ public class FormeChangeItems {
             )
     );
     //TRIMS
-    private static final List<String> furfrouAspects = List.of(
+    public static final List<String> furfrouAspects = List.of(
             "heart-trim",
             "star-trim",
             "diamond-trim",
@@ -665,6 +665,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "heart").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -672,8 +673,7 @@ public class FormeChangeItems {
                                 SoundEvents.ENTITY_SHEEP_SHEAR,
                                 SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
                         );
-                        Random random = new Random();
-                        int woolCount = random.nextInt(2) + 1;
+                        int woolCount = new Random().nextInt(2) + 1;
                         ItemStack drops = pk.getPokemon().getShiny() ?
                                 new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
 
@@ -710,6 +710,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "star").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -755,6 +756,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "diamond").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -800,6 +802,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "debutante").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -845,6 +848,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "matron").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -890,6 +894,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "dandy").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -935,6 +940,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "la_reine").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -980,6 +986,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "kabuki").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(
@@ -987,8 +994,8 @@ public class FormeChangeItems {
                                 SoundEvents.ENTITY_SHEEP_SHEAR,
                                 SoundCategory.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
                         );
-                        Random random = new Random();
-                        int woolCount = random.nextInt(2) + 1;
+
+                        int woolCount = new Random().nextInt(2) + 1;
                         ItemStack drops = pk.getPokemon().getShiny() ?
                                 new ItemStack(Items.BLACK_WOOL, woolCount) : new ItemStack(Items.WHITE_WOOL, woolCount);
 
@@ -1025,6 +1032,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "pharaoh").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamage(stack.getDamage() + 20);
                         Vec3d pos = pk.getPos();
                         user.getWorld().playSound(

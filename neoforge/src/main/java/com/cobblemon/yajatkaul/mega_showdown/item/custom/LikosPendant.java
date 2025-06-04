@@ -6,11 +6,15 @@ import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.utils.NoRenderArmorMaterial;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import kotlin.Unit;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -48,6 +52,11 @@ public class LikosPendant extends ArmorItem {
     }
 
     @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
+
+    @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, level, entity, slot, selected);
 
@@ -72,17 +81,47 @@ public class LikosPendant extends ArmorItem {
             stack.shrink(1);
 
             PokemonEntity terapagos = PokemonProperties.Companion.parse("terapagos").createEntity(level);
+            terapagos.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
+            terapagos.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 0, false, false));
+
             terapagos.getPokemon().setTeraType(TeraTypes.getSTELLAR());
             if (shinyRoll == 1) {
                 terapagos.getPokemon().setShiny(true);
             }
 
-            double spawnX = entity.getX() + (level.random.nextDouble() - 1) * 2;
-            double spawnY = entity.getY() + 1;
-            double spawnZ = entity.getZ() + (level.random.nextDouble() - 1) * 2;
+            // Get the direction the entity is facing (yaw in degrees)
+            float yaw = entity.getYRot();
+
+            // Convert yaw to radians and calculate direction vector
+            double radians = Math.toRadians(yaw);
+            double dx = -Math.sin(radians);
+            double dz = Math.cos(radians);
+
+            // Distance in front of entity
+            double distance = 2.0;
+
+            // Compute spawn coordinates
+            double spawnX = entity.getX() + dx * distance;
+            double spawnY = entity.getY();
+            double spawnZ = entity.getZ() + dz * distance;
 
             terapagos.moveTo(spawnX, spawnY, spawnZ, entity.getYRot(), 0.0f);
+
             level.addFreshEntity(terapagos);
+
+            terapagos.after(0.01f, () ->{
+                LazyLib.Companion.snowStormPartileSpawner(terapagos,
+                        "pendant_effect", "target");
+                return Unit.INSTANCE;
+            });
+
+            terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            terapagos.after(4F, () -> {
+                LazyLib.Companion.cryAnimation(terapagos);
+                terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
         }
     }
 

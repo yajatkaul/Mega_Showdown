@@ -6596,6 +6596,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.kyuremwhite.cry"
+				}
 			}
 		},
 		"animation.kyuremwhite.quirk": {

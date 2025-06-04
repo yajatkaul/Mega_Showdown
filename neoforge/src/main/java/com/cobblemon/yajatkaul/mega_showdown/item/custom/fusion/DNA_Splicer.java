@@ -7,6 +7,10 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import kotlin.Unit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -53,6 +57,26 @@ public class DNA_Splicer extends Item {
                 entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
                 0.3f // Smaller collision expansion value for more precise detection
         );
+    }
+
+    public static void fuseEffect(PokemonEntity pokemon, boolean black) {
+        LazyLib.Companion.snowStormPartileSpawner(pokemon,
+                black ? "kyurem_b_effect" : "kyurem_w_effect", "target");
+        pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+        BlockPos entityPos = pokemon.getOnPos();
+        pokemon.level().playSound(
+                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                ModSounds.KYUREM_FUSION.get(),
+                SoundSource.PLAYERS, 0.2f, 1.0f
+        );
+
+        pokemon.after(4F, () -> {
+            new FlagSpeciesFeature(black ? "black" : "white", true).apply(pokemon);
+            LazyLib.Companion.cryAnimation(pokemon);
+            pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+            return Unit.INSTANCE;
+        });
     }
 
     public static void particleEffect(LivingEntity conComponent, SimpleParticleType particleType) {
@@ -167,11 +191,9 @@ public class DNA_Splicer extends Item {
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
             } else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
                 if (currentValue.getSpecies().getName().equals("Reshiram")) {
-                    particleEffect(pk, ParticleTypes.END_ROD);
-                    new FlagSpeciesFeature("white", true).apply(pokemon);
+                    fuseEffect(pk, false);
                 } else {
-                    particleEffect(pk, ParticleTypes.SMOKE);
-                    new FlagSpeciesFeature("black", true).apply(pokemon);
+                    fuseEffect(pk, true);
                 }
                 setTradable(pokemon, false);
 

@@ -9,6 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventListener;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -90,6 +91,9 @@ public class EventUtils {
         } else if (pokemon.getSpecies().getName().equals("Giratina")
                 && !pokemon.getHeldItem$common().is(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Arceus")
+                && !(pokemon.heldItem().getItem() instanceof ArceusType)) {
+            new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }
 
         for (FormChangeData forme : Utils.formChangeRegistry) {

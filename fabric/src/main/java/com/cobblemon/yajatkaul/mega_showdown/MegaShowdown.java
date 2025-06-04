@@ -6,7 +6,7 @@ import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.block.BlockRegister;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.ModDatapack;
@@ -55,7 +55,7 @@ public class MegaShowdown implements ModInitializer {
 
         PacketRegister.registerC2SPackets();
 
-        Reflection.initialize(ShowdownConfig.class);
+        Reflection.initialize(MegaShowdownConfig.class);
 
         MegaCommands.register();
         ModEvents.register();

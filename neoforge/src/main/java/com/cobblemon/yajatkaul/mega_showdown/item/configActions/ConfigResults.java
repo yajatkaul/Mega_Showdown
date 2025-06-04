@@ -45,17 +45,6 @@ import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 public class ConfigResults {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 1000; // 1 sec
-    private static final List<String> furfrouAspects = List.of(
-            "heart-trim",
-            "star-trim",
-            "diamond-trim",
-            "debutante-trim",
-            "matron-trim",
-            "dandy-trim",
-            "la_reine-trim",
-            "kabuki-trim",
-            "pharaoh-trim"
-    );
 
     public static boolean Possible(ServerPlayer player) {
         UUID playerId = player.getUUID();
@@ -174,21 +163,6 @@ public class ConfigResults {
                     Entity context = entityHit.getEntity();
                     if (player.level().isClientSide || player.isCrouching()) {
                         return false;
-                    }
-
-                    if (context instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
-                            && pk.getAspects().stream().anyMatch(furfrouAspects::contains)) {
-                        if (itemStack.getCount() >= 5) {
-                            new StringSpeciesFeature("poodle_trim", "natural").apply(pk.getPokemon());
-                            Vec3 pos = pk.position();
-                            player.level().playSound(
-                                    null, pos.x, pos.y, pos.z,
-                                    SoundEvents.GOAT_EAT,
-                                    SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
-                            );
-                            itemStack.shrink(5);
-                            return true;
-                        }
                     }
                 }
 

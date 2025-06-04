@@ -15,75 +15,15 @@ public class ModSounds {
             DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, MegaShowdown.MOD_ID);
 
     public static final Supplier<SoundEvent> DYNAMAX = registerSoundEvent("dynamaxing");
-    public static final DeferredSoundType BATTLE_SOUNDS_DMAX = new DeferredSoundType(
-            1.0F, // volume
-            1.0F, // pitch
-            DYNAMAX, // breakSound
-            DYNAMAX, // stepSound
-            DYNAMAX, // placeSound
-            DYNAMAX, // hitSound
-            DYNAMAX  // fallSound
-    );
     public static final Supplier<SoundEvent> TERASTALLIZATION = registerSoundEvent("terastallization");
-    public static final DeferredSoundType BATTLE_SOUNDS_TERA = new DeferredSoundType(
-            1.0F,
-            1.0F,
-            TERASTALLIZATION,
-            TERASTALLIZATION,
-            TERASTALLIZATION,
-            TERASTALLIZATION,
-            TERASTALLIZATION
-    );
     public static final Supplier<SoundEvent> MEGA = registerSoundEvent("mega");
-    public static final DeferredSoundType BATTLE_SOUNDS_MEGA = new DeferredSoundType(
-            1.0F,
-            1.0F,
-            MEGA,
-            MEGA,
-            MEGA,
-            MEGA,
-            MEGA
-    );
     public static final Supplier<SoundEvent> ZMOVE = registerSoundEvent("zmove");
-    public static final DeferredSoundType BATTLE_SOUNDS_Z_MOVE = new DeferredSoundType(
-            1.0F,
-            1.0F,
-            ZMOVE,
-            ZMOVE,
-            ZMOVE,
-            ZMOVE,
-            ZMOVE
-    );
-    public static final Supplier<SoundEvent> ASH_GRENINJA = registerSoundEvent("ash_greninja");
-    public static final DeferredSoundType BATTLE_SOUNDS_ASH_GRENINJA = new DeferredSoundType(
-            1.0F,
-            1.0F,
-            ASH_GRENINJA,
-            ASH_GRENINJA,
-            ASH_GRENINJA,
-            ASH_GRENINJA,
-            ASH_GRENINJA
-    );
+    public static final Supplier<SoundEvent> FORM_CHANGE_BASIC = registerSoundEvent("form_change_basic");
     public static final Supplier<SoundEvent> POWER_CONSTRUCT = registerSoundEvent("power-construct");
-    public static final DeferredSoundType BATTLE_SOUNDS_POWER_CONSTRUCT = new DeferredSoundType(
-            1.0F,
-            1.0F,
-            POWER_CONSTRUCT,
-            POWER_CONSTRUCT,
-            POWER_CONSTRUCT,
-            POWER_CONSTRUCT,
-            POWER_CONSTRUCT
-    );
     public static final Supplier<SoundEvent> ORIGIN_FORM = registerSoundEvent("origin_form");
-    public static final DeferredSoundType SOUNDS_ORIGIN_FORM = new DeferredSoundType(
-            1.0F,
-            1.0F,
-            ORIGIN_FORM,
-            ORIGIN_FORM,
-            ORIGIN_FORM,
-            ORIGIN_FORM,
-            ORIGIN_FORM
-    );
+    public static final Supplier<SoundEvent> ARCEUS_MULTITYPE = registerSoundEvent("arceus_multitype");
+    public static final Supplier<SoundEvent> KYUREM_FUSION = registerSoundEvent("kyurem_fusion");
+    public static final Supplier<SoundEvent> GIRATINIA_FORM = registerSoundEvent("giratina");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name);

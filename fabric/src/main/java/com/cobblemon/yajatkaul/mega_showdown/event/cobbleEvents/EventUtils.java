@@ -3,12 +3,13 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -35,7 +36,7 @@ public class EventUtils {
         boolean isMega = pokemon.getAspects().stream()
                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
-        if ((ShowdownConfig.revertMegas.get() || ShowdownConfig.battleModeOnly.get()) && isMega) {
+        if ((MegaShowdownConfig.revertMegas.get() || MegaShowdownConfig.battleModeOnly.get()) && isMega) {
             MegaLogic.Devolve(pokemon, true);
         }
 
@@ -81,14 +82,17 @@ public class EventUtils {
         }
         // HELD ITEM
         else if (pokemon.getSpecies().getName().equals("Palkia")
-                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
+                && !pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Dialga")
-                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
+                && !pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Giratina")
-                && !pokemon.getHeldItem$common().isOf(FormeChangeItems.GRISEOUS_CORE)) {
+                && !pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Arceus")
+                && !(pokemon.heldItem().getItem() instanceof ArceusType)) {
+            new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }
 
 

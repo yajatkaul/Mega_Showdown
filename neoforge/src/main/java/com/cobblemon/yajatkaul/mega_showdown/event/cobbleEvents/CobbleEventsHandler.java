@@ -24,6 +24,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -228,17 +229,11 @@ public class CobbleEventsHandler {
 
         Player player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
 
-        ItemStack teraOrb = CuriosApi.getCuriosInventory(player)
+        CuriosApi.getCuriosInventory(player)
                 .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
                         stack -> (stack.getItem() instanceof TeraItem)
                 ))
-                .map(SlotResult::stack)
-                .orElse(null);
-
-        if (teraOrb != null) {
-            // Reduce durability by a specific amount (e.g., 10 points)
-            teraOrb.setDamageValue(teraOrb.getDamageValue() + 10);
-        }
+                .map(SlotResult::stack).ifPresent(teraOrb -> teraOrb.setDamageValue(teraOrb.getDamageValue() + 10));
 
         terastallizationEvent.getBattle().dispatchWaitingToFront(3F, () -> {
             LazyLib.Companion.cryAnimation(pokemon);
@@ -318,25 +313,43 @@ public class CobbleEventsHandler {
                 }
             }
             case "Castform" -> {
-                if (formeChangeEvent.getFormeName().equals("sunny")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("forecast_form", "sunny").apply(pokemon);
-                } else if (formeChangeEvent.getFormeName().equals("rainy")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("forecast_form", "rainy").apply(pokemon);
-                } else if (formeChangeEvent.getFormeName().equals("snowy")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("forecast_form", "snowy").apply(pokemon);
+                switch (formeChangeEvent.getFormeName()) {
+                    case "sunny" -> {
+                        EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                        new StringSpeciesFeature("forecast_form", "sunny").apply(pokemon);
+                    }
+                    case "rainy" -> {
+                        EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                        new StringSpeciesFeature("forecast_form", "rainy").apply(pokemon);
+                    }
+                    case "snowy" -> {
+                        EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                        new StringSpeciesFeature("forecast_form", "snowy").apply(pokemon);
+                    }
                 }
             }
             case "Wishiwashi" -> {
-                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 if (formeChangeEvent.getFormeName().equals("school")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                    new StringSpeciesFeature("schooling_form", "school").apply(pokemon);
+                    battle.dispatchWaitingToFront(4.5F, () -> {
+                        LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", "target");
+                        pokemonEntity.level().playSound(
+                                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                                ModSounds.FORM_CHANGE_BASIC.get(),
+                                SoundSource.PLAYERS, 0.2f, 1.3f
+                        );
+
+                        return Unit.INSTANCE;
+                    });
+
+                    pokemonEntity.after(5F, () -> {
+                        new StringSpeciesFeature("schooling_form", "school").apply(pokemon);
+                        LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                        return Unit.INSTANCE;
+                    });
                 } else if (formeChangeEvent.getFormeName().equals("wishiwashi")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                     new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
+                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                 }
             }
             case "Mimikyu" -> {
@@ -348,7 +361,7 @@ public class CobbleEventsHandler {
                 if (formeChangeEvent.getFormeName().equals("ash")) {
                     pokemonEntity.level().playSound(
                             null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                            ModSounds.ASH_GRENINJA.get(),
+                            ModSounds.FORM_CHANGE_BASIC.get(),
                             SoundSource.PLAYERS, 0.2f, 1.3f
                     );
                     battle.dispatchWaitingToFront(4.5F, () -> {
@@ -422,8 +435,22 @@ public class CobbleEventsHandler {
                 }
             }
             case "Arceus" -> {
-                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+                battle.dispatchWaitingToFront(4.5F, () -> {
+                    LazyLib.Companion.snowStormPartileSpawner(pokemonEntity,
+                            "arceus_" + formeChangeEvent.getFormeName(), "target");
+                    pokemonEntity.level().playSound(
+                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                            ModSounds.ARCEUS_MULTITYPE.get(),
+                            SoundSource.PLAYERS, 0.2f, 1.3f
+                    );
+                    return Unit.INSTANCE;
+                });
+                pokemonEntity.after(4F, () -> {
+                    new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+                    LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                    updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                    return Unit.INSTANCE;
+                });
             }
             case "Xerneas" -> {
                 if (formeChangeEvent.getFormeName().equals("active")) {
@@ -433,8 +460,23 @@ public class CobbleEventsHandler {
             }
             case "Terapagos" -> {
                 if (formeChangeEvent.getFormeName().equals("terastal")) {
-                    new StringSpeciesFeature("tera_form", "terastal").apply(pokemon);
-                    EventUtils.playEvolveAnimation(pokemon.getEntity());
+                    battle.dispatchWaitingToFront(4.5F, () -> {
+                        LazyLib.Companion.snowStormPartileSpawner(pokemonEntity, "terapagos_effect", "target");
+                        pokemonEntity.level().playSound(
+                                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                                ModSounds.FORM_CHANGE_BASIC.get(),
+                                SoundSource.PLAYERS, 0.2f, 2.1f
+                        );
+
+                        return Unit.INSTANCE;
+                    });
+
+                    pokemonEntity.after(3.9F, () -> {
+                        new StringSpeciesFeature("tera_form", "terastal").apply(pokemon);
+                        LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                        updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
+                        return Unit.INSTANCE;
+                    });
                 }
             }
             case "Meloetta" -> {
@@ -462,6 +504,12 @@ public class CobbleEventsHandler {
                         updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
                         return Unit.INSTANCE;
                     });
+                }
+            }
+            case "Shaymin" -> {
+                if (formeChangeEvent.getFormeName().equals("shaymin")) {
+                    new StringSpeciesFeature("gracidea_forme", "land").apply(pokemon);
+                    EventUtils.playEvolveAnimation(pokemon.getEntity());
                 }
             }
         }

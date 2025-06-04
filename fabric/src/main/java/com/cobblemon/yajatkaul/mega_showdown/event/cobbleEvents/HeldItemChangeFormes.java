@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
@@ -76,58 +76,10 @@ public class HeldItemChangeFormes {
     public static void silvallyChange(HeldItemEvent.Post post) {
         Pokemon pokemon = post.getPokemon();
         if (pokemon.getSpecies().getName().equals("Silvally")) {
-            if (post.getReceived().isOf(FormeChangeItems.BUG_MEMORY)) {
+            if (post.getReceived().getItem() instanceof Memory memory) {
                 playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "bug").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.DARK_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "dark").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.DRAGON_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "dragon").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.ELECTRIC_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "electric").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.FAIRY_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "fairy").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.FIGHTING_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "fighting").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.FIRE_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "fire").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.FLYING_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "flying").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.GHOST_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "ghost").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.GRASS_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "grass").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.GROUND_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "ground").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.ICE_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "ice").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.POISON_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "poison").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.PSYCHIC_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "psychic").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.ROCK_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "rock").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.STEEL_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "steel").apply(pokemon);
-            } else if (post.getReceived().isOf(FormeChangeItems.WATER_MEMORY)) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "water").apply(pokemon);
-            } else if (!(post.getReceived().getItem() instanceof Memory) && post.getReturned().getItem() instanceof Memory) {
+                new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
+            } else if (post.getReturned().getItem() instanceof Memory) {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "normal").apply(pokemon);
             }
@@ -136,8 +88,17 @@ public class HeldItemChangeFormes {
 
     public static void arcuesChange(HeldItemEvent.Post post) {
         Pokemon pokemon = post.getPokemon();
+        PokemonEntity pokemonEntity = pokemon.getEntity();
+        BlockPos entityPos = pokemonEntity.getBlockPos();
+
         if (pokemon.getSpecies().getName().equals("Arceus")) {
             if (post.getReceived().getItem() instanceof ArceusType plate) {
+                pokemonEntity.getWorld().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        ModSounds.ARCEUS_MULTITYPE,
+                        SoundCategory.PLAYERS, 0.2f, 1.3f
+                );
+
                 LazyLib.Companion.snowStormPartileSpawner(pokemon.getEntity(),
                         "arceus_" + plate.getType(), "target");
                 pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
@@ -148,8 +109,9 @@ public class HeldItemChangeFormes {
                     pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                     return Unit.INSTANCE;
                 });
-            } else if (!post.getReceived().isIn(ModTags.Items.ARCEUS_FORM_CHANGE) && post.getReturned().isIn(ModTags.Items.ARCEUS_FORM_CHANGE)) {
+            } else if (post.getReturned().getItem() instanceof ArceusType) {
                 playHeldItemFormeChange(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "normal").apply(pokemon);
                 LazyLib.Companion.cryAnimation(pokemon.getEntity());
             }
         }
@@ -180,7 +142,7 @@ public class HeldItemChangeFormes {
     }
 
     public static void eternamaxChange(HeldItemEvent.Post post) {
-        if (!ShowdownConfig.etermaxForme.get()) {
+        if (!MegaShowdownConfig.etermaxForme.get()) {
             return;
         }
         Pokemon pokemon = post.getPokemon();
@@ -257,7 +219,7 @@ public class HeldItemChangeFormes {
         boolean primalData = player.getAttached(DataManage.PRIMAL_DATA);
 
         if (species.getName().equals("Kyogre") && pre.getReceiving().isOf(MegaStones.BLUE_ORB) && !pre.getPokemon().getAspects().contains("primal")) {
-            if (!primalData || ShowdownConfig.multiplePrimals.get()) {
+            if (!primalData || MegaShowdownConfig.multiplePrimals.get()) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
                 primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
                 player.setAttached(DataManage.PRIMAL_DATA, true);
@@ -271,7 +233,7 @@ public class HeldItemChangeFormes {
                 );
             }
         } else if (species.getName().equals("Groudon") && pre.getReceiving().isOf(MegaStones.RED_ORB) && !pre.getPokemon().getAspects().contains("primal")) {
-            if (!primalData || ShowdownConfig.multiplePrimals.get()) {
+            if (!primalData || MegaShowdownConfig.multiplePrimals.get()) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
                 primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
                 player.setAttached(DataManage.PRIMAL_DATA, true);
@@ -518,7 +480,6 @@ public class HeldItemChangeFormes {
                 return Unit.INSTANCE;
             });
         }
-
     }
 
     private static void crownAnimation(ServerWorld level, BlockPos pos, LivingEntity context) {

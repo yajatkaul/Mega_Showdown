@@ -32,6 +32,18 @@
 					"effect": "cobblemon:origin_burst",
 					"type": "emitter_bound"
 				}
+			},
+			"event_icon": {
+				"particle_effect": {
+					"effect": "cobblemon:origin_icon",
+					"type": "emitter_bound"
+				}
+			},
+			"event_particle": {
+				"particle_effect": {
+					"effect": "cobblemon:origin_particles",
+					"type": "emitter_bound"
+				}
 			}
 		},
 		"components": {
@@ -47,11 +59,12 @@
 				"active_time": 4
 			},
 			"minecraft:emitter_lifetime_events": {
-				"creation_event": "event_buildup",
+				"creation_event": ["event_buildup", "event_particle"],
 				"timeline": {
-					"2": "event_buildup2",
-					"2.1": "event_godray",
-					"4": "event_burst"
+					"2.00": "event_buildup2",
+					"2.10": "event_godray",
+					"3.99": "event_burst",
+					"4.00": "event_icon"
 				}
 			},
 			"minecraft:emitter_shape_point": {},

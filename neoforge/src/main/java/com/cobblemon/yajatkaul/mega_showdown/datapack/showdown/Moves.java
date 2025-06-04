@@ -90,7 +90,7 @@ public class Moves implements DataRegistry {
                 String moveId = new File(id.getPath()).getName().replace(".js", "");
                 moveScripts.put(moveId, js);
             } catch (IOException e) {
-                MegaShowdown.LOGGER.error("Failed to load move item script: {} {}", id, e);
+                MegaShowdown.LOGGER.error("Failed to load move script: {} {}", id, e);
             }
         });
 

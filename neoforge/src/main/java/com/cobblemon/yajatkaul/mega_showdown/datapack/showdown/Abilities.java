@@ -37,7 +37,7 @@ public class Abilities implements DataRegistry {
         OBSERVABLE.subscribe(Priority.NORMAL, this::abilitiesLoad);
     }
 
-    private Unit abilitiesLoad(Abilities abilities) {
+    private Unit abilitiesLoad(Abilities abilitie) {
         registerAbilities();
         return Unit.INSTANCE;
     }

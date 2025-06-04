@@ -33,7 +33,7 @@ public class HeldItems implements DataRegistry {
         OBSERVABLE.subscribe(Priority.NORMAL, this::heldItemsLoad);
     }
 
-    private Unit heldItemsLoad(HeldItems heldItems) {
+    private Unit heldItemsLoad(HeldItems heldItem) {
         registerItems();
         return Unit.INSTANCE;
     }

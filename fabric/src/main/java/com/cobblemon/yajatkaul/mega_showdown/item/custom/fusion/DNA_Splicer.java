@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
@@ -28,6 +29,7 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -103,6 +105,13 @@ public class DNA_Splicer extends Item {
         LazyLib.Companion.snowStormPartileSpawner(pokemon,
                 black ? "kyurem_b_effect" : "kyurem_w_effect", "target");
         pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+        BlockPos entityPos = pokemon.getBlockPos();
+        pokemon.getWorld().playSound(
+                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                ModSounds.KYUREM_FUSION,
+                SoundCategory.PLAYERS, 0.2f, 1.0f
+        );
 
         pokemon.after(4F, () -> {
             new FlagSpeciesFeature(black ? "black" : "white", true).apply(pokemon);

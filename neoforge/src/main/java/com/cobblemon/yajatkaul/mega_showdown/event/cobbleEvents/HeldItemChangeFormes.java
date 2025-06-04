@@ -74,58 +74,10 @@ public class HeldItemChangeFormes {
     public static void silvallyChange(HeldItemEvent.Post post) {
         Pokemon pokemon = post.getPokemon();
         if (pokemon.getSpecies().getName().equals("Silvally")) {
-            if (post.getReceived().is(FormeChangeItems.BUG_MEMORY)) {
+            if (post.getReceived().getItem() instanceof Memory memory) {
                 playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "bug").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.DARK_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "dark").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.DRAGON_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "dragon").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.ELECTRIC_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "electric").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.FAIRY_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "fairy").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.FIGHTING_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "fighting").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.FIRE_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "fire").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.FLYING_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "flying").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.GHOST_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "ghost").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.GRASS_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "grass").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.GROUND_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "ground").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.ICE_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "ice").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.POISON_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "poison").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.PSYCHIC_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "psychic").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.ROCK_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "rock").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.STEEL_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "steel").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.WATER_MEMORY)) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", "water").apply(pokemon);
-            } else if (!(post.getReceived().getItem() instanceof Memory) && post.getReturned().getItem() instanceof Memory) {
+                new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
+            } else if (post.getReturned().getItem() instanceof Memory) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "normal").apply(pokemon);
             }
@@ -134,9 +86,17 @@ public class HeldItemChangeFormes {
 
     public static void arcuesChange(HeldItemEvent.Post post) {
         Pokemon pokemon = post.getPokemon();
+        PokemonEntity pokemonEntity = pokemon.getEntity();
+        BlockPos entityPos = pokemonEntity.getOnPos();
 
         if (pokemon.getSpecies().getName().equals("Arceus")) {
             if (post.getReceived().getItem() instanceof ArceusType plate) {
+                pokemonEntity.level().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        ModSounds.ARCEUS_MULTITYPE.get(),
+                        SoundSource.PLAYERS, 0.2f, 1.3f
+                );
+
                 LazyLib.Companion.snowStormPartileSpawner(pokemon.getEntity(),
                         "arceus_" + plate.getType(), "target");
                 pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
@@ -147,8 +107,9 @@ public class HeldItemChangeFormes {
                     pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                     return Unit.INSTANCE;
                 });
-            } else if (!post.getReceived().is(ModTags.Items.ARCEUS_FORM_CHANGE) && post.getReturned().is(ModTags.Items.ARCEUS_FORM_CHANGE)) {
+            } else if (post.getReturned().getItem() instanceof ArceusType) {
                 playHeldItemChange(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", "normal").apply(pokemon);
                 LazyLib.Companion.cryAnimation(pokemon.getEntity());
             }
         }
@@ -459,25 +420,48 @@ public class HeldItemChangeFormes {
 
     private static void originAnimation(PokemonEntity context, boolean enabled) {
         BlockPos entityPos = context.getOnPos();
-        context.level().playSound(
-                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                ModSounds.ORIGIN_FORM.get(),
-                SoundSource.PLAYERS, 0.2f, 1.1f
-        );
 
-        LazyLib.Companion.snowStormPartileSpawner(context, "origin_effect", "target");
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+        if(context.getPokemon().getSpecies().getName().equals("Giratina")){
+            context.level().playSound(
+                    null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                    ModSounds.GIRATINIA_FORM.get(),
+                    SoundSource.PLAYERS, 0.2f, 1.1f
+            );
 
-        context.after(4F, () -> {
-            if (enabled) {
-                new StringSpeciesFeature("orb_forme", "origin").apply(context.getPokemon());
-            } else {
-                new StringSpeciesFeature("orb_forme", "altered").apply(context.getPokemon());
-            }
-            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-            LazyLib.Companion.cryAnimation(context);
-            return Unit.INSTANCE;
-        });
+            LazyLib.Companion.snowStormPartileSpawner(context,"origin_g_effect", "target");
+            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            context.after(3.8F, () -> {
+                if (enabled) {
+                    new StringSpeciesFeature("orb_forme", "origin").apply(context.getPokemon());
+                } else {
+                    new StringSpeciesFeature("orb_forme", "altered").apply(context.getPokemon());
+                }
+                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                LazyLib.Companion.cryAnimation(context);
+                return Unit.INSTANCE;
+            });
+        }else{
+            context.level().playSound(
+                    null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                    ModSounds.ORIGIN_FORM.get(),
+                    SoundSource.PLAYERS, 0.2f, 1.1f
+            );
+
+            LazyLib.Companion.snowStormPartileSpawner(context, "origin_effect", "target");
+            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            context.after(4F, () -> {
+                if (enabled) {
+                    new StringSpeciesFeature("orb_forme", "origin").apply(context.getPokemon());
+                } else {
+                    new StringSpeciesFeature("orb_forme", "altered").apply(context.getPokemon());
+                }
+                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                LazyLib.Companion.cryAnimation(context);
+                return Unit.INSTANCE;
+            });
+        }
     }
 
     private static void crownAnimation(ServerLevel level, BlockPos pos, LivingEntity context) {

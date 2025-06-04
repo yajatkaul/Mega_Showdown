@@ -17,7 +17,7 @@
     "accessors.MovesAccessor",
     "accessors.ShowdownActionRequestAccessor",
     "accessors.StartInstructionAccessor",
-    "pokemon.CobblemonDataProviderMixin",
+    "CobblemonDataProviderMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "pokemon.PokemonMixin",

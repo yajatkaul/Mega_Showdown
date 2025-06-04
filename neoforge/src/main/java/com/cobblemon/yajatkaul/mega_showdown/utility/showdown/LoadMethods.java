@@ -41,6 +41,9 @@ public class LoadMethods {
                 if (!Files.exists(showdown_mod_data.resolve("conditions.js"))) {
                     yoink("/assets/mega_showdown/showdown/mods/conditions.js", showdown_mod_data.resolve("conditions.js"));
                 }
+                if (!Files.exists(showdown_mod_data.resolve("typechart.js"))) {
+                    yoink("/assets/mega_showdown/showdown/mods/typechart.js", showdown_mod_data.resolve("typechart.js"));
+                }
 
                 MegaShowdown.LOGGER.info("All files are ready!");
             } catch (IOException e) {

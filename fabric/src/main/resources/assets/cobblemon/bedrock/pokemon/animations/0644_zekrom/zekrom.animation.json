@@ -757,6 +757,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.zekrom.cry"
+				}
 			}
 		},
 		"animation.zekrom.physical_attack": {

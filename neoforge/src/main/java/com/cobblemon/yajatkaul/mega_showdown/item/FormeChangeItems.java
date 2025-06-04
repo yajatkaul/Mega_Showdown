@@ -284,7 +284,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> MIND_PLATE = ITEMS.register("mindplate",
-            () -> new ArceusType(new Item.Properties().stacksTo(1), "physic") {
+            () -> new ArceusType(new Item.Properties().stacksTo(1), "psychic") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.mindplate.tooltip"));
@@ -356,7 +356,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> BUG_MEMORY = ITEMS.register("bugmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "bug") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.bugmemory.tooltip"));
@@ -365,7 +365,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DARK_MEMORY = ITEMS.register("darkmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "dark") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.darkmemory.tooltip"));
@@ -374,7 +374,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> DRAGON_MEMORY = ITEMS.register("dragonmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "dragon") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dragonmemory.tooltip"));
@@ -383,7 +383,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ELECTRIC_MEMORY = ITEMS.register("electricmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "electic") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
@@ -392,7 +392,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FAIRY_MEMORY = ITEMS.register("fairymemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "fairy") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fairymemory.tooltip"));
@@ -401,7 +401,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FIGHTING_MEMORY = ITEMS.register("fightingmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "fighting") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fightingmemory.tooltip"));
@@ -410,7 +410,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FIRE_MEMORY = ITEMS.register("firememory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "fire") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.firememory.tooltip"));
@@ -419,7 +419,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> FLYING_MEMORY = ITEMS.register("flyingmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "flying") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.flyingmemory.tooltip"));
@@ -428,7 +428,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GHOST_MEMORY = ITEMS.register("ghostmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "ghost") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ghostmemory.tooltip"));
@@ -437,7 +437,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GRASS_MEMORY = ITEMS.register("grassmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "grass") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.grassmemory.tooltip"));
@@ -446,7 +446,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> GROUND_MEMORY = ITEMS.register("groundmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "ground") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.groundmemory.tooltip"));
@@ -455,7 +455,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ICE_MEMORY = ITEMS.register("icememory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "ice") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.icememory.tooltip"));
@@ -464,7 +464,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> POISON_MEMORY = ITEMS.register("poisonmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "poison") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.poisonmemory.tooltip"));
@@ -473,7 +473,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> PSYCHIC_MEMORY = ITEMS.register("psychicmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "psychic") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.psychicmemory.tooltip"));
@@ -482,7 +482,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ROCK_MEMORY = ITEMS.register("rockmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "rock") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.rockmemory.tooltip"));
@@ -491,7 +491,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> STEEL_MEMORY = ITEMS.register("steelmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "steel") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.steelmemory.tooltip"));
@@ -500,7 +500,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> WATER_MEMORY = ITEMS.register("watermemory",
-            () -> new Memory(new Item.Properties().stacksTo(1)) {
+            () -> new Memory(new Item.Properties().stacksTo(1), "water") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.watermemory.tooltip"));
@@ -712,6 +712,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "heart").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -756,6 +757,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "star").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -800,6 +802,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "diamond").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -844,6 +847,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "debutante").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -888,6 +892,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "matron").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -932,6 +937,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "dandy").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -976,6 +982,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "la_reine").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -1020,6 +1027,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "kabuki").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(
@@ -1064,6 +1072,7 @@ public class FormeChangeItems {
                     if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Furfrou") && !pk.isBattling()
                             && pk.getAspects().stream().noneMatch(furfrouAspects::contains)) {
                         new StringSpeciesFeature("poodle_trim", "pharaoh").apply(pk.getPokemon());
+                        pk.getPokemon().getPersistentData().putBoolean("trimmed", true);
                         stack.setDamageValue(stack.getDamageValue() + 20);
                         Vec3 pos = pk.position();
                         user.level().playSound(

@@ -33,7 +33,7 @@ public class Conditions implements DataRegistry {
         OBSERVABLE.subscribe(Priority.NORMAL, this::conditionsLoad);
     }
 
-    private Unit conditionsLoad(Conditions conditions) {
+    private Unit conditionsLoad(Conditions condition) {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveConditionDataFn = service.context.getBindings("js").getMember("receiveConditionData");
@@ -74,7 +74,7 @@ public class Conditions implements DataRegistry {
                 String conditionId = new File(id.getPath()).getName().replace(".js", "");
                 conditionScripts.put(conditionId, js);
             } catch (IOException e) {
-                MegaShowdown.LOGGER.error("Failed to load conditions script: {} {}", id, e);
+                MegaShowdown.LOGGER.error("Failed to load condition script: {} {}", id, e);
             }
         });
         OBSERVABLE.emit(this);

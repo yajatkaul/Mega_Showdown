@@ -365,6 +365,7 @@ const Abilities = {
         return;
 	  if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness >= 250) {
 		  source.formeChange("Greninja-Ash", this.effect, false, "[msg]");
+	      source.abilityState.battleBondTriggered = true;
 	  }
       if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness < 250) {
         this.boost({ atk: 1, spa: 1, spe: 1 }, source, source, this.effect);

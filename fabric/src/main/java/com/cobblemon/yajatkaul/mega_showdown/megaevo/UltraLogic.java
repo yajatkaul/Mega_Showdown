@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
@@ -76,7 +76,7 @@ public class UltraLogic {
                 range * range
         );
 
-        if (entityHit == null || ShowdownConfig.battleModeOnly.get()) {
+        if (entityHit == null || MegaShowdownConfig.battleModeOnly.get()) {
             return;
         }
 

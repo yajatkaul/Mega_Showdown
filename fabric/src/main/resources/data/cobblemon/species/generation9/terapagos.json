@@ -6,9 +6,9 @@
   "maleRatio": 0.5,
   "height": 2,
   "weight": 65,
-  "baseScale": 1,
+  "baseScale": 0.65,
   "hitbox": {
-    "width": 1,
+    "width": 1.3,
     "height": 1,
     "fixed": false
   },

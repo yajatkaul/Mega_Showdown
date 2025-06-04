@@ -61,6 +61,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 
     modImplementation("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
+    include("maven.modrinth:supermartijn642s-config-lib:1.1.8-fabric-mc1.21")
 
     modImplementation("dev.emi:trinkets:${properties["trinkets_version"]}")
 }

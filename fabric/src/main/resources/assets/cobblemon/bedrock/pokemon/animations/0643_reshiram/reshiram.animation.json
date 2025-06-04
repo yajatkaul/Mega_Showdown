@@ -316,6 +316,11 @@
 						"2.0": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.reshiram.cry"
+				}
 			}
 		},
 		"animation.reshiram.blink": {

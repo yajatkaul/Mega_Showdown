@@ -15666,6 +15666,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1": {
+					"effect": "pokemon.kyuremblack.cry"
+				}
 			}
 		}
 	}

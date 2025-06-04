@@ -14,7 +14,6 @@ import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
-import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;

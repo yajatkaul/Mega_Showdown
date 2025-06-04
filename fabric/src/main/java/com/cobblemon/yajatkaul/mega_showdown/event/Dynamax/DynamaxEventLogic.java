@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
@@ -64,7 +64,7 @@ public class DynamaxEventLogic {
                 server = serverWorld.getServer();
             }
 
-            startGradualScaling(pokemonEntity, ShowdownConfig.dynamaxScaleFactor.get());
+            startGradualScaling(pokemonEntity, MegaShowdownConfig.dynamaxScaleFactor.get());
 
             if (pokemon.getEntity().getWorld() instanceof ServerWorld serverLevel) {
                 ServerScoreboard scoreboard = serverLevel.getScoreboard();

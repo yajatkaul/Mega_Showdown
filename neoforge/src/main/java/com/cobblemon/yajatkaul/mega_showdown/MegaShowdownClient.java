@@ -3,18 +3,22 @@ package com.cobblemon.yajatkaul.mega_showdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantLayer;
-import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
 import com.cobblemon.yajatkaul.mega_showdown.utility.PackRegister;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.SkeletonModel;
+import net.minecraft.client.model.ZombieModel;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -36,7 +40,6 @@ public class MegaShowdownClient {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         NeoForge.EVENT_BUS.addListener(MegaShowdownClient::onClientTick);
-//        NeoForge.EVENT_BUS.addListener(LikosPendantRenderer::onRenderLiving);
     }
 
     @SubscribeEvent
@@ -72,26 +75,27 @@ public class MegaShowdownClient {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.AddLayers event) {
-        for (PlayerSkin.Model skin : event.getSkins()) {
-            LivingEntityRenderer<? extends Player, ? extends HumanoidModel<? extends Player>> playerRenderer = event.getSkin(skin);
-            if (playerRenderer instanceof LivingEntityRenderer) {
-                @SuppressWarnings("unchecked")
-                LivingEntityRenderer<Player, HumanoidModel<Player>> casted =
-                        (LivingEntityRenderer<Player, HumanoidModel<Player>>) playerRenderer;
-                casted.addLayer(new LikosPendantLayer<>(casted));
+        for (PlayerSkin.Model skin : PlayerSkin.Model.values()) {
+            LivingEntityRenderer<Player, HumanoidModel<Player>> renderer = event.getSkin(skin);
+            if (renderer != null) {
+                renderer.addLayer(new LikosPendantLayer<>(renderer));
             }
         }
-        addLayerToEntity(event, EntityType.PLAYER);
-        addLayerToEntity(event, EntityType.ZOMBIE);
-        addLayerToEntity(event, EntityType.SKELETON);
-    }
 
-    private static <T extends LivingEntity> void addLayerToEntity(EntityRenderersEvent.AddLayers event, EntityType<T> entityType) {
-        LivingEntityRenderer<T, ?> renderer = event.getRenderer(entityType);
-        if (renderer != null && renderer.getModel() instanceof HumanoidModel) {
-            @SuppressWarnings("unchecked")
-            LivingEntityRenderer<T, HumanoidModel<T>> typedRenderer = (LivingEntityRenderer<T, HumanoidModel<T>>) renderer;
-            typedRenderer.addLayer(new LikosPendantLayer<>(typedRenderer));
+        LivingEntityRenderer<Zombie, ZombieModel<Zombie>> zombieRenderer = event.getRenderer(EntityType.ZOMBIE);
+        if (zombieRenderer != null) {
+            zombieRenderer.addLayer(new LikosPendantLayer<>(zombieRenderer));
+        }
+
+        LivingEntityRenderer<Skeleton, SkeletonModel<Skeleton>> skeletonRenderer = event.getRenderer(EntityType.SKELETON);
+        if (skeletonRenderer != null) {
+            skeletonRenderer.addLayer(new LikosPendantLayer<>(skeletonRenderer));
+        }
+
+        LivingEntityRenderer<ArmorStand, HumanoidModel<ArmorStand>> armorStandRenderer =
+                event.getRenderer(EntityType.ARMOR_STAND);
+        if (armorStandRenderer != null) {
+            armorStandRenderer.addLayer(new LikosPendantLayer<>(armorStandRenderer));
         }
     }
 }

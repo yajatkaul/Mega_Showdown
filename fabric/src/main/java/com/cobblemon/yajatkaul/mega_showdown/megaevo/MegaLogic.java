@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
@@ -84,7 +84,7 @@ public class MegaLogic {
     }
 
     public static void EvoLogic(ServerPlayerEntity player) {
-        if (ShowdownConfig.battleModeOnly.get()) {
+        if (MegaShowdownConfig.battleModeOnly.get()) {
             return;
         }
 
@@ -112,7 +112,7 @@ public class MegaLogic {
                 return;
             }
 
-            if (!ShowdownConfig.mega.get() || pk.getPokemon().getOwnerPlayer() != player || (!Utils.MEGA_POKEMONS.contains(pk.getPokemon().getSpecies().getName()) && !pk.getPokemon().getSpecies().getName().equals("Rayquaza")) || !Possible(player, false)) {
+            if (!MegaShowdownConfig.mega.get() || pk.getPokemon().getOwnerPlayer() != player || (!Utils.MEGA_POKEMONS.contains(pk.getPokemon().getSpecies().getName()) && !pk.getPokemon().getSpecies().getName().equals("Rayquaza")) || !Possible(player, false)) {
                 return;
             }
 
@@ -139,7 +139,7 @@ public class MegaLogic {
             player.setAttached(DataManage.MEGA_DATA, false);
         }
 
-        if (player.getAttached(DataManage.MEGA_DATA) && !ShowdownConfig.multipleMegas.get()) {
+        if (player.getAttached(DataManage.MEGA_DATA) && !MegaShowdownConfig.multipleMegas.get()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -156,7 +156,7 @@ public class MegaLogic {
         }
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-            if (ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
+            if (MegaShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
                 player.sendMessage(
                         Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
@@ -225,7 +225,7 @@ public class MegaLogic {
             return;
         }
 
-        if (ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
+        if (MegaShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -341,7 +341,7 @@ public class MegaLogic {
             player.setAttached(DataManage.MEGA_DATA, false);
         }
 
-        if (player.getAttached(DataManage.MEGA_DATA) && !ShowdownConfig.multipleMegas.get()) {
+        if (player.getAttached(DataManage.MEGA_DATA) && !MegaShowdownConfig.multipleMegas.get()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -350,7 +350,7 @@ public class MegaLogic {
         }
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-            if (ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
+            if (MegaShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
                 player.sendMessage(
                         Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
@@ -419,7 +419,7 @@ public class MegaLogic {
             return;
         }
 
-        if (ShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
+        if (MegaShowdownConfig.friendshipMode.get() && pokemon.getFriendship() < 200 && !pokemon.getEntity().isBattling()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.bond_not_close_mega").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true

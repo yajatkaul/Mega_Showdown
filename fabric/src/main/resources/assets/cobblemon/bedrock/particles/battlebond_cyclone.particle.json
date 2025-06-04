@@ -51,9 +51,9 @@
 				"color": {
 					"interpolant": "(v.particle_age / v.particle_lifetime) * variable.particle_random_4",
 					"gradient": {
-						"0.03": "#FF18AEFB",
-						"0.45": "#FF3FEDF4",
-						"0.81": "#FF006EC7"
+						"0.03": "#C218AEFB",
+						"0.45": "#B53FEDF4",
+						"0.82": "#AB006EC7"
 					}
 				}
 			}

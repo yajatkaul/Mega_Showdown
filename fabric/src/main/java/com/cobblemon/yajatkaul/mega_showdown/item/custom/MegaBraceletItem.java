@@ -2,7 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
@@ -75,7 +75,7 @@ public class MegaBraceletItem extends Item {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
         //Battle Mode only
-        if (player.getWorld().isClient || ShowdownConfig.battleModeOnly.get()) {
+        if (player.getWorld().isClient || MegaShowdownConfig.battleModeOnly.get()) {
             return ActionResult.PASS;
         }
 

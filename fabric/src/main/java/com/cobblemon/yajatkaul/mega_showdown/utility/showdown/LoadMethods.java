@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility.showdown;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.config.ShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import java.nio.file.StandardCopyOption;
 
 public class LoadMethods {
     public void load() {
-        if (ShowdownConfig.showdownFilesLoading.get()) {
+        if (MegaShowdownConfig.showdownFilesLoading.get()) {
             Path showdown_sim = Path.of("./showdown/sim");
             Path showdown_data = Path.of("./showdown/data");
             Path showdown = Path.of("./showdown");
@@ -40,6 +40,9 @@ public class LoadMethods {
                 }
                 if (!Files.exists(showdown_mod_data.resolve("conditions.js"))) {
                     yoink("/assets/mega_showdown/showdown/mods/conditions.js", showdown_mod_data.resolve("conditions.js"));
+                }
+                if (!Files.exists(showdown_mod_data.resolve("typechart.js"))) {
+                    yoink("/assets/mega_showdown/showdown/mods/typechart.js", showdown_mod_data.resolve("typechart.js"));
                 }
 
                 MegaShowdown.LOGGER.info("All files are ready!");

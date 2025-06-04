@@ -4,16 +4,20 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.CobblemonEntities;
 import com.cobblemon.mod.common.CobblemonImplementation;
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.spawning.SpawnCause;
 import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnAction;
 import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnDetail;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.command.SpawnPokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.particle.SnowstormParticleReader;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.utils.NoRenderArmorMaterial;
+import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import kotlin.Unit;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
@@ -23,9 +27,10 @@ import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
+import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -95,17 +100,48 @@ public class LikosPendant extends ArmorItem {
             stack.decrement(1);
 
             PokemonEntity terapagos = PokemonProperties.Companion.parse("terapagos").createEntity(world);
+
+            terapagos.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 0, false, false));
+            terapagos.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 120, 0, false, false));
+
             terapagos.getPokemon().setTeraType(TeraTypes.getSTELLAR());
             if (shinyRoll == 1) {
                 terapagos.getPokemon().setShiny(true);
             }
 
-            double spawnX = entity.getX() + (world.random.nextDouble() - 1) * 2;
-            double spawnY = entity.getY() + 1;
-            double spawnZ = entity.getZ() + (world.random.nextDouble() - 1) * 2;
+            // Get the direction the entity is facing (yaw in degrees)
+            float yaw = entity.getYaw();
+
+            // Convert yaw to radians and calculate direction vector
+            double radians = Math.toRadians(yaw);
+            double dx = -Math.sin(radians);
+            double dz = Math.cos(radians);
+
+            // Distance in front of entity
+            double distance = 2.0;
+
+            // Compute spawn coordinates
+            double spawnX = entity.getX() + dx * distance;
+            double spawnY = entity.getY();
+            double spawnZ = entity.getZ() + dz * distance;
 
             terapagos.refreshPositionAndAngles(spawnX, spawnY, spawnZ, entity.getYaw(), 0.0f);
+
             world.spawnEntity(terapagos);
+
+            terapagos.after(0.01f, () ->{
+                LazyLib.Companion.snowStormPartileSpawner(terapagos,
+                        "pendant_effect", "target");
+                return Unit.INSTANCE;
+            });
+
+            terapagos.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            terapagos.after(4F, () -> {
+                LazyLib.Companion.cryAnimation(terapagos);
+                terapagos.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
         }
     }
 
