@@ -10,19 +10,26 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0310_manectric/manectric_shiny.png",
       "layers": []
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:manectric_mega",
       "model": "cobblemon:manectric_mega.geo",
       "texture": "cobblemon:textures/pokemon/0310_manectric/manectric_mega.png",
       "layers": []
     },
     {
-      "aspects": [ "mega", "shiny" ],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:manectric_mega",
       "model": "cobblemon:manectric_mega.geo",
       "texture": "cobblemon:textures/pokemon/0310_manectric/manectric_mega_shiny.png"

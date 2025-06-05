@@ -17,7 +17,9 @@
       ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_shiny.png",
       "layers": [
         {
@@ -29,7 +31,9 @@
       ]
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:gengar_mega.geo",
       "texture": "cobblemon:textures/pokemon/0094_gengar/megagengar.png",
       "layers": [
@@ -42,7 +46,10 @@
       ]
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:gengar_mega.geo",
       "texture": "cobblemon:textures/pokemon/0094_gengar/megagengar_shiny.png",
       "layers": [

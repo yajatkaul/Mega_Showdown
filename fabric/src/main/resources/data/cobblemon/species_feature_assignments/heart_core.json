@@ -1,5 +1,9 @@
 {
-  "pokemon": ["deoxys"],
-  "features": ["heart_core"]
+  "pokemon": [
+    "deoxys"
+  ],
+  "features": [
+    "heart_core"
+  ]
 }
 

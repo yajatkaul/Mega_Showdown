@@ -10,7 +10,9 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0376_metagross/metagross_shiny.png"
     }
   ]

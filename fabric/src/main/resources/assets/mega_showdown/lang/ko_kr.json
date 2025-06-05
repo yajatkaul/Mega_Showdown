@@ -46,13 +46,10 @@
   "item.mega_showdown.swampertite": "대짱이나이트",
   "item.mega_showdown.tyranitarite": "마기라스나이트",
   "item.mega_showdown.venusaurite": "이상해꽃나이트",
-
   "item.mega_showdown.redorb": "주홍구슬",
   "item.mega_showdown.blueorb": "쪽빛구슬",
-
   "tooltip.mega_showdown.redorb.tooltip": "그란돈을 원시회귀시킵니다.",
   "tooltip.mega_showdown.blueorb.tooltip": "가이오가를 원시회귀시킵니다.",
-
   "tooltip.mega_showdown.mega_stone.tooltip": "메가스톤 원석",
   "tooltip.mega_showdown.abomasite.tooltip": "눈설왕을 메가눈설왕으로 메가진화할 수 있게 해줍니다.",
   "tooltip.mega_showdown.absolite.tooltip": "앱솔을 메가앱솔로 메가진화할 수 있게 해줍니다.",
@@ -101,7 +98,6 @@
   "tooltip.mega_showdown.swampertite.tooltip": "대짱이를 메가대짱이로 메가진화할 수 있게 해줍니다.",
   "tooltip.mega_showdown.tyranitarite.tooltip": "마기라스를 메가마기라스로 메가진화할 수 있게 해줍니다.",
   "tooltip.mega_showdown.venusaurite.tooltip": "이상해꽃을 메가 이상해꽃으로 메가진화할 수 있게 해줍니다.",
-
   "block.mega_showdown.abomasite_ore": "눈설왕나이트 광석",
   "block.mega_showdown.absolite_ore": "앱솔나이트 광석",
   "block.mega_showdown.aerodactylite_ore": "프테라나이트 광석",
@@ -150,21 +146,17 @@
   "block.mega_showdown.tyranitarite_ore": "마기라스나이트 광석",
   "block.mega_showdown.venusaurite_ore": "이상해꽃나이트 광석",
   "item.mega_showdown.diancite": "디안시나이트",
-
   "block.mega_showdown.mega_meteorid_block": "메가운석 블록",
   "block.mega_showdown.mega_evo_brick": "진화운석 벽돌",
   "block.mega_showdown.chiseled_mega_evo_brick": "조각된 운석 벽돌",
   "block.mega_showdown.chiseled_mega_evo_block": "조각된 운석 벽돌",
   "block.mega_showdown.polished_mega_evo_block": "윤나는 운석 블록",
   "block.mega_showdown.mega_evo_block": "진화운석 블록",
-
   "block.mega_showdown.mega_stone_crystal": "메가 크리스탈",
-
   "block.mega_showdown.keystone_ore": "키스톤 광석",
   "block.mega_showdown.keystone_block": "키스톤 블록",
   "item.mega_showdown.keystone": "키스톤",
   "tooltip.mega_showdown.keystone.tooltip": "메가링을 제작하는데 사용합니다.",
-
   "item.mega_showdown.megabracelet": "메가링",
   "tooltip.mega_showdown.megabracelet.tooltip": "메가스톤을 가진 포켓몬을 메가진화시키는 미지의 파워를 숨긴 액세서리",
   "item.mega_showdown.megabracelet_red": "빨간색 메가링",
@@ -183,7 +175,6 @@
   "tooltip.mega_showdown.megaring.tooltip": "메가스톤을 가진 포켓몬을 메가진화시키는 미지의 파워를 숨긴 액세서리",
   "item.mega_showdown.brendan_mega_cuff": "휘웅의 메가링",
   "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "메가스톤을 가진 포켓몬을 메가진화시키는 미지의 파워를 숨긴 휘웅의 메가링",
-
   "item.mega_showdown.lysandre_ring": "플라타느의 반지",
   "tooltip.mega_showdown.lysandre_ring.tooltip": "메가스톤을 가진 포켓몬을 메가진화시키는 미지의 파워를 숨긴 액세서리",
   "item.mega_showdown.maxie_glasses": "마적의 안경",
@@ -192,7 +183,6 @@
   "tooltip.mega_showdown.korrina_glove.tooltip": "메가스톤을 가진 포켓몬을 메가진화시키는 미지의 파워를 숨긴 액세서리",
   "item.mega_showdown.archie_anchor": "아강의 닻 목걸이",
   "tooltip.mega_showdown.archie_anchor.tooltip": "메가스톤을 가진 포켓몬을 메가진화시키는 미지의 파워를 숨긴 액세서리",
-
   "item.mega_showdown.dnasplicers": "유전자쐐기",
   "item.mega_showdown.dousedrive": "아쿠아 카세트",
   "item.mega_showdown.dracoplate": "용의플레이트",
@@ -206,11 +196,9 @@
   "item.mega_showdown.burndrive": "블레이즈 카세트",
   "item.mega_showdown.chilldrive": "프리즈 카세트",
   "item.mega_showdown.adamantorb": "금강옥",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
-
   "block.mega_showdown.mega_meteorid_dawn_ore": "메가운석 각성의돌 광석",
   "block.mega_showdown.mega_meteorid_dusk_ore": "메가운석 어둠의돌 광석",
   "block.mega_showdown.mega_meteorid_fire_ore": "메가운석 불의돌 광석",
@@ -221,20 +209,15 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "메가운석 태양의돌 광석",
   "block.mega_showdown.mega_meteorid_thunder_ore": "메가운석 천둥의돌 광석",
   "block.mega_showdown.mega_meteorid_water_ore": "메가운석 물의돌 광석",
-
   "key.mega_showdown.mega_evo": "메가진화",
   "key.mega_showdown.ultra_key": "울트라 트랜스폼",
   "key.categories.mega_showdown": "Mega Showdown",
-
   "trinkets.slot.hand.evowear": "메가진화 장비",
   "curios.identifier.evowear": "메가진화 장비",
-
   "trinkets.slot.hand.z_slot": "Z 파워 장비",
   "curios.identifier.z_slot": "Z 파워 장비",
-
   "trinkets.slot.hand.tera_slot": "테라스탈 장비",
   "curios.identifier.tera_slot": "테라스탈 장비",
-
   "advancement.mega_showdown.root.title": "Showdown Time",
   "advancement.mega_showdown.mega_evolve.title": "짐승",
   "advancement.mega_showdown.find_mega_stone.title": "진화하는 존재들",
@@ -254,7 +237,6 @@
   "advancement.mega_showdown.z_moves.title": "Z파워를 해방하라!",
   "advancement.mega_showdown.find_prison_bottle.title": "신비한 병?",
   "advancement.mega_showdown.prison_escape.title": "해방!!",
-
   "advancement.mega_showdown.root.description": "대결의 세계",
   "advancement.mega_showdown.mega_evolve.description": "포켓몬을 메가진화시키세요",
   "advancement.mega_showdown.find_mega_stone.description": "메가스톤을 획득하세요",
@@ -274,7 +256,6 @@
   "advancement.mega_showdown.z_moves.description": "Z-기술로 파워 업하세요!",
   "advancement.mega_showdown.find_prison_bottle.description": "굴레의항아리를 찾으세요",
   "advancement.mega_showdown.prison_escape.description": "후파를 해방시키세요",
-
   "item.mega_showdown.aloraichium-z": "알로라이Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "알로라 라이츄와 관련된 Z-크리스탈을 사용하면 10만볼트를 특수 Z 기술인 라이트닝서프라이드로 업그레이드할 수 있습니다.",
   "item.mega_showdown.blank-z": "빈Z",
@@ -351,7 +332,6 @@
   "tooltip.mega_showdown.z-ring.tooltip": "포켓몬이 Z 파워를 시용하게해주는 신비한 팔찌. 장비하면 Z 크리스탈을 가진 포켓몬이 배틀 중 한 번만 전력의 큰 기술을 사용하게 된다.",
   "item.mega_showdown.tera_orb": "테라스탈 오브",
   "tooltip.mega_showdown.tera_item.tooltip": "장비하면 포켓몬을 테라스탈화할 수 있는 결정의 힘을 담고 있는 오브. 테라스탈을 사용하면 배틀 중 한 개의 특정 타입으로 변화하고 또한 그 타입의 기술의 위력이 올라간다.",
-
   "item.mega_showdown.bug_tera_shard": "테라피스 벌레",
   "item.mega_showdown.dark_tera_shard": "테라피스 악",
   "item.mega_showdown.dragon_tera_shard": "테라피스 드래곤",
@@ -371,7 +351,6 @@
   "item.mega_showdown.steel_tera_shard": "테라피스 강철",
   "item.mega_showdown.stellar_tera_shard": "테라피스 스텔라",
   "item.mega_showdown.water_tera_shard": "테라피스 물",
-
   "item.mega_showdown.n_lunarizer": "N 루나라이저",
   "item.mega_showdown.n_lunarizer.inactive": "N 루나라이저 (비활성)",
   "item.mega_showdown.n_lunarizer.charged": "N 루나라이저 (활성화됨)",
@@ -388,7 +367,6 @@
   "item.mega_showdown.reins_of_unity.inactive": "유대의고삐 (비활성)",
   "item.mega_showdown.reins_of_unity.charged": "유대의고삐 (활성화됨)",
   "tooltip.mega_showdown.reins_of_unity.tooltip": "레이스포스/블리자포스를 신비한 존재와 융합하는 데 사용됩니다.",
-
   "item.mega_showdown.z-ring_black": "검은색 Z-링",
   "item.mega_showdown.z-power_ring": "Z-파워링",
   "item.mega_showdown.may_bracelet": "봄이의 버클렛",
@@ -400,14 +378,12 @@
   "tooltip.mega_showdown.prison_bottle.tooltip": "먼 옛날 어떤 포켓몬의 힘을 봉인했다고 여겨지는 항아리.",
   "item.mega_showdown.gracidea_flower": "그라시데아꽃",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "생일이나 기념일 등에 감사의 마음을 전하기 위해 부케로 만들어 보내는 일이 있다.",
-
   "item.mega_showdown.cornerstone_mask": "주춧돌의가면",
   "tooltip.mega_showdown.cornerstone_mask.tooltip": "결정이 장식되어 있는 목각 가면. 오거폰에게 지니게 하면 바위타입을 두르고 싸울 수 있다.",
   "item.mega_showdown.wellspring_mask": "우물의가면",
   "tooltip.mega_showdown.wellspring_mask.tooltip": "결정이 장식되어 있는 목각 가면. 오거폰에게 지니게 하면 물타입을 두르고 싸울 수 있다.",
   "item.mega_showdown.hearthflame_mask": "화덕의가면",
   "tooltip.mega_showdown.hearthflame_mask.tooltip": "결정이 장식되어 있는 목각 가면. 오거폰에게 지니게 하면 불꽃타입을 두르고 싸울 수 있다.",
-
   "item.mega_showdown.scroll_of_darkness": "악의 족자",
   "tooltip.mega_showdown.scroll_of_darkness.tooltip": "악의 지식으로 가득 찬 고대 두루마리. 특정 포켓몬에게 악의 정수를 부여합니다.",
   "item.mega_showdown.scroll_of_waters": "물의 족자",

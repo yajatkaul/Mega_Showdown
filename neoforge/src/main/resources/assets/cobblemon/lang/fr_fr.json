@@ -47,7 +47,6 @@
   "cobblemon.species.garchomp-mega.desc": "L'excès d'énergie a fondu ses bras et ses ailes, les transformant en faux géantes.",
   "cobblemon.species.lopunny-mega.desc": "Il balance ses oreilles comme des fouets et frappe ses ennemis avec. Il a un tempérament intensément combatif.",
   "cobblemon.species.lucario-mega.desc": "Baigné dans une énergie explosive, ses instincts combatifs se sont réveillés. Pour ses ennemis, il n'a aucune pitié.",
-  
   "cobblemon.ui.pokedex.info.form.mega": "Méga",
   "cobblemon.ui.pokedex.info.form.mega-x": "Méga X",
   "cobblemon.ui.pokedex.info.form.mega-y": "Méga Y",
@@ -135,7 +134,6 @@
   "cobblemon.ui.pokedex.info.form.ice": "Glace",
   "cobblemon.ui.pokedex.info.form.shadow": "Obscur",
   "cobblemon.ui.pokedex.info.form.eternamax": "Infinimax",
-  
   "cobblemon.battle.weather.desolateland.start": "La lumière du soleil est devenue extrêmement intense !",
   "cobblemon.battle.weather.desolateland": "La lumière du soleil est extrêmement intense !",
   "cobblemon.battle.weather.desolateland.end": "La lumière intense du soleil s'est dissipée.",
@@ -147,7 +145,6 @@
   "cobblemon.battle.fieldactivate.deltastream": "Les vents violents protègent les Pokémon de type Vol !",
   "cobblemon.battle.weather.deltastream.upkeep": "Les vents violents continuent de protéger les Pokémon de type Vol !",
   "cobblemon.battle.weather.deltastream.end": "Les vents violents ne soufflent plus!",
-
   "cobblemon.move.zswordsdance": "Z Danse-Lames",
   "cobblemon.move.zswordsdance.desc": "Réinitialise les stats réduites de l'utilisateur.",
   "cobblemon.move.zwhirlwind": "Z Cyclone",
@@ -626,14 +623,10 @@
   "cobblemon.move.zauroraveil.desc": "Augmente la Vitesse de 1 niveau.",
   "cobblemon.move.ztearfullook": "Z Regard Touchant",
   "cobblemon.move.ztearfullook.desc": "Augmente la Défense de 1 niveau.",
-  
-  
   "cobblemon.battle.formechange.default.temporary.end": "%1$s est revenu à son état initial !",
   "cobblemon.battle.activate.battlebond": "Les stats de %1$s ont augmenté !",
-  
   "cobblemon.battle.activate.protosynthesis": "L'Énergie Booster a activé la Paléosynthèse de %1$s !",
   "cobblemon.battle.activate.quarkdrive": "L'Énergie Booster a activé la Charge Quantique de %1$s !",
-  
   "cobblemon.battle.start.protosynthesisatk": "L'Attaque de %1$s a augmenté !",
   "cobblemon.battle.start.protosynthesisdef": "La Défense de %1$s a augmenté !",
   "cobblemon.battle.start.protosynthesisspa": "L'Attaque Spéciale de %1$s a augmenté !",
@@ -644,9 +637,7 @@
   "cobblemon.battle.start.quarkdrivespa": "L'Attaque Spéciale de %1$s a augmenté !",
   "cobblemon.battle.start.quarkdrivespd": "La Défense Spéciale de %1$s a augmenté !",
   "cobblemon.battle.start.quarkdrivespe": "La Vitesse de %1$s a augmenté !",
-  
   "cobblemon.battle.damage.gulpmissile": "%1$s a lancé Embrochet sur l'adversaire",
-  
   "cobblemon.battle.activate.gmaxcentiferno": "%1$s est devenu prisonnier du tourbillon de feu !",
   "cobblemon.battle.start.gmaxchistrike": "%1$s s'est concentré intensément !",
   "cobblemon.battle.sidestart.gmaxvinelash": "Des lianes ont été placées sur le champ de bataille autour de %1$s !",
@@ -666,18 +657,14 @@
   "cobblemon.battle.damage.gmaxcentiferno": "%1$s est blessé par le tourbillon de feu !",
   "cobblemon.battle.damage.gmaxcannonade": "%1$s est blessé par le tourbillon !",
   "cobblemon.battle.item.gmaxreplenish": "%1$s a reconstitué son %2$s !",
-  
   "cobblemon.battle.ultra": "%1$s a récupéré son véritable pouvoir grâce à l'Ultra-Explosion !",
-  
   "cobblemon.ui.stats.dynamax_level": "Niveau Dynamax",
   "cobblemon.ui.stats.gmax": "G-Max",
   "cobblemon.ui.stats.dmax": "D-Max",
- 
   "cobblemon.pokedex.minior-meteor.desc": "À l'origine, il vivait dans la couche d'ozone. Il s'écrase au sol lorsque la coquille entourant son corps devient trop lourde.",
   "cobblemon.pokedex.minior.desc": "Il se nourrit de poussières présentes dans l'atmosphère. La composition de cette poussière détermine la couleur de son noyau.",
   "cobblemon.ui.pokedex.info.form.meteor": "Météore",
   "cobblemon.battle.activate.powerconstruct": "Vous avez ressenti la présence de nombreuses entités",
-  
   "cobblemon.ui.pokedex.info.form.attack": "Attaque",
   "cobblemon.ui.pokedex.info.form.defense": "Défense",
   "cobblemon.ui.pokedex.info.form.speed": "Vitesse",
@@ -686,25 +673,19 @@
   "cobblemon.ui.pokedex.info.form.wash": "Lavage",
   "cobblemon.ui.pokedex.info.form.frost": "Froid",
   "cobblemon.ui.pokedex.info.form.fan": "Hélice",
-    
   "cobblemon.species.deoxys-attack.desc": "Ce Deoxys a adopté une forme agressive. Il peut tromper ses ennemis en modifiant son apparence.",
   "cobblemon.species.deoxys-defense.desc": "Lorsqu’il change de forme, une aurore apparaît. Il absorbe les attaques en modifiant sa structure cellulaire.",
   "cobblemon.species.deoxys-speed.desc": "Un Pokémon issu d’un virus extraterrestre exposé à un rayon laser. Son corps est conçu pour une agilité et une vitesse supérieures.",
-  
   "cobblemon.species.hoopa-unbound.desc": "On dit qu’il peut saisir tout ce qu’il désire grâce à ses six anneaux et six énormes bras. Une fois son pouvoir scellé, il prend une forme bien plus petite.",
-  
   "cobblemon.species.rotom-heat.desc": "Une forme dans laquelle Motisma hante un étrange four. L’origine du four est inconnue. Un Pokémon agaçant qui cause des ennuis en crachant des flammes.",
   "cobblemon.species.rotom-wash.desc": "Une forme dans laquelle Motisma hante une étrange machine à laver. L’utilité exacte de cette machine est inconnue. Un Pokémon agaçant qui cause des ennuis en éclaboussant tout de son eau glacée.",
   "cobblemon.species.rotom-frost.desc": "Une forme dans laquelle Motisma hante un réfrigérateur bizarre. Sa composition reste inconnue. Un Pokémon agaçant qui cause des ennuis en gelant tout sur son passage.",
   "cobblemon.species.rotom-fan.desc": "Une forme dans laquelle Motisma hante un étrange ventilateur. Sa finalité est mystérieuse. Un Pokémon agaçant qui provoque des vents puissants.",
   "cobblemon.species.rotom-mow.desc": "Une forme dans laquelle Motisma hante une tondeuse difforme. Ses mécanismes sont bizarres. Un Pokémon agaçant qui tond l’herbe et les arbres.",
-  
   "cobblemon.species.necrozma-duskmane.desc": "Necrozma s’est greffé à Solgaleo. Il aspire l’énergie illimitée de son hôte pour se lancer dans une frénésie destructrice.",
   "cobblemon.species.necrozma-dawnwings.desc": "Lorsque Necrozma s’attache à Lunala, il devient féroce et voit des ennemis partout. Il menace de brûler le monde avec ses lasers.",
-  
   "cobblemon.species.calyrex-ice.desc": "On raconte que ce Pokémon a déjà déplacé toute une grande forêt, avec tous les Pokémon qui y vivaient, en une seule nuit.",
   "cobblemon.species.calyrex-shadow.desc": "La légende dit qu’en utilisant son pouvoir de voir tous les événements du passé au futur, ce Pokémon a sauvé les créatures d’une forêt d’une chute de météorite.",
-  
   "cobblemon.species.kyurem-white.desc": "Il a eu la vision d’un monde empli de vérité pour les humains et les Pokémon. Il lutte pour protéger ce futur.",
   "cobblemon.species.kyurem-black.desc": "La similarité génétique entre Kyurem et Zekrom a permis à Kyurem d’absorber ce dernier. Il peut désormais utiliser la puissance de l’électricité et de la glace."
 }

@@ -1,36 +1,36 @@
 {
-    "enabled": true,
-    "neededInstalledMods": [],
-    "neededUninstalledMods": [],
-    "spawns": [
-        {
-            "id": "burmy-1",
-            "pokemon": "burmy bagworm_cloak=trash",
-            "type": "pokemon",
-            "context": "grounded",
-            "bucket": "common",
-            "level": "7-19",
-            "weight": 15.0,
-            "condition": {
-                "biomes": [
-                    "biomesoplenty:jacaranda_glade",
-                    "biomesoplenty:maple_woods"
-                ]
-            }
-        },
-        {
-            "id": "burmy-2",
-            "pokemon": "burmy bagworm_cloak=trash",
-            "type": "pokemon",
-            "context": "grounded",
-            "bucket": "common",
-            "level": "5-19",
-            "weight": 2,
-            "condition": {
-                "biomes": [
-                    "#cobblemon:is_floral"
-                ]
-            }
-        }
-    ]
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "burmy-1",
+      "pokemon": "burmy bagworm_cloak=trash",
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "common",
+      "level": "7-19",
+      "weight": 15.0,
+      "condition": {
+        "biomes": [
+          "biomesoplenty:jacaranda_glade",
+          "biomesoplenty:maple_woods"
+        ]
+      }
+    },
+    {
+      "id": "burmy-2",
+      "pokemon": "burmy bagworm_cloak=trash",
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "common",
+      "level": "5-19",
+      "weight": 2,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_floral"
+        ]
+      }
+    }
+  ]
 }

@@ -2,34 +2,60 @@
   "head": "head",
   "portraitScale": 1.5,
   "head": "neck",
-  "portraitTranslation": [0, 2.3, 0],
+  "portraitTranslation": [
+    0,
+    2.3,
+    0
+  ],
   "profileScale": 0.5,
-	"profileTranslation": [0, 1.1, 0],
- "animations": {
-"physical": "q.bedrock_primary('enamorus', 'physical_attack', q.curve('symmetrical_wide'))"
-},
+  "profileTranslation": [
+    0,
+    1.1,
+    0
+  ],
+  "animations": {
+    "physical": "q.bedrock_primary('enamorus', 'physical_attack', q.curve('symmetrical_wide'))"
+  },
   "poses": {
     "standing": {
       "poseName": "standing",
       "transformTicks": 10,
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
-      "animations": ["look", "bedrock(enamorus, ground_idle)"],
+      "animations": [
+        "look",
+        "bedrock(enamorus, ground_idle)"
+      ],
       "quirks": []
     },
     "walking": {
       "poseName": "walking",
       "transformTicks": 10,
-      "poseTypes": ["WALK"],
-      "animations": ["look", "bedrock(enamorus, ground_walk)"],
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "look",
+        "bedrock(enamorus, ground_walk)"
+      ],
       "quirks": []
     },
     "battle-idle": {
       "poseName": "battle-idle",
       "transformTicks": 10,
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
-      "animations": ["look", "bedrock(enamorus, ground_idle)"],
+      "animations": [
+        "look",
+        "bedrock(enamorus, ground_idle)"
+      ],
       "quirks": []
     }
   }

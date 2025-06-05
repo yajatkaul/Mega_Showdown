@@ -1,8 +1,16 @@
 {
   "portraitScale": 2.3,
-  "portraitTranslation": [-0.6, 5.0, 0],
+  "portraitTranslation": [
+    -0.6,
+    5.0,
+    0
+  ],
   "profileScale": 0.4,
-  "profileTranslation": [0, 1.1, 0],
+  "profileTranslation": [
+    0,
+    1.1,
+    0
+  ],
   "animations": {
     "recoil": "q.bedrock_stateful('melmetal', 'recoil')",
     "physical": "q.bedrock_primary('melmetal', 'physical', q.curve('symmetrical_wide'))",
@@ -11,7 +19,10 @@
   },
   "poses": {
     "battle-standing": {
-      "poseTypes": ["STAND", "WALK"],
+      "poseTypes": [
+        "STAND",
+        "WALK"
+      ],
       "isBattle": true,
       "animations": [
         "q.look('head')",
@@ -22,7 +33,12 @@
       ]
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('head')",
@@ -33,26 +49,36 @@
       ]
     },
     "walking": {
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "animations": [
         "q.bedrock('melmetal', 'ground_walk')"
       ]
     },
     "float": {
-      "poseTypes": ["FLOAT"],
+      "poseTypes": [
+        "FLOAT"
+      ],
       "animations": [
         "q.bedrock('melmetal', 'ground_walk')"
       ]
     },
     "swim": {
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.bedrock('melmetal', 'ground_walk')"
       ]
     },
     "sleep": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('melmetal', 'sleep')"]
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('melmetal', 'sleep')"
+      ]
     }
   }
 }

@@ -6,7 +6,9 @@
     {
       "id": "banette-1",
       "pokemon": "banette",
-      "presets": ["natural"],
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "uncommon",
@@ -14,7 +16,10 @@
       "weight": 7.0,
       "condition": {
         "canSeeSky": false,
-        "biomes": ["#cobblemon:is_deep_dark","#cobblemon:is_spooky"]
+        "biomes": [
+          "#cobblemon:is_deep_dark",
+          "#cobblemon:is_spooky"
+        ]
       }
     }
   ]

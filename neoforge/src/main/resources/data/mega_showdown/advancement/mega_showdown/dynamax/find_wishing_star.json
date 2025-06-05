@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_wishing_star"]],
+  "requirements": [
+    [
+      "obtained_wishing_star"
+    ]
+  ],
   "sends_telemetry_event": false
 }

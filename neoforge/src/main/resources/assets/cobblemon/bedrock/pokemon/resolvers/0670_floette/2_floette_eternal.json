@@ -3,7 +3,9 @@
   "order": 2,
   "variations": [
     {
-      "aspects": [ "flower-eternal" ],
+      "aspects": [
+        "flower-eternal"
+      ],
       "poser": "cobblemon:floette_eternal",
       "model": "cobblemon:floette_eternal.geo",
       "texture": "cobblemon:textures/pokemon/0670_floette/floette_eternal.png",
@@ -14,7 +16,10 @@
       ]
     },
     {
-      "aspects": [ "flower-eternal", "shiny" ],
+      "aspects": [
+        "flower-eternal",
+        "shiny"
+      ],
       "poser": "cobblemon:floette_eternal",
       "model": "cobblemon:floette_eternal.geo",
       "texture": "cobblemon:textures/pokemon/0670_floette/floette_eternal_shiny.png",

@@ -10,16 +10,23 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0362_glalie/glalie_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:glalie_mega.geo",
       "texture": "cobblemon:textures/pokemon/0362_glalie/megaglalie.png"
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:glalie_mega.geo",
       "texture": "cobblemon:textures/pokemon/0362_glalie/megaglalie_shiny.png"
     }

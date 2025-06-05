@@ -3,7 +3,9 @@
   "order": 3,
   "variations": [
     {
-      "aspects": ["defense-forme"],
+      "aspects": [
+        "defense-forme"
+      ],
       "poser": "cobblemon:deoxys_defense",
       "model": "cobblemon:deoxys_defense.geo",
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_defense.png",
@@ -17,7 +19,10 @@
       ]
     },
     {
-      "aspects": ["shiny","defense-forme"],
+      "aspects": [
+        "shiny",
+        "defense-forme"
+      ],
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_defense_shiny.png",
       "layers": [
         {
@@ -29,7 +34,10 @@
       ]
     },
     {
-      "aspects": ["defense-forme","green-color"],
+      "aspects": [
+        "defense-forme",
+        "green-color"
+      ],
       "poser": "cobblemon:deoxys_defense",
       "model": "cobblemon:deoxys_defense.geo",
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_defense_green_core.png",
@@ -43,7 +51,11 @@
       ]
     },
     {
-      "aspects": ["shiny","defense-forme","green-color"],
+      "aspects": [
+        "shiny",
+        "defense-forme",
+        "green-color"
+      ],
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_defense_green_core_shiny.png",
       "layers": [
         {

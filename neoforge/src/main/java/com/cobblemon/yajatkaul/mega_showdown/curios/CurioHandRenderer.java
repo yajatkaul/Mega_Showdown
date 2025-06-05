@@ -21,31 +21,45 @@ public class CurioHandRenderer implements ICurioRenderer {
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
             , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
-        HumanoidArm arm = HumanoidArm.RIGHT;
-        if (slotContext.entity().getMainArm() != HumanoidArm.RIGHT) {
-            arm = HumanoidArm.LEFT;
-        }
-        boolean bl = slotContext.entity().getMainArm() != arm; //false if only right hand
+        if (stack.isEmpty()) return;
 
-        if (!stack.isEmpty()) {
-            matrixStack.pushPose();
-            if (renderLayerParent.getModel().young) {
-                float m = 0.5F;
-                matrixStack.translate(0.0F, 0.75F, 0.0F);
-                matrixStack.scale(0.5F, 0.5F, 0.5F);
-            }
+        LivingEntity entity = slotContext.entity();
+        matrixStack.pushPose();
 
-            if (renderLayerParent.getModel() instanceof ArmedModel model) {
-                model.translateToHand(HumanoidArm.RIGHT, matrixStack);
-            }
+        // Determine which arm is the offhand
+        HumanoidArm mainhandArm = (entity.getMainArm() == HumanoidArm.LEFT) ? HumanoidArm.LEFT : HumanoidArm.RIGHT;
+
+        if (renderLayerParent.getModel() instanceof ArmedModel model) {
+            model.translateToHand(mainhandArm, matrixStack);
+
             matrixStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
             matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 
-            matrixStack.translate((float) (bl ? -1 : 1) / 16.0F, 0.125F, -0.625F);
-
-            Minecraft.getInstance().getItemRenderer().renderStatic(slotContext.entity(), stack, ItemDisplayContext.THIRD_PERSON_RIGHT_HAND
-                    , bl, matrixStack, renderTypeBuffer, slotContext.entity().level(), light, OverlayTexture.NO_OVERLAY, slotContext.entity().getId() + ItemDisplayContext.THIRD_PERSON_RIGHT_HAND.ordinal());
-            matrixStack.popPose();
+            if (mainhandArm == HumanoidArm.LEFT) {
+                matrixStack.translate(-1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+            } else {
+                matrixStack.translate(1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+            }
         }
+
+        // Use the correct display context based on which hand is the offhand
+        ItemDisplayContext context = (mainhandArm == HumanoidArm.RIGHT)
+                ? ItemDisplayContext.THIRD_PERSON_RIGHT_HAND
+                : ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+
+        Minecraft.getInstance().getItemRenderer().renderStatic(
+                entity,
+                stack,
+                context,
+                mainhandArm == HumanoidArm.RIGHT,
+                matrixStack,
+                renderTypeBuffer,
+                entity.level(),
+                light,
+                OverlayTexture.NO_OVERLAY,
+                0
+        );
+
+        matrixStack.popPose();
     }
 }

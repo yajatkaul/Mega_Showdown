@@ -1,4 +1,6 @@
 {
   "replace": false,
-  "values": ["#mega_showdown:z_rings"]
+  "values": [
+    "#mega_showdown:z_rings"
+  ]
 }

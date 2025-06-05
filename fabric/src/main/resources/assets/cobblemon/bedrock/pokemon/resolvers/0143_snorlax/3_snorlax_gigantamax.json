@@ -3,7 +3,9 @@
   "order": 3,
   "variations": [
     {
-      "aspects": ["gmax"],
+      "aspects": [
+        "gmax"
+      ],
       "poser": "cobblemon:snorlaxgmax",
       "model": "cobblemon:snorlax_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0143_snorlax/snorlax_gigantamax.png",
@@ -16,7 +18,10 @@
       ]
     },
     {
-      "aspects": ["gmax", "shiny"],
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0143_snorlax/snorlax_gigantamax_shiny.png",
       "layers": [
         {

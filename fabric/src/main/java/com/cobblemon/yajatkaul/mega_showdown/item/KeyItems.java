@@ -4,7 +4,6 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.LikosPendant;
 import net.minecraft.item.Item;
 
-
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;
 
 public class KeyItems {

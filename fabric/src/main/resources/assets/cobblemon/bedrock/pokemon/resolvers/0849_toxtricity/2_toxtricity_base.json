@@ -3,14 +3,19 @@
   "order": 2,
   "variations": [
     {
-      "aspects": ["low_key-form"],
+      "aspects": [
+        "low_key-form"
+      ],
       "poser": "cobblemon:toxtricityb",
       "model": "cobblemon:toxtricityb.geo",
       "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricityb.png",
       "layers": []
     },
     {
-      "aspects": [ "low_key-form", "shiny" ],
+      "aspects": [
+        "low_key-form",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricityb_shiny.png"
     }
   ]

@@ -10,7 +10,9 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "poser": "cobblemon:landorus",
       "model": "cobblemon:landorus.geo",
       "texture": "cobblemon:textures/pokemon/0645_landorus/landorus_shiny.png",

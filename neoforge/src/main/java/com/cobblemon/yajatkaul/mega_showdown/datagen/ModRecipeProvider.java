@@ -662,6 +662,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('D', Items.DIAMOND)
                 .define('W', Items.WHITE_WOOL)
                 .unlockedBy("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, KeyItems.LIKOS_PENDANT.get())
+                .pattern("S S")
+                .pattern(" D ")
+                .pattern("   ")
+                .define('D', ModBlocks.DORMANT_CRYSTAL)
+                .define('S', Items.STRING)
+                .unlockedBy("has_dormant_crystal", has(ModBlocks.DORMANT_CRYSTAL)).save(recipeOutput);
     }
 
 }

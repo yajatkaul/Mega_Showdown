@@ -6,14 +6,18 @@
     {
       "id": "glalie-1",
       "pokemon": "glalie",
-      "presets": ["natural"],
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "uncommon",
       "level": "42-55",
       "weight": 7.0,
       "condition": {
-        "biomes": ["#cobblemon:is_snowy"]
+        "biomes": [
+          "#cobblemon:is_snowy"
+        ]
       }
     }
   ]

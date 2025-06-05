@@ -1,19 +1,21 @@
 {
-	"species": "cobblemon:urshifu",
-	"order": 0,
-	"variations": [
-		{
-			"aspects": [],
-			"poser": "cobblemon:urshifu",
-			"model": "cobblemon:urshifu.geo",
-			"texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_single.png",
-			"layers": []
-		},
-		{
-			"aspects": [ "shiny" ],
-                        "poser": "cobblemon:urshifu",
-			"model": "cobblemon:urshifu.geo",
-			"texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_single_shiny.png"
-		}
-	]
+  "species": "cobblemon:urshifu",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:urshifu",
+      "model": "cobblemon:urshifu.geo",
+      "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_single.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "poser": "cobblemon:urshifu",
+      "model": "cobblemon:urshifu.geo",
+      "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_single_shiny.png"
+    }
+  ]
 }

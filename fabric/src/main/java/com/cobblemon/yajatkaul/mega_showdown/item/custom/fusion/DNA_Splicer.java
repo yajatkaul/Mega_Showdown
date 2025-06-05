@@ -2,7 +2,6 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -18,7 +17,6 @@ import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -184,11 +182,7 @@ public class DNA_Splicer extends Item {
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
             } else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
-                if (currentValue.getSpecies().getName().equals("Reshiram")) {
-                    fuseEffect(pk, false);
-                } else {
-                    fuseEffect(pk, true);
-                }
+                fuseEffect(pk, !currentValue.getSpecies().getName().equals("Reshiram"));
                 setTradable(pokemon, false);
 
                 pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));

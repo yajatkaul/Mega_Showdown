@@ -38,6 +38,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(MegaOres.MEGA_STONE_CRYSTAL.get(), block ->
                 createSingleItemTableWithSilkTouch(block, MegaStones.MEGA_STONE.get()));
 
+        dropSelf(ModBlocks.DORMANT_CRYSTAL.get());
         dropSelf(ModBlocks.MEGA_METEOROID_BLOCK.get());
         dropSelf(ModBlocks.MEGA_EVO_BLOCK.get());
         dropSelf(ModBlocks.KEYSTONE_BLOCK.get());

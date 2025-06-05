@@ -23,8 +23,7 @@
       "conditions": {
         "items": [
           {
-            "items": 
-            [
+            "items": [
               "mega_showdown:sparkling_stone_light",
               "mega_showdown:sparkling_stone_dark"
             ]
@@ -33,6 +32,10 @@
       }
     }
   },
-  "requirements": [["obtained_sparkling_stone"]],
+  "requirements": [
+    [
+      "obtained_sparkling_stone"
+    ]
+  ],
   "sends_telemetry_event": false
 }

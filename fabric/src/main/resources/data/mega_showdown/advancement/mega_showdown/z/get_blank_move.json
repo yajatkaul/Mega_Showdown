@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_blank_z"]],
+  "requirements": [
+    [
+      "obtained_blank_z"
+    ]
+  ],
   "sends_telemetry_event": false
 }

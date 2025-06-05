@@ -48,5 +48,10 @@
     "sounds": [
       "mega_showdown:arceus_multitype"
     ]
+  },
+  "terapagos_spawn": {
+    "sounds": [
+      "mega_showdown:terapagos_spawn"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-28T15:43:11.864205	Recipes
+// 1.21.1	2025-06-04T13:56:37.7776644	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -27,6 +27,7 @@ ff2b6577c78b8e40a650881d1cffa23fdafc8ef2 data/mega_showdown/advancement/recipes/
 f2e80378447f39916d8ee7ad38f036d6f02addcf data/mega_showdown/advancement/recipes/misc/keystone.json
 2d2a76785e79a7fb6210d9886b14536f38933934 data/mega_showdown/advancement/recipes/misc/keystone_block.json
 5c4003b1303f09f729c225e1a82de896cbf06111 data/mega_showdown/advancement/recipes/misc/korrina_glove.json
+f12471dba9d170f792359f5546e151a21c44e23b data/mega_showdown/advancement/recipes/misc/likos_pendant.json
 25360b1b89b0807ff19c4af27369fcb76dfaccc7 data/mega_showdown/advancement/recipes/misc/lisia_mega_tiara.json
 00ff0db2b6ad9cd3833f974f11efb532c189f515 data/mega_showdown/advancement/recipes/misc/lysandre_ring.json
 4f93ee3f25b24f8b675e051d3b59245670a30228 data/mega_showdown/advancement/recipes/misc/maxie_glasses.json
@@ -89,6 +90,7 @@ c9b6272e5101eb60a5cb07e5e97492cd753144b5 data/mega_showdown/recipe/furfrou_trim_
 e3a1a98134371a4807d19c8c3d85f22cb051f7e6 data/mega_showdown/recipe/keystone.json
 f0f98aef0586578f3adad3d7fdf32274495398cc data/mega_showdown/recipe/keystone_block.json
 78a6479617a6777d284ae1711990765f7e14cb47 data/mega_showdown/recipe/korrina_glove.json
+f01d9314a87359ae68973c4c78fa31d69abb6694 data/mega_showdown/recipe/likos_pendant.json
 3497782b1098cd35ad6ff0a93ed3f3ce98d5a3bc data/mega_showdown/recipe/lisia_mega_tiara.json
 7bf561163615f2ef16a7e866ec10b43548284377 data/mega_showdown/recipe/lysandre_ring.json
 c4492313967e35095d6881fd802843597dc65a66 data/mega_showdown/recipe/maxie_glasses.json

@@ -17,7 +17,9 @@
       ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrill_shiny.png",
       "layers": [
         {
@@ -29,7 +31,9 @@
       ]
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:beedrillmega.geo",
       "texture": "cobblemon:textures/pokemon/0015_beedrill/megabeedrill.png",
       "layers": [
@@ -42,7 +46,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:beedrillmega.geo",
       "texture": "cobblemon:textures/pokemon/0015_beedrill/megabeedrill_shiny.png",
       "layers": [

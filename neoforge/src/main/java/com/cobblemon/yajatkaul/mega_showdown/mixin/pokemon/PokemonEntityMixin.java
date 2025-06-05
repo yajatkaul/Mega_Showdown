@@ -34,12 +34,12 @@ public abstract class PokemonEntityMixin {
             at = @At("HEAD"),
             remap = true
     )
-    private void furfrouTick(CallbackInfo ci){
+    private void furfrouTick(CallbackInfo ci) {
         Pokemon pokemon = ((PokemonEntity) (Object) this).getPokemon();
 
-        if(pokemon.getPersistentData().getBoolean("trimmed")){
+        if (pokemon.getPersistentData().getBoolean("trimmed")) {
             pokemon.getPersistentData().putInt("trimmedTick", pokemon.getPersistentData().getInt("trimmedTick") + 1);
-            if(pokemon.getPersistentData().getInt("trimmedTick") >= 120000){
+            if (pokemon.getPersistentData().getInt("trimmedTick") >= 120000) {
                 new StringSpeciesFeature("poodle_trim", "natural").apply(pokemon);
                 pokemon.getPersistentData().putBoolean("trimmed", false);
             }

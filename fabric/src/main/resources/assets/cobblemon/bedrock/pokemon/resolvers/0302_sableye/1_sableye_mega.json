@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:sableye_mega",
       "model": "cobblemon:sableye_mega.geo",
       "texture": "cobblemon:textures/pokemon/0302_sableye/sableye_mega.png",
@@ -17,7 +19,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:sableye_mega",
       "model": "cobblemon:sableye_mega.geo",
       "texture": "cobblemon:textures/pokemon/0302_sableye/sableye_mega_shiny.png",

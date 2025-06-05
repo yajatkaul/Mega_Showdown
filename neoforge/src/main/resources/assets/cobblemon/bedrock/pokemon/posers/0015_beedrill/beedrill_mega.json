@@ -1,17 +1,30 @@
 {
   "portraitScale": 1.9,
-  "portraitTranslation": [0.05, 0.9, 0.0],
+  "portraitTranslation": [
+    0.05,
+    0.9,
+    0.0
+  ],
   "profileScale": 0.8,
-  "profileTranslation": [-0.1, 0.9, 0.0],
+  "profileTranslation": [
+    -0.1,
+    0.9,
+    0.0
+  ],
   "animations": {
     "cry": "q.bedrock_stateful('beedrill_mega', 'cry')",
-	"recoil": "q.bedrock_stateful('beedrill_mega', 'recoil', q.curve('one'))",
-	"physical": "q.bedrock_primary('beedrill_mega', 'attack', q.curve('symmetrical_wide'))",
-	"special": "q.bedrock_primary('beedrill_mega', 'attack', q.curve('symmetrical_wide'))"
+    "recoil": "q.bedrock_stateful('beedrill_mega', 'recoil', q.curve('one'))",
+    "physical": "q.bedrock_primary('beedrill_mega', 'attack', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('beedrill_mega', 'attack', q.curve('symmetrical_wide'))"
   },
   "poses": {
     "standing": {
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('head')",
@@ -19,7 +32,11 @@
       ]
     },
     "battle-standing": {
-      "poseTypes": ["STAND", "FLY", "WALK"],
+      "poseTypes": [
+        "STAND",
+        "FLY",
+        "WALK"
+      ],
       "isBattle": true,
       "animations": [
         "q.look('head')",
@@ -27,24 +44,32 @@
       ]
     },
     "flying": {
-      "poseTypes": ["FLY"],
+      "poseTypes": [
+        "FLY"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('head')",
         "q.bedrock('beedrill_mega', 'air_fly')"
       ]
-	},
+    },
     "walking": {
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('head')",
         "q.bedrock('beedrill_mega', 'air_fly')"
       ]
-	},
+    },
     "sleeping": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('beedrill_mega', 'sleep')"]
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('beedrill_mega', 'sleep')"
+      ]
     }
   }
 }

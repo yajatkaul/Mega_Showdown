@@ -3,28 +3,28 @@
     {
       "rolls": 1,
       "entries": [
-          {
-              "type": "minecraft:item",
-              "name": "mega_showdown:zygarde_cell",
-              "weight":1,
-              "functions": []
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:coal",
-            "weight":4,
-            "functions": []
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:egg",
-            "weight":4,
-            "functions": []
-          }
-      ]    
+        {
+          "type": "minecraft:item",
+          "name": "mega_showdown:zygarde_cell",
+          "weight": 1,
+          "functions": []
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal",
+          "weight": 4,
+          "functions": []
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:egg",
+          "weight": 4,
+          "functions": []
+        }
+      ]
     },
     {
-      "rolls":13,
+      "rolls": 13,
       "entries": [
         {
           "type": "minecraft:item",

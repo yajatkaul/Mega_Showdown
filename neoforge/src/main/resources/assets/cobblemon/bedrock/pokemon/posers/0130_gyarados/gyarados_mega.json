@@ -1,8 +1,16 @@
 {
   "portraitScale": 1.49,
-  "portraitTranslation": [-1.39,1.99,0],
+  "portraitTranslation": [
+    -1.39,
+    1.99,
+    0
+  ],
   "profileScale": 0.38,
-  "profileTranslation": [-0.15,1.18,-10],
+  "profileTranslation": [
+    -0.15,
+    1.18,
+    -10
+  ],
   "animations": {
     "cry": "q.bedrock_stateful('gyarados_mega', 'cry')"
   },
@@ -157,7 +165,11 @@
       "transformedParts": [
         {
           "part": "body",
-          "position": [0, 9, 0]
+          "position": [
+            0,
+            9,
+            0
+          ]
         }
       ]
     }

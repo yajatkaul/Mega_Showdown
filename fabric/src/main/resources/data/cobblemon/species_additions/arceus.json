@@ -1,7 +1,7 @@
 {
   "implemented": true,
   "target": "cobblemon:arceus",
-  "baseScale":1,
+  "baseScale": 1,
   "behaviour": {
     "moving": {
       "canLook": true,

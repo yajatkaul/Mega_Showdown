@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.sound;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -19,6 +18,7 @@ public class ModSounds {
     public static final SoundEvent GIRATINIA_FORM = registerSoundEvent("giratina");
     public static final SoundEvent KYUREM_FUSION = registerSoundEvent("kyurem_fusion");
     public static final SoundEvent ARCEUS_MULTITYPE = registerSoundEvent("arceus_multitype");
+    public static final SoundEvent TERAPAGOS_SPAWN = registerSoundEvent("terapagos_spawn");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(MegaShowdown.MOD_ID, name);

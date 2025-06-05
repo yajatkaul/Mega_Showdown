@@ -1,4 +1,8 @@
 {
-  "pokemon": ["zygarde"],
-  "features": ["complete-percent"]
+  "pokemon": [
+    "zygarde"
+  ],
+  "features": [
+    "complete-percent"
+  ]
 }

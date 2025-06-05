@@ -10,7 +10,9 @@
       "layers": []
     },
     {
-      "aspects": [ "shiny" ],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricitya_shiny.png"
     }
   ]

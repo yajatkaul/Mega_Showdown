@@ -3,12 +3,17 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:salamencemega.geo",
       "texture": "cobblemon:textures/pokemon/0373_salamence/salamence_mega.png"
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:salamencemega.geo",
       "texture": "cobblemon:textures/pokemon/0373_salamence/salamence_mega_shiny.png"
     }

@@ -1,21 +1,21 @@
 {
-	"parent": "minecraft:item/generated",
-	"loader": "neoforge:separate_transforms",
-	"base": {
-		"parent": "mega_showdown:item/archie_anchor_2d"
-	},
-	"perspectives": {
-		"head": {
-			"parent": "mega_showdown:item/archie_anchor_3d"
-		},
-		"gui": {
-			"parent": "mega_showdown:item/archie_anchor_2d"
-		},
-		"ground": {
-			"parent": "mega_showdown:item/archie_anchor_3d"
-		},
-		"fixed": {
-			"parent": "mega_showdown:item/archie_anchor_3d"
-		}
-	}
+  "parent": "minecraft:item/generated",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "mega_showdown:item/archie_anchor_2d"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "mega_showdown:item/archie_anchor_3d"
+    },
+    "gui": {
+      "parent": "mega_showdown:item/archie_anchor_2d"
+    },
+    "ground": {
+      "parent": "mega_showdown:item/archie_anchor_3d"
+    },
+    "fixed": {
+      "parent": "mega_showdown:item/archie_anchor_3d"
+    }
+  }
 }

@@ -1,8 +1,16 @@
 {
   "portraitScale": 1.47,
-  "portraitTranslation": [-1.36, 1.96, 0],
+  "portraitTranslation": [
+    -1.36,
+    1.96,
+    0
+  ],
   "profileScale": 0.4,
-  "profileTranslation": [0, 1.2, 0],
+  "profileTranslation": [
+    0,
+    1.2,
+    0
+  ],
   "animations": {
     "faint": "q.bedrock_primary('zacian_crown', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('zacian_crown', 'cry')",
@@ -12,10 +20,12 @@
   },
   "poses": {
     "battle-standing": {
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
       "animations": [
-       "q.look('head', 1, 1, 45, -45, 70, -70)",
+        "q.look('head', 1, 1, 45, -45, 70, -70)",
         "q.bedrock('zacian_crown', 'battle_idle')"
       ],
       "quirks": [
@@ -23,10 +33,15 @@
       ]
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
-       "q.look('head', 1, 1, 45, -2.5, 7.5, -7.5)",
+        "q.look('head', 1, 1, 45, -2.5, 7.5, -7.5)",
         "q.bedrock('zacian_crown', 'ground_idle')"
       ],
       "quirks": [
@@ -34,9 +49,11 @@
       ]
     },
     "walking": {
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "animations": [
-       "q.look('head', 1, 1, 45, -2.5, 7.5, -7.5)",
+        "q.look('head', 1, 1, 45, -2.5, 7.5, -7.5)",
         "q.bedrock('zacian_crown', 'ground_walk')"
       ],
       "quirks": [
@@ -44,7 +61,9 @@
       ]
     },
     "float": {
-      "poseTypes": ["FLOAT"],
+      "poseTypes": [
+        "FLOAT"
+      ],
       "animations": [
         "q.bedrock('zacian_crown', 'ground_idle')"
       ],
@@ -53,7 +72,9 @@
       ]
     },
     "swim": {
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.bedrock('zacian_crown', 'ground_walk')"
       ],

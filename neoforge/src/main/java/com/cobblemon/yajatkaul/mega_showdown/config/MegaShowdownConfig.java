@@ -11,7 +11,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class MegaShowdownConfig {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-
+    public static final ModConfigSpec SPEC = BUILDER.build();
     private static final ModConfigSpec.BooleanValue MULTIPLE_MEGAS = BUILDER
             .comment("Enable multiple megas at one time")
             .define("multipleMegas", false);
@@ -77,8 +77,6 @@ public class MegaShowdownConfig {
     public static int dynamaxScaleFactor;
     public static boolean showdownFilesLoading;
     public static boolean revertMegas;
-
-    public static final ModConfigSpec SPEC = BUILDER.build();
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {

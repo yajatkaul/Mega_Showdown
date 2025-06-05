@@ -3,11 +3,15 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["female"],
+      "aspects": [
+        "female"
+      ],
       "model": "cobblemon:blaziken_female.geo"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:blaziken_mega.geo",
       "texture": "cobblemon:textures/pokemon/0257_blaziken/megablaziken.png",
       "layers": [
@@ -20,7 +24,10 @@
       ]
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:blaziken_mega.geo",
       "texture": "cobblemon:textures/pokemon/0257_blaziken/megablaziken_shiny.png",
       "layers": [

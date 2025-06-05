@@ -22,7 +22,6 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memory;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
-import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
@@ -421,14 +420,14 @@ public class HeldItemChangeFormes {
     private static void originAnimation(PokemonEntity context, boolean enabled) {
         BlockPos entityPos = context.getOnPos();
 
-        if(context.getPokemon().getSpecies().getName().equals("Giratina")){
+        if (context.getPokemon().getSpecies().getName().equals("Giratina")) {
             context.level().playSound(
                     null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                     ModSounds.GIRATINIA_FORM.get(),
                     SoundSource.PLAYERS, 0.2f, 1.1f
             );
 
-            LazyLib.Companion.snowStormPartileSpawner(context,"origin_g_effect", "target");
+            LazyLib.Companion.snowStormPartileSpawner(context, "origin_g_effect", "target");
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(3.8F, () -> {
@@ -441,7 +440,7 @@ public class HeldItemChangeFormes {
                 LazyLib.Companion.cryAnimation(context);
                 return Unit.INSTANCE;
             });
-        }else{
+        } else {
             context.level().playSound(
                     null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                     ModSounds.ORIGIN_FORM.get(),

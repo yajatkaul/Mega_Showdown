@@ -190,11 +190,7 @@ public class DNA_Splicer extends Item {
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
             } else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
-                if (currentValue.getSpecies().getName().equals("Reshiram")) {
-                    fuseEffect(pk, false);
-                } else {
-                    fuseEffect(pk, true);
-                }
+                fuseEffect(pk, !currentValue.getSpecies().getName().equals("Reshiram"));
                 setTradable(pokemon, false);
 
                 pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));

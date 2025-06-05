@@ -10,7 +10,9 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0421_cherrim/cherrim_overcast_shiny.png"
     }
   ]

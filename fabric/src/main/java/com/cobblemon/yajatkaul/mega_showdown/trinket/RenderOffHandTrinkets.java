@@ -18,32 +18,54 @@ public class RenderOffHandTrinkets implements TrinketRenderer {
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
-        Arm arm = Arm.RIGHT;
-        if (entity.getMainArm() != Arm.RIGHT) {
-            arm = Arm.LEFT;
+        if (stack.isEmpty()) return;
+
+        // Determine which arm is the offhand (opposite of main hand)
+        Arm offhandArm = (entity.getMainArm() == Arm.RIGHT) ? Arm.LEFT : Arm.RIGHT;
+
+        matrices.push();
+
+        // Handle child model scaling
+        if (contextModel.child) {
+            matrices.translate(0.0F, 0.75F, 0.0F);
+            matrices.scale(0.5F, 0.5F, 0.5F);
         }
 
-        boolean bl = entity.getMainArm() == arm; //false if only right hand
-        if (!stack.isEmpty()) {
-            matrices.push();
-            if (contextModel.child) {
-                float m = 0.5F;
-                matrices.translate(0.0F, 0.75F, 0.0F);
-                matrices.scale(0.5F, 0.5F, 0.5F);
-            }
-
-            if (contextModel instanceof BipedEntityModel model) {
+        // Rotate to the offhand arm position
+        if (contextModel instanceof BipedEntityModel model) {
+            if (offhandArm == Arm.LEFT) {
                 model.leftArm.rotate(matrices);
+            } else {
+                model.rightArm.rotate(matrices);
             }
-
-            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-90.0F));
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
-
-            matrices.translate((float) (bl ? -1 : 1) / 16.0F, 0.125F, -0.625F);
-
-            MinecraftClient.getInstance().getItemRenderer().renderItem(entity, stack, ModelTransformationMode.THIRD_PERSON_LEFT_HAND
-                    , bl, matrices, vertexConsumers, entity.getWorld(), light, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformationMode.THIRD_PERSON_LEFT_HAND.ordinal());
-            matrices.pop();
         }
+
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-90.0F));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
+        if (offhandArm == Arm.RIGHT) {
+            matrices.translate(1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+        } else {
+            matrices.translate(-1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+        }
+
+        // Use the correct display context based on which hand is the offhand
+        ModelTransformationMode context = (offhandArm == Arm.LEFT)
+                ? ModelTransformationMode.THIRD_PERSON_LEFT_HAND
+                : ModelTransformationMode.THIRD_PERSON_RIGHT_HAND;
+
+        MinecraftClient.getInstance().getItemRenderer().renderItem(
+                entity,
+                stack,
+                context,
+                offhandArm == Arm.LEFT,
+                matrices,
+                vertexConsumers,
+                entity.getWorld(),
+                light,
+                OverlayTexture.DEFAULT_UV,
+                entity.getId() + context.ordinal()
+        );
+
+        matrices.pop();
     }
 }

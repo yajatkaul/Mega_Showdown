@@ -8,15 +8,17 @@
       "model": "cobblemon:marshadow.geo",
       "texture": "cobblemon:textures/pokemon/0802_marshadow/marshadow.png",
       "layers": [
-	  {
-			"name": "glow",
-			"texture": "cobblemon:textures/pokemon/0802_marshadow/marshadow_emissive.png",
-			"emissive": true
-	  }
-	  ]
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0802_marshadow/marshadow_emissive.png",
+          "emissive": true
+        }
+      ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0802_marshadow/marshadow_shiny.png"
     }
   ]

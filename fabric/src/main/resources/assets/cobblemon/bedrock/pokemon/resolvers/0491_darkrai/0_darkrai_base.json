@@ -9,7 +9,9 @@
       "texture": "cobblemon:textures/pokemon/0491_darkrai/darkrai.png"
     },
     {
-      "aspects": [ "shiny" ],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0491_darkrai/darkrai_shiny.png"
     }
   ]

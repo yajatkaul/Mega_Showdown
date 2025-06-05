@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_mega_stones"]],
+  "requirements": [
+    [
+      "obtained_mega_stones"
+    ]
+  ],
   "sends_telemetry_event": false
 }

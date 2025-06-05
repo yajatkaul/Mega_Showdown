@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "mega_showdown:dormant_crystal"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "S S",
+    " D ",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:likos_pendant"
+  }
+}

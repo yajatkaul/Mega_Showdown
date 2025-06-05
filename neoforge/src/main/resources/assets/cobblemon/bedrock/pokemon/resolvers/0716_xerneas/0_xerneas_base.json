@@ -10,18 +10,25 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0716_xerneas/xerneas_shiny.png"
     },
     {
-      "aspects": ["neutral-mode"],
+      "aspects": [
+        "neutral-mode"
+      ],
       "poser": "cobblemon:xerneas",
       "model": "cobblemon:xerneas_neutral.geo",
       "texture": "cobblemon:textures/pokemon/0716_xerneas/xerneas_neutral.png",
       "layers": []
     },
     {
-      "aspects": ["shiny", "neutral-mode"],
+      "aspects": [
+        "shiny",
+        "neutral-mode"
+      ],
       "texture": "cobblemon:textures/pokemon/0716_xerneas/xerneas_neutral_shiny.png"
     }
   ]

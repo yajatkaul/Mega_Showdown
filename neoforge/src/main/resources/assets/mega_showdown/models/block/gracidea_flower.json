@@ -1,7 +1,7 @@
 {
-	"parent": "minecraft:block/cross",
-	"textures": {
-		"cross": "mega_showdown:block/gracidea_flower"
-	},
-	"render_type": "cutout"
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "mega_showdown:block/gracidea_flower"
+  },
+  "render_type": "cutout"
 }

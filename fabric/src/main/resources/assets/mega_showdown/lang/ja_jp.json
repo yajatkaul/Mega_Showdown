@@ -47,13 +47,10 @@
   "item.mega_showdown.swampertite": "ラグラージナイト",
   "item.mega_showdown.tyranitarite": "バンギラスナイト",
   "item.mega_showdown.venusaurite": "フシギバナイト",
-
   "item.mega_showdown.redorb": "べにいろのたま",
   "item.mega_showdown.blueorb": "あいいろのたま",
-
   "tooltip.mega_showdown.redorb.tooltip": "ホウエン地方に伝わる 伝説のポケモン グラードンを 本来の姿に戻す あかく かがやく たま。",
   "tooltip.mega_showdown.blueorb.tooltip": "ホウエン地方に伝わる 伝説のポケモン カイオーガを 本来の姿に戻す あおく かがやく たま。",
-
   "tooltip.mega_showdown.mega_stone.tooltip": "ポケモンをメガシンカさせる メガストーンの原石。特定のアイテムと組み合わせると メガストーンに変化する。",
   "tooltip.mega_showdown.abomasite.tooltip": "ユキノオーを メガユキノオーに メガシンカできる 不思議な メガストーンの 一種。",
   "tooltip.mega_showdown.absolite.tooltip": "アブソルを メガアブソルに メガシンカできる 不思議な メガストーンの 一種。",
@@ -102,7 +99,6 @@
   "tooltip.mega_showdown.swampertite.tooltip": "ラグラージを メガラグラージに メガシンカできる 不思議な メガストーンの 一種。",
   "tooltip.mega_showdown.tyranitarite.tooltip": "バンギラスを メガバンギラスに メガシンカできる 不思議な メガストーンの 一種。",
   "tooltip.mega_showdown.venusaurite.tooltip": "フシギバナを メガフシギバナに メガシンカできる 不思議な メガストーンの 一種。",
-
   "block.mega_showdown.abomasite_ore": "ユキノオナイト鉱石",
   "block.mega_showdown.absolite_ore": "アブソルナイト鉱石",
   "block.mega_showdown.aerodactylite_ore": "プテラナイト鉱石",
@@ -150,7 +146,6 @@
   "block.mega_showdown.swampertite_ore": "ラグラージナイト鉱石",
   "block.mega_showdown.tyranitarite_ore": "バンギラスナイト鉱石",
   "block.mega_showdown.venusaurite_ore": "フシギバナイト鉱石",
-
   "block.mega_showdown.mega_meteorid_block": "メガ流星ブロック",
   "block.mega_showdown.mega_stone_crystal": "メガクリスタル",
   "block.mega_showdown.mega_evo_brick": "シンカ流星ブロックレンガ",
@@ -158,12 +153,10 @@
   "block.mega_showdown.chiseled_mega_evo_block": "メガ流星ブロックレンガ",
   "block.mega_showdown.polished_mega_evo_block": "磨かれたメガ流星ブロック",
   "block.mega_showdown.mega_evo_block": "シンカ流星ブロック",
-
   "block.mega_showdown.keystone_ore": "キーストーン鉱石",
   "item.mega_showdown.keystone": "キーストーン",
   "tooltip.mega_showdown.keystone.tooltip": "ポケモンを メガシンカ させる メガバングルの 素材となる 未知のパワーを 秘めた 石。",
   "block.mega_showdown.keystone_block": "キーストーンブロック",
-
   "item.mega_showdown.megabracelet": "メガバングル",
   "tooltip.mega_showdown.megabracelet.tooltip": "メガストーンを 持った ポケモンを メガシンカさせられる 未知のパワーを 秘めた アクセサリー。",
   "item.mega_showdown.megabracelet_red": "赤のメガバングル",
@@ -190,7 +183,6 @@
   "tooltip.mega_showdown.korrina_glove.tooltip": "メガストーンを 持った ポケモンを メガシンカさせられる 未知のパワーを 秘めた アクセサリー。",
   "item.mega_showdown.archie_anchor": "アオギリのメガイカリ",
   "tooltip.mega_showdown.archie_anchor.tooltip": "メガストーンを 持った ポケモンを メガシンカさせられる 未知のパワーを 秘めた アクセサリー。",
-
   "item.mega_showdown.dnasplicers": "いでんしのくさび",
   "item.mega_showdown.dousedrive": "アクアカセット",
   "item.mega_showdown.dracoplate": "りゅうのプレート",
@@ -204,9 +196,7 @@
   "item.mega_showdown.burndrive": "ブレイズカセット",
   "item.mega_showdown.chilldrive": "フリーズカセット",
   "item.mega_showdown.adamantorb": "こんごうだま",
-
   "creativeTab.mega_showdown.megamons_tab": "Mega Showdown",
-
   "block.mega_showdown.mega_meteorid_dawn_ore": "メガ流星めざめ鉱石",
   "block.mega_showdown.mega_meteorid_dusk_ore": "メガ流星やみの鉱石",
   "block.mega_showdown.mega_meteorid_fire_ore": "メガ流星ほのおの鉱石",
@@ -217,13 +207,10 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "メガ流星たいようの鉱石",
   "block.mega_showdown.mega_meteorid_thunder_ore": "メガ流星かみなりの鉱石",
   "block.mega_showdown.mega_meteorid_water_ore": "メガ流星みずの鉱石",
-
   "key.mega_showdown.mega_evo": "メガシンカ",
   "key.categories.mega_showdown": "Mega Showdown",
-
   "trinkets.slot.hand.evowear": "メガシンカ装備",
   "curios.identifier.evowear": "メガシンカ装備",
-
   "advancement.mega_showdown.root.title": "Showdown Time",
   "advancement.mega_showdown.mega_evolve.title": "メガブレイブ",
   "advancement.mega_showdown.find_mega_stone.title": "シンカする存在",
@@ -232,7 +219,6 @@
   "advancement.mega_showdown.find_blueorb.title": "タイダルストーム",
   "advancement.mega_showdown.find_redorb.title": "ガイアボルケーノ",
   "advancement.mega_showdown.primal_evolve.title": "原始回帰",
-
   "advancement.mega_showdown.root.description": "showdownの世界",
   "advancement.mega_showdown.mega_evolve.description": "ポケモンをメガシンカさせる",
   "advancement.mega_showdown.find_mega_stone.description": "メガストーンを手に入れる",
@@ -241,13 +227,10 @@
   "advancement.mega_showdown.find_blueorb.description": "あいいろのたまを手に入れる",
   "advancement.mega_showdown.find_redorb.description": "べにいろのたまを手に入れる",
   "advancement.mega_showdown.primal_evolve.description": "ポケモンをゲンシカイキさせる",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown-メガシンカ",
   "creativeTab.mega_showdown.z_moves_tab": "Mega Showdown-Zワザ",
-
   "trinkets.slot.hand.z_slot": "Zパワー装備",
   "curios.identifier.z_slot": "Zパワー装備",
-
   "item.mega_showdown.aloraichium-z": "アロライZ",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "アローラのすがたの ライチュウに持たせると 10まんボルトを 特別な Zワザに グレードアップできる Zパワーの 結晶。",
   "item.mega_showdown.blank-z": "空のZクリスタル",
@@ -322,13 +305,10 @@
   "tooltip.mega_showdown.waterium-z.tooltip": "ポケモンに持たせると みずタイプの 技を Zワザに グレードアップできる Zパワーの 結晶。",
   "item.mega_showdown.z-ring": "Zリング",
   "tooltip.mega_showdown.z-ring.tooltip": "ポケモンが Zパワーを 放てるようにする 不思議な腕輪。装備すると Zクリスタルを 持ったポケモンが バトル中一度だけ ゼンリョクの 大技を 放てるようになる。",
-
   "trinkets.slot.hand.tera_slot": "テラスタル装備",
   "curios.identifier.tera_slot": "テラスタル装備",
-
   "item.mega_showdown.tera_orb": "テラスタルオーブ",
   "tooltip.mega_showdown.tera_item.tooltip": "装備すると ポケモンを テラスタルさせられる 結晶の力を 秘めている オーブ。テラスタルを使うと バトル中一度だけ 特定のタイプに変化し 更に そのタイプの技の威力が 上がる。",
-
   "item.mega_showdown.bug_tera_shard": "テラピースむし",
   "item.mega_showdown.dark_tera_shard": "テラピースあく",
   "item.mega_showdown.dragon_tera_shard": "テラピースドラゴン",
@@ -348,7 +328,6 @@
   "item.mega_showdown.steel_tera_shard": "テラピースはがね",
   "item.mega_showdown.stellar_tera_shard": "テラピースステラ",
   "item.mega_showdown.water_tera_shard": "テラピースみず",
-
   "item.mega_showdown.n_lunarizer": "ネクロプラスルナ",
   "tooltip.mega_showdown.n_lunarizer.tooltip": "光を 必要と する ネクロズマと ルナアーラを 合体 させるための マシン。",
   "item.mega_showdown.n_solarizer": "ネクロプラスソル",
@@ -371,31 +350,24 @@
   "advancement.mega_showdown.terastallized.description": "ポケモンをテラスタルさせる",
   "advancement.mega_showdown.ultra_necrom.description": "ネクロズマをウルトラバーストさせる",
   "advancement.mega_showdown.z_moves.description": "Zワザを使用する",
-
   "item.mega_showdown.n_lunarizer.inactive": "ネクロプラスルナ(分離モード)",
   "item.mega_showdown.n_lunarizer.charged": "ネクロプラスルナ(チャージモード)",
   "item.mega_showdown.n_solarizer.inactive": "ネクロプラスソル(分離モード)",
   "item.mega_showdown.n_solarizer.charged": "ネクロプラスソル(チャージモード)",
-
   "creativeTab.mega_showdown.tera_tab": "Mega Showdown-テラスタル",
-
   "key.mega_showdown.ultra_key": "ネクロズマのウルトラバースト",
-
   "item.mega_showdown.dna_splicer": "いでんしのくさび",
   "item.mega_showdown.dna_splicer.inactive": "いでんしのくさび(分離モード)",
   "item.mega_showdown.dna_splicer.charged": "いでんしのくさび(チャージモード)",
   "tooltip.mega_showdown.dna_splicer.tooltip": "元は ひとつだったと いわれる キュレムと レシラム または ゼクロムを 合体させる 一対のくさび。",
-
   "advancement.mega_showdown.find_prison_bottle.title": "ヤバい！来い！キタ！",
   "advancement.mega_showdown.prison_escape.title": "牢獄からの解放",
   "advancement.mega_showdown.find_prison_bottle.description": "いましめのツボを見つける",
   "advancement.mega_showdown.prison_escape.description": "フーパをいましめのツボから解き放つ",
-
   "item.mega_showdown.reins_of_unity": "キズナのタヅナ",
   "item.mega_showdown.reins_of_unity.inactive": "キズナのタヅナ(分離モード)",
   "item.mega_showdown.reins_of_unity.charged": "キズナのタヅナ(チャージモード)",
   "tooltip.mega_showdown.reins_of_unity.tooltip": "人が 王に 献上していた タヅナ。 豊穣の力を 増幅し バドレックスと 愛馬 ブリザポス または レイスポスを 合体させる。",
-
   "item.mega_showdown.z-ring_black": "黒のZリング",
   "item.mega_showdown.z-power_ring": "Zパワーリング",
   "item.mega_showdown.may_bracelet": "ハルカのメガブレス",
@@ -405,17 +377,14 @@
   "tooltip.mega_showdown.rusted_shield.tooltip": "大昔の 英雄が 災厄を 討ち払ったと 伝えられる 盾 だが いまは さびて ボロボロに なっている。",
   "item.mega_showdown.prison_bottle": "いましめのツボ",
   "tooltip.mega_showdown.prison_bottle.tooltip": "大昔に とあるポケモンの 力を 封じ込めたと される ツボ。",
-
   "item.mega_showdown.gracidea_flower": "グラシデアのはな",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "誕生日や 記念日などに 感謝の気持ちを 伝えるため ブーケにして 贈ることが ある 神秘的な花。",
-
   "item.mega_showdown.cornerstone_mask": "いしずえのめん",
   "tooltip.mega_showdown.cornerstone_mask.tooltip": "結晶が あしらわれた 木彫りの 面。オーガポンに 持たせると いわタイプを まとい 頑丈な 石の 体で あらゆる 攻撃から 身を守る。",
   "item.mega_showdown.wellspring_mask": "いどのめん",
   "tooltip.mega_showdown.wellspring_mask.tooltip": "結晶が あしらわれた 木彫りの 面。オーガポンに 持たせると みずタイプを まとい 水のように 絶え間なく 技を 繰りだし続ける。",
   "item.mega_showdown.hearthflame_mask": "かまどのめん",
   "tooltip.mega_showdown.hearthflame_mask.tooltip": "結晶が あしらわれた 木彫りの 面。オーガポンに 持たせると ほのおタイプを まとい 炎のように 激しく 敵を 攻めたてる。",
-
   "item.mega_showdown.scroll_of_darkness": "あくのかけじく",
   "tooltip.mega_showdown.scroll_of_darkness.tooltip": "ある特定の ポケモンを 進化させる 不思議なかけじく。 あくの極意が 書かれている。",
   "item.mega_showdown.scroll_of_waters": "みずのかけじく",
@@ -427,7 +396,6 @@
   "creativeTab.mega_showdown.forms_tab": "Mega Showdown-フォルムチェンジ",
   "item.mega_showdown.ash_cap": "オリジナルキャップ",
   "tooltip.mega_showdown.ash_cap.tooltip": "世界を巡った とある ポケモントレーナーが 被っていたとされる 帽子。ピカチュウに 被せると 大きな冒険心を 心に 宿す。",
-
   "item.mega_showdown.fanunit": "カラクリ風車",
   "item.mega_showdown.fridgeunit": "カラクリつづら",
   "item.mega_showdown.mowunit": "カラクリ丸のこ",

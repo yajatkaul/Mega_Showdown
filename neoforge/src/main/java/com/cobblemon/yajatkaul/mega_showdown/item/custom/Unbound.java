@@ -25,6 +25,7 @@ import java.util.UUID;
 public class Unbound extends Item {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 3000; // 3 sec
+
     public Unbound(Properties arg) {
         super(arg);
     }

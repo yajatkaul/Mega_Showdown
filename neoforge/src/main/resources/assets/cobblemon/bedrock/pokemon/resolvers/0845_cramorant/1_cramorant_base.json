@@ -3,14 +3,19 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["gulping-form"],
+      "aspects": [
+        "gulping-form"
+      ],
       "poser": "cobblemon:cramorant_pikachu",
       "model": "cobblemon:cramorant_gulping.geo",
       "texture": "cobblemon:textures/pokemon/0845_cramorant/cramorant_gulping.png",
       "layers": []
     },
     {
-      "aspects": ["shiny", "gulping-form"],
+      "aspects": [
+        "shiny",
+        "gulping-form"
+      ],
       "texture": "cobblemon:textures/pokemon/0845_cramorant/cramorant_gulping_shiny.png"
     }
   ]

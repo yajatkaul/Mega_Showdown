@@ -14,13 +14,14 @@
       "model": "cobblemon:uxie.geo",
       "texture": "cobblemon:textures/pokemon/0480_uxie/uxie.png",
       "layers": [
-      ] 
+      ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0480_uxie/uxie_shiny.png",
       "layers": [
-       
       ]
     }
   ]

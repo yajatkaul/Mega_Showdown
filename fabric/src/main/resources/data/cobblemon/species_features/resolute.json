@@ -1,5 +1,7 @@
 {
-  "keys": ["resolute"],
+  "keys": [
+    "resolute"
+  ],
   "type": "flag",
   "isAspect": true,
   "default": false

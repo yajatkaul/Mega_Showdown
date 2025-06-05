@@ -1,4 +1,6 @@
 {
   "replace": false,
-  "values": ["#mega_showdown:dynamax_bands"]
+  "values": [
+    "#mega_showdown:dynamax_bands"
+  ]
 }

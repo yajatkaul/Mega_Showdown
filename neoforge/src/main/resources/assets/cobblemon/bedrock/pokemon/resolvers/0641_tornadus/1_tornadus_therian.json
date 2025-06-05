@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["therian-forme"],
+      "aspects": [
+        "therian-forme"
+      ],
       "poser": "cobblemon:tornadustherian",
       "model": "cobblemon:tornadustherian.geo",
       "texture": "cobblemon:textures/pokemon/0641_tornadus/tornadustherian.png",

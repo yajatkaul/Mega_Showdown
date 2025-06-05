@@ -16,7 +16,9 @@
       "texture": "cobblemon:textures/pokemon/0719_diancie/diancie_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:diancie_mega",
       "model": "cobblemon:diancie_mega.geo",
       "texture": "cobblemon:textures/pokemon/0719_diancie/megadiancie.png",
@@ -24,7 +26,8 @@
     },
     {
       "aspects": [
-        "mega","shiny"
+        "mega",
+        "shiny"
       ],
       "poser": "cobblemon:diancie_mega",
       "model": "cobblemon:diancie_mega.geo",

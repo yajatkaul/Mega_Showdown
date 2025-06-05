@@ -29,7 +29,7 @@ public class MegaOres {
                             .sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD)
                             .nonOpaque()
                             .requiresTool()
-                            .pistonBehavior(PistonBehavior.PUSH_ONLY)
+                            .pistonBehavior(PistonBehavior.IGNORE)
                             .luminance((state) -> 15)) {
                 private static final VoxelShape SHAPE =
                         Block.createCuboidShape(2, 0, 2, 14, 13, 14);

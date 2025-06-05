@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:gengar_mega.geo",
       "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_mega.png",
       "layers": [
@@ -16,7 +18,10 @@
       ]
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:gengar_mega.geo",
       "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_mega_shiny.png",
       "layers": [

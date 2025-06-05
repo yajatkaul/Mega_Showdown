@@ -18,14 +18,19 @@
       "texture": "cobblemon:textures/pokemon/0065_alakazam/alakazam_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:alakazam_mega",
       "model": "cobblemon:alakazam_mega.geo",
       "texture": "cobblemon:textures/pokemon/0065_alakazam/megaalakazam.png",
       "layers": []
     },
     {
-      "aspects": [ "mega", "shiny" ],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:alakazam_mega",
       "model": "cobblemon:alakazam_mega.geo",
       "texture": "cobblemon:textures/pokemon/0065_alakazam/megaalakazam_shiny.png"

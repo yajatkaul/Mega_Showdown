@@ -91,7 +91,7 @@ public class CobbleEventHandler {
         }
 
         PokemonEntity pokemonEntity = event.getPokemon().getEntity();
-        if (pokemonEntity != null &&  pokemonEntity.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
+        if (pokemonEntity != null && pokemonEntity.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
             event.cancel();
             return Unit.INSTANCE;
         }
@@ -124,9 +124,9 @@ public class CobbleEventHandler {
 
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
-        if(pokemon.getOwnerPlayer() == null){
+        if (pokemon.getOwnerPlayer() == null) {
             MegaLogic.NPCEvolve(pokemon.getEntity(), megaEvolutionEvent.getPokemon(), battle);
-        }else {
+        } else {
             MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer(), megaEvolutionEvent.getPokemon(), battle);
         }
 
@@ -137,14 +137,14 @@ public class CobbleEventHandler {
         Pokemon pokemon = pk.getEntity().getPokemon();
 
         if (abilities) {
-            if(pk.actor.getType().equals(ActorType.PLAYER)){
+            if (pk.actor.getType().equals(ActorType.PLAYER)) {
                 battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
                 battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
             }
         }
 
         for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
-            if(!pk.actor.getType().equals(ActorType.PLAYER)) {
+            if (!pk.actor.getType().equals(ActorType.PLAYER)) {
                 continue;
             }
             if (activeBattlePokemon.getBattlePokemon() != null &&
@@ -220,7 +220,7 @@ public class CobbleEventHandler {
             new StringSpeciesFeature("tera_form", "stellar").apply(pk);
             updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon(), false);
         } else if (pk.getSpecies().getName().equals("Ogerpon")) {
-            new FlagSpeciesFeature("embody_aspect", true).apply(pk);
+            new FlagSpeciesFeature("embody-aspect", true).apply(pk);
             updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon(), false);
         }
 

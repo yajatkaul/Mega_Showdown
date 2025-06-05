@@ -1,9 +1,17 @@
 {
   "head": "whiteneck",
   "portraitScale": 1.35,
-  "portraitTranslation": [-0.02, 2.53, 0],
+  "portraitTranslation": [
+    -0.02,
+    2.53,
+    0
+  ],
   "profileScale": 0.5,
-  "profileTranslation": [0, 1.1, 0],
+  "profileTranslation": [
+    0,
+    1.1,
+    0
+  ],
   "animations": {
     "faint": "q.bedrock_primary('urshifu', 'rsfaint', q.curve('one'))",
     "cry": "q.bedrock_primary('urshifu', 'cry', q.curve('symmetrical_wide'))",
@@ -14,9 +22,14 @@
   },
   "poses": {
     "battle-standing": {
-      "poseTypes": ["STAND", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": true,
-      "animations": ["look",
+      "animations": [
+        "look",
         "q.bedrock('urshifu', 'rapidstrike')"
       ],
       "quirks": [
@@ -24,9 +37,13 @@
       ]
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE"],
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
       "isBattle": false,
-      "animations": ["look",
+      "animations": [
+        "look",
         "q.bedrock('urshifu', 'ground_idle')"
       ],
       "quirks": [
@@ -34,29 +51,46 @@
       ]
     },
     "walking": {
-      "poseTypes": ["WALK"],
-      "animations": ["look",
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "look",
         "q.bedrock('urshifu', 'ground_walk')"
       ],
-      "quirks": ["q.bedrock_quirk('urshifu', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('urshifu', 'blink')"
+      ]
     },
     "float": {
-      "poseTypes": ["FLOAT"],
+      "poseTypes": [
+        "FLOAT"
+      ],
       "animations": [
         "q.bedrock('urshifu', 'ground_idle')"
       ],
-      "quirks": ["q.bedrock_quirk('urshifu', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('urshifu', 'blink')"
+      ]
     },
     "swim": {
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.bedrock('urshifu', 'ground_walk')"
       ],
-      "quirks": ["q.bedrock_quirk('urshifu', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('urshifu', 'blink')"
+      ]
     },
     "sleep": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('urshifu', 'sleep')"]
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('urshifu', 'sleep')"
+      ]
     }
   }
 }

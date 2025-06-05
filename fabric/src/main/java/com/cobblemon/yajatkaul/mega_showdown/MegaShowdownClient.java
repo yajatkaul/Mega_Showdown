@@ -4,7 +4,6 @@ import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.item.KeyItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.LikosPendant;
 import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
@@ -16,7 +15,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.item.Item;
 
 public class MegaShowdownClient implements ClientModInitializer {
 

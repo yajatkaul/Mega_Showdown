@@ -6,11 +6,14 @@ import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.utils.NoRenderArmorMaterial;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,6 +33,19 @@ import java.util.concurrent.ThreadLocalRandom;
 public class LikosPendant extends ArmorItem {
     public LikosPendant(Properties arg) {
         super(NoRenderArmorMaterial.NO_RENDER, Type.CHESTPLATE, arg);
+    }
+
+    public static String ticksToTime(int ticks) {
+        int minutes = (int) Math.floor(ticks / 1200.0);
+        int seconds = (int) Math.floor((ticks % 1200) / 20.0);
+
+        String formattedSeconds = String.format("%02d", seconds);
+
+        if (minutes <= 0) {
+            return formattedSeconds;
+        } else {
+            return minutes + ":" + formattedSeconds;
+        }
     }
 
     @Override
@@ -109,9 +125,15 @@ public class LikosPendant extends ArmorItem {
 
             level.addFreshEntity(terapagos);
 
-            terapagos.after(0.01f, () ->{
+            terapagos.after(0.01f, () -> {
                 LazyLib.Companion.snowStormPartileSpawner(terapagos,
                         "pendant_effect", "target");
+                BlockPos entityPos = terapagos.getOnPos();
+                terapagos.level().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        ModSounds.TERAPAGOS_SPAWN.get(),
+                        SoundSource.PLAYERS, 0.2f, 0.8f
+                );
                 return Unit.INSTANCE;
             });
 
@@ -122,19 +144,6 @@ public class LikosPendant extends ArmorItem {
                 terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                 return Unit.INSTANCE;
             });
-        }
-    }
-
-    public static String ticksToTime(int ticks) {
-        int minutes = (int) Math.floor(ticks / 1200.0);
-        int seconds = (int) Math.floor((ticks % 1200) / 20.0);
-
-        String formattedSeconds = String.format("%02d", seconds);
-
-        if (minutes <= 0) {
-            return formattedSeconds;
-        } else {
-            return minutes + ":" + formattedSeconds;
         }
     }
 

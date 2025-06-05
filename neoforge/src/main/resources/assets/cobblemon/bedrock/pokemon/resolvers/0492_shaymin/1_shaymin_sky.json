@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["sky-forme"],
+      "aspects": [
+        "sky-forme"
+      ],
       "poser": "cobblemon:shaymin_sky",
       "model": "cobblemon:shaymin_sky.geo",
       "texture": "cobblemon:textures/pokemon/0492_shaymin/shaymin_sky.png",

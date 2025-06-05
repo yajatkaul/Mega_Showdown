@@ -1,4 +1,3 @@
-
 {
   "species": "cobblemon:silicobra",
   "order": 0,
@@ -11,7 +10,9 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0843_silicobra/silicobra_shiny.png"
     }
   ]

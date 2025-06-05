@@ -3,14 +3,19 @@
   "order": 3,
   "variations": [
     {
-      "aspects": ["gmax"],
+      "aspects": [
+        "gmax"
+      ],
       "poser": "cobblemon:pikachu_gigantamax",
       "model": "cobblemon:pikachu_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax.png",
       "layers": []
     },
     {
-      "aspects": ["gmax", "shiny"],
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
       "poser": "cobblemon:pikachu_gigantamax",
       "model": "cobblemon:pikachu_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_gigantamax_shiny.png",

@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:beedrill_mega",
       "model": "cobblemon:beedrillmega.geo",
       "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrillmega.png",
@@ -17,7 +19,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:beedrill_mega",
       "model": "cobblemon:beedrillmega.geo",
       "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrillmega_shiny.png",

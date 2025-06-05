@@ -1,4 +1,3 @@
-
 {
   "species": "cobblemon:sandaconda",
   "order": 0,
@@ -11,7 +10,9 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0844_sandaconda/sandaconda_shiny.png"
     }
   ]

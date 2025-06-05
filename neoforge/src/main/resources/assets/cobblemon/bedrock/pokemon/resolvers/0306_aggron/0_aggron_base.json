@@ -10,16 +10,23 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0306_aggron/aggron_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:aggron_mega.geo",
       "texture": "cobblemon:textures/pokemon/0306_aggron/megaaggron.png"
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:aggron_mega.geo",
       "texture": "cobblemon:textures/pokemon/0306_aggron/megaaggron_shiny.png"
     }

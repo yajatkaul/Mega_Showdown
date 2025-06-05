@@ -3,11 +3,15 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["female"],
+      "aspects": [
+        "female"
+      ],
       "model": "cobblemon:heracross_female.geo"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:heracross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0214_heracross/megaheracross.png",
       "layers": [
@@ -20,7 +24,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:heracross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0214_heracross/megaheracross_shiny.png",
       "layers": [

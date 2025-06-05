@@ -46,13 +46,10 @@
   "item.mega_showdown.swampertite": "Swampertite",
   "item.mega_showdown.tyranitarite": "Tyranitarite",
   "item.mega_showdown.venusaurite": "Venusaurite",
-
   "item.mega_showdown.redorb": "Gemma Rossa",
   "item.mega_showdown.blueorb": "Gemma Blu",
-
   "tooltip.mega_showdown.redorb.tooltip": "Permette a Groudon di diventare ArcheoGroudon",
   "tooltip.mega_showdown.blueorb.tooltip": "Permette a Kyogre di diventare ArcheoKyogre",
-
   "tooltip.mega_showdown.mega_stone.tooltip": "Megapietra grezza",
   "tooltip.mega_showdown.abomasite.tooltip": "Permette ad Abomasnow di Mega Evolversi in Mega Abomasnow",
   "tooltip.mega_showdown.absolite.tooltip": "Permette ad Absol di Mega Evolversi in Mega Absol",
@@ -102,21 +99,17 @@
   "tooltip.mega_showdown.tyranitarite.tooltip": "Permette a Tyranitar di Mega Evolversi in Mega Tyranitar",
   "tooltip.mega_showdown.venusaurite.tooltip": "Permette a Venusaur di Mega Evolversi in Mega Venusaur",
   "item.mega_showdown.diancite": "Diancite",
-
   "block.mega_showdown.mega_meteorid_block": "Blocco di Meteoroide Mega",
   "block.mega_showdown.mega_evo_brick": "Mattoni di Meteoroide Evo",
   "block.mega_showdown.chiseled_mega_evo_brick": "Mattoni di Meteoroide Cesellati",
   "block.mega_showdown.chiseled_mega_evo_block": "Blocco di Meteoroide Cesellato",
   "block.mega_showdown.polished_mega_evo_block": "Blocco di Meteoroide Levigato",
   "block.mega_showdown.mega_evo_block": "Blocco di Meteoroide Evo",
-
   "block.mega_showdown.mega_stone_crystal": "Cristallo Mega",
-
   "block.mega_showdown.keystone_ore": "Minerale di Pietrachiave",
   "block.mega_showdown.keystone_block": "Blocco di Pietrachiave",
   "item.mega_showdown.keystone": "Pietrachiave",
   "tooltip.mega_showdown.keystone.tooltip": "Utilizzato per creare il Megabracciale",
-
   "item.mega_showdown.megabracelet": "Megabracciale",
   "tooltip.mega_showdown.megabracelet.tooltip": "Contiene una Pietrachiave che permette ai Pokémon di megaevolversi se tengono una Megapietra",
   "item.mega_showdown.megabracelet_red": "Megabracciale Rosso",
@@ -135,7 +128,6 @@
   "tooltip.mega_showdown.megaring.tooltip": "Contiene una Pietrachiave che permette ai Pokémon di megaevolversi se tengono una Megapietra",
   "item.mega_showdown.brendan_mega_cuff": "Megapolsino di Brendon",
   "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "Contiene una Pietrachiave che permette ai Pokémon di megaevolversi se tengono una Megapietra",
-
   "item.mega_showdown.lysandre_ring": "Megacerchio di Elisio",
   "tooltip.mega_showdown.lysandre_ring.tooltip": "Contiene una Pietrachiave che permette ai Pokémon di megaevolversi se tengono una Megapietra",
   "item.mega_showdown.maxie_glasses": "Occhiali di Max",
@@ -144,7 +136,6 @@
   "tooltip.mega_showdown.korrina_glove.tooltip": "Contiene una Pietrachiave che permette ai Pokémon di megaevolversi se tengono una Megapietra",
   "item.mega_showdown.archie_anchor": "Ancora di Ivan",
   "tooltip.mega_showdown.archie_anchor.tooltip": "Contiene una Pietrachiave che permette ai Pokémon di megaevolversi se tengono una Megapietra",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Evoluzioni",
   "creativeTab.mega_showdown.z_moves_tab": "Mosse Z",
   "creativeTab.mega_showdown.tera_tab": "Teracristal",
@@ -152,7 +143,6 @@
   "creativeTab.mega_showdown.compi_tab": "Oggetti Competitivi",
   "creativeTab.mega_showdown.key_tab": "Oggetti MegaShowdown",
   "creativeTab.mega_showdown.dynamax_tab": "Tabella Dynamax",
-
   "block.mega_showdown.pedestal": "Piedistallo",
   "block.mega_showdown.mega_meteorid_dawn_ore": "Minerale di Pietralbore in Meteorite Mega",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Minerale di Neropietra in Meteorite Mega",
@@ -164,26 +154,19 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "Minerale di Pietrasolare in Meteorite Mega",
   "block.mega_showdown.mega_meteorid_thunder_ore": "Minerale di Pietratuono in Meteorite Mega",
   "block.mega_showdown.mega_meteorid_water_ore": "Minerale di Pietraidrica in Meteorite Mega",
-
   "key.mega_showdown.mega_evo": "Megaevoluzione",
   "key.mega_showdown.ultra_key": "Ultraesplosione",
   "key.categories.mega_showdown": "Mega Showdown",
-
   "trinkets.slot.hand.evowear": "Accessorio Mega",
   "curios.identifier.evowear": "Accessorio Mega",
-
   "trinkets.slot.hand.z_slot": "Accessorio Z",
   "curios.identifier.z_slot": "Accessorio Z",
-
   "trinkets.slot.hand.tera_slot": "Accessorio Teracristal",
   "curios.identifier.tera_slot": "Accessorio Teracristal",
-
   "trinkets.slot.hand.dynamax_slot": "Accessorio Dynamax",
   "curios.identifier.dynamax_slot": "Accessorio Dynamax",
-  
   "advancement.mega_showdown.root.title": "Showdown Time",
   "advancement.mega_showdown.root.description": "Mondo dello Showdown!",
-  
   "advancements.mega_showdown.find_dynamax_structure.title": "L'inizio della Fiaba!",
   "advancements.mega_showdown.find_dynamax_structure.description": "Trova il Wishing Weald.",
   "advancement.mega_showdown.find_wishing_star.title": "Roccie? No, Meglio",
@@ -198,7 +181,6 @@
   "advancement.mega_showdown.gigantamax.description": "Gigamaxxa qualunque Pokémon",
   "advancement.mega_showdown.dynamax_candy_max.title": "Massimo Potenziale",
   "advancement.mega_showdown.dynamax_candy_max.description": "Porta un Pokémon al livello 10 Dynamax.",
-  
   "advancements.mega_showdown.find_z_structure.title": "Indiana Jones sarebbe geloso!",
   "advancements.mega_showdown.find_z_structure.description": "Scopri un osservatorio o un sito archeologico.",
   "advancement.mega_showdown.get_blank_move.title": "Cristallo spento?",
@@ -213,12 +195,10 @@
   "advancement.mega_showdown.get_sparkling_stone.description": "Ottieni la Pietra lucente.",
   "advancement.mega_showdown.get_z_ring.title": "Fashion Z",
   "advancement.mega_showdown.get_z_ring.description": "Ottieni un Cerchio Z.",
-
   "advancement.mega_showdown.obtained_rotom_appliance.title": "Attacca e spera..",
   "advancement.mega_showdown.obtained_rotom_appliance.description": "Crea uno degli accessori.",
   "advancement.mega_showdown.rotom_form_change.title": "Rotom, ecco il tuo nuovo lavoro!",
   "advancement.mega_showdown.rotom_form_change.description": "Cambia la forma a Rotom.",
-
   "advancements.mega_showdown.find_mega_structure.title": "Caccia alla Mega: Iniziata!",
   "advancements.mega_showdown.find_mega_structure.description": "Trova una delle meteore nelle caverne.",
   "advancement.mega_showdown.find_keystone.title": "Eccolo qua.. il plot armor!",
@@ -237,10 +217,8 @@
   "advancement.mega_showdown.get_any_mega_stone.description": "Ottieni qualunque Megapietra.",
   "advancement.mega_showdown.craft_mega_stones.title": "Gotta Catch 'Em All.. pero' Mega!",
   "advancement.mega_showdown.craft_mega_stones.description": "Ottieni TUTTE le megapietre.",
-  
   "advancement.mega_showdown.all_gimmick.title": "Guanto dell'infinito!",
   "advancement.mega_showdown.all_gimmick.description": "Ottieni tutti e 4 i trucchi.",
-
   "advancement.mega_showdown.ash_cap_bond.title": "Siamo tutti Ash dentro di noi",
   "advancement.mega_showdown.ash_cap_bond.description": "Legati con qualunque Pokémon.",
   "advancement.mega_showdown.ash_battle_bond.title": "Legato a vita!",
@@ -249,7 +227,6 @@
   "advancement.mega_showdown.ash_greninja.description": "Ash Greninja.",
   "advancement.mega_showdown.ash_pikachu.title": "BZZZZZZZZZ!!",
   "advancement.mega_showdown.ash_pikachu.description": "Utilizza Iperfulmine",
-
   "advancement.mega_showdown.get_tera_orb.title": "Tera-iffico!",
   "advancement.mega_showdown.get_tera_orb.description": "Crea una Terasfera.",
   "advancement.mega_showdown.terastallized.title": "Brilla Brilla piccola Stellina..",
@@ -258,7 +235,6 @@
   "advancement.mega_showdown.change_tera.description": "Cambia il tipo Teracristal di qualunque Pokémon.",
   "advancement.mega_showdown.change_tera_stellar.title": "Tera-astrale",
   "advancement.mega_showdown.change_tera_stellar.description": "Cambia il tipo Teracristal di qalunque Pokémon con il tipo Astrale.",
-
   "item.mega_showdown.aloraichium-z": "Aloraicium Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "Cristallo Z associato con Raichu di Alola che permette di potenziare Fulmine nella speciale Mossa Z Elettrosurf Folgorante",
   "item.mega_showdown.blank-z": "Cristalvuoto",
@@ -335,7 +311,6 @@
   "tooltip.mega_showdown.z-ring.tooltip": "Braccialetto che permette ad un Allenatore e ai suoi Pokémon di ammassare il Potere Z necessario per usare le Mosse Z.",
   "item.mega_showdown.tera_orb": "Terasfera",
   "tooltip.mega_showdown.tera_item.tooltip": "Sfera che permette all'allenatore di Teracristallizzare il loro Pokémon, cambiando temporeanamente il suo tipo e potenziando le sue mosse.",
-
   "item.mega_showdown.bug_tera_shard": "Teralite Coleottero",
   "item.mega_showdown.dark_tera_shard": "Teralite Buio",
   "item.mega_showdown.dragon_tera_shard": "Teralite Drago",
@@ -355,7 +330,6 @@
   "item.mega_showdown.steel_tera_shard": "Teralite Acciaio",
   "item.mega_showdown.stellar_tera_shard": "Teralite Astrale",
   "item.mega_showdown.water_tera_shard": "Teralite Acqua",
-
   "item.mega_showdown.n_lunarizer": "Necrolunix",
   "item.mega_showdown.n_lunarizer.inactive": "Necrolunix (Inattivo)",
   "item.mega_showdown.n_lunarizer.charged": "Necrolunix (Caricato)",
@@ -372,7 +346,6 @@
   "item.mega_showdown.reins_of_unity.inactive": "Briglie Legame (Inattivo)",
   "item.mega_showdown.reins_of_unity.charged": "Briglie Legame (Caricato)",
   "tooltip.mega_showdown.reins_of_unity.tooltip": "Usato per fondere Spectrier/Glastrier con una creatura misteriosa.",
-
   "item.mega_showdown.z-ring_black": "Cerchio Z Nero",
   "item.mega_showdown.z-power_ring": "Supercerchio Z",
   "item.mega_showdown.may_bracelet": "Bracciale di Vera",
@@ -384,14 +357,12 @@
   "tooltip.mega_showdown.prison_bottle.tooltip": "Un vaso che si pensava fosse usato per sigillare via il potere di un certo Pokémon molto, molto tempo fa.",
   "block.mega_showdown.gracidea_flower": "Gracidea",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "Un fiore, a volte offerto in bouquet, che esprime gratitudine in occasioni particolari, come i compleanni.",
-
   "item.mega_showdown.cornerstone_mask": "Maschera Fondamenta",
   "tooltip.mega_showdown.cornerstone_mask.tooltip": "Una maschera di legno intagliato ornata di cristalli.",
   "item.mega_showdown.wellspring_mask": "Maschera Pozzo",
   "tooltip.mega_showdown.wellspring_mask.tooltip": "Una maschera di legno intagliato ornata di cristalli.",
   "item.mega_showdown.hearthflame_mask": "Maschera Focolare",
   "tooltip.mega_showdown.hearthflame_mask.tooltip": "Una maschera di legno intagliato ornata di cristalli.",
-
   "item.mega_showdown.scroll_of_darkness": "Rotolo del Buio",
   "tooltip.mega_showdown.scroll_of_darkness.tooltip": "Un'antica pergamena piena di conoscenze oscure. Potenzia certi Pokémon con l'essenza dell'oscurità.",
   "item.mega_showdown.scroll_of_waters": "Rotolo dell'Acqua",
@@ -400,14 +371,12 @@
   "tooltip.mega_showdown.star_core.tooltip": "Una sfera che contiene un'immensa energia.",
   "item.mega_showdown.ash_cap": "Cappello di Ash",
   "tooltip.mega_showdown.ash_cap.tooltip": "Un cappello indossato da un allenatore leggendario che contiene lo spirito dell'avventura.",
-
   "item.mega_showdown.fanunit": "Ventilatore",
   "item.mega_showdown.fridgeunit": "Frigo",
   "item.mega_showdown.mowunit": "Tosaerba",
   "item.mega_showdown.ovenunit": "Forno",
   "item.mega_showdown.washunit": "Lavatrice",
   "item.mega_showdown.rotom_catalogue": "Catalogo Rotom",
-
   "item.mega_showdown.flameplate": "Lastrarogo",
   "tooltip.mega_showdown.flameplate.tooltip": "Una lastra che potenzia le mossi di tipo Fuoco. Se Arceus possiede questo oggetto diventa di tipo Fuoco.",
   "item.mega_showdown.splashplate": "Lastraidro",
@@ -442,7 +411,6 @@
   "tooltip.mega_showdown.ironplate.tooltip": "Una lastra che potenzia le mossi di tipo Acciaio. Se Arceus possiede questo oggetto diventa di tipo Acciaio.",
   "item.mega_showdown.pixieplate": "Lastraspiritello",
   "tooltip.mega_showdown.pixieplate.tooltip": "Una lastra che potenzia le mossi di tipo Folletto. Se Arceus possiede questo oggetto diventa di tipo Folletto.",
-
   "item.mega_showdown.bugmemory": "ROM Coleottero",
   "tooltip.mega_showdown.bugmemory.tooltip": "ROM contenente i dati sul tipo Coleottero. Cambia il tipo di Silvally.",
   "item.mega_showdown.darkmemory": "ROM Buio",
@@ -477,7 +445,6 @@
   "tooltip.mega_showdown.steelmemory.tooltip": "ROM contenente i dati sul tipo Acciaio. Cambia il tipo di Silvally.",
   "item.mega_showdown.watermemory": "ROM Acqua",
   "tooltip.mega_showdown.watermemory.tooltip": "ROM contenente i dati sul tipo Acqua. Cambia il tipo di Silvally.",
-
   "item.mega_showdown.dousedrive": "Idromodulo",
   "tooltip.mega_showdown.dousedrive.tooltip": "Modulo da dare a Genesect. Trasforma Tecnobotto in una mossa di tipo Acqua.",
   "item.mega_showdown.shockdrive": "Voltmodulo",
@@ -486,7 +453,6 @@
   "tooltip.mega_showdown.burndrive.tooltip": "Modulo da dare a Genesect. Trasforma Tecnobotto in una mossa di tipo Fuoco.",
   "item.mega_showdown.chilldrive": "Gelomodulo",
   "tooltip.mega_showdown.chilldrive.tooltip": "Modulo da dare a Genesect. Trasforma Tecnobotto in una mossa di tipo Ghiaccio.",
-
   "item.mega_showdown.pink_nectar": "Nettare Rosa",
   "tooltip.mega_showdown.pink_nectar.tooltip": "Un nettare di fiori che cambia la foma di Oricorio nello stile Hula.",
   "item.mega_showdown.purple_nectar": "Nettare Viola",
@@ -495,12 +461,10 @@
   "tooltip.mega_showdown.red_nectar.tooltip": "Un nettare di fiori che cambia la foma di Oricorio nello stile Flamenco.",
   "item.mega_showdown.yellow_nectar": "Nettare Giallo",
   "tooltip.mega_showdown.yellow_nectar.tooltip": "Un nettare di fiori che cambia la foma di Oricorio nello stile Cheerdance.",
-
   "item.mega_showdown.booster_energy": "Capsula energetica",
   "tooltip.mega_showdown.booster_energy.tooltip": "Se tenuto attiva l'abilità Carica Quark o Paleoattivazione.",
   "item.mega_showdown.legend_plate": " Lastraleggenda",
   "tooltip.mega_showdown.legend_plate.tooltip": "Se usata su un Pokémon in particolare, gli permette di ottenere il potere di tutti i tipi esistenti.",
-
   "item.mega_showdown.adamant_crystal": "Adamasferoide",
   "tooltip.mega_showdown.adamant_crystal.tooltip": "Grande cristallo scintillante che, se usato su Dialga, lo riempie di energia e gli permette di cambiare forma.",
   "item.mega_showdown.adamant_orb": "Adamasfera",
@@ -513,26 +477,22 @@
   "tooltip.mega_showdown.griseous_core.tooltip": "Grande cristallo scintillante che, se usato su Giratina, lo riempie di energia e gli permette di cambiare forma.",
   "item.mega_showdown.griseous_orb": " Grigiosfera",
   "tooltip.mega_showdown.griseous_orb.tooltip": "Poliedro splendente da dare a Giratina. Aumenta la potenza delle mosse di tipo Drago e Spettro.",
-
   "item.mega_showdown.clear_amulet": "Ciondolochiaro",
   "tooltip.mega_showdown.clear_amulet.tooltip": "Ciondolo brillante e trasparente che impedisce la diminuzione delle statistiche causata da abilità o mosse di altri Pokémon.",
   "item.mega_showdown.lagging_tail": "Rallentocoda",
   "tooltip.mega_showdown.lagging_tail.tooltip": "Strumento da dare a un Pokémon. È tremendamente pesante e rende più lenti del normale.",
-
   "item.mega_showdown.red_chain": "Rossocatena",
   "tooltip.mega_showdown.red_chain.tooltip": "Una catena misteriosa che puo' evocare un Pokémon leggendario.",
   "item.mega_showdown.azure_flute": "Flauto Cielo",
   "tooltip.mega_showdown.azure_flute.tooltip": "Flauto che emette una melodia che sembra appartenere ad un altro mondo. Si dice possa evocare un Pokémon particolare.",
   "block.mega_showdown.deoxys_meteorite": "Meteora di Deoxys",
   "tooltip.mega_showdown.deoxys_meteorite.tooltip": "Una Meteora che permette a Deoxys di cambiare forma.",
-
   "item.mega_showdown.adrenalineorb": "Fifasfera",
   "tooltip.mega_showdown.adrenalineorb.tooltip": "Data a un Pokémon, aumenta la Velocità se subisce Prepotenza.",
   "item.mega_showdown.souldew": "Cuorugiada",
   "tooltip.mega_showdown.souldew.tooltip": "Sfera miracolosa da dare a Latios o Latias. Aumenta la potenza delle mosse di tipo Psico e Drago.",
   "item.mega_showdown.gripclaw": "Presartiglio",
   "tooltip.mega_showdown.gripclaw.tooltip": "Strumento da dare a un Pokémon. Prolunga gli attacchi multiturno come Avvolgibotta e Legatutto.",
-
   "item.mega_showdown.dynamax_band": "Polsino Dynamax",
   "tooltip.mega_showdown.dynamax_band.tooltip": "Contiene una Desiostella che permette ai Pokémon di Dynamaxizzarsi.",
   "item.mega_showdown.dynamax_candy": "Caramella Dynamax",
@@ -549,14 +509,12 @@
   "tooltip.mega_showdown.max_mushroom.tooltip": "Un fungo raro con un forte odore Gigamax. Usato per la Zuppamax.",
   "block.mega_showdown.power_spot": "Fonte Energetica",
   "tooltip.mega_showdown.power_spot.tooltip": "Blocco usato per creare un area energetica per il Dynamax.",
-
   "item.mega_showdown.luminous_moss": "Muschioluce",
   "tooltip.mega_showdown.luminous_moss.tooltip": "Muschio luminoso monouso. Se il Pokémon che ha questo strumento subisce una mossa di tipo Acqua, la sua Difesa Speciale aumenta.",
   "item.mega_showdown.sparkling_stone_light": "Pietra Lucente Chiara",
   "tooltip.mega_showdown.sparkling_stone_light.tooltip": "Una pietra misteriosa che irradia una luce delicata. Risona con il Potere Z.",
   "item.mega_showdown.sparkling_stone_dark": "Pietra Lucente Scura",
   "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "Una pietra misteriosa che emette un debole bagliore ombroso. Risona con il Potere Z.",
-
   "item.mega_showdown.zygarde_cube": "Teca Zygarde",
   "item.mega_showdown.zygarde_cube.full": "Teca Zygarde (Piena)",
   "tooltip.mega_showdown.zygarde_cube.tooltip": "Strumento che permette di raccogliere i nuclei e le cellule di Zygarde.",
@@ -566,25 +524,22 @@
   "tooltip.mega_showdown.zygarde_core.tooltip": "Il cervello di Zygarde. Coordina le Cellule per la creazione di Zygarde.",
   "item.mega_showdown.reveal_glass": " Verispecchio",
   "tooltip.mega_showdown.reveal_glass.tooltip": "	Specchio misterioso che, riflettendo la verità, fa riacquistare ai Pokémon la loro forma originaria.",
-
   "menu.zygade_cube": "Teca Zygarde",
-
   "block.mega_showdown.reassembly_unit": "Rigeneratron",
   "block.mega_showdown.wishing_star_crystal": "Cristallo Desiostella",
-
   "message.mega_showdown.not_enough_cells_core": "Non hai abbastanza Cellule/Nuclei",
-  "message.mega_showdown.reset_completed" : "Reset completo!",
+  "message.mega_showdown.reset_completed": "Reset completo!",
   "message.mega_showdown.not_so_fast": "Non così in fretta!",
   "message.mega_showdown.bond_not_close_mega": "Non hai un legame abbastanza forte col tuo Pokémon per megaevolverti fuori",
   "message.mega_showdown.rayquaza_no_dragonascent": "Rayquaza non ha Ascesa del Drago",
-  "message.mega_showdown.mega_limit" : "Puoi solo avere una Mega alla volta",
+  "message.mega_showdown.mega_limit": "Puoi solo avere una Mega alla volta",
   "message.mega_showdown.incorrect_mega_stone": "Non hai la pietra corretta",
   "message.mega_showdown.battle_not_allowed": "Non consentito in battaglia",
   "message.mega_showdown.already_fused": "Gia' fuso!",
   "message.mega_showdown.you_aint_slick": "Il bro pensava di farcela",
   "message.mega_showdown.tera_requirements": "Ne hai bisogno di 50 in totale",
-  "message.mega_showdown.primal_limit" : "Puoi avere solo un ArcheoPokémon alla volta.",
-  "message.mega_showdown.friendship_requirement" : "Hai bisogno di 200 o piu' di Affetto per legarti",
+  "message.mega_showdown.primal_limit": "Puoi avere solo un ArcheoPokémon alla volta.",
+  "message.mega_showdown.friendship_requirement": "Hai bisogno di 200 o piu' di Affetto per legarti",
   "message.mega_showdown.resassembly_zygarde_req": "Hai bisogno di un Zygarde con Sciamefusione",
   "message.mega_showdown.cube_full": "La teca ha gia' un Zygarde",
   "message.mega_showdown.gyrados_jump_mega": "Gyrados Jumping Mega",

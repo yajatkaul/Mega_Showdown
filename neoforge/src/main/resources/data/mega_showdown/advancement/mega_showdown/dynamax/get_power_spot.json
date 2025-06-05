@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_power_spot"]],
+  "requirements": [
+    [
+      "obtained_power_spot"
+    ]
+  ],
   "sends_telemetry_event": false
 }

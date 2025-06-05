@@ -46,13 +46,10 @@
   "item.mega_showdown.swampertite": "Swampertita",
   "item.mega_showdown.tyranitarite": "Tyranitarita",
   "item.mega_showdown.venusaurite": "Venusaurita",
-
   "item.mega_showdown.redorb": "Prisma rojo",
   "item.mega_showdown.blueorb": "Prisma azul",
-
   "tooltip.mega_showdown.redorb.tooltip": "Permite que Groudon se convierta en su forma primigenia",
   "tooltip.mega_showdown.blueorb.tooltip": "Permite que Kyogre se convierta en su forma primigenia.",
-
   "tooltip.mega_showdown.abomasite.tooltip": "Permite a Abomasnow megaevolucionar a Mega Abomasnow",
   "tooltip.mega_showdown.absolite.tooltip": "Permite a Absol megaevolucionar a Mega Absol",
   "tooltip.mega_showdown.aerodactylite.tooltip": "Permite a Aerodactyl megaevolucionar a Mega Aerodactyl",
@@ -100,8 +97,6 @@
   "tooltip.mega_showdown.swampertite.tooltip": "Permite a Swampert megaevolucionar a Mega Swampert",
   "tooltip.mega_showdown.tyranitarite.tooltip": "Permite a Tyranitar megaevolucionar a Mega Tyranitar",
   "tooltip.mega_showdown.venusaurite.tooltip": "Permite a Venusaur megaevolucionar a Mega Venusaur",
-
-
   "block.mega_showdown.abomasite_ore": "Mena de Abomasnowita",
   "block.mega_showdown.absolite_ore": "Mena de Absolita",
   "block.mega_showdown.aerodactylite_ore": "Mena de Aerodactilita",
@@ -150,21 +145,17 @@
   "block.mega_showdown.tyranitarite_ore": "Mena de Tyranitarita",
   "block.mega_showdown.venusaurite_ore": "Mena de Venusaurita",
   "item.mega_showdown.diancite": "Diancita",
-
   "block.mega_showdown.mega_meteorid_block": "Bloque de meteoro mega",
   "block.mega_showdown.mega_evo_brick": "Ladrillos de meteoro evo",
   "block.mega_showdown.chiseled_mega_evo_brick": "Ladrillos de meteoro evo cincelados",
   "block.mega_showdown.chiseled_mega_evo_block": "Bloque de meteoro evo cincelado",
   "block.mega_showdown.polished_mega_evo_block": "Bloque de meteoro evo pulido",
   "block.mega_showdown.mega_evo_block": "Bloque de meteoro evo",
-
   "block.mega_showdown.mega_stone_crystal": "Cristal Mega",
-
   "block.mega_showdown.keystone_ore": "Mena de piedra llave",
   "block.mega_showdown.keystone_block": "Bloque de piedra llave",
   "item.mega_showdown.keystone": "Piedra llave",
   "tooltip.mega_showdown.keystone.tooltip": "Uso para craftear una prenda mega",
-
   "item.mega_showdown.megabracelet": "Mega Brazalete",
   "tooltip.mega_showdown.megabracelet.tooltip": "Contiene una Piedra Clave que permite megaevolucionar a los Pokémon que llevan una Mega Piedra",
   "item.mega_showdown.megabracelet_red": "Mega Brazalete rojo",
@@ -183,7 +174,6 @@
   "tooltip.mega_showdown.megaring.tooltip": "Contiene una Piedra Clave que permite megaevolucionar a los Pokémon que llevan una Mega Piedra",
   "item.mega_showdown.brendan_mega_cuff": "Brazalete Mega de Bruno",
   "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "El Brazalete Mega de Bruno contiene una Piedra Clave que permite megaevolucionar a los Pokémon que llevan una Mega Piedra",
-
   "item.mega_showdown.lysandre_ring": "Anillo de Lysson",
   "tooltip.mega_showdown.lysandre_ring.tooltip": "Contiene una Piedra Clave que permite megaevolucionar a los Pokémon que llevan una Mega Piedra",
   "item.mega_showdown.maxie_glasses": "Gafas de Magno",
@@ -192,13 +182,11 @@
   "tooltip.mega_showdown.korrina_glove.tooltip": "Contiene una Piedra Clave que permite megaevolucionar a los Pokémon que llevan una Mega Piedra",
   "item.mega_showdown.archie_anchor": "Ancla de Aquiles",
   "tooltip.mega_showdown.archie_anchor.tooltip": "Contiene una Piedra Clave que permite megaevolucionar a los Pokémon que llevan una Mega Piedra",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Showdown",
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
   "creativeTab.mega_showdown.forms_tab": "Form Changes",
   "creativeTab.mega_showdown.compi_tab": "Compi Tab",
-
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mena de meteoro evo de piedra alba",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mena de meteoro evo de piedra noche",
   "block.mega_showdown.mega_meteorid_fire_ore": "Mena de meteoro evo de piedra fuego",
@@ -209,20 +197,15 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "Mena de meteoro evo de piedra solar",
   "block.mega_showdown.mega_meteorid_thunder_ore": "Mena de meteoro evo de piedra trueno",
   "block.mega_showdown.mega_meteorid_water_ore": "Mena de meteoro evo de piedra agua",
-
   "key.mega_showdown.mega_evo": "Megaevolución",
   "key.mega_showdown.ultra_key": "Ultra Transformación",
   "key.categories.mega_showdown": "Mega Showdown",
-
   "trinkets.slot.hand.evowear": "Prenda Mega",
   "curios.identifier.evowear": "Prenda Mega",
-
   "trinkets.slot.hand.z_slot": "Prenda Z",
   "curios.identifier.z_slot": "Prenda Z",
-
   "trinkets.slot.hand.tera_slot": "Prenda Terastal",
   "curios.identifier.tera_slot": "Prenda Terastal",
-
   "advancement.mega_showdown.root.title": "Hora del Showdown",
   "advancement.mega_showdown.mega_evolve.title": "¡Vaya bestia!",
   "advancement.mega_showdown.find_mega_stone.title": "Seres Evolucionarios",
@@ -242,7 +225,6 @@
   "advancement.mega_showdown.z_moves.title": "¡Libera el poder Z!",
   "advancement.mega_showdown.find_prison_bottle.title": "Una vasija misteriosa",
   "advancement.mega_showdown.prison_escape.title": "'Fuga!",
-
   "advancement.mega_showdown.root.description": "Mundo Showdown",
   "advancement.mega_showdown.mega_evolve.description": "Megaevoluciona a algún pokemon",
   "advancement.mega_showdown.find_mega_stone.description": "Obtén cualquier megapiedra",
@@ -262,7 +244,6 @@
   "advancement.mega_showdown.z_moves.description": "Poténciate con un Movimiento Z!",
   "advancement.mega_showdown.find_prison_bottle.description": "Encuentra una vasija castigo",
   "advancement.mega_showdown.prison_escape.description": "Libera a tu Hoopa",
-
   "item.mega_showdown.aloraichium-z": "Alo-raistal Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "Cristal Z asociado con Raichu de Alola y le permite mejorar el movimiento Rayo en el movimiento Z especial Surf Eléctrico Galvánico.",
   "item.mega_showdown.blank-z": "Cristal Z vacío",
@@ -339,7 +320,6 @@
   "tooltip.mega_showdown.z-ring.tooltip": "Brazalete que permite a un Entrenador y su Pokémon reunir el Poder Z necesario para ejecutar Movimientos Z.",
   "item.mega_showdown.tera_orb": "Orbe teracristal",
   "tooltip.mega_showdown.tera_item.tooltip": "Orbe que permite a un Entrenador Teracristalizar a su Pokémon, cambiando temporalmente su tipo y potenciando sus movimientos.",
-
   "item.mega_showdown.bug_tera_shard": "Teralito Bicho",
   "item.mega_showdown.dark_tera_shard": "Teralito Siniestro",
   "item.mega_showdown.dragon_tera_shard": "Teralito Dragón",
@@ -359,7 +339,6 @@
   "item.mega_showdown.steel_tera_shard": "Teralito Acero",
   "item.mega_showdown.stellar_tera_shard": "Teralito Astral",
   "item.mega_showdown.water_tera_shard": "Teralito Agua",
-
   "item.mega_showdown.n_lunarizer": "Necrosol",
   "item.mega_showdown.n_lunarizer.inactive": "Necroluna (Inactivo)",
   "item.mega_showdown.n_lunarizer.charged": "Necroluna (Cargado)",
@@ -376,7 +355,6 @@
   "item.mega_showdown.reins_of_unity.inactive": "Riendas unión (Inactivo)",
   "item.mega_showdown.reins_of_unity.charged": "Riendas unión (Cargado)",
   "tooltip.mega_showdown.reins_of_unity.tooltip": "Se usa para fusionar a Spectrier/Glastrier con un ser misterioso",
-
   "item.mega_showdown.z-ring_black": "Pulsera Z negra",
   "item.mega_showdown.z-power_ring": "Superpulsera Z",
   "item.mega_showdown.may_bracelet": "Brazalete Mega de Aura",
@@ -388,14 +366,12 @@
   "tooltip.mega_showdown.prison_bottle.tooltip": "Vasija en la que se halla confinado el poder de cierto Pokémon desde hace muchísimo tiempo.",
   "item.mega_showdown.gracidea_flower": "Gracídea",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "Una flor que se suele regalar en ramos para expresar agradecimiento en ocasiones especiales, como cumpleaños.",
-
   "item.mega_showdown.cornerstone_mask": "Máscara cimiento",
   "tooltip.mega_showdown.cornerstone_mask.tooltip": "Una máscara mística que mejora la resistencia de un Pokémon, encarnando el espíritu de una defensa inquebrantable.",
   "item.mega_showdown.wellspring_mask": "Máscara fuente",
   "tooltip.mega_showdown.wellspring_mask.tooltip": "Una máscara sagrada infundida con el poder del agua fluyente, que mejora la agilidad y recuperación de un Pokémon.",
   "item.mega_showdown.hearthflame_mask": "Máscara horno",
   "tooltip.mega_showdown.hearthflame_mask.tooltip": "Una máscara ardiente que enciende la fuerza interior de un Pokémon, aumentando su poder ofensivo.",
-
   "item.mega_showdown.scroll_of_darkness": "Manuscrito sombras",
   "tooltip.mega_showdown.scroll_of_darkness.tooltip": "Un pergamino antiguo lleno de conocimiento sombrío. Otorga a ciertos Pokémon la esencia de la oscuridad.",
   "item.mega_showdown.scroll_of_waters": "Manuscrito aguas",
@@ -406,14 +382,12 @@
   "tooltip.mega_showdown.griseous_orb.tooltip": "Un orbe poderoso que resuena con la esencia de las dimensiones.",
   "item.mega_showdown.ash_cap": "Gorra de Ash",
   "tooltip.mega_showdown.ash_cap.tooltip": "Una gorra usada por un entrenador legendario, que lleva el espíritu de la aventura.",
-
   "item.mega_showdown.fanunit": "Ventilador",
   "item.mega_showdown.fridgeunit": "Refrigerador",
   "item.mega_showdown.mowunit": "Podadora",
   "item.mega_showdown.ovenunit": "Horno",
   "item.mega_showdown.washunit": "Lavadora",
   "item.mega_showdown.rotom_catalogue": "Catálogo Rotom",
-
   "item.mega_showdown.flameplate": "Tabla llama",
   "tooltip.mega_showdown.flameplate.tooltip": "Una tabla que aumenta la potencia de los movimientos de tipo Fuego. Si se equipa en Arceus, este pasará a ser de tipo Fuego.",
   "item.mega_showdown.splashplate": "Tabla linfa",
@@ -448,8 +422,6 @@
   "tooltip.mega_showdown.ironplate.tooltip": "Una tabla que aumenta la potencia de los movimientos de tipo Acero. Si se equipa en Arceus, este pasará a ser de tipo Acero.",
   "item.mega_showdown.pixieplate": "Tabla duende",
   "tooltip.mega_showdown.pixieplate.tooltip": "Una tabla que aumenta la potencia de los movimientos de tipo Hada. Si se equipa en Arceus, este pasará a ser de tipo Hada.",
-
-
   "item.mega_showdown.bugmemory": "Disco bicho",
   "tooltip.mega_showdown.bugmemory.tooltip": "Un disco con datos de tipo Bicho. Cambia el tipo de Silvally.",
   "item.mega_showdown.darkmemory": "Disco siniestro",
@@ -484,7 +456,6 @@
   "tooltip.mega_showdown.steelmemory.tooltip": "Un disco con datos de tipo Acero. Cambia el tipo de Silvally.",
   "item.mega_showdown.watermemory": "Disco agua",
   "tooltip.mega_showdown.watermemory.tooltip": "Un disco con datos de tipo Agua. Cambia el tipo de Silvally.",
-
   "item.mega_showdown.dousedrive": "HidroROM",
   "tooltip.mega_showdown.dousedrive.tooltip": "Un casete que contiene datos de tipo Agua. Cambia el movimiento Tecno Shock de Genesect a tipo Agua.",
   "item.mega_showdown.shockdrive": "FulgoROM",
@@ -493,7 +464,6 @@
   "tooltip.mega_showdown.burndrive.tooltip": "Un casete que contiene datos de tipo Fuego. Cambia el movimiento Tecno Shock de Genesect a tipo fuego.",
   "item.mega_showdown.chilldrive": "CrioROM",
   "tooltip.mega_showdown.chilldrive.tooltip": "Un casete que contiene datos de tipo Hielo. Cambia el movimiento Tecno Shock de Genesect a tipo Hielo.",
-
   "item.mega_showdown.pink_nectar": "Nectar rosa",
   "tooltip.mega_showdown.pink_nectar.tooltip": "Un néctar de flor que cambia a Oricorio a su Estilo Pa'u.",
   "item.mega_showdown.purple_nectar": "Nectar violeta",
@@ -502,12 +472,10 @@
   "tooltip.mega_showdown.red_nectar.tooltip": "Un néctar de flor que cambia a Oricorio a su Estilo Baile.",
   "item.mega_showdown.yellow_nectar": "Nectar amarillo",
   "tooltip.mega_showdown.yellow_nectar.tooltip": "A flower nectar that changes Oricorio to its Pom-Pom Style.",
-
   "item.mega_showdown.booster_energy": "Energía potenciadora",
   "tooltip.mega_showdown.booster_energy.tooltip": "Un objeto que potencia la estadística más alta de un Pokémon con Paleosíntesis o Carga Cuark.",
- "item.mega_showdown.legend_plate": "Tabla legendaria",
+  "item.mega_showdown.legend_plate": "Tabla legendaria",
   "tooltip.mega_showdown.legend_plate.tooltip": "Tabla misteriosa que cambia el tipo de un Pokémon para que coincida con su ataque.",
-
   "item.mega_showdown.adamant_orb": "Diamansfera",
   "tooltip.mega_showdown.adamant_orb.tooltip": "Un orbe que aumenta el poder de los movimientos de tipo Dragón y Acero. Cuando lo lleva Dialga, su fuerza se potencia.",
   "item.mega_showdown.lustrous_globe": "Gran lustresfera",
@@ -520,12 +488,10 @@
   "tooltip.mega_showdown.griseous_core.tooltip": "Un núcleo poderoso que amplifica las habilidades de Giratina cuando lo lleva consigo.",
   "item.mega_showdown.griseous_orb": "Griseosfera",
   "tooltip.mega_showdown.griseous_orb.tooltip": "Un orbe escalofriante que mejora los movimientos de tipo Dragón y Fantasma de Giratina.",
-
   "item.mega_showdown.clear_amulet": "Amuleto puro",
   "tooltip.mega_showdown.clear_amulet.tooltip": "Un amuleto que protege al portador de la reducción de estadísticas.",
   "item.mega_showdown.lagging_tail": "Cola plúmbea",
   "tooltip.mega_showdown.lagging_tail.tooltip": "Un objeto que hace que el portador actúe al último en batalla.",
-
   "item.mega_showdown.red_chain": "Cadena roja",
   "tooltip.mega_showdown.red_chain.tooltip": "Una cadena misteriosa que puede invocar a un Pokémon legendario.",
   "item.mega_showdown.azure_flute": "Flauta azur",

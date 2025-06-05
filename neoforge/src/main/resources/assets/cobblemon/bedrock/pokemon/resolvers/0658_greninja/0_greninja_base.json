@@ -1,4 +1,3 @@
-
 {
   "species": "cobblemon:greninja",
   "order": 0,
@@ -11,11 +10,15 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0658_greninja/greninja_shiny.png"
     },
     {
-      "aspects": ["ash"],
+      "aspects": [
+        "ash"
+      ],
       "poser": "cobblemon:ashgreninja",
       "model": "cobblemon:ashgreninja.geo",
       "texture": "cobblemon:textures/pokemon/0658_greninja/ash_greninja.png",
@@ -38,7 +41,10 @@
       ]
     },
     {
-      "aspects": ["ash","shiny"],
+      "aspects": [
+        "ash",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0658_greninja/ash_greninja_shiny.png"
     }
   ]

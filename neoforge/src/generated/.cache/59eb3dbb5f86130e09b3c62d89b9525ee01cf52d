@@ -1,7 +1,8 @@
-// 1.21.1	2025-05-28T15:43:11.8614701	Loot Tables
+// 1.21.1	2025-06-04T13:56:37.7765691	Loot Tables
 02272d6a35a0b3e68b101ef82262a029bda7f829 data/mega_showdown/loot_table/blocks/chiseled_mega_evo_block.json
 99881b86993e98c1fcd85d946bee00105fab82f4 data/mega_showdown/loot_table/blocks/chiseled_mega_evo_brick.json
 6062133b9709b28cb9f91d5682021347702d73ca data/mega_showdown/loot_table/blocks/deoxys_meteorite.json
+d04774cf9a1e5973452beeaba344128b20e20fce data/mega_showdown/loot_table/blocks/dormant_crystal.json
 deeb94bc47cfe9c021f11cd01f20c6438a503162 data/mega_showdown/loot_table/blocks/gracidea_flower.json
 4749ea320dbbc925681377c758c144915d6227ff data/mega_showdown/loot_table/blocks/keystone_block.json
 85b1c1f154dbf041c804d7ce3c6f291a0de9d23b data/mega_showdown/loot_table/blocks/keystone_ore.json

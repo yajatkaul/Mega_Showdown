@@ -6,7 +6,9 @@
     {
       "id": "darmanitan-1",
       "pokemon": "darmanitan galarian",
-      "presets": [ "natural" ],
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "rare",

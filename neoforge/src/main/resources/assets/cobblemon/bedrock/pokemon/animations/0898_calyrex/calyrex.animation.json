@@ -1,45 +1,85 @@
 {
-	"format_version": "1.8.0",
-	"animations": {
-		"animation.calyrex.ground_idle": {
-			"loop": true,
-			"bones": {
-				"calyrex": {
-					"position": [0, "math.clamp(math.sin(q.anim_time*45*2)*1,-1,1)", 0]
-				},
-				"cape1": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				},
-				"cape2": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				},
-				"cape3": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				},
-				"cape4": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				}
-			}
-		},
-		"animation.calyrex.ground_walk": {
-			"loop": true,
-			"bones": {
-				"calyrex": {
-					"position": [0, "math.clamp(math.sin(q.anim_time*45*2)*1,-1,1)", 0]
-				},
-				"cape1": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				},
-				"cape2": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				},
-				"cape3": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				},
-				"cape4": {
-					"rotation": ["-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)", 0, 0]
-				}
-			}
-		}
-	}
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.calyrex.ground_idle": {
+      "loop": true,
+      "bones": {
+        "calyrex": {
+          "position": [
+            0,
+            "math.clamp(math.sin(q.anim_time*45*2)*1,-1,1)",
+            0
+          ]
+        },
+        "cape1": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        },
+        "cape2": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        },
+        "cape3": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        },
+        "cape4": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "animation.calyrex.ground_walk": {
+      "loop": true,
+      "bones": {
+        "calyrex": {
+          "position": [
+            0,
+            "math.clamp(math.sin(q.anim_time*45*2)*1,-1,1)",
+            0
+          ]
+        },
+        "cape1": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        },
+        "cape2": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        },
+        "cape3": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        },
+        "cape4": {
+          "rotation": [
+            "-math.clamp(math.sin((q.anim_time-0.25)*45*2)*3,-3,3)",
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
 }

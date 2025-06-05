@@ -1,9 +1,17 @@
 {
   "head": "head",
   "portraitScale": 2,
-  "portraitTranslation": [0, 0, 0],
+  "portraitTranslation": [
+    0,
+    0,
+    0
+  ],
   "profileScale": 1,
-  "profileTranslation": [0, 0.2, 0],
+  "profileTranslation": [
+    0,
+    0.2,
+    0
+  ],
   "animations": {
     "faint": "q.bedrock_primary('kubfu', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('kubfu', 'cry')",
@@ -14,9 +22,12 @@
   },
   "poses": {
     "battle-standing": {
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
-      "animations": ["look",
+      "animations": [
+        "look",
         "q.bedrock('kubfu', 'battle_idle')"
       ],
       "quirks": [
@@ -24,9 +35,15 @@
       ]
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
-      "animations": ["look",
+      "animations": [
+        "look",
         "q.bedrock('kubfu', 'ground_idle')"
       ],
       "quirks": [
@@ -34,29 +51,46 @@
       ]
     },
     "walking": {
-      "poseTypes": ["WALK"],
-      "animations": ["look",
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "look",
         "q.bedrock('kubfu', 'ground_walk')"
       ],
-      "quirks": ["q.bedrock_quirk('kubfu', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('kubfu', 'blink')"
+      ]
     },
     "float": {
-      "poseTypes": ["FLOAT"],
+      "poseTypes": [
+        "FLOAT"
+      ],
       "animations": [
         "q.bedrock('kubfu', 'ground_idle')"
       ],
-      "quirks": ["q.bedrock_quirk('kubfu', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('kubfu', 'blink')"
+      ]
     },
     "swim": {
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.bedrock('kubfu', 'ground_walk')"
       ],
-      "quirks": ["q.bedrock_quirk('kubfu', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('kubfu', 'blink')"
+      ]
     },
     "sleep": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('kubfu', 'sleep')"]
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('kubfu', 'sleep')"
+      ]
     }
   }
 }

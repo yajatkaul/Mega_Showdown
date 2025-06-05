@@ -3,7 +3,9 @@
   "order": 2,
   "variations": [
     {
-      "aspects": ["speed-forme"],
+      "aspects": [
+        "speed-forme"
+      ],
       "poser": "cobblemon:deoxys_speed",
       "model": "cobblemon:deoxys_speed.geo",
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_speed.png",
@@ -17,7 +19,10 @@
       ]
     },
     {
-      "aspects": ["shiny","speed-forme"],
+      "aspects": [
+        "shiny",
+        "speed-forme"
+      ],
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_speed_shiny.png",
       "layers": [
         {
@@ -29,7 +34,10 @@
       ]
     },
     {
-      "aspects": ["speed-forme","green-color"],
+      "aspects": [
+        "speed-forme",
+        "green-color"
+      ],
       "poser": "cobblemon:deoxys_speed",
       "model": "cobblemon:deoxys_speed.geo",
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_speed_green_core.png",
@@ -43,7 +51,11 @@
       ]
     },
     {
-      "aspects": ["shiny","speed-forme","green-color"],
+      "aspects": [
+        "shiny",
+        "speed-forme",
+        "green-color"
+      ],
       "texture": "cobblemon:textures/pokemon/0386_deoxys/deoxys_speed_green_core_shiny.png",
       "layers": [
         {

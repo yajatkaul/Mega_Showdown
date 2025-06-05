@@ -10,11 +10,15 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0208_steelix/steelix_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:steelix_mega.geo",
       "texture": "cobblemon:textures/pokemon/0208_steelix/megasteelix.png",
       "layers": [
@@ -27,7 +31,10 @@
       ]
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:steelix_mega.geo",
       "texture": "cobblemon:textures/pokemon/0208_steelix/megasteelix_shiny.png",
       "layers": [

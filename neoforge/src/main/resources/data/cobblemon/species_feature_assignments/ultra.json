@@ -1,4 +1,8 @@
 {
-  "pokemon": ["necrozma"],
-  "features": ["ultra"]
+  "pokemon": [
+    "necrozma"
+  ],
+  "features": [
+    "ultra"
+  ]
 }

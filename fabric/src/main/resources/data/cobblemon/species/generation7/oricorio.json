@@ -162,7 +162,9 @@
     "tutor:tailwind"
   ],
   "evolutions": [],
-  "features": ["dance_style"],
+  "features": [
+    "dance_style"
+  ],
   "forms": [
     {
       "name": "Pom-Pom",

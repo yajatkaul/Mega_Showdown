@@ -1,146 +1,386 @@
 {
   "pokemon.arceus.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/arceus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/arceus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.bisharp.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/bisharp_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/bisharp_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.dialga.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/dialga_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/dialga_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.dialgaorigin.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/dialga_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/dialga_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.eternatus.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/eternatus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/eternatus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.giratina.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/giratina_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/giratina_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.giratinaorigin.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/giratina_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/giratina_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.groudon.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/groudon_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/groudon_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.groudonprimal.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/groudon_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/groudon_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.hoopa.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/hoopa_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/hoopa_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.hoopaunbound.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/hoopaunbound_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/hoopaunbound_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.keldeo.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/keldeo_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/keldeo_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kingambit.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kingambit_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kingambit_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kubfu.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kubfu_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kubfu_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kyogre.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kyogre_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kyogre_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kyogreprimal.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kyogreprimal_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kyogreprimal_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kyurem.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kyurem_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kyurem_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kyuremblack.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kyuremblack_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kyuremblack_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.kyuremwhite.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/kyuremwhite_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/kyuremwhite_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.landorus.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/landorus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/landorus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.landorustherian.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/landorus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/landorus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.latias.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/latias_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/latias_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.latios.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/latios_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/latios_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rayquaza.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rayquaza_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rayquaza_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rayquazamega.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rayquazamega_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rayquazamega_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.palkia.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/palkia_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/palkia_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.palkiaorigin.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/palkia_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/palkia_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.pawniard.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/pawniard_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/pawniard_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.reshiram.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/reshiram_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/reshiram_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.silvally.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/silvally_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/silvally_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.thundurus.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/thundurus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/thundurus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.tornadus.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/tornadus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/tornadus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.thundurustherian.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/thundurus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/thundurus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.tornadustherian.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/tornadus_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/tornadus_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.typenull.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/typenull_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/typenull_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.urshifu.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/urshifu_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/urshifu_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.urshifurrapidstrike.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/urshifurrapidstrike_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/urshifurrapidstrike_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.zacian.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/zacian_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zacian_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.zaciancrowned.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/zaciancrowned_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zaciancrowned_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.zamazenta.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/zamazenta_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zamazenta_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.zamazentacrowned.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/zamazentacrowned_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zamazentacrowned_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.zekrom.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/zekrom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zekrom_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rotom.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rotom_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rotom_heat.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rotom_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rotom_frost.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rotom_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rotom_fan.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rotom_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rotom_wash.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rotom_cry",
+        "volume": 0.8
+      }
+    ]
   },
   "pokemon.rotom_mow.cry": {
-    "sounds": [ { "name": "cobblemon:pokemon/rotom_cry", "volume": 0.8 } ]
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/rotom_cry",
+        "volume": 0.8
+      }
+    ]
   }
 }

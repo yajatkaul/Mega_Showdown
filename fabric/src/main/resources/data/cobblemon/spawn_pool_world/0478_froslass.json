@@ -6,7 +6,9 @@
     {
       "id": "froslass-1",
       "pokemon": "froslass",
-      "presets": ["natural"],
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "uncommon",
@@ -14,7 +16,9 @@
       "weight": 7.0,
       "condition": {
         "canSeeSky": false,
-        "biomes": ["#cobblemon:is_snowy"]
+        "biomes": [
+          "#cobblemon:is_snowy"
+        ]
       }
     }
   ]

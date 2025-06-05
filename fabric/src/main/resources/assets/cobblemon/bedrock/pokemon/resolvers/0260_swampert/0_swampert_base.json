@@ -10,17 +10,24 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0260_swampert/swampert_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:swampert_mega.geo",
       "texture": "cobblemon:textures/pokemon/0260_swampert/megaswampert.png",
       "layers": []
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:swampert_mega.geo",
       "texture": "cobblemon:textures/pokemon/0260_swampert/megaswampert_shiny.png"
     }

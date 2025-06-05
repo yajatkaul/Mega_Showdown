@@ -1,9 +1,17 @@
 {
   "head": "head",
   "portraitScale": 0.46,
-  "portraitTranslation": [-0.56, 5.12, 0],
+  "portraitTranslation": [
+    -0.56,
+    5.12,
+    0
+  ],
   "profileScale": 0.12,
-  "profileTranslation": [0, 1.8, 0],
+  "profileTranslation": [
+    0,
+    1.8,
+    0
+  ],
   "animations": {
     "faint": "q.bedrock_primary('hoopa_unbound', 'faint', q.curve('one'))",
     "cry": "q.bedrock_stateful('hoopa_unbound', 'cry')",
@@ -13,7 +21,9 @@
   },
   "poses": {
     "battle-standing": {
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
       "animations": [
         "q.bedrock('hoopa_unbound', 'battle_idle')"
@@ -23,7 +33,12 @@
       ]
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
         "q.bedrock('hoopa_unbound', 'ground_idle')"
@@ -33,41 +48,69 @@
       ]
     },
     "walking": {
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "animations": [
         "q.bedrock('hoopa_unbound', 'ground_walk')"
       ],
-      "quirks": ["q.bedrock_quirk('hoopa_unbound', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('hoopa_unbound', 'blink')"
+      ]
     },
     "float": {
-      "poseTypes": ["FLOAT"],
+      "poseTypes": [
+        "FLOAT"
+      ],
       "animations": [
         "q.bedrock('hoopa_unbound', 'ground_idle')"
       ],
-      "quirks": ["q.bedrock_quirk('hoopa_unbound', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('hoopa_unbound', 'blink')"
+      ]
     },
     "swim": {
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.bedrock('hoopa_unbound', 'ground_walk')"
       ],
-      "quirks": ["q.bedrock_quirk('hoopa_unbound', 'blink')"]
+      "quirks": [
+        "q.bedrock_quirk('hoopa_unbound', 'blink')"
+      ]
     },
     "hover": {
       "poseName": "hover",
-      "poseTypes": ["HOVER"],
-      "quirks": ["q.bedrock_quirk('hoopa_unbound', 'blink')"],
-      "animations": ["q.bedrock('hoopa_unbound', 'ground_idle')"]
+      "poseTypes": [
+        "HOVER"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('hoopa_unbound', 'blink')"
+      ],
+      "animations": [
+        "q.bedrock('hoopa_unbound', 'ground_idle')"
+      ]
     },
     "fly": {
       "poseName": "fly",
-      "poseTypes": ["FLY"],
-      "quirks": ["q.bedrock_quirk('hoopa_unbound', 'blink')"],
-      "animations": ["q.bedrock('hoopa_unbound', 'ground_walk')"]
+      "poseTypes": [
+        "FLY"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('hoopa_unbound', 'blink')"
+      ],
+      "animations": [
+        "q.bedrock('hoopa_unbound', 'ground_walk')"
+      ]
     },
     "sleep": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('hoopa_unbound', 'sleep')"]
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('hoopa_unbound', 'sleep')"
+      ]
     }
   }
 }

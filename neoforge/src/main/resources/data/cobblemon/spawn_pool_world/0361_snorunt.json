@@ -6,14 +6,18 @@
     {
       "id": "snorunt-1",
       "pokemon": "snorunt",
-      "presets": ["natural"],
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "common",
       "level": "7-32",
       "weight": 7.0,
       "condition": {
-        "biomes": ["#cobblemon:is_snowy"]
+        "biomes": [
+          "#cobblemon:is_snowy"
+        ]
       }
     }
   ]

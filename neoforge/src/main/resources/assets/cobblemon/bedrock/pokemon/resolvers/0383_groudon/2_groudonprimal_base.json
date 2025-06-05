@@ -3,30 +3,33 @@
   "order": 2,
   "variations": [
     {
-      "aspects": ["primal"],
+      "aspects": [
+        "primal"
+      ],
       "poser": "cobblemon:groudonprimal",
       "model": "cobblemon:groudonprimal.geo",
       "texture": "cobblemon:textures/pokemon/0383_groudon/groudonprimal.png",
       "layers": [
         {
-              "name": "emissive",
-              "emissive": true,
-              "texture": "cobblemon:textures/pokemon/0383_groudon/groudonprimal_emissive.png",
-              "translucent": true
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0383_groudon/groudonprimal_emissive.png",
+          "translucent": true
         }
       ]
     },
     {
       "aspects": [
-        "shiny","primal"
+        "shiny",
+        "primal"
       ],
       "texture": "cobblemon:textures/pokemon/0383_groudon/groudonprimal_shiny.png",
       "layers": [
         {
-              "name": "emissive",
-              "emissive": true,
-              "texture": "cobblemon:textures/pokemon/0383_groudon/groudonprimal_emissive_shiny.png",
-              "translucent": true
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0383_groudon/groudonprimal_emissive_shiny.png",
+          "translucent": true
         }
       ]
     }

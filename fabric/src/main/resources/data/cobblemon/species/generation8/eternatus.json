@@ -7,11 +7,22 @@
   "maleRatio": -1,
   "height": 200,
   "weight": 9500,
-  "pokedex": ["cobblemon.species.eternatus.desc"],
-  "labels": ["gen8", "legendary", "restricted"],
+  "pokedex": [
+    "cobblemon.species.eternatus.desc"
+  ],
+  "labels": [
+    "gen8",
+    "legendary",
+    "restricted"
+  ],
   "aspects": [],
-  "abilities": ["pressure", "h:pressure"],
-  "eggGroups": ["undiscovered"],
+  "abilities": [
+    "pressure",
+    "h:pressure"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
   "baseStats": {
     "hp": 140,
     "attack": 85,
@@ -131,9 +142,17 @@
       "maleRatio": -1,
       "height": 1000,
       "weight": 0,
-      "pokedex": ["cobblemon.species.eternatus-eternamax.desc"],
-      "labels": ["gen8", "legendary", "restricted"],
-      "aspects": ["eternamax"],
+      "pokedex": [
+        "cobblemon.species.eternatus-eternamax.desc"
+      ],
+      "labels": [
+        "gen8",
+        "legendary",
+        "restricted"
+      ],
+      "aspects": [
+        "eternamax"
+      ],
       "baseStats": {
         "hp": 255,
         "attack": 115,

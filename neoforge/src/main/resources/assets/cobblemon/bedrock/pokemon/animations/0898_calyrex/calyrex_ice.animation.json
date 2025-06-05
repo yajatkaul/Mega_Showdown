@@ -1,11 +1,11 @@
 {
-	"format_version": "1.8.0",
-	"animations": {
-		"animation.calyrex_ice.ground_idle": {
-			"loop": true
-		},
-		"animation.calyrex_ice.ground_walk": {
-			"loop": true
-		}
-	}
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.calyrex_ice.ground_idle": {
+      "loop": true
+    },
+    "animation.calyrex_ice.ground_walk": {
+      "loop": true
+    }
+  }
 }

@@ -3,8 +3,8 @@
   "implemented": true,
   "baseScale": 0.62,
   "hitbox": {
-	"width": 0.8,
-	"height": 0.8,
-	"fixed": false
+    "width": 0.8,
+    "height": 0.8,
+    "fixed": false
   }
 }

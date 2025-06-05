@@ -20,12 +20,14 @@ public class ModMenuTypes {
             IContainerFactory<T> factory
     ) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
-    }    public static final DeferredHolder<MenuType<?>, MenuType<ZygardeCubeMenu>> ZYGARDE_CUBE_MENU =
-            registerMenuType("zygade_menu", ZygardeCubeMenu::new);
+    }
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
-    }
+    }    public static final DeferredHolder<MenuType<?>, MenuType<ZygardeCubeMenu>> ZYGARDE_CUBE_MENU =
+            registerMenuType("zygade_menu", ZygardeCubeMenu::new);
+
+
 
 
 }

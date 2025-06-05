@@ -3,13 +3,18 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:blastoise_mega.geo",
       "texture": "cobblemon:textures/pokemon/0009_blastoise/blastoise_mega.png",
       "layers": []
     },
     {
-      "aspects": [ "mega", "shiny" ],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:blastoise_mega.geo",
       "texture": "cobblemon:textures/pokemon/0009_blastoise/blastoise_shiny_mega.png"
     }

@@ -10,11 +10,15 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0323_camerupt/camerupt_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:camerupt_mega.geo",
       "texture": "cobblemon:textures/pokemon/0323_camerupt/megacamerupt.png",
       "layers": [
@@ -27,7 +31,10 @@
       ]
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:camerupt_mega.geo",
       "texture": "cobblemon:textures/pokemon/0323_camerupt/megacamerupt_shiny.png",
       "layers": [

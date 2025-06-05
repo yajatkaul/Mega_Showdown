@@ -10,19 +10,26 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0487_giratina/giratina_shiny.png",
       "layers": []
     },
     {
-      "aspects": ["origin-forme"],
+      "aspects": [
+        "origin-forme"
+      ],
       "poser": "cobblemon:giratina_origin",
       "model": "cobblemon:giratina_origin.geo",
       "texture": "cobblemon:textures/pokemon/0487_giratina/giratina_origin.png",
       "layers": []
     },
     {
-      "aspects": ["origin-forme", "shiny"],
+      "aspects": [
+        "origin-forme",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0487_giratina/giratina_origin_shiny.png",
       "layers": []
     }

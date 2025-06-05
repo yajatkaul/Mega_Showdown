@@ -42,7 +42,7 @@ public class MegaOres {
                             .sound(SoundType.MEDIUM_AMETHYST_BUD)
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
-                            .pushReaction(PushReaction.PUSH_ONLY)
+                            .pushReaction(PushReaction.IGNORE)
                             .lightLevel((state) -> 15)) {
                 public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 13, 14);
 

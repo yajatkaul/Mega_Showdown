@@ -185,6 +185,8 @@ public class ModItemGroups {
                         entries.add(TeraMoves.STEEL_TERA_SHARD);
                         entries.add(TeraMoves.STELLAR_TERA_SHARD);
                         entries.add(TeraMoves.WATER_TERA_SHARD);
+                        entries.add(KeyItems.LIKOS_PENDANT);
+                        entries.add(ModBlocks.DORMANT_CRYSTAL);
                     }))
                     .build());
 
@@ -312,7 +314,6 @@ public class ModItemGroups {
                     .displayName(Text.translatable("creativeTab.mega_showdown.key_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ModBlocks.PEDESTAL);
-                        entries.add(KeyItems.LIKOS_PENDANT);
                     }))
                     .build());
 

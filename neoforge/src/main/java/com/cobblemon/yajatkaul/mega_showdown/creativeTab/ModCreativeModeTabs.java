@@ -191,6 +191,9 @@ public class ModCreativeModeTabs {
                         output.accept(TeraMoves.STEEL_TERA_SHARD);
                         output.accept(TeraMoves.STELLAR_TERA_SHARD);
                         output.accept(TeraMoves.WATER_TERA_SHARD);
+                        output.accept(KeyItems.LIKOS_PENDANT);
+                        output.accept(ModBlocks.DORMANT_CRYSTAL);
+
                     })
                     .build());
 
@@ -318,7 +321,6 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativeTab.mega_showdown.key_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.PEDESTAL);
-                        output.accept(KeyItems.LIKOS_PENDANT);
                     })
                     .build());
 

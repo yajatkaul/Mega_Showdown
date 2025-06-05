@@ -1,4 +1,8 @@
 {
-  "pokemon": ["calyrex"],
-  "features": ["ice"]
+  "pokemon": [
+    "calyrex"
+  ],
+  "features": [
+    "ice"
+  ]
 }

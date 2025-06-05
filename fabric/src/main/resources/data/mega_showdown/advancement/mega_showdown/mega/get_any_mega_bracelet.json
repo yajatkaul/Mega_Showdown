@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_bracelets"]],
+  "requirements": [
+    [
+      "obtained_bracelets"
+    ]
+  ],
   "sends_telemetry_event": false
 }

@@ -23,11 +23,11 @@
   ],
   "baseStats": {
     "hp": 90,
-	"attack": 20,
-	"defence": 100,
-	"special_attack": 170,
-	"special_defence": 100,
-	"speed": 120
+    "attack": 20,
+    "defence": 100,
+    "special_attack": 170,
+    "special_defence": 100,
+    "speed": 120
   },
   "evYield": {
     "hp": 0,
@@ -145,12 +145,12 @@
       "secondaryType": "electric",
       "maleRatio": -1,
       "baseScale": 0.9,
-	  "hitbox": {
-		"width": 0.85,
-		"height": 1.6,
-		"fixed": false
-	  },
-	  "height": 3,
+      "hitbox": {
+        "width": 0.85,
+        "height": 1.6,
+        "fixed": false
+      },
+      "height": 3,
       "weight": 3,
       "pokedex": [
         "cobblemon.species.rotom-heat.desc"
@@ -162,12 +162,12 @@
         "heat-appliance"
       ],
       "baseStats": {
-            "hp": 90,
-		"attack": 20,
-		"defence": 100,
-		"special_attack": 170,
-		"special_defence": 100,
-		"speed": 120
+        "hp": 90,
+        "attack": 20,
+        "defence": 100,
+        "special_attack": 170,
+        "special_defence": 100,
+        "speed": 120
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -269,12 +269,12 @@
       "primaryType": "water",
       "secondaryType": "electric",
       "baseScale": 0.83,
-	  "hitbox": {
-		"width": 0.85,
-		"height": 1.7,
-		"fixed": false
-	  },
-	  "maleRatio": -1,
+      "hitbox": {
+        "width": 0.85,
+        "height": 1.7,
+        "fixed": false
+      },
+      "maleRatio": -1,
       "height": 3,
       "weight": 3,
       "pokedex": [
@@ -287,12 +287,12 @@
         "wash-appliance"
       ],
       "baseStats": {
-		"hp": 90,
-		"attack": 20,
-		"defence": 100,
-		"special_attack": 170,
-		"special_defence": 100,
-		"speed": 120
+        "hp": 90,
+        "attack": 20,
+        "defence": 100,
+        "special_attack": 170,
+        "special_defence": 100,
+        "speed": 120
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -393,12 +393,12 @@
       "name": "Frost",
       "primaryType": "ice",
       "secondaryType": "electric",
-	  "baseScale": 1.25,
-	  "hitbox": {
-		"width": 0.75,
-		"height": 1.6,
-		"fixed": false
-	  },
+      "baseScale": 1.25,
+      "hitbox": {
+        "width": 0.75,
+        "height": 1.6,
+        "fixed": false
+      },
       "maleRatio": -1,
       "height": 3,
       "weight": 3,
@@ -413,11 +413,11 @@
       ],
       "baseStats": {
         "hp": 90,
-		"attack": 20,
-		"defence": 100,
-		"special_attack": 170,
-		"special_defence": 100,
-		"speed": 120
+        "attack": 20,
+        "defence": 100,
+        "special_attack": 170,
+        "special_defence": 100,
+        "speed": 120
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -518,12 +518,12 @@
       "name": "Fan",
       "primaryType": "flying",
       "secondaryType": "electric",
-	  "baseScale": 0.8,
-	  "hitbox": {
-		"width": 0.55,
-		"height": 2.1,
-		"fixed": false
-	  },
+      "baseScale": 0.8,
+      "hitbox": {
+        "width": 0.55,
+        "height": 2.1,
+        "fixed": false
+      },
       "maleRatio": -1,
       "height": 3,
       "weight": 3,
@@ -538,11 +538,11 @@
       ],
       "baseStats": {
         "hp": 90,
-		"attack": 20,
-		"defence": 100,
-		"special_attack": 170,
-		"special_defence": 100,
-		"speed": 120
+        "attack": 20,
+        "defence": 100,
+        "special_attack": 170,
+        "special_defence": 100,
+        "speed": 120
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -643,12 +643,12 @@
       "name": "Mow",
       "primaryType": "grass",
       "secondaryType": "electric",
-	  "baseScale": 0.85,
-	  "hitbox": {
-		"width": 0.75,
-		"height": 1.65,
-		"fixed": false
-	  },
+      "baseScale": 0.85,
+      "hitbox": {
+        "width": 0.75,
+        "height": 1.65,
+        "fixed": false
+      },
       "maleRatio": -1,
       "height": 3,
       "weight": 3,
@@ -663,11 +663,11 @@
       ],
       "baseStats": {
         "hp": 90,
-		"attack": 20,
-		"defence": 100,
-		"special_attack": 170,
-		"special_defence": 100,
-		"speed": 120
+        "attack": 20,
+        "defence": 100,
+        "special_attack": 170,
+        "special_defence": 100,
+        "speed": 120
       },
       "baseExperienceYield": 182,
       "moves": [

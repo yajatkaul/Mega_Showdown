@@ -3,13 +3,18 @@
   "order": 2,
   "variations": [
     {
-      "aspects": ["galarian"],
+      "aspects": [
+        "galarian"
+      ],
       "poser": "cobblemon:darmanitan",
       "model": "cobblemon:darmanitan_galar.geo",
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_galar.png"
     },
     {
-      "aspects": ["galarian", "shiny"],
+      "aspects": [
+        "galarian",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_galar_shiny.png"
     }
   ]

@@ -1,7 +1,7 @@
 {
-	"parent": "mega_showdown:block/reassembly_lower",
-	"textures": {
-		"0": "mega_showdown:block/reassembly_on",
-		"particle": "mega_showdown:block/reassembly_on"
-	}
+  "parent": "mega_showdown:block/reassembly_lower",
+  "textures": {
+    "0": "mega_showdown:block/reassembly_on",
+    "particle": "mega_showdown:block/reassembly_on"
+  }
 }

@@ -55,7 +55,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.PEDESTAL.get(),
 
-                        ModBlocks.REASSEMBLY_UNIT.get()
+                        ModBlocks.REASSEMBLY_UNIT.get(),
+
+                        ModBlocks.DORMANT_CRYSTAL.get()
                 );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -68,7 +70,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.DEOXYS_METEORITE.get(),
 
-                        ModBlocks.POWER_SPOT.get()
+                        ModBlocks.POWER_SPOT.get(),
+
+                        ModBlocks.DORMANT_CRYSTAL.get()
                 );
 
         tag(BlockTags.NEEDS_IRON_TOOL)

@@ -46,13 +46,10 @@
   "item.mega_showdown.swampertite": "Laggronite",
   "item.mega_showdown.tyranitarite": "Tyranocivite",
   "item.mega_showdown.venusaurite": "Florizarrite",
-  
   "item.mega_showdown.redorb": "Gemme Rouge",
   "item.mega_showdown.blueorb": "Gemme Bleu",
-  
   "tooltip.mega_showdown.redorb.tooltip": "Permet à Groudon de se transformer en Primo-Groudon",
   "tooltip.mega_showdown.blueorb.tooltip": "Permet à Kyogre de se transformer en Primo-Kyogre",
-  
   "tooltip.mega_showdown.mega_stone.tooltip": "Méga-Gemme Brute",
   "tooltip.mega_showdown.abomasite.tooltip": "Permet à Blizzaroi de méga-évoluer en Méga-Blizzaroi",
   "tooltip.mega_showdown.absolite.tooltip": "Permet à Absol de méga-évoluer en Méga-Absol",
@@ -102,21 +99,17 @@
   "tooltip.mega_showdown.tyranitarite.tooltip": "Permet à Tyranocif de méga-évoluer en Méga-Tyranocif",
   "tooltip.mega_showdown.venusaurite.tooltip": "Permet à Florizarre de méga-évoluer en Méga-Florizarre",
   "item.mega_showdown.diancite": "Diancite",
-  
   "block.mega_showdown.mega_meteorid_block": "Bloc de Méga-Météorïte",
   "block.mega_showdown.mega_evo_brick": "Méga-Brique",
   "block.mega_showdown.chiseled_mega_evo_brick": "Méga-Brique Ciselée",
   "block.mega_showdown.chiseled_mega_evo_block": "Méga-Bloc Ciselé",
   "block.mega_showdown.polished_mega_evo_block": "Méga-Bloc Poli",
   "block.mega_showdown.mega_evo_block": "Bloc de Météroïte",
-  
   "block.mega_showdown.mega_stone_crystal": "Méga-Cristal",
-  
   "block.mega_showdown.keystone_ore": "Minerai de Gemme Sésame",
   "block.mega_showdown.keystone_block": "Bloc de Gemme Sésame",
   "item.mega_showdown.keystone": "Gemme Sésame",
   "tooltip.mega_showdown.keystone.tooltip": "Utilisée pour créer un Méga-Bracelet",
-  
   "item.mega_showdown.megabracelet": "Méga-Bracelet",
   "tooltip.mega_showdown.megabracelet.tooltip": "Il contient une Gemme Sésame qui permet aux Pokémon d'utiliser une Méga-Gemme",
   "item.mega_showdown.megabracelet_red": "Méga-Bracelet Rouge",
@@ -135,7 +128,6 @@
   "tooltip.mega_showdown.megaring.tooltip": "Il contient une Gemme Sésame qui permet aux Pokémon d'utiliser une Méga-Gemme",
   "item.mega_showdown.brendan_mega_cuff": "Méga-Manchette de Brice",
   "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "La Méga-Manchette de Brice contient une Gemme Sésame qui permet aux Pokémon d'utiliser une Méga-Gemme",
-  
   "item.mega_showdown.lysandre_ring": "Méga-Anneau de Lysandre",
   "tooltip.mega_showdown.lysandre_ring.tooltip": "Il contient une Gemme Sésame qui permet aux Pokémon d'utiliser une Méga-Gemme",
   "item.mega_showdown.maxie_glasses": "Méga-Lunettes de Max",
@@ -144,7 +136,6 @@
   "tooltip.mega_showdown.korrina_glove.tooltip": "Il contient une Gemme Sésame qui permet aux Pokémon d'utiliser une Méga-Gemme",
   "item.mega_showdown.archie_anchor": "Méga-Ancre d'Arthur",
   "tooltip.mega_showdown.archie_anchor.tooltip": "Elle contient une Gemme Sésame qui permet aux Pokémon d'utiliser une Méga-Gemme",
-  
   "creativeTab.mega_showdown.mega_showdown_tab": "Méga Showdown",
   "creativeTab.mega_showdown.z_moves_tab": "Capacités Z",
   "creativeTab.mega_showdown.tera_tab": "Téracristal",
@@ -152,7 +143,6 @@
   "creativeTab.mega_showdown.compi_tab": "Objets Compétitifs",
   "creativeTab.mega_showdown.key_tab": "Objets Clés",
   "creativeTab.mega_showdown.dynamax_tab": "Dynamax",
-  
   "block.mega_showdown.pedestal": "Piédestal",
   "block.mega_showdown.mega_meteorid_dawn_ore": "Minerai de Pierre Aube",
   "block.mega_showdown.mega_meteorid_dusk_ore": " Minerai de Pierre Nuit",
@@ -164,23 +154,17 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "Minerai de Pierre Soleil",
   "block.mega_showdown.mega_meteorid_thunder_ore": "Minerai de Pierre Foudre",
   "block.mega_showdown.mega_meteorid_water_ore": "Minerai de Pierre Eau",
-  
   "key.mega_showdown.mega_evo": "Méga-Évolution",
   "key.mega_showdown.ultra_key": "Ultra Burst",
   "key.categories.mega_showdown": "Méga Showdown",
-  
   "trinkets.slot.hand.evowear": "Accessoire Méga",
   "curios.identifier.evowear": "Accessoire Méga",
-  
   "trinkets.slot.hand.z_slot": "Accessoire Z",
   "curios.identifier.z_slot": "Accessoire Z",
-  
   "trinkets.slot.hand.tera_slot": "Accessoire Téracristal",
   "curios.identifier.tera_slot": "Accessoire Téracristal",
-  
   "trinkets.slot.hand.dynamax_slot": "Emplacement Dynamax",
   "curios.identifier.dynamax_slot": "Emplacement Dynamax",
-   
   "item.mega_showdown.aloraichium-z": "Aloraïzélite",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "Cristal Z associé à Raichu d'Alola qui lui permet d'améliorer son Tonnerre en capacité Z spéciale Électro-Surf Survolté.",
   "item.mega_showdown.blank-z": "Crystal Z",
@@ -257,7 +241,6 @@
   "tooltip.mega_showdown.z-ring.tooltip": "Bracelet qui permet à un Dresseur et à son Pokémon de rassembler la Force Z nécessaire pour exécuter des capacités Z.",
   "item.mega_showdown.tera_orb": "Orbe Téracristal",
   "tooltip.mega_showdown.tera_item.tooltip": "Orbe qui permet à un Dresseur de Téracristalliser son Pokémon, changeant temporairement son type et renforçant ses capacités.",
-  
   "item.mega_showdown.bug_tera_shard": "Téra-Éclat Insecte",
   "item.mega_showdown.dark_tera_shard": "Téra-Éclat Ténèbres",
   "item.mega_showdown.dragon_tera_shard": "Téra-Éclat Dragon",
@@ -277,7 +260,6 @@
   "item.mega_showdown.steel_tera_shard": "Téra-Éclat Acier",
   "item.mega_showdown.stellar_tera_shard": "Téra-Éclat Stellaire",
   "item.mega_showdown.water_tera_shard": "Téra-Éclat Eau",
-  
   "item.mega_showdown.n_lunarizer": "Necroluna",
   "item.mega_showdown.n_lunarizer.inactive": "Necroluna (Inactif)",
   "item.mega_showdown.n_lunarizer.charged": "Necroluna (Chargé)",
@@ -294,7 +276,6 @@
   "item.mega_showdown.reins_of_unity.inactive": "Rênes de l'Unité (Inactives)",
   "item.mega_showdown.reins_of_unity.charged": "Rênes de l'Unité (Chargées)",
   "tooltip.mega_showdown.reins_of_unity.tooltip": "Utilisées pour fusionner Spectreval/Blizzeval avec un être mystérieux",
-  
   "item.mega_showdown.z-ring_black": "Bracelet Z Noir",
   "item.mega_showdown.z-power_ring": "Bracelet Z-Power",
   "item.mega_showdown.may_bracelet": "Bracelet de Flora",
@@ -306,14 +287,12 @@
   "tooltip.mega_showdown.prison_bottle.tooltip": "Un flacon qui aurait servi à sceller le pouvoir d'un certain Pokémon il y a bien longtemps.",
   "block.mega_showdown.gracidea_flower": "Gracidée",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "Une fleur rare à l'aura mystique, connue pour fleurir dans des conditions spéciales.",
-  
   "item.mega_showdown.cornerstone_mask": "Masque de la Pierre",
   "tooltip.mega_showdown.cornerstone_mask.tooltip": "Un masque mystique qui renforce la résilience d'un Pokémon, incarnant l'esprit d'une défense inébranlable.",
   "item.mega_showdown.wellspring_mask": "Masque du Puits",
   "tooltip.mega_showdown.wellspring_mask.tooltip": "Un masque sacré imprégné du pouvoir de l'eau courante, augmentant l'agilité et la récupération d'un Pokémon.",
   "item.mega_showdown.hearthflame_mask": "Masque du Fourneau",
   "tooltip.mega_showdown.hearthflame_mask.tooltip": "Un masque ardent qui enflamme la force intérieure d'un Pokémon, augmentant sa puissance offensive.",
-  
   "item.mega_showdown.scroll_of_darkness": "Parchemin des Ténèbres",
   "tooltip.mega_showdown.scroll_of_darkness.tooltip": "Un parchemin ancien rempli de connaissances ténébreuses. Il dote certains Pokémon de l'essence des ténèbres.",
   "item.mega_showdown.scroll_of_waters": "Parchemin des Eaux",
@@ -322,14 +301,12 @@
   "tooltip.mega_showdown.star_core.tooltip": "Un orbe qui contient une énergie immense.",
   "item.mega_showdown.ash_cap": "Casquette de Sacha",
   "tooltip.mega_showdown.ash_cap.tooltip": "Une casquette portée par un dresseur légendaire, véhiculant l'esprit d'aventure.",
-  
   "item.mega_showdown.fanunit": "Ventilateur",
   "item.mega_showdown.fridgeunit": "Frigo",
   "item.mega_showdown.mowunit": "Tondeuse",
   "item.mega_showdown.ovenunit": "Four",
   "item.mega_showdown.washunit": "Lave-Linge",
   "item.mega_showdown.rotom_catalogue": "Catalogue Motisma",
-  
   "item.mega_showdown.flameplate": "Plaque Flamme",
   "tooltip.mega_showdown.flameplate.tooltip": "Une tablette qui augmente la puissance des capacités de type Feu. Tenue par Arceus, elle le transforme en type Feu.",
   "item.mega_showdown.splashplate": "Plaque Hydro",
@@ -364,7 +341,6 @@
   "tooltip.mega_showdown.ironplate.tooltip": "Une tablette qui augmente la puissance des capacités de type Acier. Tenue par Arceus, elle le transforme en type Acier.",
   "item.mega_showdown.pixieplate": "Plaque Pixie",
   "tooltip.mega_showdown.pixieplate.tooltip": "Une tablette qui augmente la puissance des capacités de type Fée. Tenue par Arceus, elle le transforme en type Fée.",
-  
   "item.mega_showdown.bugmemory": "ROM Insecte",
   "tooltip.mega_showdown.bugmemory.tooltip": "Un disque contenant des données de type Insecte. Il change le type de Silvallié.",
   "item.mega_showdown.darkmemory": "ROM Ténèbres",
@@ -399,7 +375,6 @@
   "tooltip.mega_showdown.steelmemory.tooltip": "Un disque contenant des données de type Acier. Il change le type de Silvallié.",
   "item.mega_showdown.watermemory": "ROM Eau",
   "tooltip.mega_showdown.watermemory.tooltip": "Un disque contenant des données de type Eau. Il change le type de Silvallié.",
-  
   "item.mega_showdown.dousedrive": "Module Aqua",
   "tooltip.mega_showdown.dousedrive.tooltip": "Une cassette contenant des données de type Eau. Elle change le type de Techno-Choc de Genesect en type Eau.",
   "item.mega_showdown.shockdrive": "Module Choc",
@@ -408,7 +383,6 @@
   "tooltip.mega_showdown.burndrive.tooltip": "Une cassette contenant des données de type Feu. Elle change le type de Techno-Choc de Genesect en type Feu.",
   "item.mega_showdown.chilldrive": "Module Cryo",
   "tooltip.mega_showdown.chilldrive.tooltip": "Une cassette contenant des données de type Glace. Elle change le type de Techno-Choc de Genesect en type Glace.",
-  
   "item.mega_showdown.pink_nectar": "Nectar Rose",
   "tooltip.mega_showdown.pink_nectar.tooltip": "Un nectar de fleur qui transforme Plumeline en Style Hula.",
   "item.mega_showdown.purple_nectar": "Nectar Mauve",
@@ -417,12 +391,10 @@
   "tooltip.mega_showdown.red_nectar.tooltip": "Un nectar de fleur qui transforme Plumeline en Style Flamenco.",
   "item.mega_showdown.yellow_nectar": "Nectar Jaune",
   "tooltip.mega_showdown.yellow_nectar.tooltip": "Un nectar de fleur qui transforme Plumeline en Style Pom-Pom.",
-  
   "item.mega_showdown.booster_energy": "Énergie Booster",
   "tooltip.mega_showdown.booster_energy.tooltip": "Un objet qui augmente la statistique la plus forte d'un Pokémon avec Paléosynthèse ou Charge Quantique.",
   "item.mega_showdown.legend_plate": "Plaque Légende",
   "tooltip.mega_showdown.legend_plate.tooltip": "Une plaque mystérieuse qui change le type d'un Pokémon pour correspondre à son attaque.",
-  
   "item.mega_showdown.adamant_crystal": "Globe Adamant",
   "tooltip.mega_showdown.adamant_crystal.tooltip": "Un cristal radiant qui augmente la puissance de Dialga quand il est tenu.",
   "item.mega_showdown.adamant_orb": "Orbe Adamant",
@@ -435,26 +407,22 @@
   "tooltip.mega_showdown.griseous_core.tooltip": "Un noyau puissant qui amplifie les capacités de Giratina quand il est tenu.",
   "item.mega_showdown.griseous_orb": "Orbe Platiné",
   "tooltip.mega_showdown.griseous_orb.tooltip": "Un orbe sinistre qui renforce les capacités de type Dragon et Spectre de Giratina.",
-  
   "item.mega_showdown.clear_amulet": "Talisman Sain",
   "tooltip.mega_showdown.clear_amulet.tooltip": "Un talisman qui protège le porteur de toute réduction de statistique.",
   "item.mega_showdown.lagging_tail": "Ralentiqueue",
   "tooltip.mega_showdown.lagging_tail.tooltip": "Un objet qui fait agir son porteur en dernier au combat.",
-  
   "item.mega_showdown.red_chain": "Chaîne Rouge",
   "tooltip.mega_showdown.red_chain.tooltip": "Une chaîne mystérieuse qui peut invoquer un Pokémon légendaire.",
   "item.mega_showdown.azure_flute": "Flûte Azur",
   "tooltip.mega_showdown.azure_flute.tooltip": "Une flûte qui invoquerait un Pokémon légendaire.",
   "block.mega_showdown.deoxys_meteorite": "Météorite de Paldea",
   "tooltip.mega_showdown.deoxys_meteorite.tooltip": "Une météorite qui permet à Deoxys de changer de forme.",
-  
   "item.mega_showdown.adrenalineorb": "Orbe Frousse",
   "tooltip.mega_showdown.adrenalineorb.tooltip": "Un objet qui augmente la Vitesse quand le Pokémon est intimidé.",
   "item.mega_showdown.souldew": "Rosée Âme",
   "tooltip.mega_showdown.souldew.tooltip": "Un orbe mystérieux qui augmente la puissance de Latios et Latias.",
   "item.mega_showdown.gripclaw": "Accro Griffe",
   "tooltip.mega_showdown.gripclaw.tooltip": "Un objet qui prolonge la durée des capacités de constriction.",
-  
   "item.mega_showdown.dynamax_band": "Poignet Dynamax",
   "tooltip.mega_showdown.dynamax_band.tooltip": "Un bracelet spécial qui permet aux Pokémon de Dynamaxer pendant le combat.",
   "item.mega_showdown.dynamax_candy": "Bonbon Dynamax",
@@ -471,14 +439,12 @@
   "tooltip.mega_showdown.max_mushroom.tooltip": "Un champignon rare à la forte odeur de Gigamax. Nécessaire pour préparer la Maxi Soupe.",
   "block.mega_showdown.power_spot": "Bloc d'Énergie",
   "tooltip.mega_showdown.power_spot.tooltip": "Un Bloc utilisé pour créer un cercle d'énergie.",
-  
   "item.mega_showdown.luminous_moss": "Lichen Lumineux",
   "tooltip.mega_showdown.luminous_moss.tooltip": "Une mousse dont on dit qu'elle brille d'une lumière mystérieuse. Elle augmente la Défense Spéciale lorsqu'elle est touchée par une attaque de type Eau.",
   "item.mega_showdown.sparkling_stone_light": "Gemme Lumière Claire",
   "tooltip.mega_showdown.sparkling_stone_light.tooltip": "Une pierre mystérieuse qui dégage une lumière douce. Elle résonne avec la Force Z.",
   "item.mega_showdown.sparkling_stone_dark": "Gemme Lumière Sombre",
   "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "Une pierre mystérieuse qui émet une faible lueur obscure. Elle résonne avec la Force Z.",
-  
   "item.mega_showdown.zygarde_cube": "Boîte Zygarde",
   "item.mega_showdown.zygarde_cube.full": "Boîte Zygarde (Pleine)",
   "tooltip.mega_showdown.zygarde_cube.tooltip": "Une Boîte qui collecte les Noyaux et Cellules de Zygarde, Il pulse faiblement avec l'énergie des profondeurs souterraines.",
@@ -488,12 +454,9 @@
   "tooltip.mega_showdown.zygarde_core.tooltip": "Le Cerveau de Zygarde. Il peut penser et agir seul, guidant l'assemblage des formes de Zygarde.",
   "item.mega_showdown.reveal_glass": "Miroir Sacré",
   "tooltip.mega_showdown.reveal_glass.tooltip": "Un miroir mystérieux qui révèle les vraies formes de certains Pokémon.",
-  
   "menu.zygade_cube": "Boîte Zygarde",
-
   "block.mega_showdown.reassembly_unit": "Machine à Recomposer",
   "block.mega_showdown.wishing_star_crystal": "Cristal Étoile Vœu",
-  
   "message.mega_showdown.not_enough_cells_core": "Vous n'avez pas assez de Cellules/Noyaux",
   "message.mega_showdown.reset_completed": "Réinitialisation terminée !",
   "message.mega_showdown.not_so_fast": "Pas si vite !",

@@ -18,13 +18,18 @@
       "texture": "cobblemon:textures/pokemon/0142_aerodactyl/aerodactyl_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:aerodactyl_mega.geo",
       "texture": "cobblemon:textures/pokemon/0142_aerodactyl/megaaerodactyl.png",
       "layers": []
     },
     {
-      "aspects": [ "mega", "shiny" ],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:aerodactyl_mega.geo",
       "texture": "cobblemon:textures/pokemon/0142_aerodactyl/megaaerodactyl_shiny.png"
     }

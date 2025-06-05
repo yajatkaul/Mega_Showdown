@@ -3,7 +3,9 @@
   "order": 3,
   "variations": [
     {
-      "aspects": ["gmax"],
+      "aspects": [
+        "gmax"
+      ],
       "poser": "cobblemon:sandacondagmax",
       "model": "cobblemon:sandaconda_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0844_sandaconda/sandaconda_gigantamax.png",
@@ -16,7 +18,10 @@
       ]
     },
     {
-      "aspects": ["gmax", "shiny"],
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
       "poser": "cobblemon:sandacondagmax",
       "model": "cobblemon:sandaconda_gigantamax.geo",
       "texture": "cobblemon:textures/pokemon/0844_sandaconda/sandaconda_gigantamax_shiny.png",

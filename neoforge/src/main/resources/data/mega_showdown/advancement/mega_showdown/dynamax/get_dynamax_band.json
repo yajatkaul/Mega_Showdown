@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_dynamax_band"]],
+  "requirements": [
+    [
+      "obtained_dynamax_band"
+    ]
+  ],
   "sends_telemetry_event": false
 }

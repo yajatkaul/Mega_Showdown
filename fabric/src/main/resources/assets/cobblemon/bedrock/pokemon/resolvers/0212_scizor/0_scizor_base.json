@@ -10,11 +10,15 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0212_scizor/scizor_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:scizor_mega",
       "model": "cobblemon:scizor_mega.geo",
       "texture": "cobblemon:textures/pokemon/0212_scizor/megascizor.png",
@@ -22,7 +26,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:scizor_mega",
       "model": "cobblemon:scizor_mega.geo",
       "texture": "cobblemon:textures/pokemon/0212_scizor/megascizor_shiny.png",

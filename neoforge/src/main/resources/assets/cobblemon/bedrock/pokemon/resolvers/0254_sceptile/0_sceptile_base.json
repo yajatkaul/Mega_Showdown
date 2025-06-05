@@ -10,17 +10,24 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0254_sceptile/sceptile_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:sceptile_mega.geo",
       "texture": "cobblemon:textures/pokemon/0254_sceptile/megasceptile.png",
       "layers": []
     },
     {
-      "aspects": ["mega","shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:sceptile_mega.geo",
       "texture": "cobblemon:textures/pokemon/0254_sceptile/megasceptile_shiny.png",
       "layers": []

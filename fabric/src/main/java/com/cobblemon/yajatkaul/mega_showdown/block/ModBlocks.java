@@ -101,6 +101,29 @@ public class ModBlocks {
                 }
             });
 
+    public static final Block DORMANT_CRYSTAL = registerBlockWithToolTip("dormant_crystal",
+            new CrystalBlock(4, 3, AbstractBlock.Settings.create()
+                    .strength(3f)
+                    .requiresTool()
+                    .mapColor(MapColor.DIAMOND_BLUE)
+                    .luminance((state) -> 15)
+                    .nonOpaque()
+                    .pistonBehavior(PistonBehavior.IGNORE)
+                    .sounds(BlockSoundGroup.AMETHYST_CLUSTER)) {
+                private static final VoxelShape SHAPE =
+                        Block.createCuboidShape(4, 0, 4, 12, 4, 12);
+
+                @Override
+                protected BlockRenderType getRenderType(BlockState state) {
+                    return BlockRenderType.MODEL;
+                }
+
+                @Override
+                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+                    return SHAPE;
+                }
+            });
+
     public static final Block MAX_MUSHROOM = Registry.register(
             Registries.BLOCK,
             Identifier.of(MegaShowdown.MOD_ID, "max_mushroom"),
@@ -139,7 +162,7 @@ public class ModBlocks {
                             .sounds(BlockSoundGroup.STONE)
                             .nonOpaque()
                             .requiresTool()
-                            .pistonBehavior(PistonBehavior.PUSH_ONLY)
+                            .pistonBehavior(PistonBehavior.IGNORE)
                             .luminance((state) -> 15)) {
                 private static final VoxelShape SHAPE =
                         Block.createCuboidShape(2, 0, 2, 14, 9, 14);

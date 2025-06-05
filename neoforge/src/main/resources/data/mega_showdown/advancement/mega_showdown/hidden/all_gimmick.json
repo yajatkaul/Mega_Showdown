@@ -59,6 +59,19 @@
       }
     }
   },
-  "requirements": [["z_ring"],["bracelets"],["dynamax_band"],["tera_orb"]],
+  "requirements": [
+    [
+      "z_ring"
+    ],
+    [
+      "bracelets"
+    ],
+    [
+      "dynamax_band"
+    ],
+    [
+      "tera_orb"
+    ]
+  ],
   "sends_telemetry_event": false
 }

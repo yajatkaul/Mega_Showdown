@@ -6,14 +6,18 @@
     {
       "id": "manectric-2",
       "pokemon": "manectric",
-      "presets": ["natural"],
+      "presets": [
+        "natural"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "uncommon",
       "level": "25-48",
       "weight": 1.1,
       "condition": {
-        "biomes": ["#cobblemon:is_plains"]
+        "biomes": [
+          "#cobblemon:is_plains"
+        ]
       }
     }
   ]

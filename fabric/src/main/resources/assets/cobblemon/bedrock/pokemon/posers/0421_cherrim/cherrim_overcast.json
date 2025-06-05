@@ -1,8 +1,16 @@
 {
   "portraitScale": 2.5,
-  "portraitTranslation": [-0.3, -2.0, 0],
+  "portraitTranslation": [
+    -0.3,
+    -2.0,
+    0
+  ],
   "profileScale": 0.9,
-  "profileTranslation": [0.1, 0.3, 0],
+  "profileTranslation": [
+    0.1,
+    0.3,
+    0
+  ],
   "animations": {
     "cry": "q.bedrock_stateful('cherrim_overcast', 'cry')"
   },
@@ -16,17 +24,27 @@
         "PORTRAIT",
         "PROFILE"
       ],
-      "animations": ["q.bedrock('cherrim_overcast', 'ground_idle')"]
+      "animations": [
+        "q.bedrock('cherrim_overcast', 'ground_idle')"
+      ]
     },
     "walking": {
       "poseName": "walking",
       "transformTicks": 10,
-      "poseTypes": [ "WALK" ],
-       "animations": ["q.bedrock('cherrim_overcast', 'ground_walk')"]
-     },
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "q.bedrock('cherrim_overcast', 'ground_walk')"
+      ]
+    },
     "sleep": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('cherrim_overcast', 'sleep')"]
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('cherrim_overcast', 'sleep')"
+      ]
     }
   }
 }

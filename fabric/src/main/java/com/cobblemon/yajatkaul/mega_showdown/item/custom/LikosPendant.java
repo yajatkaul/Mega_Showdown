@@ -1,51 +1,30 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.CobblemonEntities;
-import com.cobblemon.mod.common.CobblemonImplementation;
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
-import com.cobblemon.mod.common.api.spawning.SpawnCause;
-import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnAction;
-import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnDetail;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
-import com.cobblemon.mod.common.command.SpawnPokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.particle.SnowstormParticleReader;
-import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.utils.NoRenderArmorMaterial;
+import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
-import net.minecraft.entity.*;
-import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.Arm;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -54,6 +33,19 @@ import java.util.concurrent.ThreadLocalRandom;
 public class LikosPendant extends ArmorItem {
     public LikosPendant(Settings settings) {
         super(NoRenderArmorMaterial.NO_RENDER, Type.CHESTPLATE, settings);
+    }
+
+    public static String ticksToTime(int ticks) {
+        int minutes = (int) Math.floor(ticks / 1200.0);
+        int seconds = (int) Math.floor((ticks % 1200) / 20.0);
+
+        String formattedSeconds = String.format("%02d", seconds);
+
+        if (minutes <= 0) {
+            return formattedSeconds;
+        } else {
+            return minutes + ":" + formattedSeconds;
+        }
     }
 
     @Override
@@ -129,9 +121,15 @@ public class LikosPendant extends ArmorItem {
 
             world.spawnEntity(terapagos);
 
-            terapagos.after(0.01f, () ->{
+            terapagos.after(0.01f, () -> {
                 LazyLib.Companion.snowStormPartileSpawner(terapagos,
                         "pendant_effect", "target");
+                BlockPos entityPos = terapagos.getBlockPos();
+                terapagos.getWorld().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        ModSounds.TERAPAGOS_SPAWN,
+                        SoundCategory.PLAYERS, 0.2f, 0.8f
+                );
                 return Unit.INSTANCE;
             });
 
@@ -148,19 +146,6 @@ public class LikosPendant extends ArmorItem {
     @Override
     public boolean allowComponentsUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
         return false;
-    }
-
-    public static String ticksToTime(int ticks) {
-        int minutes = (int) Math.floor(ticks / 1200.0);
-        int seconds = (int) Math.floor((ticks % 1200) / 20.0);
-
-        String formattedSeconds = String.format("%02d", seconds);
-
-        if (minutes <= 0) {
-            return formattedSeconds;
-        } else {
-            return minutes + ":" + formattedSeconds;
-        }
     }
 
     @Override

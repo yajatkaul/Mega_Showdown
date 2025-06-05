@@ -1,15 +1,25 @@
 {
   "portraitScale": 1.53,
-  "portraitTranslation": [-1.83, 2.45, 0],
+  "portraitTranslation": [
+    -1.83,
+    2.45,
+    0
+  ],
   "profileScale": 0.3,
-  "profileTranslation": [0, 1.26, 0],
+  "profileTranslation": [
+    0,
+    1.26,
+    0
+  ],
   "animations": {
-    
   },
- "poses": {
+  "poses": {
     "battle-standing": {
       "transformTicks": 10,
-      "poseTypes": ["STAND", "WALK"],
+      "poseTypes": [
+        "STAND",
+        "WALK"
+      ],
       "isBattle": true,
       "animations": [
         "q.look('neck')",
@@ -18,7 +28,12 @@
     },
     "standing": {
       "transformTicks": 10,
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('neck')",
@@ -27,7 +42,9 @@
     },
     "walking": {
       "transformTicks": 8,
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('solgaleo', 'ground_walk')"
@@ -35,23 +52,30 @@
     },
     "hover": {
       "transformTicks": 5,
-      "poseTypes": [ "HOVER", "FLOAT" ],
+      "poseTypes": [
+        "HOVER",
+        "FLOAT"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('solgaleo', 'ground_idle')"
-       ]
+      ]
     },
     "fly": {
       "transformTicks": 5,
-      "poseTypes": [ "FLY" ],
+      "poseTypes": [
+        "FLY"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('solgaleo', 'ground_run')"
-       ]
+      ]
     },
     "swim": {
       "transformTicks": 8,
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('solgaleo', 'ground_walk')"

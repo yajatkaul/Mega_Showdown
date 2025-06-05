@@ -10,18 +10,25 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0778_mimikyu/mimikyu_shiny.png"
     },
     {
-      "aspects": ["busted-form"],
+      "aspects": [
+        "busted-form"
+      ],
       "poser": "cobblemon:mimikyu",
       "model": "cobblemon:mimikyu_busted.geo",
       "texture": "cobblemon:textures/pokemon/0778_mimikyu/mimikyu.png",
       "layers": []
     },
     {
-      "aspects": ["busted-form" ,"shiny"],
+      "aspects": [
+        "busted-form",
+        "shiny"
+      ],
       "poser": "cobblemon:mimikyu",
       "model": "cobblemon:mimikyu_busted.geo",
       "texture": "cobblemon:textures/pokemon/0778_mimikyu/mimikyu_shiny.png"

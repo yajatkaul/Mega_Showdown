@@ -22,7 +22,8 @@
       "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko_hangry.png"
     },
     {
-      "aspects": [ "hangry-mode",
+      "aspects": [
+        "hangry-mode",
         "shiny"
       ],
       "texture": "cobblemon:textures/pokemon/0877_morpeko/morpeko_hangry_shiny.png"

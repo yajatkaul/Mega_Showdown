@@ -143,7 +143,7 @@ public class ModBlocks {
                             .sound(SoundType.MEDIUM_AMETHYST_BUD)
                             .noOcclusion()
                             .requiresCorrectToolForDrops()
-                            .pushReaction(PushReaction.PUSH_ONLY)
+                            .pushReaction(PushReaction.IGNORE)
                             .lightLevel((state) -> 15)) {
                 public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 9, 14);
 
@@ -179,6 +179,23 @@ public class ModBlocks {
                                 0.0D  // Z velocity
                         );
                     }
+                }
+            });
+
+    public static final DeferredBlock<AmethystClusterBlock> DORMANT_CRYSTAL = registerBlock("dormant_crystal",
+            () -> new CrystalBlock(4, 3,
+                    BlockBehaviour.Properties.of()
+                            .strength(3f)
+                            .sound(SoundType.MEDIUM_AMETHYST_BUD)
+                            .noOcclusion()
+                            .requiresCorrectToolForDrops()
+                            .pushReaction(PushReaction.IGNORE)
+                            .lightLevel((state) -> 15)) {
+                public static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 4, 12);
+
+                @Override
+                protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+                    return SHAPE;
                 }
             });
 

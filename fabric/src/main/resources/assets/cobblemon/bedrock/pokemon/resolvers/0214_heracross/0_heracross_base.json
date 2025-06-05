@@ -16,11 +16,15 @@
       ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0214_heracross/heracross_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:heracross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0214_heracross/megaheracross.png",
       "layers": [
@@ -33,7 +37,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:heracross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0214_heracross/megaheracross_shiny.png",
       "layers": [

@@ -46,13 +46,10 @@
   "item.mega_showdown.swampertite": "Swampertite",
   "item.mega_showdown.tyranitarite": "Tyranitarite",
   "item.mega_showdown.venusaurite": "Venusaurite",
-
   "item.mega_showdown.redorb": "Red Orb",
   "item.mega_showdown.blueorb": "Blue Orb",
-
   "tooltip.mega_showdown.redorb.tooltip": "Allows Groudon to turn into a Primal",
   "tooltip.mega_showdown.blueorb.tooltip": "Allows Kyogre to turn into a Primal",
-
   "tooltip.mega_showdown.mega_stone.tooltip": "Raw Mega Stone",
   "tooltip.mega_showdown.abomasite.tooltip": "Allows Abomasnow to Mega Evolve into Mega Abomasnow",
   "tooltip.mega_showdown.absolite.tooltip": "Allows Absol to Mega Evolve into Mega Absol",
@@ -102,21 +99,17 @@
   "tooltip.mega_showdown.tyranitarite.tooltip": "Allows Tyranitar to Mega Evolve into Mega Tyranitar",
   "tooltip.mega_showdown.venusaurite.tooltip": "Allows Venusaur to Mega Evolve into Mega Venusaur",
   "item.mega_showdown.diancite": "Diancite",
-
   "block.mega_showdown.mega_meteorid_block": "Mega Meteoroid Block",
   "block.mega_showdown.mega_evo_brick": "Mega Brick",
   "block.mega_showdown.chiseled_mega_evo_brick": "Chiseled Mega Brick",
   "block.mega_showdown.chiseled_mega_evo_block": "Chiseled Mega Block",
   "block.mega_showdown.polished_mega_evo_block": "Polished Mega Block",
   "block.mega_showdown.mega_evo_block": "Meteoroid Block",
-
   "block.mega_showdown.mega_stone_crystal": "Mega Crystal",
-
   "block.mega_showdown.keystone_ore": "Keystone Ore",
   "block.mega_showdown.keystone_block": "Block of Keystone",
   "item.mega_showdown.keystone": "Keystone",
   "tooltip.mega_showdown.keystone.tooltip": "Used to create Mega Bracelet",
-
   "item.mega_showdown.megabracelet": "Mega Bracelet",
   "tooltip.mega_showdown.megabracelet.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
   "item.mega_showdown.megabracelet_red": "Red Mega Bracelet",
@@ -135,7 +128,6 @@
   "tooltip.mega_showdown.megaring.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
   "item.mega_showdown.brendan_mega_cuff": "Brendan's Mega Cuff",
   "tooltip.mega_showdown.brendan_mega_cuff.tooltip": "Brendan's Mega Cuff contains a Key Stone that allows Pokémon holding a Mega Stone",
-
   "item.mega_showdown.lysandre_ring": "Lysandre's ring",
   "tooltip.mega_showdown.lysandre_ring.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
   "item.mega_showdown.maxie_glasses": "Maxie's Glasses",
@@ -145,7 +137,6 @@
   "tooltip.mega_showdown.korrina_glove.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
   "item.mega_showdown.archie_anchor": "Archie's Anchor",
   "tooltip.mega_showdown.archie_anchor.tooltip": "It contains a Key Stone that allows Pokémon holding a Mega Stone",
-
   "creativeTab.mega_showdown.mega_showdown_tab": "Mega Evolutions",
   "creativeTab.mega_showdown.z_moves_tab": "Z Moves",
   "creativeTab.mega_showdown.tera_tab": "Terastal",
@@ -153,7 +144,6 @@
   "creativeTab.mega_showdown.compi_tab": "Competitive Items",
   "creativeTab.mega_showdown.key_tab": "MegaShowdown Items",
   "creativeTab.mega_showdown.dynamax_tab": "Dynamax Tab",
-
   "block.mega_showdown.pedestal": "Pedestal",
   "block.mega_showdown.mega_meteorid_dawn_ore": "Mega Meteorid Dawn Ore",
   "block.mega_showdown.mega_meteorid_dusk_ore": "Mega Meteorid Dusk Ore",
@@ -165,23 +155,17 @@
   "block.mega_showdown.mega_meteorid_sun_ore": "Mega Meteorid Sun Ore",
   "block.mega_showdown.mega_meteorid_thunder_ore": "Mega Meteorid Thunder Ore",
   "block.mega_showdown.mega_meteorid_water_ore": "Mega Meteorid Water Ore",
-
   "key.mega_showdown.mega_evo": "Mega Evolve",
   "key.mega_showdown.ultra_key": "Ultra Burst",
   "key.categories.mega_showdown": "Mega Showdown",
-
   "trinkets.slot.hand.evowear": "Mega Wear",
   "curios.identifier.evowear": "Mega Wear",
-
   "trinkets.slot.hand.z_slot": "Z Wear",
   "curios.identifier.z_slot": "Z Wear",
-
   "trinkets.slot.hand.tera_slot": "Tera Wear",
   "curios.identifier.tera_slot": "Tera Wear",
-
   "trinkets.slot.hand.dynamax_slot": "Dynamax Slot",
   "curios.identifier.dynamax_slot": "Dynamax Slot",
-
   "item.mega_showdown.aloraichium-z": "Aloraichium-Z",
   "tooltip.mega_showdown.aloraichium-z.tooltip": "Z-Crystal associated with Alolan Raichu and allows it to upgrade its Thunderbolt into the special Z-Move Stoked Sparksurfer.",
   "item.mega_showdown.blank-z": "Blank-Z",
@@ -258,7 +242,6 @@
   "tooltip.mega_showdown.z-ring.tooltip": "Bracelet that allows a Trainer and their Pokémon to gather the Z-Power required to perform Z-Moves.",
   "item.mega_showdown.tera_orb": "Tera Orb",
   "tooltip.mega_showdown.tera_item.tooltip": "Orb that allows a Trainer to Terastallize their Pokémon, temporarily changing its type and boosting its moves.",
-
   "item.mega_showdown.bug_tera_shard": "Bug Tera Shard",
   "item.mega_showdown.dark_tera_shard": "Dark tera Shard",
   "item.mega_showdown.dragon_tera_shard": "Dragon Tera Shard",
@@ -278,7 +261,6 @@
   "item.mega_showdown.steel_tera_shard": "Steel Tera Shard",
   "item.mega_showdown.stellar_tera_shard": "Stellar Tera Shard",
   "item.mega_showdown.water_tera_shard": "Water Tera Shard",
-
   "item.mega_showdown.n_lunarizer": "N Lunarizer",
   "item.mega_showdown.n_lunarizer.inactive": "N Lunarizer (Inactive)",
   "item.mega_showdown.n_lunarizer.charged": "N Lunarizer (Charged)",
@@ -295,7 +277,6 @@
   "item.mega_showdown.reins_of_unity.inactive": "Reins of Unity (Inactive)",
   "item.mega_showdown.reins_of_unity.charged": "Reins of Unity (Charged)",
   "tooltip.mega_showdown.reins_of_unity.tooltip": "Used to fuse Spectrier/Glastrier with a mysterious being",
-
   "item.mega_showdown.z-ring_black": "Z-Ring Black",
   "item.mega_showdown.z-power_ring": "Z-Power Ring",
   "item.mega_showdown.may_bracelet": "May's bracelet",
@@ -307,14 +288,12 @@
   "tooltip.mega_showdown.prison_bottle.tooltip": "A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.",
   "block.mega_showdown.gracidea_flower": "Gracidea Flower",
   "tooltip.mega_showdown.gracidea_flower.tooltip": "A rare flower with a mystical aura, known to bloom in special conditions.",
-
   "item.mega_showdown.cornerstone_mask": "Cornerstone Mask",
   "tooltip.mega_showdown.cornerstone_mask.tooltip": "A mystical mask that enhances the resilience of a Pokémon, embodying the spirit of unwavering defense.",
   "item.mega_showdown.wellspring_mask": "Wellspring Mask",
   "tooltip.mega_showdown.wellspring_mask.tooltip": "A sacred mask infused with the power of flowing water, boosting a Pokémon's agility and recovery.",
   "item.mega_showdown.hearthflame_mask": "Hearthflame Mask",
   "tooltip.mega_showdown.hearthflame_mask.tooltip": "A fiery mask that ignites a Pokémon’s inner strength, increasing their offensive power.",
-
   "item.mega_showdown.scroll_of_darkness": "Scroll of Darkness",
   "tooltip.mega_showdown.scroll_of_darkness.tooltip": "An ancient scroll filled with shadowy knowledge. It empowers certain Pokémon with the essence of darkness.",
   "item.mega_showdown.scroll_of_waters": "Scroll of Waters",
@@ -323,14 +302,12 @@
   "tooltip.mega_showdown.star_core.tooltip": "An orb which contains an immense energy.",
   "item.mega_showdown.ash_cap": "Ash Cap",
   "tooltip.mega_showdown.ash_cap.tooltip": "A cap worn by a legendary trainer, carrying the spirit of adventure.",
-
   "item.mega_showdown.fanunit": "Fan Unit",
   "item.mega_showdown.fridgeunit": "Fridge Unit",
   "item.mega_showdown.mowunit": "Mow Unit",
   "item.mega_showdown.ovenunit": "Oven Unit",
   "item.mega_showdown.washunit": "Wash Unit",
   "item.mega_showdown.rotom_catalogue": "Rotom Catalogue",
-
   "item.mega_showdown.flameplate": "Flame Plate",
   "tooltip.mega_showdown.flameplate.tooltip": "A tablet that raises the power of Fire-type moves. When held by Arceus, it changes to the Fire type.",
   "item.mega_showdown.splashplate": "Splash Plate",
@@ -365,7 +342,6 @@
   "tooltip.mega_showdown.ironplate.tooltip": "A tablet that raises the power of Steel-type moves. When held by Arceus, it changes to the Steel type.",
   "item.mega_showdown.pixieplate": "Pixie Plate",
   "tooltip.mega_showdown.pixieplate.tooltip": "A tablet that raises the power of Fairy-type moves. When held by Arceus, it changes to the Fairy type.",
-
   "item.mega_showdown.bugmemory": "Bug Memory",
   "tooltip.mega_showdown.bugmemory.tooltip": "A disc with Bug-type data. It changes Silvally's type.",
   "item.mega_showdown.darkmemory": "Dark Memory",
@@ -400,7 +376,6 @@
   "tooltip.mega_showdown.steelmemory.tooltip": "A disc with Steel-type data. It changes Silvally's type.",
   "item.mega_showdown.watermemory": "Water Memory",
   "tooltip.mega_showdown.watermemory.tooltip": "A disc with Water-type data. It changes Silvally's type.",
-
   "item.mega_showdown.dousedrive": "Douse Drive",
   "tooltip.mega_showdown.dousedrive.tooltip": "A cassette that contains Water-type data. It changes Genesect's Techno Blast to Water-type.",
   "item.mega_showdown.shockdrive": "Shock Drive",
@@ -409,7 +384,6 @@
   "tooltip.mega_showdown.burndrive.tooltip": "A cassette that contains Fire-type data. It changes Genesect's Techno Blast to Fire-type.",
   "item.mega_showdown.chilldrive": "Chill Drive",
   "tooltip.mega_showdown.chilldrive.tooltip": "A cassette that contains Ice-type data. It changes Genesect's Techno Blast to Ice-type.",
-
   "item.mega_showdown.pink_nectar": "Pink Nectar",
   "tooltip.mega_showdown.pink_nectar.tooltip": "A flower nectar that changes Oricorio to its Pa'u Style.",
   "item.mega_showdown.purple_nectar": "Purple Nectar",
@@ -418,12 +392,10 @@
   "tooltip.mega_showdown.red_nectar.tooltip": "A flower nectar that changes Oricorio to its Baile Style.",
   "item.mega_showdown.yellow_nectar": "Yellow Nectar",
   "tooltip.mega_showdown.yellow_nectar.tooltip": "A flower nectar that changes Oricorio to its Pom-Pom Style.",
-
   "item.mega_showdown.booster_energy": "Booster Energy",
   "tooltip.mega_showdown.booster_energy.tooltip": "An item that boosts the strongest stat of a Pokémon with Protosynthesis or Quark Drive.",
   "item.mega_showdown.legend_plate": "Legend Plate",
   "tooltip.mega_showdown.legend_plate.tooltip": "A mysterious plate that changes a Pokémon's type to match its attack.",
-
   "item.mega_showdown.adamant_crystal": "Adamant Crystal",
   "tooltip.mega_showdown.adamant_crystal.tooltip": "A radiant crystal that enhances Dialga's power when held.",
   "item.mega_showdown.adamant_orb": "Adamant Orb",
@@ -436,26 +408,22 @@
   "tooltip.mega_showdown.griseous_core.tooltip": "A powerful core that amplifies Giratina's abilities when held.",
   "item.mega_showdown.griseous_orb": "Griseous Orb",
   "tooltip.mega_showdown.griseous_orb.tooltip": "An eerie orb that boosts Giratina's Dragon- and Ghost-type moves.",
-
   "item.mega_showdown.clear_amulet": "Clear Amulet",
   "tooltip.mega_showdown.clear_amulet.tooltip": "An amulet that protects the holder from stat reduction.",
   "item.mega_showdown.lagging_tail": "Lagging Tail",
   "tooltip.mega_showdown.lagging_tail.tooltip": "An item that makes the holder move last in battle.",
-
   "item.mega_showdown.red_chain": "Red Chain",
   "tooltip.mega_showdown.red_chain.tooltip": "A mysterious chain that can summon a legendary Pokémon.",
   "item.mega_showdown.azure_flute": "Azure Flute",
   "tooltip.mega_showdown.azure_flute.tooltip": "A flute that is said to summon a legendary Pokémon.",
   "block.mega_showdown.deoxys_meteorite": "Deoxys Meteorite",
   "tooltip.mega_showdown.deoxys_meteorite.tooltip": "A meteorite that allows Deoxys to change forms.",
-
   "item.mega_showdown.adrenalineorb": "Adrenaline Orb",
   "tooltip.mega_showdown.adrenalineorb.tooltip": "An item that boosts Speed when intimidated.",
   "item.mega_showdown.souldew": "Soul Dew",
   "tooltip.mega_showdown.souldew.tooltip": "A mysterious orb that boosts Latios and Latias' power.",
   "item.mega_showdown.gripclaw": "Grip Claw",
   "tooltip.mega_showdown.gripclaw.tooltip": "An item that extends the duration of binding moves.",
-
   "item.mega_showdown.dynamax_band": "Dynamax Band",
   "tooltip.mega_showdown.dynamax_band.tooltip": "A special band that allows Pokémon to Dynamax during battle.",
   "item.mega_showdown.dynamax_candy": "Dynamax Candy",
@@ -472,14 +440,12 @@
   "tooltip.mega_showdown.max_mushroom.tooltip": "A rare mushroom with a strong Gigantamax smell. Needed to make Max Soup.",
   "block.mega_showdown.power_spot": "Power Spot",
   "tooltip.mega_showdown.power_spot.tooltip": "A block used to create a power area.",
-
   "item.mega_showdown.luminous_moss": "Luminous Moss",
   "tooltip.mega_showdown.luminous_moss.tooltip": "A moss said to glow with mysterious light. It raises Special Defense when hit by a Water-type move.",
   "item.mega_showdown.sparkling_stone_light": "Light Sparkling Stone",
   "tooltip.mega_showdown.sparkling_stone_light.tooltip": "A mysterious stone that radiates a gentle light. It resonates with Z-Power.",
   "item.mega_showdown.sparkling_stone_dark": "Dark Sparkling Stone",
   "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "A mysterious stone that emits a faint shadowy glow. It resonates with Z-Power.",
-
   "item.mega_showdown.zygarde_cube": "Zygarde Cube",
   "item.mega_showdown.zygarde_cube.full": "Zygarde Cube (Filled)",
   "tooltip.mega_showdown.zygarde_cube.tooltip": "A cube that collects Zygarde Cells and Cores. It pulses faintly with energy from deep underground.",
@@ -489,25 +455,22 @@
   "tooltip.mega_showdown.zygarde_core.tooltip": "The brain of Zygarde. It can think and act on its own, guiding the assembly of Zygarde Forms.",
   "item.mega_showdown.reveal_glass": "Reveal Glass",
   "tooltip.mega_showdown.reveal_glass.tooltip": "A mysterious mirror that reveals the true forms of certain Pokémon.",
-
   "menu.zygade_cube": "Zygarde Cube",
-
   "block.mega_showdown.reassembly_unit": "Reassembly Unit",
   "block.mega_showdown.wishing_star_crystal": "Wishing Star Crystal",
-
   "message.mega_showdown.not_enough_cells_core": "You don't have enough cells/core",
-  "message.mega_showdown.reset_completed" : "Reset completed!",
+  "message.mega_showdown.reset_completed": "Reset completed!",
   "message.mega_showdown.not_so_fast": "Not so fast!",
   "message.mega_showdown.bond_not_close_mega": "You are not close enough with your pokemon to mega outside",
   "message.mega_showdown.rayquaza_no_dragonascent": "Rayquaza doesn't have dragonascent",
-  "message.mega_showdown.mega_limit" : "You can only have one mega at a time",
+  "message.mega_showdown.mega_limit": "You can only have one mega at a time",
   "message.mega_showdown.incorrect_mega_stone": "Don't have the correct stone",
   "message.mega_showdown.battle_not_allowed": "Not allowed in battle",
   "message.mega_showdown.already_fused": "Already fused!",
   "message.mega_showdown.you_aint_slick": "Bro thought he could get away with it",
   "message.mega_showdown.tera_requirements": "You need 50 of these to be used",
-  "message.mega_showdown.primal_limit" : "You can only have one primal at a time",
-  "message.mega_showdown.friendship_requirement" : "Need 200+ friendship to bond",
+  "message.mega_showdown.primal_limit": "You can only have one primal at a time",
+  "message.mega_showdown.friendship_requirement": "Need 200+ friendship to bond",
   "message.mega_showdown.resassembly_zygarde_req": "You need a zygarde with power-construct",
   "message.mega_showdown.cube_full": "Cube already has a zygarde",
   "message.mega_showdown.gyrados_jump_mega": "Gyrados Jumping Mega",
@@ -517,7 +480,6 @@
   "message.mega_showdown.gmax_not_possible": "Your pokemon cannot gmax now",
   "message.mega_showdown.gmax_possible": "Your pokemon can gmax now",
   "message.mega_showdown.dmax_level_cap": "Your pokemon has max dynamax level",
-
   "item.mega_showdown.heart_trim": "Heart Trim",
   "item.mega_showdown.star_trim": "Star Trim",
   "item.mega_showdown.diamond_trim": "Diamond Trim",
@@ -527,14 +489,12 @@
   "item.mega_showdown.la_reine_trim": "La Reine Trim",
   "item.mega_showdown.kabuki_trim": "Kabuki Trim",
   "item.mega_showdown.pharaoh_trim": "Pharaoh Trim",
-
   "item.mega_showdown.furfrou_upgrade": "Smithing Template",
   "item.mega_showdown.furfrou_trim_smithing_template.applies_to": "Shears",
   "item.mega_showdown.furfrou_trim_smithing_template.ingredients": "Dye Item",
   "item.mega_showdown.furfrou_trim_smithing_template.upgrade": "Furfrou Style Trim",
   "item.mega_showdown.furfrou_trim_smithing_template.base_slot": "Base Item",
   "item.mega_showdown.furfrou_trim_smithing_template.additions_slot": "Trim Material",
-
   "advancement.mega_showdown.ash_pikachu.title": "Hat's Off to You",
   "advancement.mega_showdown.ash_pikachu.description": "Use 10,000,000v with pikachu",
   "advancement.mega_showdown.ash_cap_bond.title": "Ashes to Awesome",
@@ -604,7 +564,7 @@
   "advancement.mega_showdown.get_all_z_move.description": "Collect all types of Z-Crystals",
   "advancement.mega_showdown.get_blank_move.title": "Crystal Clear Confusion!",
   "advancement.mega_showdown.get_blank_move.description": "Obtain the blank-z",
-
   "item.mega_showdown.likos_pendant": "Liko's Pendant",
-  "tooltip.mega_showdown.likos_pendant.tooltip": "A pendant said to resonate with ancient energy. It quietly empowers the heart of a true Trainer."
+  "tooltip.mega_showdown.likos_pendant.tooltip": "A pendant said to resonate with ancient energy. It quietly empowers the heart of a true Trainer.",
+  "block.mega_showdown.dormant_crystal": "Dormant Crystal"
 }

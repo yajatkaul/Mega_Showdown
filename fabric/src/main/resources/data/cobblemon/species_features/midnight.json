@@ -1,5 +1,7 @@
 {
-  "keys": ["midnight"],
+  "keys": [
+    "midnight"
+  ],
   "type": "flag",
   "isAspect": true,
   "default": false

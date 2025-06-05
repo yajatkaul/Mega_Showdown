@@ -3,7 +3,9 @@
   "order": 2,
   "variations": [
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:heracross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0214_heracross/heracross_mega.png",
       "layers": [
@@ -16,7 +18,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:heracross_mega.geo",
       "texture": "cobblemon:textures/pokemon/0214_heracross/heracross_mega_shiny.png",
       "layers": [

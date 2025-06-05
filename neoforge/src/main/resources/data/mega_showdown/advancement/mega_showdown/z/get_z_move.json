@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_z_moves"]],
+  "requirements": [
+    [
+      "obtained_z_moves"
+    ]
+  ],
   "sends_telemetry_event": false
 }

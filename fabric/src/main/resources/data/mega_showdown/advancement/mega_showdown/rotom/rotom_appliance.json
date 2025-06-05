@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_rotom_appliance"]],
+  "requirements": [
+    [
+      "obtained_rotom_appliance"
+    ]
+  ],
   "sends_telemetry_event": false
 }

@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["mega_x"],
+      "aspects": [
+        "mega_x"
+      ],
       "model": "cobblemon:mewtwo_mega_x.geo",
       "poser": "cobblemon:mewtwo_mega_x",
       "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_mega_x.png",
@@ -19,8 +21,10 @@
       "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_mega_x_shiny.png",
       "layers": []
     },
-	{
-      "aspects": ["mega_x"],
+    {
+      "aspects": [
+        "mega_x"
+      ],
       "model": "cobblemon:mewtwo_mega_x.geo",
       "poser": "cobblemon:mewtwo_mega_x",
       "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_mega_x.png",
@@ -35,6 +39,6 @@
       "poser": "cobblemon:mewtwo_mega_x",
       "texture": "cobblemon:textures/pokemon/0150_mewtwo/mewtwo_mega_x_shiny.png",
       "layers": []
-    }  
+    }
   ]
 }

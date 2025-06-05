@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_keystone"]],
+  "requirements": [
+    [
+      "obtained_keystone"
+    ]
+  ],
   "sends_telemetry_event": false
 }

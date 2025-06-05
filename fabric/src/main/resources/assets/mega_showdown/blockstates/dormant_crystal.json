@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=up": {
+      "model": "mega_showdown:block/dormant_crystal"
+    },
+    "facing=down": {
+      "model": "mega_showdown:block/dormant_crystal",
+      "x": 180
+    },
+    "facing=north": {
+      "model": "mega_showdown:block/dormant_crystal",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "mega_showdown:block/dormant_crystal",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "mega_showdown:block/dormant_crystal",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "mega_showdown:block/dormant_crystal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

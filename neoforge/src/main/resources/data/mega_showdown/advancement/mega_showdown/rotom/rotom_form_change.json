@@ -1,31 +1,31 @@
 {
-    "display": {
-      "icon": {
-        "id": "mega_showdown:rotom_catalogue"
-      },
-      "title": {
-        "translate": "advancement.mega_showdown.rotom_form_change.title",
-        "fallback": "Rotom, Meet Your New Job!"
-      },
-      "description": {
-        "translate": "advancement.mega_showdown.rotom_form_change.description",
-        "fallback": "Using any Rotom Appliance on Rotom"
-      },
-      "frame": "task",
-      "show_toast": true,
-      "announce_to_chat": true,
-      "hidden": false
+  "display": {
+    "icon": {
+      "id": "mega_showdown:rotom_catalogue"
     },
-    "parent": "mega_showdown:mega_showdown/rotom/rotom_appliance",
-    "criteria": {
-      "rotom_any": {
-        "trigger": "minecraft:impossible"
-      }
+    "title": {
+      "translate": "advancement.mega_showdown.rotom_form_change.title",
+      "fallback": "Rotom, Meet Your New Job!"
     },
-    "sends_telemetry_event": false,
-    "requirements": [
-      [
-        "rotom_any"
-      ]
+    "description": {
+      "translate": "advancement.mega_showdown.rotom_form_change.description",
+      "fallback": "Using any Rotom Appliance on Rotom"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/rotom/rotom_appliance",
+  "criteria": {
+    "rotom_any": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "sends_telemetry_event": false,
+  "requirements": [
+    [
+      "rotom_any"
     ]
-  }
+  ]
+}

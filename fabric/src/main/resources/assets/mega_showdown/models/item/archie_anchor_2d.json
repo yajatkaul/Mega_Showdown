@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/generated",
-	"textures": {
-		"layer0": "mega_showdown:item/archie_anchor"
-	}
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mega_showdown:item/archie_anchor"
+  }
 }

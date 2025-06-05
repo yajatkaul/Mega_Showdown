@@ -3,16 +3,23 @@
   "order": 1,
   "variations": [
     {
-      "aspects": ["female"],
+      "aspects": [
+        "female"
+      ],
       "model": "cobblemon:garchomp_female.geo"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:garchomp_mega.geo",
       "texture": "cobblemon:textures/pokemon/0445_garchomp/megagarchomp.png"
     },
     {
-      "aspects": ["shiny", "mega"],
+      "aspects": [
+        "shiny",
+        "mega"
+      ],
       "model": "cobblemon:garchomp_mega.geo",
       "texture": "cobblemon:textures/pokemon/0445_garchomp/megagarchomp_shiny.png"
     }

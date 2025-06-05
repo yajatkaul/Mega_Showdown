@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_z_ring"]],
+  "requirements": [
+    [
+      "obtained_z_ring"
+    ]
+  ],
   "sends_telemetry_event": false
 }

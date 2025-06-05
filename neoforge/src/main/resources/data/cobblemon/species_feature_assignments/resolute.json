@@ -1,4 +1,8 @@
 {
-  "pokemon": ["keldeo"],
-  "features": ["resolute"]
+  "pokemon": [
+    "keldeo"
+  ],
+  "features": [
+    "resolute"
+  ]
 }

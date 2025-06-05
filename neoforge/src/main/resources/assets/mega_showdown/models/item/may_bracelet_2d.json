@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/generated",
-	"textures": {
-		"layer0": "mega_showdown:item/may_bracelet_2d"
-	}
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mega_showdown:item/may_bracelet_2d"
+  }
 }

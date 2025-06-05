@@ -1,8 +1,16 @@
 {
   "portraitScale": 2.4,
-  "portraitTranslation": [0.4, 0.5, 0],
+  "portraitTranslation": [
+    0.4,
+    0.5,
+    0
+  ],
   "profileScale": 1.1,
-  "profileTranslation": [-0.05,0.20,0],
+  "profileTranslation": [
+    -0.05,
+    0.20,
+    0
+  ],
   "animations": {},
   "poses": {
     "standing": {
@@ -14,7 +22,9 @@
         "PORTRAIT",
         "PROFILE"
       ],
-      "animations": ["q.bedrock('wormadam_sand', 'ground_idle')"],
+      "animations": [
+        "q.bedrock('wormadam_sand', 'ground_idle')"
+      ],
       "quirks": [
         "q.bedrock_quirk('wormadam_sand', 'blink')"
       ]
@@ -22,11 +32,15 @@
     "walking": {
       "poseName": "walking",
       "transformTicks": 10,
-      "poseTypes": [ "WALK" ],
-       "animations": ["q.bedrock('wormadam_sand', 'ground_walk')"],
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "q.bedrock('wormadam_sand', 'ground_walk')"
+      ],
       "quirks": [
         "q.bedrock_quirk('wormadam_sand', 'blink')"
       ]
-     }
+    }
   }
 }

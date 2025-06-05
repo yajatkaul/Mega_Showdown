@@ -1,4 +1,8 @@
 {
-  "pokemon": ["eternatus"],
-  "features": ["eternamax"]
+  "pokemon": [
+    "eternatus"
+  ],
+  "features": [
+    "eternamax"
+  ]
 }

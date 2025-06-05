@@ -29,7 +29,9 @@
       ]
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:banette_mega",
       "model": "cobblemon:banette_mega.geo",
       "texture": "cobblemon:textures/pokemon/0354_banette/megabanette.png",
@@ -42,7 +44,10 @@
       ]
     },
     {
-      "aspects": [ "mega", "shiny" ],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:banette_mega",
       "model": "cobblemon:banette_mega.geo",
       "texture": "cobblemon:textures/pokemon/0354_banette/megabanette_shiny.png",

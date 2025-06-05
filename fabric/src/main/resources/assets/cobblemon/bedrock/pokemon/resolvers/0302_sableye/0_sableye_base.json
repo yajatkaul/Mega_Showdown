@@ -10,11 +10,15 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0302_sableye/sableye_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "poser": "cobblemon:sableye_mega",
       "model": "cobblemon:sableye_mega.geo",
       "texture": "cobblemon:textures/pokemon/0302_sableye/megasableye.png",
@@ -28,7 +32,10 @@
       ]
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "poser": "cobblemon:sableye_mega",
       "model": "cobblemon:sableye_mega.geo",
       "texture": "cobblemon:textures/pokemon/0302_sableye/megasableye_shiny.png",

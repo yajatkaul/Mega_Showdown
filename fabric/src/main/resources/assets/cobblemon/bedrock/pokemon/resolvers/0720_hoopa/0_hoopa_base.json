@@ -1,4 +1,3 @@
-
 {
   "species": "cobblemon:hoopa",
   "order": 0,
@@ -10,7 +9,9 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0720_hoopa/hoopa_shiny.png"
     }
   ]

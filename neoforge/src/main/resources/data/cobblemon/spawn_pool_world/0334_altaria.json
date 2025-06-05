@@ -6,7 +6,10 @@
     {
       "id": "altaria-1",
       "pokemon": "altaria",
-      "presets": ["natural", "treetop"],
+      "presets": [
+        "natural",
+        "treetop"
+      ],
       "type": "pokemon",
       "context": "grounded",
       "bucket": "uncommon",
@@ -14,7 +17,9 @@
       "weight": 7.0,
       "condition": {
         "canSeeSky": true,
-        "biomes": ["#cobblemon:is_overworld"],
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ],
         "minY": 150
       }
     }

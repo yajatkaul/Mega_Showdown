@@ -35,7 +35,7 @@ public class NoRenderArmorMaterial {
             )
     );
 
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         ARMOR_MATERIALS.register(eventBus);
     }
 }

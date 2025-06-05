@@ -3,7 +3,9 @@
   "order": 1,
   "variations": [
     {
-	  "aspects": ["meteor-form"],
+      "aspects": [
+        "meteor-form"
+      ],
       "poser": "cobblemon:minior",
       "model": "cobblemon:minior.geo",
       "texture": "cobblemon:textures/pokemon/0774_minior/minior.png",

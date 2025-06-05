@@ -5,7 +5,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.util.DeferredSoundType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -24,6 +23,7 @@ public class ModSounds {
     public static final Supplier<SoundEvent> ARCEUS_MULTITYPE = registerSoundEvent("arceus_multitype");
     public static final Supplier<SoundEvent> KYUREM_FUSION = registerSoundEvent("kyurem_fusion");
     public static final Supplier<SoundEvent> GIRATINIA_FORM = registerSoundEvent("giratina");
+    public static final Supplier<SoundEvent> TERAPAGOS_SPAWN = registerSoundEvent("terapagos_spawn");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name);

@@ -1,5 +1,7 @@
 {
-  "keys": ["dusk"],
+  "keys": [
+    "dusk"
+  ],
   "type": "flag",
   "isAspect": true,
   "default": false

@@ -1,5 +1,7 @@
 {
-  "keys": ["eternamax"],
+  "keys": [
+    "eternamax"
+  ],
   "type": "flag",
   "isAspect": true,
   "default": false

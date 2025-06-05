@@ -16,16 +16,23 @@
       ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0319_sharpedo/sharpedo_shiny.png"
     },
     {
-      "aspects": ["mega"],
+      "aspects": [
+        "mega"
+      ],
       "model": "cobblemon:sharpedomega.geo",
       "texture": "cobblemon:textures/pokemon/0319_sharpedo/megasharpedo.png"
     },
     {
-      "aspects": ["mega", "shiny"],
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
       "model": "cobblemon:sharpedomega.geo",
       "texture": "cobblemon:textures/pokemon/0319_sharpedo/megasharpedo_shiny.png"
     }

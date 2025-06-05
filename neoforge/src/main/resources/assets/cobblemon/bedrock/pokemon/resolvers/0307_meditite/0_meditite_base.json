@@ -8,22 +8,28 @@
       "model": "cobblemon:meditite.geo",
       "texture": "cobblemon:textures/pokemon/0307_meditite/meditite.png",
       "layers": [
-      ] 
-    },
-    {
-      "aspects": ["shiny"],
-      "texture": "cobblemon:textures/pokemon/0307_meditite/meditite_shiny.png",
-      "layers": [
-       
       ]
     },
     {
-      "aspects": ["female"],
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0307_meditite/meditite_shiny.png",
+      "layers": [
+      ]
+    },
+    {
+      "aspects": [
+        "female"
+      ],
       "model": "cobblemon:meditite_female.geo",
       "texture": "cobblemon:textures/pokemon/0307_meditite/meditite.png"
     },
     {
-      "aspects": ["female","shiny"],
+      "aspects": [
+        "female",
+        "shiny"
+      ],
       "model": "cobblemon:meditite_female.geo",
       "texture": "cobblemon:textures/pokemon/0307_meditite/meditite_shiny.png"
     }

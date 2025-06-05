@@ -29,6 +29,10 @@
       }
     }
   },
-  "requirements": [["obtained_tera_orb"]],
+  "requirements": [
+    [
+      "obtained_tera_orb"
+    ]
+  ],
   "sends_telemetry_event": false
 }
