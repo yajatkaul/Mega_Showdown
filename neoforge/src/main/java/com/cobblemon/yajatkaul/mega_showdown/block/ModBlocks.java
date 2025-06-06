@@ -191,11 +191,23 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .pushReaction(PushReaction.IGNORE)
                             .lightLevel((state) -> 15)) {
-                public static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 4, 12);
+                private static final VoxelShape SHAPE_UP = Block.box(5, 0, 4, 11, 4, 11);      // floor
+                private static final VoxelShape SHAPE_DOWN = Block.box(5, 12, 5, 11, 16, 12);  // ceiling
+                private static final VoxelShape SHAPE_NORTH = Block.box(5, 4, 12, 11, 11, 15); // north wall
+                private static final VoxelShape SHAPE_SOUTH = Block.box(5, 5, 0, 11, 12, 4);   // south wall
+                private static final VoxelShape SHAPE_WEST = Block.box(12, 4, 5, 16, 11, 11);  // west wall
+                private static final VoxelShape SHAPE_EAST = Block.box(0, 4, 5, 4, 11, 11);    // east wall
 
                 @Override
-                protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
-                    return SHAPE;
+                protected VoxelShape getShape(BlockState state, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+                    return switch (state.getValue(AmethystClusterBlock.FACING)) {
+                        case DOWN -> SHAPE_DOWN;
+                        case NORTH -> SHAPE_NORTH;
+                        case SOUTH -> SHAPE_SOUTH;
+                        case WEST -> SHAPE_WEST;
+                        case EAST -> SHAPE_EAST;
+                        default -> SHAPE_UP;
+                    };
                 }
             });
 

@@ -110,8 +110,13 @@ public class ModBlocks {
                     .nonOpaque()
                     .pistonBehavior(PistonBehavior.IGNORE)
                     .sounds(BlockSoundGroup.AMETHYST_CLUSTER)) {
-                private static final VoxelShape SHAPE =
-                        Block.createCuboidShape(4, 0, 4, 12, 4, 12);
+                private static final VoxelShape SHAPE_UP = Block.createCuboidShape(5, 0, 4, 11, 4, 11);      // floor
+                private static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(5, 12, 5, 11, 16, 12);  // ceiling
+                private static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(5, 4, 12, 11, 11, 15); // north wall
+                private static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(5, 5, 0, 11, 12, 4);   // south wall
+                private static final VoxelShape SHAPE_WEST = Block.createCuboidShape(12, 4, 5, 16, 11, 11);  // west wall
+                private static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0, 4, 5, 4, 11, 11);    // east wall
+
 
                 @Override
                 protected BlockRenderType getRenderType(BlockState state) {
@@ -120,7 +125,14 @@ public class ModBlocks {
 
                 @Override
                 protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-                    return SHAPE;
+                    return switch (state.get(FACING)) {
+                        case DOWN -> SHAPE_DOWN;
+                        case NORTH -> SHAPE_NORTH;
+                        case SOUTH -> SHAPE_SOUTH;
+                        case WEST -> SHAPE_WEST;
+                        case EAST -> SHAPE_EAST;
+                        default -> SHAPE_UP; // case UP
+                    };
                 }
             });
 

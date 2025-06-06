@@ -132,7 +132,7 @@ public class LikosPendant extends ArmorItem {
                 terapagos.level().playSound(
                         null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                         ModSounds.TERAPAGOS_SPAWN.get(),
-                        SoundSource.PLAYERS, 0.2f, 0.8f
+                        SoundSource.PLAYERS, 0.2f, 1.2f
                 );
                 return Unit.INSTANCE;
             });
