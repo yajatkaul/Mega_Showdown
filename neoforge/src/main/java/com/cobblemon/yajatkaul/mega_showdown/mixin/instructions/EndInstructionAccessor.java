@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.mixin;
+package com.cobblemon.yajatkaul.mega_showdown.mixin.instructions;
 
 import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage;
 import com.cobblemon.mod.common.battles.interpreter.instructions.EndInstruction;

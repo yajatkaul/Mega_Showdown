@@ -12,6 +12,12 @@
     "height": 1,
     "fixed": false
   },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    }
+  },
   "pokedex": [
     "cobblemon.species.terapagos.desc"
   ],
