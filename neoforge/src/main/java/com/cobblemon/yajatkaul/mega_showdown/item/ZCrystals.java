@@ -357,8 +357,15 @@ public class ZCrystals {
 
     public static final DeferredItem<Item> Z_RING = ITEMS.register("z-ring",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
-
     public static final DeferredItem<Item> Z_RING_BLACK = ITEMS.register("z-ring_black",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> Z_RING_YELLOW = ITEMS.register("z-ring_yellow",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> Z_RING_GREEN = ITEMS.register("z-ring_green",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> Z_RING_BLUE = ITEMS.register("z-ring_blue",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> Z_RING_PINK = ITEMS.register("z-ring_pink",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> Z_RING_POWER = ITEMS.register("z-power_ring",

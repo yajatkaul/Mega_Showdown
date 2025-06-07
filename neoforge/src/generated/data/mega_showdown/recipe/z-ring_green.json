@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cobblemon:green_apricorn"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "mega_showdown:sparkling_stone_light"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "A A",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:z-ring_green"
+  }
+}

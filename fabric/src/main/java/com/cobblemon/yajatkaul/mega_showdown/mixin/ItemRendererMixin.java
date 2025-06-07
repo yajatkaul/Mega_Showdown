@@ -76,6 +76,14 @@ public abstract class ItemRendererMixin {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "lisia_mega_tiara")));
         } else if (stack.getItem() == KeyItems.LIKOS_PENDANT && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.THIRD_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND || renderMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "likos_pendant")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_BLUE && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_blue")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_GREEN && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_green")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_PINK && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_pink")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_YELLOW && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_yellow")));
         }
         return bakedModel;
     }
@@ -130,6 +138,14 @@ public abstract class ItemRendererMixin {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "lisia_mega_tiara_3d")));
         } else if (stack.getItem() == KeyItems.LIKOS_PENDANT) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "likos_pendant_3d")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_YELLOW) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_yellow_3d")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_BLUE) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_blue_3d")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_GREEN) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_green_3d")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_PINK) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_pink_3d")));
         }
         return bakedModel;
     }

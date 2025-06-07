@@ -1,15 +1,15 @@
 {
   "head": "head",
-  "portraitScale": 2.7,
+  "portraitScale": 2.6,
   "portraitTranslation": [
-    -0.5,
-    1.0,
+    -1.1,
+    -1.55,
     0
   ],
   "profileScale": 0.7,
   "profileTranslation": [
     0,
-    0.8,
+    0.4,
     0
   ],
   "faint": "bedrock(terapagos, sleep)",

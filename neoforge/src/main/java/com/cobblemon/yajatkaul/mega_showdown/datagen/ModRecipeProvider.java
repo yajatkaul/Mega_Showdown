@@ -478,6 +478,42 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('A', CobblemonItems.BLACK_APRICORN)
                 .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_YELLOW.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.YELLOW_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_PINK.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.PINK_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_BLUE.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.BLUE_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_GREEN.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.GREEN_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_POWER.get())
                 .pattern("ISI")
                 .pattern("A A")

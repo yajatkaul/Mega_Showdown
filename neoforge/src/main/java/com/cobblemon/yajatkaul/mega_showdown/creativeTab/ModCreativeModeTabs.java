@@ -124,6 +124,10 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ZCrystals.Z_RING);
                         output.accept(ZCrystals.Z_RING_BLACK);
+                        output.accept(ZCrystals.Z_RING_BLUE);
+                        output.accept(ZCrystals.Z_RING_GREEN);
+                        output.accept(ZCrystals.Z_RING_PINK);
+                        output.accept(ZCrystals.Z_RING_YELLOW);
                         output.accept(ZCrystals.Z_RING_POWER);
                         output.accept(ZCrystals.ALORAICHIUM_Z);
                         output.accept(ZCrystals.BLANK_Z);

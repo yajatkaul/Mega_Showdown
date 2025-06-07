@@ -6,6 +6,7 @@
       "aspects": [
         "galarian"
       ],
+      "model": "cobblemon:darumaka_galar.geo",
       "poser": "cobblemon:darumaka",
       "texture": "cobblemon:textures/pokemon/0554_darumaka/darumaka_galar.png",
       "layers": []

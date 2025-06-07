@@ -25,7 +25,7 @@
         {
           "name": "glow",
           "emissive": true,
-          "texture": "cobblemon_reanimodel:textures/pokemon/lunala/lunala_shiny_emissive.png",
+          "texture": "cobblemon:textures/pokemon/0792_lunala/lunala_shiny_emissive.png",
           "translucent": false
         }
       ]

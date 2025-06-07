@@ -51,7 +51,7 @@ public class EventUtils {
         } else if (pokemon.getSpecies().getName().equals("Mimikyu")) {
             new StringSpeciesFeature("disguise_form", "disguised").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Ogerpon")) {
-            new FlagSpeciesFeature("embody_aspect", false).apply(pokemon);
+            new FlagSpeciesFeature("embody-aspect", false).apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Wishiwashi")) {
             new StringSpeciesFeature("schooling_form", "solo").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Eiscue")) {
@@ -81,16 +81,29 @@ public class EventUtils {
             new FlagSpeciesFeature("complete-percent", false).apply(pokemon);
         }
         // HELD ITEM
-        else if (pokemon.getSpecies().getName().equals("Palkia")
+        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("origin")
                 && !pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Dialga")
+        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("origin")
                 && !pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Giratina")
+        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("origin")
                 && !pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Arceus")
+        }
+        //REVERSE
+        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("altered")
+                && pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
+            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("altered")
+                && pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
+            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
+        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("altered")
+                && pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
+            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
+        }
+        //
+        else if (pokemon.getSpecies().getName().equals("Arceus") && !pokemon.getAspects().contains("normal")
                 && !(pokemon.heldItem().getItem() instanceof ArceusType)) {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }

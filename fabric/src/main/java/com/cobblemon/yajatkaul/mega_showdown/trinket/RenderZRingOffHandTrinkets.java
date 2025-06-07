@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.RotationAxis;
 
-public class RenderOffHandTrinkets implements TrinketRenderer {
+public class RenderZRingOffHandTrinkets implements TrinketRenderer {
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
@@ -43,9 +43,9 @@ public class RenderOffHandTrinkets implements TrinketRenderer {
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-90.0F));
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
         if (offhandArm == Arm.RIGHT) {
-            matrices.translate(1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+            matrices.translate(1.0F / 16.0F, 1.0F / 8.0F, -8.0F / 16.0F);
         } else {
-            matrices.translate(-1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+            matrices.translate(-1.0F / 16.0F, 1.0F / 8.0F, -8.0F / 16.0F);
         }
 
         // Use the correct display context based on which hand is the offhand

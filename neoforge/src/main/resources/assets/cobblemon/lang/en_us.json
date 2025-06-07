@@ -689,5 +689,6 @@
   "cobblemon.species.kyurem-white.desc": "It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.",
   "cobblemon.species.kyurem-black.desc": "The sameness of Zekrom's and Kyurem's genes allowed Kyurem to absorb Zekrom. Kyurem can now use the power of both electricity and ice.",
   "cobblemon.battle.activate.terashift": "A glow surrounds %1$s!",
-  "cobblemon.battle.activate.terashell": "%1$s made its shell gleam! It's distorting type matchups!"
+  "cobblemon.battle.activate.terashell": "%1$s made its shell gleam! It's distorting type matchups!",
+  "cobblemon.move.terastarstorm": "Tera Starstorm"
 }

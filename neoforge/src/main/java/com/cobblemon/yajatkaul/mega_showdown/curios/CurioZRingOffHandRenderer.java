@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
-public class CurioOffHandRenderer implements ICurioRenderer {
+public class CurioZRingOffHandRenderer implements ICurioRenderer {
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack
             matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
@@ -36,9 +36,9 @@ public class CurioOffHandRenderer implements ICurioRenderer {
             matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 
             if (offhandArm == HumanoidArm.RIGHT) {
-                matrixStack.translate(1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+                matrixStack.translate(1.0F / 16.0F, 1.0F / 8.0F, -8.0F / 16.0F);
             } else {
-                matrixStack.translate(-1.0F / 16.0F, 1.0F / 8.0F, -10.0F / 16.0F);
+                matrixStack.translate(-1.0F / 16.0F, 1.0F / 8.0F, -8.0F / 16.0F);
             }
         }
 

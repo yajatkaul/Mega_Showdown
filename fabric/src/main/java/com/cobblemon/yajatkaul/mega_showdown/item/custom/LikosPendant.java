@@ -73,7 +73,7 @@ public class LikosPendant extends ArmorItem {
 
         if (entity.getWorld().isClient) return;
 
-        int tick = stack.getOrDefault(DataManage.LIKO_PENDANT_TICK, 600);
+        int tick = stack.getOrDefault(DataManage.LIKO_PENDANT_TICK, 72000);
 
         if (tick > 0) {
             tick--;

@@ -10,7 +10,7 @@ import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.ITEMS;
 
 public class KeyItems {
     public static final DeferredItem<Item> LIKOS_PENDANT = ITEMS.register("likos_pendant",
-            () -> new LikosPendant(new Item.Properties().stacksTo(1).component(DataManage.LIKO_PENDANT_TICK, 600)));
+            () -> new LikosPendant(new Item.Properties().stacksTo(1).component(DataManage.LIKO_PENDANT_TICK, 72000)));
 
     public static void register() {
     }

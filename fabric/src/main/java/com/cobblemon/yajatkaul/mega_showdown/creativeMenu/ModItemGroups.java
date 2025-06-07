@@ -118,6 +118,10 @@ public class ModItemGroups {
                     .entries(((displayContext, entries) -> {
                         entries.add(ZCrystals.Z_RING);
                         entries.add(ZCrystals.Z_RING_BLACK);
+                        entries.add(ZCrystals.Z_RING_BLUE);
+                        entries.add(ZCrystals.Z_RING_GREEN);
+                        entries.add(ZCrystals.Z_RING_PINK);
+                        entries.add(ZCrystals.Z_RING_YELLOW);
                         entries.add(ZCrystals.Z_RING_POWER);
                         entries.add(ZCrystals.ALORAICHIUM_Z);
                         entries.add(ZCrystals.BLANK_Z);
