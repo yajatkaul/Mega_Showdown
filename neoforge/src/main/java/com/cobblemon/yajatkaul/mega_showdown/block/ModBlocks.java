@@ -1,16 +1,19 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -18,6 +21,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
@@ -210,6 +215,22 @@ public class ModBlocks {
                     };
                 }
             });
+
+    public static final DeferredBlock<Block> ROTOM_WASHING_MACHINE = BLOCKS.register("rotom_washing_machine",
+            () -> new RotomUnit(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2)
+                    .mapColor(DyeColor.ORANGE).sound(SoundType.METAL), "wash"));
+    public static final DeferredBlock<Block> ROTOM_FAN = BLOCKS.register("rotom_fan",
+            () -> new RotomUnit(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2)
+                    .mapColor(DyeColor.ORANGE).sound(SoundType.METAL), "fan"));
+    public static final DeferredBlock<Block> ROTOM_MOW = BLOCKS.register("rotom_mow",
+            () -> new RotomUnit(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2)
+                    .mapColor(DyeColor.ORANGE).sound(SoundType.METAL), "mow"));
+    public static final DeferredBlock<Block> ROTOM_FRIDGE = BLOCKS.register("rotom_fridge",
+            () -> new RotomUnit(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2)
+                    .mapColor(DyeColor.ORANGE).sound(SoundType.METAL), "frost"));
+    public static final DeferredBlock<Block> ROTOM_OVEN = BLOCKS.register("rotom_oven",
+            () -> new RotomUnit(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2)
+                    .mapColor(DyeColor.ORANGE).sound(SoundType.METAL), "heat"));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

@@ -6,16 +6,16 @@
       "item": "minecraft:book"
     },
     "F": {
-      "item": "mega_showdown:fanunit"
+      "item": "mega_showdown:rotom_fan"
     },
     "M": {
-      "item": "mega_showdown:mowunit"
+      "item": "mega_showdown:rotom_mow"
     },
     "O": {
-      "item": "mega_showdown:ovenunit"
+      "item": "mega_showdown:rotom_oven"
     },
     "W": {
-      "item": "mega_showdown:washunit"
+      "item": "mega_showdown:rotom_washing_machine"
     }
   },
   "pattern": [

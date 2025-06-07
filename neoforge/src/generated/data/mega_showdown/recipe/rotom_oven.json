@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:copper_block"
+    },
+    "D": {
+      "item": "minecraft:blaze_powder"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "minecraft:iron_trapdoor"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "DTD",
+    "BRB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:rotom_oven"
+  }
+}

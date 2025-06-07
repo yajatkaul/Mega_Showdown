@@ -16,6 +16,11 @@
     "mega_showdown:chiseled_mega_evo_block",
     "mega_showdown:polished_mega_evo_block",
     "mega_showdown:mega_evo_brick",
-    "mega_showdown:reassembly_unit"
+    "mega_showdown:reassembly_unit",
+    "mega_showdown:rotom_mow",
+    "mega_showdown:rotom_oven",
+    "mega_showdown:rotom_fan",
+    "mega_showdown:rotom_fridge",
+    "mega_showdown:rotom_washing_machine"
   ]
 }

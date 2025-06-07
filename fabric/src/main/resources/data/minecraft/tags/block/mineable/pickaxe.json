@@ -24,6 +24,11 @@
     "mega_showdown:power_spot",
     "mega_showdown:pedestal",
     "mega_showdown:reassembly_unit",
-    "mega_showdown:dormant_crystal"
+    "mega_showdown:dormant_crystal",
+    "mega_showdown:rotom_mow",
+    "mega_showdown:rotom_oven",
+    "mega_showdown:rotom_fan",
+    "mega_showdown:rotom_fridge",
+    "mega_showdown:rotom_washing_machine"
   ]
 }

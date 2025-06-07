@@ -254,7 +254,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('G', CobblemonItems.GHOST_GEM)
                 .unlockedBy("has_gem", has(CobblemonItems.GHOST_GEM)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.FAN.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.FANUNIT.get())
                 .pattern(" C ")
                 .pattern("CWC")
                 .pattern(" B ")
@@ -293,7 +293,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('B', Items.COPPER_BLOCK)
                 .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.WASHUNIT.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.WASHINGUNIT.get())
                 .pattern("BBB")
                 .pattern("BCB")
                 .pattern("BRB")
@@ -306,8 +306,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern(" F ")
                 .pattern("OBW")
                 .pattern(" M ")
-                .define('F', RotomFormes.FAN)
-                .define('W', RotomFormes.WASHUNIT)
+                .define('F', RotomFormes.FANUNIT)
+                .define('W', RotomFormes.WASHINGUNIT)
                 .define('M', RotomFormes.MOWUNIT)
                 .define('O', RotomFormes.OVENUNIT)
                 .define('B', Items.BOOK)

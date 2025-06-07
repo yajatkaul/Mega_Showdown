@@ -57,7 +57,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                         ModBlocks.REASSEMBLY_UNIT.get(),
 
-                        ModBlocks.DORMANT_CRYSTAL.get()
+                        ModBlocks.DORMANT_CRYSTAL.get(),
+
+                        ModBlocks.ROTOM_MOW.get(),
+                        ModBlocks.ROTOM_OVEN.get(),
+                        ModBlocks.ROTOM_FAN.get(),
+                        ModBlocks.ROTOM_FRIDGE.get(),
+                        ModBlocks.ROTOM_WASHING_MACHINE.get()
                 );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -96,7 +102,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.POLISHED_MEGA_EVO_BLOCK.get(),
                         ModBlocks.MEGA_EVO_BRICK.get(),
 
-                        ModBlocks.REASSEMBLY_UNIT.get()
+                        ModBlocks.REASSEMBLY_UNIT.get(),
+
+                        ModBlocks.ROTOM_MOW.get(),
+                        ModBlocks.ROTOM_OVEN.get(),
+                        ModBlocks.ROTOM_FAN.get(),
+                        ModBlocks.ROTOM_FRIDGE.get(),
+                        ModBlocks.ROTOM_WASHING_MACHINE.get()
                 );
     }
 }

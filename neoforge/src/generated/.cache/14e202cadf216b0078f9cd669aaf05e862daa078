@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-28T15:43:11.8554038	Item Models: mega_showdown
+// 1.21.1	2025-06-07T17:47:09.5704487	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -55,7 +55,6 @@ f4bac8dd70ba8217aa1a194072d203fb01918e2e assets/mega_showdown/models/item/electr
 bb5228e46eaed7444e7e0f643b53885cacf02bed assets/mega_showdown/models/item/fairium-z.json
 8aed54c49847f7abb8950b6afa838ab15f2de4a4 assets/mega_showdown/models/item/fairymemory.json
 270f40567403fa175419e03c0a56fb8d267a9108 assets/mega_showdown/models/item/fairy_tera_shard.json
-011fc33d7504ed3d55ca13e442480f0697523482 assets/mega_showdown/models/item/fanunit.json
 aafcfd0aa31074c7d212024101b35c8695f1fc2b assets/mega_showdown/models/item/fightingmemory.json
 db3101e8bfa56ff04ce18f15f504fd34f6dc50ec assets/mega_showdown/models/item/fighting_tera_shard.json
 45106defb199e96bbf958cabfd1131549785e1c3 assets/mega_showdown/models/item/fightinium-z.json
@@ -67,7 +66,6 @@ b0fc24ca72eee57f2ca31f7d3e95df1ff6457d23 assets/mega_showdown/models/item/firium
 545e4878ab1b15b817a4e48489b7d67c5165baf1 assets/mega_showdown/models/item/flyingmemory.json
 65b36acc13dc67885d132805b8ed292283ee830c assets/mega_showdown/models/item/flying_tera_shard.json
 facbe66dca2870c10554ccef304f6ff35806cd5a assets/mega_showdown/models/item/flyinium-z.json
-f71ef1ead793d40ec68860a787ce7d59209cd117 assets/mega_showdown/models/item/fridgeunit.json
 18a8300fc88b74656ea5a000e7ba3987f93d37be assets/mega_showdown/models/item/furfrou_upgrade.json
 603dc0494b668860f0b3ab237798b2b8e9450ad2 assets/mega_showdown/models/item/galladite.json
 cb30a9ce6aea879727a8cf75f8d3b234a61c26df assets/mega_showdown/models/item/garchompite.json
@@ -131,12 +129,10 @@ e67ecc2371f0734f5722d475c5ac4a05a88b0485 assets/mega_showdown/models/item/mewniu
 557024f8b3f8b1924df0bd294cf3cd7342c844b6 assets/mega_showdown/models/item/mewtwonite_y.json
 cb24da0818462d6c21ccbbca35f068c4d6a26ffd assets/mega_showdown/models/item/mimikium-z.json
 f583db16c7f69fa4e71fac138483d12c696c6ea9 assets/mega_showdown/models/item/mindplate.json
-07b4373984190d7e0cb07a4e5c2e9f13f73be78d assets/mega_showdown/models/item/mowunit.json
 188d5c224cdddc5924610473239aa83130930196 assets/mega_showdown/models/item/normalium-z.json
 5b5ede1e302f864cf6e4ad116d363768def4b477 assets/mega_showdown/models/item/normal_tera_shard.json
 bca43824bec988010f300e55d01c1a25af93ddfe assets/mega_showdown/models/item/n_lunarizer.json
 f15c42022126b60b6e788ff251edcdba6f1d0baa assets/mega_showdown/models/item/n_solarizer.json
-82902ced44d6b254dc234aa5946e61133be907fe assets/mega_showdown/models/item/ovenunit.json
 a4f3d0f8703abbd6ef02b259f2a6bc6b71f51f27 assets/mega_showdown/models/item/pharaoh_trim.json
 6ad66abc876feb4cc03a562c7f1be7d24e02f4e2 assets/mega_showdown/models/item/pidgeotite.json
 09054ce39dd29db659a9e9f8dae2bb25d690a9a2 assets/mega_showdown/models/item/pikanium-z.json
@@ -196,7 +192,6 @@ b87815313ddee5a283171d4a751371ca7890155f assets/mega_showdown/models/item/toxicp
 1d2ffc5d91809537d52730ee8447312bcf83ae88 assets/mega_showdown/models/item/tyranitarite.json
 1d05f09907e360047116463e89a3e84cbd42ac79 assets/mega_showdown/models/item/ultranecrozium-z.json
 aeaad222d1c904e6bb2f5429e4d5f851316176c7 assets/mega_showdown/models/item/venusaurite.json
-2e6d794d6e8483354f3df081dedb688ee7f53dff assets/mega_showdown/models/item/washunit.json
 e0cb8f8122e1e0fd7ca47c815bdda13aba273eb8 assets/mega_showdown/models/item/waterium-z.json
 048d948f4c68c3b668eb9224e4afdee508fc8736 assets/mega_showdown/models/item/watermemory.json
 114a0f707e64d1b5883e9ab916a7700f66fbd145 assets/mega_showdown/models/item/water_tera_shard.json

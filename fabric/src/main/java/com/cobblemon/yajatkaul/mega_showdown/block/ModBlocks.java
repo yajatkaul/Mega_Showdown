@@ -215,6 +215,37 @@ public class ModBlocks {
                 }
             });
 
+    public static final Block ROTOM_WASHING_MACHINE = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_washing_machine"),
+            new RotomUnit(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .mapColor(MapColor.ORANGE)
+                    .sounds(BlockSoundGroup.STONE), "wash"));
+    public static final Block ROTOM_FAN = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_fan"),
+            new RotomUnit(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .mapColor(MapColor.ORANGE)
+                    .sounds(BlockSoundGroup.STONE), "fan"));
+    public static final Block ROTOM_MOW = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_mow"),
+            new RotomUnit(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .mapColor(MapColor.ORANGE)
+                    .sounds(BlockSoundGroup.STONE), "mow"));
+    public static final Block ROTOM_FRIDGE = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_fridge"),
+            new RotomUnit(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .mapColor(MapColor.ORANGE)
+                    .sounds(BlockSoundGroup.STONE), "frost"));
+    public static final Block ROTOM_OVEN = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_oven"),
+            new RotomUnit(AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .mapColor(MapColor.ORANGE)
+                    .sounds(BlockSoundGroup.STONE), "heat"));
+
     public static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);

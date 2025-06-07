@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:copper_block"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "W": {
+      "item": "minecraft:wind_charge"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CWC",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:rotom_fan"
+  }
+}

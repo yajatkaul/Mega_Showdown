@@ -1,10 +1,10 @@
 {
   "values": [
-    "mega_showdown:fanunit",
-    "mega_showdown:fridgeunit",
-    "mega_showdown:mowunit",
-    "mega_showdown:ovenunit",
-    "mega_showdown:washunit",
+    "mega_showdown:rotom_fan",
+    "mega_showdown:rotom_fridge",
+    "mega_showdown:rotom_mow",
+    "mega_showdown:rotom_oven",
+    "mega_showdown:rotom_washing_machine",
     "mega_showdown:rotom_catalogue"
   ]
 }

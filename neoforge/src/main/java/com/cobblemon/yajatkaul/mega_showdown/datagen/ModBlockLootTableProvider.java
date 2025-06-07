@@ -107,6 +107,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                 .add(LootItem.lootTableItem(ModBlocks.REASSEMBLY_UNIT.get()))
                         )
         );
+
+        dropSelf(ModBlocks.ROTOM_WASHING_MACHINE.get());
+        dropSelf(ModBlocks.ROTOM_FAN.get());
+        dropSelf(ModBlocks.ROTOM_FRIDGE.get());
+        dropSelf(ModBlocks.ROTOM_MOW.get());
+        dropSelf(ModBlocks.ROTOM_OVEN.get());
     }
 
     @Override

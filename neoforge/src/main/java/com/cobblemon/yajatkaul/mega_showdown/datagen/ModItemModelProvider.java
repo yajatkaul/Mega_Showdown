@@ -156,11 +156,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(FormeChangeItems.ASH_CAP.get());
 
-        basicItem(RotomFormes.FAN.get());
-        basicItem(RotomFormes.FRIDGEUNIT.get());
-        basicItem(RotomFormes.OVENUNIT.get());
-        basicItem(RotomFormes.MOWUNIT.get());
-        basicItem(RotomFormes.WASHUNIT.get());
         basicItem(RotomFormes.ROTOM_CATALOGUE.get());
 
         basicItem(FormeChangeItems.FLAME_PLATE.get());
