@@ -12,12 +12,12 @@
 			},
 			"bones": [
 				{
-					"name": "darumaka_galar",
+					"name": "darumaka",
 					"pivot": [0, 0, 0]
 				},
 				{
 					"name": "locator_root",
-					"parent": "darumaka_galar",
+					"parent": "darumaka",
 					"pivot": [0, 0, 0],
 					"locators": {
 						"root": [0, 0, 0]
@@ -25,7 +25,7 @@
 				},
 				{
 					"name": "locator_top",
-					"parent": "darumaka_galar",
+					"parent": "darumaka",
 					"pivot": [0, 15.5, 0],
 					"locators": {
 						"top": [0, 15.5, 0]
@@ -33,7 +33,7 @@
 				},
 				{
 					"name": "body",
-					"parent": "darumaka_galar",
+					"parent": "darumaka",
 					"pivot": [0, 0.5, 0]
 				},
 				{

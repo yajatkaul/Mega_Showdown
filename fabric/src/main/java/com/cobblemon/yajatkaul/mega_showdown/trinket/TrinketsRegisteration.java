@@ -26,11 +26,15 @@ public class TrinketsRegisteration {
 
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING, new RenderZRingOffHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_BLACK, new RenderZRingOffHandTrinkets());
-        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_POWER, new RenderZRingOffHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_BLUE, new RenderZRingOffHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_GREEN, new RenderZRingOffHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_YELLOW, new RenderZRingOffHandTrinkets());
         TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_PINK, new RenderZRingOffHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_RED, new RenderZRingOffHandTrinkets());
+
+        TrinketRendererRegistry.registerRenderer(ZCrystals.Z_RING_POWER, new RenderZRingOffHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZCrystals.OLIVIAS_Z_RING, new RenderZRingOffHandTrinkets());
+        TrinketRendererRegistry.registerRenderer(ZCrystals.HAPUS_Z_RING, new RenderZRingOffHandTrinkets());
 
         TrinketRendererRegistry.registerRenderer(TeraMoves.TERA_ORB, new RenderBeltTrinkets());
 

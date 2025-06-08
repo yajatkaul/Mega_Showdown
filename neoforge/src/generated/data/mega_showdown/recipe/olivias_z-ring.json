@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_nugget"
+    },
+    "P": {
+      "item": "cobblemon:pink_apricorn"
+    },
+    "S": {
+      "item": "mega_showdown:sparkling_stone_light"
+    }
+  },
+  "pattern": [
+    "PSP",
+    "CAC",
+    "CIC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:olivias_z-ring"
+  }
+}

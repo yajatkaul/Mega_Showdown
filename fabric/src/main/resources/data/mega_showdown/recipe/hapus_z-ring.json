@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "mega_showdown:sparkling_stone_light"
+    },
+    "Y": {
+      "item": "cobblemon:yellow_apricorn"
+    }
+  },
+  "pattern": [
+    "GSG",
+    "LYL",
+    "LLL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:hapus_z-ring"
+  }
+}

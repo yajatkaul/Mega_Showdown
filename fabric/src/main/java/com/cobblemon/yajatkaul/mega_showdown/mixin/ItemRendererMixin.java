@@ -84,6 +84,12 @@ public abstract class ItemRendererMixin {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_pink")));
         } else if (stack.getItem() == ZCrystals.Z_RING_YELLOW && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_yellow")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_RED && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_red")));
+        } else if (stack.getItem() == ZCrystals.OLIVIAS_Z_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivias_z-ring")));
+        } else if (stack.getItem() == ZCrystals.HAPUS_Z_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapus_z-ring")));
         }
         return bakedModel;
     }
@@ -146,6 +152,12 @@ public abstract class ItemRendererMixin {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_green_3d")));
         } else if (stack.getItem() == ZCrystals.Z_RING_PINK) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_pink_3d")));
+        } else if (stack.getItem() == ZCrystals.Z_RING_RED) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_red_3d")));
+        } else if (stack.getItem() == ZCrystals.OLIVIAS_Z_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivias_z-ring_3d")));
+        } else if (stack.getItem() == ZCrystals.HAPUS_Z_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapus_z-ring_3d")));
         }
         return bakedModel;
     }

@@ -322,9 +322,11 @@ public class ZCrystals {
     public static final Item Z_RING_GREEN = registerItem("z-ring_green", new ZRingItem(new Item.Settings().maxCount(1)));
     public static final Item Z_RING_BLUE = registerItem("z-ring_blue", new ZRingItem(new Item.Settings().maxCount(1)));
     public static final Item Z_RING_PINK = registerItem("z-ring_pink", new ZRingItem(new Item.Settings().maxCount(1)));
-
+    public static final Item Z_RING_RED = registerItem("z-ring_red", new ZRingItem(new Item.Settings().maxCount(1)));
 
     public static final Item Z_RING_POWER = registerItem("z-power_ring", new ZRingItem(new Item.Settings().maxCount(1)));
+    public static final Item OLIVIAS_Z_RING = registerItem("olivias_z-ring", new ZRingItem(new Item.Settings().maxCount(1)));
+    public static final Item HAPUS_Z_RING = registerItem("hapus_z-ring", new ZRingItem(new Item.Settings().maxCount(1)));
 
     public static void registerModItem() {
 

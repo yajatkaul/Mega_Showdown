@@ -1,0 +1,8 @@
+{
+  "parent": "mega_showdown:item/z-ring_3d",
+  "gui_light": "front",
+  "textures": {
+    "0": "mega_showdown:item/hapus_z-ring_3d",
+    "particle": "mega_showdown:item/hapus_z-ring_3d"
+  }
+}

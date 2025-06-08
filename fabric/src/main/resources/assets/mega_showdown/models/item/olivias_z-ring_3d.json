@@ -1,0 +1,9 @@
+{
+	"parent": "mega_showdown:item/z-ring_3d",
+	"gui_light": "front",
+	"textures": {
+		"1": "mega_showdown:item/olivias_z-ring_3d",
+		"2": "mega_showdown:item/beads",
+		"particle": "mega_showdown:item/beads"
+	}
+}

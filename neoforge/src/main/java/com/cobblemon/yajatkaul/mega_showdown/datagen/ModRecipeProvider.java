@@ -487,6 +487,36 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('A', CobblemonItems.YELLOW_APRICORN)
                 .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_RED.get())
+                .pattern("ISI")
+                .pattern("A A")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', CobblemonItems.RED_APRICORN)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.OLIVIAS_Z_RING.get())
+                .pattern("PSP")
+                .pattern("CAC")
+                .pattern("CIC")
+                .define('P', CobblemonItems.PINK_APRICORN)
+                .define('I', Items.IRON_NUGGET)
+                .define('C', Items.COPPER_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .define('A', Items.AMETHYST_SHARD)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.HAPUS_Z_RING.get())
+                .pattern("GSG")
+                .pattern("LYL")
+                .pattern("LLL")
+                .define('G', Items.GOLD_INGOT)
+                .define('L', Items.LEATHER)
+                .define('Y', CobblemonItems.YELLOW_APRICORN)
+                .define('S', ZCrystals.SPARKLING_STONE_LIGHT)
+                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_LIGHT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.Z_RING_PINK.get())
                 .pattern("ISI")
                 .pattern("A A")

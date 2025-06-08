@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-07T17:47:09.5814483	Recipes
+// 1.21.1	2025-06-09T02:18:29.105592	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -22,6 +22,7 @@ b3a90c2950fd664fbced7fef59ee6f694676cc01 data/mega_showdown/advancement/recipes/
 c7b786ef08529c2eea495baa51d471aed5204333 data/mega_showdown/advancement/recipes/misc/furfrou_trim_pharaoh.json
 4595cf13a57dc4257a6652a0448f165ab3d84c7b data/mega_showdown/advancement/recipes/misc/furfrou_trim_star.json
 ff2b6577c78b8e40a650881d1cffa23fdafc8ef2 data/mega_showdown/advancement/recipes/misc/furfrou_upgrade.json
+5e38c0a295c24e3ba8cdcff4c135ad979d01d606 data/mega_showdown/advancement/recipes/misc/hapus_z-ring.json
 f2e80378447f39916d8ee7ad38f036d6f02addcf data/mega_showdown/advancement/recipes/misc/keystone.json
 2d2a76785e79a7fb6210d9886b14536f38933934 data/mega_showdown/advancement/recipes/misc/keystone_block.json
 5c4003b1303f09f729c225e1a82de896cbf06111 data/mega_showdown/advancement/recipes/misc/korrina_glove.json
@@ -42,6 +43,7 @@ c281d0596c223998c2d902a821f68dd098895628 data/mega_showdown/advancement/recipes/
 080f0dbf9ff7aaa6f7f94f090ae27106db717a4a data/mega_showdown/advancement/recipes/misc/megaring.json
 17a61387448421f434ef34db0ca7fdcda94c94dd data/mega_showdown/advancement/recipes/misc/n_lunarizer.json
 5c7d37bd6f363dc1ffbbb5e55de384d07750916e data/mega_showdown/advancement/recipes/misc/n_solarizer.json
+21faa917b34157a23eb5172319b00a2eb4c9ba1b data/mega_showdown/advancement/recipes/misc/olivias_z-ring.json
 7426846b2ffd39950efb7ef9de74c4047a923b83 data/mega_showdown/advancement/recipes/misc/pedestal.json
 96fb56f38e7eaa77fc5ec59dac4cada6c74c00dc data/mega_showdown/advancement/recipes/misc/pink_nectar.json
 89ac108ccdd0079095af5ff20b492f44d8ba5763 data/mega_showdown/advancement/recipes/misc/power_spot.json
@@ -66,6 +68,7 @@ a19307a629ab754a4d181cd4432f174ce6276d49 data/mega_showdown/advancement/recipes/
 a7793a85c64d5fe16c1496db012b3a0ddfdc76da data/mega_showdown/advancement/recipes/misc/z-ring_blue.json
 a7cfed8ada54c2b222364f85b51c1d9f928fede0 data/mega_showdown/advancement/recipes/misc/z-ring_green.json
 1627a99cf402407a8d5f7a861e3469c8e206cfac data/mega_showdown/advancement/recipes/misc/z-ring_pink.json
+c4bc6f2f7587183830460cbb9f79b30f20103330 data/mega_showdown/advancement/recipes/misc/z-ring_red.json
 5845128b50807b080055c875eb2599a1d2d8d77f data/mega_showdown/advancement/recipes/misc/z-ring_yellow.json
 1e6cc4698dec9658075da1c303cbe6624f5336d2 data/mega_showdown/advancement/recipes/misc/zygarde_cube.json
 a8914e50df935068a9275d9ad066f3a7cefd2e96 data/mega_showdown/recipe/archie_anchor.json
@@ -89,6 +92,7 @@ e4107be9d80e89881cb7872b4ab5ad2f2f0a1e4c data/mega_showdown/recipe/furfrou_trim_
 d0e4b18dffa2acb263655057ff3e03df12e809b9 data/mega_showdown/recipe/furfrou_trim_pharaoh.json
 c9b6272e5101eb60a5cb07e5e97492cd753144b5 data/mega_showdown/recipe/furfrou_trim_star.json
 88a7d9474eb6dc5ba715d4f63a1213961e74bac0 data/mega_showdown/recipe/furfrou_upgrade.json
+4f7664bcdf31d8d2d8b5322e443ffb20b360701f data/mega_showdown/recipe/hapus_z-ring.json
 e3a1a98134371a4807d19c8c3d85f22cb051f7e6 data/mega_showdown/recipe/keystone.json
 f0f98aef0586578f3adad3d7fdf32274495398cc data/mega_showdown/recipe/keystone_block.json
 78a6479617a6777d284ae1711990765f7e14cb47 data/mega_showdown/recipe/korrina_glove.json
@@ -110,6 +114,7 @@ a36102673fe74968cc71cbda99faaf31a0db6813 data/mega_showdown/recipe/max_soup.json
 7ad9ceb7d2e027bf79783be4f41877b1dc189a9f data/mega_showdown/recipe/mega_evo_brick.json
 dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.json
 3573a93f54ee2b0e480adb16216ac318323ee4b0 data/mega_showdown/recipe/n_solarizer.json
+318ac2ecffc560e40e6c239142e25ea60186d49f data/mega_showdown/recipe/olivias_z-ring.json
 744c8cd74a30d903d8abe992ee2e27588923e795 data/mega_showdown/recipe/pedestal.json
 8bd6419854bd6ad7f14070024bbfe76e8eac763b data/mega_showdown/recipe/pink_nectar.json
 665e6e446b8e72bc520ebfdc82503da2b561dc52 data/mega_showdown/recipe/polished_mega_evo_block.json
@@ -135,6 +140,7 @@ a0a0173100cf937347f41eac5247d6a670b6ab48 data/mega_showdown/recipe/z-ring.json
 bc2e28953019939aad95568a6a2f5403c581d220 data/mega_showdown/recipe/z-ring_blue.json
 fac6fb7e6b36c4b133177bd09f140b77f7d2858c data/mega_showdown/recipe/z-ring_green.json
 ba86fc69038f45c69e278c380ebe4067b2358144 data/mega_showdown/recipe/z-ring_pink.json
+193cebb546b703e7567cab5a0b41bf9a7fc33aff data/mega_showdown/recipe/z-ring_red.json
 9ec6fbcaf6cb6190ec9c6af8ac6608101d79dfaa data/mega_showdown/recipe/z-ring_yellow.json
 eb47c54510963e19d9cbb6b19f014c7f544e7117 data/mega_showdown/recipe/zygarde_cube.json
 31f7ed6ee3421790f5c5d8d1b415a219e23df903 data/minecraft/advancement/recipes/misc/dawn_stone_blasting.json

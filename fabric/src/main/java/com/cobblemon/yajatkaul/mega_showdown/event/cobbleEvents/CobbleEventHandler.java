@@ -483,7 +483,6 @@ public class CobbleEventHandler {
             }
             case "Xerneas" -> {
                 if (formeChangeEvent.getFormeName().equals("active")) {
-                    EventUtils.playFormeChangeAnimation(pokemon.getEntity());
                     new StringSpeciesFeature("life_mode", "active").apply(pokemon);
                 }
             }

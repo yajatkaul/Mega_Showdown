@@ -47,6 +47,7 @@ A huge thanks to everyone who allowed me to use there models from there pack
 *   [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
 *   [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
 *   [PokeStars](https://discord.gg/8k6NxrNPYw) for Gmax blastoise, toxtricity, sandaconda, snorlax, cinderace
+*   Yahrim for commissioning zygarde core
 
 ![](https://media.forgecdn.net/attachments/description/1189523/description_875092f1-66ff-4ede-8841-ae6c44bad7cf.png)
 

@@ -122,7 +122,10 @@ public class ModItemGroups {
                         entries.add(ZCrystals.Z_RING_GREEN);
                         entries.add(ZCrystals.Z_RING_PINK);
                         entries.add(ZCrystals.Z_RING_YELLOW);
+                        entries.add(ZCrystals.Z_RING_RED);
                         entries.add(ZCrystals.Z_RING_POWER);
+                        entries.add(ZCrystals.OLIVIAS_Z_RING);
+                        entries.add(ZCrystals.HAPUS_Z_RING);
                         entries.add(ZCrystals.ALORAICHIUM_Z);
                         entries.add(ZCrystals.BLANK_Z);
                         entries.add(ZCrystals.BUGINIUM_Z);

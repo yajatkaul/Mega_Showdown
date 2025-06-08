@@ -37,7 +37,10 @@ public class Register {
         CuriosRendererRegistry.register(ZCrystals.Z_RING_BLUE.get(), CurioZRingOffHandRenderer::new);
         CuriosRendererRegistry.register(ZCrystals.Z_RING_PINK.get(), CurioZRingOffHandRenderer::new);
         CuriosRendererRegistry.register(ZCrystals.Z_RING_YELLOW.get(), CurioZRingOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.Z_RING_RED.get(), CurioZRingOffHandRenderer::new);
         CuriosRendererRegistry.register(ZCrystals.Z_RING_POWER.get(), CurioZRingOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.OLIVIAS_Z_RING.get(), CurioZRingOffHandRenderer::new);
+        CuriosRendererRegistry.register(ZCrystals.HAPUS_Z_RING.get(), CurioZRingOffHandRenderer::new);
 
         CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
 

@@ -66,7 +66,7 @@
   "pokemon.groudonprimal.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon/groudon_cry",
+        "name": "cobblemon:pokemon/groudonprimal_cry",
         "volume": 0.8
       }
     ]
