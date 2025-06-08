@@ -302,11 +302,11 @@
   "tooltip.mega_showdown.star_core.tooltip": "An orb which contains an immense energy.",
   "item.mega_showdown.ash_cap": "Ash Cap",
   "tooltip.mega_showdown.ash_cap.tooltip": "A cap worn by a legendary trainer, carrying the spirit of adventure.",
-  "item.mega_showdown.fanunit": "Fan Unit",
-  "item.mega_showdown.fridgeunit": "Fridge Unit",
-  "item.mega_showdown.mowunit": "Mow Unit",
-  "item.mega_showdown.ovenunit": "Oven Unit",
-  "item.mega_showdown.washunit": "Wash Unit",
+  "block.mega_showdown.rotom_fan": "Fan Unit",
+  "block.mega_showdown.rotom_fridge": "Fridge Unit",
+  "block.mega_showdown.rotom_mow": "Mow Unit",
+  "block.mega_showdown.rotom_oven": "Oven Unit",
+  "block.mega_showdown.rotom_washing_machine": "Wash Unit",
   "item.mega_showdown.rotom_catalogue": "Rotom Catalogue",
   "item.mega_showdown.flameplate": "Flame Plate",
   "tooltip.mega_showdown.flameplate.tooltip": "A tablet that raises the power of Fire-type moves. When held by Arceus, it changes to the Fire type.",
@@ -566,5 +566,7 @@
   "advancement.mega_showdown.get_blank_move.description": "Obtain the blank-z",
   "item.mega_showdown.likos_pendant": "Liko's Pendant",
   "tooltip.mega_showdown.likos_pendant.tooltip": "A pendant said to resonate with ancient energy. It quietly empowers the heart of a true Trainer.",
-  "block.mega_showdown.dormant_crystal": "Dormant Crystal"
+  "block.mega_showdown.dormant_crystal": "Dormant Crystal",
+  "message.mega_showdown.cube_core_full": "You already have 5 cores",
+  "message.mega_showdown.machine_being_used": "Machine is currently in use"
 }

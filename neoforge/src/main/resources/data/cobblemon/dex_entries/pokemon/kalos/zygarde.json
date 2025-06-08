@@ -1,0 +1,27 @@
+{
+  "id": "cobblemon:zygarde",
+  "speciesId": "cobblemon:zygarde",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": [
+        "Normal"
+      ]
+    },
+    {
+      "displayForm": "10%",
+      "unlockForms": [
+        "10%"
+      ]
+    },
+    {
+      "displayForm": "Complete",
+      "unlockForms": [
+        "Complete"
+      ]
+    }
+  ],
+  "variations": []
+}

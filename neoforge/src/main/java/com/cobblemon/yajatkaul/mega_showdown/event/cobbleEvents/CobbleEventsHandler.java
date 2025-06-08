@@ -498,7 +498,12 @@ public class CobbleEventsHandler {
                         return Unit.INSTANCE;
                     });
                     pokemonEntity.after(4F, () -> {
-                        new FlagSpeciesFeature("complete-percent", true).apply(pokemon);
+                        if(pokemon.getAspects().contains("10-percent")){
+                            pokemon.getPersistentData().putString("zygarde_form", "10");
+                        }else {
+                            pokemon.getPersistentData().putString("zygarde_form", "50");
+                        }
+                        new StringSpeciesFeature("percent_cells", "complete").apply(pokemon);
                         LazyLib.Companion.cryAnimation(pokemon.getEntity());
                         updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon(), false);
                         return Unit.INSTANCE;

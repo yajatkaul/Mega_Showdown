@@ -1,8 +1,0 @@
-{
-  "keys": [
-    "complete-percent"
-  ],
-  "type": "flag",
-  "isAspect": true,
-  "default": false
-}

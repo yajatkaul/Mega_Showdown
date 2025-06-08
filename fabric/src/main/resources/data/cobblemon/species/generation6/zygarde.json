@@ -702,6 +702,31 @@
       ],
       "evolutions": [],
       "battleOnly": true
+    },
+    {
+      "name": "Core",
+      "baseScale": 0.5,
+      "hitbox": {
+        "width": 1,
+        "height": 1,
+        "fixed": false
+      },
+      "aspects": [
+        "core-percent"
+      ],
+      "baseStats": {
+        "hp": 1,
+        "attack": 1,
+        "defence": 1,
+        "special_attack": 1,
+        "special_defence": 1,
+        "speed": 1
+      },
+      "moves": [
+        "1:bulldoze"
+      ],
+      "evolutions": [],
+      "battleOnly": true
     }
   ]
 }

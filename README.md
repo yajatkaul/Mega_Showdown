@@ -1,64 +1,54 @@
-![](https://media.forgecdn.net/attachments/description/1189523/description_d7badc45-c97e-4d0e-a0c8-c96a60b65a74.png)
+![](https://media.forgecdn.net/attachments/description/1189523/description_6488e172-95fe-46d0-b211-c47ba4ba1b76.png)![](https://media.forgecdn.net/attachments/description/1189523/description_b45b4497-b99b-478b-bb78-816ecf83e727.png)
 
-![](https://media.forgecdn.net/attachments/description/1189523/description_ffe46c19-60b9-46d4-97c8-de2b1bbb7e7b.png)
+![](https://media.forgecdn.net/attachments/description/1189523/description_4bd2641e-5eea-4372-ad16-c23019a5a43e.png)![](https://media.forgecdn.net/attachments/description/1189523/description_4b74b831-b235-42c6-ab80-34dd9c3f2ce1.png)
 
-# **Structures added-**
+![](https://media.forgecdn.net/attachments/description/1189523/description_a2e4b377-84ff-4037-8f79-7e1a07b626ec.png)
 
-## **Megaroids**
+**![](https://media.forgecdn.net/attachments/description/1189523/description_97ed6f11-026f-449b-97ee-86e1500c2794.png)**
 
-# ![](https://media.forgecdn.net/attachments/description/1189523/description_0145646e-ff34-4142-bb58-298c0b521fe7.png)
+# **Trinket/Curios Integration**
 
-These are solid sphere underground at y level 5 which have a keystone in the middle of them the keystone can be used to make the mega bracelet.
+![](https://media.forgecdn.net/attachments/description/1189523/description_b8f1e56c-7f90-47dd-948c-e096d5b53918.png)
 
-This is the recipie
+**![](https://media.forgecdn.net/attachments/description/1189523/description_231b647f-88e3-485a-b07f-1ed063068956.png)**
 
-![](https://media.forgecdn.net/attachments/description/1189523/description_988e07e5-daa6-4705-877c-b6a8513013a0.png)
+# **Features**
 
-Trinket/Curios Integration
+*   Outside megas(can be disabled to only battle megas in config)
+*   Cosmetics for mega bracelets
+*   Emissive Textures
+*   Stats and ability changes when mega
+*   Ridding supported
+*   All 48 megas
+*   Curios/Trinkets support
+*   Adds primal's
+*   Adds tera gimmik
+*   Adds mega gimmik
+*   Adds z moves gimmik
+*   Adds dynamax gimmik
+*   Adds ultra burst gimmik
+*   Adds ultra necrozma
+*   All fusion mons
 
-While them in this slot you can click \`k\` and it will mega the pokemon
-
-![](https://media.forgecdn.net/attachments/description/1189523/description_9809f71d-c91d-4cec-ba53-beaa8fc07db9.png)![](https://media.forgecdn.net/attachments/description/1189523/description_d7aa6ff4-7ecb-4054-8c0e-3acba24ebd2e.png)
-
-## **Mega Sites-**
-
-![](https://cdn.discordapp.com/attachments/1334226114876538921/1342482393704955986/2025-02-21_18.28.08.png?ex=67bbc5e8&is=67ba7468&hm=b710d55ace831df4ce81e6b0a70b3d40d06e8eac2c07d8d067cb674dbb946cd4&=)
-
-These are also spheres found at y level 5 but these are hollow and contain some evolution stones and a mega crystal on breaking the mega crystal with diamond you can get any one of the mega stones to mega evolve you pokemon
-
-# **Features-**
-
-- Outside megas(can be disabled to only battle megas in config)
-- Cosmetics for mega bracelets
-- Emissive Textures
-- Stats and ability changes when mega
-- Ridding supported
-- All 48 megas
-- Curios/Trinkets support
-- Adds primal's
-- Adds tera gimmik
-- Adds mega gimmik
-- Adds z moves gimmik
-- Adds dynamax gimmik
-- Adds ultra burst gimmik
-- Adds ultra necrozma
-- All fusion mons
+![](https://media.forgecdn.net/attachments/description/1189523/description_f4dfe0bc-0918-49f9-ab83-3277718fa14d.png)
 
 # **Credits**
 
 A huge thanks to everyone who allowed me to use there models from there pack
 
-- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes
-- [Souls Megas](https://modrinth.com/datapack/soul-megas-free-megas-for-all) Used for all the mega models
-- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, rotom and formes, gensect, maltan, malmetal, furfrou and Marshadow
-- [AshiMons](https://modrinth.com/datapack/ashimons) Used for Calyrex and its fusions
-- [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes
-- [LackingMons](https://modrinth.com/datapack/lackingmons) for Eternamax eternatus
-- [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes, lake trio
-- [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
-- [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
-- [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
-- [PokeStars](https://discord.gg/8k6NxrNPYw) for Gmax blastoise, toxtricity, sandaconda, snorlax, cinderace
+*   [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes
+*   [Souls Megas](https://modrinth.com/datapack/soul-megas-free-megas-for-all) Used for all the mega models
+*   [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, rotom and formes, gensect, maltan, malmetal, furfrou and Marshadow
+*   [AshiMons](https://modrinth.com/datapack/ashimons) Used for Calyrex and its fusions
+*   [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes
+*   [LackingMons](https://modrinth.com/datapack/lackingmons) for Eternamax eternatus
+*   [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes, lake trio
+*   [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
+*   [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
+*   [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
+*   [PokeStars](https://discord.gg/8k6NxrNPYw) for Gmax blastoise, toxtricity, sandaconda, snorlax, cinderace
+
+![](https://media.forgecdn.net/attachments/description/1189523/description_875092f1-66ff-4ede-8841-ae6c44bad7cf.png)
 
 # **Socials**
 

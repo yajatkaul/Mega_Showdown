@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.item.PokeBallItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.properties.ReassembleStage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
 import net.minecraft.core.BlockPos;
@@ -149,15 +150,18 @@ public class ReassemblyUnitBlock extends Block {
 
         BlockState upper = level.getBlockState(pos.above());
 
-        if (hand == InteractionHand.MAIN_HAND && player.getOffhandItem().getItem() instanceof ZygardeCube) {
+        stack = player.getItemInHand(hand);
+        PokeHandler refValue = stack.get(DataManage.POKEMON_STORAGE);
+        Pokemon pokemon;
+
+        if (refValue == null) {
+            pokemon = null;
+        } else {
+            pokemon = refValue.getPokemon();
+        }
+
+        if (player.getItemInHand(hand).getItem() instanceof ZygardeCube && pokemon != null) {
             if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE) {
-                stack = player.getOffhandItem();
-                if (stack.get(DataManage.POKEMON_STORAGE) == null) {
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.zygarde_missing")
-                            .withColor(0xFF0000), true);
-                    return ItemInteractionResult.SUCCESS;
-                }
-                Pokemon pokemon = stack.get(DataManage.POKEMON_STORAGE).getPokemon();
                 ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL.get());
                 ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE.get());
                 if (pokemon.getAspects().contains("10-percent")) {
@@ -179,8 +183,11 @@ public class ReassemblyUnitBlock extends Block {
                 level.addFreshEntity(coreDrop);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube"));
                 stack.set(DataManage.POKEMON_STORAGE, null);
-                return ItemInteractionResult.SUCCESS;
+            }else {
+                player.displayClientMessage(Component.translatable("message.mega_showdown.machine_being_used")
+                        .withColor(0xFF0000), true);
             }
+            return ItemInteractionResult.SUCCESS;
         }
 
         if (state.getValue(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.is(FormeChangeItems.ZYGARDE_CUBE)) {

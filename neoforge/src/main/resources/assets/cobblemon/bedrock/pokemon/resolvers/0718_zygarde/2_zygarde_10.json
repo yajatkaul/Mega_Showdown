@@ -1,6 +1,6 @@
 {
   "species": "cobblemon:zygarde",
-  "order": 99,
+  "order": 2,
   "variations": [
     {
       "aspects": [
@@ -17,23 +17,6 @@
         "10-percent"
       ],
       "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_10_shiny.png",
-      "layers": []
-    },
-    {
-      "aspects": [
-        "complete-percent"
-      ],
-      "poser": "cobblemon:zygarde_100",
-      "model": "cobblemon:zygarde_100.geo",
-      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_100.png",
-      "layers": []
-    },
-    {
-      "aspects": [
-        "shiny",
-        "complete-percent"
-      ],
-      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_100.png",
       "layers": []
     }
   ]

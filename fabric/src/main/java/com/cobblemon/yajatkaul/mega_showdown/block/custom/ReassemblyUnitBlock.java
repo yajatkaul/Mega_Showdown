@@ -152,17 +152,11 @@ public class ReassemblyUnitBlock extends Block {
 
         BlockState upper = world.getBlockState(pos.up());
 
-        if (hand == Hand.MAIN_HAND && player.getOffHandStack().getItem() instanceof ZygardeCube) {
+        stack = player.getStackInHand(hand);
+        Pokemon pokemon = stack.get(DataManage.POKEMON_STORAGE);
+
+        if (player.getStackInHand(hand).getItem() instanceof ZygardeCube && pokemon != null) {
             if (state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE) {
-                stack = player.getOffHandStack();
-                Pokemon pokemon = stack.get(DataManage.POKEMON_STORAGE);
-                if (pokemon == null) {
-                    player.sendMessage(
-                            Text.translatable("message.mega_showdown.zygarde_missing").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                            true
-                    );
-                    return ItemActionResult.SUCCESS;
-                }
                 ItemStack cells = new ItemStack(FormeChangeItems.ZYGARDE_CELL);
                 ItemStack cores = new ItemStack(FormeChangeItems.ZYGARDE_CORE);
                 if (pokemon.getAspects().contains("10-percent")) {
@@ -172,7 +166,6 @@ public class ReassemblyUnitBlock extends Block {
                     cells.setCount(49);
                     cores.setCount(1);
                 }
-
                 ItemEntity cellDrop = new ItemEntity(world,
                         pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
                         cells.copy());
@@ -184,8 +177,10 @@ public class ReassemblyUnitBlock extends Block {
                 world.spawnEntity(coreDrop);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
                 stack.set(DataManage.POKEMON_STORAGE, null);
-                return ItemActionResult.SUCCESS;
+            }else {
+                player.sendMessage(Text.translatable("message.mega_showdown.machine_being_used").styled(s -> s.withColor(Formatting.RED)), true);
             }
+            return ItemActionResult.SUCCESS;
         }
 
         if (state.get(REASSEMBLE_STAGE) == ReassembleStage.IDLE && stack.isOf(FormeChangeItems.ZYGARDE_CUBE)) {

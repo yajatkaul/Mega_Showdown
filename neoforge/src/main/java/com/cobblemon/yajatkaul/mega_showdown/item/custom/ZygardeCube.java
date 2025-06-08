@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeMenu;
 import net.minecraft.core.HolderLookup;
@@ -92,8 +93,119 @@ public class ZygardeCube extends Item {
             Entity entity = entityHit.getEntity();
             if (entity instanceof PokemonEntity pk) {
                 if (pk.getPokemon().getSpecies().getName().equals("Zygarde")) {
-                    return InteractionResultHolder.pass(player.getItemInHand(hand));
+                    ItemStack stack = player.getItemInHand(hand);
+
+                    Pokemon pokemon = pk.getPokemon();
+                    if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
+                        return InteractionResultHolder.pass(stack);
+                    }
+
+                    if(pk.getAspects().contains("core-percent")){
+                        ItemStackHandler inventory = getInventory(stack, level, player);
+
+                        if(inventory.getStackInSlot(1).getCount() >= 5){
+                            player.displayClientMessage(Component.translatable("message.mega_showdown.cube_core_full")
+                                    .withColor(0xFF0000), true);
+                            return InteractionResultHolder.pass(stack);
+                        }
+                        int count = inventory.getStackInSlot(1).getCount() + 1;
+                        ItemStack newStack = new ItemStack(FormeChangeItems.ZYGARDE_CORE.get(), count);
+                        inventory.setStackInSlot(1, newStack);
+
+                        CompoundTag updatedTag = inventory.serializeNBT(player.level().registryAccess());
+                        stack.set(DataManage.ZYGARDE_INV, updatedTag);
+                        player.setItemInHand(hand, stack);
+
+                        if(pokemon.getOwnerPlayer() == player){
+                            Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
+                        }else{
+                            entity.discard();
+                        }
+
+                        return InteractionResultHolder.success(stack);
+                    }
+
+                    if (!pk.getAspects().contains("power-construct")) {
+                        if (stack.get(DataManage.POKEMON_STORAGE) != null) {
+                            player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
+                                    .withColor(0xFF0000), true);
+                            return InteractionResultHolder.fail(stack);
+                        }
+                        stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
+                        stack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
+                        Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
+                        player.setItemInHand(hand, stack);
+                        return InteractionResultHolder.success(stack);
+                    }
+
+                    if (pk.getAspects().contains("power-construct")) {
+                        if (!possible((ServerPlayer) player)) {
+                            return InteractionResultHolder.pass(stack);
+                        } else if (pk.getAspects().contains("10-percent")) {
+                            particleEffect(pokemon.getEntity());
+                            new StringSpeciesFeature("percent_cells", "50").apply(pk);
+                        } else {
+                            particleEffect(pokemon.getEntity());
+                            new StringSpeciesFeature("percent_cells", "10").apply(pk);
+                        }
+                    } else {
+                        player.displayClientMessage(Component.translatable("message.mega_showdown.resassembly_zygarde_req")
+                                .withColor(0xFF0000), true);
+                    }
+
+                    return InteractionResultHolder.success(stack);
+                } else {
+                    ItemStack stack = player.getItemInHand(hand);
+                    PokeHandler refValue = stack.get(DataManage.POKEMON_STORAGE);
+                    Pokemon currentValue;
+
+                    if (refValue == null) {
+                        currentValue = null;
+                    } else {
+                        currentValue = refValue.getPokemon();
+                    }
+
+                    if (currentValue != null) {
+                        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                        playerPartyStore.add(currentValue);
+                        stack.set(DataManage.POKEMON_STORAGE, null);
+                        return InteractionResultHolder.success(stack);
+                    }
                 }
+            } else {
+                ItemStack stack = player.getItemInHand(hand);
+                PokeHandler refValue = stack.get(DataManage.POKEMON_STORAGE);
+                Pokemon currentValue;
+
+                if (refValue == null) {
+                    currentValue = null;
+                } else {
+                    currentValue = refValue.getPokemon();
+                }
+
+                if (currentValue != null) {
+                    PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                    playerPartyStore.add(currentValue);
+                    stack.set(DataManage.POKEMON_STORAGE, null);
+                    return InteractionResultHolder.success(stack);
+                }
+            }
+        } else {
+            ItemStack stack = player.getItemInHand(hand);
+            PokeHandler refValue = stack.get(DataManage.POKEMON_STORAGE);
+            Pokemon currentValue;
+
+            if (refValue == null) {
+                currentValue = null;
+            } else {
+                currentValue = refValue.getPokemon();
+            }
+
+            if (currentValue != null) {
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                playerPartyStore.add(currentValue);
+                stack.set(DataManage.POKEMON_STORAGE, null);
+                return InteractionResultHolder.success(stack);
             }
         }
 
@@ -148,46 +260,7 @@ public class ZygardeCube extends Item {
             return InteractionResult.FAIL;
         }
 
-        if (entity instanceof PokemonEntity pk) {
-            Pokemon pokemon = pk.getPokemon();
-            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
-                return InteractionResult.PASS;
-            }
 
-            if (!pokemon.getSpecies().getName().equals("Zygarde")) {
-                return InteractionResult.PASS;
-            }
-
-            if (arg4 == InteractionHand.OFF_HAND && !pk.getAspects().contains("power-construct")) {
-                if (arg.get(DataManage.POKEMON_STORAGE) != null) {
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
-                            .withColor(0xFF0000), true);
-                    return InteractionResult.FAIL;
-                }
-                arg.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
-                arg.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
-                Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
-                player.setItemInHand(arg4, arg);
-                return InteractionResult.SUCCESS;
-            }
-
-            if (pk.getAspects().contains("power-construct")) {
-                if (!possible((ServerPlayer) player)) {
-                    return InteractionResult.PASS;
-                } else if (pk.getAspects().contains("10-percent")) {
-                    particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells", "50").apply(pk);
-                } else {
-                    particleEffect(pokemon.getEntity());
-                    new StringSpeciesFeature("percent_cells", "10").apply(pk);
-                }
-            } else {
-                player.displayClientMessage(Component.translatable("message.mega_showdown.resassembly_zygarde_req")
-                        .withColor(0xFF0000), true);
-            }
-
-            return InteractionResult.SUCCESS;
-        }
 
         return InteractionResult.FAIL;
     }
@@ -233,28 +306,5 @@ public class ZygardeCube extends Item {
                 );
             }
         }
-    }
-
-    @Override
-    public void onDestroyed(ItemEntity entity, DamageSource damageSource) {
-        if (entity.getOwner() instanceof ServerPlayer player) {
-            PokeHandler refValue = entity.getItem().getOrDefault(DataManage.POKEMON_STORAGE, null);
-            Pokemon currentValue;
-
-            if (refValue == null) {
-                currentValue = null;
-            } else {
-                currentValue = refValue.getPokemon();
-            }
-
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-            if (currentValue != null) {
-                playerPartyStore.add(currentValue);
-                entity.getItem().set(DataManage.POKEMON_STORAGE, null);
-            }
-        }
-
-        super.onDestroyed(entity, damageSource);
     }
 }

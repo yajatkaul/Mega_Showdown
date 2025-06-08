@@ -5,12 +5,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:zygarde_core",
-          "weight": 1,
-          "functions": []
-        },
-        {
-          "type": "minecraft:item",
           "name": "cobblemon:ancient_wing_ball",
           "weight": 4,
           "functions": []
