@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-09T02:18:29.105592	Recipes
+// 1.21.1	2025-06-09T19:44:48.8361869	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -91,7 +91,7 @@ e4107be9d80e89881cb7872b4ab5ad2f2f0a1e4c data/mega_showdown/recipe/furfrou_trim_
 5cf86a9fa2d31944825179464a1075d4e85ce244 data/mega_showdown/recipe/furfrou_trim_matron.json
 d0e4b18dffa2acb263655057ff3e03df12e809b9 data/mega_showdown/recipe/furfrou_trim_pharaoh.json
 c9b6272e5101eb60a5cb07e5e97492cd753144b5 data/mega_showdown/recipe/furfrou_trim_star.json
-88a7d9474eb6dc5ba715d4f63a1213961e74bac0 data/mega_showdown/recipe/furfrou_upgrade.json
+626f6b071f53eaf4e34d0a7de051756ebc7b92e5 data/mega_showdown/recipe/furfrou_upgrade.json
 4f7664bcdf31d8d2d8b5322e443ffb20b360701f data/mega_showdown/recipe/hapus_z-ring.json
 e3a1a98134371a4807d19c8c3d85f22cb051f7e6 data/mega_showdown/recipe/keystone.json
 f0f98aef0586578f3adad3d7fdf32274495398cc data/mega_showdown/recipe/keystone_block.json

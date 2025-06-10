@@ -13,7 +13,7 @@
       "context": "grounded",
       "bucket": "uncommon",
       "level": "18-33",
-      "weight": 9.0,
+      "weight": 3.0,
       "condition": {
         "canSeeSky": true,
         "biomes": [
@@ -32,7 +32,7 @@
       "context": "grounded",
       "bucket": "uncommon",
       "level": "18-33",
-      "weight": 10.0,
+      "weight": 3.0,
       "condition": {
         "canSeeSky": true,
         "biomes": [
@@ -43,7 +43,7 @@
     },
     {
       "id": "oricorio-3",
-      "pokemon": "oricorio dance_style=pa’u",
+      "pokemon": "oricorio dance_style=pau",
       "presets": [
         "natural"
       ],
@@ -51,7 +51,7 @@
       "context": "grounded",
       "bucket": "uncommon",
       "level": "18-33",
-      "weight": 10,
+      "weight": 3.0,
       "condition": {
         "canSeeSky": true,
         "biomes": [
@@ -68,7 +68,7 @@
       "context": "grounded",
       "bucket": "uncommon",
       "level": "18-33",
-      "weight": 10,
+      "weight": 3.0,
       "condition": {
         "canSeeSky": true,
         "biomes": [

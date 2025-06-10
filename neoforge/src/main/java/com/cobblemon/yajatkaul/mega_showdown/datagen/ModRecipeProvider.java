@@ -720,7 +720,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 ).unlocks("has_furfrou_trim", has(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get()))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "furfrou_trim_debutante"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get(), 2)
                 .pattern("DTD")
                 .pattern("DWD")
                 .pattern("DDD")

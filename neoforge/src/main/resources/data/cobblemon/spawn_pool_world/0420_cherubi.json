@@ -10,7 +10,7 @@
       "context": "grounded",
       "bucket": "common",
       "level": "4-25",
-      "weight": 7.0,
+      "weight": 2.0,
       "condition": {
         "canSeeSky": true,
         "biomes": [
