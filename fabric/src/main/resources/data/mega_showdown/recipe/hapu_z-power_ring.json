@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cobblemon:yellow_apricorn"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "mega_showdown:sparkling_stone_dark"
+    }
+  },
+  "pattern": [
+    "GSG",
+    "AIA",
+    "LLL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:hapu_z-power_ring"
+  }
+}

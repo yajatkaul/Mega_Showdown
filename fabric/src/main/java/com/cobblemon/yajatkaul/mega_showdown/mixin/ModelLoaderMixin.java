@@ -46,5 +46,12 @@ public abstract class ModelLoaderMixin {
         this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "z-ring_red_3d")));
         this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivias_z-ring_3d")));
         this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapus_z-ring_3d")));
+
+        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivia_z-power_ring_3d")));
+        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapu_z-power_ring_3d")));
+        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "rocket_z-power_ring_3d")));
+        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "gladion_z-power_ring_3d")));
+        this.loadItemModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "nanu_z-power_ring_3d")));
+
     }
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "cobblemon:red_apricorn"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "mega_showdown:sparkling_stone_dark"
+    }
+  },
+  "pattern": [
+    "ASA",
+    "AIA",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mega_showdown:gladion_z-power_ring"
+  }
+}

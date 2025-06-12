@@ -129,9 +129,14 @@ public class ModCreativeModeTabs {
                         output.accept(ZCrystals.Z_RING_PINK);
                         output.accept(ZCrystals.Z_RING_YELLOW);
                         output.accept(ZCrystals.Z_RING_RED);
-                        output.accept(ZCrystals.Z_RING_POWER);
                         output.accept(ZCrystals.OLIVIAS_Z_RING);
                         output.accept(ZCrystals.HAPUS_Z_RING);
+                        output.accept(ZCrystals.Z_RING_POWER);
+                        output.accept(ZCrystals.OLIVIA_Z_POWER_RING);
+                        output.accept(ZCrystals.GLADION_Z_POWER_RING);
+                        output.accept(ZCrystals.NANU_Z_POWER_RING);
+                        output.accept(ZCrystals.HAPU_Z_POWER_RING);
+                        output.accept(ZCrystals.ROCKET_Z_POWER_RING);
                         output.accept(ZCrystals.ALORAICHIUM_Z);
                         output.accept(ZCrystals.BLANK_Z);
                         output.accept(ZCrystals.BUGINIUM_Z);

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mega_showdown:item/hapu_z-power_ring_2d"
+  }
+}

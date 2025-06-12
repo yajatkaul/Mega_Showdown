@@ -1,0 +1,7 @@
+{
+  "parent": "mega_showdown:item/z-power_ring_3d",
+  "gui_light": "front",
+  "textures": {
+    "0": "mega_showdown:item/olivia_z-power_ring_3d"
+  }
+}

@@ -551,7 +551,57 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('I', Items.IRON_INGOT)
                 .define('S', ZCrystals.SPARKLING_STONE_DARK)
                 .define('A', CobblemonItems.BLACK_APRICORN)
-                .unlockedBy("has_light_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
+                .unlockedBy("has_dark_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.OLIVIA_Z_POWER_RING.get())
+                .pattern("ASA")
+                .pattern("NIN")
+                .pattern("NNN")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_DARK)
+                .define('N', Items.IRON_NUGGET)
+                .define('A', CobblemonItems.PINK_APRICORN)
+                .unlockedBy("has_dark_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.GLADION_Z_POWER_RING.get())
+                .pattern("ASA")
+                .pattern("AIA")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_DARK)
+                .define('A', CobblemonItems.RED_APRICORN)
+                .unlockedBy("has_dark_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.NANU_Z_POWER_RING.get())
+                .pattern("GSG")
+                .pattern("AIA")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_DARK)
+                .define('A', CobblemonItems.BLACK_APRICORN)
+                .define('G', Items.GOLD_INGOT)
+                .unlockedBy("has_dark_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.HAPU_Z_POWER_RING.get())
+                .pattern("GSG")
+                .pattern("AIA")
+                .pattern("LLL")
+                .define('I', Items.IRON_INGOT)
+                .define('L', Items.LEATHER)
+                .define('S', ZCrystals.SPARKLING_STONE_DARK)
+                .define('A', CobblemonItems.YELLOW_APRICORN)
+                .define('G', Items.GOLD_INGOT)
+                .unlockedBy("has_dark_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ZCrystals.ROCKET_Z_POWER_RING.get())
+                .pattern("ISI")
+                .pattern("RIB")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('S', ZCrystals.SPARKLING_STONE_DARK)
+                .define('B', CobblemonItems.BLUE_APRICORN)
+                .define('R', CobblemonItems.RED_APRICORN)
+                .unlockedBy("has_dark_sparkling_stone", has(ZCrystals.SPARKLING_STONE_DARK)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.SHOCK_DRIVE.get())
                 .pattern("IEI")

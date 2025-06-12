@@ -90,6 +90,16 @@ public abstract class ItemRendererMixin {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivias_z-ring")));
         } else if (stack.getItem() == ZCrystals.HAPUS_Z_RING && (renderMode == ModelTransformationMode.GUI)) {
             return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapus_z-ring")));
+        } else if (stack.getItem() == ZCrystals.OLIVIA_Z_POWER_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivia_z-power_ring")));
+        } else if (stack.getItem() == ZCrystals.HAPU_Z_POWER_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapu_z-power_ring")));
+        } else if (stack.getItem() == ZCrystals.ROCKET_Z_POWER_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "rocket_z-power_ring")));
+        } else if (stack.getItem() == ZCrystals.GLADION_Z_POWER_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "gladion_z-power_ring")));
+        } else if (stack.getItem() == ZCrystals.NANU_Z_POWER_RING && (renderMode == ModelTransformationMode.GUI)) {
+            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "nanu_z-power_ring")));
         }
         return bakedModel;
     }
@@ -158,6 +168,16 @@ public abstract class ItemRendererMixin {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivias_z-ring_3d")));
         } else if (stack.getItem() == ZCrystals.HAPUS_Z_RING) {
             return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapus_z-ring_3d")));
+        } else if (stack.getItem() == ZCrystals.OLIVIA_Z_POWER_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "olivia_z-power_ring_3d")));
+        } else if (stack.getItem() == ZCrystals.HAPU_Z_POWER_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "hapu_z-power_ring_3d")));
+        } else if (stack.getItem() == ZCrystals.ROCKET_Z_POWER_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "rocket_z-power_ring_3d")));
+        } else if (stack.getItem() == ZCrystals.GLADION_Z_POWER_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "gladion_z-power_ring_3d")));
+        } else if (stack.getItem() == ZCrystals.NANU_Z_POWER_RING) {
+            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(MegaShowdown.MOD_ID, "nanu_z-power_ring_3d")));
         }
         return bakedModel;
     }

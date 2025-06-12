@@ -135,7 +135,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ZCrystals.Z_RING_YELLOW.get())
                 .add(ZCrystals.OLIVIAS_Z_RING.get())
                 .add(ZCrystals.HAPUS_Z_RING.get())
-                .add(ZCrystals.Z_RING_RED.get());
+                .add(ZCrystals.Z_RING_RED.get())
+                .add(ZCrystals.OLIVIA_Z_POWER_RING.get())
+                .add(ZCrystals.HAPU_Z_POWER_RING.get())
+                .add(ZCrystals.ROCKET_Z_POWER_RING.get())
+                .add(ZCrystals.GLADION_Z_POWER_RING.get())
+                .add(ZCrystals.NANU_Z_POWER_RING.get())
+        ;
 
         tag(ModTags.Items.TERA_ITEMS)
                 .add(TeraMoves.TERA_ORB.get());

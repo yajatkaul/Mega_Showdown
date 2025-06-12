@@ -369,12 +369,22 @@ public class ZCrystals {
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> Z_RING_RED = ITEMS.register("z-ring_red",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
-
-    public static final DeferredItem<Item> Z_RING_POWER = ITEMS.register("z-power_ring",
-            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> OLIVIAS_Z_RING = ITEMS.register("olivias_z-ring",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> HAPUS_Z_RING = ITEMS.register("hapus_z-ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> Z_RING_POWER = ITEMS.register("z-power_ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> OLIVIA_Z_POWER_RING = ITEMS.register("olivia_z-power_ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> HAPU_Z_POWER_RING = ITEMS.register("hapu_z-power_ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> ROCKET_Z_POWER_RING = ITEMS.register("rocket_z-power_ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> GLADION_Z_POWER_RING = ITEMS.register("gladion_z-power_ring",
+            () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> NANU_Z_POWER_RING = ITEMS.register("nanu_z-power_ring",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
 
     public static void register() {
