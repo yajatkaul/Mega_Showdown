@@ -22,12 +22,12 @@
     "amorphous"
   ],
   "baseStats": {
-    "hp": 90,
-    "attack": 20,
-    "defence": 100,
-    "special_attack": 170,
-    "special_defence": 100,
-    "speed": 120
+    "hp": 50,
+    "attack": 50,
+    "defence": 77,
+    "special_attack": 95,
+    "special_defence": 77,
+    "speed": 91
   },
   "evYield": {
     "hp": 0,
@@ -141,17 +141,17 @@
   "forms": [
     {
       "name": "Heat",
-      "primaryType": "fire",
-      "secondaryType": "electric",
+      "primaryType": "electric",
+      "secondaryType": "fire",
       "maleRatio": -1,
+      "height": 3,
+      "weight": 3,
       "baseScale": 0.9,
       "hitbox": {
         "width": 0.85,
         "height": 1.6,
         "fixed": false
       },
-      "height": 3,
-      "weight": 3,
       "pokedex": [
         "cobblemon.species.rotom-heat.desc"
       ],
@@ -162,12 +162,12 @@
         "heat-appliance"
       ],
       "baseStats": {
-        "hp": 90,
-        "attack": 20,
-        "defence": 100,
-        "special_attack": 170,
-        "special_defence": 100,
-        "speed": 120
+        "hp": 50,
+        "attack": 65,
+        "defence": 107,
+        "special_attack": 105,
+        "special_defence": 107,
+        "speed": 86
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -266,17 +266,17 @@
     },
     {
       "name": "Wash",
-      "primaryType": "water",
-      "secondaryType": "electric",
+      "primaryType": "electric",
+      "secondaryType": "water",
+      "maleRatio": -1,
+      "height": 3,
+      "weight": 3,
       "baseScale": 0.83,
       "hitbox": {
         "width": 0.85,
         "height": 1.7,
         "fixed": false
       },
-      "maleRatio": -1,
-      "height": 3,
-      "weight": 3,
       "pokedex": [
         "cobblemon.species.rotom-wash.desc"
       ],
@@ -287,12 +287,12 @@
         "wash-appliance"
       ],
       "baseStats": {
-        "hp": 90,
-        "attack": 20,
-        "defence": 100,
-        "special_attack": 170,
-        "special_defence": 100,
-        "speed": 120
+        "hp": 50,
+        "attack": 65,
+        "defence": 107,
+        "special_attack": 105,
+        "special_defence": 107,
+        "speed": 86
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -391,17 +391,17 @@
     },
     {
       "name": "Frost",
-      "primaryType": "ice",
-      "secondaryType": "electric",
+      "primaryType": "electric",
+      "secondaryType": "ice",
+      "maleRatio": -1,
+      "height": 3,
+      "weight": 3,
       "baseScale": 1.25,
       "hitbox": {
         "width": 0.75,
         "height": 1.6,
         "fixed": false
       },
-      "maleRatio": -1,
-      "height": 3,
-      "weight": 3,
       "pokedex": [
         "cobblemon.species.rotom-frost.desc"
       ],
@@ -412,12 +412,12 @@
         "frost-appliance"
       ],
       "baseStats": {
-        "hp": 90,
-        "attack": 20,
-        "defence": 100,
-        "special_attack": 170,
-        "special_defence": 100,
-        "speed": 120
+        "hp": 50,
+        "attack": 65,
+        "defence": 107,
+        "special_attack": 105,
+        "special_defence": 107,
+        "speed": 86
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -516,17 +516,17 @@
     },
     {
       "name": "Fan",
-      "primaryType": "flying",
-      "secondaryType": "electric",
+      "primaryType": "electric",
+      "secondaryType": "flying",
+      "maleRatio": -1,
+      "height": 3,
+      "weight": 3,
       "baseScale": 0.8,
       "hitbox": {
         "width": 0.55,
         "height": 2.1,
         "fixed": false
       },
-      "maleRatio": -1,
-      "height": 3,
-      "weight": 3,
       "pokedex": [
         "cobblemon.species.rotom-fan.desc"
       ],
@@ -537,12 +537,12 @@
         "fan-appliance"
       ],
       "baseStats": {
-        "hp": 90,
-        "attack": 20,
-        "defence": 100,
-        "special_attack": 170,
-        "special_defence": 100,
-        "speed": 120
+        "hp": 50,
+        "attack": 65,
+        "defence": 107,
+        "special_attack": 105,
+        "special_defence": 107,
+        "speed": 86
       },
       "baseExperienceYield": 182,
       "moves": [
@@ -641,17 +641,17 @@
     },
     {
       "name": "Mow",
-      "primaryType": "grass",
-      "secondaryType": "electric",
+      "primaryType": "electric",
+      "secondaryType": "grass",
+      "maleRatio": -1,
+      "height": 3,
+      "weight": 3,
       "baseScale": 0.85,
       "hitbox": {
         "width": 0.75,
         "height": 1.65,
         "fixed": false
       },
-      "maleRatio": -1,
-      "height": 3,
-      "weight": 3,
       "pokedex": [
         "cobblemon.species.rotom-mow.desc"
       ],
@@ -662,12 +662,12 @@
         "mow-appliance"
       ],
       "baseStats": {
-        "hp": 90,
-        "attack": 20,
-        "defence": 100,
-        "special_attack": 170,
-        "special_defence": 100,
-        "speed": 120
+        "hp": 50,
+        "attack": 65,
+        "defence": 107,
+        "special_attack": 105,
+        "special_defence": 107,
+        "speed": 86
       },
       "baseExperienceYield": 182,
       "moves": [

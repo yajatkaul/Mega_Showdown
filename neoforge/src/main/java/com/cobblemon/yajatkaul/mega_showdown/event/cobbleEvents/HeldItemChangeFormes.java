@@ -166,14 +166,17 @@ public class HeldItemChangeFormes {
         }
         if (post.getReceived().is(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "hearthflame").apply(pokemon);
+            playHeldItemChange(pokemon.getEntity());
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getFIRE());
         } else if (post.getReceived().is(FormeChangeItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask", "cornerstone").apply(pokemon);
+            playHeldItemChange(pokemon.getEntity());
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getROCK());
         } else if (post.getReceived().is(FormeChangeItems.WELLSPRING_MASK)) {
             new StringSpeciesFeature("ogre_mask", "wellspring").apply(pokemon);
+            playHeldItemChange(pokemon.getEntity());
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getWATER());
         } else if (post.getReturned().is(FormeChangeItems.WELLSPRING_MASK)
@@ -181,11 +184,8 @@ public class HeldItemChangeFormes {
                 || post.getReturned().is(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "teal").apply(pokemon);
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            try {
-                pokemon.setTeraType(TeraTypes.getGRASS());
-            } catch (Exception e) {
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            playHeldItemChange(pokemon.getEntity());
+            pokemon.setTeraType(TeraTypes.getGRASS());
         }
     }
 

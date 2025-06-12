@@ -169,37 +169,33 @@ public class HeldItemChangeFormes {
         if (post.getReceived().isOf(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "hearthflame").apply(pokemon);
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            try {
-                pokemon.setTeraType(TeraTypes.getFIRE());
-            } catch (Exception e) {
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            playHeldItemFormeChange(pokemon.getEntity());
+
+            pokemon.setTeraType(TeraTypes.getFIRE());
+
         } else if (post.getReceived().isOf(FormeChangeItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask", "cornerstone").apply(pokemon);
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            try {
-                pokemon.setTeraType(TeraTypes.getROCK());
-            } catch (Exception e) {
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            playHeldItemFormeChange(pokemon.getEntity());
+
+            pokemon.setTeraType(TeraTypes.getROCK());
+
         } else if (post.getReceived().isOf(FormeChangeItems.WELLSPRING_MASK)) {
             new StringSpeciesFeature("ogre_mask", "wellspring").apply(pokemon);
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            try {
-                pokemon.setTeraType(TeraTypes.getWATER());
-            } catch (Exception e) {
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            playHeldItemFormeChange(pokemon.getEntity());
+
+            pokemon.setTeraType(TeraTypes.getWATER());
+
         } else if (post.getReturned().isOf(FormeChangeItems.WELLSPRING_MASK)
                 || post.getReturned().isOf(FormeChangeItems.CORNERSTONE_MASK)
                 || post.getReturned().isOf(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "teal").apply(pokemon);
             LazyLib.Companion.cryAnimation(pokemon.getEntity());
-            try {
-                pokemon.setTeraType(TeraTypes.getGRASS());
-            } catch (Exception e) {
-                MegaShowdown.LOGGER.info("Sike");
-            }
+            playHeldItemFormeChange(pokemon.getEntity());
+
+            pokemon.setTeraType(TeraTypes.getGRASS());
+
         }
     }
 
