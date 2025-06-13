@@ -652,16 +652,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('N', Items.NETHERITE_INGOT)
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.STAR_CORE.get())
-                .pattern("PSD")
-                .pattern("SWS")
-                .pattern("PSD")
-                .define('P', CobblemonItems.POISON_GEM)
-                .define('D', CobblemonItems.DRAGON_GEM)
-                .define('W', DynamaxItems.WISHING_STAR)
-                .define('S', Items.OBSIDIAN)
-                .unlockedBy("has_wishing_star", has(DynamaxItems.WISHING_STAR)).save(recipeOutput);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PEDESTAL.get())
                 .pattern(" S ")
                 .pattern(" B ")

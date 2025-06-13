@@ -1,18 +1,25 @@
 {
-  "head": "body",
-  "portraitScale": 1.35,
+  "head": "head",
+  "portraitScale": 1.4,
   "portraitTranslation": [
-    0,
+    -0.06,
     0.5,
     0
   ],
-  "profileScale": 0.8,
+  "profileScale": 1.15,
   "profileTranslation": [
     0,
-    0.5,
+    0.63,
     0
   ],
-  "faint": "bedrock(castform, faint)",
+  "animations": {
+    "faint": "q.bedrock_primary('castform', 'faint', q.curve('one'))",
+    "cry": "q.bedrock_stateful('castform', 'cry')",
+    "recoil": "q.bedrock_stateful('castform', 'recoil')",
+    "physical": "q.bedrock_primary('castform', 'attack', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('castform', 'attack', q.curve('symmetrical_wide'))"
+
+  },
   "poses": {
     "standing": {
       "transformTicks": 10,
@@ -25,14 +32,7 @@
       "animations": [
         "bedrock(castform, ground_idle)"
       ],
-      "quirks": [
-        {
-          "name": "blink",
-          "animations": [
-            "bedrock(castform, blink)"
-          ]
-        }
-      ]
+      "quirks": [ "q.bedrock_quirk('castform', 'blink')" ]
     },
     "walking": {
       "transformTicks": 10,
@@ -42,14 +42,7 @@
       "animations": [
         "bedrock(castform, ground_walk)"
       ],
-      "quirks": [
-        {
-          "name": "blink",
-          "animations": [
-            "bedrock(castform, blink)"
-          ]
-        }
-      ]
+      "quirks": [ "q.bedrock_quirk('castform', 'blink')" ]
     }
   }
 }

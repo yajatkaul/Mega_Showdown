@@ -5,9 +5,8 @@ plugins {
     kotlin("jvm") version "1.9.23"
 }
 
-
 group = "com.github.yajatkaul"
-version = "9.7.4-release-neoforge"
+version = "9.7.5-release-neoforge"
 
 architectury {
     platformSetupLoomIde()

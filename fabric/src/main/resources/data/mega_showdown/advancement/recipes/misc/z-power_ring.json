@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_light_sparkling_stone": {
+    "has_dark_sparkling_stone": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_light_sparkling_stone"
+      "has_dark_sparkling_stone"
     ]
   ],
   "rewards": {

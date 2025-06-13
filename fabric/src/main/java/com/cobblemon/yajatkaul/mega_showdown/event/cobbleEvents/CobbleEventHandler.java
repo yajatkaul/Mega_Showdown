@@ -445,6 +445,8 @@ public class CobbleEventHandler {
                 if (formeChangeEvent.getFormeName().equals("hangry")) {
                     EventUtils.playFormeChangeAngryAnimation(pokemon.getEntity());
                     new StringSpeciesFeature("hunger_mode", "hangry").apply(pokemon);
+                } else {
+                    new StringSpeciesFeature("hunger_mode", "full_belly").apply(pokemon);
                 }
             }
             case "Eiscue" -> {
