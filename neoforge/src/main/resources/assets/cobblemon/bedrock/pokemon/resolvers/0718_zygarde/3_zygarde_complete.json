@@ -4,23 +4,6 @@
   "variations": [
     {
       "aspects": [
-        "core-percent"
-      ],
-      "poser": "cobblemon:zygardecore",
-      "model": "cobblemon:zygardecore.geo",
-      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_core.png",
-      "layers": []
-    },
-    {
-      "aspects": [
-        "shiny",
-        "core-percent"
-      ],
-      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_core_shiny.png",
-      "layers": []
-    },
-    {
-      "aspects": [
         "complete-percent"
       ],
       "poser": "cobblemon:zygarde_100",

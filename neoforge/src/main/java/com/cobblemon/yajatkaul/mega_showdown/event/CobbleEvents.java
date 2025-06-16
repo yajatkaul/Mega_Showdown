@@ -35,6 +35,8 @@ public class CobbleEvents {
 
         CobblemonEvents.POKEMON_SENT_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::pokemonSent);
 
+        CobblemonEvents.THROWN_POKEBALL_HIT.subscribe(Priority.NORMAL, CobbleEventsHandler::pokeballHit);
+
         NeoForge.EVENT_BUS.register(new DynamaxEventListener());
         NeoForge.EVENT_BUS.register(new UltraEventListener());
 

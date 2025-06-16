@@ -1,6 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
@@ -10,7 +11,10 @@ import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -112,6 +116,16 @@ public class RevertEvents {
     }
 
     public static Unit battleStarted(@NotNull BattleStartedPreEvent battleEvent) {
+        for(BattleActor pokemon : battleEvent.getBattle().getActors()){
+            for(BattlePokemon pk : pokemon.getPokemonList()){
+                MegaShowdown.LOGGER.info(pk.getEffectedPokemon().getSpecies().getName());
+                if(pk.getEffectedPokemon().getAspects().contains("core-percent")){
+                    battleEvent.cancel();
+                    return Unit.INSTANCE;
+                }
+            }
+        }
+
         for (ServerPlayer player : battleEvent.getBattle().getPlayers()) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             checkKeldeo(playerPartyStore);

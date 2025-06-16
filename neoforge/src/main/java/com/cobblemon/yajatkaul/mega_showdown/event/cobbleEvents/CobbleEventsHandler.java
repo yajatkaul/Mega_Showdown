@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEven
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
+import com.cobblemon.mod.common.api.events.pokeball.ThrownPokeballHitEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
@@ -608,5 +609,13 @@ public class CobbleEventsHandler {
                         false);
             }
         }
+    }
+
+    public static Unit pokeballHit(ThrownPokeballHitEvent thrownPokeballHitEvent) {
+        if(thrownPokeballHitEvent.getPokemon().getAspects().contains("core-percent")){
+            thrownPokeballHitEvent.cancel();
+        }
+
+        return Unit.INSTANCE;
     }
 }
