@@ -2,16 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
-import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleFledEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent;
+import com.cobblemon.mod.common.api.events.battles.*;
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
-import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
@@ -36,17 +32,21 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 public class RevertEvents {
-    public static Unit battleEnded(BattleVictoryEvent battleVictoryEvent) {
-        battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-            for (Pokemon pokemon : playerPartyStore) {
+    public static Unit hookBattleEnded(BattleStartedPostEvent event) {
+        event.getBattle().getOnEndHandlers().add(battle -> {
+            battle.getPlayers().forEach(serverPlayer -> {
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+                for (Pokemon pokemon : playerPartyStore) {
 
-                EventUtils.revertFormesEnd(pokemon);
+                    EventUtils.revertFormesEnd(pokemon);
 
-                if (pokemon.getEntity() != null) {
-                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                    if (pokemon.getEntity() != null) {
+                        pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+                    }
                 }
-            }
+            });
+
+            return Unit.INSTANCE;
         });
 
         return Unit.INSTANCE;
@@ -66,21 +66,6 @@ public class RevertEvents {
         if (isMega) {
             MegaLogic.Devolve(pokemon, true);
         }
-
-        return Unit.INSTANCE;
-    }
-
-    public static Unit deVolveFlee(BattleFledEvent battleFledEvent) {
-        battleFledEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-            for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon);
-
-                if (pokemon.getEntity() != null) {
-                    pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-                }
-            }
-        });
 
         return Unit.INSTANCE;
     }
