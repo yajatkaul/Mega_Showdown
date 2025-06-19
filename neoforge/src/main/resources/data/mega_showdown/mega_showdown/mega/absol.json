@@ -1,0 +1,11 @@
+{
+  "msd_id": "absolite",
+  "showdown_id": "absolite",
+  "item_id": "mega_showdown:absolite",
+  "item_name": "Absolite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Absol",
+  "aspects": ["mega_evolution=mega"]
+}

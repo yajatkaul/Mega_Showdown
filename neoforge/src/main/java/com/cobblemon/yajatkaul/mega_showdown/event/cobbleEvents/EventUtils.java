@@ -79,7 +79,7 @@ public class EventUtils {
         } else if (pokemon.getSpecies().getName().equals("Meloetta")) {
             new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Zygarde")) {
-            if(!pokemon.getPersistentData().getString("zygarde_form").isEmpty()){
+            if (!pokemon.getPersistentData().getString("zygarde_form").isEmpty()) {
                 new StringSpeciesFeature("percent_cells", pokemon.getPersistentData().getString("zygarde_form")).apply(pokemon);
             }
             pokemon.getPersistentData().remove("zygarde_form");

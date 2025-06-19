@@ -31,7 +31,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -66,8 +65,6 @@ public class ConfigResults {
         Utils.addGmaxToMap();
         Utils.MEGA_POKEMONS.clear();
         Utils.addMegaList();
-        Utils.MEGA_STONE_IDS.clear();
-        Utils.loadMegaStoneIds();
         MegaCommands.VALID_ITEMS.clear();
 
         //MEGA
@@ -518,17 +515,17 @@ public class ConfigResults {
     }
 
     public static boolean useOnEntity(Player player, Level level, Entity entity) {
-        if(level.isClientSide){
+        if (level.isClientSide) {
             return false;
         }
 
-        if(entity instanceof PokemonEntity pk){
-            if(pk.getAspects().contains("core-percent") && !player.getMainHandItem().is(FormeChangeItems.ZYGARDE_CUBE) && !player.getOffhandItem().is(FormeChangeItems.ZYGARDE_CUBE)){
+        if (entity instanceof PokemonEntity pk) {
+            if (pk.getAspects().contains("core-percent") && !player.getMainHandItem().is(FormeChangeItems.ZYGARDE_CUBE) && !player.getOffhandItem().is(FormeChangeItems.ZYGARDE_CUBE)) {
                 player.addItem(new ItemStack(FormeChangeItems.ZYGARDE_CORE.get()));
-                if(pk.getPokemon().getOwnerPlayer() == player){
+                if (pk.getPokemon().getOwnerPlayer() == player) {
                     PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
                     playerPartyStore.remove(pk.getPokemon());
-                }else {
+                } else {
                     entity.discard();
                 }
                 return true;

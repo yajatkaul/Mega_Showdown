@@ -1,0 +1,11 @@
+{
+  "msd_id": "aggronite",
+  "showdown_id": "aggronite",
+  "item_id": "mega_showdown:aggronite",
+  "item_name": "Aggronite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Aggron",
+  "aspects": ["mega_evolution=mega"]
+}

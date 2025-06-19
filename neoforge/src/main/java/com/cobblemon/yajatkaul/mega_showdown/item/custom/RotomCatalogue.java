@@ -33,6 +33,59 @@ public class RotomCatalogue extends Item {
         super(arg);
     }
 
+    public static boolean possible(ServerPlayer player) {
+        UUID playerId = player.getUUID();
+        long currentTime = System.currentTimeMillis();
+
+        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
+            player.displayClientMessage(Component.translatable("message.mega_showdown.not_so_fast")
+                    .withColor(0xFF0000), true);
+            return false;
+        }
+
+        // Apply cooldown
+        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
+        return true;
+    }
+
+    public static void playFormeChangeAnimation(LivingEntity context) {
+        if (context.level() instanceof ServerLevel serverLevel) {
+            Vec3 entityPos = context.position(); // Get entity position
+
+            // Get entity's size
+            double entityWidth = context.getBbWidth();
+            double entityHeight = context.getBbHeight();
+
+            // Play sound effect
+            serverLevel.playSound(
+                    null, entityPos.x, entityPos.y, entityPos.z,
+                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+            );
+
+            // Adjust particle effect based on entity size
+            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
+            double radius = entityWidth * 0.8; // Adjust radius based on width
+
+            for (int i = 0; i < particleCount; i++) {
+                double angle = Math.random() * 2 * Math.PI;
+                double xOffset = Math.cos(angle) * radius;
+                double zOffset = Math.sin(angle) * radius;
+                double yOffset = Math.random() * entityHeight; // Spread particles vertically
+
+                serverLevel.sendParticles(
+                        ParticleTypes.END_ROD, // Change this to any particle type
+                        entityPos.x + xOffset,
+                        entityPos.y + yOffset,
+                        entityPos.z + zOffset,
+                        1, // One particle per call for better spread
+                        0, 0, 0, // No movement velocity
+                        0.1 // Slight motion
+                );
+            }
+        }
+    }
+
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand hand) {
         if (!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()) {
@@ -88,58 +141,5 @@ public class RotomCatalogue extends Item {
         }
 
         return super.interactLivingEntity(stack, player, context, hand);
-    }
-
-    public static boolean possible(ServerPlayer player) {
-        UUID playerId = player.getUUID();
-        long currentTime = System.currentTimeMillis();
-
-        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId)) {
-            player.displayClientMessage(Component.translatable("message.mega_showdown.not_so_fast")
-                    .withColor(0xFF0000), true);
-            return false;
-        }
-
-        // Apply cooldown
-        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
-        return true;
-    }
-
-    public static void playFormeChangeAnimation(LivingEntity context) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getBbWidth();
-            double entityHeight = context.getBbHeight();
-
-            // Play sound effect
-            serverLevel.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
-                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (100 * entityWidth * entityHeight); // Scale particle amount
-            double radius = entityWidth * 0.8; // Adjust radius based on width
-
-            for (int i = 0; i < particleCount; i++) {
-                double angle = Math.random() * 2 * Math.PI;
-                double xOffset = Math.cos(angle) * radius;
-                double zOffset = Math.sin(angle) * radius;
-                double yOffset = Math.random() * entityHeight; // Spread particles vertically
-
-                serverLevel.sendParticles(
-                        ParticleTypes.END_ROD, // Change this to any particle type
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
     }
 }

@@ -183,7 +183,7 @@ public class ReassemblyUnitBlock extends Block {
                 level.addFreshEntity(coreDrop);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube"));
                 stack.set(DataManage.POKEMON_STORAGE, null);
-            }else {
+            } else {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.machine_being_used")
                         .withColor(0xFF0000), true);
             }

@@ -1,0 +1,11 @@
+{
+  "msd_id": "gyaradosite",
+  "showdown_id": "gyaradosite",
+  "item_id": "mega_showdown:gyaradosite",
+  "item_name": "Gyaradosite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Gyarados",
+  "aspects": ["mega_evolution=mega"]
+}

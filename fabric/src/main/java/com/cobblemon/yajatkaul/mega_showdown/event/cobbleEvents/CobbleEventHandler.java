@@ -534,9 +534,9 @@ public class CobbleEventHandler {
                         return Unit.INSTANCE;
                     });
                     pokemonEntity.after(4F, () -> {
-                        if(pokemon.getAspects().contains("10-percent")){
+                        if (pokemon.getAspects().contains("10-percent")) {
                             pokemon.getPersistentData().putString("zygarde_form", "10");
-                        }else {
+                        } else {
                             pokemon.getPersistentData().putString("zygarde_form", "50");
                         }
                         new StringSpeciesFeature("percent_cells", "complete").apply(pokemon);
@@ -615,7 +615,7 @@ public class CobbleEventHandler {
     }
 
     public static Unit pokeballHit(ThrownPokeballHitEvent thrownPokeballHitEvent) {
-        if(thrownPokeballHitEvent.getPokemon().getAspects().contains("core-percent")){
+        if (thrownPokeballHitEvent.getPokemon().getAspects().contains("core-percent")) {
             thrownPokeballHitEvent.cancel();
         }
 

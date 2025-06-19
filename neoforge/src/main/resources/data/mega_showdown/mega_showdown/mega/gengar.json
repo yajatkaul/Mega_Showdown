@@ -1,0 +1,11 @@
+{
+  "msd_id": "gengarite",
+  "showdown_id": "gengarite",
+  "item_id": "mega_showdown:gengarite",
+  "item_name": "Gengarite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Gengar",
+  "aspects": ["mega_evolution=mega"]
+}

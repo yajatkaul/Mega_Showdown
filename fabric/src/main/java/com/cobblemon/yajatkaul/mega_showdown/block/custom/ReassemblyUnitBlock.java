@@ -24,9 +24,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -177,7 +175,7 @@ public class ReassemblyUnitBlock extends Block {
                 world.spawnEntity(coreDrop);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.zygarde_cube.full"));
                 stack.set(DataManage.POKEMON_STORAGE, null);
-            }else {
+            } else {
                 player.sendMessage(Text.translatable("message.mega_showdown.machine_being_used").styled(s -> s.withColor(Formatting.RED)), true);
             }
             return ItemActionResult.SUCCESS;

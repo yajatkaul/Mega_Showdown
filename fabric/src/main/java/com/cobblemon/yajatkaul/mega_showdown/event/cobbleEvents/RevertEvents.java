@@ -13,7 +13,6 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
@@ -35,9 +34,9 @@ import net.minecraft.util.math.BlockPos;
 
 public class RevertEvents {
     public static Unit battleStarted(BattleStartedPreEvent battleEvent) {
-        for(BattleActor pokemon : battleEvent.getBattle().getActors()){
-            for(BattlePokemon pk : pokemon.getPokemonList()){
-                if(pk.getEffectedPokemon().getAspects().contains("core-percent")){
+        for (BattleActor pokemon : battleEvent.getBattle().getActors()) {
+            for (BattlePokemon pk : pokemon.getPokemonList()) {
+                if (pk.getEffectedPokemon().getAspects().contains("core-percent")) {
                     battleEvent.cancel();
                     return Unit.INSTANCE;
                 }

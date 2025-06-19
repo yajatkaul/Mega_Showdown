@@ -1,0 +1,11 @@
+{
+  "msd_id": "heracronite",
+  "showdown_id": "heracronite",
+  "item_id": "mega_showdown:heracronite",
+  "item_name": "Heracronite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Heracross",
+  "aspects": ["mega_evolution=mega"]
+}

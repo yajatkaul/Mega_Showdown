@@ -1,0 +1,11 @@
+{
+  "msd_id": "alakazite",
+  "showdown_id": "alakazite",
+  "item_id": "mega_showdown:alakazite",
+  "item_name": "Alakazite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Alakazam",
+  "aspects": ["mega_evolution=mega"]
+}

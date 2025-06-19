@@ -24,10 +24,10 @@ public class ModMenuTypes {
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
-    }    public static final DeferredHolder<MenuType<?>, MenuType<ZygardeCubeMenu>> ZYGARDE_CUBE_MENU =
+    }
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ZygardeCubeMenu>> ZYGARDE_CUBE_MENU =
             registerMenuType("zygade_menu", ZygardeCubeMenu::new);
-
-
 
 
 }

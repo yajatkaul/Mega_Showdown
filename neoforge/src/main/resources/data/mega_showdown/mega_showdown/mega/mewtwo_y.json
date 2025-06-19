@@ -1,0 +1,11 @@
+{
+  "msd_id": "mewtwonitey",
+  "showdown_id": "mewtwonitey",
+  "item_id": "mega_showdown:mewtwonite_y",
+  "item_name": "Mewtwonite Y",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Mewtwo",
+  "aspects": ["mega_evolution=mega_y"]
+}

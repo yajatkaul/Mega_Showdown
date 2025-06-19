@@ -98,10 +98,10 @@ public class ZygardeCube extends Item {
                         return InteractionResultHolder.pass(stack);
                     }
 
-                    if(pk.getAspects().contains("core-percent")){
+                    if (pk.getAspects().contains("core-percent")) {
                         ItemStackHandler inventory = getInventory(stack, level, player);
 
-                        if(inventory.getStackInSlot(1).getCount() >= 5){
+                        if (inventory.getStackInSlot(1).getCount() >= 5) {
                             player.displayClientMessage(Component.translatable("message.mega_showdown.cube_core_full")
                                     .withColor(0xFF0000), true);
                             return InteractionResultHolder.pass(stack);
@@ -114,9 +114,9 @@ public class ZygardeCube extends Item {
                         stack.set(DataManage.ZYGARDE_INV, updatedTag);
                         player.setItemInHand(hand, stack);
 
-                        if(pokemon.getOwnerPlayer() == player){
+                        if (pokemon.getOwnerPlayer() == player) {
                             Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player).remove(pokemon);
-                        }else{
+                        } else {
                             entity.discard();
                         }
 
@@ -257,7 +257,6 @@ public class ZygardeCube extends Item {
         if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.FAIL;
         }
-
 
 
         return InteractionResult.FAIL;

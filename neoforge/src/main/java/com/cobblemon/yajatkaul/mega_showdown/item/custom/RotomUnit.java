@@ -2,8 +2,6 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -28,8 +26,6 @@ import java.util.UUID;
 public class RotomUnit extends BlockItem {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
-    private final String form;
-
     private static final List<String> rotomAspects = List.of(
             "heat-appliance",
             "wash-appliance",
@@ -37,34 +33,11 @@ public class RotomUnit extends BlockItem {
             "frost-appliance",
             "fan-appliance"
     );
+    private final String form;
 
     public RotomUnit(Block arg, Properties arg2, String form) {
         super(arg, arg2);
         this.form = form;
-    }
-
-    @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-        if (!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()) {
-            if (pk.getPokemon().getSpecies().getName().equals("Rotom")) {
-                if (!possible((ServerPlayer) player)) {
-                    return InteractionResult.PASS;
-                }
-
-                if (pk.getAspects().stream().anyMatch(rotomAspects::contains)) {
-                    return InteractionResult.PASS;
-                }
-
-                playFormeChangeAnimation(pk);
-
-                new StringSpeciesFeature("appliance", form).apply(pk);
-                arg.shrink(1);
-                AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
-                return InteractionResult.SUCCESS;
-            }
-        }
-
-        return super.interactLivingEntity(arg, player, context, arg4);
     }
 
     public static boolean possible(ServerPlayer player) {
@@ -118,5 +91,29 @@ public class RotomUnit extends BlockItem {
                 );
             }
         }
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
+        if (!player.level().isClientSide && context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()) {
+            if (pk.getPokemon().getSpecies().getName().equals("Rotom")) {
+                if (!possible((ServerPlayer) player)) {
+                    return InteractionResult.PASS;
+                }
+
+                if (pk.getAspects().stream().anyMatch(rotomAspects::contains)) {
+                    return InteractionResult.PASS;
+                }
+
+                playFormeChangeAnimation(pk);
+
+                new StringSpeciesFeature("appliance", form).apply(pk);
+                arg.shrink(1);
+                AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        return super.interactLivingEntity(arg, player, context, arg4);
     }
 }

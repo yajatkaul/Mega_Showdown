@@ -1,0 +1,11 @@
+{
+  "msd_id": "tyranitarite",
+  "showdown_id": "tyranitarite",
+  "item_id": "mega_showdown:tyranitarite",
+  "item_name": "Tyranitarite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Tyranitar",
+  "aspects": ["mega_evolution=mega"]
+}

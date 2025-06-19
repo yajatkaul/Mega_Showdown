@@ -1,0 +1,11 @@
+{
+  "msd_id": "mawilite",
+  "showdown_id": "mawilite",
+  "item_id": "mega_showdown:mawilite",
+  "item_name": "Mawilite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Mawile",
+  "aspects": ["mega_evolution=mega"]
+}

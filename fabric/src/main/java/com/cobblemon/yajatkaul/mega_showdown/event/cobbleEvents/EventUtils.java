@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
@@ -79,7 +78,7 @@ public class EventUtils {
         } else if (pokemon.getSpecies().getName().equals("Meloetta")) {
             new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Zygarde")) {
-            if(!pokemon.getPersistentData().getString("zygarde_form").isEmpty()){
+            if (!pokemon.getPersistentData().getString("zygarde_form").isEmpty()) {
                 new StringSpeciesFeature("percent_cells", pokemon.getPersistentData().getString("zygarde_form")).apply(pokemon);
             }
             pokemon.getPersistentData().remove("zygarde_form");

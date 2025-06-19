@@ -1,0 +1,11 @@
+{
+  "msd_id": "pinsirite",
+  "showdown_id": "pinsirite",
+  "item_id": "mega_showdown:pinsirite",
+  "item_name": "Pinsirite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Pinsir",
+  "aspects": ["mega_evolution=mega"]
+}

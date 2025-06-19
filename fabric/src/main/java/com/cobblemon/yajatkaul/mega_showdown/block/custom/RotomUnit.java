@@ -25,8 +25,7 @@ import java.util.List;
 
 public class RotomUnit extends Block {
     public static final DirectionProperty FACING = DirectionProperty.of("facing", Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST);
-
-    private final String form;
+    public static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 15, 15, 15);
     private static final List<String> rotomAspects = List.of(
             "heat-appliance",
             "wash-appliance",
@@ -34,43 +33,12 @@ public class RotomUnit extends Block {
             "frost-appliance",
             "fan-appliance"
     );
+    private final String form;
 
     public RotomUnit(Settings settings, String form) {
         super(settings);
         this.form = form;
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
-        return this.getDefaultState().with(FACING, direction);
-    }
-
-    @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if(world.isClient){
-            return;
-        }
-
-        if(entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Rotom") && pk.getAspects().stream().noneMatch(rotomAspects::contains)){
-            new StringSpeciesFeature("appliance", form).apply(pk);
-            playFormeChangeAnimation((LivingEntity) entity);
-            world.breakBlock(pos, false);
-            world.syncWorldEvent(2001, pos, Block.getRawIdFromState(state));
-        }
-    }
-
-    public static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 15, 15, 15);
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
     }
 
     private static void playFormeChangeAnimation(LivingEntity context) {
@@ -109,5 +77,35 @@ public class RotomUnit extends Block {
                 );
             }
         }
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
+        return this.getDefaultState().with(FACING, direction);
+    }
+
+    @Override
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (world.isClient) {
+            return;
+        }
+
+        if (entity instanceof PokemonEntity pk && pk.getPokemon().getSpecies().getName().equals("Rotom") && pk.getAspects().stream().noneMatch(rotomAspects::contains)) {
+            new StringSpeciesFeature("appliance", form).apply(pk);
+            playFormeChangeAnimation((LivingEntity) entity);
+            world.breakBlock(pos, false);
+            world.syncWorldEvent(2001, pos, Block.getRawIdFromState(state));
+        }
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
 }

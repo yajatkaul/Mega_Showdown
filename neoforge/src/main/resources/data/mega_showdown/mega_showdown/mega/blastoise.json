@@ -1,0 +1,11 @@
+{
+  "msd_id": "blastoisinite",
+  "showdown_id": "blastoisinite",
+  "item_id": "mega_showdown:blastoisinite",
+  "item_name": "Blastoisinite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Blastoise",
+  "aspects": ["mega_evolution=mega"]
+}

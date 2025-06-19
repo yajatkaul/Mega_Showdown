@@ -6,12 +6,10 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreenHandler;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -31,7 +29,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -189,10 +186,10 @@ public class ZygardeCube extends Item {
                         return TypedActionResult.pass(stack);
                     }
 
-                    if(pk.getAspects().contains("core-percent")){
+                    if (pk.getAspects().contains("core-percent")) {
                         SimpleInventory inventory = getInventory(stack, player);
 
-                        if(inventory.getStack(1).getCount() >= 5){
+                        if (inventory.getStack(1).getCount() >= 5) {
                             player.sendMessage(
                                     Text.translatable("message.mega_showdown.cube_core_full").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                                     true
@@ -207,9 +204,9 @@ public class ZygardeCube extends Item {
                                 player.getWorld().getRegistryManager()));
                         player.setStackInHand(hand, stack);
 
-                        if(pokemon.getOwnerPlayer() == player){
+                        if (pokemon.getOwnerPlayer() == player) {
                             Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player).remove(pokemon);
-                        }else{
+                        } else {
                             entity.discard();
                         }
 
@@ -259,7 +256,7 @@ public class ZygardeCube extends Item {
                         return TypedActionResult.success(stack);
                     }
                 }
-            }else {
+            } else {
                 ItemStack stack = player.getStackInHand(hand);
                 Pokemon currentValue = stack.getOrDefault(DataManage.POKEMON_STORAGE, null);
 

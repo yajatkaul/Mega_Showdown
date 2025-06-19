@@ -1,0 +1,11 @@
+{
+  "msd_id": "latiasite",
+  "showdown_id": "latiasite",
+  "item_id": "mega_showdown:latiasite",
+  "item_name": "Latiasite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Latias",
+  "aspects": ["mega_evolution=mega"]
+}

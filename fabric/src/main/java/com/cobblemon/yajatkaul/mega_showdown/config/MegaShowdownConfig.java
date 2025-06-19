@@ -9,7 +9,6 @@ import java.util.function.Supplier;
 public class MegaShowdownConfig {
     public static final Supplier<Boolean> multipleMegas;
     public static final Supplier<Boolean> battleModeOnly;
-    public static final Supplier<Boolean> friendshipMode;
     public static final Supplier<Boolean> zMoves;
     public static final Supplier<Boolean> teralization;
     public static final Supplier<Boolean> disableTeraShardDrop;
@@ -30,7 +29,6 @@ public class MegaShowdownConfig {
         // a boolean value
         multipleMegas = builder.comment("Enable multiple mega's at one time").define("multipleMegas", false);
         battleModeOnly = builder.comment("Enable mega evolution only for battles").define("battleModeOnly", false);
-        friendshipMode = builder.comment("Makes it so that you need to have 200+ friendship in order to mega outside").define("friendshipMode", false);
         zMoves = builder.comment("Enables/Disables zMoves in game").define("zMoves", true);
         teralization = builder.comment("Enables/Disables teralization in game").define("teralization", true);
         disableTeraShardDrop = builder.comment("Disables pokemons from dropping tera shards").define("disableTeraShardDrop", false);

@@ -13,12 +13,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Utils {
-    public static final Map<Item, String> MEGA_STONE_IDS = new HashMap<>();
     public static final Set<String> MEGA_POKEMONS = new HashSet<>();
     public static final Set<String> GMAX_SPECIES = new HashSet<>();
     public static Registry<KeyItemData> keyItemsRegistry;
@@ -27,56 +27,6 @@ public class Utils {
     public static Registry<GmaxData> gmaxRegistry;
     public static Registry<HeldItemData> heldItemsRegistry;
     public static Registry<MegaData> megaRegistry;
-
-    public static void loadMegaStoneIds() {
-        MEGA_STONE_IDS.put(MegaStones.VENUSAURITE.asItem(), "Venusaur");
-        MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_X.asItem(), "Charizard");
-        MEGA_STONE_IDS.put(MegaStones.CHARIZARDITE_Y.asItem(), "Charizard");
-        MEGA_STONE_IDS.put(MegaStones.BLASTOISINITE.asItem(), "Blastoise");
-        MEGA_STONE_IDS.put(MegaStones.ALAKAZITE.asItem(), "Alakazam");
-        MEGA_STONE_IDS.put(MegaStones.GENGARITE.asItem(), "Gengar");
-        MEGA_STONE_IDS.put(MegaStones.KANGASKHANITE.asItem(), "Kangaskhan");
-        MEGA_STONE_IDS.put(MegaStones.PINSIRITE.asItem(), "Pinsir");
-        MEGA_STONE_IDS.put(MegaStones.GYARADOSITE.asItem(), "Gyarados");
-        MEGA_STONE_IDS.put(MegaStones.AERODACTYLITE.asItem(), "Aerodactyl");
-        MEGA_STONE_IDS.put(MegaStones.MEWTWONITE_X.asItem(), "Mewtwo");
-        MEGA_STONE_IDS.put(MegaStones.MEWTWONITE_Y.asItem(), "Mewtwo");
-        MEGA_STONE_IDS.put(MegaStones.AMPHAROSITE.asItem(), "Ampharos");
-        MEGA_STONE_IDS.put(MegaStones.SCIZORITE.asItem(), "Scizor");
-        MEGA_STONE_IDS.put(MegaStones.HERACRONITE.asItem(), "Heracross");
-        MEGA_STONE_IDS.put(MegaStones.HOUNDOOMINITE.asItem(), "Houndoom");
-        MEGA_STONE_IDS.put(MegaStones.TYRANITARITE.asItem(), "Tyranitar");
-        MEGA_STONE_IDS.put(MegaStones.BLAZIKENITE.asItem(), "Blaziken");
-        MEGA_STONE_IDS.put(MegaStones.GARDEVOIRITE.asItem(), "Gardevoir");
-        MEGA_STONE_IDS.put(MegaStones.MAWILITE.asItem(), "Mawile");
-        MEGA_STONE_IDS.put(MegaStones.AGGRONITE.asItem(), "Aggron");
-        MEGA_STONE_IDS.put(MegaStones.MEDICHAMITE.asItem(), "Medicham");
-        MEGA_STONE_IDS.put(MegaStones.MANECTITE.asItem(), "Manectric");
-        MEGA_STONE_IDS.put(MegaStones.BANETTITE.asItem(), "Banette");
-        MEGA_STONE_IDS.put(MegaStones.ABSOLITE.asItem(), "Absol");
-        MEGA_STONE_IDS.put(MegaStones.LATIASITE.asItem(), "Latias");
-        MEGA_STONE_IDS.put(MegaStones.LATIOSITE.asItem(), "Latios");
-        MEGA_STONE_IDS.put(MegaStones.GARCHOMPITE.asItem(), "Garchomp");
-        MEGA_STONE_IDS.put(MegaStones.LUCARIONITE.asItem(), "Lucario");
-        MEGA_STONE_IDS.put(MegaStones.ABOMASITE.asItem(), "Abomasnow");
-        MEGA_STONE_IDS.put(MegaStones.BEEDRILLITE.asItem(), "Beedrill");
-        MEGA_STONE_IDS.put(MegaStones.PIDGEOTITE.asItem(), "Pidgeot");
-        MEGA_STONE_IDS.put(MegaStones.SLOWBRONITE.asItem(), "Slowbro");
-        MEGA_STONE_IDS.put(MegaStones.STEELIXITE.asItem(), "Steelix");
-        MEGA_STONE_IDS.put(MegaStones.SCEPTILITE.asItem(), "Sceptile");
-        MEGA_STONE_IDS.put(MegaStones.SWAMPERTITE.asItem(), "Swampert");
-        MEGA_STONE_IDS.put(MegaStones.SABLENITE.asItem(), "Sableye");
-        MEGA_STONE_IDS.put(MegaStones.SHARPEDONITE.asItem(), "Sharpedo");
-        MEGA_STONE_IDS.put(MegaStones.CAMERUPTITE.asItem(), "Camerupt");
-        MEGA_STONE_IDS.put(MegaStones.ALTARIANITE.asItem(), "Altaria");
-        MEGA_STONE_IDS.put(MegaStones.GLALITITE.asItem(), "Glalie");
-        MEGA_STONE_IDS.put(MegaStones.SALAMENCITE.asItem(), "Salamence");
-        MEGA_STONE_IDS.put(MegaStones.METAGROSSITE.asItem(), "Metagross");
-        MEGA_STONE_IDS.put(MegaStones.LOPUNNITE.asItem(), "Lopunny");
-        MEGA_STONE_IDS.put(MegaStones.GALLADITE.asItem(), "Gallade");
-        MEGA_STONE_IDS.put(MegaStones.AUDINITE.asItem(), "Audino");
-        MEGA_STONE_IDS.put(MegaStones.DIANCITE.asItem(), "Diancie");
-    }
 
     public static void addGmaxToMap() {
         GMAX_SPECIES.add("Venusaur");
@@ -233,7 +183,6 @@ public class Utils {
     public static void registerRemapping() {
         megaStonesRegister();
         zMovesRegister();
-        loadMegaStoneIds();
         heldItems();
         platesRegister();
         memoriesRegister();

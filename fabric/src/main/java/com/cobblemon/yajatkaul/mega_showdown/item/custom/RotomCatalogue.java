@@ -33,61 +33,6 @@ public class RotomCatalogue extends Item {
         super(settings);
     }
 
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
-            Pokemon pokemon = pk.getPokemon();
-            if (pokemon.getSpecies().getName().equals("Rotom")) {
-
-                if (!possible((ServerPlayerEntity) player)) {
-                    return ActionResult.PASS;
-                }
-
-                playFormeChangeAnimation(pk);
-
-                int currentPage = stack.getOrDefault(DataManage.CATALOGUE_PAGE, 1);
-
-                // Apply new form based on page
-                switch (currentPage) {
-                    case 1:
-                        new StringSpeciesFeature("appliance", "heat").apply(pk);
-                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
-                        break;
-                    case 2:
-                        new StringSpeciesFeature("appliance", "fan").apply(pk);
-                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
-                        break;
-                    case 3:
-                        new StringSpeciesFeature("appliance", "mow").apply(pk);
-                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
-                        break;
-                    case 4:
-                        new StringSpeciesFeature("appliance", "frost").apply(pk);
-                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
-                        break;
-                    case 5:
-                        new StringSpeciesFeature("appliance", "wash").apply(pk);
-                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
-                        break;
-                    default:
-                        new StringSpeciesFeature("appliance", "none").apply(pk); // Fallback
-                        break;
-                }
-
-                int nextPage = currentPage + 1;
-                if (nextPage == 7) {
-                    nextPage = 1;
-                }
-                stack.set(DataManage.CATALOGUE_PAGE, nextPage);
-                player.setStackInHand(hand, stack);
-
-                return ActionResult.SUCCESS;
-            }
-        }
-
-        return super.useOnEntity(stack, player, context, hand);
-    }
-
     private static boolean possible(ServerPlayerEntity player) {
         UUID playerId = player.getUuid();
         long currentTime = System.currentTimeMillis();
@@ -141,6 +86,61 @@ public class RotomCatalogue extends Item {
                 );
             }
         }
+    }
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
+        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrawling()) {
+            Pokemon pokemon = pk.getPokemon();
+            if (pokemon.getSpecies().getName().equals("Rotom")) {
+
+                if (!possible((ServerPlayerEntity) player)) {
+                    return ActionResult.PASS;
+                }
+
+                playFormeChangeAnimation(pk);
+
+                int currentPage = stack.getOrDefault(DataManage.CATALOGUE_PAGE, 1);
+
+                // Apply new form based on page
+                switch (currentPage) {
+                    case 1:
+                        new StringSpeciesFeature("appliance", "heat").apply(pk);
+                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
+                        break;
+                    case 2:
+                        new StringSpeciesFeature("appliance", "fan").apply(pk);
+                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
+                        break;
+                    case 3:
+                        new StringSpeciesFeature("appliance", "mow").apply(pk);
+                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
+                        break;
+                    case 4:
+                        new StringSpeciesFeature("appliance", "frost").apply(pk);
+                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
+                        break;
+                    case 5:
+                        new StringSpeciesFeature("appliance", "wash").apply(pk);
+                        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
+                        break;
+                    default:
+                        new StringSpeciesFeature("appliance", "none").apply(pk); // Fallback
+                        break;
+                }
+
+                int nextPage = currentPage + 1;
+                if (nextPage == 7) {
+                    nextPage = 1;
+                }
+                stack.set(DataManage.CATALOGUE_PAGE, nextPage);
+                player.setStackInHand(hand, stack);
+
+                return ActionResult.SUCCESS;
+            }
+        }
+
+        return super.useOnEntity(stack, player, context, hand);
     }
 
 }

@@ -1,0 +1,11 @@
+{
+  "msd_id": "aerodactylite",
+  "showdown_id": "aerodactylite",
+  "item_id": "mega_showdown:aerodactylite",
+  "item_name": "Aerodactylite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Aerodactyl",
+  "aspects": ["mega_evolution=mega"]
+}

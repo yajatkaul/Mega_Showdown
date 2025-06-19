@@ -1,0 +1,11 @@
+{
+  "msd_id": "banettite",
+  "showdown_id": "banettite",
+  "item_id": "mega_showdown:banettite",
+  "item_name": "Banettite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Banette",
+  "aspects": ["mega_evolution=mega"]
+}

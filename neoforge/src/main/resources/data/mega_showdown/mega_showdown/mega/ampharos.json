@@ -1,0 +1,11 @@
+{
+  "msd_id": "ampharosite",
+  "showdown_id": "ampharosite",
+  "item_id": "mega_showdown:ampharosite",
+  "item_name": "Ampharosite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Ampharos",
+  "aspects": ["mega_evolution=mega"]
+}
