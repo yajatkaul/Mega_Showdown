@@ -29,6 +29,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
@@ -104,16 +105,19 @@ public class CobbleEventHandler {
 
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
         ServerPlayerEntity player = post.getPlayer();
+        Pokemon released = post.getPokemon();
 
         PokeHandler megaPoke = player.getAttached(DataManage.MEGA_POKEMON);
         PokeHandler primalPoke = player.getAttached(DataManage.PRIMAL_POKEMON);
 
-        if (megaPoke != null && megaPoke.getPokemon() == post.getPokemon()) {
+        if (megaPoke != null && megaPoke.getPokemon() == released) {
             player.removeAttached(DataManage.MEGA_DATA);
             player.removeAttached(DataManage.MEGA_POKEMON);
-        } else if (primalPoke != null && primalPoke.getPokemon() == post.getPokemon()) {
+        } else if (primalPoke != null && primalPoke.getPokemon() == released) {
             player.removeAttached(DataManage.PRIMAL_DATA);
             player.removeAttached(DataManage.PRIMAL_POKEMON);
+        } else if (released.getSpecies().getName().equals("Meltan")) {
+            player.giveItemStack(new ItemStack(FormeChangeItems.MELTAN));
         }
 
         return Unit.INSTANCE;

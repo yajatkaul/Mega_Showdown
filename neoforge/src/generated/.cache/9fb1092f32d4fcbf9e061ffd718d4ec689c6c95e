@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-12T19:32:23.5943445	Recipes
+// 1.21.1	2025-06-18T22:34:44.4850119	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -63,7 +63,6 @@ f74cb140a5bfd445e9f036f22a88b641d697cd4d data/mega_showdown/advancement/recipes/
 d2c999ea0271b1347cd05b114a0e078dd23df91b data/mega_showdown/advancement/recipes/misc/rotom_oven.json
 b39cb6fc490d32b303ae8dc44911d3212e57c3c5 data/mega_showdown/advancement/recipes/misc/rotom_washing_machine.json
 5c935622eaf58b80f4a8cd1fbb937fafc33ed5a0 data/mega_showdown/advancement/recipes/misc/shockdrive.json
-89d42a205c495d2bd7b6e151eb083af429f586d1 data/mega_showdown/advancement/recipes/misc/star_core.json
 a61bc2c0a157a42e5a391d3ff3b830ab0374e618 data/mega_showdown/advancement/recipes/misc/sweet_max_soup.json
 08602e7c34b11bd06840b4956f7b7f31fb6e1201 data/mega_showdown/advancement/recipes/misc/tera_orb.json
 65342bf4241e2043eaa667607cf0852b52a88b43 data/mega_showdown/advancement/recipes/misc/yellow_nectar.json
@@ -140,7 +139,6 @@ ddd89a03bf5f8bfd2a9a97048f93b0b7bf288213 data/mega_showdown/recipe/rocket_z-powe
 a2f82ba393002ffda6af1eda9ed26c8fadca4f7a data/mega_showdown/recipe/rotom_oven.json
 84d4134f4362778094472a891dae5f2805201f0b data/mega_showdown/recipe/rotom_washing_machine.json
 553e781c7f44ff75a00d97514cd64ce6b96ab290 data/mega_showdown/recipe/shockdrive.json
-9519f24bf94a9eef511a2e5ef5b86085953aa66d data/mega_showdown/recipe/star_core.json
 46b8649d081e0be7a83ad26e1514a878d512f158 data/mega_showdown/recipe/sweet_max_soup.json
 372ee1bc63995b76e1d0432d371e58b100e27f3e data/mega_showdown/recipe/tera_orb.json
 93ddb295639a12ca522ab2899ee05a25c55e1ba3 data/mega_showdown/recipe/yellow_nectar.json

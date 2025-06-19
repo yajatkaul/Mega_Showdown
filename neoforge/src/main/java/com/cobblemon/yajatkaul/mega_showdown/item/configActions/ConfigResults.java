@@ -12,6 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
@@ -156,17 +157,6 @@ public class ConfigResults {
             return false;
         }
         if (!itemStack.isEmpty()) {
-            if (itemStack.is(Items.WHEAT_SEEDS)) {
-                EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
-                if (entityHit != null) {
-                    Entity context = entityHit.getEntity();
-                    if (player.level().isClientSide || player.isCrouching()) {
-                        return false;
-                    }
-                }
-
-                return false;
-            }
             CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
             for (FusionData fusion : Utils.fusionRegistry) {
                 Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(fusion.item_id()));
@@ -527,6 +517,26 @@ public class ConfigResults {
         return false;
     }
 
+    public static boolean useOnEntity(Player player, Level level, Entity entity) {
+        if(level.isClientSide){
+            return false;
+        }
+
+        if(entity instanceof PokemonEntity pk){
+            if(pk.getAspects().contains("core-percent") && !player.getMainHandItem().is(FormeChangeItems.ZYGARDE_CUBE) && !player.getOffhandItem().is(FormeChangeItems.ZYGARDE_CUBE)){
+                player.addItem(new ItemStack(FormeChangeItems.ZYGARDE_CORE.get()));
+                if(pk.getPokemon().getOwnerPlayer() == player){
+                    PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                    playerPartyStore.remove(pk.getPokemon());
+                }else {
+                    entity.discard();
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     //Helpers
     private static boolean checkEnabled(FusionData fusion, Pokemon pk) {

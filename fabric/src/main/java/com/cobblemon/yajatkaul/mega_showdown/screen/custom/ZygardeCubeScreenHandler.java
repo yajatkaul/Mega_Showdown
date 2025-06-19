@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.CubeInventoryListener;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +10,8 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class ZygardeCubeScreenHandler extends ScreenHandler {
     private final SimpleInventory inventory;
@@ -66,6 +69,22 @@ public class ZygardeCubeScreenHandler extends ScreenHandler {
             }
         }
         return newStack;
+    }
+
+
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        if (actionType == SlotActionType.THROW && slotIndex >= 0 && slotIndex < slots.size()) {
+            Slot slot = slots.get(slotIndex);
+            if (slot.hasStack() && slot.getStack().isOf(FormeChangeItems.ZYGARDE_CUBE)) {
+                if (player instanceof ServerPlayerEntity serverPlayer) {
+                    serverPlayer.closeHandledScreen();
+                }
+                return;
+            }
+        }
+
+        super.onSlotClick(slotIndex, button, actionType, player);
     }
 
     @Override

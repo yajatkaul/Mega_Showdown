@@ -298,6 +298,7 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.KABUKI_TRIM);
                         entries.add(FormeChangeItems.PHARAOH_TRIM);
                         entries.add(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE);
+                        entries.add(FormeChangeItems.MELTAN);
                     }))
                     .build());
 

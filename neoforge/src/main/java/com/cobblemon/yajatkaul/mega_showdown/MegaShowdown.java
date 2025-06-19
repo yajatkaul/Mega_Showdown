@@ -119,21 +119,6 @@ public final class MegaShowdown {
         });
     }
 
-    @SubscribeEvent
-    public void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getEntity();
-        InteractionHand hand = event.getHand();
-        ItemStack itemStack = event.getItemStack();
-        Level level = event.getLevel();
-
-        boolean consumed = ConfigResults.useItem(player, level, hand, itemStack);
-
-        if (consumed) {
-            event.setCanceled(true);
-            event.setCancellationResult(InteractionResult.SUCCESS);
-        }
-    }
-
     private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
         DatapacksLoader.register(event);
     }

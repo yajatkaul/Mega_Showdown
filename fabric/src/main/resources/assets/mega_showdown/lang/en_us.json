@@ -580,5 +580,8 @@
   "tooltip.mega_showdown.likos_pendant.tooltip": "A pendant said to resonate with ancient energy. It quietly empowers the heart of a true Trainer.",
   "block.mega_showdown.dormant_crystal": "Dormant Crystal",
   "message.mega_showdown.cube_core_full": "You already have 5 cores",
-  "message.mega_showdown.machine_being_used": "Machine is currently in use"
+  "message.mega_showdown.machine_being_used": "Machine is currently in use",
+
+  "cobblemon.ui.stash.meltan": "Meltans",
+  "item.mega_showdown.meltan": "Meltan"
 }

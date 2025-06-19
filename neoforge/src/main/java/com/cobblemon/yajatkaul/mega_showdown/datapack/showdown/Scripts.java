@@ -2,13 +2,11 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack.showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
-import com.cobblemon.mod.common.api.abilities.AbilityTemplate;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.utility.datapack.NewAbility;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,44 +20,40 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Abilities implements DataRegistry {
-    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/abilities");
-    private static final SimpleObservable<Abilities> OBSERVABLE = new SimpleObservable<>();
-    public static final Abilities INSTANCE = new Abilities();
-    private final Map<String, String> abilityScripts = new HashMap<>();
+public class Scripts implements DataRegistry {
+    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/scripts");
+    private static final SimpleObservable<Scripts> OBSERVABLE = new SimpleObservable<>();
+    public static final Scripts INSTANCE = new Scripts();
+    private final Map<String, String> scripts = new HashMap<>();
 
-    private Abilities() {
-        OBSERVABLE.subscribe(Priority.NORMAL, this::abilitiesLoad);
+    private Scripts() {
+        OBSERVABLE.subscribe(Priority.NORMAL, this::scriptsLoad);
     }
 
-    private Unit abilitiesLoad(Abilities abilities) {
-        registerAbilities();
+    private Unit scriptsLoad(Scripts scripts) {
+        registerScripts();
         return Unit.INSTANCE;
     }
 
-    public void registerAbilities() {
+    public void registerScripts() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
-                Value receiveAbilityDataFn = service.context.getBindings("js").getMember("receiveAbilityData");
-                for (Map.Entry<String, String> entry : Abilities.INSTANCE.getAbilityScripts().entrySet()) {
-                    String abilityId = entry.getKey();
+                Value receiveScriptDataFn = service.context.getBindings("js").getMember("receiveScriptData");
+                for (Map.Entry<String, String> entry : Scripts.INSTANCE.getScripts().entrySet()) {
+                    String scriptId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    receiveAbilityDataFn.execute(abilityId, js);
-                    AbilityTemplate newAbility = NewAbility.INSTANCE.getAbility(abilityId);
-
-                    com.cobblemon.mod.common.api.abilities.Abilities.INSTANCE.register(newAbility);
+                    receiveScriptDataFn.execute(scriptId, js);
                 }
             }
             return Unit.INSTANCE;
         });
     }
 
-    public Map<String, String> getAbilityScripts() {
-        return abilityScripts;
+    public Map<String, String> getScripts() {
+        return scripts;
     }
 
     @NotNull
@@ -82,14 +76,14 @@ public class Abilities implements DataRegistry {
 
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
-        abilityScripts.clear();
-        resourceManager.listResources("showdown/abilities", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
+        scripts.clear();
+        resourceManager.listResources("showdown/scripts", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.open(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
-                String abilityId = new File(id.getPath()).getName().replace(".js", "");
-                abilityScripts.put(abilityId, js);
+                String scriptId = new File(id.getPath()).getName().replace(".js", "");
+                scripts.put(scriptId, js);
             } catch (IOException e) {
-                MegaShowdown.LOGGER.error("Failed to load ability script: {} {}", id, e);
+                MegaShowdown.LOGGER.error("Failed to load script: {} {}", id, e);
             }
         });
 

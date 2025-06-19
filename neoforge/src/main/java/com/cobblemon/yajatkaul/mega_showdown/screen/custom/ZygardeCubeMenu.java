@@ -13,8 +13,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class ZygardeCubeMenu extends AbstractContainerMenu {
@@ -64,6 +66,14 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
+        // Check if we're trying to move a Zygarde Cube from player inventory
+        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT &&
+                sourceStack.is(FormeChangeItems.ZYGARDE_CUBE)) {
+            // Close the menu and return empty to prevent the move
+            playerIn.closeContainer();
+            return ItemStack.EMPTY;
+        }
+
         boolean moved = false;
 
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
@@ -98,6 +108,19 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
         }
 
         return copyOfSourceStack;
+    }
+
+    @Override
+    public void clicked(int slotId, int dragType, ClickType clickType, Player player) {
+        if (clickType == ClickType.THROW && slotId >= 0 && slotId < slots.size()) {
+            Slot slot = slots.get(slotId);
+            if (slot.hasItem() && slot.getItem().is(FormeChangeItems.ZYGARDE_CUBE)) {
+                player.closeContainer();
+                return;
+            }
+        }
+
+        super.clicked(slotId, dragType, clickType, player);
     }
 
     @Override

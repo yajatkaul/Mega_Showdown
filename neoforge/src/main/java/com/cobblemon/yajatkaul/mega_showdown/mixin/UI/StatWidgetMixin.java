@@ -44,6 +44,8 @@ public abstract class StatWidgetMixin {
         if (self.getStatTabIndex() == 3) { // "OTHER" tab
             if (self.getPokemon().getSpecies().getName().equals("Gimmighoul")) {
                 yLevel += 60;
+            } else if (self.getPokemon().getSpecies().getName().equals("Meltan")) {
+                yLevel += 30;
             }
 
             blitk(

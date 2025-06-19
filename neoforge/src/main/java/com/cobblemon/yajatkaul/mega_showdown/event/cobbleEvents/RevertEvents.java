@@ -118,7 +118,6 @@ public class RevertEvents {
     public static Unit battleStarted(@NotNull BattleStartedPreEvent battleEvent) {
         for(BattleActor pokemon : battleEvent.getBattle().getActors()){
             for(BattlePokemon pk : pokemon.getPokemonList()){
-                MegaShowdown.LOGGER.info(pk.getEffectedPokemon().getSpecies().getName());
                 if(pk.getEffectedPokemon().getAspects().contains("core-percent")){
                     battleEvent.cancel();
                     return Unit.INSTANCE;

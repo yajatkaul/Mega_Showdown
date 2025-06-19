@@ -20,6 +20,7 @@ const abilities = require("./data/mods/cobblemon/abilities");
 const battleActions = require("./sim/battle-actions");
 const conditions = require("./data/mods/cobblemon/conditions");
 const typechart = require("./data/mods/cobblemon/typechart");
+const scripts = require("./data/mods/cobblemon/scripts");
 
 function startBattle(graalShowdown, battleId, requestMessages) {
   const battleStream = new BS.BattleStream();
@@ -109,4 +110,8 @@ function receiveConditionData(conditionId, conditionData) {
 
 function receiveTypeChartData(typeChartId, typeChartData) {
   typechart.TypeChart[typeChartId] = eval(`(${typeChartData})`);
+}
+
+function receiveScriptData(scriptId, scriptData) {
+  scripts.Scripts[scriptId] = eval(`(${scriptData})`);
 }

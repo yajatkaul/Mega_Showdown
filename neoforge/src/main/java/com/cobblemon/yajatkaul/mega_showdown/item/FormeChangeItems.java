@@ -1109,6 +1109,9 @@ public class FormeChangeItems {
                 }
             });
 
+    public static final DeferredItem<Item> MELTAN = ITEMS.register("meltan",
+            () -> new Item(new Item.Properties().stacksTo(75)));
+
     public static void register() {
 
     }

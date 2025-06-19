@@ -25,6 +25,7 @@ public class CobblemonDataProviderMixin {
                 instance.register(Conditions.INSTANCE);
                 instance.register(HeldItems.INSTANCE);
                 instance.register(TypeCharts.INSTANCE);
+                instance.register(Scripts.INSTANCE);
             }
             return instance.register(registry);
         }

@@ -26,6 +26,7 @@ import com.google.common.reflect.Reflection;
 import kotlin.Unit;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -69,7 +70,6 @@ public class MegaShowdown implements ModInitializer {
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
 
-        UseItemCallback.EVENT.register(ConfigResults::useItem);
         ModDatapack.register();
 
         CobbleEvents.register();

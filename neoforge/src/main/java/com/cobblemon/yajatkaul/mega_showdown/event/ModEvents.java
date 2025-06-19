@@ -10,7 +10,10 @@ import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
+import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
 import com.cobblemon.yajatkaul.mega_showdown.mixin.Loot.LootPoolAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeMenu;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -20,9 +23,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemLore;
@@ -46,7 +52,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
+import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
 
@@ -56,7 +64,7 @@ import java.util.Optional;
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class ModEvents {
     @SubscribeEvent
-    public static void addCustomTrades(VillagerTradesEvent event) {
+    private static void addCustomTrades(VillagerTradesEvent event) {
         if (event.getType() == VillagerProfession.CARTOGRAPHER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
@@ -113,7 +121,7 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    public static void onCurioChange(CurioCanUnequipEvent event) {
+    private static void onCurioChange(CurioCanUnequipEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
 
@@ -149,7 +157,7 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    public static void onLootTableLoad(LootTableLoadEvent event) {
+    private static void onLootTableLoad(LootTableLoadEvent event) {
         ResourceLocation lootTableId = event.getName();
         ResourceLocation cobblemonLunaHengeRuinLootTable = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/luna_henge_ruins");
 
@@ -188,6 +196,34 @@ public class ModEvents {
                 table.removePool("main");
                 table.addPool(newPoolBuilder.build());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        Player player = event.getEntity();
+        InteractionHand hand = event.getHand();
+        ItemStack itemStack = event.getItemStack();
+        Level level = event.getLevel();
+
+        boolean consumed = ConfigResults.useItem(player, level, hand, itemStack);
+
+        if (consumed) {
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntityInteract(PlayerInteractEvent.EntityInteract event){
+        Player player = event.getEntity();
+        Level level = event.getLevel();
+
+        boolean consumed = ConfigResults.useOnEntity(player, level, event.getTarget());
+
+        if (consumed) {
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
         }
     }
 }

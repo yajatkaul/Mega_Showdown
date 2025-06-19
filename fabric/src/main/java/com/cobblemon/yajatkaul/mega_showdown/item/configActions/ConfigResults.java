@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
@@ -31,6 +32,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -68,18 +70,8 @@ public class ConfigResults {
         if (world.isClient || player.isCrawling()) {
             return TypedActionResult.pass(itemStack);
         }
-        if (!itemStack.isEmpty()) {
-            if (itemStack.isOf(Items.WHEAT_SEEDS)) {
-                EntityHitResult entityHit = getEntityLookingAt(player, 4.5f);
-                if (entityHit != null) {
-                    Entity context = entityHit.getEntity();
-                    if (player.getWorld().isClient || player.isCrawling()) {
-                        return TypedActionResult.pass(itemStack);
-                    }
-                }
 
-                return TypedActionResult.pass(itemStack);
-            }
+        if (!itemStack.isEmpty()) {
             CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
 
             for (FusionData fusion : Utils.fusionRegistry) {
@@ -87,13 +79,6 @@ public class ConfigResults {
                 if (itemStack.isOf(item) && ((nbt != null && fusion.custom_model_data() == nbt.value()) || fusion.custom_model_data() == 0)) {
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
                     if (entityHit == null) {
-                        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
-                        Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
-                        if (currentValue != null) {
-                            playerPartyStore.add(currentValue);
-                            itemStack.set(DataManage.POKEMON_STORAGE, null);
-                        }
-
                         return TypedActionResult.pass(itemStack);
                     }
                     Entity context = entityHit.getEntity();
@@ -279,155 +264,156 @@ public class ConfigResults {
                 Item item = Registries.ITEM.get(Identifier.tryParse(keyItems.item_id()));
                 if (itemStack.isOf(item) && ((nbt != null && keyItems.custom_model_data() == nbt.value()) || keyItems.custom_model_data() == 0)) {
                     EntityHitResult entityHit = getEntityLookingAt(player, 4.5);
-                    if (entityHit != null) {
-                        Entity context = entityHit.getEntity();
+                    if (entityHit == null) {
+                        return TypedActionResult.pass(itemStack);
+                    }
+                    Entity context = entityHit.getEntity();
 
-                        if (!(context instanceof PokemonEntity pk)) {
-                            return TypedActionResult.pass(itemStack);
-                        }
+                    if (!(context instanceof PokemonEntity pk)) {
+                        return TypedActionResult.pass(itemStack);
+                    }
 
-                        Pokemon pokemon = pk.getPokemon();
-                        if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
-                            return TypedActionResult.pass(itemStack);
-                        }
+                    Pokemon pokemon = pk.getPokemon();
+                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
+                        return TypedActionResult.pass(itemStack);
+                    }
 
-                        if (keyItems.pokemons().contains(pokemon.getSpecies().getName())) {
-                            if (!keyItems.required_aspects().isEmpty()) {
-                                List<String> aspectList = new ArrayList<>();
-                                for (String aspects : keyItems.required_aspects()) {
-                                    String[] aspectDiv = aspects.split("=");
-                                    if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                                        aspectList.add(aspectDiv[0]);
-                                    } else {
-                                        aspectList.add(aspectDiv[1]);
-                                    }
+                    if (keyItems.pokemons().contains(pokemon.getSpecies().getName())) {
+                        if (!keyItems.required_aspects().isEmpty()) {
+                            List<String> aspectList = new ArrayList<>();
+                            for (String aspects : keyItems.required_aspects()) {
+                                String[] aspectDiv = aspects.split("=");
+                                if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                                    aspectList.add(aspectDiv[0]);
+                                } else {
+                                    aspectList.add(aspectDiv[1]);
                                 }
-                                boolean allMatch = true;
-                                for (String requiredAspect : aspectList) {
-                                    boolean matched = false;
-                                    for (String pokemonAspect : pokemon.getAspects()) {
-                                        if (pokemonAspect.startsWith(requiredAspect)) {
-                                            matched = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!matched) {
-                                        allMatch = false;
+                            }
+                            boolean allMatch = true;
+                            for (String requiredAspect : aspectList) {
+                                boolean matched = false;
+                                for (String pokemonAspect : pokemon.getAspects()) {
+                                    if (pokemonAspect.startsWith(requiredAspect)) {
+                                        matched = true;
                                         break;
                                     }
                                 }
-
-                                if (!allMatch) {
-                                    return TypedActionResult.pass(itemStack);
+                                if (!matched) {
+                                    allMatch = false;
+                                    break;
                                 }
                             }
 
-                            if (!Possible((ServerPlayerEntity) player)) {
+                            if (!allMatch) {
                                 return TypedActionResult.pass(itemStack);
                             }
+                        }
 
-                            if (keyItems.toggle_aspects().isEmpty()) {
-                                List<String> aspectList = new ArrayList<>();
-                                for (String aspects : keyItems.aspects()) {
-                                    String[] aspectDiv = aspects.split("=");
-                                    if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                                        aspectList.add(aspectDiv[0]);
-                                    } else {
-                                        aspectList.add(aspectDiv[1]);
-                                    }
+                        if (!Possible((ServerPlayerEntity) player)) {
+                            return TypedActionResult.pass(itemStack);
+                        }
+
+                        if (keyItems.toggle_aspects().isEmpty()) {
+                            List<String> aspectList = new ArrayList<>();
+                            for (String aspects : keyItems.aspects()) {
+                                String[] aspectDiv = aspects.split("=");
+                                if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                                    aspectList.add(aspectDiv[0]);
+                                } else {
+                                    aspectList.add(aspectDiv[1]);
                                 }
+                            }
 
-                                boolean allMatch = true;
-                                for (String requiredAspect : aspectList) {
-                                    boolean matched = false;
-                                    for (String pokemonAspect : pokemon.getAspects()) {
-                                        if (pokemonAspect.startsWith(requiredAspect)) {
-                                            matched = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!matched) {
-                                        allMatch = false;
+                            boolean allMatch = true;
+                            for (String requiredAspect : aspectList) {
+                                boolean matched = false;
+                                for (String pokemonAspect : pokemon.getAspects()) {
+                                    if (pokemonAspect.startsWith(requiredAspect)) {
+                                        matched = true;
                                         break;
                                     }
                                 }
-
-                                if (allMatch) {
-                                    for (String aspects : keyItems.default_aspects()) {
-                                        String[] aspectsDiv = aspects.split("=");
-                                        if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                            new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                                        } else {
-                                            new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                                        }
-                                        if (!keyItems.tradable_form()) {
-                                            setTradable(pokemon, true);
-                                        }
-                                    }
-                                    if (keyItems.consume()) {
-                                        itemStack.decrement(1);
-                                    }
-                                    particleEffect(pk, keyItems.effects(), false);
-                                } else {
-                                    for (String aspects : keyItems.aspects()) {
-                                        String[] aspectsDiv = aspects.split("=");
-                                        if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                            new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                                        } else {
-                                            new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                                        }
-                                        if (!keyItems.tradable_form()) {
-                                            setTradable(pokemon, false);
-                                        }
-                                    }
-                                    particleEffect(pk, keyItems.effects(), true);
-                                    if (keyItems.consume()) {
-                                        itemStack.decrement(1);
-                                    }
+                                if (!matched) {
+                                    allMatch = false;
+                                    break;
                                 }
-                            } else {
-                                int currentIndex = -1;
+                            }
 
-                                List<String> currentAspects = pokemon.getAspects().stream()
-                                        .map(String::toLowerCase)
-                                        .toList();
-
-                                for (int i = 0; i < keyItems.toggle_aspects().size(); i++) {
-                                    List<String> sublist = keyItems.toggle_aspects().get(i);
-                                    for (String aspect : sublist) {
-                                        String value = aspect.split("=")[1].toLowerCase();
-
-                                        for (String current : currentAspects) {
-                                            if (current.contains(value) || value.contains(current)) {
-                                                currentIndex = i;
-                                                break;
-                                            }
-                                        }
-                                        if (currentIndex != -1) break;
-                                    }
-                                    if (currentIndex != -1) break;
-                                }
-
-                                int nextIndex = (currentIndex + 1) % keyItems.toggle_aspects().size();
-                                List<String> nextAspects = keyItems.toggle_aspects().get(nextIndex);
-
-                                for (String aspect : nextAspects) {
-                                    String[] parts = aspect.split("=");
-                                    String key = parts[0];
-                                    String value = parts[1];
-
-                                    if (value.equals("true") || value.equals("false")) {
-                                        new FlagSpeciesFeature(key, Boolean.parseBoolean(value)).apply(pokemon);
+                            if (allMatch) {
+                                for (String aspects : keyItems.default_aspects()) {
+                                    String[] aspectsDiv = aspects.split("=");
+                                    if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
+                                        new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
                                     } else {
-                                        new StringSpeciesFeature(key, value).apply(pokemon);
+                                        new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                                    }
+                                    if (!keyItems.tradable_form()) {
+                                        setTradable(pokemon, true);
                                     }
                                 }
-
-                                particleEffect(pk, keyItems.effects(), true);
-                                setTradable(pokemon, !keyItems.tradable_form());
                                 if (keyItems.consume()) {
                                     itemStack.decrement(1);
                                 }
+                                particleEffect(pk, keyItems.effects(), false);
+                            } else {
+                                for (String aspects : keyItems.aspects()) {
+                                    String[] aspectsDiv = aspects.split("=");
+                                    if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
+                                        new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
+                                    } else {
+                                        new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
+                                    }
+                                    if (!keyItems.tradable_form()) {
+                                        setTradable(pokemon, false);
+                                    }
+                                }
+                                particleEffect(pk, keyItems.effects(), true);
+                                if (keyItems.consume()) {
+                                    itemStack.decrement(1);
+                                }
+                            }
+                        } else {
+                            int currentIndex = -1;
+
+                            List<String> currentAspects = pokemon.getAspects().stream()
+                                    .map(String::toLowerCase)
+                                    .toList();
+
+                            for (int i = 0; i < keyItems.toggle_aspects().size(); i++) {
+                                List<String> sublist = keyItems.toggle_aspects().get(i);
+                                for (String aspect : sublist) {
+                                    String value = aspect.split("=")[1].toLowerCase();
+
+                                    for (String current : currentAspects) {
+                                        if (current.contains(value) || value.contains(current)) {
+                                            currentIndex = i;
+                                            break;
+                                        }
+                                    }
+                                    if (currentIndex != -1) break;
+                                }
+                                if (currentIndex != -1) break;
+                            }
+
+                            int nextIndex = (currentIndex + 1) % keyItems.toggle_aspects().size();
+                            List<String> nextAspects = keyItems.toggle_aspects().get(nextIndex);
+
+                            for (String aspect : nextAspects) {
+                                String[] parts = aspect.split("=");
+                                String key = parts[0];
+                                String value = parts[1];
+
+                                if (value.equals("true") || value.equals("false")) {
+                                    new FlagSpeciesFeature(key, Boolean.parseBoolean(value)).apply(pokemon);
+                                } else {
+                                    new StringSpeciesFeature(key, value).apply(pokemon);
+                                }
+                            }
+
+                            particleEffect(pk, keyItems.effects(), true);
+                            setTradable(pokemon, !keyItems.tradable_form());
+                            if (keyItems.consume()) {
+                                itemStack.decrement(1);
                             }
                         }
                     }
@@ -639,5 +625,25 @@ public class ConfigResults {
                 }
             }
         }
+    }
+
+    public static ActionResult useOnEntity(PlayerEntity player, World world, Hand hand, Entity entity, EntityHitResult entityHitResult) {
+        if(world.isClient){
+            return ActionResult.PASS;
+        }
+        if(entity instanceof PokemonEntity pk){
+            if(pk.getAspects().contains("core-percent") && !player.getMainHandStack().isOf(FormeChangeItems.ZYGARDE_CUBE) && !player.getOffHandStack().isOf(FormeChangeItems.ZYGARDE_CUBE)){
+                player.giveItemStack(new ItemStack(FormeChangeItems.ZYGARDE_CORE));
+                if(pk.getPokemon().getOwnerPlayer() == player){
+                    PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+                    playerPartyStore.remove(pk.getPokemon());
+                }else {
+                    entity.discard();
+                }
+                return ActionResult.SUCCESS;
+            }
+        }
+
+        return ActionResult.PASS;
     }
 }

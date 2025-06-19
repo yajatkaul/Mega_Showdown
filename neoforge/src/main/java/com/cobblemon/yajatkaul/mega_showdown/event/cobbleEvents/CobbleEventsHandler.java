@@ -29,6 +29,7 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
@@ -110,11 +111,11 @@ public class CobbleEventsHandler {
         if (player.getData(DataManage.MEGA_POKEMON).getPokemon() == released) {
             player.setData(DataManage.MEGA_DATA, false);
             player.removeData(DataManage.MEGA_POKEMON);
-        }
-
-        if (player.getData(DataManage.PRIMAL_POKEMON).getPokemon() == released) {
+        } else if (player.getData(DataManage.PRIMAL_POKEMON).getPokemon() == released) {
             player.setData(DataManage.PRIMAL_DATA, false);
             player.removeData(DataManage.PRIMAL_POKEMON);
+        } else if (released.getSpecies().getName().equals("Meltan")) {
+            player.addItem(new ItemStack(FormeChangeItems.MELTAN.get()));
         }
 
         return Unit.INSTANCE;
