@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.block.custom;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
@@ -118,5 +120,10 @@ public class MaxMushroomBlock extends SweetBerryBushBlock implements Bonemealabl
         if (age < 3) {
             level.setBlock(pos, state.setValue(AGE, age + 1), 2);
         }
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+        return new ItemStack(DynamaxItems.MAX_MUSHROOM.get());
     }
 }

@@ -1,0 +1,12 @@
+{
+  "msd_id": "slowbronite",
+  "showdown_id": "slowbronite",
+  "item_id": "mega_showdown:slowbronite",
+  "item_name": "Slowbronite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "blacklist_aspects": ["galarian"],
+  "pokemon": "Slowbro",
+  "aspects": ["mega_evolution=mega"]
+}

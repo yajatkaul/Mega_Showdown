@@ -12,6 +12,7 @@ public record MegaData(
         String item_name,
         String pokemon,
         List<String> required_aspects,
+        List<String> blacklist_aspects,
         List<String> item_description,
         List<String> aspects,
         Integer custom_model_data
@@ -22,7 +23,8 @@ public record MegaData(
             Codec.STRING.fieldOf("item_id").forGetter(MegaData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(MegaData::item_name),
             Codec.STRING.fieldOf("pokemon").forGetter(MegaData::pokemon),
-            Codec.list(Codec.STRING).fieldOf("required_aspects").forGetter(MegaData::item_description),
+            Codec.list(Codec.STRING).optionalFieldOf("required_aspects", List.of()).forGetter(MegaData::required_aspects),
+            Codec.list(Codec.STRING).optionalFieldOf("blacklist_aspects", List.of()).forGetter(MegaData::blacklist_aspects),
             Codec.list(Codec.STRING).fieldOf("item_description").forGetter(MegaData::item_description),
             Codec.list(Codec.STRING).fieldOf("aspects").forGetter(MegaData::aspects),
             Codec.INT.fieldOf("custom_model_data").forGetter(MegaData::custom_model_data)

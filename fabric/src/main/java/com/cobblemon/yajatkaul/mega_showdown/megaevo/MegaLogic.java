@@ -132,7 +132,6 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = context.getPokemon();
-        String species = null;
 
         if (!player.hasAttached(DataManage.MEGA_DATA)) {
             player.setAttached(DataManage.MEGA_DATA, false);
@@ -181,16 +180,23 @@ public class MegaLogic {
             String[] parts = megaPok.item_id().split(":");
             Identifier paperId = Identifier.of(parts[0], parts[1]);
             Item paperItem = Registries.ITEM.get(paperId);
+
+            String candidateSpecies = null;
+
             if (paperItem == pokemon.heldItem().getItem() &&
-                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
-                            && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                            == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)) {
-                species = megaPok.pokemon();
+                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
+                            pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == megaPok.custom_model_data())
+                            || megaPok.custom_model_data() == 0)) {
+                candidateSpecies = megaPok.pokemon();
             }
-            if (species == null) {
+
+            if (candidateSpecies == null
+                    || !pokemon.getAspects().containsAll(megaPok.required_aspects())
+                    || pokemon.getAspects().stream().anyMatch(megaPok.blacklist_aspects()::contains)) {
                 continue;
             }
-            if (species.equals(pokemon.getSpecies().getName())) {
+
+            if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                 player.setAttached(DataManage.MEGA_DATA, true);
                 player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
@@ -203,7 +209,6 @@ public class MegaLogic {
                     }
                 }
                 setTradable(pokemon, false);
-
                 return;
             } else {
                 player.sendMessage(
@@ -266,7 +271,6 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = context.getPokemon();
-        String species = null;
 
         if (!player.hasAttached(DataManage.MEGA_DATA)) {
             player.setAttached(DataManage.MEGA_DATA, false);
@@ -306,16 +310,23 @@ public class MegaLogic {
             String[] parts = megaPok.item_id().split(":");
             Identifier paperId = Identifier.of(parts[0], parts[1]);
             Item paperItem = Registries.ITEM.get(paperId);
+
+            String candidateSpecies = null;
+
             if (paperItem == pokemon.heldItem().getItem() &&
-                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
-                            && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                            == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)) {
-                species = megaPok.pokemon();
+                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
+                            pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == megaPok.custom_model_data())
+                            || megaPok.custom_model_data() == 0)) {
+                candidateSpecies = megaPok.pokemon();
             }
-            if (species == null) {
+
+            if (candidateSpecies == null
+                    || !pokemon.getAspects().containsAll(megaPok.required_aspects())
+                    || pokemon.getAspects().stream().anyMatch(megaPok.blacklist_aspects()::contains)) {
                 continue;
             }
-            if (species.equals(pokemon.getSpecies().getName())) {
+
+            if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                 player.setAttached(DataManage.MEGA_DATA, true);
                 player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
@@ -328,7 +339,6 @@ public class MegaLogic {
                     }
                 }
                 setTradable(pokemon, false);
-
                 return;
             } else {
                 player.sendMessage(
@@ -403,7 +413,6 @@ public class MegaLogic {
     //NPCS
     public static void NPCEvolve(PokemonEntity context, BattlePokemon battlePokemon, PokemonBattle pokemonBattle) {
         Pokemon pokemon = context.getPokemon();
-        String species = null;
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
             for (int i = 0; i < 4; i++) {
@@ -420,16 +429,23 @@ public class MegaLogic {
             String[] parts = megaPok.item_id().split(":");
             Identifier paperId = Identifier.of(parts[0], parts[1]);
             Item paperItem = Registries.ITEM.get(paperId);
+
+            String candidateSpecies = null;
+
             if (paperItem == pokemon.heldItem().getItem() &&
-                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
-                            && pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                            == megaPok.custom_model_data()) || megaPok.custom_model_data() == 0)) {
-                species = megaPok.pokemon();
+                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
+                            pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == megaPok.custom_model_data())
+                            || megaPok.custom_model_data() == 0)) {
+                candidateSpecies = megaPok.pokemon();
             }
-            if (species == null) {
+
+            if (candidateSpecies == null
+                    || !pokemon.getAspects().containsAll(megaPok.required_aspects())
+                    || pokemon.getAspects().stream().anyMatch(megaPok.blacklist_aspects()::contains)) {
                 continue;
             }
-            if (species.equals(pokemon.getSpecies().getName())) {
+
+            if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                 for (String aspect : megaPok.aspects()) {
                     String[] aspectDiv = aspect.split("=");
                     if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
@@ -439,7 +455,6 @@ public class MegaLogic {
                     }
                 }
                 setTradable(pokemon, false);
-
                 return;
             } else {
                 return;

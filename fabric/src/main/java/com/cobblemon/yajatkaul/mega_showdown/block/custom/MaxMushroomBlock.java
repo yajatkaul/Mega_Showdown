@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.block.custom;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -108,5 +109,10 @@ public class MaxMushroomBlock extends SweetBerryBushBlock implements Fertilizabl
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return world.getBlockState(pos.down()).isOf(Blocks.MOSS_BLOCK);
+    }
+
+    @Override
+    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+        return new ItemStack(DynamaxItems.MAX_MUSHROOM);
     }
 }

@@ -1,0 +1,11 @@
+{
+  "msd_id": "steelixite",
+  "showdown_id": "steelixite",
+  "item_id": "mega_showdown:steelixite",
+  "item_name": "Steelixite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Steelix",
+  "aspects": ["mega_evolution=mega"]
+}

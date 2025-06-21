@@ -1,0 +1,11 @@
+{
+  "msd_id": "lopunnite",
+  "showdown_id": "lopunnite",
+  "item_id": "mega_showdown:lopunnite",
+  "item_name": "Lopunnite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Lopunny",
+  "aspects": ["mega_evolution=mega"]
+}

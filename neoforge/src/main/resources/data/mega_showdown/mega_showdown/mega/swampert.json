@@ -1,0 +1,11 @@
+{
+  "msd_id": "swampertite",
+  "showdown_id": "swampertite",
+  "item_id": "mega_showdown:swampertite",
+  "item_name": "Swampertite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Swampert",
+  "aspects": ["mega_evolution=mega"]
+}

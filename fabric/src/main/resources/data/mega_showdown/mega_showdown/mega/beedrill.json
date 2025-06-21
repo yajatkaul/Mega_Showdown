@@ -1,0 +1,11 @@
+{
+  "msd_id": "beedrillite",
+  "showdown_id": "beedrillite",
+  "item_id": "mega_showdown:beedrillite",
+  "item_name": "Beedrillite",
+  "item_description": [],
+  "custom_model_data": 0,
+  "required_aspects": [],
+  "pokemon": "Beedrill",
+  "aspects": ["mega_evolution=mega"]
+}
