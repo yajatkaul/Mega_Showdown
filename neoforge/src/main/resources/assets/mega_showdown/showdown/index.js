@@ -113,5 +113,7 @@ function receiveTypeChartData(typeChartId, typeChartData) {
 }
 
 function receiveScriptData(scriptId, scriptData) {
-  scripts.Scripts[scriptId] = eval(`(${scriptData})`);
+  const newFunctions = eval(`(${scriptData})`);
+  if (!scripts.Scripts[scriptId]) scripts.Scripts[scriptId] = {};
+  Object.assign(scripts.Scripts[scriptId], newFunctions);
 }
