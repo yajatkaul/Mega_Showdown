@@ -269,10 +269,10 @@ public class CobbleEventsHandler {
         }
         Pokemon pokemon = ((PokemonEntity) lootDroppedEvent.getEntity()).getPokemon();
 
-        DeferredItem<Item> correspondingTeraShard = getTeraShardForType(pokemon.getTypes());
+        Item correspondingTeraShard = getTeraShardForType(pokemon.getTypes());
 
         ItemDropEntry teraShardDropEntry = new ItemDropEntry();
-        teraShardDropEntry.setItem(BuiltInRegistries.ITEM.getKey(correspondingTeraShard.get()));
+        teraShardDropEntry.setItem(Registries.ITEM.getId(correspondingTeraShard));
 
         int randomValue = new Random().nextInt(101);
         if (randomValue >= 10 && randomValue <= 20) {
