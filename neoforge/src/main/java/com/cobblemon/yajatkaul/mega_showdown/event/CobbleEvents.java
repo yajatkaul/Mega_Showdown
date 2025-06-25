@@ -40,7 +40,6 @@ public class CobbleEvents {
         NeoForge.EVENT_BUS.register(new DynamaxEventListener());
         NeoForge.EVENT_BUS.register(new UltraEventListener());
 
-        CobblemonEvents.BATTLE_VICTORY.subscribe(Priority.NORMAL, RevertEvents::battleEnded);
-        CobblemonEvents.BATTLE_FLED.subscribe(Priority.NORMAL, RevertEvents::deVolveFlee);
+        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, RevertEvents::hookBattleEnded);
     }
 }
