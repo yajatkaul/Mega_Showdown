@@ -43,28 +43,29 @@ public class TeraTypeHelper {
         return ITEM_TO_TERA_MAP.getOrDefault(item, TeraTypes.getNORMAL());
     }
 
-    public static DeferredItem<Item> getTeraShardForType(Iterable<ElementalType> types) {
+    public static Item getTeraShardForType(Iterable<ElementalType> types) {
+        var shard = TeraMoves.NORMAL_TERA_SHARD;
         for (ElementalType type : types) {
-            if (type.equals(ElementalTypes.INSTANCE.getBUG())) return TeraMoves.BUG_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getDARK())) return TeraMoves.DARK_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getDRAGON())) return TeraMoves.DRAGON_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getELECTRIC())) return TeraMoves.ELECTRIC_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getFAIRY())) return TeraMoves.FAIRY_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getFIGHTING())) return TeraMoves.FIGHTING_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getFIRE())) return TeraMoves.FIRE_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getFLYING())) return TeraMoves.FLYING_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getGHOST())) return TeraMoves.GHOST_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getGRASS())) return TeraMoves.GRASS_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getGROUND())) return TeraMoves.GROUND_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getICE())) return TeraMoves.ICE_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getNORMAL())) return TeraMoves.NORMAL_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getPOISON())) return TeraMoves.POISON_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getPSYCHIC())) return TeraMoves.PSYCHIC_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getROCK())) return TeraMoves.ROCK_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getSTEEL())) return TeraMoves.STEEL_TERA_SHARD;
-            if (type.equals(ElementalTypes.INSTANCE.getWATER())) return TeraMoves.WATER_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getBUG())) shard =  TeraMoves.BUG_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getDARK())) shard =  TeraMoves.DARK_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getDRAGON())) shard =  TeraMoves.DRAGON_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getELECTRIC())) shard =  TeraMoves.ELECTRIC_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getFAIRY())) shard =  TeraMoves.FAIRY_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getFIGHTING())) shard =  TeraMoves.FIGHTING_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getFIRE())) shard =  TeraMoves.FIRE_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getFLYING())) shard =  TeraMoves.FLYING_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getGHOST())) shard =  TeraMoves.GHOST_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getGRASS())) shard =  TeraMoves.GRASS_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getGROUND())) shard =  TeraMoves.GROUND_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getICE())) shard =  TeraMoves.ICE_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getNORMAL())) shard =  TeraMoves.NORMAL_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getPOISON())) shard =  TeraMoves.POISON_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getPSYCHIC())) shard =  TeraMoves.PSYCHIC_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getROCK())) shard =  TeraMoves.ROCK_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getSTEEL())) shard =  TeraMoves.STEEL_TERA_SHARD;
+            if (type.equals(ElementalTypes.INSTANCE.getWATER())) shard =  TeraMoves.WATER_TERA_SHARD;
         }
-        return TeraMoves.NORMAL_TERA_SHARD;
+        return shard.get();
     }
 
     public static ChatFormatting getGlowColorForType(ItemStack heldItem) {
