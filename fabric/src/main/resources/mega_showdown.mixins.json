@@ -6,12 +6,11 @@
     "BattleGimmickButtonMixin",
     "CobblemonDataProviderMixin",
     "ExceptionHandlerMixin",
-    "GimmickTileMixin",
     "GraalShowdownUnbundlerMixin",
-    "MoveActionResponseMixin",
-    "ShowdownActionRequestMixin",
-    "ShowdownInterpreterMixin",
-    "ShowdownSpeciesMixin",
+    "battle.MoveActionResponseMixin",
+    "battle.ShowdownActionRequestMixin",
+    "battle.ShowdownInterpreterMixin",
+    "battle.ShowdownSpeciesMixin",
     "accessors.MovesAccessor",
     "accessors.ShowdownActionRequestAccessor",
     "instructions.EndInstructionMixin",
@@ -22,11 +21,12 @@
     "pokemon.ShowdownReloadMixin"
   ],
   "client": [
-    "ItemRendererMixin",
-    "ModelLoaderMixin",
+    "client.ItemRendererMixin",
+    "client.ModelLoaderMixin",
     "UI.PCGUIMixin",
     "UI.StatWidgetMixin",
-    "UI.SummaryMixin"
+    "UI.SummaryMixin",
+    "battle.GimmickTileMixin"
   ],
   "injectors": {
     "defaultRequire": 1

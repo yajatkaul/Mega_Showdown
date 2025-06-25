@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.utils.NoRenderArmorMaterial;
+import com.cobblemon.yajatkaul.mega_showdown.curios.render.NoRenderArmorMaterial;
 import net.neoforged.bus.api.IEventBus;
 
 public class ItemsRegistration {

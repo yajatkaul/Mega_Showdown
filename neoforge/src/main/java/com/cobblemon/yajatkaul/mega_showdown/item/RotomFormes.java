@@ -2,8 +2,8 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.RotomCatalogue;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.RotomUnit;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.RotomCatalogue;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.RotomUnit;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -27,5 +27,6 @@ public class RotomFormes {
             () -> new RotomCatalogue(new Item.Properties().component(DataManage.CATALOGUE_PAGE, 1)));
 
     public static void register() {
+
     }
 }

@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.moves.categories.DamageCategories
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.battles.MoveTarget
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
-import com.cobblemon.yajatkaul.mega_showdown.mixin.MovesAccessor
+import com.cobblemon.yajatkaul.mega_showdown.mixin.accessors.MovesAccessor
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 

@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.block.custom;
 
-import com.cobblemon.yajatkaul.mega_showdown.block.entity.PedestalBlockEntity;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.PedestalBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

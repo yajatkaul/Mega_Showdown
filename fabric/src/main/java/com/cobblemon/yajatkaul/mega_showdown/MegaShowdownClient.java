@@ -5,10 +5,10 @@ import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntitie
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.renderer.PedestalBlockEntityRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.Controls;
 import com.cobblemon.yajatkaul.mega_showdown.item.KeyItems;
-import com.cobblemon.yajatkaul.mega_showdown.trinket.renderers.LikosPendantRenderer;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import com.cobblemon.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
 import com.cobblemon.yajatkaul.mega_showdown.trinket.TrinketsRegisteration;
+import com.cobblemon.yajatkaul.mega_showdown.trinket.renderers.LikosPendantRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;

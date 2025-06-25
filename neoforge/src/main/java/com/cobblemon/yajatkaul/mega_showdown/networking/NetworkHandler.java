@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.networking;
 
-import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
-import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import net.neoforged.bus.api.SubscribeEvent;

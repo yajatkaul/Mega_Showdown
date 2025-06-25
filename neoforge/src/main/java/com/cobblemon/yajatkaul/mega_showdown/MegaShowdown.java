@@ -5,22 +5,23 @@ import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.creativeTab.ModCreativeModeTabs;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapacksLoader;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
-import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ItemsRegistration;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.networking.NetworkHandler;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
-import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.showdown.LoadShowdownItems;
+import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
@@ -99,7 +100,7 @@ public final class MegaShowdown {
     public void onServerStarting(ServerStartingEvent event) {
         event.getServer().reloadableRegistries();
         Utils.registryLoader(event.getServer().registryAccess());
-        Utils.registerRemapping();
+        LoadShowdownItems.registerRemapping();
 
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
@@ -113,6 +114,6 @@ public final class MegaShowdown {
     }
 
     private void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        DatapacksLoader.register(event);
+        DatapackRegister.register(event);
     }
 }

@@ -19,7 +19,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
 public class HandlerUtils {
-    static boolean checkEnabled(FusionData fusion, Pokemon pk) {
+    public static boolean checkEnabled(FusionData fusion, Pokemon pk) {
         for (String aspects : fusion.fusion_aspects()) {
             String[] aspectsDiv = aspects.split("=");
             if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {

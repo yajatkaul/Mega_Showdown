@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.mixin.pokemon;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 

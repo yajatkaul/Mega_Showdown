@@ -1,17 +1,15 @@
 package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
-import com.cobblemon.mod.common.battles.BattleRegistry;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.ItemHandler;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
-import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.mixin.Loot.LootPoolAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.mixin.accessors.LootPoolAccessor;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -48,12 +46,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
-import top.theillusivec4.curios.api.event.CurioCanUnequipEvent;
 
 import java.util.List;
 import java.util.Optional;
@@ -115,17 +111,6 @@ public class ModEvents {
         mapStack.set(DataComponents.LORE, new ItemLore(loreLines));
 
         return mapStack;
-    }
-
-    @SubscribeEvent
-    private static void onCurioChange(CurioCanUnequipEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
-
-            if (battle != null && event.getStack().is(TeraMoves.TERA_ORB)) {
-                event.setUnequipResult(TriState.FALSE);
-            }
-        }
     }
 
     @SubscribeEvent
@@ -203,7 +188,7 @@ public class ModEvents {
         ItemStack itemStack = event.getItemStack();
         Level level = event.getLevel();
 
-        boolean consumed = ConfigResults.useItem(player, level, hand, itemStack);
+        boolean consumed = ItemHandler.useItem(player, level, hand, itemStack);
 
         if (consumed) {
             event.setCanceled(true);
@@ -216,11 +201,32 @@ public class ModEvents {
         Player player = event.getEntity();
         Level level = event.getLevel();
 
-        boolean consumed = ConfigResults.useOnEntity(player, level, event.getTarget());
+        boolean consumed = useOnEntity(player, level, event.getTarget());
 
         if (consumed) {
             event.setCanceled(true);
             event.setCancellationResult(InteractionResult.SUCCESS);
         }
+    }
+
+    private static boolean useOnEntity(Player player, Level level, Entity entity) {
+        if (level.isClientSide) {
+            return false;
+        }
+
+        if (entity instanceof PokemonEntity pk) {
+            if (pk.getAspects().contains("core-percent") && !player.getMainHandItem().is(FormeChangeItems.ZYGARDE_CUBE) && !player.getOffhandItem().is(FormeChangeItems.ZYGARDE_CUBE)) {
+                player.addItem(new ItemStack(FormeChangeItems.ZYGARDE_CORE.get()));
+                if (pk.getPokemon().getOwnerPlayer() == player) {
+                    PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
+                    playerPartyStore.remove(pk.getPokemon());
+                } else {
+                    entity.discard();
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
 }

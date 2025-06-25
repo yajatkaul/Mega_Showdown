@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.interpreter.instructions.StartInstruction;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEvent;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.events.DynamaxEventStart;
 import net.neoforged.neoforge.common.NeoForge;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +32,7 @@ public class StartInstructionMixin {
 
         if (containsDynamax) {
             BattlePokemon pokemon = message.battlePokemon(0, battle);
-            DynamaxEvent event = new DynamaxEvent(battle, pokemon, containsGmax);
+            DynamaxEventStart event = new DynamaxEventStart(battle, pokemon, containsGmax);
             NeoForge.EVENT_BUS.post(event);
         }
     }

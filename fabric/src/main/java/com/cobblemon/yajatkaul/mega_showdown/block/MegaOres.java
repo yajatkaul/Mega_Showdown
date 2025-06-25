@@ -1,18 +1,18 @@
 package com.cobblemon.yajatkaul.mega_showdown.block;
 
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.CrystalBlock;
-import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.particle.ParticleTypes;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.MegaStoneCrystal;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.MapColor;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-
-import static com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks.registerBlock;
 
 public class MegaOres {
     public static final Block KEYSTONE_ORE = registerBlock("keystone_ore",
@@ -23,53 +23,38 @@ public class MegaOres {
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
     public static final Block MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
-            new CrystalBlock(4, 3,
-                    AbstractBlock.Settings.create()
-                            .strength(1.5f)
-                            .sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD)
-                            .nonOpaque()
-                            .requiresTool()
-                            .pistonBehavior(PistonBehavior.IGNORE)
-                            .luminance((state) -> 15)) {
-                private static final VoxelShape SHAPE =
-                        Block.createCuboidShape(2, 0, 2, 14, 13, 14);
+            new MegaStoneCrystal(4, 3, AbstractBlock.Settings.create()));
 
-                @Override
-                protected BlockRenderType getRenderType(BlockState state) {
-                    return BlockRenderType.MODEL;
-                }
+    public static final Block MEGA_METEORID_DAWN_ORE = registerMeteoroidOre("mega_meteorid_dawn_ore");
+    public static final Block MEGA_METEORID_DUSK_ORE = registerMeteoroidOre("mega_meteorid_dusk_ore");
+    public static final Block MEGA_METEORID_FIRE_ORE = registerMeteoroidOre("mega_meteorid_fire_ore");
+    public static final Block MEGA_METEORID_ICE_ORE = registerMeteoroidOre("mega_meteorid_ice_ore");
+    public static final Block MEGA_METEORID_LEAF_ORE = registerMeteoroidOre("mega_meteorid_leaf_ore");
+    public static final Block MEGA_METEORID_MOON_ORE = registerMeteoroidOre("mega_meteorid_moon_ore");
+    public static final Block MEGA_METEORID_SHINY_ORE = registerMeteoroidOre("mega_meteorid_shiny_ore");
+    public static final Block MEGA_METEORID_SUN_ORE = registerMeteoroidOre("mega_meteorid_sun_ore");
+    public static final Block MEGA_METEORID_THUNDER_ORE = registerMeteoroidOre("mega_meteorid_thunder_ore");
+    public static final Block MEGA_METEORID_WATER_ORE = registerMeteoroidOre("mega_meteorid_water_ore");
 
-                @Override
-                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-                    return SHAPE;
-                }
+    private static Block registerMeteoroidOre(String name) {
+        return registerBlock(name, new ExperienceDroppingBlock(
+                UniformIntProvider.create(3, 6),
+                AbstractBlock.Settings.create()
+                        .strength(3f)
+                        .mapColor(MapColor.PURPLE)
+                        .requiresTool()
+                        .sounds(BlockSoundGroup.STONE)
+        ));
+    }
 
-                @Override
-                public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-                    // Get block center coordinates
-                    double x = pos.getX() + 0.5D;
-                    double y = pos.getY() + 0.5D;
-                    double z = pos.getZ() + 0.5D;
+    private static Block registerBlock(String name, Block block) {
+        registerBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
+    }
 
-                    // Spawn particles around the block
-                    for (int i = 0; i < 3; i++) { // Spawn 3 particles per tick
-                        // Add some random offset to particle position
-                        double offsetX = (random.nextDouble() - 0.5D) * 0.5D;
-                        double offsetY = (random.nextDouble() - 0.5D) * 0.5D;
-                        double offsetZ = (random.nextDouble() - 0.5D) * 0.5D;
-
-                        world.addParticle(
-                                ParticleTypes.END_ROD, // Particle type
-                                x + offsetX, // X position
-                                y + offsetY, // Y position
-                                z + offsetZ, // Z position
-                                0.0D, // X velocity
-                                0.0D, // Y velocity
-                                0.0D  // Z velocity
-                        );
-                    }
-                }
-            });
+    private static void registerBlockItem(String name, Block block) {
+        Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()));
+    }
 
     public static void registerBlocks() {
 

@@ -3,7 +3,6 @@ package com.cobblemon.yajatkaul.mega_showdown.creativeMenu;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.block.PokemonStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -98,16 +97,16 @@ public class ModItemGroups {
 
                         entries.add(MegaOres.MEGA_STONE_CRYSTAL);
 
-                        entries.add(PokemonStones.MEGA_METEORID_DAWN_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_DUSK_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_FIRE_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_ICE_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_LEAF_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_MOON_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_SHINY_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_SUN_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_THUNDER_ORE);
-                        entries.add(PokemonStones.MEGA_METEORID_WATER_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_DAWN_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_DUSK_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_FIRE_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_ICE_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_LEAF_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_MOON_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_SHINY_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_SUN_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_THUNDER_ORE);
+                        entries.add(MegaOres.MEGA_METEORID_WATER_ORE);
                     }))
                     .build());
 

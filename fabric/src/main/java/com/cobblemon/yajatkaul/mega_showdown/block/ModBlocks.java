@@ -2,76 +2,37 @@ package com.cobblemon.yajatkaul.mega_showdown.block;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.*;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.zygarde.ReassemblyUnitBlock;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.joml.Vector3f;
 
 import java.util.List;
 
 public class ModBlocks {
-    public static final Block MEGA_EVO_BRICK = registerBlock("mega_evo_brick",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .mapColor(MapColor.PURPLE)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block MEGA_EVO_BRICK = registerMeteoridBlock("mega_evo_brick");
 
-    public static final Block CHISELED_MEGA_EVO_BRICK = registerBlock("chiseled_mega_evo_brick",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .mapColor(MapColor.PURPLE)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block CHISELED_MEGA_EVO_BRICK = registerMeteoridBlock("chiseled_mega_evo_brick");
 
-    public static final Block CHISELED_MEGA_EVO_BLOCK = registerBlock("chiseled_mega_evo_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .mapColor(MapColor.PURPLE)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block CHISELED_MEGA_EVO_BLOCK = registerMeteoridBlock("chiseled_mega_evo_block");
 
-    public static final Block POLISHED_MEGA_EVO_BLOCK = registerBlock("polished_mega_evo_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .mapColor(MapColor.PURPLE)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block POLISHED_MEGA_EVO_BLOCK = registerMeteoridBlock("polished_mega_evo_block");
 
-    public static final Block KEYSTONE_BLOCK = registerBlock("keystone_block",
-            new KeyStoneBlock(AbstractBlock.Settings.create()
-                    .strength(4f)
-                    .mapColor(MapColor.PURPLE)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block KEYSTONE_BLOCK = registerMeteoridBlock("keystone_block");
 
-    public static final Block MEGA_METEOROID_BLOCK = registerBlock("mega_meteorid_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .requiresTool()
-                    .mapColor(MapColor.PURPLE)
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block MEGA_METEOROID_BLOCK = registerMeteoridBlock("mega_meteorid_block");
 
-    public static final Block MEGA_EVO_BLOCK = registerBlock("mega_evo_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .requiresTool()
-                    .mapColor(MapColor.PURPLE)
-                    .sounds(BlockSoundGroup.STONE)));
+    public static final Block MEGA_EVO_BLOCK = registerMeteoridBlock("mega_evo_block");
 
     public static final Block DEOXYS_METEORITE = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"),
             new Block(AbstractBlock.Settings.create()
@@ -102,39 +63,7 @@ public class ModBlocks {
             });
 
     public static final Block DORMANT_CRYSTAL = registerBlockWithToolTip("dormant_crystal",
-            new CrystalBlock(4, 3, AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .requiresTool()
-                    .mapColor(MapColor.DIAMOND_BLUE)
-                    .luminance((state) -> 15)
-                    .nonOpaque()
-                    .pistonBehavior(PistonBehavior.IGNORE)
-                    .sounds(BlockSoundGroup.AMETHYST_CLUSTER)) {
-                private static final VoxelShape SHAPE_UP = Block.createCuboidShape(5, 0, 4, 11, 4, 11);      // floor
-                private static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(5, 12, 5, 11, 16, 12);  // ceiling
-                private static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(5, 4, 12, 11, 11, 15); // north wall
-                private static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(5, 5, 0, 11, 12, 4);   // south wall
-                private static final VoxelShape SHAPE_WEST = Block.createCuboidShape(12, 4, 5, 16, 11, 11);  // west wall
-                private static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0, 4, 5, 4, 11, 11);    // east wall
-
-
-                @Override
-                protected BlockRenderType getRenderType(BlockState state) {
-                    return BlockRenderType.MODEL;
-                }
-
-                @Override
-                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-                    return switch (state.get(FACING)) {
-                        case DOWN -> SHAPE_DOWN;
-                        case NORTH -> SHAPE_NORTH;
-                        case SOUTH -> SHAPE_SOUTH;
-                        case WEST -> SHAPE_WEST;
-                        case EAST -> SHAPE_EAST;
-                        default -> SHAPE_UP; // case UP
-                    };
-                }
-            });
+            new DormantCrystal(4, 3, AbstractBlock.Settings.create()));
 
     public static final Block MAX_MUSHROOM = Registry.register(
             Registries.BLOCK,
@@ -159,92 +88,35 @@ public class ModBlocks {
             new PedestalBlock(AbstractBlock.Settings.create().nonOpaque().strength(2).requiresTool()));
 
     public static final Block REASSEMBLY_UNIT = registerBlock("reassembly_unit",
-            new ReassemblyUnitBlock(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .requiresTool()
-                    .mapColor(MapColor.TERRACOTTA_WHITE)
-                    .nonOpaque()
-                    .pistonBehavior(PistonBehavior.PUSH_ONLY)
-                    .sounds(BlockSoundGroup.METAL)));
+            new ReassemblyUnitBlock(AbstractBlock.Settings.create()));
 
     public static final Block WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
-            new CrystalBlock(4, 3,
-                    AbstractBlock.Settings.create()
-                            .strength(1.5f)
-                            .sounds(BlockSoundGroup.STONE)
-                            .nonOpaque()
-                            .requiresTool()
-                            .pistonBehavior(PistonBehavior.IGNORE)
-                            .luminance((state) -> 15)) {
-                private static final VoxelShape SHAPE =
-                        Block.createCuboidShape(2, 0, 2, 14, 9, 14);
+            new WishingStarCrystal(4, 3, AbstractBlock.Settings.create()));
 
-                @Override
-                protected BlockRenderType getRenderType(BlockState state) {
-                    return BlockRenderType.MODEL;
-                }
+    public static final Block ROTOM_WASHING_MACHINE = registerRotomBlock("rotom_washing_machine", "wash");
+    public static final Block ROTOM_FAN = registerRotomBlock("rotom_fan", "fan");
+    public static final Block ROTOM_MOW = registerRotomBlock("rotom_mow", "mow");
+    public static final Block ROTOM_FRIDGE = registerRotomBlock("rotom_fridge", "frost");
+    public static final Block ROTOM_OVEN = registerRotomBlock("rotom_oven", "heat");
 
-                @Override
-                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-                    return SHAPE;
-                }
+    private static Block registerRotomBlock(String name, String form) {
+        return registerBlockWithoutItem(name, new RotomUnit(AbstractBlock.Settings.create()
+                .strength(2f)
+                .requiresTool()
+                .mapColor(MapColor.ORANGE)
+                .sounds(BlockSoundGroup.STONE), form
+        ));
+    }
 
-                @Override
-                public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-                    // Get block center coordinates
-                    double x = pos.getX() + 0.5D;
-                    double y = pos.getY() + 0.5D;
-                    double z = pos.getZ() + 0.5D;
-
-                    // Spawn particles around the block
-                    for (int i = 0; i < 3; i++) { // Spawn 3 particles per tick
-                        double offsetX = (random.nextDouble() - 0.5D) * 0.5D;
-                        double offsetY = (random.nextDouble() - 0.5D) * 0.5D;
-                        double offsetZ = (random.nextDouble() - 0.5D) * 0.5D;
-
-                        world.addParticle(
-                                new DustParticleEffect(new Vector3f(1.0f, 0.0f, 0.0f), 0.5f),
-                                x + offsetX,
-                                y + offsetY,
-                                z + offsetZ,
-                                0.0D,
-                                0.0D,
-                                0.0D
-                        );
-                    }
-                }
-            });
-
-    public static final Block ROTOM_WASHING_MACHINE = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_washing_machine"),
-            new RotomUnit(AbstractBlock.Settings.create()
-                    .strength(2f)
-                    .requiresTool()
-                    .mapColor(MapColor.ORANGE)
-                    .sounds(BlockSoundGroup.STONE), "wash"));
-    public static final Block ROTOM_FAN = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_fan"),
-            new RotomUnit(AbstractBlock.Settings.create()
-                    .strength(2f)
-                    .requiresTool()
-                    .mapColor(MapColor.ORANGE)
-                    .sounds(BlockSoundGroup.STONE), "fan"));
-    public static final Block ROTOM_MOW = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_mow"),
-            new RotomUnit(AbstractBlock.Settings.create()
-                    .strength(2f)
-                    .requiresTool()
-                    .mapColor(MapColor.ORANGE)
-                    .sounds(BlockSoundGroup.STONE), "mow"));
-    public static final Block ROTOM_FRIDGE = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_fridge"),
-            new RotomUnit(AbstractBlock.Settings.create()
-                    .strength(2f)
-                    .requiresTool()
-                    .mapColor(MapColor.ORANGE)
-                    .sounds(BlockSoundGroup.STONE), "frost"));
-    public static final Block ROTOM_OVEN = Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, "rotom_oven"),
-            new RotomUnit(AbstractBlock.Settings.create()
-                    .strength(2f)
-                    .requiresTool()
-                    .mapColor(MapColor.ORANGE)
-                    .sounds(BlockSoundGroup.STONE), "heat"));
+    private static Block registerMeteoridBlock(String name) {
+        return registerBlock(name, new Block(
+                AbstractBlock.Settings.create()
+                        .strength(3f)
+                        .mapColor(MapColor.PURPLE)
+                        .requiresTool()
+                        .sounds(BlockSoundGroup.STONE)
+        ));
+    }
 
     public static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
@@ -268,6 +140,10 @@ public class ModBlocks {
 
     private static void registerBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, name), new BlockItem(block, new Item.Settings()));
+    }
+
+    public static Block registerBlockWithoutItem(String name, Block block) {
+        return Registry.register(Registries.BLOCK, Identifier.of(MegaShowdown.MOD_ID, name), block);
     }
 
     public static void registerBlocks() {

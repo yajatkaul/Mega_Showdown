@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.CobblemonItems;
 import com.cobblemon.yajatkaul.mega_showdown.block.MegaOres;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
-import com.cobblemon.yajatkaul.mega_showdown.block.custom.ReassemblyUnitBlock;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.zygarde.ReassemblyUnitBlock;
 import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;

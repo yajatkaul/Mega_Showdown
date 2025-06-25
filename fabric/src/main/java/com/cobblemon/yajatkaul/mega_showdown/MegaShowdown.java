@@ -9,11 +9,11 @@ import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.creativeMenu.ModItemGroups;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.ModDatapack;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
-import com.cobblemon.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.ModEvents;
-import com.cobblemon.yajatkaul.mega_showdown.event.TrinketEvent;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.CobbleEvents;
+import com.cobblemon.yajatkaul.mega_showdown.event.trinket.TrinketEvents;
 import com.cobblemon.yajatkaul.mega_showdown.item.ItemRegister;
 import com.cobblemon.yajatkaul.mega_showdown.networking.PacketRegister;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
@@ -68,10 +68,10 @@ public class MegaShowdown implements ModInitializer {
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
 
-        ModDatapack.register();
+        DatapackRegister.register();
 
         CobbleEvents.register();
-        TrinketEvent.register();
+        TrinketEvents.register();
     }
 
     private void onServerStarted(MinecraftServer server) {

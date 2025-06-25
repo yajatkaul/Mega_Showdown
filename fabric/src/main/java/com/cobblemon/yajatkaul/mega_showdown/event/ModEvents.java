@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.ItemHandler;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ModEvents {
-    public void register() {
+    public static void register() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.CARTOGRAPHER, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(MegaStones.MEGA_STONE, 1), // Assuming MegaStones.KEYSTONE is an Item
@@ -61,7 +61,7 @@ public class ModEvents {
 
         UseItemCallback.EVENT.register(ItemHandler::useItem);
 
-        UseEntityCallback.EVENT.register(this::useOnEntity);
+        UseEntityCallback.EVENT.register(ModEvents::useOnEntity);
 
         ServerPlayerEvents.JOIN.register((player) -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
@@ -144,7 +144,7 @@ public class ModEvents {
         return mapStack;
     }
 
-    public ActionResult useOnEntity(PlayerEntity player, World world, Hand hand, Entity entity, EntityHitResult entityHitResult) {
+    public static ActionResult useOnEntity(PlayerEntity player, World world, Hand hand, Entity entity, EntityHitResult entityHitResult) {
         if (world.isClient) {
             return ActionResult.PASS;
         }

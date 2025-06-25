@@ -1,8 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown;
 
-import com.cobblemon.yajatkaul.mega_showdown.block.entity.ModBlockEntities;
-import com.cobblemon.yajatkaul.mega_showdown.block.entity.renderer.PedestalBlockEntityRenderer;
-import com.cobblemon.yajatkaul.mega_showdown.item.render.LikosPendantLayer;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntities;
+import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.renderer.PedestalBlockEntityRenderer;
+import com.cobblemon.yajatkaul.mega_showdown.curios.render.LikosPendantLayer;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.cobblemon.yajatkaul.mega_showdown.networking.packets.UltraTrans;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;
@@ -30,8 +30,8 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.MEGA_ITEM_KEY;
-import static com.cobblemon.yajatkaul.mega_showdown.megaevo.Controls.ULTRA_KEY;
+import static com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.Controls.MEGA_ITEM_KEY;
+import static com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.Controls.ULTRA_KEY;
 
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class MegaShowdownClient {

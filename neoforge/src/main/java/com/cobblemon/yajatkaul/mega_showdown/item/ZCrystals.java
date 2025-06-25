@@ -2,10 +2,9 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ElementalZCrystal;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ZCrystal;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zygarde.ZRingItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

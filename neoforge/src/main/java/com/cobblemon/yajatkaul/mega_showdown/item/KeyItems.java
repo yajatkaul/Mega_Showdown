@@ -2,7 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item;
 
 
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.LikosPendant;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.LikosPendant;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 

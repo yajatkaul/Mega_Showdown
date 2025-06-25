@@ -2,7 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.DataPackLoader;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.DataPackRegistriesLoader;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
@@ -95,6 +95,6 @@ public class Utils {
         heldItemsRegistry = registryAccess.get(HELD_ITEMS_REGISTRY_KEY);
         megaRegistry = registryAccess.get(MEGA_REGISTRY_KEY);
 
-        DataPackLoader.registerCustomShowdown();
+        DataPackRegistriesLoader.registerCustomShowdown();
     }
 }
