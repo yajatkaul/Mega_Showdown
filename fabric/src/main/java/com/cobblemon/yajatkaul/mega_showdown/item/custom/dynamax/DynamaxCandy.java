@@ -1,8 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.item.PokemonSelectingItem;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.cobblemon.yajatkaul.mega_showdown.item.impl.MSDPokemonSelectingItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -10,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -18,11 +22,14 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DynamaxCandy extends Item {
+public class DynamaxCandy extends MSDPokemonSelectingItem {
     public DynamaxCandy(Settings settings) {
         super(settings);
     }
@@ -71,44 +78,41 @@ public class DynamaxCandy extends Item {
     }
 
     @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (player.getWorld().isClient || player.isCrawling()) {
-            return ActionResult.PASS;
+    public @Nullable TypedActionResult<ItemStack> applyToPokemon(@NotNull ServerPlayerEntity player, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
+            return TypedActionResult.pass(itemStack);
         }
 
-        if (context instanceof PokemonEntity pk) {
-            Pokemon pokemon = pk.getPokemon();
-            if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
-                return ActionResult.PASS;
+        if (pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10) {
+            pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
+            if (pokemon.getDmaxLevel() == 10) {
+                AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax_candy_max");
             }
-
-            if (pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10) {
-                pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
-                if (pokemon.getDmaxLevel() == 10) {
-                    AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax_candy_max");
-                }
-                if (pokemon.getSpecies().getName().equals("Calyrex")) {
-                    particleEffect(pokemon.getEntity(), ParticleTypes.SOUL_FIRE_FLAME);
-                } else {
-                    particleEffect(pokemon.getEntity(), ParticleTypes.FLAME);
-                }
-                stack.decrement(1);
-
-                return ActionResult.SUCCESS;
-            } else if (pokemon.getDmaxLevel() >= 10 && pokemon.getOwnerPlayer() == player) {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
+            if (pokemon.getSpecies().getName().equals("Calyrex")) {
+                particleEffect(pokemon.getEntity(), ParticleTypes.SOUL_FIRE_FLAME);
+            } else {
+                particleEffect(pokemon.getEntity(), ParticleTypes.FLAME);
             }
+            itemStack.decrementUnlessCreative(1, player);
+
+            return TypedActionResult.success(itemStack);
+        } else if (pokemon.getDmaxLevel() >= 10 && pokemon.getOwnerPlayer() == player) {
+            player.sendMessage(
+                    Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    true
+            );
         }
-
-        return super.useOnEntity(stack, player, context, hand);
+        return TypedActionResult.pass(itemStack);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.translatable("tooltip.mega_showdown.dynamax_candy.tooltip"));
         super.appendTooltip(stack, context, tooltip, type);
+    }
+
+    @Override
+    public boolean canUseOnPokemon (@NotNull Pokemon pokemon) {
+        return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel();
     }
 }

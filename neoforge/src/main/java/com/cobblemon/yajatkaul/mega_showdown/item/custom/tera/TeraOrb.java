@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.item.custom;
+package com.cobblemon.yajatkaul.mega_showdown.item.custom.tera;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -17,8 +17,8 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import java.util.List;
 import java.util.Optional;
 
-public class TeraItem extends Item {
-    public TeraItem(Properties arg) {
+public class TeraOrb extends Item {
+    public TeraOrb(Properties arg) {
         super(arg);
     }
 

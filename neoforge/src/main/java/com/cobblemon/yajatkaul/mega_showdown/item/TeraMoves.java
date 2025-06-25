@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraShard;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraOrb;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -9,7 +9,7 @@ import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.ITEMS;
 
 public class TeraMoves {
     public static final DeferredItem<Item> TERA_ORB = ITEMS.register("tera_orb",
-            () -> new TeraItem(new Item.Properties().stacksTo(1).durability(100)));
+            () -> new TeraOrb(new Item.Properties().stacksTo(1).durability(100)));
 
     public static final DeferredItem<Item> BUG_TERA_SHARD = ITEMS.register("bug_tera_shard",
             () -> new TeraShard(new Item.Properties().stacksTo(50)));

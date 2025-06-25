@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
+import com.cobblemon.mod.common.api.item.HealingSource;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
@@ -32,9 +33,10 @@ import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -164,7 +166,7 @@ public class CobbleEventHandler {
     }
 
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
-        LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
+        PokemonEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
         AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z/z_moves");
@@ -173,19 +175,8 @@ public class CobbleEventHandler {
             AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
-        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 140, 0, false, false));
-
-        if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
-            ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-
-            Team team = scoreboard.getTeam(teamName);
-            if (team == null) {
-                team = scoreboard.addTeam(teamName);
-                team.setColor(getGlowColorForType(pk.getHeldItem$common()));
-            }
-
-            scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);
+        if(pokemon != null){
+            GlowHandler.applyZGlow(pokemon);
         }
 
         LazyLib.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", "target");
@@ -233,22 +224,7 @@ public class CobbleEventHandler {
             accessor.setTeraEnabled(true);
         }
 
-        pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
-
-        if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
-            ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-
-            Team team = scoreboard.getTeam(teamName);
-
-            Formatting color = getGlowColorForTeraType(terastallizationEvent.getPokemon().getEffectedPokemon().getTeraType());
-            if (team == null) {
-                team = scoreboard.addTeam(teamName);
-                team.setColor(color);
-            }
-
-            scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);
-        }
+        GlowHandler.applyTeraGlow(pokemon);
 
         PlayerEntity player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
 
@@ -294,11 +270,10 @@ public class CobbleEventHandler {
     }
 
     public static Unit healedPokemons(PokemonHealedEvent pokemonHealedEvent) {
-        if (pokemonHealedEvent.getPokemon().getOwnerPlayer() == null) {
+        ServerPlayerEntity player = pokemonHealedEvent.getPokemon().getOwnerPlayer();
+        if(player == null || pokemonHealedEvent.getSource() != HealingSource.Force.INSTANCE){
             return Unit.INSTANCE;
         }
-
-        PlayerEntity player = pokemonHealedEvent.getPokemon().getOwnerPlayer();
 
         ItemStack teraOrb = TrinketsApi.getTrinketComponent(player)
                 .flatMap(component -> component.getAllEquipped().stream()
@@ -594,21 +569,7 @@ public class CobbleEventHandler {
         Pokemon pk = pokemonSentPostEvent.getPokemon();
 
         if (pk instanceof TeraAccessor accessor && accessor.isTeraEnabled()) {
-            if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
-                pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
-                ServerScoreboard scoreboard = serverLevel.getScoreboard();
-                String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-
-                Team team = scoreboard.getTeam(teamName);
-
-                Formatting color = getGlowColorForTeraType(pk.getTeraType());
-                if (team == null) {
-                    team = scoreboard.addTeam(teamName);
-                    team.setColor(color);
-                }
-
-                scoreboard.addScoreHolderToTeam(pokemon.getUuid().toString(), team);
-            }
+            GlowHandler.applyTeraGlow(pokemon);
         }
 
         return Unit.INSTANCE;

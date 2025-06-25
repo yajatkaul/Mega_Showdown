@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.item.custom;
+package com.cobblemon.yajatkaul.mega_showdown.item.custom.tera;
 
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;

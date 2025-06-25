@@ -2,7 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event.trinkets;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.BattleRegistry;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketsApi;

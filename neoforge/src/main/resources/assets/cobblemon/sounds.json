@@ -382,5 +382,29 @@
         "volume": 0.8
       }
     ]
+  },
+  "pokemon.zygarde.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zygarde_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.zygarde10.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zygarde_10_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.zygarde100.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/zygarde_complete_cry",
+        "volume": 0.8
+      }
+    ]
   }
 }

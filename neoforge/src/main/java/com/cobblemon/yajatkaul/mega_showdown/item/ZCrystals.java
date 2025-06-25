@@ -1,7 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.mod.common.api.types.ElementalType;
+import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ElementalZCrystal;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ZCrystal;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,15 +17,6 @@ import java.util.List;
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.ITEMS;
 
 public class ZCrystals {
-    public static final DeferredItem<Item> ALORAICHIUM_Z = ITEMS.register("aloraichium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.aloraichium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
     public static final DeferredItem<Item> BLANK_Z = ITEMS.register("blank-z",
             () -> new Item(new Item.Properties()) {
                 @Override
@@ -31,311 +26,42 @@ public class ZCrystals {
                 }
             });
 
-    public static final DeferredItem<Item> BUGINIUM_Z = ITEMS.register("buginium-z",
-            () -> new ArceusType(new Item.Properties(), "bug") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.buginium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
+    public static final DeferredItem<Item> BUGINIUM_Z = registerElementalZCrystal("buginium-z", ElementalTypes.INSTANCE.getBUG(), "bug");
+    public static final DeferredItem<Item> DARKINIUM_Z = registerElementalZCrystal("darkinium-z", ElementalTypes.INSTANCE.getDARK(), "dark");
+    public static final DeferredItem<Item> DECIDIUM_Z = registerZCrystal("decidium-z", ElementalTypes.INSTANCE.getGHOST());
+    public static final DeferredItem<Item> DRAGONIUM_Z = registerElementalZCrystal("dragonium-z", ElementalTypes.INSTANCE.getDRAGON(), "dragon");
+    public static final DeferredItem<Item> EEVIUM_Z = registerZCrystal("eevium-z", ElementalTypes.INSTANCE.getNORMAL());
+    public static final DeferredItem<Item> ELECTRIUM_Z = registerElementalZCrystal("electrium-z", ElementalTypes.INSTANCE.getELECTRIC(), "electric");
+    public static final DeferredItem<Item> FAIRIUM_Z = registerElementalZCrystal("fairium-z", ElementalTypes.INSTANCE.getFAIRY(), "fairy");
+    public static final DeferredItem<Item> FIGHTINIUM_Z = registerElementalZCrystal("fightinium-z", ElementalTypes.INSTANCE.getFIGHTING(), "fighting");
+    public static final DeferredItem<Item> FIRIUM_Z = registerElementalZCrystal("firium-z", ElementalTypes.INSTANCE.getFIRE(), "fire");
+    public static final DeferredItem<Item> FLYINIUM_Z = registerElementalZCrystal("flyinium-z", ElementalTypes.INSTANCE.getFLYING(), "flying");
+    public static final DeferredItem<Item> GHOSTIUM_Z = registerElementalZCrystal("ghostium-z", ElementalTypes.INSTANCE.getGHOST(), "ghost");
+    public static final DeferredItem<Item> GRASSIUM_Z = registerElementalZCrystal("grassium-z", ElementalTypes.INSTANCE.getGRASS(), "grass");
+    public static final DeferredItem<Item> GROUNDIUM_Z = registerElementalZCrystal("groundium-z", ElementalTypes.INSTANCE.getGROUND(), "ground");
+    public static final DeferredItem<Item> ICIUM_Z = registerElementalZCrystal("icium-z", ElementalTypes.INSTANCE.getICE(), "ice");
+    public static final DeferredItem<Item> INCINIUM_Z = registerZCrystal("incinium-z", ElementalTypes.INSTANCE.getDARK());
+    public static final DeferredItem<Item> KOMMONIUM_Z = registerZCrystal("kommonium-z", ElementalTypes.INSTANCE.getDRAGON());
+    public static final DeferredItem<Item> LUNALIUM_Z = registerZCrystal("lunalium-z", ElementalTypes.INSTANCE.getGHOST());
+    public static final DeferredItem<Item> LYCANIUM_Z = registerZCrystal("lycanium-z", ElementalTypes.INSTANCE.getROCK());
+    public static final DeferredItem<Item> MARSHADIUM_Z = registerZCrystal("marshadium-z", ElementalTypes.INSTANCE.getGHOST());
+    public static final DeferredItem<Item> MEWNIUM_Z = registerZCrystal("mewnium-z", ElementalTypes.INSTANCE.getPSYCHIC());
+    public static final DeferredItem<Item> MIMIKIUM_Z = registerZCrystal("mimikium-z", ElementalTypes.INSTANCE.getFAIRY());
+    public static final DeferredItem<Item> NORMALIUM_Z = registerZCrystal("normalium-z", ElementalTypes.INSTANCE.getNORMAL());
+    public static final DeferredItem<Item> PIKANIUM_Z = registerZCrystal("pikanium-z", ElementalTypes.INSTANCE.getELECTRIC());
+    public static final DeferredItem<Item> PIKASHUNIUM_Z = registerZCrystal("pikashunium-z", ElementalTypes.INSTANCE.getELECTRIC());
+    public static final DeferredItem<Item> POISONIUM_Z = registerElementalZCrystal("poisonium-z", ElementalTypes.INSTANCE.getPOISON(), "poison");
+    public static final DeferredItem<Item> PRIMARIUM_Z = registerZCrystal("primarium-z", ElementalTypes.INSTANCE.getWATER()); // Assuming Primarina = Water
+    public static final DeferredItem<Item> PSYCHIUM_Z = registerElementalZCrystal("psychium-z", ElementalTypes.INSTANCE.getPSYCHIC(), "psychic");
+    public static final DeferredItem<Item> ROCKIUM_Z = registerElementalZCrystal("rockium-z", ElementalTypes.INSTANCE.getROCK(), "rock");
+    public static final DeferredItem<Item> SNORLIUM_Z = registerZCrystal("snorlium-z", ElementalTypes.INSTANCE.getNORMAL());
+    public static final DeferredItem<Item> SOLGANIUM_Z = registerZCrystal("solganium-z", ElementalTypes.INSTANCE.getSTEEL());
+    public static final DeferredItem<Item> STEELIUM_Z = registerElementalZCrystal("steelium-z", ElementalTypes.INSTANCE.getSTEEL(), "steel");
+    public static final DeferredItem<Item> TAPUNIUM_Z = registerZCrystal("tapunium-z", ElementalTypes.INSTANCE.getFAIRY());
+    public static final DeferredItem<Item> ULTRANECROZIUM_Z = registerZCrystal("ultranecrozium-z", ElementalTypes.INSTANCE.getPSYCHIC());
+    public static final DeferredItem<Item> WATERIUM_Z = registerElementalZCrystal("waterium-z", ElementalTypes.INSTANCE.getWATER(), "water");
+    public static final DeferredItem<Item> ALORAICHIUM_Z = registerZCrystal("aloraichium-z", ElementalTypes.INSTANCE.getELECTRIC());
 
-    public static final DeferredItem<Item> DARKINIUM_Z = ITEMS.register("darkinium-z",
-            () -> new ArceusType(new Item.Properties(), "dark") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.darkinium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> DECIDIUM_Z = ITEMS.register("decidium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.decidium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> DRAGONIUM_Z = ITEMS.register("dragonium-z",
-            () -> new ArceusType(new Item.Properties(), "dragon") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.dragonium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> EEVIUM_Z = ITEMS.register("eevium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.eevium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> ELECTRIUM_Z = ITEMS.register("electrium-z",
-            () -> new ArceusType(new Item.Properties(), "electric") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electrium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> FAIRIUM_Z = ITEMS.register("fairium-z",
-            () -> new ArceusType(new Item.Properties(), "fairy") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fairium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> FIGHTINIUM_Z = ITEMS.register("fightinium-z",
-            () -> new ArceusType(new Item.Properties(), "fighting") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.fightinium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> FIRIUM_Z = ITEMS.register("firium-z",
-            () -> new ArceusType(new Item.Properties(), "fire") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.firium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> FLYINIUM_Z = ITEMS.register("flyinium-z",
-            () -> new ArceusType(new Item.Properties(), "flying") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.flyinium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> GHOSTIUM_Z = ITEMS.register("ghostium-z",
-            () -> new ArceusType(new Item.Properties(), "ghost") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ghostium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> GRASSIUM_Z = ITEMS.register("grassium-z",
-            () -> new ArceusType(new Item.Properties(), "grass") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.grassium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> GROUNDIUM_Z = ITEMS.register("groundium-z",
-            () -> new ArceusType(new Item.Properties(), "ground") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.groundium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> ICIUM_Z = ITEMS.register("icium-z",
-            () -> new ArceusType(new Item.Properties(), "ice") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.icium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> INCINIUM_Z = ITEMS.register("incinium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.incinium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> KOMMONIUM_Z = ITEMS.register("kommonium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.kommonium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> LUNALIUM_Z = ITEMS.register("lunalium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.lunalium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> LYCANIUM_Z = ITEMS.register("lycanium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.lycanium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> MARSHADIUM_Z = ITEMS.register("marshadium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.marshadium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> MEWNIUM_Z = ITEMS.register("mewnium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.mewnium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> MIMIKIUM_Z = ITEMS.register("mimikium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.mimikium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> NORMALIUM_Z = ITEMS.register("normalium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.normalium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> PIKANIUM_Z = ITEMS.register("pikanium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.pikanium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> PIKASHUNIUM_Z = ITEMS.register("pikashunium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.pikashunium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> POISONIUM_Z = ITEMS.register("poisonium-z",
-            () -> new ArceusType(new Item.Properties(), "poison") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.poisonium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> PRIMARIUM_Z = ITEMS.register("primarium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.primarium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> PSYCHIUM_Z = ITEMS.register("psychium-z",
-            () -> new ArceusType(new Item.Properties(), "physic") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.psychium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> ROCKIUM_Z = ITEMS.register("rockium-z",
-            () -> new ArceusType(new Item.Properties(), "rock") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.rockium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> SNORLIUM_Z = ITEMS.register("snorlium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.snorlium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> SOLGANIUM_Z = ITEMS.register("solganium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.solganium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> STEELIUM_Z = ITEMS.register("steelium-z",
-            () -> new ArceusType(new Item.Properties(), "steel") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.steelium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> TAPUNIUM_Z = ITEMS.register("tapunium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.tapunium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> ULTRANECROZIUM_Z = ITEMS.register("ultranecrozium-z",
-            () -> new Item(new Item.Properties()) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.ultranecrozium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
-
-    public static final DeferredItem<Item> WATERIUM_Z = ITEMS.register("waterium-z",
-            () -> new ArceusType(new Item.Properties(), "water") {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                    tooltipComponents.add(Component.translatable("tooltip.mega_showdown.waterium-z.tooltip"));
-                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-                }
-            });
 
     public static final DeferredItem<Item> SPARKLING_STONE_LIGHT = ITEMS.register("sparkling_stone_light",
             () -> new Item(new Item.Properties()) {
@@ -386,6 +112,26 @@ public class ZCrystals {
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> NANU_Z_POWER_RING = ITEMS.register("nanu_z-power_ring",
             () -> new ZRingItem(new Item.Properties().stacksTo(1)));
+
+    private static DeferredItem<Item> registerZCrystal(String id, ElementalType type) {
+        return ITEMS.register(id, () -> new ZCrystal(new Item.Properties(), type) {
+            @Override
+            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+                tooltip.add(Component.translatable("tooltip.mega_showdown." + id + ".tooltip"));
+                super.appendHoverText(stack, context, tooltip, flag);
+            }
+        });
+    }
+
+    private static DeferredItem<Item> registerElementalZCrystal(String id, ElementalType type, String typeName) {
+        return ITEMS.register(id, () -> new ElementalZCrystal(new Item.Properties(), type, typeName) {
+            @Override
+            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+                tooltip.add(Component.translatable("tooltip.mega_showdown." + id + ".tooltip"));
+                super.appendHoverText(stack, context, tooltip, flag);
+            }
+        });
+    }
 
     public static void register() {
     }

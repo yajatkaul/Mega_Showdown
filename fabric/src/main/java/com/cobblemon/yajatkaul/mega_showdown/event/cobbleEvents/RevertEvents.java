@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;

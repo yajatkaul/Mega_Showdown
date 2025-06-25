@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraShard;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import net.minecraft.item.Item;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;

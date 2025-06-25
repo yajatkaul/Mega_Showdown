@@ -2,10 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.event.dynamax;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import kotlin.Unit;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -50,8 +52,7 @@ public class DynamaxEventLogic {
                 AdvancementHelper.grantAdvancement(pokemon.getEffectedPokemon().getOwnerPlayer(), "dynamax/dynamax");
             }
 
-            pokemon.getEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
-            LivingEntity pokemonEntity = pokemon.getEntity();
+            PokemonEntity pokemonEntity = pokemon.getEntity();
             Vec3d entityPos = pokemonEntity.getPos();
 
             pokemonEntity.getWorld().playSound(
@@ -66,20 +67,7 @@ public class DynamaxEventLogic {
 
             startGradualScaling(pokemonEntity, MegaShowdownConfig.dynamaxScaleFactor.get());
 
-            if (pokemon.getEntity().getWorld() instanceof ServerWorld serverLevel) {
-                ServerScoreboard scoreboard = serverLevel.getScoreboard();
-                String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-                Team team = scoreboard.getTeam(teamName);
-                if (team == null) {
-                    team = scoreboard.addTeam(teamName);
-                    if (pokemon.getEffectedPokemon().getSpecies().getName().equals("Calyrex")) {
-                        team.setColor(Formatting.BLUE);
-                    } else {
-                        team.setColor(Formatting.RED);
-                    }
-                }
-                scoreboard.addScoreHolderToTeam(pokemon.getEntity().getUuid().toString(), team);
-            }
+            GlowHandler.applyDynamaxGlow(pokemonEntity);
 
             battle.dispatchWaitingToFront(3F, () -> {
                 LazyLib.Companion.cryAnimation(pokemon.getEntity());

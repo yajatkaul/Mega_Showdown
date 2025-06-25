@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
+import com.cobblemon.mod.common.api.item.HealingSource;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
@@ -32,9 +33,10 @@ import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraOrb;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -137,7 +139,7 @@ public class CobbleEventsHandler {
     }
 
     public static Unit zMovesUsed(ZMoveUsedEvent zMoveUsedEvent) {
-        LivingEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
+        PokemonEntity pokemon = zMoveUsedEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = zMoveUsedEvent.getPokemon().getEffectedPokemon();
 
         AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "z/z_moves");
@@ -146,21 +148,8 @@ public class CobbleEventsHandler {
             AdvancementHelper.grantAdvancement(pk.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
-        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 140, 0, false, false));
-
-        if (pokemon.level() instanceof ServerLevel serverLevel) {
-            ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-
-            PlayerTeam team = scoreboard.getPlayerTeam(teamName);
-            if (team == null) {
-                team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(getGlowColorForType(pk.getHeldItem$common()));
-                team.setSeeFriendlyInvisibles(false);
-                team.setAllowFriendlyFire(true);
-            }
-
-            scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
+        if(pokemon != null){
+            GlowHandler.applyZGlow(pokemon);
         }
 
         LazyLib.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", "target");
@@ -182,7 +171,7 @@ public class CobbleEventsHandler {
     }
 
     public static Unit terrastallizationUsed(TerastallizationEvent terastallizationEvent) {
-        LivingEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
+        PokemonEntity pokemon = terastallizationEvent.getPokemon().getEffectedPokemon().getEntity();
         Pokemon pk = terastallizationEvent.getPokemon().getEffectedPokemon();
         Vec3 entityPos = pokemon.position();
 
@@ -207,32 +196,13 @@ public class CobbleEventsHandler {
             accessor.setTeraEnabled(true);
         }
 
-        pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
-
-        if (pokemon.level() instanceof ServerLevel serverLevel) {
-            ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-
-            PlayerTeam team = scoreboard.getPlayerTeam(teamName);
-
-            TeraType teraType = terastallizationEvent.getPokemon().getEffectedPokemon().getTeraType();
-
-            ChatFormatting color = getGlowColorForTeraType(teraType);
-            if (team == null) {
-                team = scoreboard.addPlayerTeam(teamName);
-                team.setColor(color);
-                team.setSeeFriendlyInvisibles(false);
-                team.setAllowFriendlyFire(true);
-            }
-
-            scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
-        }
+        GlowHandler.applyTeraGlow(pokemon);
 
         Player player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
 
         CuriosApi.getCuriosInventory(player)
                 .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
-                        stack -> (stack.getItem() instanceof TeraItem)
+                        stack -> (stack.getItem() instanceof TeraOrb)
                 ))
                 .map(SlotResult::stack).ifPresent(teraOrb -> teraOrb.setDamageValue(teraOrb.getDamageValue() + 10));
 
@@ -245,13 +215,13 @@ public class CobbleEventsHandler {
     }
 
     public static Unit healedPokemons(PokemonHealedEvent pokemonHealedEvent) {
-        if (pokemonHealedEvent.getPokemon().getOwnerPlayer() == null) {
+        ServerPlayer player = pokemonHealedEvent.getPokemon().getOwnerPlayer();
+        if(player == null || pokemonHealedEvent.getSource() != HealingSource.Force.INSTANCE){
             return Unit.INSTANCE;
         }
-
         ItemStack teraOrb = CuriosApi.getCuriosInventory(pokemonHealedEvent.getPokemon().getOwnerPlayer())
                 .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
-                        stack -> (stack.getItem() instanceof TeraItem)
+                        stack -> (stack.getItem() instanceof TeraOrb)
                 ))
                 .map(SlotResult::stack)
                 .orElse(null);
@@ -562,26 +532,7 @@ public class CobbleEventsHandler {
         Pokemon pk = pokemonSentPostEvent.getPokemon();
 
         if ((pk instanceof TeraAccessor accessor) && accessor.isTeraEnabled()) {
-            pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
-
-            if (pokemon.level() instanceof ServerLevel serverLevel) {
-                ServerScoreboard scoreboard = serverLevel.getScoreboard();
-                String teamName = "glow_" + UUID.randomUUID().toString().substring(0, 8);
-
-                PlayerTeam team = scoreboard.getPlayerTeam(teamName);
-
-                TeraType teraType = pk.getTeraType();
-
-                ChatFormatting color = getGlowColorForTeraType(teraType);
-                if (team == null) {
-                    team = scoreboard.addPlayerTeam(teamName);
-                    team.setColor(color);
-                    team.setSeeFriendlyInvisibles(false);
-                    team.setAllowFriendlyFire(true);
-                }
-
-                scoreboard.addPlayerToTeam(pokemon.getScoreboardName(), team);
-            }
+            GlowHandler.applyTeraGlow(pokemon);
         }
 
         return Unit.INSTANCE;

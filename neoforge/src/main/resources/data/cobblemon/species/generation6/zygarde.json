@@ -47,6 +47,12 @@
     "height": 3,
     "fixed": false
   },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    }
+  },
   "baseExperienceYield": 300,
   "experienceGroup": "slow",
   "catchRate": 3,
@@ -191,6 +197,18 @@
         "speed": 115
       },
       "baseExperienceYield": 243,
+	  "behaviour": {
+		 "resting": {
+		 "canSleep": true,
+		 "light": "0-4"
+		 },
+		 "moving": {
+			"walk": {
+			"canWalk": true,
+			"walkSpeed": 0.147
+			}
+		}
+	  },
       "moves": [
         "1:bulldoze",
         "1:dragonbreath",
@@ -327,6 +345,12 @@
         "special_defence": 85,
         "speed": 115
       },
+	  "behaviour": {
+		 "resting": {
+		 "canSleep": true,
+		 "light": "0-4"
+		 }
+	  },
       "baseExperienceYield": 243,
       "moves": [
         "1:bulldoze",
@@ -456,6 +480,12 @@
         "powerconstruct",
         "h:powerconstruct"
       ],
+	  "behaviour": {
+		 "resting": {
+		 "canSleep": true,
+		 "light": "0-4"
+		 }
+	  },
       "moves": [
         "1:bulldoze",
         "1:dragonbreath",

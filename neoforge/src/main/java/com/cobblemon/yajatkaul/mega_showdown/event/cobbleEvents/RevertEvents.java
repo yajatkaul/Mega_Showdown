@@ -16,7 +16,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.TeraItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraOrb;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
@@ -155,12 +155,12 @@ public class RevertEvents {
             }
 
             boolean hasTeraItemCurios = CuriosApi.getCuriosInventory(player)
-                    .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof TeraItem)))
+                    .map(inventory -> inventory.isEquipped(stack -> (stack.getItem() instanceof TeraOrb)))
                     .orElse(false);
 
             ItemStack teraOrb = CuriosApi.getCuriosInventory(player)
                     .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
-                            stack -> (stack.getItem() instanceof TeraItem)
+                            stack -> (stack.getItem() instanceof TeraOrb)
                     ))
                     .map(SlotResult::stack)
                     .orElse(null);

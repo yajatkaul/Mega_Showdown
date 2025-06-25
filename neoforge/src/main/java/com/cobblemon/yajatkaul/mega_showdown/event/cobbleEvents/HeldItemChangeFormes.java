@@ -18,6 +18,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Drives;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.Memory;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ElementalZCrystal;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
@@ -105,7 +106,24 @@ public class HeldItemChangeFormes {
                     pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                     return Unit.INSTANCE;
                 });
-            } else if (post.getReturned().getItem() instanceof ArceusType) {
+            } if (post.getReceived().getItem() instanceof ElementalZCrystal crystal) {
+                pokemonEntity.level().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        ModSounds.ARCEUS_MULTITYPE.get(),
+                        SoundSource.PLAYERS, 0.2f, 1.3f
+                );
+
+                LazyLib.Companion.snowStormPartileSpawner(pokemon.getEntity(),
+                        "arceus_" + crystal.getType(), "target");
+                pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+                pokemon.getEntity().after(3F, () -> {
+                    new StringSpeciesFeature("multitype", crystal.getType()).apply(pokemon);
+                    LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                    pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                    return Unit.INSTANCE;
+                });
+            } else if (post.getReturned().getItem() instanceof ArceusType || post.getReturned().getItem() instanceof ElementalZCrystal) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "normal").apply(pokemon);
                 LazyLib.Companion.cryAnimation(pokemon.getEntity());

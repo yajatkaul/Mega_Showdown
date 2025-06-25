@@ -6,27 +6,13 @@
       "aspects": [],
       "poser": "cobblemon:zygarde",
       "model": "cobblemon:zygarde.geo",
-      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde.png",
-      "layers": [
-        {
-          "name": "glow",
-          "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_emissive.png",
-          "emissive": true
-        }
-      ]
+      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde.png"
     },
     {
       "aspects": [
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_shiny.png",
-      "layers": [
-        {
-          "name": "glow",
-          "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_shiny_emissive.png",
-          "emissive": true
-        }
-      ]
+      "texture": "cobblemon:textures/pokemon/0718_zygarde/zygarde_shiny.png"
     }
   ]
 }

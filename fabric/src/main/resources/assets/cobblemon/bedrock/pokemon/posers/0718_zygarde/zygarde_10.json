@@ -1,62 +1,56 @@
 {
-  "head": "head",
-  "portraitScale": 2.1,
-  "portraitTranslation": [
-    -1,
-    1,
-    0
-  ],
-  "profileScale": 0.8,
-  "profileTranslation": [
-    0.05,
-    0.6,
-    0
-  ],
+  "portraitScale": 2,
+  "portraitTranslation": [-0.7, 0.9, 0],
+  "profileScale": 0.75,
+  "profileTranslation": [0.05, 0.7, -10],
+  "rootBone": "zygarde",
+  "animations": {
+    "cry": "q.bedrock_stateful('zygarde_10', 'cry')",
+	"faint": "q.bedrock_primary('zygarde_10', 'faint', q.curve('one'))",
+    "recoil": "q.bedrock_stateful('zygarde_10', 'recoil')",
+    "physical": "q.bedrock_primary('zygarde_10', 'physical', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('zygarde_10', 'special', q.curve('symmetrical_wide'))",
+    "status": "q.bedrock_primary('zygarde_10', 'status', q.curve('symmetrical_wide'))"
+  },
   "poses": {
-    "standing": {
-      "poseName": "standing",
-      "transformTicks": 10,
-      "poseTypes": [
-        "STAND",
-        "NONE",
-        "PORTRAIT",
-        "PROFILE",
-        "HOVER"
-      ],
-      "animations": [
-        "look",
-        "bedrock(zygarde_10, ground_idle)",
-        "bedrock(zygarde_10, scarf_move)"
-      ],
+    "portrait": {
+      "poseTypes": ["PORTRAIT", "PROFILE"],
+      "isBattle": false,
+      "isTouchingWater": false,
+      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'ground_idle')"],
+      "quirks": []
+    },
+    "battle-standing": {
+      "poseTypes": ["STAND"],
+      "isBattle": true,
+      "isTouchingWater": false,
+      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'battle_idle')"],
       "quirks": [
-        {
-          "name": "eartwitch",
-          "animations": [
-            "bedrock(zygarde_10, quirk)"
-          ]
-        }
+      ],
+      "namedAnimations": {
+      }
+    },
+    "standing": {
+      "poseTypes": ["STAND", "NONE"],
+      "isBattle": false,
+      "isTouchingWater": false,
+      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'ground_idle')"],
+      "quirks": [
       ]
     },
     "walking": {
-      "poseName": "walking",
-      "transformTicks": 10,
-      "poseTypes": [
-        "WALK",
-        "FLY"
-      ],
-      "animations": [
-        "look",
-        "bedrock(zygarde_10, ground_walk)",
-        "bedrock(zygarde_10, scarf_move)"
-      ],
-      "quirks": [
-        {
-          "name": "eartwitch",
-          "animations": [
-            "bedrock(zygarde_10, quirk)"
-          ]
-        }
-      ]
+      "poseTypes": ["WALK", "SWIM"],
+      "isTouchingWater": false,
+      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'walk')"],
+      "quirks": []
+    },
+    "sleep": {
+      "poseTypes": ["SLEEP"],
+      "animations": ["q.bedrock('zygarde_10', 'sleep')"],
+      "quirks": [],
+      "namedAnimations": {
+        "cry": "q.bedrock_stateful('dummy', 'cry')"
+      }
     }
   }
 }

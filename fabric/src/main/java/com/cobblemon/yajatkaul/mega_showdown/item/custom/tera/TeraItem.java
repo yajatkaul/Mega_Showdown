@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.item.custom;
+package com.cobblemon.yajatkaul.mega_showdown.item.custom.tera;
 
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
