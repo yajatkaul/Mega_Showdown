@@ -31,20 +31,11 @@ import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
-<<<<<<< HEAD:neoforge/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobblemon/handlers/RevertEventsHandler.java
 public class RevertEventsHandler {
     public static Unit battleEnded(BattleVictoryEvent battleVictoryEvent) {
         battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
             for (Pokemon pokemon : playerPartyStore) {
-=======
-public class RevertEvents {
-    public static Unit hookBattleEnded(BattleStartedPostEvent event) {
-        event.getBattle().getOnEndHandlers().add(battle -> {
-            battle.getPlayers().forEach(serverPlayer -> {
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-                for (Pokemon pokemon : playerPartyStore) {
->>>>>>> be87f423a0205609fa405f76efc9693ee8eefb12:neoforge/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobbleEvents/RevertEvents.java
 
                     EventUtils.revertFormesEnd(pokemon);
 

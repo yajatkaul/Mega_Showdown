@@ -38,14 +38,7 @@ public class CobbleEvents {
 
         CobblemonEvents.THROWN_POKEBALL_HIT.subscribe(Priority.NORMAL, CobbleEventsHandler::pokeballHit);
 
-<<<<<<< HEAD:neoforge/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobblemon/CobbleEvents.java
         NeoForge.EVENT_BUS.register(new DynamaxEventHandler());
         NeoForge.EVENT_BUS.register(new UltraBurstEventHandler());
-=======
-        NeoForge.EVENT_BUS.register(new DynamaxEventListener());
-        NeoForge.EVENT_BUS.register(new UltraEventListener());
-
-        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, RevertEvents::hookBattleEnded);
->>>>>>> be87f423a0205609fa405f76efc9693ee8eefb12:neoforge/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/CobbleEvents.java
     }
 }

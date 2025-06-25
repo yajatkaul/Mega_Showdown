@@ -35,14 +35,7 @@ public class CobbleEvents {
 
         CobblemonEvents.THROWN_POKEBALL_HIT.subscribe(Priority.NORMAL, CobbleEventsHandler::pokeballHit);
 
-<<<<<<< HEAD:fabric/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobblemon/CobbleEvents.java
         DynamaxEvent.register();
         UltraBurstEventHandler.register();
-=======
-        DynamaxEventLogic.register();
-        UltraEventLogic.register();
-
-        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, RevertEvents::hookBattleEnded);
->>>>>>> be87f423a0205609fa405f76efc9693ee8eefb12:fabric/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/CobbleEvents.java
     }
 }
