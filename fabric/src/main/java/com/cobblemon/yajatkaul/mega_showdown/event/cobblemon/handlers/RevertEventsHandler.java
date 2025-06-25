@@ -2,9 +2,13 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
+<<<<<<< HEAD:fabric/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobblemon/handlers/RevertEventsHandler.java
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
+=======
+import com.cobblemon.mod.common.api.events.battles.*;
+>>>>>>> be87f423a0205609fa405f76efc9693ee8eefb12:fabric/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobbleEvents/RevertEvents.java
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
@@ -134,6 +138,29 @@ public class RevertEventsHandler {
         return false; // Not found
     }
 
+<<<<<<< HEAD:fabric/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobblemon/handlers/RevertEventsHandler.java
+=======
+    public static Unit hookBattleEnded(BattleStartedPostEvent event) {
+        event.getBattle().getOnEndHandlers().add(battle -> {
+            battle.getPlayers().forEach(serverPlayer -> {
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
+                for (Pokemon pokemon : playerPartyStore) {
+
+                    EventUtils.revertFormesEnd(pokemon);
+
+                    if (pokemon.getEntity() != null) {
+                        pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
+                    }
+                }
+            });
+
+            return Unit.INSTANCE;
+        });
+
+        return Unit.INSTANCE;
+    }
+
+>>>>>>> be87f423a0205609fa405f76efc9693ee8eefb12:fabric/src/main/java/com/cobblemon/yajatkaul/mega_showdown/event/cobbleEvents/RevertEvents.java
     public static Unit devolveFainted(BattleFaintedEvent battleFaintedEvent) {
         Pokemon pokemon = battleFaintedEvent.getKilled().getOriginalPokemon();
         ServerPlayerEntity serverPlayer = battleFaintedEvent.getKilled().getOriginalPokemon().getOwnerPlayer();
