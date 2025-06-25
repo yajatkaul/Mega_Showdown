@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
@@ -151,7 +151,7 @@ public class DynamaxEventListener {
         }
 
         event.getBattle().dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
+            SnowStormHandler.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
             return Unit.INSTANCE;
         });
     }

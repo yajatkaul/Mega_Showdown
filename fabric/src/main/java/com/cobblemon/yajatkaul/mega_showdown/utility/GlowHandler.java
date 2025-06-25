@@ -16,7 +16,7 @@ import net.minecraft.util.Formatting;
 import java.util.Locale;
 
 public class GlowHandler {
-    public static void applyDynamaxGlow (PokemonEntity pokemonEntity) {
+    public static void applyDynamaxGlow(PokemonEntity pokemonEntity) {
         if (pokemonEntity.getWorld() instanceof ServerWorld serverLevel) {
             pokemonEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
@@ -26,8 +26,7 @@ public class GlowHandler {
             if (pokemonEntity.getPokemon().getSpecies().getName().equalsIgnoreCase("calyrex")) {
                 teamName = "glow_dynamax_blue";
                 teamColour = Formatting.BLUE;
-            }
-            else {
+            } else {
                 teamName = "glow_dynamax_red";
                 teamColour = Formatting.RED;
             }
@@ -41,7 +40,7 @@ public class GlowHandler {
         }
     }
 
-    public static void applyTeraGlow (PokemonEntity pokemon) {
+    public static void applyTeraGlow(PokemonEntity pokemon) {
         if (pokemon.getWorld() instanceof ServerWorld serverLevel) {
             pokemon.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Integer.MAX_VALUE, 0, false, false));
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
@@ -59,12 +58,11 @@ public class GlowHandler {
         }
     }
 
-    public static void applyZGlow (PokemonEntity pokemon) {
+    public static void applyZGlow(PokemonEntity pokemon) {
         ElementalType type;
         if (pokemon.getPokemon().heldItem().getItem() instanceof ZCrystal crystal) {
             type = crystal.getElement();
-        }
-        else { // Only possible if the crystal is a custom item not controlled by GTG.
+        } else { // Only possible if the crystal is a custom item not controlled by GTG.
             type = pokemon.getPokemon().getPrimaryType();
         }
 
@@ -85,13 +83,14 @@ public class GlowHandler {
         }
     }
 
-    private static Formatting getGlowForTera (TeraType teraType) {
+    private static Formatting getGlowForTera(TeraType teraType) {
         if (teraType instanceof ElementalTypeTeraType elementalTera) {
             return getGlowForElemental(elementalTera.getType());
         }
         return Formatting.WHITE;
     }
-    private static Formatting getGlowForElemental (ElementalType type) {
+
+    private static Formatting getGlowForElemental(ElementalType type) {
         if (type.equals(ElementalTypes.INSTANCE.getBUG())) return Formatting.DARK_GREEN;
         if (type.equals(ElementalTypes.INSTANCE.getDARK())) return Formatting.BLACK;
         if (type.equals(ElementalTypes.INSTANCE.getDRAGON())) return Formatting.DARK_BLUE;

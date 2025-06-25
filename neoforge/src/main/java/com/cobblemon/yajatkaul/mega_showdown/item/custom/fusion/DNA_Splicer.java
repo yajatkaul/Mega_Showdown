@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -60,7 +60,7 @@ public class DNA_Splicer extends Item {
     }
 
     public static void fuseEffect(PokemonEntity pokemon, boolean black) {
-        LazyLib.Companion.snowStormPartileSpawner(pokemon,
+        SnowStormHandler.Companion.snowStormPartileSpawner(pokemon,
                 black ? "kyurem_b_effect" : "kyurem_w_effect", "target");
         pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
@@ -73,7 +73,7 @@ public class DNA_Splicer extends Item {
 
         pokemon.after(4F, () -> {
             new FlagSpeciesFeature(black ? "black" : "white", true).apply(pokemon);
-            LazyLib.Companion.cryAnimation(pokemon);
+            SnowStormHandler.Companion.cryAnimation(pokemon);
             pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;
         });

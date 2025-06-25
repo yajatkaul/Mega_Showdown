@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -34,7 +34,7 @@ public class UltraEventListener {
         }
 
         event.getBattle().dispatchWaitingToFront(3F, () -> {
-            LazyLib.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
+            SnowStormHandler.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
             return Unit.INSTANCE;
         });
 

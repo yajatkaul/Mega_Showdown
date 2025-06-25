@@ -7,7 +7,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.utils.NoRenderArmorMaterial;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -126,7 +126,7 @@ public class LikosPendant extends ArmorItem {
             level.addFreshEntity(terapagos);
 
             terapagos.after(0.01f, () -> {
-                LazyLib.Companion.snowStormPartileSpawner(terapagos,
+                SnowStormHandler.Companion.snowStormPartileSpawner(terapagos,
                         "pendant_effect", "target");
                 BlockPos entityPos = terapagos.getOnPos();
                 terapagos.level().playSound(
@@ -140,7 +140,7 @@ public class LikosPendant extends ArmorItem {
             terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             terapagos.after(4F, () -> {
-                LazyLib.Companion.cryAnimation(terapagos);
+                SnowStormHandler.Companion.cryAnimation(terapagos);
                 terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                 return Unit.INSTANCE;
             });

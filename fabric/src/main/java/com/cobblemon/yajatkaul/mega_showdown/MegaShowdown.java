@@ -18,8 +18,9 @@ import com.cobblemon.yajatkaul.mega_showdown.item.ItemRegister;
 import com.cobblemon.yajatkaul.mega_showdown.networking.PacketRegister;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
-import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.showdown.LoadShowdownItems;
+import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.worldgen.ModWorldGeneration;
 import com.google.common.reflect.Reflection;
 import kotlin.Unit;
@@ -76,7 +77,7 @@ public class MegaShowdown implements ModInitializer {
     private void onServerStarted(MinecraftServer server) {
         Utils.registryLoader(server.getRegistryManager());
 
-        Utils.registerRemapping();
+        LoadShowdownItems.registerRemapping();
         TeraTypeHelper.loadShardData();
 
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {

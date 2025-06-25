@@ -5,8 +5,8 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
-import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 
 
@@ -32,7 +32,7 @@ public class UltraEventLogic {
             battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon.getEffectedPokemon()));
 
             battle.dispatchWaitingToFront(3F, () -> {
-                LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 return Unit.INSTANCE;
             });
         });

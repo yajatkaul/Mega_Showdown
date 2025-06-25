@@ -4,6 +4,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.DynamaxItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
+import com.cobblemon.yajatkaul.mega_showdown.trinket.renderers.*;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 
 public class TrinketsRegisteration {

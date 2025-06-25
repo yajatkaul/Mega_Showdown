@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.inventory;
 
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zygarde.ZygardeCube;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryChangedListener;

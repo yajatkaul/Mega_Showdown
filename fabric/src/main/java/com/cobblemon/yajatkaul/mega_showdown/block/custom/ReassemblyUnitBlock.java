@@ -7,7 +7,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.properties.ReassembleStage;
 import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ZygardeCube;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zygarde.ZygardeCube;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.component.DataComponentTypes;

@@ -11,7 +11,7 @@ public class ZCrystal extends Item {
         this.element = element;
     }
 
-    public ElementalType getElement(){
+    public ElementalType getElement() {
         return element;
     }
 }

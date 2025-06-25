@@ -21,7 +21,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getType;
 
 public class TeraShard extends Item {
     public TeraShard(Settings settings) {

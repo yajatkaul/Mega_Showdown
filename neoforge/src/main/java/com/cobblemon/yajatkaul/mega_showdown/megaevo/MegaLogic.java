@@ -12,7 +12,7 @@ import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
@@ -235,7 +235,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
+        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
 
         BlockPos entityPos = context.getOnPos();
         context.level().playSound(
@@ -245,7 +245,7 @@ public class MegaLogic {
         );
 
         context.after(4.7F, () -> {
-            LazyLib.Companion.cryAnimation(context);
+            SnowStormHandler.Companion.cryAnimation(context);
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             new StringSpeciesFeature("mega_evolution", type).apply(context.getPokemon());
             return Unit.INSTANCE;
@@ -332,7 +332,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        LazyLib.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
+        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
 
         BlockPos entityPos = context.getOnPos();
         context.level().playSound(
@@ -342,7 +342,7 @@ public class MegaLogic {
         );
 
         context.after(4.7F, () -> {
-            LazyLib.Companion.cryAnimation(context);
+            SnowStormHandler.Companion.cryAnimation(context);
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             new StringSpeciesFeature("mega_evolution", type).apply(context.getPokemon());
             CobbleEventsHandler.updatePackets(pokemonBattle, battlePokemon, true);

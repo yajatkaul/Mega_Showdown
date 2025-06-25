@@ -2,11 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.ItemHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobbleEvents.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
-import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
@@ -15,6 +16,7 @@ import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.map.MapDecorationTypes;
@@ -30,7 +32,10 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
@@ -43,7 +48,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ModEvents {
-    public static void register() {
+    public void register() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.CARTOGRAPHER, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(MegaStones.MEGA_STONE, 1), // Assuming MegaStones.KEYSTONE is an Item
@@ -54,9 +59,9 @@ public class ModEvents {
             ));
         });
 
-        UseItemCallback.EVENT.register(ConfigResults::useItem);
+        UseItemCallback.EVENT.register(ItemHandler::useItem);
 
-        UseEntityCallback.EVENT.register(ConfigResults::useOnEntity);
+        UseEntityCallback.EVENT.register(this::useOnEntity);
 
         ServerPlayerEvents.JOIN.register((player) -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
@@ -137,5 +142,25 @@ public class ModEvents {
         mapStack.set(DataComponentTypes.LORE, new LoreComponent(loreLines));
 
         return mapStack;
+    }
+
+    public ActionResult useOnEntity(PlayerEntity player, World world, Hand hand, Entity entity, EntityHitResult entityHitResult) {
+        if (world.isClient) {
+            return ActionResult.PASS;
+        }
+        if (entity instanceof PokemonEntity pk) {
+            if (pk.getAspects().contains("core-percent") && !player.getMainHandStack().isOf(FormeChangeItems.ZYGARDE_CUBE) && !player.getOffHandStack().isOf(FormeChangeItems.ZYGARDE_CUBE)) {
+                player.giveItemStack(new ItemStack(FormeChangeItems.ZYGARDE_CORE));
+                if (pk.getPokemon().getOwnerPlayer() == player) {
+                    PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
+                    playerPartyStore.remove(pk.getPokemon());
+                } else {
+                    entity.discard();
+                }
+                return ActionResult.SUCCESS;
+            }
+        }
+
+        return ActionResult.PASS;
     }
 }

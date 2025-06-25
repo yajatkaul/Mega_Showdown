@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.networking.packets;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.megaevo.UltraLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;

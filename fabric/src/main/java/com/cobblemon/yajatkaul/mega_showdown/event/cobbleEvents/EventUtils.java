@@ -5,14 +5,14 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.dynamax.DynamaxEventLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.configActions.ConfigResults;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.ArceusType;
-import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
-import com.cobblemon.yajatkaul.mega_showdown.utility.TeraAccessor;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
@@ -104,14 +104,12 @@ public class EventUtils {
         } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("altered")
                 && pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        }
-        //
-        else if (pokemon.getSpecies().getName().equals("Arceus") && !pokemon.getAspects().contains("normal")
+        } else if (pokemon.getSpecies().getName().equals("Arceus") && !pokemon.getAspects().contains("normal")
                 && !(pokemon.heldItem().getItem() instanceof ArceusType)) {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }
 
-
+        // DATAPACK
         for (FormChangeData forme : Utils.formChangeRegistry) {
             if (forme.battle_mode_only()) {
                 if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
@@ -124,7 +122,7 @@ public class EventUtils {
                         }
                     }
                     if (pokemon.getEntity() != null) {
-                        ConfigResults.particleEffect(pokemon.getEntity(), forme.effects(), false);
+                        HandlerUtils.particleEffect(pokemon.getEntity(), forme.effects(), false);
                     }
                 }
             }

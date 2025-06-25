@@ -10,7 +10,7 @@ public class ElementalZCrystal extends ZCrystal {
         this.strType = strType;
     }
 
-    public String getType(){
+    public String getType() {
         return strType;
     }
 }

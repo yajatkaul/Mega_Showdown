@@ -3,7 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.megaevo.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketsApi;

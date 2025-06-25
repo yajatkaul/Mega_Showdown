@@ -8,20 +8,16 @@ import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
-import com.cobblemon.yajatkaul.mega_showdown.utility.LazyLib;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.scoreboard.ServerScoreboard;
-import net.minecraft.scoreboard.Team;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.*;
@@ -70,7 +66,7 @@ public class DynamaxEventLogic {
             GlowHandler.applyDynamaxGlow(pokemonEntity);
 
             battle.dispatchWaitingToFront(3F, () -> {
-                LazyLib.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 return Unit.INSTANCE;
             });
         });

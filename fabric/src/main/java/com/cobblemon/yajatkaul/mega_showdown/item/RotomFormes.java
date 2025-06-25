@@ -1,8 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.RotomCatalogue;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.RotomUnit;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.RotomCatalogue;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.RotomUnit;
 import net.minecraft.item.Item;
 
 import static com.cobblemon.yajatkaul.mega_showdown.item.ModItems.registerItem;

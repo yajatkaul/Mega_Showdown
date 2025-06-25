@@ -1,14 +1,10 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.item.PokemonSelectingItem;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
-import com.cobblemon.yajatkaul.mega_showdown.item.impl.MSDPokemonSelectingItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.abstracts.MSDPokemonSelectingItem;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
@@ -20,8 +16,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
@@ -112,7 +106,7 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
     }
 
     @Override
-    public boolean canUseOnPokemon (@NotNull Pokemon pokemon) {
+    public boolean canUseOnPokemon(@NotNull Pokemon pokemon) {
         return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel();
     }
 }
