@@ -32,25 +32,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 public class RevertEventsHandler {
-    public static Unit battleEnded(BattleVictoryEvent battleVictoryEvent) {
-        battleVictoryEvent.getBattle().getPlayers().forEach(serverPlayer -> {
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-            for (Pokemon pokemon : playerPartyStore) {
-
-                    EventUtils.revertFormesEnd(pokemon);
-
-                    if (pokemon.getEntity() != null) {
-                        pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-                    }
-                }
-            });
-
-            return Unit.INSTANCE;
-        });
-
-        return Unit.INSTANCE;
-    }
-
     public static Unit devolveFainted(BattleFaintedEvent battleFaintedEvent) {
         Pokemon pokemon = battleFaintedEvent.getKilled().getOriginalPokemon();
         ServerPlayer serverPlayer = battleFaintedEvent.getKilled().getOriginalPokemon().getOwnerPlayer();
