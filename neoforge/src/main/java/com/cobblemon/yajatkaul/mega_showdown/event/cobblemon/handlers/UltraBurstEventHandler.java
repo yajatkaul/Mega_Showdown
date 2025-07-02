@@ -7,7 +7,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.events.UltraBurstEvent;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.events.UltraBurstEventStart;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
@@ -15,7 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 public class UltraBurstEventHandler {
     @SubscribeEvent
-    public void onUltra(UltraBurstEvent event) {
+    public void onUltra(UltraBurstEventStart event) {
         BattlePokemon pokemon = event.getPokemon();
         PokemonBattle battle = event.getBattle();
 

@@ -1,6 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.LikosPendant;
 import net.minecraft.item.Item;
 

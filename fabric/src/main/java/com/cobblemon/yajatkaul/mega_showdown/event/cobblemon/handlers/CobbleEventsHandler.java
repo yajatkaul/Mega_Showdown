@@ -27,8 +27,6 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HeldItemHandler;
@@ -59,7 +57,7 @@ import java.util.Random;
 import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getTeraShardForType;
 
 public class CobbleEventsHandler {
-    public static Unit onHeldItemChangePrimals(HeldItemEvent.Pre event) {
+    public static Unit onHeldItemChange(HeldItemEvent.Pre event) {
         if (event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null) {
             return Unit.INSTANCE;
         }
@@ -81,6 +79,11 @@ public class CobbleEventsHandler {
         HeldItemHandler.customEvents(event);
         HeldItemChangeHandler.primalEvent(event);
 
+        if(MegaShowdownConfig.battleModeOnly.get()){
+            return Unit.INSTANCE;
+        }
+        HeldItemChangeHandler.megaEvent(event);
+
         return Unit.INSTANCE;
     }
 
@@ -88,16 +91,7 @@ public class CobbleEventsHandler {
         ServerPlayerEntity player = post.getPlayer();
         Pokemon released = post.getPokemon();
 
-        PokeHandler megaPoke = player.getAttached(DataManage.MEGA_POKEMON);
-        PokeHandler primalPoke = player.getAttached(DataManage.PRIMAL_POKEMON);
-
-        if (megaPoke != null && megaPoke.getPokemon() == released) {
-            player.removeAttached(DataManage.MEGA_DATA);
-            player.removeAttached(DataManage.MEGA_POKEMON);
-        } else if (primalPoke != null && primalPoke.getPokemon() == released) {
-            player.removeAttached(DataManage.PRIMAL_DATA);
-            player.removeAttached(DataManage.PRIMAL_POKEMON);
-        } else if (released.getSpecies().getName().equals("Meltan")) {
+        if (released.getSpecies().getName().equals("Meltan")) {
             player.giveItemStack(new ItemStack(FormeChangeItems.MELTAN));
         }
 

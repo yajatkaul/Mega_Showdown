@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
@@ -136,14 +137,9 @@ public class ItemHandler {
                             setTradable(pokemon, true);
                         }
 
-                        HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                        if (map == null) {
-                            map = new HashMap<>();
-                        }
-                        Pokemon toAdd = map.get(pokemon.getUuid());
-                        playerPartyStore.add(toAdd);
-                        map.remove(pokemon.getUuid());
-                        player.setAttached(DataManage.DATA_MAP, map);
+                        Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                        playerPartyStore.add(pokemon1);
+                        pokemon.getPersistentData().remove("fusion_forme");
 
                         itemStack.set(DataManage.POKEMON_STORAGE, null);
                         itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name() + ".inactive"));
@@ -194,12 +190,8 @@ public class ItemHandler {
                             setTradable(pokemon, false);
                         }
 
-                        HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                        if (map == null) {
-                            map = new HashMap<>();
-                        }
-                        map.put(pokemon.getUuid(), currentValue);
-                        player.setAttached(DataManage.DATA_MAP, map);
+                        NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
+                        pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
                         itemStack.set(DataManage.POKEMON_STORAGE, null);
                         itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name() + ".inactive"));

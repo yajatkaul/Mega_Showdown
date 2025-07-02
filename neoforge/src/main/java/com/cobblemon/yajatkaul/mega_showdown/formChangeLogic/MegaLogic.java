@@ -7,8 +7,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
@@ -134,8 +132,9 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = context.getPokemon();
+        boolean hasMega = FormChangeHelper.hasMega((ServerPlayer) player);
 
-        if (player.getData(DataManage.MEGA_DATA) && !MegaShowdownConfig.multipleMegas) {
+        if (hasMega && !MegaShowdownConfig.multipleMegas) {
             player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
                     .withColor(0xFF0000), true);
             return;
@@ -151,8 +150,6 @@ public class MegaLogic {
             boolean found = false;
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
-                    player.setData(DataManage.MEGA_DATA, true);
 
                     megaEvolve(context, "mega");
 
@@ -186,8 +183,6 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                player.setData(DataManage.MEGA_DATA, true);
-                player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                 for (String aspect : megaPok.aspects()) {
                     String[] aspectDiv = aspect.split("=");
@@ -219,9 +214,6 @@ public class MegaLogic {
                     .withColor(0xFF0000), true);
             return;
         }
-
-        player.setData(DataManage.MEGA_DATA, false);
-        player.removeData(DataManage.MEGA_POKEMON);
 
         if (context.getEntity() != null) {
             playDevolveAnimation(context.getEntity());
@@ -258,8 +250,9 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = context.getPokemon();
+        boolean hasMega = FormChangeHelper.hasMega((ServerPlayer) player);
 
-        if (player.getData(DataManage.MEGA_DATA) && !MegaShowdownConfig.multipleMegas) {
+        if (hasMega && !MegaShowdownConfig.multipleMegas) {
             player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
                     .withColor(0xFF0000), true);
             return;
@@ -270,8 +263,6 @@ public class MegaLogic {
             boolean found = false;
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                    player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
-                    player.setData(DataManage.MEGA_DATA, true);
 
                     megaEvolve(context, "mega", battlePokemon, pokemonBattle);
 
@@ -307,8 +298,6 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                player.setData(DataManage.MEGA_DATA, true);
-                player.setData(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                 for (String aspect : megaPok.aspects()) {
                     String[] aspectDiv = aspect.split("=");
@@ -391,7 +380,6 @@ public class MegaLogic {
     //NPC
     public static void NPCEvolve(PokemonEntity context, BattlePokemon battlePokemon, PokemonBattle pokemonBattle) {
         Pokemon pokemon = context.getPokemon();
-        String species = null;
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
             for (int i = 0; i < 4; i++) {

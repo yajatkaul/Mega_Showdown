@@ -7,15 +7,15 @@ import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.Moves;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
@@ -94,7 +94,7 @@ public class RevertEventsHandler {
             }
 
             if (MegaShowdownConfig.revertMegas.get() && MegaShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
-                    && (player.getAttached(DataManage.MEGA_DATA) == null || !player.getAttached(DataManage.MEGA_DATA))) {
+                    && !FormChangeHelper.hasMega(player)) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "key_stone"));
             } else {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "key_stone"));
@@ -163,16 +163,16 @@ public class RevertEventsHandler {
                     }
                 }
 
-                if (pokemon.getAspects().contains("resolute")) {
+                if (pokemon.getAspects().contains("resolute-form")) {
                     if (!hasMove) {
-                        new FlagSpeciesFeature("resolute", false).apply(pokemon);
+                        new StringSpeciesFeature("sword_form", "ordinary").apply(pokemon);
                         if (pokemon.getEntity() != null) {
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }
                     }
                 } else {
                     if (hasMove) {
-                        new FlagSpeciesFeature("resolute", true).apply(pokemon);
+                        new StringSpeciesFeature("sword_form", "resolute").apply(pokemon);
                         if (pokemon.getEntity() != null) {
                             EventUtils.playEvolveAnimation(pokemon.getEntity());
                         }

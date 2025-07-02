@@ -1,12 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
@@ -16,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -30,9 +30,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -58,42 +55,38 @@ public class DNA_Splicer extends Item {
 
     public static void particleEffect(LivingEntity context) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3d entityPos = context.getPos(); // Get entity position
+            Vec3d entityPos = context.getPos();
 
-            // Get entity's size
             double entityWidth = context.getWidth();
             double entityHeight = context.getHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
+            double entityDepth = entityWidth;
 
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1.2; // Adjust this for more spread
+            double scaleFactor = 1.2;
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
             double adjustedDepth = entityDepth * scaleFactor;
 
-            // Play sound effect
             serverWorld.playSound(
                     null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
+                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME,
                     SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
             );
 
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
+            int particleCount = (int) (175 * adjustedWidth * adjustedHeight);
 
             for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
+                double xOffset = (Math.random() - 0.5) * adjustedWidth;
+                double yOffset = Math.random() * adjustedHeight;
+                double zOffset = (Math.random() - 0.5) * adjustedDepth;
 
                 serverWorld.spawnParticles(
                         ParticleTypes.ASH,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
+                        1,
+                        0, 0, 0,
+                        0.1
                 );
             }
         }
@@ -112,7 +105,7 @@ public class DNA_Splicer extends Item {
         );
 
         pokemon.after(4F, () -> {
-            new FlagSpeciesFeature(black ? "black" : "white", true).apply(pokemon);
+            new StringSpeciesFeature("absofusion", black ? "black" : "white").apply(pokemon);
             SnowStormHandler.Companion.cryAnimation(pokemon);
             pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;
@@ -163,21 +156,14 @@ public class DNA_Splicer extends Item {
                     );
                     return TypedActionResult.pass(stack);
                 }
+
                 particleEffect(pk);
-                new FlagSpeciesFeature("white", false).apply(pokemon);
-                new FlagSpeciesFeature("black", false).apply(pokemon);
+                new StringSpeciesFeature("absofusion", "none").apply(pokemon);
                 setTradable(pokemon, true);
 
-                if (!pokemon.getEntity().hasAttached(DataManage.KYUREM_FUSED_WITH)) {
-                    HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                    Pokemon toAdd = map.get(pokemon.getUuid());
-                    playerPartyStore.add(toAdd);
-                    map.remove(pokemon.getUuid());
-                    player.setAttached(DataManage.DATA_MAP, map);
-                } else {
-                    playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.KYUREM_FUSED_WITH).getPokemon());
-                    pokemon.getEntity().removeAttached(DataManage.KYUREM_FUSED_WITH);
-                }
+                Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                playerPartyStore.add(pokemon1);
+                pokemon.getPersistentData().remove("fusion_forme");
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
@@ -185,14 +171,8 @@ public class DNA_Splicer extends Item {
                 fuseEffect(pk, !currentValue.getSpecies().getName().equals("Reshiram"));
                 setTradable(pokemon, false);
 
-                pokemon.getEntity().setAttached(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));
-
-                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                if (map == null) {
-                    map = new HashMap<>();
-                }
-                map.put(pokemon.getUuid(), currentValue);
-                player.setAttached(DataManage.DATA_MAP, map);
+                NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
+                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
@@ -216,6 +196,6 @@ public class DNA_Splicer extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon) {
-        return pokemon.getAspects().contains("black") || pokemon.getAspects().contains("white");
+        return pokemon.getAspects().contains("black-fusion") || pokemon.getAspects().contains("white-fusion");
     }
 }

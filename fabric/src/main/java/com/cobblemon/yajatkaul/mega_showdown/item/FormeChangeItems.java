@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.*;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.DNA_Splicer;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion.N_Lunarizer;

@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.text.yellow
 import com.cobblemon.mod.common.battles.dispatch.InterpreterInstruction
 import com.cobblemon.mod.common.util.battleLang
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.events.UltraBurstEvent
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.events.UltraBurstEventStart
 
 
 class UltraInstruction(val message: BattleMessage) : InterpreterInstruction {
@@ -17,7 +17,7 @@ class UltraInstruction(val message: BattleMessage) : InterpreterInstruction {
             battle.minorBattleActions[battlePokemon.uuid] = message
 
             val pokemon = message.battlePokemon(0, battle)
-            UltraBurstEvent.EVENT.invoker().onUltra(battle, pokemon)
+            UltraBurstEventStart.EVENT.invoker().onUltra(battle, pokemon)
         }
     }
 }

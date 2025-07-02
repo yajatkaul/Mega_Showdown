@@ -4,7 +4,7 @@
   "variations": [
     {
       "aspects": [
-        "ice"
+        "ice-rider"
       ],
       "poser": "cobblemon:calyrex_ice",
       "model": "cobblemon:calyrex_ice.geo",
@@ -13,7 +13,7 @@
     },
     {
       "aspects": [
-        "ice",
+        "ice-rider",
         "shiny"
       ],
       "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_ice_shiny.png"

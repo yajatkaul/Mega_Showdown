@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.screen.custom;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModMenuTypes;

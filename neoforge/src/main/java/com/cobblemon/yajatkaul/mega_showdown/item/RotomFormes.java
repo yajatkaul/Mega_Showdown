@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.RotomCatalogue;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.RotomUnit;
 import net.minecraft.world.item.BlockItem;

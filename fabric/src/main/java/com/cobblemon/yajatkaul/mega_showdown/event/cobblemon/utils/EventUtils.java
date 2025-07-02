@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.DynamaxEvent;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
@@ -25,7 +24,7 @@ public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
         if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
-            DynamaxEvent.startGradualScaling(pokemon.getEntity(), 1.0f);
+            DynamaxUtils.startGradualScaling(pokemon.getEntity(), 1.0f);
         }
         new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
 

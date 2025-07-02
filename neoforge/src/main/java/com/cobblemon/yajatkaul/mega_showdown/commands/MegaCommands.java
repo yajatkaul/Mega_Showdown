@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -33,12 +32,6 @@ public class MegaCommands {
     public static final List<String> VALID_ITEMS = new ArrayList<>();
 
     public static void register(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("msdopreset")
-                .requires(source -> source.hasPermission(2)) // Requires OP permission level (2)
-                .executes(context -> executeReset(context.getSource().getPlayer())) // Self execution
-                .then(Commands.argument("player", EntityArgument.player()) // Add player argument
-                        .executes(context -> executeReset(EntityArgument.getPlayer(context, "player"))))); // Execute on specified player
-
         event.getDispatcher().register(Commands.literal("msdresetlock")
                 .requires(source -> source.hasPermission(0)) // Requires no OP permission level (0)
                 .executes(context -> executeResetCommon(context.getSource().getPlayer()))); // Self execution
@@ -220,23 +213,7 @@ public class MegaCommands {
         return 1;
     }
 
-    private static int executeReset(Player player) {
-        player.removeData(DataManage.MEGA_DATA);
-        player.removeData(DataManage.MEGA_POKEMON);
-        player.removeData(DataManage.PRIMAL_DATA);
-        player.removeData(DataManage.PRIMAL_POKEMON);
-
-        // Send success message to the command source
-        player.sendSystemMessage(Component.translatable("message.mega_showdown.reset_completed"));
-        return 1;
-    }
-
     private static int executeResetCommon(Player player) {
-        player.removeData(DataManage.MEGA_DATA);
-        player.removeData(DataManage.MEGA_POKEMON);
-        player.removeData(DataManage.PRIMAL_DATA);
-        player.removeData(DataManage.PRIMAL_POKEMON);
-
         PCStore storge = Cobblemon.INSTANCE.getStorage().getPC((ServerPlayer) player);
         PlayerPartyStore party = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
@@ -264,9 +241,6 @@ public class MegaCommands {
     }
 
     private static int executeResetMega(Player player) {
-        player.removeData(DataManage.MEGA_DATA);
-        player.removeData(DataManage.MEGA_POKEMON);
-
         PCStore storge = Cobblemon.INSTANCE.getStorage().getPC((ServerPlayer) player);
         PlayerPartyStore party = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 

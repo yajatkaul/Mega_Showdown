@@ -7,8 +7,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
@@ -132,12 +130,9 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = context.getPokemon();
+        boolean hasMega = FormChangeHelper.hasMega((ServerPlayerEntity) player);
 
-        if (!player.hasAttached(DataManage.MEGA_DATA)) {
-            player.setAttached(DataManage.MEGA_DATA, false);
-        }
-
-        if (player.getAttached(DataManage.MEGA_DATA) && !MegaShowdownConfig.multipleMegas.get()) {
+        if (hasMega && !MegaShowdownConfig.multipleMegas.get()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -158,8 +153,6 @@ public class MegaLogic {
             boolean found = false;
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                    player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
-                    player.setAttached(DataManage.MEGA_DATA, true);
 
                     megaEvolve(context, "mega");
                     setTradable(pokemon, false);
@@ -197,8 +190,6 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                player.setAttached(DataManage.MEGA_DATA, true);
-                player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                 for (String aspect : megaPok.aspects()) {
                     String[] aspectDiv = aspect.split("=");
@@ -230,9 +221,6 @@ public class MegaLogic {
             );
             return;
         }
-
-        player.setAttached(DataManage.MEGA_DATA, false);
-        player.removeAttached(DataManage.MEGA_POKEMON);
 
         if (context.getEntity() != null) {
             playDevolveAnimation(context.getEntity());
@@ -271,12 +259,9 @@ public class MegaLogic {
         }
 
         Pokemon pokemon = context.getPokemon();
+        boolean hasMega = FormChangeHelper.hasMega((ServerPlayerEntity) player);
 
-        if (!player.hasAttached(DataManage.MEGA_DATA)) {
-            player.setAttached(DataManage.MEGA_DATA, false);
-        }
-
-        if (player.getAttached(DataManage.MEGA_DATA) && !MegaShowdownConfig.multipleMegas.get()) {
+        if (hasMega && !MegaShowdownConfig.multipleMegas.get()) {
             player.sendMessage(
                     Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                     true
@@ -288,8 +273,6 @@ public class MegaLogic {
             boolean found = false;
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                    player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
-                    player.setAttached(DataManage.MEGA_DATA, true);
 
                     megaEvolve(context, "mega", battlePokemon, pokemonBattle);
                     setTradable(pokemon, false);
@@ -327,8 +310,6 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                player.setAttached(DataManage.MEGA_DATA, true);
-                player.setAttached(DataManage.MEGA_POKEMON, new PokeHandler(pokemon));
 
                 for (String aspect : megaPok.aspects()) {
                     String[] aspectDiv = aspect.split("=");

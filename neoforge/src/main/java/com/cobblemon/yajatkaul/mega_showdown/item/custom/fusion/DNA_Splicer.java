@@ -2,11 +2,12 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
@@ -14,6 +15,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,9 +32,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -72,7 +71,7 @@ public class DNA_Splicer extends Item {
         );
 
         pokemon.after(4F, () -> {
-            new FlagSpeciesFeature(black ? "black" : "white", true).apply(pokemon);
+            new StringSpeciesFeature("absofusion", black ? "black" : "white").apply(pokemon);
             SnowStormHandler.Companion.cryAnimation(pokemon);
             pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;
@@ -172,20 +171,13 @@ public class DNA_Splicer extends Item {
                     return InteractionResultHolder.pass(stack);
                 }
                 particleEffect(pk, ParticleTypes.ASH);
-                new FlagSpeciesFeature("white", false).apply(pokemon);
-                new FlagSpeciesFeature("black", false).apply(pokemon);
+                new StringSpeciesFeature("absofusion", "none").apply(pokemon);
+
                 setTradable(pokemon, true);
 
-                if (!pokemon.getEntity().hasData(DataManage.KYUREM_FUSED_WITH)) {
-                    HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-                    Pokemon toAdd = map.get(pokemon.getUuid());
-                    playerPartyStore.add(toAdd);
-                    map.remove(pokemon.getUuid());
-                    player.setData(DataManage.DATA_MAP, map);
-                } else {
-                    playerPartyStore.add(pokemon.getEntity().getData(DataManage.KYUREM_FUSED_WITH).getPokemon());
-                    pokemon.getEntity().removeData(DataManage.KYUREM_FUSED_WITH);
-                }
+                Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.level().registryAccess(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                playerPartyStore.add(pokemon1);
+                pokemon.getPersistentData().remove("fusion_forme");
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
@@ -193,14 +185,8 @@ public class DNA_Splicer extends Item {
                 fuseEffect(pk, !currentValue.getSpecies().getName().equals("Reshiram"));
                 setTradable(pokemon, false);
 
-                pokemon.getEntity().setData(DataManage.KYUREM_FUSED_WITH, new PokeHandler(currentValue));
-
-                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-                if (map == null) {
-                    map = new HashMap<>();
-                }
-                map.put(pokemon.getUuid(), currentValue);
-                player.setData(DataManage.DATA_MAP, map);
+                CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
+                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.dna_splicer.inactive"));
@@ -225,6 +211,6 @@ public class DNA_Splicer extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon) {
-        return pokemon.getAspects().contains("black") || pokemon.getAspects().contains("white");
+        return pokemon.getAspects().contains("black-fusion") || pokemon.getAspects().contains("white-fusion");
     }
 }

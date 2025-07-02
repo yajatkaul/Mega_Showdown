@@ -4,7 +4,7 @@
   "variations": [
     {
       "aspects": [
-        "ultra"
+        "ultra-fusion"
       ],
       "poser": "cobblemon:necrozma_ultra",
       "model": "cobblemon:necrozma_ultra.geo",
@@ -19,7 +19,7 @@
     },
     {
       "aspects": [
-        "ultra",
+        "ultra-fusion",
         "shiny"
       ],
       "texture": "cobblemon:textures/pokemon/0800_necrozma/ultranecrozma_shiny.png",

@@ -4,11 +4,10 @@ import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.RevertEventsHandler;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.UltraBurstEventHandler;
 
 public class CobbleEvents {
     public static void register() {
-        CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChangePrimals);
+        CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChange);
 
         CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onReleasePokemon);
 
@@ -36,6 +35,6 @@ public class CobbleEvents {
         CobblemonEvents.THROWN_POKEBALL_HIT.subscribe(Priority.NORMAL, CobbleEventsHandler::pokeballHit);
 
         DynamaxEvent.register();
-        UltraBurstEventHandler.register();
+        UltraBurstEvent.register();
     }
 }

@@ -27,7 +27,6 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
@@ -57,11 +56,18 @@ import java.util.Random;
 import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getTeraShardForType;
 
 public class CobbleEventsHandler {
-    public static Unit onHeldItemChange(HeldItemEvent.Post event) {
-        if (event.getReturned() == event.getReceived() || event.getPokemon().getOwnerPlayer() == null) {
+    public static Unit onHeldItemChange(HeldItemEvent.Pre event) {
+        if (event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null) {
             return Unit.INSTANCE;
         }
 
+        PokemonEntity pokemonEntity = event.getPokemon().getEntity();
+        if (pokemonEntity != null && pokemonEntity.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
+            event.cancel();
+            return Unit.INSTANCE;
+        }
+
+        HeldItemChangeFormes.primalEvent(event);
         HeldItemChangeFormes.genesectChange(event);
         HeldItemChangeFormes.silvallyChange(event);
         HeldItemChangeFormes.arcuesChange(event);
@@ -81,33 +87,11 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit onHeldItemChangePrimals(HeldItemEvent.Pre event) {
-        if (event.getReceiving() == event.getReturning() || event.getPokemon().getOwnerPlayer() == null) {
-            return Unit.INSTANCE;
-        }
-
-        PokemonEntity pokemonEntity = event.getPokemon().getEntity();
-        if (pokemonEntity != null && pokemonEntity.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
-            event.cancel();
-            return Unit.INSTANCE;
-        }
-
-        HeldItemChangeFormes.primalEvent(event);
-
-        return Unit.INSTANCE;
-    }
-
     public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
         Pokemon released = post.getPokemon();
         ServerPlayer player = post.getPlayer();
 
-        if (player.getData(DataManage.MEGA_POKEMON).getPokemon() == released) {
-            player.setData(DataManage.MEGA_DATA, false);
-            player.removeData(DataManage.MEGA_POKEMON);
-        } else if (player.getData(DataManage.PRIMAL_POKEMON).getPokemon() == released) {
-            player.setData(DataManage.PRIMAL_DATA, false);
-            player.removeData(DataManage.PRIMAL_POKEMON);
-        } else if (released.getSpecies().getName().equals("Meltan")) {
+        if (released.getSpecies().getName().equals("Meltan")) {
             player.addItem(new ItemStack(FormeChangeItems.MELTAN.get()));
         }
 

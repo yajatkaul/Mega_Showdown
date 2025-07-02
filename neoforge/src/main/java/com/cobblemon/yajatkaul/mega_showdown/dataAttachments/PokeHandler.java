@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.datamanage;
+package com.cobblemon.yajatkaul.mega_showdown.dataAttachments;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.mojang.serialization.Codec;

@@ -8,9 +8,8 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -214,18 +213,12 @@ public class HeldItemChangeHandler {
             return;
         }
 
-        if (!player.hasAttached(DataManage.PRIMAL_DATA)) {
-            player.setAttached(DataManage.PRIMAL_DATA, false);
-        }
-
-        boolean primalData = player.getAttached(DataManage.PRIMAL_DATA);
+        boolean primalData = FormChangeHelper.hasPrimal(player);
 
         if (species.getName().equals("Kyogre") && event.getReceiving().isOf(MegaStones.BLUE_ORB) && !event.getPokemon().getAspects().contains("primal")) {
             if (!primalData || MegaShowdownConfig.multiplePrimals.get()) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(event.getPokemon());
                 primalRevertAnimation(event.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
-                player.setAttached(DataManage.PRIMAL_DATA, true);
-                player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(event.getPokemon()));
                 setTradable(event.getPokemon(), false);
             } else {
                 event.cancel();
@@ -238,8 +231,6 @@ public class HeldItemChangeHandler {
             if (!primalData || MegaShowdownConfig.multiplePrimals.get()) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(event.getPokemon());
                 primalRevertAnimation(event.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
-                player.setAttached(DataManage.PRIMAL_DATA, true);
-                player.setAttached(DataManage.PRIMAL_POKEMON, new PokeHandler(event.getPokemon()));
                 setTradable(event.getPokemon(), false);
             } else {
                 event.cancel();
@@ -251,14 +242,10 @@ public class HeldItemChangeHandler {
         } else if (species.getName().equals("Kyogre") && !event.getReceiving().isOf(MegaStones.BLUE_ORB) && event.getReturning().isOf(MegaStones.BLUE_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(event.getPokemon());
             primalRevertAnimation(event.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
-            player.setAttached(DataManage.PRIMAL_DATA, false);
-            player.removeAttached(DataManage.PRIMAL_POKEMON);
             setTradable(event.getPokemon(), true);
         } else if (species.getName().equals("Groudon") && !event.getReceiving().isOf(MegaStones.RED_ORB) && event.getReturning().isOf(MegaStones.RED_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(event.getPokemon());
             primalRevertAnimation(event.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
-            player.setAttached(DataManage.PRIMAL_DATA, false);
-            player.removeAttached(DataManage.PRIMAL_POKEMON);
             setTradable(event.getPokemon(), true);
         }
     }
@@ -299,13 +286,13 @@ public class HeldItemChangeHandler {
     public static void ultraEvent(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
-        if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
+        if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra-fusion")) {
             if (event.getReturning().isOf(ZCrystals.ULTRANECROZIUM_Z)) {
                 if (!pokemon.getEntity().isBattling()) {
                     SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 }
                 EventUtils.ultraAnimation(pokemon.getEntity());
-                new FlagSpeciesFeature("ultra", false).apply(pokemon);
+                new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
             }
         }
     }

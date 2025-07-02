@@ -8,11 +8,10 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
@@ -49,48 +48,48 @@ import java.util.List;
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class HeldItemChangeFormes {
-    public static void genesectChange(HeldItemEvent.Post post) {
-        Pokemon pokemon = post.getPokemon();
+    public static void genesectChange(HeldItemEvent.Pre event) {
+        Pokemon pokemon = event.getPokemon();
         if (pokemon.getSpecies().getName().equals("Genesect")) {
-            if (post.getReceived().is(FormeChangeItems.DOUSE_DRIVE)) {
+            if (event.getReceiving().is(FormeChangeItems.DOUSE_DRIVE)) {
                 SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive", "water").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.BURN_DRIVE)) {
+            } else if (event.getReceiving().is(FormeChangeItems.BURN_DRIVE)) {
                 SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive", "fire").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.CHILL_DRIVE)) {
+            } else if (event.getReceiving().is(FormeChangeItems.CHILL_DRIVE)) {
                 SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive", "ice").apply(pokemon);
-            } else if (post.getReceived().is(FormeChangeItems.SHOCK_DRIVE)) {
+            } else if (event.getReceiving().is(FormeChangeItems.SHOCK_DRIVE)) {
                 SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive", "electric").apply(pokemon);
-            } else if (!(post.getReceived().getItem() instanceof Drives) && post.getReturned().getItem() instanceof Drives) {
+            } else if (!(event.getReceiving().getItem() instanceof Drives) && event.getReturning().getItem() instanceof Drives) {
                 SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("techno_drive", "none").apply(pokemon);
             }
         }
     }
 
-    public static void silvallyChange(HeldItemEvent.Post post) {
-        Pokemon pokemon = post.getPokemon();
+    public static void silvallyChange(HeldItemEvent.Pre event) {
+        Pokemon pokemon = event.getPokemon();
         if (pokemon.getSpecies().getName().equals("Silvally")) {
-            if (post.getReceived().getItem() instanceof Memory memory) {
+            if (event.getReceiving().getItem() instanceof Memory memory) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
-            } else if (post.getReturned().getItem() instanceof Memory) {
+            } else if (event.getReturning().getItem() instanceof Memory) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "normal").apply(pokemon);
             }
         }
     }
 
-    public static void arcuesChange(HeldItemEvent.Post post) {
-        Pokemon pokemon = post.getPokemon();
+    public static void arcuesChange(HeldItemEvent.Pre event) {
+        Pokemon pokemon = event.getPokemon();
         PokemonEntity pokemonEntity = pokemon.getEntity();
         BlockPos entityPos = pokemonEntity.getOnPos();
 
         if (pokemon.getSpecies().getName().equals("Arceus")) {
-            if (post.getReceived().getItem() instanceof ArceusType plate) {
+            if (event.getReceiving().getItem() instanceof ArceusType plate) {
                 pokemonEntity.level().playSound(
                         null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                         ModSounds.ARCEUS_MULTITYPE.get(),
@@ -108,7 +107,7 @@ public class HeldItemChangeFormes {
                     return Unit.INSTANCE;
                 });
             }
-            if (post.getReceived().getItem() instanceof ElementalZCrystal crystal) {
+            if (event.getReceiving().getItem() instanceof ElementalZCrystal crystal) {
                 pokemonEntity.level().playSound(
                         null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                         ModSounds.ARCEUS_MULTITYPE.get(),
@@ -125,7 +124,7 @@ public class HeldItemChangeFormes {
                     pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                     return Unit.INSTANCE;
                 });
-            } else if (post.getReturned().getItem() instanceof ArceusType || post.getReturned().getItem() instanceof ElementalZCrystal) {
+            } else if (event.getReturning().getItem() instanceof ArceusType || event.getReturning().getItem() instanceof ElementalZCrystal) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "normal").apply(pokemon);
                 SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
@@ -133,74 +132,74 @@ public class HeldItemChangeFormes {
         }
     }
 
-    public static void originChange(HeldItemEvent.Post post) {
-        Pokemon pokemon = post.getPokemon();
+    public static void originChange(HeldItemEvent.Pre event) {
+        Pokemon pokemon = event.getPokemon();
 
         if (pokemon.getSpecies().getName().equals("Giratina")) {
-            if (post.getReceived().is(FormeChangeItems.GRISEOUS_CORE)) {
+            if (event.getReceiving().is(FormeChangeItems.GRISEOUS_CORE)) {
                 originAnimation(pokemon.getEntity(), true);
-            } else if (post.getReturned().is(FormeChangeItems.GRISEOUS_CORE)) {
+            } else if (event.getReturning().is(FormeChangeItems.GRISEOUS_CORE)) {
                 originAnimation(pokemon.getEntity(), false);
             }
         } else if (pokemon.getSpecies().getName().equals("Palkia")) {
-            if (post.getReceived().is(FormeChangeItems.LUSTROUS_GLOBE)) {
+            if (event.getReceiving().is(FormeChangeItems.LUSTROUS_GLOBE)) {
                 originAnimation(pokemon.getEntity(), true);
-            } else if (post.getReturned().is(FormeChangeItems.LUSTROUS_GLOBE)) {
+            } else if (event.getReturning().is(FormeChangeItems.LUSTROUS_GLOBE)) {
                 originAnimation(pokemon.getEntity(), false);
             }
         } else if (pokemon.getSpecies().getName().equals("Dialga")) {
-            if (post.getReceived().is(FormeChangeItems.ADAMANT_CRYSTAL)) {
+            if (event.getReceiving().is(FormeChangeItems.ADAMANT_CRYSTAL)) {
                 originAnimation(pokemon.getEntity(), true);
-            } else if (post.getReturned().is(FormeChangeItems.ADAMANT_CRYSTAL)) {
+            } else if (event.getReturning().is(FormeChangeItems.ADAMANT_CRYSTAL)) {
                 originAnimation(pokemon.getEntity(), false);
             }
         }
     }
 
-    public static void eternamaxChange(HeldItemEvent.Post post) {
+    public static void eternamaxChange(HeldItemEvent.Pre event) {
         if (!MegaShowdownConfig.etermaxForme) {
             return;
         }
-        Pokemon pokemon = post.getPokemon();
+        Pokemon pokemon = event.getPokemon();
 
         if (!pokemon.getSpecies().getName().equals("Eternatus")) {
             return;
         }
 
-        if (post.getReceived().is(FormeChangeItems.STAR_CORE)) {
+        if (event.getReceiving().is(FormeChangeItems.STAR_CORE)) {
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
             new FlagSpeciesFeature("eternamax", true).apply(pokemon);
             setTradable(pokemon, false);
-        } else if (post.getReturned().is(FormeChangeItems.STAR_CORE)) {
+        } else if (event.getReturning().is(FormeChangeItems.STAR_CORE)) {
             new FlagSpeciesFeature("eternamax", false).apply(pokemon);
             setTradable(pokemon, true);
         }
     }
 
-    public static void ogerponChange(HeldItemEvent.Post post) {
-        Pokemon pokemon = post.getPokemon();
+    public static void ogerponChange(HeldItemEvent.Pre event) {
+        Pokemon pokemon = event.getPokemon();
 
         if (!pokemon.getSpecies().getName().equals("Ogerpon")) {
             return;
         }
-        if (post.getReceived().is(FormeChangeItems.HEARTHFLAME_MASK)) {
+        if (event.getReceiving().is(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "hearthflame").apply(pokemon);
             playHeldItemChange(pokemon.getEntity());
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getFIRE());
-        } else if (post.getReceived().is(FormeChangeItems.CORNERSTONE_MASK)) {
+        } else if (event.getReceiving().is(FormeChangeItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask", "cornerstone").apply(pokemon);
             playHeldItemChange(pokemon.getEntity());
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getROCK());
-        } else if (post.getReceived().is(FormeChangeItems.WELLSPRING_MASK)) {
+        } else if (event.getReceiving().is(FormeChangeItems.WELLSPRING_MASK)) {
             new StringSpeciesFeature("ogre_mask", "wellspring").apply(pokemon);
             playHeldItemChange(pokemon.getEntity());
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getWATER());
-        } else if (post.getReturned().is(FormeChangeItems.WELLSPRING_MASK)
-                || post.getReturned().is(FormeChangeItems.CORNERSTONE_MASK)
-                || post.getReturned().is(FormeChangeItems.HEARTHFLAME_MASK)) {
+        } else if (event.getReturning().is(FormeChangeItems.WELLSPRING_MASK)
+                || event.getReturning().is(FormeChangeItems.CORNERSTONE_MASK)
+                || event.getReturning().is(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "teal").apply(pokemon);
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
             playHeldItemChange(pokemon.getEntity());
@@ -216,18 +215,12 @@ public class HeldItemChangeFormes {
             return;
         }
 
-        if (!player.hasData(DataManage.PRIMAL_DATA)) {
-            player.setData(DataManage.PRIMAL_DATA, false);
-        }
-
-        boolean primalData = player.getData(DataManage.PRIMAL_DATA);
+        boolean primalData = FormChangeHelper.hasPrimal(player);
 
         if (species.getName().equals("Kyogre") && pre.getReceiving().is(MegaStones.BLUE_ORB) && !pre.getPokemon().getAspects().contains("primal")) {
             if (!primalData || MegaShowdownConfig.multiplePrimals) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
                 primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
-                player.setData(DataManage.PRIMAL_DATA, true);
-                player.setData(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
                 setTradable(pre.getPokemon(), false);
             } else {
                 pre.cancel();
@@ -238,8 +231,6 @@ public class HeldItemChangeFormes {
             if (!primalData || MegaShowdownConfig.multiplePrimals) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
                 primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
-                player.setData(DataManage.PRIMAL_DATA, true);
-                player.setData(DataManage.PRIMAL_POKEMON, new PokeHandler(pre.getPokemon()));
                 setTradable(pre.getPokemon(), false);
             } else {
                 pre.cancel();
@@ -249,19 +240,15 @@ public class HeldItemChangeFormes {
         } else if (species.getName().equals("Kyogre") && !pre.getReceiving().is(MegaStones.BLUE_ORB) && pre.getReturning().is(MegaStones.BLUE_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
-            player.setData(DataManage.PRIMAL_DATA, false);
-            player.removeData(DataManage.PRIMAL_POKEMON);
             setTradable(pre.getPokemon(), true);
         } else if (species.getName().equals("Groudon") && !pre.getReceiving().is(MegaStones.RED_ORB) && pre.getReturning().is(MegaStones.RED_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
-            player.setData(DataManage.PRIMAL_DATA, false);
-            player.removeData(DataManage.PRIMAL_POKEMON);
             setTradable(pre.getPokemon(), true);
         }
     }
 
-    public static void megaEvent(HeldItemEvent.Post event) {
+    public static void megaEvent(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
         if (pokemon.getAspects().contains("mega_x") || pokemon.getAspects().contains("mega_y") || pokemon.getAspects().contains("mega")) {
@@ -269,7 +256,7 @@ public class HeldItemChangeFormes {
         }
     }
 
-    public static void customEvents(HeldItemEvent.Post event) {
+    public static void customEvents(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
         for (FormChangeData heldItem : Utils.formChangeRegistry) {
@@ -309,7 +296,7 @@ public class HeldItemChangeFormes {
                         }
                     }
 
-                    ItemStack receivedItem = event.getReceived();
+                    ItemStack receivedItem = event.getReceiving();
                     String[] nameSpace = heldItem.item_id().split(":");
                     ResourceLocation customItem = ResourceLocation.fromNamespaceAndPath(nameSpace[0], nameSpace[1]);
                     Item item = BuiltInRegistries.ITEM.get(customItem);
@@ -358,24 +345,24 @@ public class HeldItemChangeFormes {
         }
     }
 
-    public static void crownedEvent(HeldItemEvent.Post event) {
+    public static void crownedEvent(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
         if (pokemon.getSpecies().getName().equals("Zacian") ||
                 pokemon.getSpecies().getName().equals("Zamazenta")) {
-            if (event.getReceived().is(FormeChangeItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")) {
+            if (event.getReceiving().is(FormeChangeItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")) {
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
                 setTradable(pokemon, false);
-            } else if (event.getReceived().is(FormeChangeItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
+            } else if (event.getReceiving().is(FormeChangeItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
                 setTradable(pokemon, false);
-            } else if (pokemon.getSpecies().getName().equals("Zacian") && event.getReturned().is(FormeChangeItems.RUSTED_SWORD)) {
+            } else if (pokemon.getSpecies().getName().equals("Zacian") && event.getReturning().is(FormeChangeItems.RUSTED_SWORD)) {
                 playHeldItemChange(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
                 setTradable(pokemon, true);
-            } else if (pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturned().is(FormeChangeItems.RUSTED_SHIELD)) {
+            } else if (pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturning().is(FormeChangeItems.RUSTED_SHIELD)) {
                 playHeldItemChange(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
                 setTradable(pokemon, true);
@@ -383,16 +370,16 @@ public class HeldItemChangeFormes {
         }
     }
 
-    public static void ultraEvent(HeldItemEvent.Post event) {
+    public static void ultraEvent(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
-        if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
-            if (event.getReturned().is(ZCrystals.ULTRANECROZIUM_Z)) {
+        if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra-fusion")) {
+            if (event.getReturning().is(ZCrystals.ULTRANECROZIUM_Z)) {
                 if (!pokemon.getEntity().isBattling()) {
                     SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
                 }
                 EventUtils.ultraAnimation(pokemon.getEntity());
-                new FlagSpeciesFeature("ultra", false).apply(pokemon);
+                new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
             }
         }
     }

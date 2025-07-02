@@ -28,7 +28,12 @@ public class ModBlocks {
 
     public static final Block POLISHED_MEGA_EVO_BLOCK = registerMeteoridBlock("polished_mega_evo_block");
 
-    public static final Block KEYSTONE_BLOCK = registerMeteoridBlock("keystone_block");
+    public static final Block KEYSTONE_BLOCK = registerBlock("keystone_block",
+            new KeyStoneBlock(AbstractBlock.Settings.create()
+                    .strength(4f)
+                    .mapColor(MapColor.PURPLE)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.STONE)));
 
     public static final Block MEGA_METEOROID_BLOCK = registerMeteoridBlock("mega_meteorid_block");
 

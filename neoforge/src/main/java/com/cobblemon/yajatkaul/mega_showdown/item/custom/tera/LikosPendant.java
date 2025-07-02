@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.curios.render.NoRenderArmorMaterial;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;

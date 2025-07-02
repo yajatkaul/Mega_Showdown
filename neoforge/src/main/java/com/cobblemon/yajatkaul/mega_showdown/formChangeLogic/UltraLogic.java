@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.formChangeLogic;
 
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
@@ -98,21 +99,21 @@ public class UltraLogic {
                     return;
                 }
 
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                if (feature != null) {
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if (enabled) {
-                        new FlagSpeciesFeature("ultra", false).apply(pokemon);
-                        setTradable(pokemon, true);
-                        ultraAnimation(pokemon.getEntity());
-                        return;
-                    }
+                if(pokemon.getAspects().contains("ultra-fusion")){
+                    new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
+                    pokemon.getPersistentData().remove("fusion_form");
+                    setTradable(pokemon, true);
+                    ultraAnimation(pokemon.getEntity());
+                    return;
                 }
 
-                new FlagSpeciesFeature("ultra", true).apply(pokemon);
+                if(pokemon.getAspects().contains("dawn-fusion")){
+                    pokemon.getPersistentData().putString("fusion_form", "dawn");
+                }else{
+                    pokemon.getPersistentData().putString("fusion_form", "dusk");
+                }
+
+                new StringSpeciesFeature("prism_fusion", "ultra").apply(pokemon);
                 setTradable(pokemon, false);
                 ultraAnimation(pokemon.getEntity());
             }
@@ -120,27 +121,7 @@ public class UltraLogic {
     }
 
     private static boolean checkFused(Pokemon pokemon) {
-        FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("dusk-fusion"));
-        FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-        if (feature != null) {
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            if (enabled) {
-                return true;
-            }
-        }
-
-        featureProvider = new FlagSpeciesFeatureProvider(List.of("dawn-fusion"));
-        feature = featureProvider.get(pokemon);
-
-        if (feature != null) {
-            boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-            return enabled;
-        }
-
-        return false;
+        return pokemon.getAspects().contains("dusk-fusion") || pokemon.getAspects().contains("dawn-fusion") || pokemon.getAspects().contains("ultra-fusion");
     }
 
     public static void ultraAnimation(LivingEntity context) {

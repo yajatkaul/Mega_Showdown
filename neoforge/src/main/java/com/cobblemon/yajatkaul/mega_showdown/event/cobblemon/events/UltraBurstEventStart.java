@@ -4,11 +4,11 @@ import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import net.neoforged.bus.api.Event;
 
-public class UltraBurstEvent extends Event {
+public class UltraBurstEventStart extends Event {
     private final PokemonBattle battle;
     private final BattlePokemon pokemon;
 
-    public UltraBurstEvent(PokemonBattle battle, BattlePokemon pokemon) {
+    public UltraBurstEventStart(PokemonBattle battle, BattlePokemon pokemon) {
         this.battle = battle;
         this.pokemon = pokemon;
     }

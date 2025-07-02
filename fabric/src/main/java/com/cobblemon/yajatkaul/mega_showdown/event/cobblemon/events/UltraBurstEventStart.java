@@ -5,10 +5,10 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 
-public interface UltraBurstEvent {
-    Event<UltraBurstEvent> EVENT = EventFactory.createArrayBacked(UltraBurstEvent.class,
+public interface UltraBurstEventStart {
+    Event<UltraBurstEventStart> EVENT = EventFactory.createArrayBacked(UltraBurstEventStart.class,
             listeners -> (battle, pokemon) -> {
-                for (UltraBurstEvent listener : listeners) {
+                for (UltraBurstEventStart listener : listeners) {
                     listener.onUltra(battle, pokemon);
                 }
             }

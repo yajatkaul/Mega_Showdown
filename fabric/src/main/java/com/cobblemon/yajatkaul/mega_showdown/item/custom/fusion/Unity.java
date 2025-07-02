@@ -1,18 +1,18 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,9 +27,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -141,41 +138,27 @@ public class Unity extends Item {
                     return TypedActionResult.pass(stack);
                 }
                 particleEffect(pk, ParticleTypes.END_ROD);
-                new FlagSpeciesFeature("shadow", false).apply(pokemon);
-                new FlagSpeciesFeature("ice", false).apply(pokemon);
+                new StringSpeciesFeature("king_steed", "none").apply(pokemon);
                 setTradable(pokemon, true);
 
-                if (!pokemon.getEntity().hasAttached(DataManage.CALYREX_FUSED_WITH)) {
-                    HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                    Pokemon toAdd = map.get(pokemon.getUuid());
-                    playerPartyStore.add(toAdd);
-                    map.remove(pokemon.getUuid());
-                    player.setAttached(DataManage.DATA_MAP, map);
-                } else {
-                    playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.CALYREX_FUSED_WITH).getPokemon());
-                    pokemon.getEntity().removeAttached(DataManage.CALYREX_FUSED_WITH);
-                }
+                Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                playerPartyStore.add(pokemon1);
+                pokemon.getPersistentData().remove("fusion_forme");
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
             } else if (currentValue != null && pokemon.getSpecies().getName().equals("Calyrex")) {
                 if (currentValue.getSpecies().getName().equals("Spectrier")) {
                     particleEffect(pk, ParticleTypes.SMOKE);
-                    new FlagSpeciesFeature("shadow", true).apply(pokemon);
+                    new StringSpeciesFeature("king_steed", "shadow").apply(pokemon);
                 } else {
                     particleEffect(pk, ParticleTypes.END_ROD);
-                    new FlagSpeciesFeature("ice", true).apply(pokemon);
+                    new StringSpeciesFeature("king_steed", "ice").apply(pokemon);
                 }
                 setTradable(pokemon, false);
 
-                pokemon.getEntity().setAttached(DataManage.CALYREX_FUSED_WITH, new PokeHandler(currentValue));
-
-                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                if (map == null) {
-                    map = new HashMap<>();
-                }
-                map.put(pokemon.getUuid(), currentValue);
-                player.setAttached(DataManage.DATA_MAP, map);
+                NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
+                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
@@ -199,6 +182,6 @@ public class Unity extends Item {
     }
 
     private boolean checkEnabled(Pokemon pokemon) {
-        return pokemon.getAspects().contains("shadow") || pokemon.getAspects().contains("ice");
+        return pokemon.getAspects().contains("shadow-rider") || pokemon.getAspects().contains("ice-rider");
     }
 }

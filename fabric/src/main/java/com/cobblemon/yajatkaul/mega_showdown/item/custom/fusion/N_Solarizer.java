@@ -1,19 +1,18 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -27,10 +26,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -142,16 +137,11 @@ public class N_Solarizer extends Item {
                     return TypedActionResult.pass(stack);
                 }
 
-                HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                if (map == null) {
-                    map = new HashMap<>();
-                }
-                map.put(pokemon.getUuid(), currentValue);
-                player.setAttached(DataManage.DATA_MAP, map);
+                NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
+                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
-                pk.setAttached(DataManage.N_SOLAR_POKEMON, new PokeHandler(currentValue));
                 stack.set(DataManage.POKEMON_STORAGE, null);
-                new FlagSpeciesFeature("dusk-fusion", true).apply(pokemon);
+                new StringSpeciesFeature("prism_fusion", "dusk").apply(pokemon);
                 particleEffect(pokemon.getEntity());
                 setTradable(pokemon, false);
 
@@ -161,29 +151,15 @@ public class N_Solarizer extends Item {
                 playerPartyStore.remove(pokemon);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.charged"));
             } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                if (feature != null) {
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if (enabled) {
-                        return TypedActionResult.pass(stack);
-                    }
+                if (pokemon.getAspects().contains("ultra-fusion")) {
+                    return TypedActionResult.pass(stack);
                 }
 
-                if (!pokemon.getEntity().hasAttached(DataManage.N_SOLAR_POKEMON)) {
-                    HashMap<UUID, Pokemon> map = player.getAttached(DataManage.DATA_MAP);
-                    Pokemon toAdd = map.get(pokemon.getUuid());
-                    playerPartyStore.add(toAdd);
-                    map.remove(pokemon.getUuid());
-                    player.setAttached(DataManage.DATA_MAP, map);
-                } else {
-                    playerPartyStore.add(pokemon.getEntity().getAttached(DataManage.N_SOLAR_POKEMON).getPokemon());
-                    pk.removeAttached(DataManage.N_SOLAR_POKEMON);
-                }
+                Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                playerPartyStore.add(pokemon1);
+                pokemon.getPersistentData().remove("fusion_forme");
 
-                new FlagSpeciesFeature("dusk-fusion", false).apply(pokemon);
+                new StringSpeciesFeature("prism_fusion", "none").apply(pokemon);
                 particleEffect(pokemon.getEntity());
                 setTradable(pokemon, true);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));

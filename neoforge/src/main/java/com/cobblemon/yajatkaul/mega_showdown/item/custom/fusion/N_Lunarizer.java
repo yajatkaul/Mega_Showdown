@@ -1,15 +1,15 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.PokeHandler;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.PokeHandler;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,10 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
@@ -151,13 +147,11 @@ public class N_Lunarizer extends Item {
                     return InteractionResultHolder.pass(stack);
                 }
 
-                HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-                map.put(pokemon.getUuid(), currentValue);
-                player.setData(DataManage.DATA_MAP, map);
+                CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
+                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
-                pk.setData(DataManage.N_LUNAR_POKEMON, new PokeHandler(currentValue));
                 stack.set(DataManage.POKEMON_STORAGE, null);
-                new FlagSpeciesFeature("dawn-fusion", true).apply(pokemon);
+                new StringSpeciesFeature("prism_fusion", "dawn").apply(pokemon);
                 particleEffect(pokemon.getEntity());
                 setTradable(pokemon, false);
 
@@ -167,29 +161,16 @@ public class N_Lunarizer extends Item {
                 playerPartyStore.remove(pokemon);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.charged"));
             } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
-                FlagSpeciesFeatureProvider featureProvider = new FlagSpeciesFeatureProvider(List.of("ultra"));
-                FlagSpeciesFeature feature = featureProvider.get(pokemon);
-
-                if (feature != null) {
-                    boolean enabled = featureProvider.get(pokemon).getEnabled();
-
-                    if (enabled) {
-                        return InteractionResultHolder.pass(stack);
-                    }
+                if (pokemon.getAspects().contains("ultra-fusion")) {
+                    return InteractionResultHolder.pass(stack);
                 }
 
-                if (!pokemon.getEntity().hasData(DataManage.N_LUNAR_POKEMON)) {
-                    HashMap<UUID, Pokemon> map = player.getData(DataManage.DATA_MAP);
-                    Pokemon toAdd = map.get(pokemon.getUuid());
-                    playerPartyStore.add(toAdd);
-                    map.remove(pokemon.getUuid());
-                    player.setData(DataManage.DATA_MAP, map);
-                } else {
-                    playerPartyStore.add(pokemon.getEntity().getData(DataManage.N_LUNAR_POKEMON).getPokemon());
-                    pk.removeData(DataManage.N_LUNAR_POKEMON);
-                }
+                Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.level().registryAccess(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                playerPartyStore.add(pokemon1);
+                pokemon.getPersistentData().remove("fusion_forme");
 
-                new FlagSpeciesFeature("dawn-fusion", false).apply(pokemon);
+                new StringSpeciesFeature("prism_fusion", "none").apply(pokemon);
+
                 particleEffect(pokemon.getEntity());
                 setTradable(pokemon, true);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.n_lunarizer.inactive"));

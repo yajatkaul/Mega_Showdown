@@ -9,7 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.block.custom.entity.ModBlockEntitie
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.creativeTab.ModCreativeModeTabs;
-import com.cobblemon.yajatkaul.mega_showdown.datamanage.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.CobbleEvents;
