@@ -29,10 +29,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class N_Lunarizer extends Item {
     public N_Lunarizer(Settings settings) {
         super(settings);
@@ -147,7 +143,7 @@ public class N_Lunarizer extends Item {
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 new StringSpeciesFeature("prism_fusion", "dawn").apply(pokemon);
                 particleEffect(pokemon.getEntity());
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
 
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.inactive"));
             } else if (currentValue == null && pokemon.getSpecies().getName().equals("Lunala")) {
@@ -165,7 +161,7 @@ public class N_Lunarizer extends Item {
 
                 new StringSpeciesFeature("prism_fusion", "none").apply(pokemon);
                 particleEffect(pokemon.getEntity());
-                setTradable(pokemon, true);
+                pokemon.setTradeable(true);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.inactive"));
             } else {
                 return TypedActionResult.pass(stack);

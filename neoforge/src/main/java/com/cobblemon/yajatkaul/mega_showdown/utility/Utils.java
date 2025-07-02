@@ -69,10 +69,6 @@ public class Utils {
         );
     }
 
-    public static void setTradable(Pokemon pokemon, boolean allow) {
-        pokemon.setTradeable(allow);
-    }
-
     public static void registryLoader(RegistryAccess registryAccess) {
         final ResourceKey<Registry<KeyItemData>> KEY_ITEMS_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));

@@ -28,8 +28,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class Unity extends Item {
     public Unity(Settings settings) {
         super(settings);
@@ -139,7 +137,7 @@ public class Unity extends Item {
                 }
                 particleEffect(pk, ParticleTypes.END_ROD);
                 new StringSpeciesFeature("king_steed", "none").apply(pokemon);
-                setTradable(pokemon, true);
+                pokemon.setTradeable(true);
 
                 Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
                 playerPartyStore.add(pokemon1);
@@ -155,7 +153,7 @@ public class Unity extends Item {
                     particleEffect(pk, ParticleTypes.END_ROD);
                     new StringSpeciesFeature("king_steed", "ice").apply(pokemon);
                 }
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
 
                 NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);

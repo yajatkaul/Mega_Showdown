@@ -28,8 +28,6 @@ import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.*;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class ItemHandler {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 1000; // 1 sec
@@ -137,7 +135,7 @@ public class ItemHandler {
                             }
                         }
                         if (!fusion.tradable_form()) {
-                            setTradable(pokemon, true);
+                            pokemon.setTradeable(true);
                         }
 
                         Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.level().registryAccess(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
@@ -190,7 +188,7 @@ public class ItemHandler {
                         HandlerUtils.particleEffect(pk, fusion.effects(), true);
 
                         if (!fusion.tradable_form()) {
-                            setTradable(pokemon, false);
+                            pokemon.setTradeable(false);
                         }
 
                         CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
@@ -328,7 +326,7 @@ public class ItemHandler {
                                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                                         }
                                         if (!keyItems.tradable_form()) {
-                                            setTradable(pokemon, true);
+                                            pokemon.setTradeable(true);
                                         }
                                     }
                                     HandlerUtils.particleEffect(pk, keyItems.effects(), false);
@@ -344,7 +342,7 @@ public class ItemHandler {
                                             new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
                                         }
                                         if (!keyItems.tradable_form()) {
-                                            setTradable(pokemon, false);
+                                            pokemon.setTradeable(false);
                                         }
                                     }
                                     HandlerUtils.particleEffect(pk, keyItems.effects(), true);
@@ -391,7 +389,7 @@ public class ItemHandler {
                                 }
 
                                 HandlerUtils.particleEffect(pk, keyItems.effects(), true);
-                                setTradable(pokemon, !keyItems.tradable_form());
+                                pokemon.setTradeable(!keyItems.tradable_form());
                                 if (keyItems.consume()) {
                                     itemStack.shrink(1);
                                 }

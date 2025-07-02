@@ -50,10 +50,6 @@ public class RevertEventsHandler {
                 EventUtils.revertFormesEnd(pokemon);
             }
 
-            if (MegaShowdownConfig.revertMegas.get() || MegaShowdownConfig.battleModeOnly.get()) {
-                player.getServer().getCommandManager().executeWithPrefix(player.getCommandSource(), "/msdresetmega");
-            }
-
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
             boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->

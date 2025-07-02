@@ -15,8 +15,6 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class HeldItemHandler {
     public static void customEvents(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
@@ -66,7 +64,7 @@ public class HeldItemHandler {
                             && receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
                             == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, false);
+                            pokemon.setTradeable(false);
                         }
                         for (String aspects : heldItem.aspects()) {
                             String[] aspectsDiv = aspects.split("=");
@@ -77,7 +75,7 @@ public class HeldItemHandler {
                             }
                         }
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, false);
+                            pokemon.setTradeable(false);
                         }
                         HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), true);
                         return;
@@ -86,7 +84,7 @@ public class HeldItemHandler {
                                     receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
                                             == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, true);
+                            pokemon.setTradeable(true);
                         }
                         for (String aspects : heldItem.default_aspects()) {
                             String[] aspectsDiv = aspects.split("=");
@@ -97,7 +95,7 @@ public class HeldItemHandler {
                             }
                         }
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, true);
+                            pokemon.setTradeable(true);
                         }
                         HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), false);
                         return;

@@ -45,8 +45,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class HeldItemChangeFormes {
     public static void genesectChange(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
@@ -169,10 +167,10 @@ public class HeldItemChangeFormes {
         if (event.getReceiving().is(FormeChangeItems.STAR_CORE)) {
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
             new FlagSpeciesFeature("eternamax", true).apply(pokemon);
-            setTradable(pokemon, false);
+            pokemon.setTradeable(false);
         } else if (event.getReturning().is(FormeChangeItems.STAR_CORE)) {
             new FlagSpeciesFeature("eternamax", false).apply(pokemon);
-            setTradable(pokemon, true);
+            pokemon.setTradeable(true);
         }
     }
 
@@ -221,7 +219,7 @@ public class HeldItemChangeFormes {
             if (!primalData || MegaShowdownConfig.multiplePrimals) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
                 primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.BUBBLE, true);
-                setTradable(pre.getPokemon(), false);
+                pre.getPokemon().setTradeable(false);
             } else {
                 pre.cancel();
                 player.displayClientMessage(Component.translatable("message.mega_showdown.primal_limit")
@@ -231,7 +229,7 @@ public class HeldItemChangeFormes {
             if (!primalData || MegaShowdownConfig.multiplePrimals) {
                 new StringSpeciesFeature("reversion_state", "primal").apply(pre.getPokemon());
                 primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.CAMPFIRE_COSY_SMOKE, true);
-                setTradable(pre.getPokemon(), false);
+                pre.getPokemon().setTradeable(false);
             } else {
                 pre.cancel();
                 player.displayClientMessage(Component.translatable("message.mega_showdown.primal_limit")
@@ -240,11 +238,11 @@ public class HeldItemChangeFormes {
         } else if (species.getName().equals("Kyogre") && !pre.getReceiving().is(MegaStones.BLUE_ORB) && pre.getReturning().is(MegaStones.BLUE_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
-            setTradable(pre.getPokemon(), true);
+            pre.getPokemon().setTradeable(true);
         } else if (species.getName().equals("Groudon") && !pre.getReceiving().is(MegaStones.RED_ORB) && pre.getReturning().is(MegaStones.RED_ORB)) {
             new StringSpeciesFeature("reversion_state", "standard").apply(pre.getPokemon());
             primalRevertAnimation(pre.getPokemon().getEntity(), ParticleTypes.END_ROD, false);
-            setTradable(pre.getPokemon(), true);
+            pre.getPokemon().setTradeable(true);
         }
     }
 
@@ -304,7 +302,7 @@ public class HeldItemChangeFormes {
                             && receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value()
                             == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, false);
+                            pokemon.setTradeable(false);
                         }
                         for (String aspects : heldItem.aspects()) {
                             String[] aspectsDiv = aspects.split("=");
@@ -315,7 +313,7 @@ public class HeldItemChangeFormes {
                             }
                         }
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, false);
+                            pokemon.setTradeable(false);
                         }
                         HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), true);
                         return;
@@ -324,7 +322,7 @@ public class HeldItemChangeFormes {
                                     receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value()
                                             == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, true);
+                            pokemon.setTradeable(true);
                         }
                         for (String aspects : heldItem.default_aspects()) {
                             String[] aspectsDiv = aspects.split("=");
@@ -335,7 +333,7 @@ public class HeldItemChangeFormes {
                             }
                         }
                         if (!heldItem.tradable_form()) {
-                            setTradable(pokemon, true);
+                            pokemon.setTradeable(true);
                         }
                         HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), false);
                         return;
@@ -353,19 +351,19 @@ public class HeldItemChangeFormes {
             if (event.getReceiving().is(FormeChangeItems.RUSTED_SWORD) && pokemon.getSpecies().getName().equals("Zacian")) {
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
             } else if (event.getReceiving().is(FormeChangeItems.RUSTED_SHIELD) && pokemon.getSpecies().getName().equals("Zamazenta")) {
                 crownAnimation((ServerLevel) pokemon.getEntity().level(), pokemon.getEntity().getOnPos(), pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", true).apply(pokemon);
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
             } else if (pokemon.getSpecies().getName().equals("Zacian") && event.getReturning().is(FormeChangeItems.RUSTED_SWORD)) {
                 playHeldItemChange(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
-                setTradable(pokemon, true);
+                pokemon.setTradeable(true);
             } else if (pokemon.getSpecies().getName().equals("Zamazenta") && event.getReturning().is(FormeChangeItems.RUSTED_SHIELD)) {
                 playHeldItemChange(pokemon.getEntity());
                 new FlagSpeciesFeature("crowned", false).apply(pokemon);
-                setTradable(pokemon, true);
+                pokemon.setTradeable(true);
             }
         }
     }

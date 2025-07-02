@@ -101,10 +101,6 @@ public class RevertEventsHandler {
                 EventUtils.revertFormesEnd(pokemon);
             }
 
-            if (MegaShowdownConfig.revertMegas || MegaShowdownConfig.battleModeOnly) {
-                player.getServer().getCommands().performPrefixedCommand(player.createCommandSourceStack(), "/msdresetmega");
-            }
-
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
             boolean hasDMAXItemCurios = CuriosApi.getCuriosInventory(player)

@@ -27,7 +27,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class N_Solarizer extends Item {
     public N_Solarizer(Settings settings) {
@@ -143,7 +142,7 @@ public class N_Solarizer extends Item {
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 new StringSpeciesFeature("prism_fusion", "dusk").apply(pokemon);
                 particleEffect(pokemon.getEntity());
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
 
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
             } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
@@ -161,7 +160,7 @@ public class N_Solarizer extends Item {
 
                 new StringSpeciesFeature("prism_fusion", "none").apply(pokemon);
                 particleEffect(pokemon.getEntity());
-                setTradable(pokemon, true);
+                pokemon.setTradeable(true);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
             } else {
                 return TypedActionResult.pass(stack);

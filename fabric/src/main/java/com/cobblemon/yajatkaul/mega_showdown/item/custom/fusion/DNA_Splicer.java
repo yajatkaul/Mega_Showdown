@@ -31,7 +31,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
 
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Settings settings) {
@@ -159,7 +158,7 @@ public class DNA_Splicer extends Item {
 
                 particleEffect(pk);
                 new StringSpeciesFeature("absofusion", "none").apply(pokemon);
-                setTradable(pokemon, true);
+                pokemon.setTradeable(true);
 
                 Pokemon pokemon1 = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
                 playerPartyStore.add(pokemon1);
@@ -169,7 +168,7 @@ public class DNA_Splicer extends Item {
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
             } else if (currentValue != null && pokemon.getSpecies().getName().equals("Kyurem")) {
                 fuseEffect(pk, !currentValue.getSpecies().getName().equals("Reshiram"));
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
 
                 NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);

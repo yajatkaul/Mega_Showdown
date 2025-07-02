@@ -29,8 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class UltraLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 2000; // 2 sec
@@ -97,7 +95,6 @@ public class UltraLogic {
                 if(pokemon.getAspects().contains("ultra-fusion")){
                     new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
                     pokemon.getPersistentData().remove("fusion_form");
-                    setTradable(pokemon, true);
                     ultraAnimation(pokemon.getEntity());
                     return;
                 }
@@ -109,7 +106,7 @@ public class UltraLogic {
                 }
 
                 new StringSpeciesFeature("prism_fusion", "ultra").apply(pokemon);
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
                 ultraAnimation(pokemon.getEntity());
             }
         }

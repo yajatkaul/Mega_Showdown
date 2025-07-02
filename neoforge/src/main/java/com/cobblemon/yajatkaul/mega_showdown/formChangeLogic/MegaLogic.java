@@ -37,8 +37,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.Utils.setTradable;
-
 public class MegaLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
     private static final long COOLDOWN_TIME = 6000; // 6 sec
@@ -153,7 +151,7 @@ public class MegaLogic {
 
                     megaEvolve(context, "mega");
 
-                    setTradable(pokemon, false);
+                    pokemon.setTradeable(false);
                     found = true;
                 }
             }
@@ -192,7 +190,7 @@ public class MegaLogic {
                         megaEvolve(context, aspectDiv[1]);
                     }
                 }
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
                 return;
             } else {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.incorrect_mega_stone")
@@ -220,7 +218,7 @@ public class MegaLogic {
         }
         new StringSpeciesFeature("mega_evolution", "none").apply(context);
 
-        setTradable(context, true);
+        context.setTradeable(true);
     }
 
     public static void megaEvolve(PokemonEntity context, String type) {
@@ -266,7 +264,7 @@ public class MegaLogic {
 
                     megaEvolve(context, "mega", battlePokemon, pokemonBattle);
 
-                    setTradable(pokemon, false);
+                    pokemon.setTradeable(false);
                     found = true;
                 }
             }
@@ -307,7 +305,7 @@ public class MegaLogic {
                         megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
                     }
                 }
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
                 return;
             } else {
                 player.displayClientMessage(Component.translatable("message.mega_showdown.incorrect_mega_stone")
@@ -386,7 +384,7 @@ public class MegaLogic {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
                     megaEvolve(context, "mega", battlePokemon, pokemonBattle);
 
-                    setTradable(pokemon, false);
+                    pokemon.setTradeable(false);
                 }
             }
             return;
@@ -421,7 +419,7 @@ public class MegaLogic {
                         megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
                     }
                 }
-                setTradable(pokemon, false);
+                pokemon.setTradeable(false);
                 return;
             } else {
                 return;
