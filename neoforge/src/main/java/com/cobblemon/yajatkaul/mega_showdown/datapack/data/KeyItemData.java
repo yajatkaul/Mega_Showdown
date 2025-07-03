@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack.data;
 
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -31,7 +32,7 @@ public record KeyItemData(
             Codec.list(Codec.STRING).fieldOf("default_aspects").forGetter(KeyItemData::default_aspects),
             Codec.list(Codec.STRING).fieldOf("required_aspects").forGetter(KeyItemData::required_aspects),
             Codec.list(Codec.list(Codec.STRING)).fieldOf("toggle_aspects").forGetter(KeyItemData::toggle_aspects),
-            Codec.INT.fieldOf("custom_model_data").forGetter(KeyItemData::custom_model_data),
+            Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(KeyItemData::custom_model_data),
             Codec.BOOL.fieldOf("tradable_form").forGetter(KeyItemData::tradable_form),
             EffectsData.CODEC.fieldOf("effects").forGetter(KeyItemData::effects)
     ).apply(instance, KeyItemData::new));

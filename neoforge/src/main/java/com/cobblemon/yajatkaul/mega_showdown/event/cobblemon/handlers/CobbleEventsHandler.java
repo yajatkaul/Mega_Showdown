@@ -27,7 +27,7 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
@@ -466,8 +466,8 @@ public class CobbleEventsHandler {
             }
         }
 
-        for (FormChangeData forme : Utils.formChangeRegistry) {
-            if (forme.battle_mode_only()) {
+        for (HeldItemData forme : Utils.formChangeRegistry) {
+            if (forme.battle_mode_only() != null) {
 
                 if (forme.pokemons().contains(formeChangeEvent.getPokemon().getEffectedPokemon().getSpecies().getName())
                         && formeChangeEvent.getFormeName().equals(forme.form_name())) {

@@ -14,7 +14,7 @@ public record MegaData(
         List<String> required_aspects,
         List<String> blacklist_aspects,
         List<String> item_description,
-        List<String> aspects,
+        List<String> apply_aspects,
         Integer custom_model_data
 ) {
     public static final Codec<MegaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -26,7 +26,7 @@ public record MegaData(
             Codec.list(Codec.STRING).optionalFieldOf("required_aspects", List.of()).forGetter(MegaData::required_aspects),
             Codec.list(Codec.STRING).optionalFieldOf("blacklist_aspects", List.of()).forGetter(MegaData::blacklist_aspects),
             Codec.list(Codec.STRING).fieldOf("item_description").forGetter(MegaData::item_description),
-            Codec.list(Codec.STRING).fieldOf("aspects").forGetter(MegaData::aspects),
-            Codec.INT.fieldOf("custom_model_data").forGetter(MegaData::custom_model_data)
+            Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(MegaData::apply_aspects),
+            Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(MegaData::custom_model_data)
     ).apply(instance, MegaData::new));
 }

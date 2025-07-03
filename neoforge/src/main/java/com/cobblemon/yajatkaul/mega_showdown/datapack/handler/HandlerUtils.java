@@ -3,7 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack.handler;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.EffectsData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -53,18 +53,18 @@ public class HandlerUtils {
     }
 
     public static void particleEffect(LivingEntity context, EffectsData effects, boolean apply) {
-        int amplifier = apply ? effects.particle_apply_amplifier() : effects.particle_revert_amplifier();
+        int amplifier = apply ? effects.minecraft().particle_apply_amplifier() : effects.minecraft().particle_revert_amplifier();
 
         if (context.level() instanceof ServerLevel serverLevel) {
             String[] partsParticle;
             String[] partsSound;
 
             if (apply) {
-                partsParticle = effects.particle_apply().split(":");
-                partsSound = effects.sound_apply().split(":");
+                partsParticle = effects.minecraft().particle_apply().split(":");
+                partsSound = effects.minecraft().sound_apply().split(":");
             } else {
-                partsParticle = effects.particle_revert().split(":");
-                partsSound = effects.sound_revert().split(":");
+                partsParticle = effects.minecraft().particle_revert().split(":");
+                partsSound = effects.minecraft().sound_revert().split(":");
             }
 
             ResourceLocation custom_particle_id = ResourceLocation.fromNamespaceAndPath(partsParticle[0], partsParticle[1]);
@@ -79,14 +79,14 @@ public class HandlerUtils {
             double entityHeight = context.getBbHeight();
 
             if (soundEvent == null) {
-                if (apply && !effects.sound_apply().isEmpty()) {
+                if (apply && !effects.minecraft().sound_apply().isEmpty()) {
                     MegaShowdown.LOGGER.error("A: Invalid Sound used for pokemon: {}, sound id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.sound_apply());
-                } else if (!apply && !effects.sound_revert().isEmpty()) {
+                            effects.minecraft().sound_apply());
+                } else if (!apply && !effects.minecraft().sound_revert().isEmpty()) {
                     MegaShowdown.LOGGER.error("R: Invalid Sound used for pokemon: {}, sound id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.sound_revert());
+                            effects.minecraft().sound_revert());
                 }
             } else {
                 serverLevel.playSound(
@@ -118,14 +118,14 @@ public class HandlerUtils {
                     );
                 }
             } else {
-                if (apply && !effects.particle_apply().isEmpty()) {
+                if (apply && !effects.minecraft().particle_apply().isEmpty()) {
                     MegaShowdown.LOGGER.error("A: Invalid Particle used for pokemon: {}, particle id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.particle_apply());
-                } else if (!apply && !effects.particle_revert().isEmpty()) {
+                            effects.minecraft().particle_apply());
+                } else if (!apply && !effects.minecraft().particle_revert().isEmpty()) {
                     MegaShowdown.LOGGER.error("R: Invalid Particle used for pokemon: {}, particle id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.particle_revert());
+                            effects.minecraft().particle_revert());
                 }
             }
         }

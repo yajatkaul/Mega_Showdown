@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.DynamaxEventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
@@ -112,10 +112,10 @@ public class EventUtils {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }
 
-        for (FormChangeData forme : Utils.formChangeRegistry) {
-            if (forme.battle_mode_only()) {
+        for (HeldItemData forme : Utils.formChangeRegistry) {
+            if (forme.battle_mode_only() != null) {
                 if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
-                    for (String aspects : forme.default_aspects()) {
+                    for (String aspects : forme.revert_aspects()) {
                         String[] aspectsDiv = aspects.split("=");
                         if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
                             new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);

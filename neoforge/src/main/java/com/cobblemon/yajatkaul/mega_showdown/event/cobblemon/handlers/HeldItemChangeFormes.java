@@ -8,7 +8,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
@@ -257,8 +257,8 @@ public class HeldItemChangeFormes {
     public static void customEvents(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
-        for (FormChangeData heldItem : Utils.formChangeRegistry) {
-            if (heldItem.battle_mode_only()) {
+        for (HeldItemData heldItem : Utils.formChangeRegistry) {
+            if (heldItem.battle_mode_only() != null) {
                 return;
             }
             if (heldItem.pokemons().contains(pokemon.getSpecies().getName())) {
@@ -324,7 +324,7 @@ public class HeldItemChangeFormes {
                         if (!heldItem.tradable_form()) {
                             pokemon.setTradeable(true);
                         }
-                        for (String aspects : heldItem.default_aspects()) {
+                        for (String aspects : heldItem.revert_aspects()) {
                             String[] aspectsDiv = aspects.split("=");
                             if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
                                 new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);

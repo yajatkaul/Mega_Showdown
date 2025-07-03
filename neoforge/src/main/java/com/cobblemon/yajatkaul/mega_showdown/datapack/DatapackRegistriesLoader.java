@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -62,12 +63,12 @@ public class DatapackRegistriesLoader {
         }
 
         //BATTLE ONLY FORME CHANGE
-        for (FormChangeData items : Utils.formChangeRegistry) {
+        for (HeldItemData items : Utils.formChangeRegistry) {
             //COMMAND UTILS
             MegaCommands.VALID_ITEMS.add(items.msd_id());
             //
 
-            if (items.battle_mode_only()) {
+            if (items.battle_mode_only() != null) {
                 String[] parts = items.item_id().split(":");
                 ResourceLocation custom_held_item_id = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
                 Item customHeldItem = BuiltInRegistries.ITEM.get(custom_held_item_id);

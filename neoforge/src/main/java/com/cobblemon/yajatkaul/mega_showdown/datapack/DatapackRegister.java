@@ -2,6 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -18,13 +19,13 @@ public class DatapackRegister {
                 KeyItemData.CODEC
         );
 
-        final ResourceKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
+        final ResourceKey<Registry<HeldItemData>> FORM_CHANGE_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change"));
 
         event.dataPackRegistry(
                 FORM_CHANGE_REGISTRY_KEY,
-                FormChangeData.CODEC,
-                FormChangeData.CODEC
+                HeldItemData.CODEC,
+                HeldItemData.CODEC
         );
 
         final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =

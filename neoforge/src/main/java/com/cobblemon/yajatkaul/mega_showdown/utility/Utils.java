@@ -1,9 +1,9 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility;
 
-import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegistriesLoader;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
@@ -17,7 +17,7 @@ public class Utils {
     public static final Set<String> MEGA_POKEMONS = new HashSet<>();
     public static final Set<String> GMAX_SPECIES = new HashSet<>();
     public static Registry<KeyItemData> keyItemsRegistry;
-    public static Registry<FormChangeData> formChangeRegistry;
+    public static Registry<HeldItemData> formChangeRegistry;
     public static Registry<FusionData> fusionRegistry;
     public static Registry<GmaxData> gmaxRegistry;
     public static Registry<HeldItemData> heldItemsRegistry;
@@ -72,7 +72,7 @@ public class Utils {
     public static void registryLoader(RegistryAccess registryAccess) {
         final ResourceKey<Registry<KeyItemData>> KEY_ITEMS_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
-        final ResourceKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
+        final ResourceKey<Registry<HeldItemData>> FORM_CHANGE_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change"));
         final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "fusions"));
