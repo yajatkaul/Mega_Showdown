@@ -1,11 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack.handler;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import kotlin.Unit;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -38,14 +40,29 @@ public class HeldItemHandler {
 
     public static void battleModeFormChange(FormeChangeEvent formeChangeEvent) {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
+        PokemonBattle pokemonBattle = formeChangeEvent.getBattle();
 
         for (BattleFormChange formChange : Utils.battleFormRegistry) {
             if (formChange.pokemons().contains(pokemon.getSpecies().getName())
-                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id())) {
+                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_apply())) {
                 if(formChange.effects().snowStorm() != null){
-                    HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), formChange.effects(), true, formChange.apply_aspects());
+                    pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
+                        HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), formChange.effects(), true, formChange.apply_aspects());
+                        return Unit.INSTANCE;
+                    });
                 }else {
                     HandlerUtils.applyAspects(formChange.apply_aspects(), pokemon);
+                }
+                break;
+            } else if (formChange.pokemons().contains(pokemon.getSpecies().getName())
+                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_revert())) {
+                if(formChange.effects().snowStorm() != null){
+                    pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
+                        HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), formChange.effects(), false, formChange.revert_aspects());
+                        return Unit.INSTANCE;
+                    });
+                }else {
+                    HandlerUtils.applyAspects(formChange.revert_aspects(), pokemon);
                 }
                 break;
             }

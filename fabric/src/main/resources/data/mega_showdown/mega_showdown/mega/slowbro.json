@@ -8,5 +8,5 @@
   "required_aspects": [],
   "blacklist_aspects": ["galarian"],
   "pokemon": "Slowbro",
-  "aspects": ["mega_evolution=mega"]
+  "apply_aspects": ["mega_evolution=mega"]
 }

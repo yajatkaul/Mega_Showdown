@@ -4,10 +4,13 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.ArceusType;
+import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
@@ -106,23 +109,11 @@ public class EventUtils {
         }
 
         // DATAPACK
-//        for (HeldItemData heldItem : Utils.heldItemsRegistry) {
-//            if (forme.battle_mode_only()) {
-//                if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
-//                    for (String aspects : forme.default_aspects()) {
-//                        String[] aspectsDiv = aspects.split("=");
-//                        if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-//                            new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-//                        } else {
-//                            new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-//                        }
-//                    }
-//                    if (pokemon.getEntity() != null) {
-//                        HandlerUtils.particleEffect(pokemon.getEntity(), forme.effects(), false);
-//                    }
-//                }
-//            }
-//        }
+        for (BattleFormChange forme : Utils.battleFormRegistry) {
+            if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
+                HandlerUtils.applyAspects(forme.revert_aspects(), pokemon);
+            }
+        }
     }
 
     public static void playFormeChangeAnimation(LivingEntity context) {
