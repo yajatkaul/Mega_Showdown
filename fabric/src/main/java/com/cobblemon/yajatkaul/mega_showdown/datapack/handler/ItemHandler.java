@@ -134,8 +134,10 @@ public class ItemHandler {
                             if (pokemon.getAspects().containsAll(keyItem.apply_if())) {
                                 if (Possible((ServerPlayerEntity) player)) {
                                     if (keyItem.effects().snowStorm() != null) {
+                                        itemStack.decrement(keyItem.consume());
                                         HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), keyItem.effects(), true, keyItem.apply_aspects());
                                     } else {
+                                        itemStack.decrement(keyItem.consume());
                                         HandlerUtils.applyAspects(keyItem.apply_aspects(), pokemon);
                                     }
                                     if (!keyItem.tradable_form()) {
@@ -146,8 +148,10 @@ public class ItemHandler {
                             } else if (pokemon.getAspects().containsAll(keyItem.revert_if())) {
                                 if (Possible((ServerPlayerEntity) player)) {
                                     if (keyItem.effects().snowStorm() != null) {
+                                        itemStack.decrement(keyItem.consume());
                                         HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), keyItem.effects(), false, keyItem.revert_aspects());
                                     } else {
+                                        itemStack.decrement(keyItem.consume());
                                         HandlerUtils.applyAspects(keyItem.revert_aspects(), pokemon);
                                     }
                                     if (!keyItem.tradable_form()) {
@@ -173,8 +177,10 @@ public class ItemHandler {
                                 }
                                 if (Possible((ServerPlayerEntity) player)) {
                                     if (keyItem.effects().snowStorm() != null) {
+                                        itemStack.decrement(keyItem.consume());
                                         HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), keyItem.effects(), false, keyItem.toggle_aspects().get(index));
                                     } else {
+                                        itemStack.decrement(keyItem.consume());
                                         HandlerUtils.applyAspects(keyItem.toggle_aspects().get(index), pokemon);
                                     }
                                     if (!keyItem.tradable_form()) {

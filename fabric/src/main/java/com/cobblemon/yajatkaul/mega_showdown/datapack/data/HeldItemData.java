@@ -17,7 +17,6 @@ public record HeldItemData(
         List<String> apply_aspects,
         List<String> revert_if,
         List<String> revert_aspects,
-        List<String> blacklist_aspects,
         Integer custom_model_data,
         EffectsData effects
 ) {
@@ -32,7 +31,6 @@ public record HeldItemData(
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(HeldItemData::apply_aspects),
             Codec.list(Codec.STRING).optionalFieldOf("revert_if", List.of()).forGetter(HeldItemData::revert_if),
             Codec.list(Codec.STRING).fieldOf("revert_aspects").forGetter(HeldItemData::revert_aspects),
-            Codec.list(Codec.STRING).optionalFieldOf("blacklist_aspects", List.of()).forGetter(HeldItemData::blacklist_aspects),
             Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(HeldItemData::custom_model_data),
             EffectsData.CODEC.fieldOf("effects").forGetter(HeldItemData::effects)
     ).apply(instance, HeldItemData::new));
