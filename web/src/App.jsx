@@ -4,31 +4,6 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 function App() {
   const dataSections = [
     {
-      title: "Effects Data",
-      data: {
-        minecraft: {
-          particle_apply: "minecraft:happy_villager",
-          particle_revert: "minecraft:smoke",
-          sound_apply: "minecraft:entity.experience_orb.pickup",
-          sound_revert: "minecraft:block.anvil.use",
-          particle_apply_amplifier: 2,
-          particle_revert_amplifier: 1,
-        },
-        snowstorm: {
-          locator_apply: ["aspect.fire"],
-          locator_revert: ["aspect.water"],
-          particle_apply: "snowstorm:flame_ring",
-          apply_after: 0.5,
-          particle_revert: "snowstorm:ice_shard",
-          revert_after: 0.5,
-          sound_apply: "snowstorm:ignite",
-          sound_revert: "snowstorm:extinguish",
-          particle_apply_amplifier: 3,
-          particle_revert_amplifier: 2,
-        },
-      },
-    },
-    {
       title: "Battle Form Change",
       data: {
         pokemons: ["charizard"],
@@ -59,6 +34,7 @@ function App() {
         showdown_form_id_apply: "charizard-gmax",
         showdown_form_id_revert: "charizard",
       },
+      details: []
     },
     {
       title: "Fusion Data",
@@ -239,8 +215,7 @@ function App() {
             MSD Datapack Documentation
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Comprehensive documentation for the MSD Datapack configuration,
-            recipes, and functions.
+            Comprehensive documentation for the MSD Datapack configuration
           </p>
         </div>
 
@@ -249,7 +224,7 @@ function App() {
           {dataSections.map((section, index) => (
             <div
               key={index}
-              className="group relative bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl shadow-2xl hover:shadow-blue-500/10 hover:border-gray-600/50 transition-all duration-300 overflow-hidden"
+              className="group relative bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl shadow-2xl transition-all duration-300 overflow-hidden"
             >
               {/* Section Header */}
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4">
@@ -271,7 +246,7 @@ function App() {
                   </div>
 
                   <div className="bg-[#292c35] rounded-xl p-2 overflow-hidden">
-                    <pre className="text-sm text-gray-100 whitespace-pre-wrap break-words overflow-auto max-h-[500px] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900 hover:scrollbar-thumb-gray-500">
+                    <pre className="text-sm text-gray-100 whitespace-pre-wrap break-words overflow-auto max-h-[500px] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900">
                       <SyntaxHighlighter language="json" style={oneDark}>
                         {JSON.stringify(section.data, null, 2)}
                       </SyntaxHighlighter>
@@ -281,10 +256,10 @@ function App() {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 transition-opacity duration-300"></div>
 
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
             </div>
           ))}
         </div>
