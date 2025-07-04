@@ -43,6 +43,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.List;
 import java.util.Random;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getTeraShardForType;
@@ -118,7 +119,7 @@ public class CobbleEventsHandler {
             GlowHandler.applyZGlow(pokemon);
         }
 
-        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", "target");
+        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", List.of("target"));
         zMoveUsedEvent.getBattle().dispatchWaitingToFront(4F, () -> Unit.INSTANCE);
 
         BlockPos entityPos = pokemon.getBlockPos();
@@ -252,7 +253,7 @@ public class CobbleEventsHandler {
             case "Arceus" -> {
                 battle.dispatchWaitingToFront(4.5F, () -> {
                     SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity,
-                            "arceus_" + formeChangeEvent.getFormeName(), "target");
+                            "arceus_" + formeChangeEvent.getFormeName(), List.of("target"));
                     pokemonEntity.getWorld().playSound(
                             null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                             ModSounds.ARCEUS_MULTITYPE,
@@ -296,7 +297,7 @@ public class CobbleEventsHandler {
             case "Wishiwashi" -> {
                 if (formeChangeEvent.getFormeName().equals("school")) {
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", "target");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", List.of("target"));
                         pokemonEntity.getWorld().playSound(
                                 null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                                 ModSounds.FORM_CHANGE_BASIC,
@@ -331,7 +332,7 @@ public class CobbleEventsHandler {
                     );
 
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "battlebond_effect", "root");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "battlebond_effect", List.of("target"));
                         return Unit.INSTANCE;
                     });
                     pokemonEntity.after(4F, () -> {
@@ -412,7 +413,7 @@ public class CobbleEventsHandler {
             case "Terapagos" -> {
                 if (formeChangeEvent.getFormeName().equals("terastal")) {
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "terapagos_effect", "target");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "terapagos_effect", List.of("target"));
                         pokemonEntity.getWorld().playSound(
                                 null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                                 ModSounds.FORM_CHANGE_BASIC,
@@ -447,7 +448,7 @@ public class CobbleEventsHandler {
                             SoundCategory.PLAYERS, 0.2f, 0.8f
                     );
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "power_construct_event", "root");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "power_construct_event", List.of("root"));
                         return Unit.INSTANCE;
                     });
                     pokemonEntity.after(4F, () -> {

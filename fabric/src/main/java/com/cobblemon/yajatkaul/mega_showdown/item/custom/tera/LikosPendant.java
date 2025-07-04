@@ -123,7 +123,7 @@ public class LikosPendant extends ArmorItem {
 
             terapagos.after(0.01f, () -> {
                 SnowStormHandler.Companion.snowStormPartileSpawner(terapagos,
-                        "pendant_effect", "target");
+                        "pendant_effect", List.of("target"));
                 BlockPos entityPos = terapagos.getBlockPos();
                 terapagos.getWorld().playSound(
                         null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),

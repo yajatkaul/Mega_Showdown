@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem;
+package com.cobblemon.yajatkaul.mega_showdown.datapack.data;
 
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
 import com.mojang.serialization.Codec;
@@ -10,7 +10,6 @@ public record HeldItemData(
         String msd_id,
         String item_id,
         String item_name,
-        BattleModeOnly battle_mode_only,
         Boolean tradable_form,
         List<String> item_description,
         List<String> pokemons,
@@ -26,7 +25,6 @@ public record HeldItemData(
             Codec.STRING.fieldOf("msd_id").forGetter(HeldItemData::msd_id),
             Codec.STRING.fieldOf("item_id").forGetter(HeldItemData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(HeldItemData::item_name),
-            BattleModeOnly.CODEC.optionalFieldOf("battle_mode_only", null).forGetter(HeldItemData::battle_mode_only),
             Codec.BOOL.fieldOf("tradable_form").forGetter(HeldItemData::tradable_form),
             Codec.list(Codec.STRING).fieldOf("item_description").forGetter(HeldItemData::item_description),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(HeldItemData::pokemons),

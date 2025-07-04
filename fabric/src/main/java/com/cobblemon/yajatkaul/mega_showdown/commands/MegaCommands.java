@@ -5,9 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -126,8 +124,8 @@ public class MegaCommands {
             }
         }
 
-        //FORME CHANGE
-        for (FormChangeData items : Utils.formChangeRegistry) {
+        //SHOWDOWN ITEMS
+        for (ShowdownItemData items : Utils.showdownItemRegistry) {
             if (items.msd_id().equals(item)) {
                 item = items.item_id();
                 if (VALID_ITEMS.contains(item)) {

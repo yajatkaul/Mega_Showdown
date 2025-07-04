@@ -2,11 +2,7 @@ package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DataPackRegistriesLoader;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -25,6 +21,8 @@ public class Utils {
     public static Registry<GmaxData> gmaxRegistry;
     public static Registry<HeldItemData> heldItemsRegistry;
     public static Registry<MegaData> megaRegistry;
+    public static Registry<BattleFormChange> battleFormRegistry;
+    public static Registry<ShowdownItemData> showdownItemRegistry;
 
     public static void addGmaxToMap() {
         GMAX_SPECIES.add("Venusaur");
@@ -83,12 +81,18 @@ public class Utils {
                 RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "held_items"));
         final RegistryKey<Registry<MegaData>> MEGA_REGISTRY_KEY =
                 RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "mega"));
+        final RegistryKey<Registry<BattleFormChange>> BATTLE_FORM_REGISTRY_KEY =
+                RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "battle_form"));
+        final RegistryKey<Registry<ShowdownItemData>> SHOWDOWN_ITEM_REGISTRY_KEY =
+                RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "showdown_item"));
 
         keyItemsRegistry = registryAccess.get(KEY_ITEMS_REGISTRY_KEY);
         fusionRegistry = registryAccess.get(FUSION_REGISTRY_KEY);
         gmaxRegistry = registryAccess.get(GMAX_REGISTRY_KEY);
         heldItemsRegistry = registryAccess.get(HELD_ITEMS_REGISTRY_KEY);
         megaRegistry = registryAccess.get(MEGA_REGISTRY_KEY);
+        battleFormRegistry = registryAccess.get(BATTLE_FORM_REGISTRY_KEY);
+        showdownItemRegistry = registryAccess.get(SHOWDOWN_ITEM_REGISTRY_KEY);
 
         DataPackRegistriesLoader.registerCustomShowdown();
     }

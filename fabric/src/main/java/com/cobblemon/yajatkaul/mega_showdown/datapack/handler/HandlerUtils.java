@@ -7,6 +7,8 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
+import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.entity.LivingEntity;
@@ -56,7 +58,7 @@ public class HandlerUtils {
         );
     }
 
-    public static void particleEffect(LivingEntity context, EffectsData effects, boolean apply) {
+    public static void particleEffect(PokemonEntity context, EffectsData effects, boolean apply) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             int amplifier = apply ? effects.minecraft().particle_apply_amplifier() : effects.minecraft().particle_revert_amplifier();
 
@@ -136,6 +138,22 @@ public class HandlerUtils {
                             effects.minecraft().particle_revert());
                 }
             }
+        }
+    }
+
+    public static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
+        if (apply) {
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_apply(), effects.snowStorm().locator_apply());
+            context.after(effects.snowStorm().apply_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                return Unit.INSTANCE;
+            });
+        } else {
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_revert(), effects.snowStorm().locator_revert());
+            context.after(effects.snowStorm().revert_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                return Unit.INSTANCE;
+            });
         }
     }
 

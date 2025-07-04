@@ -35,6 +35,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -232,7 +233,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
+        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", List.of("target"));
 
         BlockPos entityPos = context.getBlockPos();
         context.getWorld().playSound(
