@@ -25,7 +25,7 @@ public record HeldItemData(
             Codec.STRING.fieldOf("item_id").forGetter(HeldItemData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(HeldItemData::item_name),
             Codec.BOOL.fieldOf("tradable_form").forGetter(HeldItemData::tradable_form),
-            Codec.list(Codec.STRING).fieldOf("item_description").forGetter(HeldItemData::item_description),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(HeldItemData::item_description),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(HeldItemData::pokemons),
             Codec.list(Codec.STRING).optionalFieldOf("apply_if", List.of()).forGetter(HeldItemData::apply_if),
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(HeldItemData::apply_aspects),

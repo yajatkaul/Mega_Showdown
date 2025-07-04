@@ -26,7 +26,7 @@ public record FusionData(
             Codec.STRING.fieldOf("msd_id").forGetter(FusionData::msd_id),
             Codec.STRING.fieldOf("item_id").forGetter(FusionData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(FusionData::item_name),
-            Codec.list(Codec.STRING).fieldOf("item_description").forGetter(FusionData::item_description),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(FusionData::item_description),
             Codec.BOOL.optionalFieldOf("tradable_form", false).forGetter(FusionData::tradable_form),
             Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(FusionData::custom_model_data),
             EffectsData.CODEC.optionalFieldOf("effects", null).forGetter(FusionData::effects),

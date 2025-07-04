@@ -27,7 +27,7 @@ public record KeyItemData(
             Codec.STRING.fieldOf("msd_id").forGetter(KeyItemData::msd_id),
             Codec.STRING.fieldOf("item_id").forGetter(KeyItemData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(KeyItemData::item_name),
-            Codec.list(Codec.STRING).fieldOf("item_description").forGetter(KeyItemData::item_description),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(KeyItemData::item_description),
             Codec.INT.optionalFieldOf("consume", 0).forGetter(KeyItemData::consume),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(KeyItemData::pokemons),
             Codec.list(Codec.STRING).optionalFieldOf("apply_if", List.of()).forGetter(KeyItemData::apply_if),

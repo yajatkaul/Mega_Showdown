@@ -25,7 +25,7 @@ public record MegaData(
             Codec.STRING.fieldOf("pokemon").forGetter(MegaData::pokemon),
             Codec.list(Codec.STRING).optionalFieldOf("required_aspects", List.of()).forGetter(MegaData::required_aspects),
             Codec.list(Codec.STRING).optionalFieldOf("blacklist_aspects", List.of()).forGetter(MegaData::blacklist_aspects),
-            Codec.list(Codec.STRING).fieldOf("item_description").forGetter(MegaData::item_description),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(MegaData::item_description),
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(MegaData::apply_aspects),
             Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(MegaData::custom_model_data)
     ).apply(instance, MegaData::new));
