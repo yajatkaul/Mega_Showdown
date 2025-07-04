@@ -19,15 +19,6 @@ public class DatapackRegister {
                 KeyItemData.CODEC
         );
 
-        final ResourceKey<Registry<HeldItemData>> FORM_CHANGE_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change"));
-
-        event.dataPackRegistry(
-                FORM_CHANGE_REGISTRY_KEY,
-                HeldItemData.CODEC,
-                HeldItemData.CODEC
-        );
-
         final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
                 ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "fusions"));
 

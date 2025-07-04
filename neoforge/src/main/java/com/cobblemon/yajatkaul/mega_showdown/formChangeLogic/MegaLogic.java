@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.CobbleEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
@@ -181,15 +182,8 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
+                HandlerUtils.applyAspects(megaPok.apply_aspects(), pokemon);
 
-                for (String aspect : megaPok.aspects()) {
-                    String[] aspectDiv = aspect.split("=");
-                    if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                        megaEvolve(context, aspectDiv[0]);
-                    } else {
-                        megaEvolve(context, aspectDiv[1]);
-                    }
-                }
                 pokemon.setTradeable(false);
                 return;
             } else {
@@ -238,6 +232,7 @@ public class MegaLogic {
             SnowStormHandler.Companion.cryAnimation(context);
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             new StringSpeciesFeature("mega_evolution", type).apply(context.getPokemon());
+            context.getPokemon().updateAspects();
             return Unit.INSTANCE;
         });
     }
@@ -262,7 +257,7 @@ public class MegaLogic {
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
 
-                    megaEvolve(context, "mega", battlePokemon, pokemonBattle);
+                    megaEvolve(context, "mega");
 
                     pokemon.setTradeable(false);
                     found = true;
@@ -296,15 +291,7 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-
-                for (String aspect : megaPok.aspects()) {
-                    String[] aspectDiv = aspect.split("=");
-                    if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                        megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                    } else {
-                        megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                    }
-                }
+                HandlerUtils.applyAspects(megaPok.apply_aspects(), pokemon);
                 pokemon.setTradeable(false);
                 return;
             } else {
@@ -313,28 +300,6 @@ public class MegaLogic {
                 return;
             }
         }
-    }
-
-    public static void megaEvolve(PokemonEntity context, String type, BattlePokemon battlePokemon, PokemonBattle pokemonBattle) {
-        AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
-
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", "target");
-
-        BlockPos entityPos = context.getOnPos();
-        context.level().playSound(
-                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                ModSounds.MEGA.get(),
-                SoundSource.PLAYERS, 0.2f, 0.8f
-        );
-
-        context.after(4.7F, () -> {
-            SnowStormHandler.Companion.cryAnimation(context);
-            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-            new StringSpeciesFeature("mega_evolution", type).apply(context.getPokemon());
-            CobbleEventsHandler.updatePackets(pokemonBattle, battlePokemon, true);
-            return Unit.INSTANCE;
-        });
     }
 
     public static void playDevolveAnimation(LivingEntity context) {
@@ -382,7 +347,7 @@ public class MegaLogic {
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
             for (int i = 0; i < 4; i++) {
                 if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                    megaEvolve(context, "mega", battlePokemon, pokemonBattle);
+                    megaEvolve(context, "mega");
 
                     pokemon.setTradeable(false);
                 }
@@ -411,14 +376,7 @@ public class MegaLogic {
             }
 
             if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                for (String aspect : megaPok.aspects()) {
-                    String[] aspectDiv = aspect.split("=");
-                    if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                        megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                    } else {
-                        megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                    }
-                }
+                HandlerUtils.applyAspects(megaPok.apply_aspects(), pokemon);
                 pokemon.setTradeable(false);
                 return;
             } else {

@@ -1,9 +1,12 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility;
 
-import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DataPackRegistriesLoader;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -18,7 +21,6 @@ public class Utils {
     public static final Set<String> MEGA_POKEMONS = new HashSet<>();
     public static final Set<String> GMAX_SPECIES = new HashSet<>();
     public static Registry<KeyItemData> keyItemsRegistry;
-    public static Registry<FormChangeData> formChangeRegistry;
     public static Registry<FusionData> fusionRegistry;
     public static Registry<GmaxData> gmaxRegistry;
     public static Registry<HeldItemData> heldItemsRegistry;
@@ -73,8 +75,6 @@ public class Utils {
     public static void registryLoader(DynamicRegistryManager registryAccess) {
         final RegistryKey<Registry<KeyItemData>> KEY_ITEMS_REGISTRY_KEY =
                 RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "key_items"));
-        final RegistryKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
-                RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "form_change"));
         final RegistryKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
                 RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "fusions"));
         final RegistryKey<Registry<GmaxData>> GMAX_REGISTRY_KEY =
@@ -85,7 +85,6 @@ public class Utils {
                 RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "mega"));
 
         keyItemsRegistry = registryAccess.get(KEY_ITEMS_REGISTRY_KEY);
-        formChangeRegistry = registryAccess.get(FORM_CHANGE_REGISTRY_KEY);
         fusionRegistry = registryAccess.get(FUSION_REGISTRY_KEY);
         gmaxRegistry = registryAccess.get(GMAX_REGISTRY_KEY);
         heldItemsRegistry = registryAccess.get(HELD_ITEMS_REGISTRY_KEY);

@@ -3,7 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-public record Minecraft (String particle_apply,
+public record Minecraft(String particle_apply,
                         String particle_revert,
                         String sound_apply,
                         String sound_revert,

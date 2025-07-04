@@ -3,12 +3,12 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-public record SnowStorm (String particle_apply,
-                         String particle_revert,
-                         String sound_apply,
-                         String sound_revert,
-                         Integer particle_apply_amplifier,
-                         Integer particle_revert_amplifier) {
+public record SnowStorm(String particle_apply,
+                        String particle_revert,
+                        String sound_apply,
+                        String sound_revert,
+                        Integer particle_apply_amplifier,
+                        Integer particle_revert_amplifier) {
     public static final Codec<SnowStorm> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.optionalFieldOf("particle_apply", null).forGetter(SnowStorm::particle_apply),
             Codec.STRING.optionalFieldOf("particle_revert", null).forGetter(SnowStorm::particle_revert),

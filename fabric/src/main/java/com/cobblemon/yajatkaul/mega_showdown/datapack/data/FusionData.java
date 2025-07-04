@@ -18,9 +18,9 @@ public record FusionData(
         List<String> fusion_aspects,
         List<String> revert_if,
         List<String> revert_aspects,
-        List<String> fusion_mon,
+        List<String> fusion_mons,
         List<String> fuser_fuse_if,
-        List<String> fuser_mon
+        List<String> fuser_mons
 ) {
     public static final Codec<FusionData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("msd_id").forGetter(FusionData::msd_id),
@@ -34,8 +34,8 @@ public record FusionData(
             Codec.list(Codec.STRING).fieldOf("fusion_aspects").forGetter(FusionData::fusion_aspects),
             Codec.list(Codec.STRING).fieldOf("revert_if").forGetter(FusionData::revert_if),
             Codec.list(Codec.STRING).fieldOf("revert_aspects").forGetter(FusionData::revert_aspects),
-            Codec.list(Codec.STRING).fieldOf("fusion_mon").forGetter(FusionData::fusion_mon),
+            Codec.list(Codec.STRING).fieldOf("fusion_mons").forGetter(FusionData::fusion_mons),
             Codec.list(Codec.STRING).optionalFieldOf("fuser_fuse_if", List.of()).forGetter(FusionData::fuser_fuse_if),
-            Codec.list(Codec.STRING).fieldOf("fuser_mon").forGetter(FusionData::fuser_mon)
+            Codec.list(Codec.STRING).fieldOf("fuser_mons").forGetter(FusionData::fuser_mons)
     ).apply(instance, FusionData::new));
 }

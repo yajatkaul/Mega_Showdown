@@ -2,7 +2,11 @@ package com.cobblemon.yajatkaul.mega_showdown.datapack;
 
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
@@ -52,33 +56,10 @@ public class DataPackRegistriesLoader {
                 if (stack.getItem().equals(customHeldItem) &&
                         ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
                                 stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) || items.custom_model_data() == 0)) {
-                    return items.showdown_id();
+                    return items.battle_mode_only().showdown_item_id();
                 }
                 return null;
             });
-        }
-
-        //BATTLE ONLY FORME CHANGE
-        for (FormChangeData items : Utils.formChangeRegistry) {
-            //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id());
-            //
-
-            if (items.battle_mode_only()) {
-                String[] parts = items.item_id().split(":");
-                Identifier custom_held_item_id = Identifier.of(parts[0], parts[1]);
-                Item customHeldItem = Registries.ITEM.get(custom_held_item_id);
-
-                CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                    if (stack.getItem().equals(customHeldItem) &&
-                            ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                                    stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data())
-                                    || items.custom_model_data() == 0)) {
-                        return items.showdown_id();
-                    }
-                    return null;
-                });
-            }
         }
 
         //GMAX

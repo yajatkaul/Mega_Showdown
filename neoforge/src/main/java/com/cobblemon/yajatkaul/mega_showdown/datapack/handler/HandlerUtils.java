@@ -1,10 +1,13 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack.handler;
 
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,9 +18,14 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 public class HandlerUtils {
     public static boolean checkEnabled(FusionData fusion, Pokemon pk) {
@@ -127,6 +135,22 @@ public class HandlerUtils {
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
                             effects.minecraft().particle_revert());
                 }
+            }
+        }
+    }
+
+    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
+        CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
+        return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
+    }
+
+    public static void applyAspects(List<String> aspects, Pokemon pokemon) {
+        for (String aspect : aspects) {
+            String[] div = aspect.split("=");
+            if (div[1].equals("true") || div[1].equals("false")) {
+                new FlagSpeciesFeature(div[0], Boolean.parseBoolean(div[1])).apply(pokemon);
+            } else {
+                new StringSpeciesFeature(div[0], div[1]).apply(pokemon);
             }
         }
     }

@@ -1,15 +1,17 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack;
 
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 public class DatapackRegister {
-    public static final RegistryKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
-            RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "form_change"));
 
     public static final RegistryKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
             RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "key_items"));
@@ -27,7 +29,6 @@ public class DatapackRegister {
             RegistryKey.ofRegistry(Identifier.of(MegaShowdown.MOD_ID, "mega"));
 
     public static void register() {
-        DynamicRegistries.registerSynced(FORM_CHANGE_REGISTRY_KEY, FormChangeData.CODEC);
         DynamicRegistries.registerSynced(KEY_ITEM_REGISTRY_KEY, KeyItemData.CODEC);
         DynamicRegistries.registerSynced(FUSION_REGISTRY_KEY, FusionData.CODEC);
         DynamicRegistries.registerSynced(GMAX_REGISTRY_KEY, GmaxData.CODEC);
