@@ -46,19 +46,19 @@ public class DataPackRegistriesLoader {
         }
 
         //SHOWDOWN ITEMS
-        for (ShowdownItemData items : Utils.showdownItemRegistry) {
+        for (ShowdownItemData item : Utils.showdownItemRegistry) {
             //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id());
+            MegaCommands.VALID_ITEMS.add(item.msd_id());
             //
 
-            Identifier custom_held_item_id = Identifier.tryParse(items.item_id());
+            Identifier custom_held_item_id = Identifier.tryParse(item.item_id());
             Item customHeldItem = Registries.ITEM.get(custom_held_item_id);
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
                 if (stack.getItem().equals(customHeldItem) &&
                         ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                                stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == items.custom_model_data()) || items.custom_model_data() == 0)) {
-                    return items.showdown_item_id();
+                                stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == item.custom_model_data()) || item.custom_model_data() == 0)) {
+                    return item.showdown_item_id();
                 }
                 return null;
             });

@@ -182,29 +182,30 @@ public class MegaLogic {
             }
 
             if (candidateSpecies == null
-                    || !pokemon.getAspects().containsAll(megaPok.required_aspects())
                     || pokemon.getAspects().stream().anyMatch(megaPok.blacklist_aspects()::contains)) {
                 continue;
             }
 
-            if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-
-                for (String aspect : megaPok.apply_aspects()) {
-                    String[] aspectDiv = aspect.split("=");
-                    if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                        megaEvolve(context, aspectDiv[0]);
+            for (List<String> condition : megaPok.required_aspects()) {
+                if (pokemon.getAspects().containsAll(condition)) {
+                    if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
+                        for (String aspect : megaPok.apply_aspects()) {
+                            String[] aspectDiv = aspect.split("=");
+                            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                                megaEvolve(context, aspectDiv[0]);
+                            } else {
+                                megaEvolve(context, aspectDiv[1]);
+                            }
+                        }
+                        pokemon.setTradeable(false);
                     } else {
-                        megaEvolve(context, aspectDiv[1]);
+                        player.sendMessage(
+                                Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                                true
+                        );
                     }
+                    return;
                 }
-                pokemon.setTradeable(false);
-                return;
-            } else {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return;
             }
         }
     }
@@ -249,77 +250,6 @@ public class MegaLogic {
             context.getPokemon().updateAspects();
             return Unit.INSTANCE;
         });
-    }
-
-    // IN BATTLE
-    public static void Evolve(PokemonEntity context, PlayerEntity player, BattlePokemon battlePokemon, PokemonBattle pokemonBattle) {
-        if (context.getPokemon().getOwnerPlayer() != player || player.getWorld().isClient) {
-            return;
-        }
-
-        Pokemon pokemon = context.getPokemon();
-        boolean hasMega = FormChangeHelper.hasMega((ServerPlayerEntity) player);
-
-        if (hasMega && !MegaShowdownConfig.multipleMegas.get()) {
-            player.sendMessage(
-                    Text.translatable("message.mega_showdown.mega_limit").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                    true
-            );
-            return;
-        }
-
-        if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-            boolean found = false;
-            for (int i = 0; i < 4; i++) {
-                if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-
-                    megaEvolve(context, "mega");
-                    pokemon.setTradeable(false);
-
-                    found = true;
-                }
-            }
-            if (!found) {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.rayquaza_no_dragonascent").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-            }
-            return;
-        }
-
-        for (MegaData megaPok : Utils.megaRegistry) {
-            String[] parts = megaPok.item_id().split(":");
-            Identifier paperId = Identifier.of(parts[0], parts[1]);
-            Item paperItem = Registries.ITEM.get(paperId);
-
-            String candidateSpecies = null;
-
-            if (paperItem == pokemon.heldItem().getItem() &&
-                    ((pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                            pokemon.heldItem().get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == megaPok.custom_model_data())
-                            || megaPok.custom_model_data() == 0)) {
-                candidateSpecies = megaPok.pokemon();
-            }
-
-            if (candidateSpecies == null
-                    || !pokemon.getAspects().containsAll(megaPok.required_aspects())
-                    || pokemon.getAspects().stream().anyMatch(megaPok.blacklist_aspects()::contains)) {
-                continue;
-            }
-
-            if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                HandlerUtils.applyAspects(megaPok.apply_aspects(), pokemon);
-                pokemon.setTradeable(false);
-                return;
-            } else {
-                player.sendMessage(
-                        Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
-                        true
-                );
-                return;
-            }
-        }
     }
 
     public static void playDevolveAnimation(LivingEntity context) {
@@ -390,17 +320,25 @@ public class MegaLogic {
             }
 
             if (candidateSpecies == null
-                    || !pokemon.getAspects().containsAll(megaPok.required_aspects())
                     || pokemon.getAspects().stream().anyMatch(megaPok.blacklist_aspects()::contains)) {
                 continue;
             }
 
-            if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                HandlerUtils.applyAspects(megaPok.apply_aspects(), pokemon);
-                pokemon.setTradeable(false);
-                return;
-            } else {
-                return;
+            for (List<String> condition : megaPok.required_aspects()) {
+                if (pokemon.getAspects().containsAll(condition)) {
+                    if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
+                        for (String aspect : megaPok.apply_aspects()) {
+                            String[] aspectDiv = aspect.split("=");
+                            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                                megaEvolve(context, aspectDiv[0]);
+                            } else {
+                                megaEvolve(context, aspectDiv[1]);
+                            }
+                        }
+                        pokemon.setTradeable(false);
+                    }
+                    return;
+                }
             }
         }
 

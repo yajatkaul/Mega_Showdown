@@ -13,9 +13,9 @@ public record HeldItemData(
         Boolean tradable_form,
         List<String> item_description,
         List<String> pokemons,
-        List<String> apply_if,
+        List<List<String>> apply_if,
         List<String> apply_aspects,
-        List<String> revert_if,
+        List<List<String>> revert_if,
         List<String> revert_aspects,
         Integer custom_model_data,
         EffectsData effects
@@ -27,9 +27,9 @@ public record HeldItemData(
             Codec.BOOL.fieldOf("tradable_form").forGetter(HeldItemData::tradable_form),
             Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(HeldItemData::item_description),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(HeldItemData::pokemons),
-            Codec.list(Codec.STRING).optionalFieldOf("apply_if", List.of()).forGetter(HeldItemData::apply_if),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("apply_if", List.of()).forGetter(HeldItemData::apply_if),
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(HeldItemData::apply_aspects),
-            Codec.list(Codec.STRING).optionalFieldOf("revert_if", List.of()).forGetter(HeldItemData::revert_if),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("revert_if", List.of()).forGetter(HeldItemData::revert_if),
             Codec.list(Codec.STRING).fieldOf("revert_aspects").forGetter(HeldItemData::revert_aspects),
             Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(HeldItemData::custom_model_data),
             EffectsData.CODEC.fieldOf("effects").forGetter(HeldItemData::effects)

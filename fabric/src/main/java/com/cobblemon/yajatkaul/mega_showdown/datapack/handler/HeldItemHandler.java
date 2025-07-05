@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
+
 
 public class HeldItemHandler {
     public static void customEvents(HeldItemEvent.Pre event) {
@@ -24,13 +26,17 @@ public class HeldItemHandler {
             if (heldItem.pokemons().contains(pokemon.getSpecies().getName())) {
                 if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemStack)) {
                     if (event.getReceiving().isOf(item)) {
-                        if (pokemon.getAspects().containsAll(heldItem.apply_if())) {
-                            HandlerUtils.applyAspects(heldItem.apply_aspects(), pokemon);
-                            return;
+                        for (List<String> condition : heldItem.apply_if()) {
+                            if (pokemon.getAspects().containsAll(condition)) {
+                                HandlerUtils.applyAspects(heldItem.apply_aspects(), pokemon);
+                                return;
+                            }
                         }
                     } else if (event.getReturning().isOf(item)) {
-                        if (pokemon.getAspects().containsAll(heldItem.revert_if())) {
-                            HandlerUtils.applyAspects(heldItem.revert_if(), pokemon);
+                        for (List<String> condition : heldItem.revert_if()) {
+                            if (pokemon.getAspects().containsAll(condition)) {
+                                HandlerUtils.applyAspects(heldItem.revert_aspects(), pokemon);
+                            }
                         }
                     }
                 }
