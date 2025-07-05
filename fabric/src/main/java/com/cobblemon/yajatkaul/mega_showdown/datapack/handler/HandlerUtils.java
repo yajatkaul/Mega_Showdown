@@ -58,7 +58,31 @@ public class HandlerUtils {
         );
     }
 
-    public static void particleEffect(PokemonEntity context, EffectsData effects, boolean apply) {
+    public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply){
+        if(apply){
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
+            } else if(effects.minecraft() != null){
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
+            }
+        }else {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
+            } else if(effects.minecraft() != null){
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
+            }
+        }
+    }
+
+    private static void particleEffect(PokemonEntity context, EffectsData effects, boolean apply) {
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             int amplifier = apply ? effects.minecraft().particle_apply_amplifier() : effects.minecraft().particle_revert_amplifier();
 
@@ -141,7 +165,7 @@ public class HandlerUtils {
         }
     }
 
-    public static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
+    private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
         if (apply) {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
             SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_apply(), effects.snowStorm().locator_apply());

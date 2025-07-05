@@ -53,7 +53,7 @@ public class HeldItemHandler {
                     && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_apply())) {
                 if(formChange.effects().snowStorm() != null){
                     pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
-                        HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), formChange.effects(), true, formChange.apply_aspects());
+                        HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
                         return Unit.INSTANCE;
                     });
                 }else {
@@ -64,7 +64,7 @@ public class HeldItemHandler {
                     && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_revert())) {
                 if(formChange.effects().snowStorm() != null){
                     pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
-                        HandlerUtils.snowStromParticleEffect(pokemon.getEntity(), formChange.effects(), false, formChange.revert_aspects());
+                        HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
                         return Unit.INSTANCE;
                     });
                 }else {

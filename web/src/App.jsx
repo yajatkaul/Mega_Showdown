@@ -36,7 +36,8 @@ function App() {
         showdown_form_id_revert: "charizard",
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/battle_form`",
+        "# This is used to add mid battle form change",
+        "## Filepath - `/<packname>/mega_showdown/battle_form`",
         "`pokemons*:` List of pokemons this battle form change should apply",
         "`apply_aspects*:` List of aspects you want to apply",
         "`revert_aspects*:` List of aspects you want to revert",
@@ -82,17 +83,17 @@ function App() {
         fuser_mons: ["venasaur"],
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/fusions`",
+        "# This is used to add custom fusions",
+        "## Filepath - `/<packname>/mega_showdown/fusions`",
         "`pokemons*:` List of pokemons this battle form change should apply",
         "`tradable_form:` If the pokemon should tradable after fusion, `default: false`",
-        "`fuse_if:` List of aspects need to be applied on the pokemon inorder to fuse",
         "`fusion_aspects*:` List of aspects to be applied on fusion",
-        "`revert_if*:` List of aspects need to be applied on the pokemon inorder to unfuse",
+        "`revert_if*:` List of aspects need to be applied on the pokemon inorder to unfuse. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`revert_aspects*:` List of aspects to be applied on unfuse",
-        "`fuse_if*:` List of aspects required on fusion_mons to be used",
+        "`fuse_if*:` List of aspects required on fusion_mons to be used. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`fusion_mons*:` List of pokemons which can be fuse",
         "`fuser_mons*:` List of pokemons which can be used to fuse",
-        "`fuser_fuse_if*:` List of aspects required on fuser_mons to be used",
+        "`fuser_fuse_if*:` List of aspects required on fuser_mons to be used. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
       ],
     },
     {
@@ -102,7 +103,8 @@ function App() {
         gmaxMove: "gmax-wildfire",
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/gmax`",
+        "# This is used to add custom gmax to pokemons",
+        "## Filepath - `/<packname>/mega_showdown/gmax`",
         "`pokemon*:` Pokemon that can gmax",
         "`gmaxMove*:` Gmax move for that mon",
       ],
@@ -145,18 +147,19 @@ function App() {
         },
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/held_items`",
+        "# This is used to add form changes based on held item change",
+        "## Filepath - `/<packname>/mega_showdown/held_items`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
         "`tradable_form*:` Can the mon be traded after form change",
         "`item_description*:` Lore on item, `default: []`",
         "`pokemons:` Pokemons which can change form using this",
-        "`apply_if:` Aspects required before applying form change",
+        "`apply_if:` Aspects required before applying form change. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`apply_aspects:` Aspects to apply on form change",
-        "`revert_if:` Aspects required before applying form change",
+        "`revert_if:` Aspects required before applying form change. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`revert_aspects:` Aspects required before reverting form change",
-        "`custom_model_data:` Custom model data component for special item `default: 0`",
+        "`custom_model_data:` Custom model data component for special item `default: 0`, 0 meaning even base item without any datacomponent can be used",
       ],
     },
     {
@@ -205,18 +208,19 @@ function App() {
         },
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/key_items`",
+        "# This is used to add form changes when right clicking a pokemons",
+        "## Filepath - `/<packname>/mega_showdown/key_items`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
-        "`custom_model_data:` Custom model data component for special item `default: 0`",
+        "`custom_model_data:` Custom model data component for special item `default: 0`, 0 meaning even base item without any datacomponent can be used",
         "`item_description*:` Lore on item, `default: []`",
         "`showdown_id*:` Showdown mega stone id to attach with this item",
         "`pokemon*:` Pokemon on which u want to add a mega",
         "`consume:` If the itemStack should decrement the item on use `default: 0`",
-        "`apply_if:` Aspects on pokemon requied to change form",
+        "`apply_if:` Aspects on pokemon requied to change form. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`apply_aspects*:` Aspects to apply on form change",
-        "`revert_if:` Aspects on pokemon requied to revert form",
+        "`revert_if:` Aspects on pokemon requied to revert form. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`revert_aspects:` Aspects to remove on reverting",
         "`toggle_cycle:` Aspects to toggle like how deoxys cycles in all its forms",
         "`toggle_aspects:` Aspects to apply on toggle like how deoxys cycles in all its forms",
@@ -239,14 +243,15 @@ function App() {
         custom_model_data: 101,
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/mega`",
+        "# This is used to add custom mega pokemons",
+        "## Filepath - `/<packname>/mega_showdown/mega`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
-        "`custom_model_data:` Custom model data component for special item `default: 0`",
+        "`custom_model_data:` Custom model data component for special item `default: 0`, 0 meaning even base item without any datacomponent can be used",
         "`item_description*:` Lore on item, `default: []`",
         "`showdown_id*:` Showdown mega stone id to attach with this item",
-        "`required_aspects:` If pokemon has this aspect only then it can mega",
+        "`required_aspects:` If pokemon has this aspect only then it can mega, `default: []`. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`blacklist_aspects:` If pokemon has this aspect it cant mega",
         "`apply_aspects*:` Showdown mega stone id to attach with this item",
         "`pokemon*:` Pokemon on which u want to add a mega",
@@ -263,11 +268,12 @@ function App() {
         showdown_item_id: "magical_box",
       },
       details: [
-        "Filepath - `/<packname>/mega_showdown/showdown_items`",
+        "# This is used to add showdown items like focus band to cobblemon",
+        "## Filepath - `/<packname>/mega_showdown/showdown_items`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
-        "`custom_model_data:` Custom model data component for special item `default: 0`",
+        "`custom_model_data:` Custom model data component for special item `default: 0`, 0 meaning even base item without any datacomponent can be used",
         "`item_description*:` Lore on item, `default: []`",
         "`showdown_item_id:` Showdown item id to attach with this item",
       ],
@@ -337,7 +343,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="ml-[30px] text-white mb-[15px]">
+              <div className="ml-[30px] text-white mb-[15px] flex flex-col gap-2 mr-[30px]">
                 {section.details?.map((detail, index) => {
                   return (
                     <Markdown
@@ -351,21 +357,29 @@ function App() {
                           ...props
                         }) => {
                           return inline ? (
-                            <code
-                              className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono"
-                              {...props}
-                            >
-                              {children}
-                            </code>
+                            <code {...props}>{children}</code>
                           ) : (
                             <code
-                              className="bg-gray-100 text-black px-1.5 py-0.5 rounded text-sm font-mono"
+                              className="bg-gray-600 px-1.5 py-0.5 rounded text-sm font-mono"
                               {...props}
                             >
                               {children}
                             </code>
                           );
                         },
+                        h1: ({ node, ...props }) => (
+                          <h1 className="text-3xl font-bold my-2" {...props} />
+                        ),
+                        h2: ({ node, ...props }) => (
+                          <h2
+                            className="text-2xl font-semibold my-2"
+                            {...props}
+                          />
+                        ),
+                        h3: ({ node, ...props }) => (
+                          <h3 className="text-xl font-medium my-2" {...props} />
+                        ),
+                        // You can continue for h4-h6 if needed
                       }}
                     >
                       {detail}
@@ -384,8 +398,7 @@ function App() {
         {/* Footer */}
         <div className="text-center mt-16 pt-8 border-t border-gray-800">
           <p className="text-gray-500 text-sm">
-            Generated documentation for MSD Datapack • Last updated:{" "}
-            {new Date().toLocaleDateString()}
+            Documentation for MSD Datapack • With Love {"<3"}
           </p>
         </div>
       </div>
