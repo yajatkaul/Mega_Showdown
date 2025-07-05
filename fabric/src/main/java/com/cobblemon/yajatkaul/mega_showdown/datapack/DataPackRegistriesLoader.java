@@ -15,14 +15,9 @@ public class DataPackRegistriesLoader {
         Utils.addGmaxToMap();
         Utils.MEGA_POKEMONS.clear();
         Utils.addMegaList();
-        MegaCommands.VALID_ITEMS.clear();
 
         //MEGA
         for (MegaData pokemon : Utils.megaRegistry) {
-            //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(pokemon.msd_id());
-            //
-
             Utils.MEGA_POKEMONS.add(pokemon.pokemon());
             String[] parts = pokemon.item_id().split(":");
             Identifier custom_stone_item_id = Identifier.of(parts[0], parts[1]);
@@ -38,19 +33,8 @@ public class DataPackRegistriesLoader {
             });
         }
 
-        //HELD ITEMS
-        for (HeldItemData items : Utils.heldItemsRegistry) {
-            //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(items.msd_id());
-            //
-        }
-
         //SHOWDOWN ITEMS
         for (ShowdownItemData item : Utils.showdownItemRegistry) {
-            //COMMAND UTILS
-            MegaCommands.VALID_ITEMS.add(item.msd_id());
-            //
-
             Identifier custom_held_item_id = Identifier.tryParse(item.item_id());
             Item customHeldItem = Registries.ITEM.get(custom_held_item_id);
 
@@ -67,16 +51,6 @@ public class DataPackRegistriesLoader {
         //GMAX
         for (GmaxData pokemon : Utils.gmaxRegistry) {
             Utils.GMAX_SPECIES.add(pokemon.pokemon());
-        }
-
-        //FUSIONS
-        for (FusionData fusion : Utils.fusionRegistry) {
-            MegaCommands.VALID_ITEMS.add(fusion.msd_id());
-        }
-
-        //KEY ITEMS
-        for (KeyItemData keyItems : Utils.keyItemsRegistry) {
-            MegaCommands.VALID_ITEMS.add(keyItems.msd_id());
         }
     }
 }
