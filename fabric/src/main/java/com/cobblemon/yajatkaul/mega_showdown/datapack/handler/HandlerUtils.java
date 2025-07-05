@@ -143,15 +143,19 @@ public class HandlerUtils {
 
     public static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
         if (apply) {
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
             SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_apply(), effects.snowStorm().locator_apply());
             context.after(effects.snowStorm().apply_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                 return Unit.INSTANCE;
             });
         } else {
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
             SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_revert(), effects.snowStorm().locator_revert());
             context.after(effects.snowStorm().revert_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                 return Unit.INSTANCE;
             });
         }

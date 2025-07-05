@@ -291,7 +291,7 @@ public class MegaLogic {
     }
 
     //NPCS
-    public static void NPCEvolve(PokemonEntity context, BattlePokemon battlePokemon, PokemonBattle pokemonBattle) {
+    public static void NPCEvolve(PokemonEntity context) {
         Pokemon pokemon = context.getPokemon();
 
         if (pokemon.getSpecies().getName().equals("Rayquaza")) {
@@ -303,7 +303,6 @@ public class MegaLogic {
             }
             return;
         }
-
 
         for (MegaData megaPok : Utils.megaRegistry) {
             String[] parts = megaPok.item_id().split(":");
@@ -341,6 +340,5 @@ public class MegaLogic {
                 }
             }
         }
-
     }
 }
