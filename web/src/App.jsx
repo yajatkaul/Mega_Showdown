@@ -36,6 +36,7 @@ function App() {
         showdown_form_id_revert: "charizard",
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/battle_form`",
         "`pokemons*:` List of pokemons this battle form change should apply",
         "`apply_aspects*:` List of aspects you want to apply",
         "`revert_aspects*:` List of aspects you want to revert",
@@ -81,6 +82,7 @@ function App() {
         fuser_mons: ["venasaur"],
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/fusions`",
         "`pokemons*:` List of pokemons this battle form change should apply",
         "`tradable_form:` If the pokemon should tradable after fusion, `default: false`",
         "`fuse_if:` List of aspects need to be applied on the pokemon inorder to fuse",
@@ -100,6 +102,7 @@ function App() {
         gmaxMove: "gmax-wildfire",
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/gmax`",
         "`pokemon*:` Pokemon that can gmax",
         "`gmaxMove*:` Gmax move for that mon",
       ],
@@ -142,6 +145,7 @@ function App() {
         },
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/held_items`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
@@ -201,6 +205,7 @@ function App() {
         },
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/key_items`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
@@ -233,6 +238,7 @@ function App() {
         custom_model_data: 101,
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/mega`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
@@ -256,6 +262,7 @@ function App() {
         showdown_item_id: "magical_box",
       },
       details: [
+        "Filepath - `/<packname>/mega_showdown/showdown_items`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",
