@@ -43,12 +43,10 @@ public class MegaCommands {
                     .then(CommandManager.literal("give")
                             .then(CommandManager.argument("player", EntityArgumentType.player())
                                     .then(CommandManager.argument("itemtype", StringArgumentType.word())
-                                            .suggests((context, builder) -> {
-                                                return CommandSource.suggestMatching(
-                                                        List.of("mega_stone", "held_item", "showdown_item", "fusion_item", "key_item"),
-                                                        builder
-                                                );
-                                            })
+                                            .suggests((context, builder) -> CommandSource.suggestMatching(
+                                                    List.of("mega_stone", "held_item", "showdown_item", "fusion_item", "key_item"),
+                                                    builder
+                                            ))
                                             .then(CommandManager.argument("item", StringArgumentType.word())
                                                     .suggests((context, builder) -> {
                                                         String type = StringArgumentType.getString(context, "itemtype");
