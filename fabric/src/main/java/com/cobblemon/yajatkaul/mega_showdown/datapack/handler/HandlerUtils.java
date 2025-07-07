@@ -29,20 +29,6 @@ import net.minecraft.util.math.Vec3d;
 import java.util.List;
 
 public class HandlerUtils {
-    public static boolean checkEnabled(FusionData fusion, Pokemon pk) {
-        for (String aspects : fusion.fusion_aspects()) {
-            String[] aspectsDiv = aspects.split("=");
-            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                if (!pk.getAspects().contains(aspectsDiv[0])) return false;
-            } else {
-                for (String aspect : pk.getAspects()) {
-                    if (!aspect.startsWith(aspectsDiv[1])) return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
         Vec3d eyePos = player.getEyePos();
         Vec3d lookVec = player.getRotationVec(1.0F);

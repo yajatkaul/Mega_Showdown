@@ -74,7 +74,7 @@ public class ZygardeCubeScreenHandler extends ScreenHandler {
 
     @Override
     public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
-        if (actionType == SlotActionType.THROW && slotIndex >= 0 && slotIndex < slots.size()) {
+        if ((actionType == SlotActionType.THROW || actionType == SlotActionType.PICKUP) && slotIndex >= 0 && slotIndex < slots.size()) {
             Slot slot = slots.get(slotIndex);
             if (slot.hasStack() && slot.getStack().isOf(FormeChangeItems.ZYGARDE_CUBE)) {
                 if (player instanceof ServerPlayerEntity serverPlayer) {

@@ -119,7 +119,7 @@ public class CobbleEventsHandler {
             GlowHandler.applyZGlow(pokemon);
         }
 
-        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", List.of("target"));
+        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), "cobblemon:z_moves", List.of("target"));
         zMoveUsedEvent.getBattle().dispatchWaitingToFront(4F, () -> Unit.INSTANCE);
 
         BlockPos entityPos = pokemon.getBlockPos();

@@ -5,13 +5,14 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 public record FusionData(
         String msd_id,
         String item_id,
         String item_name,
         List<String> item_description,
-        boolean tradable_form,
+        Boolean tradable_form,
         Integer custom_model_data,
         EffectsData effects,
         List<List<String>> fuse_if,
@@ -26,16 +27,33 @@ public record FusionData(
             Codec.STRING.fieldOf("msd_id").forGetter(FusionData::msd_id),
             Codec.STRING.fieldOf("item_id").forGetter(FusionData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(FusionData::item_name),
-            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(FusionData::item_description),
-            Codec.BOOL.optionalFieldOf("tradable_form", false).forGetter(FusionData::tradable_form),
-            Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(FusionData::custom_model_data),
-            EffectsData.CODEC.optionalFieldOf("effects", null).forGetter(FusionData::effects),
-            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("fuse_if", List.of()).forGetter(FusionData::fuse_if),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(f -> Optional.ofNullable(f.item_description())),
+            Codec.BOOL.optionalFieldOf("tradable_form").forGetter(f -> Optional.ofNullable(f.tradable_form())),
+            Codec.INT.optionalFieldOf("custom_model_data").forGetter(f -> Optional.ofNullable(f.custom_model_data())),
+            EffectsData.CODEC.optionalFieldOf("effects").forGetter(f -> Optional.ofNullable(f.effects())),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("fuse_if").forGetter(f -> Optional.ofNullable(f.fuse_if())),
             Codec.list(Codec.STRING).fieldOf("fusion_aspects").forGetter(FusionData::fusion_aspects),
             Codec.list(Codec.list(Codec.STRING)).fieldOf("revert_if").forGetter(FusionData::revert_if),
             Codec.list(Codec.STRING).fieldOf("revert_aspects").forGetter(FusionData::revert_aspects),
             Codec.list(Codec.STRING).fieldOf("fusion_mons").forGetter(FusionData::fusion_mons),
-            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("fuser_fuse_if", List.of()).forGetter(FusionData::fuser_fuse_if),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("fuser_fuse_if").forGetter(f -> Optional.ofNullable(f.fuser_fuse_if())),
             Codec.list(Codec.STRING).fieldOf("fuser_mons").forGetter(FusionData::fuser_mons)
-    ).apply(instance, FusionData::new));
+    ).apply(instance, (msdId, itemId, itemName, itemDescription, tradableForm, customModelData, effects, fuseIf, fusionAspects, revertIf, revertAspects, fusionMons, fuserFuseIf, fuserMons) ->
+            new FusionData(
+                    msdId,
+                    itemId,
+                    itemName,
+                    itemDescription.orElse(List.of()),
+                    tradableForm.orElse(false),
+                    customModelData.orElse(0),
+                    effects.orElse(null),
+                    fuseIf.orElse(List.of()),
+                    fusionAspects,
+                    revertIf,
+                    revertAspects,
+                    fusionMons,
+                    fuserFuseIf.orElse(List.of()),
+                    fuserMons
+            )
+    ));
 }

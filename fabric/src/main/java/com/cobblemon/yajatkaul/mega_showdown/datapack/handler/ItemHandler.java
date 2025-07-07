@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
@@ -63,13 +64,12 @@ public class ItemHandler {
                 if (HandlerUtils.itemValidator(item, fusion.custom_model_data(), itemStack)) {
                     EntityHitResult entityHit = HandlerUtils.getEntityLookingAt(player, 4.5);
                     if (entityHit == null) {
-                        return TypedActionResult.pass(itemStack);
-                    } else {
                         Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
                         if (currentValue != null) {
                             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
                             playerPartyStore.add(currentValue);
                         }
+                        return TypedActionResult.pass(itemStack);
                     }
                     Entity context = entityHit.getEntity();
 
@@ -85,20 +85,35 @@ public class ItemHandler {
                     PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
                     Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
 
-                    if (HandlerUtils.checkEnabled(fusion, pokemon) && fusion.fusion_mons().contains(pokemon.getSpecies().getName())) {
-                        if(fusion.fuse_if().isEmpty()){
-                            Pokemon pokemonSave = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
-                            playerPartyStore.add(pokemonSave);
-                            pokemon.getPersistentData().remove("fusion_forme");
-                            HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.revert_aspects(), false);
-                        }
-                        for (List<String> condition : fusion.fuse_if()) {
+                    if (fusion.fusion_mons().contains(pokemon.getSpecies().getName())) {
+                        for (List<String> condition : fusion.revert_if()) {
                             if (pokemon.getAspects().containsAll(condition)) {
                                 Pokemon pokemonSave = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
                                 playerPartyStore.add(pokemonSave);
                                 pokemon.getPersistentData().remove("fusion_forme");
                                 HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.revert_aspects(), false);
-                                break;
+                                return TypedActionResult.success(itemStack);
+                            }
+                        }
+
+                        if(currentValue != null){
+                            if(fusion.fuse_if().isEmpty()){
+                                NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
+                                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
+                                itemStack.remove(DataManage.POKEMON_STORAGE);
+
+                                HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
+                                return TypedActionResult.success(itemStack);
+                            }
+                            for (List<String> condition : fusion.fuse_if()) {
+                                if (pokemon.getAspects().containsAll(condition)) {
+                                    NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
+                                    pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
+                                    itemStack.remove(DataManage.POKEMON_STORAGE);
+
+                                    HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
+                                    return TypedActionResult.success(itemStack);
+                                }
                             }
                         }
                     } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
@@ -110,23 +125,6 @@ public class ItemHandler {
                             if (pokemon.getAspects().containsAll(condition)) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, pokemon);
                                 playerPartyStore.remove(pokemon);
-                                break;
-                            }
-                        }
-                    } else if (fusion.fusion_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.checkEnabled(fusion, pokemon)) {
-                        if(fusion.fuse_if().isEmpty()){
-                            NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
-                            pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
-
-                            HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
-                        }
-                        for (List<String> condition : fusion.fuse_if()) {
-                            if (pokemon.getAspects().containsAll(condition)) {
-                                NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
-                                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
-
-                                HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
-
                                 break;
                             }
                         }

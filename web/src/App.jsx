@@ -7,7 +7,7 @@ function App() {
     {
       title: "Battle Form Change",
       data: {
-        pokemons: ["charizard"],
+        pokemons: ["Charizard"],
         apply_aspects: ["dance_style=balie"],
         revert_aspects: ["dance_style=base"],
         effects: {
@@ -74,9 +74,9 @@ function App() {
         fusion_aspects: ["absofusion=true"],
         revert_if: [["absofusion"]],
         revert_aspects: ["absofusion=false"],
-        fusion_mons: ["charizard"],
+        fusion_mons: ["Charizard"],
         fuser_fuse_if: [["galar"]],
-        fuser_mons: ["venasaur"],
+        fuser_mons: ["Venasaur"],
       },
       details: [
         "# This is used to add custom fusions",
@@ -95,7 +95,7 @@ function App() {
     {
       title: "Gmax Data",
       data: {
-        pokemon: "charizard",
+        pokemon: "Charizard",
         gmaxMove: "gmax-wildfire",
       },
       details: [
@@ -113,7 +113,7 @@ function App() {
         item_name: "Charcoal",
         tradable_form: true,
         item_description: ["Boosts Fire-type moves."],
-        pokemons: ["charmander", "charizard"],
+        pokemons: ["Charmander", "Charizard"],
         apply_if: [["shiny"]],
         apply_aspects: ["color=black"],
         revert_if: [["black"]],
@@ -164,7 +164,7 @@ function App() {
         item_name: "Mystic Key",
         item_description: ["Unlocks ancient doors."],
         consume: 1,
-        pokemons: ["mew", "mewtwo"],
+        pokemons: ["Mew", "Mewtwo"],
         apply_if: [["male"]],
         apply_aspects: ["galar=true"],
         revert_if: [["galar"]],
@@ -227,7 +227,7 @@ function App() {
         showdown_id: "charizardite-z",
         item_id: "mega_showdown:pedistal",
         item_name: "Charizardite X",
-        pokemon: "charizard",
+        pokemon: "Charizard",
         required_aspects: [["galar"]],
         blacklist_aspects: [["shiny"]],
         item_description: ["Mega Evolves Charizard into Mega Charizard X."],
@@ -261,7 +261,7 @@ function App() {
       },
       details: [
         "# This is used to add showdown items like focus band to cobblemon",
-        "## Filepath - `/<packname>/mega_showdown/showdown_items`",
+        "## Filepath - `/<packname>/mega_showdown/showdown_item`",
         "`msd_id*:` Mega showdown id to get the item using /msd give",
         "`item_id*:` Which item should be used",
         "`item_name*:` Item name",

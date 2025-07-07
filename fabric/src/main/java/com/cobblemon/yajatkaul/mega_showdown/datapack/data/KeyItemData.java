@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 public record KeyItemData(
         String msd_id,
@@ -27,17 +28,35 @@ public record KeyItemData(
             Codec.STRING.fieldOf("msd_id").forGetter(KeyItemData::msd_id),
             Codec.STRING.fieldOf("item_id").forGetter(KeyItemData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(KeyItemData::item_name),
-            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(KeyItemData::item_description),
-            Codec.INT.optionalFieldOf("consume", 0).forGetter(KeyItemData::consume),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(k -> Optional.ofNullable(k.item_description())),
+            Codec.INT.optionalFieldOf("consume").forGetter(k -> Optional.ofNullable(k.consume())),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(KeyItemData::pokemons),
-            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("apply_if", List.of()).forGetter(KeyItemData::apply_if),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("apply_if").forGetter(k -> Optional.ofNullable(k.apply_if())),
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(KeyItemData::apply_aspects),
             Codec.list(Codec.list(Codec.STRING)).fieldOf("revert_if").forGetter(KeyItemData::revert_if),
             Codec.list(Codec.STRING).fieldOf("revert_aspects").forGetter(KeyItemData::revert_aspects),
-            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("toggle_aspects", List.of()).forGetter(KeyItemData::toggle_aspects),
-            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("toggle_cycle", List.of()).forGetter(KeyItemData::toggle_cycle),
-            Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(KeyItemData::custom_model_data),
-            Codec.BOOL.optionalFieldOf("tradable_form", false).forGetter(KeyItemData::tradable_form),
-            EffectsData.CODEC.optionalFieldOf("effects", null).forGetter(KeyItemData::effects)
-    ).apply(instance, KeyItemData::new));
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("toggle_cycle").forGetter(k -> Optional.ofNullable(k.toggle_cycle())),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("toggle_aspects").forGetter(k -> Optional.ofNullable(k.toggle_aspects())),
+            Codec.INT.optionalFieldOf("custom_model_data").forGetter(k -> Optional.ofNullable(k.custom_model_data())),
+            Codec.BOOL.optionalFieldOf("tradable_form").forGetter(k -> Optional.ofNullable(k.tradable_form())),
+            EffectsData.CODEC.optionalFieldOf("effects").forGetter(k -> Optional.ofNullable(k.effects()))
+    ).apply(instance, (msdId, itemId, itemName, itemDescription, consume, pokemons, applyIf, applyAspects, revertIf, revertAspects, toggleCycle, toggleAspects, customModelData, tradableForm, effects) ->
+            new KeyItemData(
+                    msdId,
+                    itemId,
+                    itemName,
+                    itemDescription.orElse(List.of()),
+                    consume.orElse(0),
+                    pokemons,
+                    applyIf.orElse(List.of()),
+                    applyAspects,
+                    revertIf,
+                    revertAspects,
+                    toggleCycle.orElse(List.of()),
+                    toggleAspects.orElse(List.of()),
+                    customModelData.orElse(0),
+                    tradableForm.orElse(false),
+                    effects.orElse(null)
+            )
+    ));
 }

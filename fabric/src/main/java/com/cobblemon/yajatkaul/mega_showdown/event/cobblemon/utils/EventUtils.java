@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
@@ -21,11 +22,16 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.List;
 
 public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
@@ -89,36 +95,33 @@ public class EventUtils {
             }
             pokemon.getPersistentData().remove("zygarde_form");
         }
-        // HELD ITEM
-        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("origin")
+        //REVERSE
+        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("origin-forme")
                 && !pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("origin")
+        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("origin-forme")
                 && !pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("origin")
+        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("origin-forme")
                 && !pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        }
-        //REVERSE
-        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("altered")
-                && pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
-            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("altered")
-                && pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
-            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("altered")
-                && pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
-            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Arceus") && !pokemon.getAspects().contains("normal")
-                && !(pokemon.heldItem().getItem() instanceof ArceusType)) {
-            new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         }
 
         // DATAPACK
         for (BattleFormChange forme : Utils.battleFormRegistry) {
             if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
                 HandlerUtils.applyAspects(forme.revert_aspects(), pokemon);
+            }
+        }
+
+        for (HeldItemData heldItem : Utils.heldItemsRegistry) {
+            Item item = Registries.ITEM.get(Identifier.tryParse(heldItem.item_id()));
+            if(!HandlerUtils.itemValidator(item, heldItem.custom_model_data(), pokemon.heldItem())){
+                for(List<String> aspects: heldItem.revert_if()){
+                    if(pokemon.getAspects().containsAll(aspects)){
+                        HandlerUtils.applyAspects(heldItem.revert_aspects(), pokemon);
+                    }
+                }
             }
         }
     }

@@ -15,10 +15,6 @@
     "restricted"
   ],
   "aspects": [],
-  "features": [
-    "black",
-    "white"
-  ],
   "abilities": [
     "pressure",
     "h:pressure"
@@ -189,7 +185,7 @@
         "restricted"
       ],
       "aspects": [
-        "white"
+        "white-fusion"
       ],
       "abilities": [
         "turboblaze",
@@ -349,7 +345,7 @@
         "restricted"
       ],
       "aspects": [
-        "black"
+        "black-fusion"
       ],
       "abilities": [
         "teravolt",

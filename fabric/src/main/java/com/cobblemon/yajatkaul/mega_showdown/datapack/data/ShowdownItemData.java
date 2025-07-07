@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 public record ShowdownItemData(
         String msd_id,
@@ -17,8 +18,17 @@ public record ShowdownItemData(
             Codec.STRING.fieldOf("msd_id").forGetter(ShowdownItemData::msd_id),
             Codec.STRING.fieldOf("item_id").forGetter(ShowdownItemData::item_id),
             Codec.STRING.fieldOf("item_name").forGetter(ShowdownItemData::item_name),
-            Codec.INT.optionalFieldOf("custom_model_data", 0).forGetter(ShowdownItemData::custom_model_data),
-            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(ShowdownItemData::item_description),
+            Codec.INT.optionalFieldOf("custom_model_data").forGetter(s -> Optional.ofNullable(s.custom_model_data())),
+            Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(s -> Optional.ofNullable(s.item_description())),
             Codec.STRING.fieldOf("showdown_item_id").forGetter(ShowdownItemData::showdown_item_id)
-    ).apply(instance, ShowdownItemData::new));
+    ).apply(instance, (msdId, itemId, itemName, customModelData, itemDescription, showdownItemId) ->
+            new ShowdownItemData(
+                    msdId,
+                    itemId,
+                    itemName,
+                    customModelData.orElse(0),
+                    itemDescription.orElse(List.of()),
+                    showdownItemId
+            )
+    ));
 }
