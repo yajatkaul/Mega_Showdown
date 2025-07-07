@@ -1,8 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
@@ -151,7 +149,7 @@ public class N_Lunarizer extends Item {
                 playerPartyStore.remove(pokemon);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.charged"));
             } else if (pokemon.getSpecies().getName().equals("Necrozma") && checkEnabled(pokemon)) {
-                if(pokemon.getAspects().contains("ultra-fusion")){
+                if (pokemon.getAspects().contains("ultra-fusion")) {
                     return TypedActionResult.pass(stack);
                 }
 

@@ -1,13 +1,10 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility;
 
-import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegistriesLoader;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,11 +14,12 @@ public class Utils {
     public static final Set<String> MEGA_POKEMONS = new HashSet<>();
     public static final Set<String> GMAX_SPECIES = new HashSet<>();
     public static Registry<KeyItemData> keyItemsRegistry;
-    public static Registry<FormChangeData> formChangeRegistry;
+    public static Registry<BattleFormChange> battleFormRegistry;
     public static Registry<FusionData> fusionRegistry;
     public static Registry<GmaxData> gmaxRegistry;
     public static Registry<HeldItemData> heldItemsRegistry;
     public static Registry<MegaData> megaRegistry;
+    public static Registry<ShowdownItemData> showdownItemRegistry;
 
     public static void addGmaxToMap() {
         GMAX_SPECIES.add("Venusaur");
@@ -70,25 +68,13 @@ public class Utils {
     }
 
     public static void registryLoader(RegistryAccess registryAccess) {
-        final ResourceKey<Registry<KeyItemData>> KEY_ITEMS_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
-        final ResourceKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change"));
-        final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "fusions"));
-        final ResourceKey<Registry<GmaxData>> GMAX_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "gmax"));
-        final ResourceKey<Registry<HeldItemData>> HELD_ITEMS_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "held_items"));
-        final ResourceKey<Registry<MegaData>> MEGA_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega"));
-
-        keyItemsRegistry = registryAccess.registryOrThrow(KEY_ITEMS_REGISTRY_KEY);
-        formChangeRegistry = registryAccess.registryOrThrow(FORM_CHANGE_REGISTRY_KEY);
-        fusionRegistry = registryAccess.registryOrThrow(FUSION_REGISTRY_KEY);
-        gmaxRegistry = registryAccess.registryOrThrow(GMAX_REGISTRY_KEY);
-        heldItemsRegistry = registryAccess.registryOrThrow(HELD_ITEMS_REGISTRY_KEY);
-        megaRegistry = registryAccess.registryOrThrow(MEGA_REGISTRY_KEY);
+        keyItemsRegistry = registryAccess.registryOrThrow(DatapackRegister.KEY_ITEM_REGISTRY_KEY);
+        battleFormRegistry = registryAccess.registryOrThrow(DatapackRegister.BATTLE_FORM_REGISTRY_KEY);
+        fusionRegistry = registryAccess.registryOrThrow(DatapackRegister.FUSION_REGISTRY_KEY);
+        gmaxRegistry = registryAccess.registryOrThrow(DatapackRegister.GMAX_REGISTRY_KEY);
+        heldItemsRegistry = registryAccess.registryOrThrow(DatapackRegister.HELD_ITEM_REGISTRY_KEY);
+        megaRegistry = registryAccess.registryOrThrow(DatapackRegister.MEGA_REGISTRY_KEY);
+        showdownItemRegistry = registryAccess.registryOrThrow(DatapackRegister.SHOWDOWN_ITEM_REGISTRY_KEY);
 
         DatapackRegistriesLoader.registerCustomShowdown();
     }

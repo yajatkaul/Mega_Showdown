@@ -73,7 +73,7 @@ public class ZygardeCubeMenu extends AbstractContainerMenu {
             return ItemStack.EMPTY;
         }
 
-        boolean moved = false;
+        boolean moved;
 
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // Move from player inventory to custom inventory

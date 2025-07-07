@@ -8,8 +8,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
@@ -22,15 +20,11 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.Memory;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ElementalZCrystal;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
-import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -38,11 +32,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HeldItemChangeFormes {
@@ -95,7 +86,7 @@ public class HeldItemChangeFormes {
                 );
 
                 SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
-                        "arceus_" + plate.getType(), "target");
+                        "arceus_" + plate.getType(), List.of("target"));
                 pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
                 pokemon.getEntity().after(3F, () -> {
@@ -113,7 +104,7 @@ public class HeldItemChangeFormes {
                 );
 
                 SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
-                        "arceus_" + crystal.getType(), "target");
+                        "arceus_" + crystal.getType(), List.of("target"));
                 pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
                 pokemon.getEntity().after(3F, () -> {
@@ -254,95 +245,6 @@ public class HeldItemChangeFormes {
         }
     }
 
-    public static void customEvents(HeldItemEvent.Pre event) {
-        Pokemon pokemon = event.getPokemon();
-
-        for (FormChangeData heldItem : Utils.formChangeRegistry) {
-            if (heldItem.battle_mode_only()) {
-                return;
-            }
-            if (heldItem.pokemons().contains(pokemon.getSpecies().getName())) {
-                if (!pokemon.getEntity().isBattling()) {
-                    if (!heldItem.required_aspects().isEmpty()) {
-                        List<String> aspectList = new ArrayList<>();
-                        for (String aspects : heldItem.required_aspects()) {
-                            String[] aspectsDiv = aspects.split("=");
-                            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                aspectList.add(aspects.split("=")[0]);
-                            } else {
-                                aspectList.add(aspects.split("=")[1]);
-                            }
-                        }
-
-                        boolean allMatch = true;
-                        for (String requiredAspect : aspectList) {
-                            boolean matched = false;
-                            for (String pokemonAspect : pokemon.getAspects()) {
-                                if (pokemonAspect.startsWith(requiredAspect)) {
-                                    matched = true;
-                                    break;
-                                }
-                            }
-                            if (!matched) {
-                                allMatch = false;
-                                break;
-                            }
-                        }
-
-                        if (!allMatch) {
-                            return;
-                        }
-                    }
-
-                    ItemStack receivedItem = event.getReceiving();
-                    String[] nameSpace = heldItem.item_id().split(":");
-                    ResourceLocation customItem = ResourceLocation.fromNamespaceAndPath(nameSpace[0], nameSpace[1]);
-                    Item item = BuiltInRegistries.ITEM.get(customItem);
-                    if (receivedItem.is(item) && ((receivedItem.get(DataComponents.CUSTOM_MODEL_DATA) != null
-                            && receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value()
-                            == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(false);
-                        }
-                        for (String aspects : heldItem.aspects()) {
-                            String[] aspectsDiv = aspects.split("=");
-                            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                            } else {
-                                new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                            }
-                        }
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(false);
-                        }
-                        HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), true);
-                        return;
-                    } else if (!receivedItem.is(item) ||
-                            ((receivedItem.get(DataComponents.CUSTOM_MODEL_DATA) != null &&
-                                    receivedItem.get(DataComponents.CUSTOM_MODEL_DATA).value()
-                                            == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(true);
-                        }
-                        for (String aspects : heldItem.default_aspects()) {
-                            String[] aspectsDiv = aspects.split("=");
-                            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                            } else {
-                                new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                            }
-                        }
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(true);
-                        }
-                        HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), false);
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
     public static void crownedEvent(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
@@ -431,7 +333,7 @@ public class HeldItemChangeFormes {
                     SoundSource.PLAYERS, 0.2f, 1.1f
             );
 
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_g_effect", "target");
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_g_effect", List.of("target"));
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(3.8F, () -> {
@@ -451,7 +353,7 @@ public class HeldItemChangeFormes {
                     SoundSource.PLAYERS, 0.2f, 1.1f
             );
 
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_effect", "target");
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_effect", List.of("target"));
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(4F, () -> {

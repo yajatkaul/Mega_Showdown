@@ -1,24 +1,36 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.List;
 
 public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
@@ -82,46 +94,31 @@ public class EventUtils {
             }
             pokemon.getPersistentData().remove("zygarde_form");
         }
-        // HELD ITEM
-        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("origin")
+        //REVERSE
+        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("origin-forme")
                 && !pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("origin")
+        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("origin-forme")
                 && !pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("origin")
+        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("origin-forme")
                 && !pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
             new StringSpeciesFeature("orb_forme", "altered").apply(pokemon);
         }
-        //REVERSE
-        else if (pokemon.getSpecies().getName().equals("Palkia") && pokemon.getAspects().contains("altered")
-                && pokemon.heldItem().isOf(FormeChangeItems.LUSTROUS_GLOBE)) {
-            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Dialga") && pokemon.getAspects().contains("altered")
-                && pokemon.heldItem().isOf(FormeChangeItems.ADAMANT_CRYSTAL)) {
-            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Giratina") && pokemon.getAspects().contains("altered")
-                && pokemon.heldItem().isOf(FormeChangeItems.GRISEOUS_CORE)) {
-            new StringSpeciesFeature("orb_forme", "origin").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Arceus") && !pokemon.getAspects().contains("normal")
-                && !(pokemon.heldItem().getItem() instanceof ArceusType)) {
-            new StringSpeciesFeature("multitype", "normal").apply(pokemon);
-        }
 
         // DATAPACK
-        for (FormChangeData forme : Utils.formChangeRegistry) {
-            if (forme.battle_mode_only()) {
-                if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
-                    for (String aspects : forme.default_aspects()) {
-                        String[] aspectsDiv = aspects.split("=");
-                        if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                            new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                        } else {
-                            new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                        }
-                    }
-                    if (pokemon.getEntity() != null) {
-                        HandlerUtils.particleEffect(pokemon.getEntity(), forme.effects(), false);
+        for (BattleFormChange forme : Utils.battleFormRegistry) {
+            if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
+                HandlerUtils.applyAspects(forme.revert_aspects(), pokemon);
+            }
+        }
+
+        for (HeldItemData heldItem : Utils.heldItemsRegistry) {
+            Item item = Registries.ITEM.get(Identifier.tryParse(heldItem.item_id()));
+            if (!HandlerUtils.itemValidator(item, heldItem.custom_model_data(), pokemon.heldItem())) {
+                for (List<String> aspects : heldItem.revert_if()) {
+                    if (pokemon.getAspects().containsAll(aspects)) {
+                        HandlerUtils.applyAspects(heldItem.revert_aspects(), pokemon);
                     }
                 }
             }
@@ -281,6 +278,29 @@ public class EventUtils {
                         0, 0, 0, // No movement velocity
                         0.1 // Slight motion
                 );
+            }
+        }
+    }
+
+    public static void updatePackets(PokemonBattle battle, BattlePokemon pk) {
+        Pokemon pokemon = pk.getEntity().getPokemon();
+
+        if (pk.actor.getType().equals(ActorType.PLAYER)) {
+            battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+            battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+        }
+
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
+            if (!pk.actor.getType().equals(ActorType.PLAYER)) {
+                continue;
+            }
+            if (activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pk.getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == pk) {
+                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pk, true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pk, false),
+                        false);
             }
         }
     }

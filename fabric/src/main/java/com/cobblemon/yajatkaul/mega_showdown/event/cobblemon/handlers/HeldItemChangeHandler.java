@@ -36,6 +36,8 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.List;
+
 public class HeldItemChangeHandler {
     public static void genesectChange(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
@@ -86,7 +88,7 @@ public class HeldItemChangeHandler {
                 );
 
                 SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
-                        "arceus_" + plate.getType(), "target");
+                        "arceus_" + plate.getType(), List.of("target"));
                 pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
                 pokemon.getEntity().after(3F, () -> {
@@ -103,7 +105,7 @@ public class HeldItemChangeHandler {
                 );
 
                 SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
-                        "arceus_" + crystal.getType(), "target");
+                        "arceus_" + crystal.getType(), List.of("target"));
                 pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
                 pokemon.getEntity().after(3F, () -> {
@@ -344,7 +346,7 @@ public class HeldItemChangeHandler {
                     SoundCategory.PLAYERS, 0.2f, 1.1f
             );
 
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_g_effect", "target");
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_g_effect", List.of("target"));
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(3.8F, () -> {
@@ -364,7 +366,7 @@ public class HeldItemChangeHandler {
                     SoundCategory.PLAYERS, 0.2f, 1.1f
             );
 
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_effect", "target");
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_effect", List.of("target"));
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(4F, () -> {

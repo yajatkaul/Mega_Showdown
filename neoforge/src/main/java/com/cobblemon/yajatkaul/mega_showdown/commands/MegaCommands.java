@@ -10,9 +10,8 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.ChatFormatting;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -44,28 +43,44 @@ public class MegaCommands {
                 Commands.literal("msd")
                         .requires(source -> source.hasPermission(2))
                         .then(Commands.literal("give")
-                                .then(Commands.argument("player", EntityArgument.player())
-                                        .then(Commands.argument("item", StringArgumentType.word())
-                                                .suggests((context, builder) -> {
-                                                    for (String item : VALID_ITEMS) {
-                                                        builder.suggest(item);
-                                                    }
-                                                    return builder.buildFuture();
-                                                })
-                                                // No count
-                                                .executes(context -> {
-                                                    ServerPlayer player = EntityArgument.getPlayer(context, "player");
-                                                    String item = StringArgumentType.getString(context, "item");
-                                                    return executeGive(player, item, 1);
-                                                })
-                                                // With count
-                                                .then(Commands.argument("count", IntegerArgumentType.integer(1))
-                                                        .executes(context -> {
-                                                            ServerPlayer player = EntityArgument.getPlayer(context, "player");
-                                                            String item = StringArgumentType.getString(context, "item");
-                                                            int count = IntegerArgumentType.getInteger(context, "count");
-                                                            return executeGive(player, item, count);
+                                .then(Commands.argument("player", net.minecraft.commands.arguments.EntityArgument.player())
+                                        .then(Commands.argument("itemtype", StringArgumentType.word())
+                                                .suggests((context, builder) -> SharedSuggestionProvider.suggest(
+                                                        List.of("mega_stone", "held_item", "showdown_item", "fusion_item", "key_item"),
+                                                        builder
+                                                ))
+                                                .then(Commands.argument("item", StringArgumentType.word())
+                                                        .suggests((context, builder) -> {
+                                                            String type = StringArgumentType.getString(context, "itemtype");
+                                                            switch (type) {
+                                                                case "mega_stone" ->
+                                                                        Utils.megaRegistry.forEach(m -> builder.suggest(m.msd_id()));
+                                                                case "held_item" ->
+                                                                        Utils.heldItemsRegistry.forEach(i -> builder.suggest(i.msd_id()));
+                                                                case "showdown_item" ->
+                                                                        Utils.showdownItemRegistry.forEach(i -> builder.suggest(i.msd_id()));
+                                                                case "fusion_item" ->
+                                                                        Utils.fusionRegistry.forEach(f -> builder.suggest(f.msd_id()));
+                                                                case "key_item" ->
+                                                                        Utils.keyItemsRegistry.forEach(k -> builder.suggest(k.msd_id()));
+                                                            }
+                                                            return builder.buildFuture();
                                                         })
+                                                        .executes(context -> {
+                                                            ServerPlayer player = net.minecraft.commands.arguments.EntityArgument.getPlayer(context, "player");
+                                                            String itemtype = StringArgumentType.getString(context, "itemtype");
+                                                            String item = StringArgumentType.getString(context, "item");
+                                                            return executeGive(player, itemtype, item, 1);
+                                                        })
+                                                        .then(Commands.argument("count", IntegerArgumentType.integer(1))
+                                                                .executes(context -> {
+                                                                    ServerPlayer player = net.minecraft.commands.arguments.EntityArgument.getPlayer(context, "player");
+                                                                    String itemtype = StringArgumentType.getString(context, "itemtype");
+                                                                    String item = StringArgumentType.getString(context, "item");
+                                                                    int count = IntegerArgumentType.getInteger(context, "count");
+                                                                    return executeGive(player, itemtype, item, count);
+                                                                })
+                                                        )
                                                 )
                                         )
                                 )
@@ -73,143 +88,70 @@ public class MegaCommands {
         );
     }
 
-    private static int executeGive(ServerPlayer player, String item, int count) {
-        //MEGA
-        for (MegaData pokemon : Utils.megaRegistry) {
-            if (pokemon.msd_id().equals(item)) {
-                item = pokemon.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
-                    return 0;
+    private static int executeGive(ServerPlayer player, String itemtype, String item, int count) {
+        switch (itemtype) {
+            case "mega_stone" -> {
+                for (MegaData pokemon : Utils.megaRegistry) {
+                    if (pokemon.msd_id().equals(item)) {
+                        return giveItem(player, pokemon.item_id(), pokemon.item_name(), pokemon.item_description(), pokemon.custom_model_data(), count);
+                    }
                 }
-                String[] itemId = item.split(":");
-                ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
-                Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(pokemon.custom_model_data()));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(pokemon.item_name()));
-                List<Component> lore = new ArrayList<>();
-                for (String line : pokemon.item_description()) {
-                    lore.add(Component.translatable(line));
+            }
+            case "held_item" -> {
+                for (HeldItemData held : Utils.heldItemsRegistry) {
+                    if (held.msd_id().equals(item)) {
+                        return giveItem(player, held.item_id(), held.item_name(), held.item_description(), held.custom_model_data(), count);
+                    }
                 }
-                stack.set(DataComponents.LORE, new ItemLore(lore));
-                player.addItem(stack);
-                player.sendSystemMessage(Component.literal("You received: " + item).withStyle(style -> style.withColor(ChatFormatting.GREEN)));
-
-                return 1;
+            }
+            case "showdown_item" -> {
+                for (ShowdownItemData sd : Utils.showdownItemRegistry) {
+                    if (sd.msd_id().equals(item)) {
+                        return giveItem(player, sd.item_id(), sd.item_name(), sd.item_description(), sd.custom_model_data(), count);
+                    }
+                }
+            }
+            case "fusion_item" -> {
+                for (FusionData fusion : Utils.fusionRegistry) {
+                    if (fusion.msd_id().equals(item)) {
+                        return giveItem(player, fusion.item_id(), fusion.item_name(), fusion.item_description(), fusion.custom_model_data(), count);
+                    }
+                }
+            }
+            case "key_item" -> {
+                for (KeyItemData key : Utils.keyItemsRegistry) {
+                    if (key.msd_id().equals(item)) {
+                        return giveItem(player, key.item_id(), key.item_name(), key.item_description(), key.custom_model_data(), count);
+                    }
+                }
+            }
+            default -> {
+                player.sendSystemMessage(Component.literal("Unknown item type: " + itemtype).withStyle(ChatFormatting.RED));
+                return 0;
             }
         }
 
-        //HELD ITEMS
-        for (HeldItemData items : Utils.heldItemsRegistry) {
-            if (items.msd_id().equals(item)) {
-                item = items.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
-                Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(items.custom_model_data()));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(items.item_name()));
-                List<Component> lore = new ArrayList<>();
-                for (String line : items.item_description()) {
-                    lore.add(Component.translatable(line));
-                }
-                stack.set(DataComponents.LORE, new ItemLore(lore));
-                player.addItem(stack);
-                player.sendSystemMessage(Component.literal("You received: " + item).withStyle(style -> style.withColor(ChatFormatting.GREEN)));
-
-                return 1;
-            }
-        }
-
-        //FORME CHANGE
-        for (FormChangeData items : Utils.formChangeRegistry) {
-            if (items.msd_id().equals(item)) {
-                item = items.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
-                Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(items.custom_model_data()));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(items.item_name()));
-                List<Component> lore = new ArrayList<>();
-                for (String line : items.item_description()) {
-                    lore.add(Component.translatable(line));
-                }
-                stack.set(DataComponents.LORE, new ItemLore(lore));
-                player.addItem(stack);
-                player.sendSystemMessage(Component.literal("You received: " + item).withStyle(style -> style.withColor(ChatFormatting.GREEN)));
-
-                return 1;
-            }
-        }
-
-        //FUSIONS
-        for (FusionData fusion : Utils.fusionRegistry) {
-            if (fusion.msd_id().equals(item)) {
-                item = fusion.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
-                Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(fusion.custom_model_data()));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name()));
-                List<Component> lore = new ArrayList<>();
-                for (String line : fusion.item_description()) {
-                    lore.add(Component.translatable(line));
-                }
-                stack.set(DataComponents.LORE, new ItemLore(lore));
-                player.addItem(stack);
-                player.sendSystemMessage(Component.literal("You received: " + item).withStyle(style -> style.withColor(ChatFormatting.GREEN)));
-
-                return 1;
-            }
-        }
-
-        //KEY ITEMS
-        for (KeyItemData keyItems : Utils.keyItemsRegistry) {
-            if (keyItems.msd_id().equals(item)) {
-                item = keyItems.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendSystemMessage(Component.literal("Invalid item: " + item).withStyle(style -> style.withColor(ChatFormatting.RED)));
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                ResourceLocation msdItemId = ResourceLocation.fromNamespaceAndPath(itemId[0], itemId[1]);
-                Item msdItem = BuiltInRegistries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(keyItems.custom_model_data()));
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable(keyItems.item_name()));
-                List<Component> lore = new ArrayList<>();
-                for (String line : keyItems.item_description()) {
-                    lore.add(Component.translatable(line));
-                }
-                stack.set(DataComponents.LORE, new ItemLore(lore));
-                player.addItem(stack);
-                player.sendSystemMessage(Component.literal("You received: " + item).withStyle(style -> style.withColor(ChatFormatting.GREEN)));
-
-                return 1;
-            }
-        }
+        player.sendSystemMessage(Component.literal("Item not found: " + item).withStyle(ChatFormatting.RED));
         return 0;
     }
 
-    private static int reloadCustomConfig(CommandSourceStack source) {
-        source.getServer().reloadableRegistries();
-        Utils.registryLoader(source.registryAccess());
 
+    private static int giveItem(ServerPlayer player, String itemIdStr, String itemName, List<String> description, int modelData, int count) {
+        ResourceLocation id = ResourceLocation.tryParse(itemIdStr);
+        Item item = BuiltInRegistries.ITEM.get(id);
+        ItemStack stack = new ItemStack(item, count);
+
+        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(modelData));
+        stack.set(DataComponents.CUSTOM_NAME, Component.translatable(itemName));
+
+        List<Component> lore = new ArrayList<>();
+        for (String line : description) {
+            lore.add(Component.translatable(line));
+        }
+        stack.set(DataComponents.LORE, new ItemLore(lore));
+
+        player.addItem(stack);
+        player.sendSystemMessage(Component.literal("You received: " + itemIdStr).withStyle(ChatFormatting.GREEN));
         return 1;
     }
 

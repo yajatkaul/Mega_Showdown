@@ -8,9 +8,23 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 
 public class DatapackRegister {
+    public static final ResourceKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
+    public static final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "fusions"));
+    public static final ResourceKey<Registry<GmaxData>> GMAX_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "gmax"));
+    public static final ResourceKey<Registry<HeldItemData>> HELD_ITEM_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "held_items"));
+    public static final ResourceKey<Registry<MegaData>> MEGA_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega"));
+    public static final ResourceKey<Registry<ShowdownItemData>> SHOWDOWN_ITEM_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown_item"));
+    public static final ResourceKey<Registry<BattleFormChange>> BATTLE_FORM_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "battle_form"));
+
+
     public static void register(DataPackRegistryEvent.NewRegistry event) {
-        final ResourceKey<Registry<KeyItemData>> KEY_ITEM_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "key_items"));
 
         event.dataPackRegistry(
                 KEY_ITEM_REGISTRY_KEY,
@@ -18,17 +32,6 @@ public class DatapackRegister {
                 KeyItemData.CODEC
         );
 
-        final ResourceKey<Registry<FormChangeData>> FORM_CHANGE_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change"));
-
-        event.dataPackRegistry(
-                FORM_CHANGE_REGISTRY_KEY,
-                FormChangeData.CODEC,
-                FormChangeData.CODEC
-        );
-
-        final ResourceKey<Registry<FusionData>> FUSION_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "fusions"));
 
         event.dataPackRegistry(
                 FUSION_REGISTRY_KEY,
@@ -36,8 +39,6 @@ public class DatapackRegister {
                 FusionData.CODEC
         );
 
-        final ResourceKey<Registry<GmaxData>> GMAX_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "gmax"));
 
         event.dataPackRegistry(
                 GMAX_REGISTRY_KEY,
@@ -45,8 +46,6 @@ public class DatapackRegister {
                 GmaxData.CODEC
         );
 
-        final ResourceKey<Registry<HeldItemData>> HELD_ITEM_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "held_items"));
 
         event.dataPackRegistry(
                 HELD_ITEM_REGISTRY_KEY,
@@ -54,13 +53,24 @@ public class DatapackRegister {
                 HeldItemData.CODEC
         );
 
-        final ResourceKey<Registry<MegaData>> MEGA_REGISTRY_KEY =
-                ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega"));
 
         event.dataPackRegistry(
                 MEGA_REGISTRY_KEY,
                 MegaData.CODEC,
                 MegaData.CODEC
+        );
+
+
+        event.dataPackRegistry(
+                SHOWDOWN_ITEM_REGISTRY_KEY,
+                ShowdownItemData.CODEC,
+                ShowdownItemData.CODEC
+        );
+
+        event.dataPackRegistry(
+                BATTLE_FORM_REGISTRY_KEY,
+                BattleFormChange.CODEC,
+                BattleFormChange.CODEC
         );
     }
 

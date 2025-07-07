@@ -20,11 +20,11 @@ class SnowStormHandler {
             )
         }
 
-        fun snowStormPartileSpawner(entity: Entity, particle: String, location: String) {
+        fun snowStormPartileSpawner(entity: Entity, particle: String, location: List<String>) {
             val packet = SpawnSnowstormEntityParticlePacket(
                 Identifier.of("cobblemon", particle),
                 sourceEntityId = entity.id,
-                sourceLocators = if (location == "") listOf() else listOf(location)
+                sourceLocators = location
             )
 
             CobblemonNetwork.sendToAllPlayers(

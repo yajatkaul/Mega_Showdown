@@ -1,106 +1,78 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack.handler;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FormChangeData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
-import net.minecraft.component.DataComponentTypes;
+import kotlin.Unit;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class HeldItemHandler {
     public static void customEvents(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
 
-        for (FormChangeData heldItem : Utils.formChangeRegistry) {
-            if (heldItem.battle_mode_only()) {
-                return;
-            }
+        for (HeldItemData heldItem : Utils.heldItemsRegistry) {
+            Item item = Registries.ITEM.get(Identifier.tryParse(heldItem.item_id()));
             if (heldItem.pokemons().contains(pokemon.getSpecies().getName())) {
-                if (!pokemon.getEntity().isBattling()) {
-                    if (!heldItem.required_aspects().isEmpty()) {
-                        List<String> aspectList = new ArrayList<>();
-                        for (String aspects : heldItem.required_aspects()) {
-                            String[] aspectsDiv = aspects.split("=");
-                            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                aspectList.add(aspects.split("=")[0]);
-                            } else {
-                                aspectList.add(aspects.split("=")[1]);
-                            }
-                        }
-
-                        boolean allMatch = true;
-                        for (String requiredAspect : aspectList) {
-                            boolean matched = false;
-                            for (String pokemonAspect : pokemon.getAspects()) {
-                                if (pokemonAspect.startsWith(requiredAspect)) {
-                                    matched = true;
-                                    break;
-                                }
-                            }
-                            if (!matched) {
-                                allMatch = false;
-                                break;
-                            }
-                        }
-
-                        if (!allMatch) {
+                ItemStack itemReceiving = event.getReceiving();
+                ItemStack itemReturning = event.getReturning();
+                if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReceiving)) {
+                    if (heldItem.apply_if().isEmpty()) {
+                        HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.apply_aspects(), true);
+                    }
+                    for (List<String> condition : heldItem.apply_if()) {
+                        if (pokemon.getAspects().containsAll(condition)) {
+                            HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.apply_aspects(), true);
                             return;
                         }
                     }
-
-                    ItemStack receivedItem = event.getReceiving();
-                    String[] nameSpace = heldItem.item_id().split(":");
-                    Identifier customItem = Identifier.of(nameSpace[0], nameSpace[1]);
-                    Item item = Registries.ITEM.get(customItem);
-                    if (receivedItem.isOf(item) && ((receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null
-                            && receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                            == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(false);
+                } else if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReturning)) {
+                    for (List<String> condition : heldItem.revert_if()) {
+                        if (pokemon.getAspects().containsAll(condition)) {
+                            HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.revert_aspects(), false);
                         }
-                        for (String aspects : heldItem.aspects()) {
-                            String[] aspectsDiv = aspects.split("=");
-                            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                            } else {
-                                new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                            }
-                        }
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(false);
-                        }
-                        HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), true);
-                        return;
-                    } else if (!receivedItem.isOf(item) ||
-                            ((receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                                    receivedItem.get(DataComponentTypes.CUSTOM_MODEL_DATA).value()
-                                            == heldItem.custom_model_data()) || heldItem.custom_model_data() == 0)) {
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(true);
-                        }
-                        for (String aspects : heldItem.default_aspects()) {
-                            String[] aspectsDiv = aspects.split("=");
-                            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                                new FlagSpeciesFeature(aspectsDiv[0], Boolean.parseBoolean(aspectsDiv[1])).apply(pokemon);
-                            } else {
-                                new StringSpeciesFeature(aspectsDiv[0], aspectsDiv[1]).apply(pokemon);
-                            }
-                        }
-                        if (!heldItem.tradable_form()) {
-                            pokemon.setTradeable(true);
-                        }
-                        HandlerUtils.particleEffect(pokemon.getEntity(), heldItem.effects(), false);
-                        return;
                     }
                 }
+            }
+        }
+    }
+
+    public static void battleModeFormChange(FormeChangeEvent formeChangeEvent) {
+        Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
+        PokemonBattle pokemonBattle = formeChangeEvent.getBattle();
+
+        for (BattleFormChange formChange : Utils.battleFormRegistry) {
+            if (formChange.pokemons().contains(pokemon.getSpecies().getName())
+                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_apply())) {
+                if (formChange.effects().snowStorm() != null) {
+                    pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
+                        HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
+                        return Unit.INSTANCE;
+                    });
+                } else {
+                    HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
+                }
+                break;
+            } else if (formChange.pokemons().contains(pokemon.getSpecies().getName())
+                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_revert())) {
+                if (formChange.effects().snowStorm() != null) {
+                    pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
+                        HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
+                        return Unit.INSTANCE;
+                    });
+                } else {
+                    HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
+                }
+                break;
             }
         }
     }

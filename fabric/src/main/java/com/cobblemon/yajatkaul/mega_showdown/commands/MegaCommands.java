@@ -10,6 +10,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MegaCommands {
-    public static final List<String> VALID_ITEMS = new ArrayList<>();
 
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("msdresetlock")
@@ -37,171 +37,113 @@ public class MegaCommands {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("msdresetmega")
                 .requires(source -> source.hasPermissionLevel(0)).executes(context -> executeResetMega(context.getSource().getPlayer()))));
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(CommandManager.literal("msd")
-                    .requires(source -> source.hasPermissionLevel(2))
-                    .then(CommandManager.literal("give")
-                            .then(CommandManager.argument("player", EntityArgumentType.player())
-                                    .then(CommandManager.argument("item", StringArgumentType.word())
-                                            .suggests((context, builder) -> {
-                                                for (String item : VALID_ITEMS) {
-                                                    builder.suggest(item);
-                                                }
-                                                return builder.buildFuture();
-                                            })
-                                            // version with no count
-                                            .executes(context -> {
-                                                ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                                                String item = StringArgumentType.getString(context, "item");
-                                                return executeGive(player, item, 1);
-                                            })
-                                            // version with count
-                                            .then(CommandManager.argument("count", IntegerArgumentType.integer(1))
-                                                    .executes(context -> {
-                                                        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                                                        String item = StringArgumentType.getString(context, "item");
-                                                        int count = IntegerArgumentType.getInteger(context, "count");
-                                                        return executeGive(player, item, count);
-                                                    })
-                                            )
-                                    )
-                            )
-                    )
-            );
-        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("msd")
+                .requires(source -> source.hasPermissionLevel(2))
+                .then(CommandManager.literal("give")
+                        .then(CommandManager.argument("player", EntityArgumentType.player())
+                                .then(CommandManager.argument("itemtype", StringArgumentType.word())
+                                        .suggests((context, builder) -> CommandSource.suggestMatching(
+                                                List.of("mega_stone", "held_item", "showdown_item", "fusion_item", "key_item"),
+                                                builder
+                                        ))
+                                        .then(CommandManager.argument("item", StringArgumentType.word())
+                                                .suggests((context, builder) -> {
+                                                    String type = StringArgumentType.getString(context, "itemtype");
+                                                    switch (type) {
+                                                        case "mega_stone" ->
+                                                                Utils.megaRegistry.forEach(m -> builder.suggest(m.msd_id()));
+                                                        case "held_item" ->
+                                                                Utils.heldItemsRegistry.forEach(i -> builder.suggest(i.msd_id()));
+                                                        case "showdown_item" ->
+                                                                Utils.showdownItemRegistry.forEach(i -> builder.suggest(i.msd_id()));
+                                                        case "fusion_item" ->
+                                                                Utils.fusionRegistry.forEach(f -> builder.suggest(f.msd_id()));
+                                                        case "key_item" ->
+                                                                Utils.keyItemsRegistry.forEach(k -> builder.suggest(k.msd_id()));
+                                                    }
+                                                    return builder.buildFuture();
+                                                })
+                                                // Without count
+                                                .executes(context -> {
+                                                    ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                                                    String itemtype = StringArgumentType.getString(context, "itemtype");
+                                                    String item = StringArgumentType.getString(context, "item");
+                                                    return executeGive(player, itemtype, item, 1);
+                                                })
+                                                // With count
+                                                .then(CommandManager.argument("count", IntegerArgumentType.integer(1))
+                                                        .executes(context -> {
+                                                            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                                                            String itemtype = StringArgumentType.getString(context, "itemtype");
+                                                            String item = StringArgumentType.getString(context, "item");
+                                                            int count = IntegerArgumentType.getInteger(context, "count");
+                                                            return executeGive(player, itemtype, item, count);
+                                                        })
+                                                )
+                                        )
+                                )
+                        )
+                )
+        ));
     }
 
-    private static int executeGive(ServerPlayerEntity player, String item, int count) {
-        //MEGA
-        for (MegaData pokemon : Utils.megaRegistry) {
-            if (pokemon.msd_id().equals(item)) {
-                item = pokemon.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
-                    return 0;
+    private static int executeGive(ServerPlayerEntity player, String itemtype, String item, int count) {
+        switch (itemtype) {
+            case "mega_stone" -> {
+                for (MegaData pokemon : Utils.megaRegistry) {
+                    if (pokemon.msd_id().equals(item))
+                        return giveItem(player, pokemon.item_id(), pokemon.item_name(), pokemon.item_description(), pokemon.custom_model_data(), count);
                 }
-                String[] itemId = item.split(":");
-                Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
-                Item msdItem = Registries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(pokemon.custom_model_data()));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(pokemon.item_name()));
-                List<Text> lore = new ArrayList<>();
-                for (String line : pokemon.item_description()) {
-                    lore.add(Text.translatable(line));
+            }
+            case "held_item" -> {
+                for (HeldItemData held : Utils.heldItemsRegistry) {
+                    if (held.msd_id().equals(item))
+                        return giveItem(player, held.item_id(), held.item_name(), held.item_description(), held.custom_model_data(), count);
                 }
-                stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
-                player.giveItemStack(stack);
-                player.sendMessage(Text.literal("You received: " + item).formatted(Formatting.GREEN), false);
-
-                return 1;
+            }
+            case "showdown_item" -> {
+                for (ShowdownItemData sd : Utils.showdownItemRegistry) {
+                    if (sd.msd_id().equals(item))
+                        return giveItem(player, sd.item_id(), sd.item_name(), sd.item_description(), sd.custom_model_data(), count);
+                }
+            }
+            case "fusion_item" -> {
+                for (FusionData fusion : Utils.fusionRegistry) {
+                    if (fusion.msd_id().equals(item))
+                        return giveItem(player, fusion.item_id(), fusion.item_name(), fusion.item_description(), fusion.custom_model_data(), count);
+                }
+            }
+            case "key_item" -> {
+                for (KeyItemData key : Utils.keyItemsRegistry) {
+                    if (key.msd_id().equals(item))
+                        return giveItem(player, key.item_id(), key.item_name(), key.item_description(), key.custom_model_data(), count);
+                }
+            }
+            default -> {
+                player.sendMessage(Text.literal("Unknown item type: " + itemtype).formatted(Formatting.RED), false);
+                return 0;
             }
         }
 
-        //HELD ITEMS
-        for (HeldItemData items : Utils.heldItemsRegistry) {
-            if (items.msd_id().equals(item)) {
-                item = items.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
-                Item msdItem = Registries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(items.custom_model_data()));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(items.item_name()));
-                List<Text> lore = new ArrayList<>();
-                for (String line : items.item_description()) {
-                    lore.add(Text.translatable(line));
-                }
-                stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
-                player.giveItemStack(stack);
-                player.sendMessage(Text.literal("You received: " + item).formatted(Formatting.GREEN), false);
-
-                return 1;
-            }
-        }
-
-        //FORME CHANGE
-        for (FormChangeData items : Utils.formChangeRegistry) {
-            if (items.msd_id().equals(item)) {
-                item = items.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
-                Item msdItem = Registries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(items.custom_model_data()));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(items.item_name()));
-                List<Text> lore = new ArrayList<>();
-                for (String line : items.item_description()) {
-                    lore.add(Text.translatable(line));
-                }
-                stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
-                player.giveItemStack(stack);
-                player.sendMessage(Text.literal("You received: " + item).formatted(Formatting.GREEN), false);
-
-                return 1;
-            }
-        }
-
-        //FUSIONS
-        for (FusionData fusion : Utils.fusionRegistry) {
-            if (fusion.msd_id().equals(item)) {
-                item = fusion.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
-                Item msdItem = Registries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(fusion.custom_model_data()));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name()));
-                List<Text> lore = new ArrayList<>();
-                for (String line : fusion.item_description()) {
-                    lore.add(Text.translatable(line));
-                }
-                stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
-                player.giveItemStack(stack);
-                player.sendMessage(Text.literal("You received: " + item).formatted(Formatting.GREEN), false);
-
-                return 1;
-            }
-        }
-
-        //KEY ITEMS
-        for (KeyItemData keyItems : Utils.keyItemsRegistry) {
-            if (keyItems.msd_id().equals(item)) {
-                item = keyItems.item_id();
-                if (VALID_ITEMS.contains(item)) {
-                    player.sendMessage(Text.literal("Invalid item: " + item).formatted(Formatting.RED), false);
-                    return 0;
-                }
-                String[] itemId = item.split(":");
-                Identifier msdItemId = Identifier.of(itemId[0], itemId[1]);
-                Item msdItem = Registries.ITEM.get(msdItemId);
-                ItemStack stack = new ItemStack(msdItem, count);
-                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(keyItems.custom_model_data()));
-                stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(keyItems.item_name()));
-                List<Text> lore = new ArrayList<>();
-                for (String line : keyItems.item_description()) {
-                    lore.add(Text.translatable(line));
-                }
-                stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
-                player.giveItemStack(stack);
-                player.sendMessage(Text.literal("You received: " + item).formatted(Formatting.GREEN), false);
-
-                return 1;
-            }
-        }
+        player.sendMessage(Text.literal("Item not found: " + item).formatted(Formatting.RED), false);
         return 0;
+    }
+
+    private static int giveItem(ServerPlayerEntity player, String itemIdStr, String itemName, List<String> description, int modelData, int count) {
+        Identifier id = Identifier.tryParse(itemIdStr);
+        Item item = Registries.ITEM.get(id);
+        ItemStack stack = new ItemStack(item, count);
+
+        stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(modelData));
+        stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(itemName));
+
+        List<Text> lore = new ArrayList<>();
+        for (String line : description) lore.add(Text.translatable(line));
+        stack.set(DataComponentTypes.LORE, new LoreComponent(lore));
+
+        player.giveItemStack(stack);
+        player.sendMessage(Text.literal("You received: " + itemIdStr).formatted(Formatting.GREEN), false);
+        return 1;
     }
 
     private static int executeResetCommon(PlayerEntity player) {

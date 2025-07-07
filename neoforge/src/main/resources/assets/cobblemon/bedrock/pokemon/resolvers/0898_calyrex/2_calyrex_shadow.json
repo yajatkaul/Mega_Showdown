@@ -4,7 +4,7 @@
   "variations": [
     {
       "aspects": [
-        "shadow"
+        "shadow-rider"
       ],
       "poser": "cobblemon:calyrex_shadow",
       "model": "cobblemon:calyrex_shadow.geo",
@@ -13,7 +13,7 @@
     },
     {
       "aspects": [
-        "shadow",
+        "shadow-rider",
         "shiny"
       ],
       "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_shadow_shiny.png"

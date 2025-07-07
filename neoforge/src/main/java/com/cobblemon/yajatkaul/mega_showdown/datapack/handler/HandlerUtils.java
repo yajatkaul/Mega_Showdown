@@ -1,10 +1,14 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack.handler;
 
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.EffectsData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
+import kotlin.Unit;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,25 +19,16 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class HandlerUtils {
-    public static boolean checkEnabled(FusionData fusion, Pokemon pk) {
-        for (String aspects : fusion.fusion_aspects()) {
-            String[] aspectsDiv = aspects.split("=");
-            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                if (pk.getAspects().contains(aspectsDiv[0])) return true;
-            } else {
-                for (String aspect : pk.getAspects()) {
-                    if (aspect.startsWith(aspectsDiv[1])) return true;
-                }
-            }
-        }
-        return false;
-    }
+import java.util.List;
 
+public class HandlerUtils {
     public static EntityHitResult getEntityLookingAt(Player player, float distance) {
         Vec3 eyePos = player.getEyePosition();
         Vec3 lookVec = player.getViewVector(1.0F);
@@ -53,18 +48,18 @@ public class HandlerUtils {
     }
 
     public static void particleEffect(LivingEntity context, EffectsData effects, boolean apply) {
-        int amplifier = apply ? effects.particle_apply_amplifier() : effects.particle_revert_amplifier();
+        int amplifier = apply ? effects.minecraft().particle_apply_amplifier() : effects.minecraft().particle_revert_amplifier();
 
         if (context.level() instanceof ServerLevel serverLevel) {
             String[] partsParticle;
             String[] partsSound;
 
             if (apply) {
-                partsParticle = effects.particle_apply().split(":");
-                partsSound = effects.sound_apply().split(":");
+                partsParticle = effects.minecraft().particle_apply().split(":");
+                partsSound = effects.minecraft().sound_apply().split(":");
             } else {
-                partsParticle = effects.particle_revert().split(":");
-                partsSound = effects.sound_revert().split(":");
+                partsParticle = effects.minecraft().particle_revert().split(":");
+                partsSound = effects.minecraft().sound_revert().split(":");
             }
 
             ResourceLocation custom_particle_id = ResourceLocation.fromNamespaceAndPath(partsParticle[0], partsParticle[1]);
@@ -79,14 +74,14 @@ public class HandlerUtils {
             double entityHeight = context.getBbHeight();
 
             if (soundEvent == null) {
-                if (apply && !effects.sound_apply().isEmpty()) {
+                if (apply && !effects.minecraft().sound_apply().isEmpty()) {
                     MegaShowdown.LOGGER.error("A: Invalid Sound used for pokemon: {}, sound id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.sound_apply());
-                } else if (!apply && !effects.sound_revert().isEmpty()) {
+                            effects.minecraft().sound_apply());
+                } else if (!apply && !effects.minecraft().sound_revert().isEmpty()) {
                     MegaShowdown.LOGGER.error("R: Invalid Sound used for pokemon: {}, sound id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.sound_revert());
+                            effects.minecraft().sound_revert());
                 }
             } else {
                 serverLevel.playSound(
@@ -118,15 +113,75 @@ public class HandlerUtils {
                     );
                 }
             } else {
-                if (apply && !effects.particle_apply().isEmpty()) {
+                if (apply && !effects.minecraft().particle_apply().isEmpty()) {
                     MegaShowdown.LOGGER.error("A: Invalid Particle used for pokemon: {}, particle id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.particle_apply());
-                } else if (!apply && !effects.particle_revert().isEmpty()) {
+                            effects.minecraft().particle_apply());
+                } else if (!apply && !effects.minecraft().particle_revert().isEmpty()) {
                     MegaShowdown.LOGGER.error("R: Invalid Particle used for pokemon: {}, particle id: {}",
                             ((PokemonEntity) context).getPokemon().getSpecies().getName(),
-                            effects.particle_revert());
+                            effects.minecraft().particle_revert());
                 }
+            }
+        }
+    }
+
+    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
+        CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
+        return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
+    }
+
+    public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply) {
+        if (apply) {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
+            } else if (effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
+            }
+        } else {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
+            } else if (effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
+            }
+        }
+    }
+
+    private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
+        if (apply) {
+            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_apply(), effects.snowStorm().locator_apply());
+            context.after(effects.snowStorm().apply_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        } else {
+            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_revert(), effects.snowStorm().locator_revert());
+            context.after(effects.snowStorm().revert_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        }
+    }
+
+    public static void applyAspects(List<String> aspects, Pokemon pokemon) {
+        for (String aspect : aspects) {
+            String[] div = aspect.split("=");
+            if (div[1].equals("true") || div[1].equals("false")) {
+                new FlagSpeciesFeature(div[0], Boolean.parseBoolean(div[1])).apply(pokemon);
+            } else {
+                new StringSpeciesFeature(div[0], div[1]).apply(pokemon);
             }
         }
     }

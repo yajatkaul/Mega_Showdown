@@ -31,6 +31,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Settings settings) {
@@ -93,7 +95,7 @@ public class DNA_Splicer extends Item {
 
     public static void fuseEffect(PokemonEntity pokemon, boolean black) {
         SnowStormHandler.Companion.snowStormPartileSpawner(pokemon,
-                black ? "kyurem_b_effect" : "kyurem_w_effect", "target");
+                black ? "kyurem_b_effect" : "kyurem_w_effect", List.of("target"));
         pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
         BlockPos entityPos = pokemon.getBlockPos();
