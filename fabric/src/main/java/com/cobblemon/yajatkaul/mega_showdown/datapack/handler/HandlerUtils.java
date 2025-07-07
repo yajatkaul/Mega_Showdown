@@ -118,11 +118,11 @@ public class HandlerUtils {
             if (soundEvent == null) {
                 if (apply && !effects.minecraft().sound_apply().isEmpty()) {
                     MegaShowdown.LOGGER.error("A: Invalid Sound used for pokemon: {}, sound id: {}",
-                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            context.getPokemon().getSpecies().getName(),
                             effects.minecraft().sound_apply());
                 } else if (!apply && !effects.minecraft().sound_revert().isEmpty()) {
                     MegaShowdown.LOGGER.error("R: Invalid Sound used for pokemon: {}, sound id: {}",
-                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            context.getPokemon().getSpecies().getName(),
                             effects.minecraft().sound_revert());
                 }
             } else {
@@ -154,11 +154,11 @@ public class HandlerUtils {
             } else {
                 if (apply && !effects.minecraft().particle_apply().isEmpty()) {
                     MegaShowdown.LOGGER.error("A: Invalid Particle used for pokemon: {}, sound id: {}",
-                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            context.getPokemon().getSpecies().getName(),
                             effects.minecraft().particle_apply());
                 } else if (!apply && !effects.minecraft().particle_revert().isEmpty()) {
                     MegaShowdown.LOGGER.error("R: Invalid Particle used for pokemon: {}, sound id: {}",
-                            ((PokemonEntity) context).getPokemon().getSpecies().getName(),
+                            context.getPokemon().getSpecies().getName(),
                             effects.minecraft().particle_revert());
                 }
             }

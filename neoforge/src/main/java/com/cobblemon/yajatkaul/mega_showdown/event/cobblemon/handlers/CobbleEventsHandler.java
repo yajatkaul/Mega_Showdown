@@ -63,7 +63,7 @@ public class CobbleEventsHandler {
         }
 
         PokemonEntity pokemonEntity = event.getPokemon().getEntity();
-        if (pokemonEntity != null && pokemonEntity.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
+        if (pokemonEntity == null || pokemonEntity.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
             event.cancel();
             return Unit.INSTANCE;
         }

@@ -13,9 +13,8 @@ public record SnowStorm(
         String particle_revert,
         Float revert_after,
         String sound_apply,
-        String sound_revert,
-        Integer particle_apply_amplifier,
-        Integer particle_revert_amplifier) {
+        String sound_revert
+) {
     public static final Codec<SnowStorm> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.list(Codec.STRING).fieldOf("locator_apply").forGetter(SnowStorm::locator_apply),
             Codec.list(Codec.STRING).fieldOf("locator_revert").forGetter(SnowStorm::locator_revert),
@@ -24,8 +23,6 @@ public record SnowStorm(
             Codec.STRING.optionalFieldOf("particle_revert", null).forGetter(SnowStorm::particle_revert),
             Codec.FLOAT.optionalFieldOf("revert_after", 0f).forGetter(SnowStorm::revert_after),
             Codec.STRING.optionalFieldOf("sound_apply", null).forGetter(SnowStorm::sound_apply),
-            Codec.STRING.optionalFieldOf("sound_revert", null).forGetter(SnowStorm::sound_revert),
-            Codec.INT.optionalFieldOf("particle_apply_amplifier", 1).forGetter(SnowStorm::particle_apply_amplifier),
-            Codec.INT.optionalFieldOf("particle_revert_amplifier", 1).forGetter(SnowStorm::particle_revert_amplifier)
-    ).apply(instance, SnowStorm::new));
+            Codec.STRING.optionalFieldOf("sound_revert", null).forGetter(SnowStorm::sound_revert)
+            ).apply(instance, SnowStorm::new));
 }
