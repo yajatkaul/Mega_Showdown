@@ -1,7 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
-import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
 import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
@@ -18,17 +17,10 @@ import com.cobblemon.mod.common.api.item.HealingSource;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
-import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
-import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
-import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
-import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HeldItemHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
@@ -38,7 +30,6 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraOrb;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
-import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
@@ -52,6 +43,7 @@ import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
+import java.util.List;
 import java.util.Random;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getTeraShardForType;
@@ -128,7 +120,7 @@ public class CobbleEventsHandler {
             GlowHandler.applyZGlow(pokemon);
         }
 
-        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", "target");
+        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), "z_moves", List.of("target"));
 
         BlockPos entityPos = pokemon.getOnPos();
         pokemon.level().playSound(
@@ -161,11 +153,11 @@ public class CobbleEventsHandler {
 
         if (pk.getSpecies().getName().equals("Terapagos")) {
             new StringSpeciesFeature("tera_form", "stellar").apply(pk);
-            pk.updateAspects();
+            EventUtils.updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon());
             EventUtils.playEvolveAnimation(pokemon);
         } else if (pk.getSpecies().getName().equals("Ogerpon")) {
             new FlagSpeciesFeature("embody-aspect", true).apply(pk);
-            pk.updateAspects();
+            EventUtils.updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon());
         }
 
         if (pk instanceof TeraAccessor accessor) {
@@ -278,7 +270,7 @@ public class CobbleEventsHandler {
             case "Wishiwashi" -> {
                 if (formeChangeEvent.getFormeName().equals("school")) {
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", "target");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "wishiwashi_effect", List.of("target"));
                         pokemonEntity.level().playSound(
                                 null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                                 ModSounds.FORM_CHANGE_BASIC.get(),
@@ -291,7 +283,7 @@ public class CobbleEventsHandler {
                     pokemonEntity.after(5F, () -> {
                         new StringSpeciesFeature("schooling_form", "school").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
                     return Unit.INSTANCE;
@@ -313,13 +305,13 @@ public class CobbleEventsHandler {
                             SoundSource.PLAYERS, 0.2f, 1.3f
                     );
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "battlebond_effect", "root");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "battlebond_effect", List.of("root"));
                         return Unit.INSTANCE;
                     });
                     pokemonEntity.after(4F, () -> {
                         new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_greninja");
@@ -388,7 +380,7 @@ public class CobbleEventsHandler {
             case "Arceus" -> {
                 battle.dispatchWaitingToFront(4.5F, () -> {
                     SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity,
-                            "arceus_" + formeChangeEvent.getFormeName(), "target");
+                            "arceus_" + formeChangeEvent.getFormeName(), List.of("target"));
                     pokemonEntity.level().playSound(
                             null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                             ModSounds.ARCEUS_MULTITYPE.get(),
@@ -399,7 +391,7 @@ public class CobbleEventsHandler {
                 pokemonEntity.after(4F, () -> {
                     new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
                     SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                    pokemon.updateAspects();
+                    EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
                     return Unit.INSTANCE;
                 });
                 return Unit.INSTANCE;
@@ -412,7 +404,7 @@ public class CobbleEventsHandler {
             case "Terapagos" -> {
                 if (formeChangeEvent.getFormeName().equals("terastal")) {
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "terapagos_effect", "target");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "terapagos_effect", List.of("target"));
                         pokemonEntity.level().playSound(
                                 null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
                                 ModSounds.FORM_CHANGE_BASIC.get(),
@@ -425,7 +417,7 @@ public class CobbleEventsHandler {
                     pokemonEntity.after(3.9F, () -> {
                         new StringSpeciesFeature("tera_form", "terastal").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
                     return Unit.INSTANCE;
@@ -447,7 +439,7 @@ public class CobbleEventsHandler {
                             SoundSource.PLAYERS, 0.2f, 0.8f
                     );
                     battle.dispatchWaitingToFront(4.5F, () -> {
-                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "power_construct_event", "root");
+                        SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, "power_construct_event", List.of("target"));
                         return Unit.INSTANCE;
                     });
                     pokemonEntity.after(4F, () -> {
@@ -458,7 +450,7 @@ public class CobbleEventsHandler {
                         }
                         new StringSpeciesFeature("percent_cells", "complete").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
                     return Unit.INSTANCE;
@@ -475,7 +467,7 @@ public class CobbleEventsHandler {
         //DATAPACK
         HeldItemHandler.battleModeFormChange(formeChangeEvent);
 
-        pokemon.updateAspects();
+        EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
 
         return Unit.INSTANCE;
     }

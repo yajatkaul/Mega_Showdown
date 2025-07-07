@@ -1,10 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack;
 
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
-import com.cobblemon.yajatkaul.mega_showdown.commands.MegaCommands;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.ShowdownItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -19,14 +20,10 @@ public class DataPackRegistriesLoader {
         //MEGA
         for (MegaData pokemon : Utils.megaRegistry) {
             Utils.MEGA_POKEMONS.add(pokemon.pokemon());
-            String[] parts = pokemon.item_id().split(":");
-            Identifier custom_stone_item_id = Identifier.of(parts[0], parts[1]);
+            Identifier custom_stone_item_id = Identifier.tryParse(pokemon.item_id());
             Item customStone = Registries.ITEM.get(custom_stone_item_id);
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                if (stack.getItem().equals(customStone) &&
-                        ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                                stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == pokemon.custom_model_data()) ||
-                                pokemon.custom_model_data() == 0)) {
+                if (HandlerUtils.itemValidator(customStone, pokemon.custom_model_data(), stack)) {
                     return pokemon.showdown_id();
                 }
                 return null;
@@ -39,9 +36,7 @@ public class DataPackRegistriesLoader {
             Item customHeldItem = Registries.ITEM.get(custom_held_item_id);
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                if (stack.getItem().equals(customHeldItem) &&
-                        ((stack.get(DataComponentTypes.CUSTOM_MODEL_DATA) != null &&
-                                stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == item.custom_model_data()) || item.custom_model_data() == 0)) {
+                if (HandlerUtils.itemValidator(customHeldItem, item.custom_model_data(), stack)) {
                     return item.showdown_item_id();
                 }
                 return null;

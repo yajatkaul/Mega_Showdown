@@ -1,7 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.fusion;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
@@ -33,6 +32,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
+
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Properties arg) {
         super(arg);
@@ -58,7 +59,7 @@ public class DNA_Splicer extends Item {
 
     public static void fuseEffect(PokemonEntity pokemon, boolean black) {
         SnowStormHandler.Companion.snowStormPartileSpawner(pokemon,
-                black ? "kyurem_b_effect" : "kyurem_w_effect", "target");
+                black ? "kyurem_b_effect" : "kyurem_w_effect", List.of("target"));
         pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
         BlockPos entityPos = pokemon.getOnPos();

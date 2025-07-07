@@ -37,78 +37,86 @@ public class MegaCommands {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("msdresetmega")
                 .requires(source -> source.hasPermissionLevel(0)).executes(context -> executeResetMega(context.getSource().getPlayer()))));
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(CommandManager.literal("msd")
-                    .requires(source -> source.hasPermissionLevel(2))
-                    .then(CommandManager.literal("give")
-                            .then(CommandManager.argument("player", EntityArgumentType.player())
-                                    .then(CommandManager.argument("itemtype", StringArgumentType.word())
-                                            .suggests((context, builder) -> CommandSource.suggestMatching(
-                                                    List.of("mega_stone", "held_item", "showdown_item", "fusion_item", "key_item"),
-                                                    builder
-                                            ))
-                                            .then(CommandManager.argument("item", StringArgumentType.word())
-                                                    .suggests((context, builder) -> {
-                                                        String type = StringArgumentType.getString(context, "itemtype");
-                                                        switch (type) {
-                                                            case "mega_stone" -> Utils.megaRegistry.forEach(m -> builder.suggest(m.msd_id()));
-                                                            case "held_item" -> Utils.heldItemsRegistry.forEach(i -> builder.suggest(i.msd_id()));
-                                                            case "showdown_item" -> Utils.showdownItemRegistry.forEach(i -> builder.suggest(i.msd_id()));
-                                                            case "fusion_item" -> Utils.fusionRegistry.forEach(f -> builder.suggest(f.msd_id()));
-                                                            case "key_item" -> Utils.keyItemsRegistry.forEach(k -> builder.suggest(k.msd_id()));
-                                                        }
-                                                        return builder.buildFuture();
-                                                    })
-                                                    // Without count
-                                                    .executes(context -> {
-                                                        ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                                                        String itemtype = StringArgumentType.getString(context, "itemtype");
-                                                        String item = StringArgumentType.getString(context, "item");
-                                                        return executeGive(player, itemtype, item, 1);
-                                                    })
-                                                    // With count
-                                                    .then(CommandManager.argument("count", IntegerArgumentType.integer(1))
-                                                            .executes(context -> {
-                                                                ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
-                                                                String itemtype = StringArgumentType.getString(context, "itemtype");
-                                                                String item = StringArgumentType.getString(context, "item");
-                                                                int count = IntegerArgumentType.getInteger(context, "count");
-                                                                return executeGive(player, itemtype, item, count);
-                                                            })
-                                                    )
-                                            )
-                                    )
-                            )
-                    )
-            );
-        });
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("msd")
+                .requires(source -> source.hasPermissionLevel(2))
+                .then(CommandManager.literal("give")
+                        .then(CommandManager.argument("player", EntityArgumentType.player())
+                                .then(CommandManager.argument("itemtype", StringArgumentType.word())
+                                        .suggests((context, builder) -> CommandSource.suggestMatching(
+                                                List.of("mega_stone", "held_item", "showdown_item", "fusion_item", "key_item"),
+                                                builder
+                                        ))
+                                        .then(CommandManager.argument("item", StringArgumentType.word())
+                                                .suggests((context, builder) -> {
+                                                    String type = StringArgumentType.getString(context, "itemtype");
+                                                    switch (type) {
+                                                        case "mega_stone" ->
+                                                                Utils.megaRegistry.forEach(m -> builder.suggest(m.msd_id()));
+                                                        case "held_item" ->
+                                                                Utils.heldItemsRegistry.forEach(i -> builder.suggest(i.msd_id()));
+                                                        case "showdown_item" ->
+                                                                Utils.showdownItemRegistry.forEach(i -> builder.suggest(i.msd_id()));
+                                                        case "fusion_item" ->
+                                                                Utils.fusionRegistry.forEach(f -> builder.suggest(f.msd_id()));
+                                                        case "key_item" ->
+                                                                Utils.keyItemsRegistry.forEach(k -> builder.suggest(k.msd_id()));
+                                                    }
+                                                    return builder.buildFuture();
+                                                })
+                                                // Without count
+                                                .executes(context -> {
+                                                    ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                                                    String itemtype = StringArgumentType.getString(context, "itemtype");
+                                                    String item = StringArgumentType.getString(context, "item");
+                                                    return executeGive(player, itemtype, item, 1);
+                                                })
+                                                // With count
+                                                .then(CommandManager.argument("count", IntegerArgumentType.integer(1))
+                                                        .executes(context -> {
+                                                            ServerPlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+                                                            String itemtype = StringArgumentType.getString(context, "itemtype");
+                                                            String item = StringArgumentType.getString(context, "item");
+                                                            int count = IntegerArgumentType.getInteger(context, "count");
+                                                            return executeGive(player, itemtype, item, count);
+                                                        })
+                                                )
+                                        )
+                                )
+                        )
+                )
+        ));
     }
 
     private static int executeGive(ServerPlayerEntity player, String itemtype, String item, int count) {
         switch (itemtype) {
             case "mega_stone" -> {
                 for (MegaData pokemon : Utils.megaRegistry) {
-                    if (pokemon.msd_id().equals(item)) return giveItem(player, pokemon.item_id(), pokemon.item_name(), pokemon.item_description(), pokemon.custom_model_data(), count);
+                    if (pokemon.msd_id().equals(item))
+                        return giveItem(player, pokemon.item_id(), pokemon.item_name(), pokemon.item_description(), pokemon.custom_model_data(), count);
                 }
             }
             case "held_item" -> {
                 for (HeldItemData held : Utils.heldItemsRegistry) {
-                    if (held.msd_id().equals(item)) return giveItem(player, held.item_id(), held.item_name(), held.item_description(), held.custom_model_data(), count);
+                    if (held.msd_id().equals(item))
+                        return giveItem(player, held.item_id(), held.item_name(), held.item_description(), held.custom_model_data(), count);
                 }
             }
             case "showdown_item" -> {
                 for (ShowdownItemData sd : Utils.showdownItemRegistry) {
-                    if (sd.msd_id().equals(item)) return giveItem(player, sd.item_id(), sd.item_name(), sd.item_description(), sd.custom_model_data(), count);
+                    if (sd.msd_id().equals(item))
+                        return giveItem(player, sd.item_id(), sd.item_name(), sd.item_description(), sd.custom_model_data(), count);
                 }
             }
             case "fusion_item" -> {
                 for (FusionData fusion : Utils.fusionRegistry) {
-                    if (fusion.msd_id().equals(item)) return giveItem(player, fusion.item_id(), fusion.item_name(), fusion.item_description(), fusion.custom_model_data(), count);
+                    if (fusion.msd_id().equals(item))
+                        return giveItem(player, fusion.item_id(), fusion.item_name(), fusion.item_description(), fusion.custom_model_data(), count);
                 }
             }
             case "key_item" -> {
                 for (KeyItemData key : Utils.keyItemsRegistry) {
-                    if (key.msd_id().equals(item)) return giveItem(player, key.item_id(), key.item_name(), key.item_description(), key.custom_model_data(), count);
+                    if (key.msd_id().equals(item))
+                        return giveItem(player, key.item_id(), key.item_name(), key.item_description(), key.custom_model_data(), count);
                 }
             }
             default -> {

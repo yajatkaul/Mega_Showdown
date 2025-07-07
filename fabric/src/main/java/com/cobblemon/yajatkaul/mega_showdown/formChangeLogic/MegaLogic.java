@@ -170,7 +170,7 @@ public class MegaLogic {
         }
 
         for (MegaData megaPok : Utils.megaRegistry) {
-            Identifier paperId = Identifier.of(megaPok.item_id());
+            Identifier paperId = Identifier.tryParse(megaPok.item_id());
             Item paperItem = Registries.ITEM.get(paperId);
 
             String candidateSpecies = null;
@@ -181,17 +181,15 @@ public class MegaLogic {
 
             if (candidateSpecies == null) {
                 continue;
-            }
-
-            else {
+            } else {
                 boolean blackListFound = false;
-                for (List<String> black_list : megaPok.blacklist_aspects()){
+                for (List<String> black_list : megaPok.blacklist_aspects()) {
                     if (pokemon.getAspects().containsAll(black_list)) {
                         blackListFound = true;
                         break;
                     }
                 }
-                if(blackListFound){
+                if (blackListFound) {
                     continue;
                 }
             }
@@ -335,18 +333,18 @@ public class MegaLogic {
                 continue;
             } else {
                 boolean blackListFound = false;
-                for (List<String> black_list : megaPok.blacklist_aspects()){
+                for (List<String> black_list : megaPok.blacklist_aspects()) {
                     if (pokemon.getAspects().containsAll(black_list)) {
                         blackListFound = true;
                         break;
                     }
                 }
-                if(blackListFound){
+                if (blackListFound) {
                     continue;
                 }
             }
 
-            if(megaPok.required_aspects().isEmpty()){
+            if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                     for (String aspect : megaPok.apply_aspects()) {
                         String[] aspectDiv = aspect.split("=");
@@ -443,8 +441,7 @@ public class MegaLogic {
         }
 
         for (MegaData megaPok : Utils.megaRegistry) {
-            String[] parts = megaPok.item_id().split(":");
-            Identifier paperId = Identifier.of(parts[0], parts[1]);
+            Identifier paperId = Identifier.tryParse(megaPok.item_id());
             Item paperItem = Registries.ITEM.get(paperId);
 
             String candidateSpecies = null;
@@ -455,20 +452,20 @@ public class MegaLogic {
 
             if (candidateSpecies == null) {
                 continue;
-            }else {
+            } else {
                 boolean blackListFound = false;
-                for (List<String> black_list : megaPok.blacklist_aspects()){
+                for (List<String> black_list : megaPok.blacklist_aspects()) {
                     if (pokemon.getAspects().containsAll(black_list)) {
                         blackListFound = true;
                         break;
                     }
                 }
-                if(blackListFound){
+                if (blackListFound) {
                     continue;
                 }
             }
 
-            if(megaPok.required_aspects().isEmpty()){
+            if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                     for (String aspect : megaPok.apply_aspects()) {
                         String[] aspectDiv = aspect.split("=");

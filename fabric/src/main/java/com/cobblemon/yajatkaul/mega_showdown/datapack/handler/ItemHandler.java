@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
@@ -96,8 +95,8 @@ public class ItemHandler {
                             }
                         }
 
-                        if(currentValue != null){
-                            if(fusion.fuse_if().isEmpty()){
+                        if (currentValue != null) {
+                            if (fusion.fuse_if().isEmpty()) {
                                 NbtCompound otherPokemonNbt = currentValue.saveToNBT(player.getWorld().getRegistryManager(), new NbtCompound());
                                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
                                 itemStack.remove(DataManage.POKEMON_STORAGE);
@@ -117,7 +116,7 @@ public class ItemHandler {
                             }
                         }
                     } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
-                        if(fusion.fuser_fuse_if().isEmpty()){
+                        if (fusion.fuser_fuse_if().isEmpty()) {
                             itemStack.set(DataManage.POKEMON_STORAGE, pokemon);
                             playerPartyStore.remove(pokemon);
                         }
@@ -167,7 +166,7 @@ public class ItemHandler {
                                 }
                             }
 
-                            if(keyItem.apply_if().isEmpty()){
+                            if (keyItem.apply_if().isEmpty()) {
                                 if (Possible((ServerPlayerEntity) player)) {
                                     itemStack.decrement(keyItem.consume());
                                     HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.apply_aspects(), true);
@@ -206,7 +205,7 @@ public class ItemHandler {
                                     index = 0;
                                 }
                                 if (Possible((ServerPlayerEntity) player)) {
-                                    if(keyItem.apply_if().isEmpty()){
+                                    if (keyItem.apply_if().isEmpty()) {
                                         itemStack.decrement(keyItem.consume());
                                         HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.toggle_aspects().get(index), true);
                                         return TypedActionResult.success(itemStack);

@@ -6,7 +6,8 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
+import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
+import kotlin.Unit;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -28,20 +29,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 public class HandlerUtils {
-    public static boolean checkEnabled(FusionData fusion, Pokemon pk) {
-        for (String aspects : fusion.fusion_aspects()) {
-            String[] aspectsDiv = aspects.split("=");
-            if (aspectsDiv[1].equals("true") || aspectsDiv[1].equals("false")) {
-                if (pk.getAspects().contains(aspectsDiv[0])) return true;
-            } else {
-                for (String aspect : pk.getAspects()) {
-                    if (aspect.startsWith(aspectsDiv[1])) return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public static EntityHitResult getEntityLookingAt(Player player, float distance) {
         Vec3 eyePos = player.getEyePosition();
         Vec3 lookVec = player.getViewVector(1.0F);
@@ -142,6 +129,50 @@ public class HandlerUtils {
     public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
         CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
         return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
+    }
+
+    public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply) {
+        if (apply) {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
+            } else if (effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
+            }
+        } else {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
+            } else if (effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
+            }
+        }
+    }
+
+    private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
+        if (apply) {
+            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_apply(), effects.snowStorm().locator_apply());
+            context.after(effects.snowStorm().apply_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        } else {
+            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_revert(), effects.snowStorm().locator_revert());
+            context.after(effects.snowStorm().revert_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                return Unit.INSTANCE;
+            });
+        }
     }
 
     public static void applyAspects(List<String> aspects, Pokemon pokemon) {

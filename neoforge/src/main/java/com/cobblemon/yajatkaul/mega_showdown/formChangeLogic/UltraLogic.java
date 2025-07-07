@@ -1,11 +1,8 @@
 package com.cobblemon.yajatkaul.mega_showdown.formChangeLogic;
 
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.zygarde.ZRingItem;
@@ -25,7 +22,6 @@ import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -98,16 +94,16 @@ public class UltraLogic {
                     return;
                 }
 
-                if(pokemon.getAspects().contains("ultra-fusion")){
+                if (pokemon.getAspects().contains("ultra-fusion")) {
                     new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
                     pokemon.getPersistentData().remove("fusion_form");
                     ultraAnimation(pokemon.getEntity());
                     return;
                 }
 
-                if(pokemon.getAspects().contains("dawn-fusion")){
+                if (pokemon.getAspects().contains("dawn-fusion")) {
                     pokemon.getPersistentData().putString("fusion_form", "dawn");
-                }else{
+                } else {
                     pokemon.getPersistentData().putString("fusion_form", "dusk");
                 }
 

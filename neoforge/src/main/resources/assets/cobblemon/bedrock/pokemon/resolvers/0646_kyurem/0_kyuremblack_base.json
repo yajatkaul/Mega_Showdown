@@ -4,7 +4,7 @@
   "variations": [
     {
       "aspects": [
-        "black"
+        "black-fusion"
       ],
       "poser": "cobblemon:kyuremblack",
       "model": "cobblemon:kyuremblack.geo",
@@ -20,7 +20,7 @@
     },
     {
       "aspects": [
-        "black",
+        "black-fusion",
         "shiny"
       ],
       "texture": "cobblemon:textures/pokemon/0646_kyurem/kyuremblack_shiny.png",

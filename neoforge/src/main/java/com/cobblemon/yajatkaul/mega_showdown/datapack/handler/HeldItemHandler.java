@@ -1,35 +1,43 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack.handler;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.heldItem.HeldItemData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import kotlin.Unit;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
+
 public class HeldItemHandler {
     public static void customEvents(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
-        ItemStack itemStack = pokemon.heldItem();
 
         for (HeldItemData heldItem : Utils.heldItemsRegistry) {
-            if (heldItem.battle_mode_only() != null) {
-                continue;
-            }
             Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(heldItem.item_id()));
             if (heldItem.pokemons().contains(pokemon.getSpecies().getName())) {
-                if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemStack)) {
-                    if (event.getReceiving().is(item)) {
-                        if (pokemon.getAspects().containsAll(heldItem.apply_if())) {
-                            HandlerUtils.applyAspects(heldItem.apply_aspects(), pokemon);
+                ItemStack itemReceiving = event.getReceiving();
+                ItemStack itemReturning = event.getReturning();
+                if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReceiving)) {
+                    if (heldItem.apply_if().isEmpty()) {
+                        HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.apply_aspects(), true);
+                    }
+                    for (List<String> condition : heldItem.apply_if()) {
+                        if (pokemon.getAspects().containsAll(condition)) {
+                            HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.apply_aspects(), true);
                             return;
                         }
-                    } else if (event.getReturning().is(item)) {
-                        if (pokemon.getAspects().containsAll(heldItem.revert_if())) {
-                            HandlerUtils.applyAspects(heldItem.revert_if(), pokemon);
+                    }
+                } else if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReturning)) {
+                    for (List<String> condition : heldItem.revert_if()) {
+                        if (pokemon.getAspects().containsAll(condition)) {
+                            HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.revert_aspects(), false);
                         }
                     }
                 }
@@ -39,14 +47,30 @@ public class HeldItemHandler {
 
     public static void battleModeFormChange(FormeChangeEvent formeChangeEvent) {
         Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
+        PokemonBattle pokemonBattle = formeChangeEvent.getBattle();
 
-        for (HeldItemData heldItem : Utils.heldItemsRegistry) {
-            if (heldItem.battle_mode_only() == null) {
-                continue;
-            }
-            if (heldItem.pokemons().contains(pokemon.getSpecies().getName())
-                    && formeChangeEvent.getFormeName().equals(heldItem.battle_mode_only().showdown_form_id())) {
-                HandlerUtils.applyAspects(heldItem.battle_mode_only().apply_aspects(), pokemon);
+        for (BattleFormChange formChange : Utils.battleFormRegistry) {
+            if (formChange.pokemons().contains(pokemon.getSpecies().getName())
+                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_apply())) {
+                if (formChange.effects().snowStorm() != null) {
+                    pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
+                        HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
+                        return Unit.INSTANCE;
+                    });
+                } else {
+                    HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
+                }
+                break;
+            } else if (formChange.pokemons().contains(pokemon.getSpecies().getName())
+                    && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_revert())) {
+                if (formChange.effects().snowStorm() != null) {
+                    pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
+                        HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
+                        return Unit.INSTANCE;
+                    });
+                } else {
+                    HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
+                }
                 break;
             }
         }

@@ -26,7 +26,7 @@ public class HeldItemHandler {
                 ItemStack itemReceiving = event.getReceiving();
                 ItemStack itemReturning = event.getReturning();
                 if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReceiving)) {
-                    if(heldItem.apply_if().isEmpty()){
+                    if (heldItem.apply_if().isEmpty()) {
                         HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.apply_aspects(), true);
                     }
                     for (List<String> condition : heldItem.apply_if()) {
@@ -53,23 +53,23 @@ public class HeldItemHandler {
         for (BattleFormChange formChange : Utils.battleFormRegistry) {
             if (formChange.pokemons().contains(pokemon.getSpecies().getName())
                     && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_apply())) {
-                if(formChange.effects().snowStorm() != null){
+                if (formChange.effects().snowStorm() != null) {
                     pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
                         HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
                         return Unit.INSTANCE;
                     });
-                }else {
+                } else {
                     HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.apply_aspects(), true);
                 }
                 break;
             } else if (formChange.pokemons().contains(pokemon.getSpecies().getName())
                     && formeChangeEvent.getFormeName().equals(formChange.showdown_form_id_revert())) {
-                if(formChange.effects().snowStorm() != null){
+                if (formChange.effects().snowStorm() != null) {
                     pokemonBattle.dispatchWaitingToFront(formChange.effects().snowStorm().apply_after(), () -> {
                         HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
                         return Unit.INSTANCE;
                     });
-                }else {
+                } else {
                     HandlerUtils.applyEffects(formChange.effects(), pokemon.getEntity(), formChange.revert_aspects(), false);
                 }
                 break;

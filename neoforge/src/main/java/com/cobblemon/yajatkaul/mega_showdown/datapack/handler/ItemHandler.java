@@ -22,7 +22,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class ItemHandler {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
@@ -49,20 +52,23 @@ public class ItemHandler {
         }
 
         if (!itemStack.isEmpty()) {
-
-
             for (FusionData fusion : Utils.fusionRegistry) {
                 Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(fusion.item_id()));
                 if (HandlerUtils.itemValidator(item, fusion.custom_model_data(), itemStack)) {
                     EntityHitResult entityHit = HandlerUtils.getEntityLookingAt(player, 4.5f);
                     if (entityHit == null) {
-                        return false;
-                    } else {
-                        PokeHandler currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+                        PokeHandler pokeHandler = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+                        Pokemon currentValue;
+                        if (pokeHandler == null) {
+                            currentValue = null;
+                        } else {
+                            currentValue = pokeHandler.getPokemon();
+                        }
                         if (currentValue != null) {
                             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
-                            playerPartyStore.add(currentValue.getPokemon());
+                            playerPartyStore.add(currentValue);
                         }
+                        return false;
                     }
                     Entity context = entityHit.getEntity();
 
@@ -77,19 +83,56 @@ public class ItemHandler {
 
                     PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
                     PokeHandler pokeHandler = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
+                    Pokemon currentValue;
 
-                    if (HandlerUtils.checkEnabled(fusion, pokemon) && fusion.fusion_mons().contains(pokemon.getSpecies().getName())) {
-                        Pokemon pokemonSave = Pokemon.Companion.loadFromNBT(player.level().registryAccess(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
-                        playerPartyStore.add(pokemonSave);
-                        pokemon.getPersistentData().remove("fusion_forme");
+                    if (pokeHandler == null) {
+                        currentValue = null;
+                    } else {
+                        currentValue = pokeHandler.getPokemon();
+                    }
+
+                    if (fusion.fusion_mons().contains(pokemon.getSpecies().getName())) {
+                        for (List<String> condition : fusion.revert_if()) {
+                            if (pokemon.getAspects().containsAll(condition)) {
+                                Pokemon pokemonSave = Pokemon.Companion.loadFromNBT(player.level().registryAccess(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
+                                playerPartyStore.add(pokemonSave);
+                                pokemon.getPersistentData().remove("fusion_forme");
+                                HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.revert_aspects(), false);
+                                return true;
+                            }
+                        }
+
+                        if (currentValue != null) {
+                            if (fusion.fuse_if().isEmpty()) {
+                                CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
+                                pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
+                                itemStack.remove(DataManage.POKEMON_STORAGE);
+
+                                HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
+                                return true;
+                            }
+                            for (List<String> condition : fusion.fuse_if()) {
+                                if (pokemon.getAspects().containsAll(condition)) {
+                                    CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
+                                    pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
+                                    itemStack.remove(DataManage.POKEMON_STORAGE);
+
+                                    HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
+                                    return true;
+                                }
+                            }
+                        }
                     } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
-                        itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
-                        playerPartyStore.remove(pokemon);
-                    } else if (fusion.fusion_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.checkEnabled(fusion, pokemon)) {
-                        if(pokeHandler != null){
-                            Pokemon currentValue = pokeHandler.getPokemon();
-                            CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
-                            pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
+                        if (fusion.fuser_fuse_if().isEmpty()) {
+                            itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
+                            playerPartyStore.remove(pokemon);
+                        }
+                        for (List<String> condition : fusion.fuser_fuse_if()) {
+                            if (pokemon.getAspects().containsAll(condition)) {
+                                itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
+                                playerPartyStore.remove(pokemon);
+                                break;
+                            }
                         }
                     }
                     player.setItemInHand(hand, itemStack);
@@ -117,26 +160,45 @@ public class ItemHandler {
 
                     if (keyItem.pokemons().contains(pokemon.getSpecies().getName())) {
                         if (keyItem.toggle_aspects().isEmpty()) {
-                            if (pokemon.getAspects().containsAll(keyItem.apply_if())) {
+                            for (List<String> condition : keyItem.revert_if()) {
+                                if (pokemon.getAspects().containsAll(condition)) {
+                                    if (Possible((ServerPlayer) player)) {
+                                        itemStack.shrink(keyItem.consume());
+                                        HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.revert_aspects(), false);
+                                        if (!keyItem.tradable_form()) {
+                                            pokemon.setTradeable(true);
+                                        }
+                                    }
+                                    return true;
+                                }
+                            }
+
+                            if (keyItem.apply_if().isEmpty()) {
                                 if (Possible((ServerPlayer) player)) {
-                                    HandlerUtils.applyAspects(keyItem.apply_aspects(), pokemon);
+                                    itemStack.shrink(keyItem.consume());
+                                    HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.apply_aspects(), true);
                                     if (!keyItem.tradable_form()) {
                                         pokemon.setTradeable(false);
                                     }
                                 }
                                 return true;
-                            } else if (pokemon.getAspects().containsAll(keyItem.revert_if())) {
-                                if (Possible((ServerPlayer) player)) {
-                                    HandlerUtils.applyAspects(keyItem.revert_aspects(), pokemon);
-                                    if (!keyItem.tradable_form()) {
-                                        pokemon.setTradeable(true);
+                            }
+                            for (List<String> condition : keyItem.apply_if()) {
+                                if (pokemon.getAspects().containsAll(condition)) {
+                                    if (Possible((ServerPlayer) player)) {
+                                        itemStack.shrink(keyItem.consume());
+                                        HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.apply_aspects(), true);
+                                        if (!keyItem.tradable_form()) {
+                                            pokemon.setTradeable(false);
+                                        }
                                     }
+                                    return true;
                                 }
-                                return true;
                             }
                         } else {
                             int index = 0;
                             int size = keyItem.toggle_cycle().size();
+
                             for (List<String> toggleCycle : keyItem.toggle_cycle()) {
                                 if (pokemon.getAspects().containsAll(toggleCycle)) {
                                     index += 1;
@@ -150,7 +212,19 @@ public class ItemHandler {
                                     index = 0;
                                 }
                                 if (Possible((ServerPlayer) player)) {
-                                    HandlerUtils.applyAspects(keyItem.toggle_aspects().get(index), pokemon);
+                                    if (keyItem.apply_if().isEmpty()) {
+                                        itemStack.shrink(keyItem.consume());
+                                        HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.toggle_aspects().get(index), true);
+                                        return true;
+                                    }
+                                    for (List<String> condition : keyItem.apply_if()) {
+                                        if (pokemon.getAspects().containsAll(condition)) {
+                                            itemStack.shrink(keyItem.consume());
+                                            HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.toggle_aspects().get(index), true);
+                                            return true;
+                                        }
+                                    }
+
                                     if (!keyItem.tradable_form()) {
                                         pokemon.setTradeable(false);
                                     }

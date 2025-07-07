@@ -17,7 +17,6 @@ import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange.ArceusType;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
@@ -116,9 +115,9 @@ public class EventUtils {
 
         for (HeldItemData heldItem : Utils.heldItemsRegistry) {
             Item item = Registries.ITEM.get(Identifier.tryParse(heldItem.item_id()));
-            if(!HandlerUtils.itemValidator(item, heldItem.custom_model_data(), pokemon.heldItem())){
-                for(List<String> aspects: heldItem.revert_if()){
-                    if(pokemon.getAspects().containsAll(aspects)){
+            if (!HandlerUtils.itemValidator(item, heldItem.custom_model_data(), pokemon.heldItem())) {
+                for (List<String> aspects : heldItem.revert_if()) {
+                    if (pokemon.getAspects().containsAll(aspects)) {
                         HandlerUtils.applyAspects(heldItem.revert_aspects(), pokemon);
                     }
                 }

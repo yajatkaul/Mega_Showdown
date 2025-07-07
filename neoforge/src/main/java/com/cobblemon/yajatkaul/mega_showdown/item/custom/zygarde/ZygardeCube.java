@@ -20,7 +20,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.Entity;
@@ -250,16 +249,6 @@ public class ZygardeCube extends Item {
         }
 
         return handler;
-    }
-
-    @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity entity, InteractionHand arg4) {
-        if (player.level().isClientSide || player.isCrouching()) {
-            return InteractionResult.FAIL;
-        }
-
-
-        return InteractionResult.FAIL;
     }
 
     private void particleEffect(LivingEntity context) {

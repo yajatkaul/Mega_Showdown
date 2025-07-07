@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
@@ -44,22 +43,22 @@ public class HandlerUtils {
         );
     }
 
-    public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply){
-        if(apply){
+    public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply) {
+        if (apply) {
             if (effects.snowStorm() != null && effects.minecraft() != null) {
                 HandlerUtils.particleEffect(pokemon, effects, true);
                 HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
-            } else if(effects.minecraft() != null){
+            } else if (effects.minecraft() != null) {
                 HandlerUtils.particleEffect(pokemon, effects, true);
                 HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
             } else if (effects.snowStorm() != null) {
                 HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects);
             }
-        }else {
+        } else {
             if (effects.snowStorm() != null && effects.minecraft() != null) {
                 HandlerUtils.particleEffect(pokemon, effects, false);
                 HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects);
-            } else if(effects.minecraft() != null){
+            } else if (effects.minecraft() != null) {
                 HandlerUtils.particleEffect(pokemon, effects, false);
                 HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
             } else if (effects.snowStorm() != null) {
