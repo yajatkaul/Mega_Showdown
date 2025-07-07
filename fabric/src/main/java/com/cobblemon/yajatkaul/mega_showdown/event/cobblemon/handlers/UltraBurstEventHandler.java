@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
@@ -17,20 +18,7 @@ public class UltraBurstEventHandler {
         new FlagSpeciesFeature("ultra", true).apply(pokemon.getEffectedPokemon());
         UltraLogic.ultraAnimation(pokemon.getEntity());
 
-        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
-            if (activeBattlePokemon.getBattlePokemon() != null &&
-                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pokemon.getEffectedPokemon().getOwnerPlayer()
-                    && activeBattlePokemon.getBattlePokemon() == pokemon) {
-                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, true),
-                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pokemon, false),
-                        false);
-
-            }
-        }
-
-        battle.sendUpdate(new AbilityUpdatePacket(pokemon::getEffectedPokemon, pokemon.getEffectedPokemon().getAbility().getTemplate()));
-        battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon.getEffectedPokemon()));
+        EventUtils.updatePackets(battle, pokemon);
 
         battle.dispatchWaitingToFront(3F, () -> {
             SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());

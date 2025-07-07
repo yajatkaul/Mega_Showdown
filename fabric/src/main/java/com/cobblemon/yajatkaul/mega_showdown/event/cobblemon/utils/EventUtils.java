@@ -1,7 +1,14 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils;
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
+import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
@@ -269,6 +276,29 @@ public class EventUtils {
                         0, 0, 0, // No movement velocity
                         0.1 // Slight motion
                 );
+            }
+        }
+    }
+
+    public static void updatePackets(PokemonBattle battle, BattlePokemon pk) {
+        Pokemon pokemon = pk.getEntity().getPokemon();
+
+        if (pk.actor.getType().equals(ActorType.PLAYER)) {
+            battle.sendUpdate(new AbilityUpdatePacket(pk::getEffectedPokemon, pokemon.getAbility().getTemplate()));
+            battle.sendUpdate(new BattleUpdateTeamPokemonPacket(pokemon));
+        }
+
+        for (ActiveBattlePokemon activeBattlePokemon : battle.getActivePokemon()) {
+            if (!pk.actor.getType().equals(ActorType.PLAYER)) {
+                continue;
+            }
+            if (activeBattlePokemon.getBattlePokemon() != null &&
+                    activeBattlePokemon.getBattlePokemon().getEffectedPokemon().getOwnerPlayer() == pk.getEffectedPokemon().getOwnerPlayer()
+                    && activeBattlePokemon.getBattlePokemon() == pk) {
+                battle.sendSidedUpdate(activeBattlePokemon.getActor(),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pk, true),
+                        new BattleTransformPokemonPacket(activeBattlePokemon.getPNX(), pk, false),
+                        false);
             }
         }
     }

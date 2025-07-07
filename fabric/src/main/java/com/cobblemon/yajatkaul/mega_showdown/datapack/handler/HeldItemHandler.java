@@ -26,6 +26,10 @@ public class HeldItemHandler {
             if (heldItem.pokemons().contains(pokemon.getSpecies().getName())) {
                 if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemStack)) {
                     if (event.getReceiving().isOf(item)) {
+                        if(heldItem.apply_if().isEmpty()){
+                            HandlerUtils.applyAspects(heldItem.apply_aspects(), pokemon);
+                            return;
+                        }
                         for (List<String> condition : heldItem.apply_if()) {
                             if (pokemon.getAspects().containsAll(condition)) {
                                 HandlerUtils.applyAspects(heldItem.apply_aspects(), pokemon);

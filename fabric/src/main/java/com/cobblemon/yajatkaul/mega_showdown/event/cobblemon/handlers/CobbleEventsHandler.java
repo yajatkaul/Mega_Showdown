@@ -97,9 +97,9 @@ public class CobbleEventsHandler {
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
         if (pokemon.getOwnerPlayer() == null) {
-            MegaLogic.NPCEvolve(pokemon.getEntity());
+            MegaLogic.NPCEvolve(pokemon.getEntity(), megaEvolutionEvent.getPokemon(), battle);
         } else {
-            MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer());
+            MegaLogic.Evolve(pokemon.getEntity(), pokemon.getOwnerPlayer(), megaEvolutionEvent.getPokemon(), battle);
         }
 
         return Unit.INSTANCE;
@@ -154,10 +154,10 @@ public class CobbleEventsHandler {
 
         if (pk.getSpecies().getName().equals("Terapagos")) {
             new StringSpeciesFeature("tera_form", "stellar").apply(pk);
-            pk.updateAspects();
+            EventUtils.updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon());
         } else if (pk.getSpecies().getName().equals("Ogerpon")) {
             new FlagSpeciesFeature("embody-aspect", true).apply(pk);
-            pk.updateAspects();
+            EventUtils.updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon());
         }
 
         if (pk instanceof TeraAccessor accessor) {
@@ -264,7 +264,7 @@ public class CobbleEventsHandler {
                 pokemonEntity.after(4F, () -> {
                     new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
                     SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                    pokemon.updateAspects();
+                    EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
                     return Unit.INSTANCE;
                 });
                 return Unit.INSTANCE;
@@ -310,7 +310,7 @@ public class CobbleEventsHandler {
                     pokemonEntity.after(5F, () -> {
                         new StringSpeciesFeature("schooling_form", "school").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
                 } else if (formeChangeEvent.getFormeName().equals("wishiwashi")) {
@@ -338,7 +338,7 @@ public class CobbleEventsHandler {
                     pokemonEntity.after(4F, () -> {
                         new StringSpeciesFeature("battle_bond", "ash").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
 
@@ -426,7 +426,7 @@ public class CobbleEventsHandler {
                     pokemonEntity.after(3.9F, () -> {
                         new StringSpeciesFeature("tera_form", "terastal").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
                     return Unit.INSTANCE;
@@ -459,7 +459,7 @@ public class CobbleEventsHandler {
                         }
                         new StringSpeciesFeature("percent_cells", "complete").apply(pokemon);
                         SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
-                        pokemon.updateAspects();
+                        EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });
 
@@ -477,7 +477,7 @@ public class CobbleEventsHandler {
         //DATAPACK
         HeldItemHandler.battleModeFormChange(formeChangeEvent);
 
-        pokemon.updateAspects();
+        EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
 
         return Unit.INSTANCE;
     }
