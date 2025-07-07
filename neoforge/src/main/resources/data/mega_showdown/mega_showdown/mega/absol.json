@@ -7,5 +7,5 @@
   "custom_model_data": 0,
   "required_aspects": [],
   "pokemon": "Absol",
-  "aspects": ["mega_evolution=mega"]
+  "apply_aspects": ["mega_evolution=mega"]
 }
