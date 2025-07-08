@@ -86,7 +86,7 @@ public class EventUtils {
             new FlagSpeciesFeature("ultra", false).apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
             new StringSpeciesFeature("tera_form", "normal").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Meloetta")) {
+        } else if (pokemon.getSpecies().getName().equals("Meloetta") && pokemon.getAspects().contains("pirouette-forme")) {
             new StringSpeciesFeature("song_forme", "aria").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Zygarde")) {
             if (!pokemon.getPersistentData().getString("zygarde_form").isEmpty()) {
