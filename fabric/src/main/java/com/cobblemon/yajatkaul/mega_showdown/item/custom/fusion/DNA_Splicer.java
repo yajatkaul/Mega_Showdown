@@ -129,6 +129,7 @@ public class DNA_Splicer extends Item {
 
             playerPartyStore.add(currentValue);
             stack.set(DataManage.POKEMON_STORAGE, null);
+            stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
             player.setStackInHand(hand, stack);
             return TypedActionResult.consume(stack);
         } else if (hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {

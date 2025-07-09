@@ -107,6 +107,7 @@ public class N_Solarizer extends Item {
 
             playerPartyStore.add(currentValue);
             stack.set(DataManage.POKEMON_STORAGE, null);
+            stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
             player.setStackInHand(hand, stack);
             return TypedActionResult.consume(stack);
         } else if (hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {

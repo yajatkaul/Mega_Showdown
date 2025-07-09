@@ -9,6 +9,7 @@ import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.KeyItemData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -67,6 +68,8 @@ public class ItemHandler {
                         if (currentValue != null) {
                             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
                             playerPartyStore.add(currentValue);
+                            itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name()));
+                            itemStack.remove(DataManage.POKEMON_STORAGE);
                         }
                         return false;
                     }
@@ -107,6 +110,7 @@ public class ItemHandler {
                                 CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
                                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
                                 itemStack.remove(DataManage.POKEMON_STORAGE);
+                                itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name()));
 
                                 HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
                                 return true;
@@ -116,6 +120,7 @@ public class ItemHandler {
                                     CompoundTag otherPokemonNbt = currentValue.saveToNBT(player.level().registryAccess(), new CompoundTag());
                                     pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
                                     itemStack.remove(DataManage.POKEMON_STORAGE);
+                                    itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name()));
 
                                     HandlerUtils.applyEffects(fusion.effects(), pokemon.getEntity(), fusion.fusion_aspects(), true);
                                     return true;
@@ -123,15 +128,19 @@ public class ItemHandler {
                             }
                         }
                     } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
-                        if (fusion.fuser_fuse_if().isEmpty()) {
-                            itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
-                            playerPartyStore.remove(pokemon);
-                        }
-                        for (List<String> condition : fusion.fuser_fuse_if()) {
-                            if (pokemon.getAspects().containsAll(condition)) {
+                        if(currentValue == null){
+                            if (fusion.fuser_fuse_if().isEmpty()) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
+                                itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name() + ".charged"));
                                 playerPartyStore.remove(pokemon);
-                                break;
+                            }
+                            for (List<String> condition : fusion.fuser_fuse_if()) {
+                                if (pokemon.getAspects().containsAll(condition)) {
+                                    itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
+                                    playerPartyStore.remove(pokemon);
+                                    itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable(fusion.item_name() + ".charged"));
+                                    break;
+                                }
                             }
                         }
                     }

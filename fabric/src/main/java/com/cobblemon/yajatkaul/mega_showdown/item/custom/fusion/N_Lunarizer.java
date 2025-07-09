@@ -105,6 +105,7 @@ public class N_Lunarizer extends Item {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
 
             playerPartyStore.add(currentValue);
+            stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_lunarizer.inactive"));
             stack.set(DataManage.POKEMON_STORAGE, null);
             player.setStackInHand(hand, stack);
             return TypedActionResult.consume(stack);

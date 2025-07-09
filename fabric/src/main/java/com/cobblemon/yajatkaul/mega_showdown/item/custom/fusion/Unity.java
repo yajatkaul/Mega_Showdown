@@ -107,6 +107,7 @@ public class Unity extends Item {
 
             playerPartyStore.add(currentValue);
             stack.set(DataManage.POKEMON_STORAGE, null);
+            stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.reins_of_unity.inactive"));
             player.setStackInHand(hand, stack);
             return TypedActionResult.consume(stack);
         } else if (hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
