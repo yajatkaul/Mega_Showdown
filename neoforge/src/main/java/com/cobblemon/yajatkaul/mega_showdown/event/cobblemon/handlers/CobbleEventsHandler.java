@@ -122,7 +122,7 @@ public class CobbleEventsHandler {
             GlowHandler.applyZGlow(pokemon);
         }
 
-        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), ResourceLocation.tryParse("cobblemon:z_moves") , List.of("target"));
+        SnowStormHandler.Companion.snowStormPartileSpawner(pk.getEntity(), ResourceLocation.tryParse("cobblemon:z_moves"), List.of("target"));
 
         BlockPos entityPos = pokemon.getOnPos();
         pokemon.level().playSound(

@@ -44,7 +44,9 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getTeraShardForType;
 
@@ -458,7 +460,7 @@ public class CobbleEventsHandler {
                             pokemon.getPersistentData().putString("zygarde_form", "50");
                         }
                         new StringSpeciesFeature("percent_cells", "complete").apply(pokemon);
-                        SnowStormHandler.Companion.playAnimation(pokemonEntity , Set.of("cry"), List.of());
+                        SnowStormHandler.Companion.playAnimation(pokemonEntity, Set.of("cry"), List.of());
                         EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
                         return Unit.INSTANCE;
                     });

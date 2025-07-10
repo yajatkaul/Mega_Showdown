@@ -11,12 +11,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PowerSpotBlock extends Block {
     public PowerSpotBlock(Properties properties) {
-        super(properties);
-        properties.strength(3f)
+        super(properties.strength(3f)
                 .lightLevel((state) -> 15)
                 .mapColor(MapColor.COLOR_PURPLE)
                 .requiresCorrectToolForDrops()
-                .sound(SoundType.STONE);
+                .sound(SoundType.STONE));
     }
 
     public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 4, 14);

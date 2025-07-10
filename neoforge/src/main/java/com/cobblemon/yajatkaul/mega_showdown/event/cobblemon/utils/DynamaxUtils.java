@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils;
 
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.DynamaxEventHandler;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;

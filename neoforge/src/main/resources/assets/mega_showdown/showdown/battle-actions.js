@@ -1340,7 +1340,7 @@ class BattleActions {
     return zMove;
   }
   canZMove(pokemon) {
-    if (pokemon.side.zMoveUsed || pokemon.transformed && (pokemon.species.isMega || pokemon.species.isPrimal || pokemon.species.forme === "Ultra"))
+    if (pokemon.side.zMoveUsed || pokemon.terastallized || pokemon.species.baseSpecies === "Rayquaza" && pokemon.canMegaEvo || pokemon.transformed && (pokemon.species.isMega || pokemon.species.isPrimal || pokemon.species.forme === "Ultra"))
       return;
     const item = pokemon.getItem();
     if (!item.zMove)
@@ -1708,7 +1708,7 @@ class BattleActions {
   canMegaEvo(pokemon) {
     const species = pokemon.species;
     const item = pokemon.getItem();
-	if (species.baseSpecies === "Rayquaza" && pokemon.terastallized) {
+  if (species.baseSpecies === "Rayquaza" && (pokemon.terastallized || pokemon.getItem().zMove)) {
       return null;
     }
     if (species.baseSpecies === "Rayquaza" && pokemon.baseMoves.includes("dragonascent")) {
@@ -1748,7 +1748,7 @@ class BattleActions {
     return true;
   }
   canTerastallize(pokemon) {
-	  if (pokemon.species.baseSpecies === "Rayquaza") {
+	  if (pokemon.species.baseSpecies === "Rayquaza" && !pokemon.getItem().zMove) {
       return pokemon.teraType;
     }
       if (pokemon.getItem().zMove || pokemon.canMegaEvo || this.dex.gen !== 9 || pokemon.volatiles["dynamax"]) {

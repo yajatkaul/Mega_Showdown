@@ -4,6 +4,7 @@ import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.*;
 import com.cobblemon.yajatkaul.mega_showdown.block.custom.zygarde.ReassemblyUnitBlock;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -93,7 +94,12 @@ public class ModBlocks {
             new PedestalBlock(AbstractBlock.Settings.create().nonOpaque().strength(2).requiresTool()));
 
     public static final Block REASSEMBLY_UNIT = registerBlock("reassembly_unit",
-            new ReassemblyUnitBlock(AbstractBlock.Settings.create()));
+            new ReassemblyUnitBlock(AbstractBlock.Settings.create().strength(3f)
+                    .requiresTool()
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .nonOpaque()
+                    .pistonBehavior(PistonBehavior.PUSH_ONLY)
+                    .sounds(BlockSoundGroup.METAL)));
 
     public static final Block WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
             new WishingStarCrystal(4, 3, AbstractBlock.Settings.create()));

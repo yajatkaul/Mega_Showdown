@@ -57,7 +57,7 @@ public class MaxSoup extends Item {
             } else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(true);
 
-                if(!player.isCreative()){
+                if (!player.isCreative()) {
                     player.setItemInHand(arg4, new ItemStack(Items.BOWL));
                 }
                 Vec3 pos = pk.position();

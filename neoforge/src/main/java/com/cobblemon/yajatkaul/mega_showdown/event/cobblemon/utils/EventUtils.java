@@ -14,7 +14,6 @@ import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.DynamaxEventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;

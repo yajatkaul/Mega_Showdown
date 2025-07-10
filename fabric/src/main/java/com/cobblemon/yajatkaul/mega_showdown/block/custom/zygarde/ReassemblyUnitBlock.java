@@ -53,13 +53,14 @@ public class ReassemblyUnitBlock extends Block {
     private static final VoxelShape LOWER_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
 
     public ReassemblyUnitBlock(Settings settings) {
-        super(settings);
-        settings.strength(3f)
+        super(settings
+                .strength(3f)
                 .requiresTool()
                 .mapColor(MapColor.TERRACOTTA_WHITE)
                 .nonOpaque()
                 .pistonBehavior(PistonBehavior.PUSH_ONLY)
-                .sounds(BlockSoundGroup.METAL);
+                .sounds(BlockSoundGroup.METAL)
+        );
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(FACING, Direction.NORTH)
                 .with(HALF, DoubleBlockHalf.LOWER)

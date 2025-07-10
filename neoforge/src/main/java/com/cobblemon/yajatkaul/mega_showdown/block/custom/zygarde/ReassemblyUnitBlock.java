@@ -58,12 +58,11 @@ public class ReassemblyUnitBlock extends Block {
     private static final VoxelShape LOWER_SHAPE = Block.box(1, 0, 1, 15, 16, 15);
 
     public ReassemblyUnitBlock(Properties properties) {
-        super(properties);
-        properties.strength(3f)
+        super(properties.strength(3f)
                 .mapColor(MapColor.TERRACOTTA_WHITE)
                 .requiresCorrectToolForDrops()
                 .noOcclusion()
-                .sound(SoundType.METAL);
+                .sound(SoundType.METAL));
         registerDefaultState(this.stateDefinition.any()
                 .setValue(HALF, DoubleBlockHalf.LOWER)
                 .setValue(FACING, Direction.NORTH)

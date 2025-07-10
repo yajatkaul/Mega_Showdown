@@ -32,7 +32,13 @@ class SnowStormHandler {
             )
         }
 
-        fun snowStormPartileSpawner(entity: PokemonEntity, particleId: Identifier, source: List<String>?, targetEntity: PokemonEntity, target: List<String>?) {
+        fun snowStormPartileSpawner(
+            entity: PokemonEntity,
+            particleId: Identifier,
+            source: List<String>?,
+            targetEntity: PokemonEntity,
+            target: List<String>?
+        ) {
             val packet = SpawnSnowstormEntityParticlePacket(
                 particleId,
                 sourceEntityId = entity.id,

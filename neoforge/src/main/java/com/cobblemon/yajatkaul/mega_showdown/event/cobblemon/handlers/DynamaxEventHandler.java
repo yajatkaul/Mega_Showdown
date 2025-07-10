@@ -24,7 +24,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.neoforged.bus.api.SubscribeEvent;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class DynamaxEventHandler {
 

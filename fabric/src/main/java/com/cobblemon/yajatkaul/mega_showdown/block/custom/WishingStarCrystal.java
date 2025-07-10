@@ -16,13 +16,12 @@ import org.joml.Vector3f;
 
 public class WishingStarCrystal extends CrystalBlock {
     public WishingStarCrystal(float height, float xzOffset, Settings settings) {
-        super(height, xzOffset, settings);
-        settings.strength(1.5f)
+        super(height, xzOffset, settings.strength(1.5f)
                 .sounds(BlockSoundGroup.STONE)
                 .nonOpaque()
                 .requiresTool()
                 .pistonBehavior(PistonBehavior.IGNORE)
-                .luminance((state) -> 15);
+                .luminance((state) -> 15));
     }
 
     private static final VoxelShape SHAPE =

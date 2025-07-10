@@ -43,7 +43,7 @@ public class SweetMaxSoup extends Item {
             if (pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(false);
 
-                if(!player.isCreative()){
+                if (!player.isCreative()) {
                     player.setStackInHand(hand, new ItemStack(Items.BOWL));
                 }
                 Vec3d pos = pk.getPos();

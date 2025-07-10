@@ -121,7 +121,7 @@ public class ItemHandler {
                             }
                         }
                     } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
-                        if(currentValue == null){
+                        if (currentValue == null) {
                             if (fusion.fuser_fuse_if().isEmpty()) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, pokemon);
                                 itemStack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable(fusion.item_name() + ".charged"));

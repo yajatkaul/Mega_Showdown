@@ -15,13 +15,12 @@ import net.minecraft.world.World;
 
 public class MegaStoneCrystal extends CrystalBlock {
     public MegaStoneCrystal(float height, float xzOffset, Settings settings) {
-        super(height, xzOffset, settings);
-        settings.strength(1.5f)
+        super(height, xzOffset, settings.strength(1.5f)
                 .sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD)
                 .nonOpaque()
                 .requiresTool()
                 .pistonBehavior(PistonBehavior.IGNORE)
-                .luminance((state) -> 15);
+                .luminance((state) -> 15));
     }
 
     private static final VoxelShape SHAPE =

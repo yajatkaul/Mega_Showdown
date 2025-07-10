@@ -66,7 +66,7 @@ public class ModBlocks {
             () -> new ReassemblyUnitBlock(BlockBehaviour.Properties.of()));
 
     public static final DeferredBlock<AmethystClusterBlock> WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
-            () -> new CrystalBlock(4, 3, BlockBehaviour.Properties.of()));
+            () -> new WishingStarCrystal(4, 3, BlockBehaviour.Properties.of()));
 
     public static final DeferredBlock<AmethystClusterBlock> DORMANT_CRYSTAL = registerBlock("dormant_crystal",
             () -> new DormantCrystal(4, 3, BlockBehaviour.Properties.of()));
