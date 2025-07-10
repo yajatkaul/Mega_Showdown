@@ -81,9 +81,7 @@ class MaxHoney : CobblemonItem(Settings()), HealingSource {
                                 )
                             )
                             val stackName = Registries.ITEM.getId(stack.item)
-                            if (!player.isCreative) {
-                                stack.decrement(1)
-                            }
+                            stack.decrementUnlessCreative(1, player);
                             CobblemonCriteria.POKEMON_INTERACT.trigger(
                                 player,
                                 PokemonInteractContext(bp.effectedPokemon.species.resourceIdentifier, stackName)
@@ -107,9 +105,7 @@ class MaxHoney : CobblemonItem(Settings()), HealingSource {
                             amount = event.amount
                         }
                         pk.currentHealth = amount
-                        if (!player.isCreative) {
-                            stack.decrement(1)
-                        }
+                        stack.decrementUnlessCreative(1, player);
                         CobblemonCriteria.POKEMON_INTERACT.trigger(
                             player,
                             PokemonInteractContext(pk.species.resourceIdentifier, stackName)

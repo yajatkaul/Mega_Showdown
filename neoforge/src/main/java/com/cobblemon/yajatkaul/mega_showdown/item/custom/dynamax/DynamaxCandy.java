@@ -92,7 +92,7 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
             } else {
                 particleEffect(pokemon.getEntity(), ParticleTypes.FLAME);
             }
-            itemStack.shrink(1);
+            itemStack.consume(1, player);
 
             return InteractionResultHolder.success(itemStack);
         } else if (pokemon.getDmaxLevel() >= Cobblemon.config.getMaxDynamaxLevel() && pokemon.getOwnerPlayer() == player) {

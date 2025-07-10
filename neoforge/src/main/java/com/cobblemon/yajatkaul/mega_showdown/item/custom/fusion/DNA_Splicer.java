@@ -164,7 +164,7 @@ public class DNA_Splicer extends Item {
                 currentValue = refValue.getPokemon();
             }
 
-            if (pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon)) {
+            if (pokemon.getSpecies().getName().equals("Kyurem") && checkEnabled(pokemon) && !pokemon.getEntity().getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
                 if (stack.get(DataManage.POKEMON_STORAGE) != null) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
                             .withColor(0xFF0000), true);

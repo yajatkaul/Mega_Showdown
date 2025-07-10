@@ -108,7 +108,7 @@ public class RotomUnit extends BlockItem {
                 playFormeChangeAnimation(pk);
 
                 new StringSpeciesFeature("appliance", form).apply(pk);
-                arg.shrink(1);
+                arg.consume(1, player);
                 AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
                 return InteractionResult.SUCCESS;
             }

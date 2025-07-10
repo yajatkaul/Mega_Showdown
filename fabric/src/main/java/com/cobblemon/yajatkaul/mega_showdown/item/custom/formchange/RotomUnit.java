@@ -114,7 +114,7 @@ public class RotomUnit extends BlockItem {
                 playFormeChangeAnimation(pk);
 
                 new StringSpeciesFeature("appliance", form).apply(pk);
-                stack.decrement(1);
+                stack.decrementUnlessCreative(1, user);
                 AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "rotom/rotom_form_change");
                 return ActionResult.SUCCESS;
             }

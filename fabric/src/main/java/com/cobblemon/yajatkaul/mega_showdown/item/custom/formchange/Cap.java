@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.item;
+package com.cobblemon.yajatkaul.mega_showdown.item.custom.formchange;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
@@ -78,7 +78,7 @@ public class Cap extends Item {
                 playFormeChangeAnimation(entity);
                 new StringSpeciesFeature("league_cap", "partner").apply(pk);
                 AdvancementHelper.grantAdvancement((ServerPlayerEntity) user, "bond/ash_cap_bond");
-                stack.decrement(1);
+                stack.decrementUnlessCreative(1, user);
             } else if (pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")) {
                 if (pk.getFriendship() < 200) {
                     user.sendMessage(
@@ -90,7 +90,7 @@ public class Cap extends Item {
                 playFormeChangeAnimation(entity);
                 new StringSpeciesFeature("battle_bond", "bond").apply(pk);
                 AdvancementHelper.grantAdvancement((ServerPlayerEntity) user, "bond/ash_cap_bond");
-                stack.decrement(1);
+                stack.decrementUnlessCreative(1, user);
             }
         }
         return super.useOnEntity(stack, user, entity, hand);

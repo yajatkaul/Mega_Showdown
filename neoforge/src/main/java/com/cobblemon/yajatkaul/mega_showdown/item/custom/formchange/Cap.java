@@ -62,7 +62,6 @@ public class Cap extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
-
         if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()) {
             if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")) {
                 if (pk.getFriendship() < 200) {
@@ -73,7 +72,7 @@ public class Cap extends Item {
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("league_cap", "partner").apply(pk);
                 AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
-                arg.shrink(1);
+                arg.consume(1, player);
             } else if (pk.getPokemon().getSpecies().getName().equals("Greninja") && !pk.getPokemon().getAspects().contains("bond")) {
                 if (pk.getFriendship() < 200) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
@@ -83,7 +82,7 @@ public class Cap extends Item {
                 playFormeChangeAnimation(context);
                 new StringSpeciesFeature("battle_bond", "bond").apply(pk);
                 AdvancementHelper.grantAdvancement((ServerPlayer) player, "bond/ash_cap_bond");
-                arg.shrink(1);
+                arg.consume(1, player);
             }
         }
 

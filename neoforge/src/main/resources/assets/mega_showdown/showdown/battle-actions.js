@@ -1403,6 +1403,10 @@ class BattleActions {
   if (move.name === "Struggle")
     return this.dex.getActiveMove(move);
 
+  // Assign the Gigantamax move based on species
+  let GigantamaxMove = null;
+  const GIGANTAMAX_MOVES = gmaxMap;
+
   const speciesName = this.dex.toID(pokemon.species?.name);
   if (speciesName && pokemon.gigantamax && GIGANTAMAX_MOVES[speciesName]) {
     GigantamaxMove = GIGANTAMAX_MOVES[speciesName];

@@ -7,8 +7,8 @@
         "rapid_strike-style"
       ],
       "poser": "cobblemon:urshifu_rapidstrike",
-      "model": "cobblemon:urshifu_rapidstrike.geo",
-      "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_rapid.png",
+      "model": "cobblemon:urshifu.geo",
+      "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_rapidstrike.png",
       "layers": [
       ]
     },
@@ -18,8 +18,8 @@
         "rapid_strike-style"
       ],
       "poser": "cobblemon:urshifu_rapidstrike",
-      "model": "cobblemon:urshifu_rapidstrike.geo",
-      "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_rapid_shiny.png"
+      "model": "cobblemon:urshifu.geo",
+      "texture": "cobblemon:textures/pokemon/0892_urshifu/urshifu_rapidstrike_shiny.png"
     }
   ]
 }

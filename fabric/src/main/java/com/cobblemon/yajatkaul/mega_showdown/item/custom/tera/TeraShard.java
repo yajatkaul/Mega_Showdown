@@ -91,7 +91,7 @@ public class TeraShard extends Item {
             }
 
             if (pokemon.getOwnerPlayer() == player && stack.getCount() == 50) {
-                stack.decrement(50);
+                stack.decrementUnlessCreative(50, player);
                 if (stack.getItem() != TeraMoves.STELLAR_TERA_SHARD.asItem()) {
                     particleEffect(pokemon.getEntity());
                     pokemon.setTeraType(getType(shard));

@@ -172,7 +172,7 @@ public class ItemHandler {
                             for (List<String> condition : keyItem.revert_if()) {
                                 if (pokemon.getAspects().containsAll(condition)) {
                                     if (Possible((ServerPlayer) player)) {
-                                        itemStack.shrink(keyItem.consume());
+                                        itemStack.consume(keyItem.consume(), player);
                                         HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.revert_aspects(), false);
                                         if (!keyItem.tradable_form()) {
                                             pokemon.setTradeable(true);
@@ -184,7 +184,7 @@ public class ItemHandler {
 
                             if (keyItem.apply_if().isEmpty()) {
                                 if (Possible((ServerPlayer) player)) {
-                                    itemStack.shrink(keyItem.consume());
+                                    itemStack.consume(keyItem.consume(), player);
                                     HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.apply_aspects(), true);
                                     if (!keyItem.tradable_form()) {
                                         pokemon.setTradeable(false);
@@ -195,7 +195,7 @@ public class ItemHandler {
                             for (List<String> condition : keyItem.apply_if()) {
                                 if (pokemon.getAspects().containsAll(condition)) {
                                     if (Possible((ServerPlayer) player)) {
-                                        itemStack.shrink(keyItem.consume());
+                                        itemStack.consume(keyItem.consume(), player);
                                         HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.apply_aspects(), true);
                                         if (!keyItem.tradable_form()) {
                                             pokemon.setTradeable(false);
@@ -222,13 +222,13 @@ public class ItemHandler {
                                 }
                                 if (Possible((ServerPlayer) player)) {
                                     if (keyItem.apply_if().isEmpty()) {
-                                        itemStack.shrink(keyItem.consume());
+                                        itemStack.consume(keyItem.consume(), player);
                                         HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.toggle_aspects().get(index), true);
                                         return true;
                                     }
                                     for (List<String> condition : keyItem.apply_if()) {
                                         if (pokemon.getAspects().containsAll(condition)) {
-                                            itemStack.shrink(keyItem.consume());
+                                            itemStack.consume(keyItem.consume(), player);
                                             HandlerUtils.applyEffects(keyItem.effects(), pokemon.getEntity(), keyItem.toggle_aspects().get(index), true);
                                             return true;
                                         }

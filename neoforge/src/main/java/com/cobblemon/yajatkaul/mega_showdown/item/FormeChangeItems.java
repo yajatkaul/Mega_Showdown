@@ -647,38 +647,8 @@ public class FormeChangeItems {
     public static final DeferredItem<Item> REVEAL_GLASS = ITEMS.register("reveal_glass",
             () -> new RevealGlass(new Item.Properties().stacksTo(1)));
 
-    public static final DeferredItem<BlockItem> DEOXYS_METEORITE = ModItems.ITEMS.register("deoxys_meteorite", () -> new BlockItem(ModBlocks.DEOXYS_METEORITE.get(),
-            new Item.Properties()) {
-        @Override
-        public InteractionResult interactLivingEntity(ItemStack arg, Player user, LivingEntity entity, InteractionHand arg4) {
-            if (!user.level().isClientSide && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrouching()) {
-                Pokemon pokemon = pk.getPokemon();
+    public static final DeferredItem<BlockItem> DEOXYS_METEORITE = ModItems.ITEMS.register("deoxys_meteorite", () -> new DeoxysMeteorite(ModBlocks.DEOXYS_METEORITE.get(), new Item.Properties()));
 
-                if (pokemon.getSpecies().getName().equals("Deoxys")) {
-                    if (pokemon.getAspects().contains("normal-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
-                    } else if (pokemon.getAspects().contains("attack-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
-                    } else if (pokemon.getAspects().contains("speed-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                    } else if (pokemon.getAspects().contains("defense-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
-                    }
-
-                    arg.shrink(1);
-                    return InteractionResult.SUCCESS;
-                }
-            }
-
-            return super.interactLivingEntity(arg, user, entity, arg4);
-        }
-
-        @Override
-        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-            tooltipComponents.add(Component.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
-            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        }
-    });
     public static final DeferredItem<SmithingTemplateItem> FURFROU_TRIM_SMITHING_TEMPLATE = ITEMS.register("furfrou_upgrade",
             () -> new SmithingTemplateItem(
                     Component.translatable("item.mega_showdown.furfrou_trim_smithing_template.applies_to"),       // Applies To

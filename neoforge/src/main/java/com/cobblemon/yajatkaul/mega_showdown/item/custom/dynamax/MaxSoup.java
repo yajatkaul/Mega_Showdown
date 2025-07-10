@@ -51,14 +51,15 @@ public class MaxSoup extends Item {
                         SoundSource.PLAYERS, 0.4f, 0.5f + (float) Math.random() * 0.5f
                 );
 
-
                 player.displayClientMessage(Component.translatable("message.mega_showdown.gmax_not_possible")
                         .withColor(0xFFFFFF), true);
                 return InteractionResult.SUCCESS;
             } else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(true);
 
-                player.setItemInHand(arg4, new ItemStack(Items.BOWL));
+                if(!player.isCreative()){
+                    player.setItemInHand(arg4, new ItemStack(Items.BOWL));
+                }
                 Vec3 pos = pk.position();
 
                 player.level().playSound(

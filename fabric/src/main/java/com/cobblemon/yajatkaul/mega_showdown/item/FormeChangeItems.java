@@ -564,37 +564,7 @@ public class FormeChangeItems {
         }
     });
 
-    public static final BlockItem DEOXYS_METEORITE = Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"), new BlockItem(ModBlocks.DEOXYS_METEORITE, new Item.Settings()) {
-        @Override
-        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if (!user.getWorld().isClient && entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling() && !user.isCrawling()) {
-                Pokemon pokemon = pk.getPokemon();
-
-                if (pokemon.getSpecies().getName().equals("Deoxys")) {
-                    if (pokemon.getAspects().contains("normal-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "attack").apply(pokemon);
-                    } else if (pokemon.getAspects().contains("attack-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "speed").apply(pokemon);
-                    } else if (pokemon.getAspects().contains("speed-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "defense").apply(pokemon);
-                    } else if (pokemon.getAspects().contains("defense-forme")) {
-                        new StringSpeciesFeature("meteorite_forme", "normal").apply(pokemon);
-                    }
-
-                    stack.decrement(1);
-                    return ActionResult.SUCCESS;
-                }
-            }
-
-            return super.useOnEntity(stack, user, entity, hand);
-        }
-
-        @Override
-        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            tooltip.add(Text.translatable("tooltip.mega_showdown.deoxys_meteorite.tooltip"));
-            super.appendTooltip(stack, context, tooltip, type);
-        }
-    });
+    public static final BlockItem DEOXYS_METEORITE = Registry.register(Registries.ITEM, Identifier.of(MegaShowdown.MOD_ID, "deoxys_meteorite"), new DeoxysMeteorite(ModBlocks.DEOXYS_METEORITE, new Item.Settings()));
 
     public static final Item ZYGARDE_CUBE = registerItem("zygarde_cube",
             new ZygardeCube(new Item.Settings().maxCount(1).component(DataManage.ZYGARDE_CUBE_INV, null)

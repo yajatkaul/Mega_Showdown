@@ -80,9 +80,7 @@ class MaxHoney : CobblemonItem(Properties()), HealingSource {
                                 )
                             )
                             val stackName = BuiltInRegistries.ITEM.getKey(stack.item)
-                            if (!player.isCreative) {
-                                stack.shrink(1)
-                            }
+                            stack.consume(1, player);
                             CobblemonCriteria.POKEMON_INTERACT.trigger(
                                 player,
                                 PokemonInteractContext(bp.effectedPokemon.species.resourceIdentifier, stackName)

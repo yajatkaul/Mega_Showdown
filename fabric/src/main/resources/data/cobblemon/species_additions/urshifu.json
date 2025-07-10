@@ -1,7 +1,7 @@
 {
   "implemented": true,
   "target": "cobblemon:urshifu",
-  "baseScale": 0.7,
+  "baseScale": 1,
   "hitbox": {
     "width": 2,
     "height": 3,
