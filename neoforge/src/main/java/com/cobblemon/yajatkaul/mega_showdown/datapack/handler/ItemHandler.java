@@ -80,7 +80,7 @@ public class ItemHandler {
                     }
 
                     Pokemon pokemon = pk.getPokemon();
-                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
+                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling() || pk.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
                         return false;
                     }
 
@@ -163,7 +163,7 @@ public class ItemHandler {
                     }
 
                     Pokemon pokemon = pk.getPokemon();
-                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
+                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling() || pk.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
                         return false;
                     }
 

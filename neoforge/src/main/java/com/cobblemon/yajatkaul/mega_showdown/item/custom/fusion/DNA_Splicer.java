@@ -16,6 +16,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -33,6 +34,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Set;
 
 public class DNA_Splicer extends Item {
     public DNA_Splicer(Properties arg) {
@@ -59,7 +61,8 @@ public class DNA_Splicer extends Item {
 
     public static void fuseEffect(PokemonEntity pokemon, boolean black) {
         SnowStormHandler.Companion.snowStormPartileSpawner(pokemon,
-                black ? "kyurem_b_effect" : "kyurem_w_effect", List.of("target"));
+                ResourceLocation.tryParse("cobblemon:" + (black ? "kyurem_b_effect" : "kyurem_w_effect"))
+                , List.of("target"));
         pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
         BlockPos entityPos = pokemon.getOnPos();
@@ -71,7 +74,7 @@ public class DNA_Splicer extends Item {
 
         pokemon.after(4F, () -> {
             new StringSpeciesFeature("absofusion", black ? "black" : "white").apply(pokemon);
-            SnowStormHandler.Companion.cryAnimation(pokemon);
+            SnowStormHandler.Companion.playAnimation(pokemon, Set.of("cry"), List.of());
             pokemon.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;
         });

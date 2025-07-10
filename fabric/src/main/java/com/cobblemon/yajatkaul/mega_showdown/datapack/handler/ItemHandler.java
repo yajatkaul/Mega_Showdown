@@ -32,7 +32,7 @@ import java.util.UUID;
 
 public class ItemHandler {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_TIME = 6000; // 1 sec
+    private static final long COOLDOWN_TIME = 1; // 1 sec
 
     public static boolean Possible(ServerPlayerEntity player) {
         UUID playerId = player.getUuid();
@@ -80,7 +80,7 @@ public class ItemHandler {
                     }
 
                     Pokemon pokemon = pk.getPokemon();
-                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
+                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling() || pk.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
                         return TypedActionResult.pass(itemStack);
                     }
 
@@ -156,7 +156,7 @@ public class ItemHandler {
                     }
 
                     Pokemon pokemon = pk.getPokemon();
-                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling()) {
+                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling() || pk.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
                         return TypedActionResult.pass(itemStack);
                     }
 

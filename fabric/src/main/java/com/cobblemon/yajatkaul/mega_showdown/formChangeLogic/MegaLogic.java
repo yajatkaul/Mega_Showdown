@@ -35,10 +35,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class MegaLogic {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
@@ -242,7 +239,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", List.of("target"));
+        SnowStormHandler.Companion.snowStormPartileSpawner(context, Identifier.tryParse("cobblemon:mega_evolution"), List.of("target"));
 
         BlockPos entityPos = context.getBlockPos();
         context.getWorld().playSound(
@@ -252,7 +249,7 @@ public class MegaLogic {
         );
 
         context.after(4.8F, () -> {
-            SnowStormHandler.Companion.cryAnimation(context);
+            SnowStormHandler.Companion.playAnimation(context, Set.of("cry"), List.of());
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             new StringSpeciesFeature("mega_evolution", type).apply(context.getPokemon());
             return Unit.INSTANCE;
@@ -264,7 +261,7 @@ public class MegaLogic {
         AdvancementHelper.grantAdvancement(context.getPokemon().getOwnerPlayer(), "mega/mega_evolve");
 
         context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-        SnowStormHandler.Companion.snowStormPartileSpawner(context, "mega_evolution", List.of("target"));
+        SnowStormHandler.Companion.snowStormPartileSpawner(context, Identifier.tryParse("cobblemon:mega_evolution"), List.of("target"));
 
         BlockPos entityPos = context.getBlockPos();
         context.getWorld().playSound(
@@ -274,7 +271,7 @@ public class MegaLogic {
         );
 
         context.after(4.8F, () -> {
-            SnowStormHandler.Companion.cryAnimation(context);
+            SnowStormHandler.Companion.playAnimation(context, Set.of("cry"), List.of());
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             new StringSpeciesFeature("mega_evolution", type).apply(context.getPokemon());
             EventUtils.updatePackets(pokemonBattle, battlePokemon);

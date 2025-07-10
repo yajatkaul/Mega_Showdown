@@ -60,7 +60,7 @@ public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
         if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-            DynamaxEventHandler.startGradualScaling(pokemon.getEntity(), 1.0f);
+            DynamaxUtils.startGradualScaling(pokemon.getEntity(), 1.0f);
         }
 
         if (pokemon instanceof TeraAccessor pk) {

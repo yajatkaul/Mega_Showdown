@@ -23,11 +23,13 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class LikosPendant extends ArmorItem {
@@ -123,7 +125,7 @@ public class LikosPendant extends ArmorItem {
 
             terapagos.after(0.01f, () -> {
                 SnowStormHandler.Companion.snowStormPartileSpawner(terapagos,
-                        "pendant_effect", List.of("target"));
+                        Identifier.tryParse("cobblemon:pendant_effect"), List.of("target"));
                 BlockPos entityPos = terapagos.getBlockPos();
                 terapagos.getWorld().playSound(
                         null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
@@ -136,7 +138,7 @@ public class LikosPendant extends ArmorItem {
             terapagos.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             terapagos.after(4F, () -> {
-                SnowStormHandler.Companion.cryAnimation(terapagos);
+                SnowStormHandler.Companion.playAnimation(terapagos, Set.of("cry"), List.of());
                 terapagos.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                 return Unit.INSTANCE;
             });

@@ -25,6 +25,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class HandlerUtils {
@@ -77,9 +78,11 @@ public class HandlerUtils {
             if (apply) {
                 partsParticle = effects.minecraft().particle_apply().split(":");
                 partsSound = effects.minecraft().sound_apply().split(":");
+                SnowStormHandler.Companion.playAnimation(context,new HashSet<>(effects.minecraft().animations().animations_apply()), effects.minecraft().animations().expressions_apply());
             } else {
                 partsParticle = effects.minecraft().particle_revert().split(":");
                 partsSound = effects.minecraft().sound_revert().split(":");
+                SnowStormHandler.Companion.playAnimation(context,new HashSet<>(effects.minecraft().animations().animations_revert()), effects.minecraft().animations().expressions_revert());
             }
 
             Identifier custom_particle_id = Identifier.of(partsParticle[0], partsParticle[1]);
@@ -153,18 +156,30 @@ public class HandlerUtils {
     private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
         if (apply) {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_apply(), effects.snowStorm().locator_apply());
+            Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_apply());
+            if(particleId == null){
+                MegaShowdown.LOGGER.error("Invalid snowstorm apply particle");
+                return;
+            }
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, particleId, effects.snowStorm().source_apply());
             context.after(effects.snowStorm().apply_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                SnowStormHandler.Companion.playAnimation(context,new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
                 return Unit.INSTANCE;
             });
         } else {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, effects.snowStorm().particle_revert(), effects.snowStorm().locator_revert());
+            Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_revert());
+            if(particleId == null){
+                MegaShowdown.LOGGER.error("Invalid snowstorm revert particle");
+                return;
+            }
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, particleId, effects.snowStorm().source_revert());
             context.after(effects.snowStorm().revert_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                SnowStormHandler.Companion.playAnimation(context,new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
                 return Unit.INSTANCE;
             });
         }
@@ -183,6 +198,63 @@ public class HandlerUtils {
             } else {
                 new StringSpeciesFeature(div[0], div[1]).apply(pokemon);
             }
+        }
+    }
+
+    //TARGET
+    public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply, PokemonEntity other) {
+        if (apply) {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects, other);
+            } else if (effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, true);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, true, aspects, other);
+            }
+        } else {
+            if (effects.snowStorm() != null && effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects, other);
+            } else if (effects.minecraft() != null) {
+                HandlerUtils.particleEffect(pokemon, effects, false);
+                HandlerUtils.applyAspects(aspects, pokemon.getPokemon());
+            } else if (effects.snowStorm() != null) {
+                HandlerUtils.snowStromParticleEffect(pokemon, effects, false, aspects, other);
+            }
+        }
+    }
+
+    private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects, PokemonEntity other) {
+        if (apply) {
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_apply());
+            if(particleId == null){
+                MegaShowdown.LOGGER.error("Invalid snowstorm apply particle");
+                return;
+            }
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, particleId, effects.snowStorm().source_apply(), other, effects.snowStorm().target_apply());
+            context.after(effects.snowStorm().apply_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                SnowStormHandler.Companion.playAnimation(context,new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
+                return Unit.INSTANCE;
+            });
+        } else {
+            context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+            Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_revert());
+            if(particleId == null){
+                MegaShowdown.LOGGER.error("Invalid snowstorm revert particle");
+                return;
+            }
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, particleId, effects.snowStorm().source_revert(), other, effects.snowStorm().target_apply());
+            context.after(effects.snowStorm().revert_after(), () -> {
+                HandlerUtils.applyAspects(aspects, context.getPokemon());
+                context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                SnowStormHandler.Companion.playAnimation(context,new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
+                return Unit.INSTANCE;
+            });
         }
     }
 }

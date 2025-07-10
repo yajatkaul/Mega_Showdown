@@ -19,6 +19,9 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.List;
+import java.util.Set;
+
 public class DynamaxEventHandler {
     public static void dynamaxStartHandler(PokemonBattle battle, BattlePokemon pokemon, boolean gmax) {
         if (gmax) {
@@ -57,7 +60,7 @@ public class DynamaxEventHandler {
         GlowHandler.applyDynamaxGlow(pokemonEntity);
 
         battle.dispatchWaitingToFront(3F, () -> {
-            SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             return Unit.INSTANCE;
         });
     }

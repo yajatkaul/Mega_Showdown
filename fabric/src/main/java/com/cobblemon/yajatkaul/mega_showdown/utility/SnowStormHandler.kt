@@ -1,16 +1,16 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility
 
 import com.cobblemon.mod.common.CobblemonNetwork
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.messages.client.animation.PlayPosableAnimationPacket
 import com.cobblemon.mod.common.net.messages.client.effect.SpawnSnowstormEntityParticlePacket
 import net.minecraft.entity.Entity
-import net.minecraft.entity.LivingEntity
 import net.minecraft.util.Identifier
 
 class SnowStormHandler {
     companion object {
-        fun cryAnimation(pokemon: LivingEntity) {
-            val playPoseableAnimationPacket = PlayPosableAnimationPacket(pokemon.id, setOf("cry"), emptyList())
+        fun playAnimation(pokemon: Entity, animations: Set<String>, expressions: List<String> = emptyList()) {
+            val playPoseableAnimationPacket = PlayPosableAnimationPacket(pokemon.id, animations, expressions)
             playPoseableAnimationPacket.sendToPlayersAround(
                 pokemon.x,
                 pokemon.y,
@@ -20,11 +20,25 @@ class SnowStormHandler {
             )
         }
 
-        fun snowStormPartileSpawner(entity: Entity, particle: String, location: List<String>) {
+        fun snowStormPartileSpawner(entity: PokemonEntity, particleId: Identifier, source: List<String>?) {
             val packet = SpawnSnowstormEntityParticlePacket(
-                Identifier.of("cobblemon", particle),
+                particleId,
                 sourceEntityId = entity.id,
-                sourceLocators = location
+                sourceLocators = source ?: listOf()
+            )
+
+            CobblemonNetwork.sendToAllPlayers(
+                packet
+            )
+        }
+
+        fun snowStormPartileSpawner(entity: PokemonEntity, particleId: Identifier, source: List<String>?, targetEntity: PokemonEntity, target: List<String>?) {
+            val packet = SpawnSnowstormEntityParticlePacket(
+                particleId,
+                sourceEntityId = entity.id,
+                sourceLocators = source ?: listOf(),
+                targetedEntityId = targetEntity.id,
+                targetLocators = target ?: listOf()
             )
 
             CobblemonNetwork.sendToAllPlayers(

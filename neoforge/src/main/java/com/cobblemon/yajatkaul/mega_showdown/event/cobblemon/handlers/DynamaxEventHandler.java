@@ -14,19 +14,15 @@ import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.*;
 
@@ -88,7 +84,7 @@ public class DynamaxEventHandler {
         }
 
         event.getBattle().dispatchWaitingToFront(3F, () -> {
-            SnowStormHandler.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
+            SnowStormHandler.Companion.playAnimation(event.getPokemon().getEffectedPokemon().getEntity(), Set.of("cry"), List.of());
             return Unit.INSTANCE;
         });
     }

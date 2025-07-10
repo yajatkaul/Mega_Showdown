@@ -25,6 +25,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -35,25 +36,26 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Set;
 
 public class HeldItemChangeFormes {
     public static void genesectChange(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
         if (pokemon.getSpecies().getName().equals("Genesect")) {
             if (event.getReceiving().is(FormeChangeItems.DOUSE_DRIVE)) {
-                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 new StringSpeciesFeature("techno_drive", "water").apply(pokemon);
             } else if (event.getReceiving().is(FormeChangeItems.BURN_DRIVE)) {
-                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 new StringSpeciesFeature("techno_drive", "fire").apply(pokemon);
             } else if (event.getReceiving().is(FormeChangeItems.CHILL_DRIVE)) {
-                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 new StringSpeciesFeature("techno_drive", "ice").apply(pokemon);
             } else if (event.getReceiving().is(FormeChangeItems.SHOCK_DRIVE)) {
-                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 new StringSpeciesFeature("techno_drive", "electric").apply(pokemon);
             } else if (!(event.getReceiving().getItem() instanceof Drives) && event.getReturning().getItem() instanceof Drives) {
-                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 new StringSpeciesFeature("techno_drive", "none").apply(pokemon);
             }
         }
@@ -86,12 +88,12 @@ public class HeldItemChangeFormes {
                 );
 
                 SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
-                        "arceus_" + plate.getType(), List.of("target"));
+                        ResourceLocation.tryParse("cobblemon:arceus_" + plate.getType()), List.of("target"));
                 pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
                 pokemon.getEntity().after(3F, () -> {
                     new StringSpeciesFeature("multitype", plate.getType()).apply(pokemon);
-                    SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                     pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                     return Unit.INSTANCE;
                 });
@@ -104,19 +106,19 @@ public class HeldItemChangeFormes {
                 );
 
                 SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
-                        "arceus_" + crystal.getType(), List.of("target"));
+                        ResourceLocation.tryParse("cobblemon:arceus_" + crystal.getType()), List.of("target"));
                 pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
                 pokemon.getEntity().after(3F, () -> {
                     new StringSpeciesFeature("multitype", crystal.getType()).apply(pokemon);
-                    SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                     pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                     return Unit.INSTANCE;
                 });
             } else if (event.getReturning().getItem() instanceof ArceusType || event.getReturning().getItem() instanceof ElementalZCrystal) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("multitype", "normal").apply(pokemon);
-                SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             }
         }
     }
@@ -156,7 +158,7 @@ public class HeldItemChangeFormes {
         }
 
         if (event.getReceiving().is(FormeChangeItems.STAR_CORE)) {
-            SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             new FlagSpeciesFeature("eternamax", true).apply(pokemon);
             pokemon.setTradeable(false);
         } else if (event.getReturning().is(FormeChangeItems.STAR_CORE)) {
@@ -174,23 +176,23 @@ public class HeldItemChangeFormes {
         if (event.getReceiving().is(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "hearthflame").apply(pokemon);
             playHeldItemChange(pokemon.getEntity());
-            SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             pokemon.setTeraType(TeraTypes.getFIRE());
         } else if (event.getReceiving().is(FormeChangeItems.CORNERSTONE_MASK)) {
             new StringSpeciesFeature("ogre_mask", "cornerstone").apply(pokemon);
             playHeldItemChange(pokemon.getEntity());
-            SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             pokemon.setTeraType(TeraTypes.getROCK());
         } else if (event.getReceiving().is(FormeChangeItems.WELLSPRING_MASK)) {
             new StringSpeciesFeature("ogre_mask", "wellspring").apply(pokemon);
             playHeldItemChange(pokemon.getEntity());
-            SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             pokemon.setTeraType(TeraTypes.getWATER());
         } else if (event.getReturning().is(FormeChangeItems.WELLSPRING_MASK)
                 || event.getReturning().is(FormeChangeItems.CORNERSTONE_MASK)
                 || event.getReturning().is(FormeChangeItems.HEARTHFLAME_MASK)) {
             new StringSpeciesFeature("ogre_mask", "teal").apply(pokemon);
-            SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+            SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             playHeldItemChange(pokemon.getEntity());
             pokemon.setTeraType(TeraTypes.getGRASS());
         }
@@ -276,7 +278,7 @@ public class HeldItemChangeFormes {
         if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra-fusion")) {
             if (event.getReturning().is(ZCrystals.ULTRANECROZIUM_Z)) {
                 if (!pokemon.getEntity().isBattling()) {
-                    SnowStormHandler.Companion.cryAnimation(pokemon.getEntity());
+                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 }
                 EventUtils.ultraAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
@@ -285,7 +287,7 @@ public class HeldItemChangeFormes {
     }
 
     private static void playHeldItemChange(LivingEntity context) {
-        SnowStormHandler.Companion.cryAnimation(context);
+        SnowStormHandler.Companion.playAnimation(context, Set.of("cry"), List.of());
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
 
@@ -333,7 +335,7 @@ public class HeldItemChangeFormes {
                     SoundSource.PLAYERS, 0.2f, 1.1f
             );
 
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_g_effect", List.of("target"));
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, ResourceLocation.tryParse("cobblemon:origin_g_effect"), List.of("target"));
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(3.8F, () -> {
@@ -343,7 +345,7 @@ public class HeldItemChangeFormes {
                     new StringSpeciesFeature("orb_forme", "altered").apply(context.getPokemon());
                 }
                 context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                SnowStormHandler.Companion.cryAnimation(context);
+                SnowStormHandler.Companion.playAnimation(context, Set.of("cry"), List.of());
                 return Unit.INSTANCE;
             });
         } else {
@@ -353,7 +355,7 @@ public class HeldItemChangeFormes {
                     SoundSource.PLAYERS, 0.2f, 1.1f
             );
 
-            SnowStormHandler.Companion.snowStormPartileSpawner(context, "origin_effect", List.of("target"));
+            SnowStormHandler.Companion.snowStormPartileSpawner(context, ResourceLocation.tryParse("cobblemon:origin_effect"), List.of("target"));
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.after(4F, () -> {
@@ -363,7 +365,7 @@ public class HeldItemChangeFormes {
                     new StringSpeciesFeature("orb_forme", "altered").apply(context.getPokemon());
                 }
                 context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                SnowStormHandler.Companion.cryAnimation(context);
+                SnowStormHandler.Companion.playAnimation(context, Set.of("cry"), List.of());
                 return Unit.INSTANCE;
             });
         }
@@ -383,7 +385,7 @@ public class HeldItemChangeFormes {
         if (revert) {
             context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
             context.after(2.5f, () -> {
-                SnowStormHandler.Companion.cryAnimation(context);
+                SnowStormHandler.Companion.playAnimation(context, Set.of("cry"), List.of());
                 context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
                 return Unit.INSTANCE;
             });

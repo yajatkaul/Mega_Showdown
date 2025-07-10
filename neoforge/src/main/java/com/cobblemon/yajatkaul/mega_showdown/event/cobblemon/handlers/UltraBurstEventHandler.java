@@ -13,6 +13,9 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.neoforged.bus.api.SubscribeEvent;
 
+import java.util.List;
+import java.util.Set;
+
 public class UltraBurstEventHandler {
     @SubscribeEvent
     public void onUltra(UltraBurstEventStart event) {
@@ -35,7 +38,7 @@ public class UltraBurstEventHandler {
         }
 
         event.getBattle().dispatchWaitingToFront(3F, () -> {
-            SnowStormHandler.Companion.cryAnimation(event.getPokemon().getEffectedPokemon().getEntity());
+            SnowStormHandler.Companion.playAnimation(event.getPokemon().getEffectedPokemon().getEntity(), Set.of("cry"), List.of());
             return Unit.INSTANCE;
         });
 

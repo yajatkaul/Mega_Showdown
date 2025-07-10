@@ -25,6 +25,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -32,6 +33,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Set;
 
 
 public class DNA_Splicer extends Item {
@@ -95,7 +97,8 @@ public class DNA_Splicer extends Item {
 
     public static void fuseEffect(PokemonEntity pokemon, boolean black) {
         SnowStormHandler.Companion.snowStormPartileSpawner(pokemon,
-                black ? "kyurem_b_effect" : "kyurem_w_effect", List.of("target"));
+                Identifier.tryParse("cobblemon:" + (black ? "kyurem_b_effect" : "kyurem_w_effect"))
+                , List.of("target"));
         pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
         BlockPos entityPos = pokemon.getBlockPos();
@@ -107,7 +110,7 @@ public class DNA_Splicer extends Item {
 
         pokemon.after(4F, () -> {
             new StringSpeciesFeature("absofusion", black ? "black" : "white").apply(pokemon);
-            SnowStormHandler.Companion.cryAnimation(pokemon);
+            SnowStormHandler.Companion.playAnimation(pokemon, Set.of("cry"), List.of());
             pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;
         });
