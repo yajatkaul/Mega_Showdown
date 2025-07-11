@@ -44,7 +44,7 @@ A huge thanks to everyone who allowed me to use there models from there pack
 - [LackingMons](https://modrinth.com/datapack/lackingmons) for Eternamax eternatus
 - [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes, lake trio
 - [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
-- [HiddenMons](https://modrinth.com/datapack/hiddenmons-cobblemon) for Minior and its forme
+- [Minior overhaul addon](https://modrinth.com/datapack/minior-overhaul/versions) for Minior and its forme
 - [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
 - [PokeStars](https://discord.gg/8k6NxrNPYw) for Gmax blastoise, toxtricity, sandaconda, snorlax, cinderace
 - Yahrim for commissioning zygarde line, gmax venasaur, meowth, machamp, butterfree
