@@ -42,7 +42,7 @@ A huge thanks to everyone who allowed me to use there models from there pack
 - [AshiMons](https://modrinth.com/datapack/ashimons) Used for Calyrex and its fusions
 - [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes
 - [LackingMons](https://modrinth.com/datapack/lackingmons) for Eternamax eternatus
-- [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes, lake trio
+- [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes, lake trio, solgelio, lunala, necrozma(dusk/dawn), burmy line
 - [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
 - [Minior overhaul addon](https://modrinth.com/datapack/minior-overhaul/versions) for Minior and its forme
 - [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
