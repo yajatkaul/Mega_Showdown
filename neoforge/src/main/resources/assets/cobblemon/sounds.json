@@ -1,4 +1,9 @@
 {
+  "pokemon.minior.cry": {
+    "sounds": [
+      "cobblemon:pokemon/cry"
+    ]
+  },
   "pokemon.arceus.cry": {
     "sounds": [
       {

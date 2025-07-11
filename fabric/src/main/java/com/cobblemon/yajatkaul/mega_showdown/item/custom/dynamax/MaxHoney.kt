@@ -34,7 +34,7 @@ import net.minecraft.world.World
 
 class MaxHoney : CobblemonItem(Settings()), HealingSource {
 
-    val bagItem = object : BagItem {
+    private val bagItem = object : BagItem {
         override val itemName = "item.mega_showdown.max_honey"
         override val returnItem = Items.AIR
 
@@ -116,7 +116,6 @@ class MaxHoney : CobblemonItem(Settings()), HealingSource {
             return TypedActionResult.success(stack)
         }
     }
-
 
     override fun appendTooltip(
         stack: ItemStack,

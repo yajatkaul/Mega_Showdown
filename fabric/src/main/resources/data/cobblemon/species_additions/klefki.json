@@ -1,12 +1,6 @@
 {
   "implemented": true,
   "target": "cobblemon:klefki",
-  "baseScale": 1,
-  "hitbox": {
-    "width": 2,
-    "height": 3,
-    "fixed": false
-  },
   "drops": {
     "amount": 1,
     "entries": [

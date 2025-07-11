@@ -20,12 +20,12 @@
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "pokemon.PokemonMixin",
-    "pokemon.ShowdownReloadMixin"
+    "pokemon.ShowdownReloadMixin",
+    "pokemon.PartyStoreMixin"
   ],
   "client": [
-    "UI.PCGUIMixin",
-    "UI.StatWidgetMixin",
-    "UI.SummaryMixin",
+    "client.ui.PCGUIMixin",
+    "client.ui.SummaryMixin",
     "battle.GimmickTileMixin"
   ],
   "injectors": {

@@ -6,9 +6,9 @@
       "aspects": [
         "shadow-rider"
       ],
-      "poser": "cobblemon:calyrex_shadow",
-      "model": "cobblemon:calyrex_shadow.geo",
-      "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_shadow.png",
+      "poser": "cobblemon:calyrex_shadow_rider",
+      "model": "cobblemon:calyrex_shadow_rider.geo",
+      "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_shadow_rider.png",
       "layers": []
     },
     {
@@ -16,7 +16,7 @@
         "shadow-rider",
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_shadow_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0898_calyrex/calyrex_shadow_rider_shiny.png"
     }
   ]
 }

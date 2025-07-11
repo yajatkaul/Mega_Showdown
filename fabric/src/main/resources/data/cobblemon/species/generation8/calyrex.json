@@ -182,12 +182,12 @@
         "legendary"
       ],
       "aspects": [
-        "ice"
+        "ice-rider"
       ],
-      "baseScale": 0.7,
+      "baseScale": 0.85,
       "hitbox": {
-        "width": 4,
-        "height": 7,
+        "width": 2.3,
+        "height": 3,
         "fixed": false
       },
       "height": 24,
@@ -351,12 +351,12 @@
         "legendary"
       ],
       "aspects": [
-        "shadow"
+        "shadow-rider"
       ],
-      "baseScale": 0.7,
+      "baseScale": 0.85,
       "hitbox": {
-        "width": 4,
-        "height": 7,
+        "width": 2.3,
+        "height": 3,
         "fixed": false
       },
       "height": 24,
@@ -459,7 +459,7 @@
   "pokedex": [
     "cobblemon.species.calyrex.desc"
   ],
-  "baseScale": 1.07,
+  "baseScale": 1,
   "hitbox": {
     "width": 1,
     "height": 2,

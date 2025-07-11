@@ -1,0 +1,14 @@
+{
+  "type": "integer",
+  "keys": ["dynamax_level"],
+  "default": 0,
+  "min": 0,
+  "max": 10,
+  "visible": true,
+  "display": {
+    "name": "cobblemon.ui.stats.dynamax_level",
+    "colour": [198, 0, 0],
+    "underlay": "cobblemon:textures/gui/summary/summary_stats_other_bar.png",
+    "overlay": "mega_showdown:textures/gui/stats/dynamax_level.png"
+  }
+}

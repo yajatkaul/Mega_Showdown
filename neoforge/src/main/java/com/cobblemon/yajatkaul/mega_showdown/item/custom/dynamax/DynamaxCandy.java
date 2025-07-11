@@ -1,9 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.abstracts.MSDPokemonSelectingItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
@@ -12,7 +14,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,7 +28,8 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
         super(arg);
     }
 
-    private void particleEffect(LivingEntity context, SimpleParticleType particleType) {
+    private void particleEffect(PokemonEntity context, SimpleParticleType particleType) {
+        if (context == null) return;
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position(); // Get entity position
 
@@ -78,12 +80,16 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
     @Nullable
     @Override
     public InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer player, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
-        if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
+        if (pokemon.getEntity() != null && pokemon.getEntity().isBattling()) {
             return InteractionResultHolder.pass(itemStack);
         }
 
         if (pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10) {
             pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
+
+            player.displayClientMessage(Component.translatable("message.mega_showdown.dmax_level_up", pokemon.getDisplayName(), pokemon.getDmaxLevel())
+                    .withStyle(ChatFormatting.GREEN), true);
+
             if (pokemon.getDmaxLevel() == 10) {
                 AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax_candy_max");
             }
@@ -97,13 +103,13 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
             return InteractionResultHolder.success(itemStack);
         } else if (pokemon.getDmaxLevel() >= Cobblemon.config.getMaxDynamaxLevel() && pokemon.getOwnerPlayer() == player) {
             player.displayClientMessage(Component.translatable("message.mega_showdown.dmax_level_cap")
-                    .withColor(0xFF0000), true);
+                    .withStyle(ChatFormatting.RED), true);
         }
         return InteractionResultHolder.pass(itemStack);
     }
 
     @Override
     public boolean canUseOnPokemon(@NotNull Pokemon pokemon) {
-        return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel();
+        return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel() && !pokemon.getSpecies().getDynamaxBlocked();
     }
 }

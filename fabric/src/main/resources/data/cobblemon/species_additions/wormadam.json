@@ -1,10 +1,20 @@
 {
   "implemented": true,
   "target": "cobblemon:wormadam",
-  "baseScale": 1,
   "hitbox": {
     "width": 1,
-    "height": 2,
+    "height": 1,
     "fixed": false
-  }
+  },
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": false
+      },
+      "swim": {
+        "canSwimInWater": false
+      }
+    }
+  },
+  "baseScale": 0.7
 }

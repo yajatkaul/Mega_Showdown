@@ -1,6 +1,6 @@
 {
-  "target": "cobblemon:swablu",
   "implemented": true,
+  "target": "cobblemon:swablu",
   "baseScale": 1,
   "hitbox": {
     "width": 0.5,

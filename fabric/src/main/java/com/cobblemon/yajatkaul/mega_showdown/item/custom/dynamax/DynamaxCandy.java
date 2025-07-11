@@ -1,10 +1,10 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.item.abstracts.MSDPokemonSelectingItem;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.particle.ParticleTypes;
@@ -16,6 +16,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
@@ -28,20 +29,20 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
         super(settings);
     }
 
-    public static void particleEffect(LivingEntity context, SimpleParticleType particleType) {
+    public static void particleEffect(PokemonEntity context, SimpleParticleType particleType) {
+        if (context == null) return;
         if (context.getWorld() instanceof ServerWorld serverWorld) {
             Vec3d entityPos = context.getPos(); // Get entity position
 
             // Get entity's size
             double entityWidth = context.getWidth();
             double entityHeight = context.getHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
             double scaleFactor = 0.5; // Adjust this for more spread
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
+            double adjustedDepth = entityWidth * scaleFactor;
 
             // Play sound effect
             serverWorld.playSound(
@@ -73,12 +74,18 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
 
     @Override
     public @Nullable TypedActionResult<ItemStack> applyToPokemon(@NotNull ServerPlayerEntity player, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
-        if (pokemon.getEntity() == null || pokemon.getEntity().getWorld().isClient || pokemon.getEntity().isBattling()) {
+        if (pokemon.getEntity() != null && pokemon.getEntity().isBattling()) {
             return TypedActionResult.pass(itemStack);
         }
 
         if (pokemon.getOwnerPlayer() == player && pokemon.getDmaxLevel() < 10) {
             pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
+
+            player.sendMessage(
+                    Text.translatable("message.mega_showdown.dmax_level_up", pokemon.getDisplayName(), pokemon.getDmaxLevel()).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GREEN))),
+                    true
+            );
+
             if (pokemon.getDmaxLevel() == 10) {
                 AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "dynamax/dynamax_candy_max");
             }
@@ -92,7 +99,7 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
             return TypedActionResult.success(itemStack);
         } else if (pokemon.getDmaxLevel() >= 10 && pokemon.getOwnerPlayer() == player) {
             player.sendMessage(
-                    Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                    Text.translatable("message.mega_showdown.dmax_level_cap").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.RED))),
                     true
             );
         }
@@ -107,6 +114,6 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
 
     @Override
     public boolean canUseOnPokemon(@NotNull Pokemon pokemon) {
-        return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel();
+        return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel() && !pokemon.getSpecies().getDynamaxBlocked();
     }
 }

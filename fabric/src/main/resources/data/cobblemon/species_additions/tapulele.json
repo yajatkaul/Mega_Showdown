@@ -1,0 +1,18 @@
+{
+  "implemented": true,
+  "target": "cobblemon:tapulele",
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "depth": "normal",
+      "light": "0-4"
+    } 
+  },
+  "baseScale": 1.2,
+  "hitbox": {
+    "width": 0.9,
+    "height": 2,
+    "fixed": false
+  }
+}

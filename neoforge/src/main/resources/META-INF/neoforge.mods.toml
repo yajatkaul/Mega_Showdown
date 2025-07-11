@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[1,)"
 #issueTrackerURL = "A valid URL to your issue tracker where people can open bug tickets"
-license = "Licensed CC-BY-NC-SA-4.0"
+license = "MEGA SHOWDOWN LICENSE v2.0"
 
 [[mods]]
 modId = "mega_showdown"

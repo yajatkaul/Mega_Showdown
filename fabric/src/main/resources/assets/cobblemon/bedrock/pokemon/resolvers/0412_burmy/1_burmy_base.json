@@ -1,22 +1,19 @@
 {
-  "species": "cobblemon:burmy",
-  "order": 0,
+ "species": "cobblemon:burmy",
+  "order": 1,
   "variations": [
     {
-      "aspects": [
-        "sandy-cloak"
-      ],
+      "aspects": [],
       "poser": "cobblemon:burmy",
-      "model": "cobblemon:burmy_sand.geo",
-      "texture": "cobblemon:textures/pokemon/0412_burmy/burmy_sand.png",
+      "model": "cobblemon:burmy.geo",
+      "texture": "cobblemon:textures/pokemon/0412_burmy/burmy.png",
       "layers": []
     },
     {
       "aspects": [
-        "shiny",
-        "sandy-cloak"
+        "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0412_burmy/burmy_sand_shiny.png"
+      "texture": "mega_showdown:textures/pokemon/0412_burmy/burmy_shiny.png"
     }
   ]
 }
