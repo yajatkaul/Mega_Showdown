@@ -37,7 +37,7 @@ public class Controls {
         ultraKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_ULTRA,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_K,
+                GLFW.GLFW_KEY_L,
                 KEY_CATEGORY
         ));
 

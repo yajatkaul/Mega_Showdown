@@ -16,7 +16,7 @@ public class Controls {
     public static final Lazy<KeyMapping> ULTRA_KEY = Lazy.of(() -> new KeyMapping(
             "key.mega_showdown.ultra_key", // Will be localized using this translation key
             InputConstants.Type.KEYSYM, // Default mapping is on the keyboard
-            GLFW.GLFW_KEY_K, // Default key is P
+            GLFW.GLFW_KEY_L, // Default key is P
             "key.categories.mega_showdown" // Mapping will be in the misc category
     ));
 }
