@@ -187,6 +187,24 @@ public class MegaLogic {
                 }
             }
 
+            if(megaPok.required_aspects().isEmpty()){
+                if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
+                    for (String aspect : megaPok.apply_aspects()) {
+                        String[] aspectDiv = aspect.split("=");
+                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                            megaEvolve(context, aspectDiv[0]);
+                        } else {
+                            megaEvolve(context, aspectDiv[1]);
+                        }
+                    }
+                    pokemon.setTradeable(false);
+                } else {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.incorrect_mega_stone")
+                            .withColor(0xFF0000), true);
+                    return;
+                }
+                return;
+            }
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
@@ -334,6 +352,24 @@ public class MegaLogic {
                 }
             }
 
+            if(megaPok.required_aspects().isEmpty()){
+                if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
+                    for (String aspect : megaPok.apply_aspects()) {
+                        String[] aspectDiv = aspect.split("=");
+                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                            megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
+                        } else {
+                            megaEvolve(context, aspectDiv[1]);
+                        }
+                    }
+                    pokemon.setTradeable(false);
+                } else {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.incorrect_mega_stone")
+                            .withColor(0xFF0000), true);
+                    return;
+                }
+                return;
+            }
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {

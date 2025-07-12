@@ -140,7 +140,7 @@ public class RevertEventsHandler {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_orb"));
             }
 
-            if (MegaShowdownConfig.revertMegas && MegaShowdownConfig.mega && !MegaShowdownConfig.multipleMegas &&
+            if (MegaShowdownConfig.revertMegas && MegaShowdownConfig.mega &&
                     MegaLogic.Possible(player, true) && !FormChangeHelper.hasMega(player)) {
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
             } else {

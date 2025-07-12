@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.showdown.Moves;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
@@ -119,13 +120,12 @@ public class UltraLogic {
             // Get entity's size
             double entityWidth = context.getWidth();
             double entityHeight = context.getHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
 
             // Scaling factor to slightly expand particle spread beyond the entity's bounding box
             double scaleFactor = 1.2; // Adjust this for more spread
             double adjustedWidth = entityWidth * scaleFactor;
             double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
+            double adjustedDepth = entityWidth * scaleFactor;
 
             // Play sound effect
             serverWorld.playSound(

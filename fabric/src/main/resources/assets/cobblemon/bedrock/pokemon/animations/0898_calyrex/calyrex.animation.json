@@ -3,6 +3,7 @@
 	"animations": {
 		"animation.calyrex.ground_idle": {
 			"loop": true,
+			"animation_length": 4,
 			"bones": {
 				"calyrex": {
 					"position": [0, "math.clamp(math.sin(q.anim_time*45*2)*1,-1,1)", 0]
@@ -39,6 +40,7 @@
 		},
 		"animation.calyrex.ground_walk": {
 			"loop": true,
+			"animation_length": 4,
 			"bones": {
 				"calyrex": {
 					"position": [0, "math.clamp(math.sin(q.anim_time*45*2)*1,-1,1)", 0]

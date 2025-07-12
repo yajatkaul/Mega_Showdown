@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.PokeHandler;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.FusionData;
@@ -205,15 +206,14 @@ public class ItemHandler {
                                 }
                             }
                         } else {
-                            int index = 0;
+                            int index = -1;
                             int size = keyItem.toggle_cycle().size();
 
-                            for (List<String> toggleCycle : keyItem.toggle_cycle()) {
-                                if (pokemon.getAspects().containsAll(toggleCycle)) {
-                                    index += 1;
+                            for (int i = 0; i < size; i++) {
+                                if (pokemon.getAspects().containsAll(keyItem.toggle_cycle().get(i))) {
+                                    index = (i + 1) % size;
                                     break;
                                 }
-                                index += 1;
                             }
 
                             if (index != -1 && index < keyItem.toggle_aspects().size()) {

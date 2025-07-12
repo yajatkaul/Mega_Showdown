@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
@@ -171,7 +172,6 @@ public class MegaLogic {
             Item paperItem = Registries.ITEM.get(paperId);
 
             String candidateSpecies = null;
-
             if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
                 candidateSpecies = megaPok.pokemon();
             }
@@ -191,6 +191,25 @@ public class MegaLogic {
                 }
             }
 
+            if(megaPok.required_aspects().isEmpty()){
+                if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
+                    for (String aspect : megaPok.apply_aspects()) {
+                        String[] aspectDiv = aspect.split("=");
+                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
+                            megaEvolve(context, aspectDiv[0]);
+                        } else {
+                            megaEvolve(context, aspectDiv[1]);
+                        }
+                    }
+                    pokemon.setTradeable(false);
+                } else {
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.incorrect_mega_stone").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                }
+                return;
+            }
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
