@@ -12,7 +12,6 @@ public class Controls {
     public static final String KEY_CATEGORY = "key.categories.mega_showdown";
     public static final String KEY_MEGA = "key.mega_showdown.mega_evo";
     public static final String KEY_ULTRA = "key.mega_showdown.ultra_key";
-
     public static KeyBinding megaKey;
     public static KeyBinding ultraKey;
 

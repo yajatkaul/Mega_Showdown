@@ -253,23 +253,8 @@ public class CobbleEventsHandler {
                 }
             }
             case "Arceus" -> {
-                battle.dispatchWaitingToFront(4.5F, () -> {
-                    SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity,
-                            Identifier.tryParse("arceus_" + formeChangeEvent.getFormeName()), List.of("target"));
-                    pokemonEntity.getWorld().playSound(
-                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                            ModSounds.ARCEUS_MULTITYPE,
-                            SoundCategory.PLAYERS, 0.2f, 1.3f
-                    );
-                    return Unit.INSTANCE;
-                });
-                pokemonEntity.after(4F, () -> {
-                    new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
-                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
-                    EventUtils.updatePackets(formeChangeEvent.getBattle(), formeChangeEvent.getPokemon());
-                    return Unit.INSTANCE;
-                });
-                return Unit.INSTANCE;
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
             }
             case "Minior" -> {
                 if (formeChangeEvent.getFormeName().equals("meteor")) {

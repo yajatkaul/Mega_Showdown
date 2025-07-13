@@ -78,13 +78,13 @@ public class HandlerUtils {
             if (apply) {
                 partsParticle = effects.minecraft().particle_apply().split(":");
                 partsSound = effects.minecraft().sound_apply().split(":");
-                if(effects.minecraft().animations() == null){
+                if(effects.minecraft().animations() != null){
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.minecraft().animations().animations_apply()), effects.minecraft().animations().expressions_apply());
                 }
             } else {
                 partsParticle = effects.minecraft().particle_revert().split(":");
                 partsSound = effects.minecraft().sound_revert().split(":");
-                if (effects.minecraft().animations() == null){
+                if (effects.minecraft().animations() != null){
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.minecraft().animations().animations_revert()), effects.minecraft().animations().expressions_revert());
                 }
             }
@@ -169,7 +169,7 @@ public class HandlerUtils {
             context.after(effects.snowStorm().apply_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                if(effects.snowStorm().animations() == null){
+                if(effects.snowStorm().animations() != null){
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
                 }
                 return Unit.INSTANCE;
@@ -185,7 +185,7 @@ public class HandlerUtils {
             context.after(effects.snowStorm().revert_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                if(effects.snowStorm().animations() == null){
+                if(effects.snowStorm().animations() != null){
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
                 }
                 return Unit.INSTANCE;
@@ -246,7 +246,9 @@ public class HandlerUtils {
             context.after(effects.snowStorm().apply_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
+                if(effects.snowStorm().animations() != null){
+                    SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
+                }
                 return Unit.INSTANCE;
             });
         } else {
@@ -260,7 +262,9 @@ public class HandlerUtils {
             context.after(effects.snowStorm().revert_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
+                if(effects.snowStorm().animations() != null){
+                    SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
+                }
                 return Unit.INSTANCE;
             });
         }

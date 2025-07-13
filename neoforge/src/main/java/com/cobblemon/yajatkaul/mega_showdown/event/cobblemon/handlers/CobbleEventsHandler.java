@@ -380,22 +380,8 @@ public class CobbleEventsHandler {
                 }
             }
             case "Arceus" -> {
-                battle.dispatchWaitingToFront(4.5F, () -> {
-                    SnowStormHandler.Companion.snowStormPartileSpawner(pokemonEntity, ResourceLocation.tryParse("cobblemon:arceus_" + formeChangeEvent.getFormeName()), List.of("target"));
-                    pokemonEntity.level().playSound(
-                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                            ModSounds.ARCEUS_MULTITYPE.get(),
-                            SoundSource.PLAYERS, 0.2f, 1.3f
-                    );
-                    return Unit.INSTANCE;
-                });
-                pokemonEntity.after(4F, () -> {
-                    new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
-                    SnowStormHandler.Companion.playAnimation(pokemonEntity, Set.of("cry"), List.of());
-                    EventUtils.updatePackets(battle, formeChangeEvent.getPokemon());
-                    return Unit.INSTANCE;
-                });
-                return Unit.INSTANCE;
+                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
+                new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
             }
             case "Xerneas" -> {
                 if (formeChangeEvent.getFormeName().equals("active")) {
