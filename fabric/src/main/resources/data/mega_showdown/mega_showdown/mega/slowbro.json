@@ -6,7 +6,13 @@
   "item_description": [],
   "custom_model_data": 0,
   "required_aspects": [],
-  "blacklist_aspects": [["galarian"]],
+  "blacklist_aspects": [
+    [
+      "galarian"
+    ]
+  ],
   "pokemon": "Slowbro",
-  "apply_aspects": ["mega_evolution=mega"]
+  "apply_aspects": [
+    "mega_evolution=mega"
+  ]
 }

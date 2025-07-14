@@ -1,0 +1,32 @@
+{
+  "species": "cobblemon:corviknight",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:corviknight_gmax",
+      "model": "cobblemon:corviknight_gmax.geo",
+      "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_emissive.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_shiny_emissive.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

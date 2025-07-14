@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:item/generated",
-	"textures": {
-		"layer0": "mega_showdown:item/olivias_z-ring_2d"
-	}
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mega_showdown:item/olivias_z-ring_2d"
+  }
 }

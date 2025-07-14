@@ -7,26 +7,26 @@
     "CobblemonDataProviderMixin",
     "ExceptionHandlerMixin",
     "GraalShowdownUnbundlerMixin",
+    "accessors.MovesAccessor",
+    "accessors.ShowdownActionRequestAccessor",
     "battle.MoveActionResponseMixin",
     "battle.ShowdownActionRequestMixin",
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
-    "accessors.MovesAccessor",
-    "accessors.ShowdownActionRequestAccessor",
     "instructions.EndInstructionMixin",
     "instructions.StartInstructionMixin",
+    "pokemon.PartyStoreMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "pokemon.PokemonMixin",
-    "pokemon.ShowdownReloadMixin",
-    "pokemon.PartyStoreMixin"
+    "pokemon.ShowdownReloadMixin"
   ],
   "client": [
+    "battle.GimmickTileMixin",
     "client.ItemRendererMixin",
     "client.ModelLoaderMixin",
     "client.ui.PCGUIMixin",
-    "client.ui.SummaryMixin",
-    "battle.GimmickTileMixin"
+    "client.ui.SummaryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

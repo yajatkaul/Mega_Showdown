@@ -13,18 +13,36 @@
   ],
   "poses": {
     "battle-standing": {
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
-      "animations": ["q.look('neck')", "q.bedrock('calyrex_shadow_rider', 'battle_idle')"]
+      "animations": [
+        "q.look('neck')",
+        "q.bedrock('calyrex_shadow_rider', 'battle_idle')"
+      ]
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
-      "animations": ["q.look('neck')", "q.bedrock('calyrex_shadow_rider', 'ground_idle')"]
+      "animations": [
+        "q.look('neck')",
+        "q.bedrock('calyrex_shadow_rider', 'ground_idle')"
+      ]
     },
     "walking": {
-      "poseTypes": ["WALK"],
-      "animations": ["q.look('neck')", "q.bedrock('calyrex_shadow_rider', 'ground_walk')"]
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "q.look('neck')",
+        "q.bedrock('calyrex_shadow_rider', 'ground_walk')"
+      ]
     }
   }
 }

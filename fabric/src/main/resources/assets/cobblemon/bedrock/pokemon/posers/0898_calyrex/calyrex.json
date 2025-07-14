@@ -16,14 +16,27 @@
     "standing": {
       "poseName": "STAND",
       "transformTicks": 10,
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
-      "animations": ["q.look('neck')", "q.bedrock('calyrex', 'ground_idle')"]
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "animations": [
+        "q.look('neck')",
+        "q.bedrock('calyrex', 'ground_idle')"
+      ]
     },
     "walking": {
       "poseName": "walking",
       "transformTicks": 10,
-      "poseTypes": ["WALK"],
-      "animations": ["q.look('neck')", "q.bedrock('calyrex', 'ground_walk')"]
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "q.look('neck')",
+        "q.bedrock('calyrex', 'ground_walk')"
+      ]
     }
   }
 }

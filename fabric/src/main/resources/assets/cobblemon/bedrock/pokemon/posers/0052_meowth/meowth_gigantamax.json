@@ -25,7 +25,7 @@
         "q.bedrock('meowth_gmax', 'battle_idle')"
       ]
     },
-	"standing": {
+    "standing": {
       "poseTypes": [
         "STAND",
         "NONE"

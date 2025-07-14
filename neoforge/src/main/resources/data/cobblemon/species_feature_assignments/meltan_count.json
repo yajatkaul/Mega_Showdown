@@ -1,4 +1,8 @@
 {
-  "pokemon": ["meltan"],
-  "features": ["meltan_count"]
+  "pokemon": [
+    "meltan"
+  ],
+  "features": [
+    "meltan_count"
+  ]
 }

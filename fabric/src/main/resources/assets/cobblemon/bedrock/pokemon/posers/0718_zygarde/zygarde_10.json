@@ -1,12 +1,20 @@
 {
   "portraitScale": 2,
-  "portraitTranslation": [-0.7, 0.9, 0],
+  "portraitTranslation": [
+    -0.7,
+    0.9,
+    0
+  ],
   "profileScale": 0.75,
-  "profileTranslation": [0.05, 0.7, -10],
+  "profileTranslation": [
+    0.05,
+    0.7,
+    -10
+  ],
   "rootBone": "zygarde",
   "animations": {
     "cry": "q.bedrock_stateful('zygarde_10', 'cry')",
-	"faint": "q.bedrock_primary('zygarde_10', 'faint', q.curve('one'))",
+    "faint": "q.bedrock_primary('zygarde_10', 'faint', q.curve('one'))",
     "recoil": "q.bedrock_stateful('zygarde_10', 'recoil')",
     "physical": "q.bedrock_primary('zygarde_10', 'physical', q.curve('symmetrical_wide'))",
     "special": "q.bedrock_primary('zygarde_10', 'special', q.curve('symmetrical_wide'))",
@@ -14,39 +22,66 @@
   },
   "poses": {
     "portrait": {
-      "poseTypes": ["PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'ground_idle')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_10', 'ground_idle')"
+      ],
       "quirks": []
     },
     "battle-standing": {
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'battle_idle')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_10', 'battle_idle')"
+      ],
       "quirks": [
       ],
       "namedAnimations": {
       }
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE"],
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
       "isBattle": false,
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'ground_idle')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_10', 'ground_idle')"
+      ],
       "quirks": [
       ]
     },
     "walking": {
-      "poseTypes": ["WALK", "SWIM"],
+      "poseTypes": [
+        "WALK",
+        "SWIM"
+      ],
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_10', 'walk')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_10', 'walk')"
+      ],
       "quirks": []
     },
     "sleep": {
-      "poseTypes": ["SLEEP"],
-      "animations": ["q.bedrock('zygarde_10', 'sleep')"],
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('zygarde_10', 'sleep')"
+      ],
       "quirks": [],
       "namedAnimations": {
         "cry": "q.bedrock_stateful('dummy', 'cry')"

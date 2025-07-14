@@ -1,13 +1,19 @@
 {
   "type": "integer",
-  "keys": ["meltan_count"],
+  "keys": [
+    "meltan_count"
+  ],
   "default": 0,
   "min": 0,
   "max": 75,
   "visible": true,
   "display": {
     "name": "cobblemon.ui.stash.meltan",
-    "colour": [192, 192, 192],
+    "colour": [
+      192,
+      192,
+      192
+    ],
     "underlay": "cobblemon:textures/gui/summary/summary_stats_other_bar.png",
     "overlay": "cobblemon:textures/gui/summary/summary_stats_meltan_overlay.png"
   },

@@ -12,7 +12,6 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.HeldItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
@@ -21,16 +20,13 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Item;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.List;
 
 public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
@@ -108,20 +104,14 @@ public class EventUtils {
 
         // DATAPACK
         for (BattleFormChange forme : Utils.battleFormRegistry) {
-            if (forme.pokemons().contains(pokemon.getSpecies().getName())) {
+            if (forme.pokemons().contains(pokemon.getSpecies().getName()) && pokemon.getAspects().contains(forme.showdown_form_id_apply())) {
                 HandlerUtils.applyAspects(forme.revert_aspects(), pokemon);
             }
         }
 
-        for (HeldItemData heldItem : Utils.heldItemsRegistry) {
-            Item item = Registries.ITEM.get(Identifier.tryParse(heldItem.item_id()));
-            if (!HandlerUtils.itemValidator(item, heldItem.custom_model_data(), pokemon.heldItem())) {
-                for (List<String> aspects : heldItem.revert_if()) {
-                    if (pokemon.getAspects().containsAll(aspects)) {
-                        HandlerUtils.applyAspects(heldItem.revert_aspects(), pokemon);
-                    }
-                }
-            }
+        NbtCompound pokemonPersistentData = pokemon.getPersistentData();
+        if (pokemonPersistentData.contains("revert_aspect")) {
+            HandlerUtils.applyAspects(HandlerUtils.decodeNbt(pokemonPersistentData.getList("revert_aspect", NbtElement.STRING_TYPE)), pokemon);
         }
     }
 

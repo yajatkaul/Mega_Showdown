@@ -187,7 +187,7 @@ public class MegaLogic {
                 }
             }
 
-            if(megaPok.required_aspects().isEmpty()){
+            if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                     for (String aspect : megaPok.apply_aspects()) {
                         String[] aspectDiv = aspect.split("=");
@@ -352,7 +352,7 @@ public class MegaLogic {
                 }
             }
 
-            if(megaPok.required_aspects().isEmpty()){
+            if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
                     for (String aspect : megaPok.apply_aspects()) {
                         String[] aspectDiv = aspect.split("=");

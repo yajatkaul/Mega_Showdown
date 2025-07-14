@@ -3,15 +3,33 @@
   "order": 3,
   "variations": [
     {
-      "aspects": ["gmax"],
+      "aspects": [
+        "gmax"
+      ],
       "poser": "cobblemon:meowth_gigantamax",
       "model": "cobblemon:meowth_gmax.geo",
       "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax_emissive.png",
+          "emissive": true
+        }
+      ]
     },
     {
-      "aspects": ["gmax","shiny"],
-      "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax_shiny.png"
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0052_meowth/meowth_gmax_emissive.png",
+          "emissive": true
+        }
+      ]
     }
   ]
 }

@@ -18,7 +18,6 @@
     "recoil": "q.bedrock_stateful('castform', 'recoil')",
     "physical": "q.bedrock_primary('castform', 'attack', q.curve('symmetrical_wide'))",
     "special": "q.bedrock_primary('castform', 'attack', q.curve('symmetrical_wide'))"
-
   },
   "poses": {
     "standing": {
@@ -32,7 +31,9 @@
       "animations": [
         "bedrock(castform, ground_idle)"
       ],
-      "quirks": [ "q.bedrock_quirk('castform', 'blink')" ]
+      "quirks": [
+        "q.bedrock_quirk('castform', 'blink')"
+      ]
     },
     "walking": {
       "transformTicks": 10,
@@ -42,7 +43,9 @@
       "animations": [
         "bedrock(castform, ground_walk)"
       ],
-      "quirks": [ "q.bedrock_quirk('castform', 'blink')" ]
+      "quirks": [
+        "q.bedrock_quirk('castform', 'blink')"
+      ]
     }
   }
 }

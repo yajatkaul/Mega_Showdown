@@ -1,15 +1,26 @@
 {
   "portraitScale": 0.96,
-  "portraitTranslation": [-0.35, 0.71, 0.0],
+  "portraitTranslation": [
+    -0.35,
+    0.71,
+    0.0
+  ],
   "profileScale": 0.57,
-  "profileTranslation": [-0.11, 0.73, 0.0],
+  "profileTranslation": [
+    -0.11,
+    0.73,
+    0.0
+  ],
   "animations": {
-    "cry" : "q.bedrock_stateful('darmanitan_galar', 'cry')"
+    "cry": "q.bedrock_stateful('darmanitan_galar', 'cry')"
   },
   "poses": {
     "battle-standing": {
       "transformTicks": 10,
-      "poseTypes": ["STAND", "WALK"],
+      "poseTypes": [
+        "STAND",
+        "WALK"
+      ],
       "isBattle": true,
       "animations": [
         "q.look('head')",
@@ -18,11 +29,15 @@
       "quirks": [
         "q.bedrock_quirk('darmanitan_galar', 'blink')"
       ]
-
     },
     "standing": {
       "transformTicks": 10,
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('head')",
@@ -34,7 +49,9 @@
     },
     "walking": {
       "transformTicks": 8,
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "animations": [
         "q.look('head')",
         "q.bedrock('darmanitan_galar', 'ground_walk')"
@@ -45,7 +62,11 @@
     },
     "hover": {
       "transformTicks": 5,
-      "poseTypes": [ "FLY", "HOVER", "FLOAT" ],
+      "poseTypes": [
+        "FLY",
+        "HOVER",
+        "FLOAT"
+      ],
       "animations": [
         "q.look('head')",
         "q.bedrock('darmanitan_galar', 'ground_walk')"
@@ -56,7 +77,9 @@
     },
     "float": {
       "transformTicks": 5,
-      "poseTypes": ["FLOAT"],
+      "poseTypes": [
+        "FLOAT"
+      ],
       "animations": [
         "q.look('head')",
         "q.bedrock('darmanitan_galar', 'ground_walk')"
@@ -67,7 +90,9 @@
     },
     "swim": {
       "transformTicks": 8,
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.look('head')",
         "q.bedrock('darmanitan_galar', 'ground_walk')"

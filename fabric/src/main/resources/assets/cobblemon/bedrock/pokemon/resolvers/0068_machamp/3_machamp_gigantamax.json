@@ -3,15 +3,33 @@
   "order": 3,
   "variations": [
     {
-      "aspects": ["gmax"],
+      "aspects": [
+        "gmax"
+      ],
       "poser": "cobblemon:machamp_gigantamax",
       "model": "cobblemon:machamp_gmax.geo",
       "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax_emissive.png",
+          "emissive": true
+        }
+      ]
     },
     {
-      "aspects": ["gmax","shiny"],
-      "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax_shiny.png"
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0068_machamp/machamp_gmax_emissive.png",
+          "emissive": true
+        }
+      ]
     }
   ]
 }

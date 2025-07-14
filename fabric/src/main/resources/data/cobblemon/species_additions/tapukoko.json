@@ -3,10 +3,10 @@
   "target": "cobblemon:tapukoko",
   "behaviour": {
     "moving": {
-        "walk": {
-          "walkSpeed": 0.35
-          }
-        },
+      "walk": {
+        "walkSpeed": 0.35
+      }
+    },
     "resting": {
       "canSleep": true,
       "willSleepOnBed": true,

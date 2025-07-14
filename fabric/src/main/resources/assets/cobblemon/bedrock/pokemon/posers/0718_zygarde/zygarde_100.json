@@ -1,8 +1,16 @@
 {
   "portraitScale": 1,
-  "portraitTranslation": [-0.1, 5.35, 0],
+  "portraitTranslation": [
+    -0.1,
+    5.35,
+    0
+  ],
   "profileScale": 0.25,
-  "profileTranslation": [0.05, 1.35, -10],
+  "profileTranslation": [
+    0.05,
+    1.35,
+    -10
+  ],
   "rootBone": "zygarde_100",
   "animations": {
     "cry": "q.bedrock_stateful('zygarde_100', 'cry')",
@@ -13,27 +21,44 @@
   },
   "poses": {
     "portrait": {
-      "poseTypes": ["PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_100', 'ground idle')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_100', 'ground idle')"
+      ],
       "quirks": []
     },
     "battle-standing": {
-      "poseTypes": ["STAND"],
+      "poseTypes": [
+        "STAND"
+      ],
       "isBattle": true,
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_100', 'battle idle')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_100', 'battle idle')"
+      ],
       "quirks": [
       ],
       "namedAnimations": {
       }
     },
     "standing": {
-      "poseTypes": ["STAND", "NONE"],
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
       "isBattle": false,
       "isTouchingWater": false,
-      "animations": ["q.look('head_ai')", "q.bedrock('zygarde_100', 'ground idle')"],
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('zygarde_100', 'ground idle')"
+      ],
       "quirks": [
       ]
     }

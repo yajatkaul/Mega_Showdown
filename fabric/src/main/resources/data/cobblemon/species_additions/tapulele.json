@@ -7,7 +7,7 @@
       "willSleepOnBed": true,
       "depth": "normal",
       "light": "0-4"
-    } 
+    }
   },
   "baseScale": 1.2,
   "hitbox": {

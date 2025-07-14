@@ -15,6 +15,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtString;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
@@ -25,6 +28,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -78,13 +82,13 @@ public class HandlerUtils {
             if (apply) {
                 partsParticle = effects.minecraft().particle_apply().split(":");
                 partsSound = effects.minecraft().sound_apply().split(":");
-                if(effects.minecraft().animations() != null){
+                if (effects.minecraft().animations() != null) {
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.minecraft().animations().animations_apply()), effects.minecraft().animations().expressions_apply());
                 }
             } else {
                 partsParticle = effects.minecraft().particle_revert().split(":");
                 partsSound = effects.minecraft().sound_revert().split(":");
-                if (effects.minecraft().animations() != null){
+                if (effects.minecraft().animations() != null) {
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.minecraft().animations().animations_revert()), effects.minecraft().animations().expressions_revert());
                 }
             }
@@ -160,6 +164,9 @@ public class HandlerUtils {
     private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects) {
         if (apply) {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            context.getPokemon().getPersistentData().put("revert_aspect", makeNbt(aspects));
+
             Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_apply());
             if (particleId == null) {
                 MegaShowdown.LOGGER.error("Invalid snowstorm apply particle");
@@ -169,13 +176,17 @@ public class HandlerUtils {
             context.after(effects.snowStorm().apply_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                if(effects.snowStorm().animations() != null){
+                context.getPokemon().getPersistentData().remove("revert_aspect");
+                if (effects.snowStorm().animations() != null) {
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
                 }
                 return Unit.INSTANCE;
             });
         } else {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            context.getPokemon().getPersistentData().put("revert_aspect", makeNbt(aspects));
+
             Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_revert());
             if (particleId == null) {
                 MegaShowdown.LOGGER.error("Invalid snowstorm revert particle");
@@ -185,12 +196,33 @@ public class HandlerUtils {
             context.after(effects.snowStorm().revert_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                if(effects.snowStorm().animations() != null){
+                context.getPokemon().getPersistentData().remove("revert_aspect");
+                if (effects.snowStorm().animations() != null) {
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
                 }
                 return Unit.INSTANCE;
             });
         }
+    }
+
+    private static NbtList makeNbt(List<String> aspects) {
+        NbtList nbtList = new NbtList();
+
+        for (String aspect : aspects) {
+            nbtList.add(NbtString.of(aspect));
+        }
+
+        return nbtList;
+    }
+
+    public static List<String> decodeNbt(NbtList nbtList) {
+        List<String> aspects = new ArrayList<>();
+
+        for (NbtElement element : nbtList) {
+            aspects.add(element.asString());
+        }
+
+        return aspects;
     }
 
     public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
@@ -246,7 +278,7 @@ public class HandlerUtils {
             context.after(effects.snowStorm().apply_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                if(effects.snowStorm().animations() != null){
+                if (effects.snowStorm().animations() != null) {
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_apply()), effects.snowStorm().animations().expressions_apply());
                 }
                 return Unit.INSTANCE;
@@ -262,7 +294,7 @@ public class HandlerUtils {
             context.after(effects.snowStorm().revert_after(), () -> {
                 HandlerUtils.applyAspects(aspects, context.getPokemon());
                 context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                if(effects.snowStorm().animations() != null){
+                if (effects.snowStorm().animations() != null) {
                     SnowStormHandler.Companion.playAnimation(context, new HashSet<>(effects.snowStorm().animations().animations_revert()), effects.snowStorm().animations().expressions_revert());
                 }
                 return Unit.INSTANCE;

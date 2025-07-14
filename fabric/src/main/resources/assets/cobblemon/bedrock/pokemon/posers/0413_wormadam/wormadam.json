@@ -1,15 +1,25 @@
 {
   "portraitScale": 2.06,
-  "portraitTranslation": [-0.08, -0.35, 0],
+  "portraitTranslation": [
+    -0.08,
+    -0.35,
+    0
+  ],
   "profileScale": 0.92,
-  "profileTranslation": [0, 0.36, 0],
+  "profileTranslation": [
+    0,
+    0.36,
+    0
+  ],
   "animations": {
-    
   },
- "poses": {
+  "poses": {
     "battle-standing": {
       "transformTicks": 10,
-      "poseTypes": ["STAND", "WALK"],
+      "poseTypes": [
+        "STAND",
+        "WALK"
+      ],
       "isBattle": true,
       "animations": [
         "q.look('head')",
@@ -18,7 +28,12 @@
     },
     "standing": {
       "transformTicks": 10,
-      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
       "isBattle": false,
       "animations": [
         "q.look('neck')",
@@ -27,7 +42,9 @@
     },
     "walking": {
       "transformTicks": 8,
-      "poseTypes": ["WALK"],
+      "poseTypes": [
+        "WALK"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('wormadam', 'ground_idle')"
@@ -35,23 +52,30 @@
     },
     "hover": {
       "transformTicks": 5,
-      "poseTypes": [ "HOVER", "FLOAT" ],
+      "poseTypes": [
+        "HOVER",
+        "FLOAT"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('wormadam', 'ground_idle')"
-       ]
+      ]
     },
     "fly": {
       "transformTicks": 5,
-      "poseTypes": [ "FLY" ],
+      "poseTypes": [
+        "FLY"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('wormadam', 'ground_idle')"
-       ]
+      ]
     },
     "swim": {
       "transformTicks": 8,
-      "poseTypes": ["SWIM"],
+      "poseTypes": [
+        "SWIM"
+      ],
       "animations": [
         "q.look('neck')",
         "q.bedrock('wormadam', 'ground_idle')"

@@ -9,13 +9,13 @@
       "texture": "cobblemon:textures/pokemon/0788_tapufini/tapufini.png",
       "layers": [
         {
-              "name": "emissive",
-              "emissive": true,
-              "texture": "cobblemon:textures/pokemon/0788_tapufini/tapufini_emissive.png",
-              "translucent": true
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0788_tapufini/tapufini_emissive.png",
+          "translucent": true
         }
       ]
-     },
+    },
     {
       "aspects": [
         "shiny"
@@ -23,10 +23,10 @@
       "texture": "cobblemon:textures/pokemon/0788_tapufini/tapufini_shiny.png",
       "layers": [
         {
-              "name": "emissive",
-              "emissive": true,
-              "texture": "cobblemon:textures/pokemon/0788_tapufini/tapufini_shiny_emissive.png",
-              "translucent": true
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0788_tapufini/tapufini_shiny_emissive.png",
+          "translucent": true
         }
       ]
     }

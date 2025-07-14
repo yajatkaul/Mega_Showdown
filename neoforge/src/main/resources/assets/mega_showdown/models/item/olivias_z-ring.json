@@ -1,21 +1,21 @@
 {
-	"parent": "minecraft:item/generated",
-	"loader": "neoforge:separate_transforms",
-	"base": {
-		"parent": "mega_showdown:item/olivias_z-ring_3d"
-	},
-	"perspectives": {
-		"head": {
-			"parent": "mega_showdown:item/olivias_z-ring_2d"
-		},
-		"gui": {
-			"parent": "mega_showdown:item/olivias_z-ring_2d"
-		},
-		"ground": {
-			"parent": "mega_showdown:item/olivias_z-ring_3d"
-		},
-		"fixed": {
-			"parent": "mega_showdown:item/olivias_z-ring_3d"
-		}
-	}
+  "parent": "minecraft:item/generated",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "mega_showdown:item/olivias_z-ring_3d"
+  },
+  "perspectives": {
+    "head": {
+      "parent": "mega_showdown:item/olivias_z-ring_2d"
+    },
+    "gui": {
+      "parent": "mega_showdown:item/olivias_z-ring_2d"
+    },
+    "ground": {
+      "parent": "mega_showdown:item/olivias_z-ring_3d"
+    },
+    "fixed": {
+      "parent": "mega_showdown:item/olivias_z-ring_3d"
+    }
+  }
 }
