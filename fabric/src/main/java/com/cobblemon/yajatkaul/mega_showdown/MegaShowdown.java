@@ -84,7 +84,7 @@ public class MegaShowdown implements ModInitializer {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveCustomGmaxMove");
                 for (GmaxData gmax : Utils.gmaxRegistry) {
-                    receiveMoveDataFn.execute(gmax.pokemon(), gmax.gmaxMove());
+                    receiveMoveDataFn.execute(gmax.pokemonShowdownId(), gmax.gmaxMove());
                 }
             }
             return Unit.INSTANCE;

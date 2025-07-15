@@ -2,6 +2,8 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -35,14 +37,26 @@ public class MaxSoup extends Item {
                 return InteractionResult.PASS;
             }
 
-            if (!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())) {
+            boolean allow = false;
+            for(GmaxData gmaxData: Utils.gmaxRegistry){
+                if(pk.getPokemon().getSpecies().getName().equals(gmaxData.pokemon())
+                        && !HandlerUtils.listCheck(gmaxData.blacklist_aspects(), pokemon.getAspects(), true)
+                        && HandlerUtils.listCheck(gmaxData.required_aspects(), pokemon.getAspects(), false)){
+                    allow = true;
+                    break;
+                }
+            }
+
+            if (!allow) {
                 return InteractionResult.PASS;
             }
 
             if (pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(false);
 
-                player.setItemInHand(arg4, new ItemStack(Items.BOWL));
+                if(!player.isCreative()){
+                    player.setItemInHand(arg4, new ItemStack(Items.BOWL));
+                }
                 Vec3 pos = pk.position();
 
                 player.level().playSound(

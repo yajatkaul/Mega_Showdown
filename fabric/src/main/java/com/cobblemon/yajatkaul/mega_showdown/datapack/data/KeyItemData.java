@@ -14,6 +14,7 @@ public record KeyItemData(
         List<String> item_description,
         Integer consume,
         List<String> pokemons,
+        List<List<String>> blacklist_aspects,
         List<List<String>> apply_if,
         List<String> apply_aspects,
         List<List<String>> revert_if,
@@ -31,6 +32,7 @@ public record KeyItemData(
             Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(k -> Optional.ofNullable(k.item_description())),
             Codec.INT.optionalFieldOf("consume").forGetter(k -> Optional.ofNullable(k.consume())),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(KeyItemData::pokemons),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("blacklist_aspects", List.of()).forGetter(KeyItemData::blacklist_aspects),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("apply_if").forGetter(k -> Optional.ofNullable(k.apply_if())),
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(KeyItemData::apply_aspects),
             Codec.list(Codec.list(Codec.STRING)).fieldOf("revert_if").forGetter(KeyItemData::revert_if),
@@ -40,7 +42,7 @@ public record KeyItemData(
             Codec.INT.optionalFieldOf("custom_model_data").forGetter(k -> Optional.ofNullable(k.custom_model_data())),
             Codec.BOOL.optionalFieldOf("tradable_form").forGetter(k -> Optional.ofNullable(k.tradable_form())),
             EffectsData.CODEC.optionalFieldOf("effects").forGetter(k -> Optional.ofNullable(k.effects()))
-    ).apply(instance, (msdId, itemId, itemName, itemDescription, consume, pokemons, applyIf, applyAspects, revertIf, revertAspects, toggleCycle, toggleAspects, customModelData, tradableForm, effects) ->
+    ).apply(instance, (msdId, itemId, itemName, itemDescription, consume, pokemons, blacklistAspects, applyIf, applyAspects, revertIf, revertAspects, toggleCycle, toggleAspects, customModelData, tradableForm, effects) ->
             new KeyItemData(
                     msdId,
                     itemId,
@@ -48,6 +50,7 @@ public record KeyItemData(
                     itemDescription.orElse(List.of()),
                     consume.orElse(0),
                     pokemons,
+                    blacklistAspects,
                     applyIf.orElse(List.of()),
                     applyAspects,
                     revertIf,

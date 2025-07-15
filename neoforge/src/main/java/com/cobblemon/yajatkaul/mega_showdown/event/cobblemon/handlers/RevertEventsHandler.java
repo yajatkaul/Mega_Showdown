@@ -95,8 +95,11 @@ public class RevertEventsHandler {
         for (ServerPlayer player : battleEvent.getBattle().getPlayers()) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             checkKeldeo(playerPartyStore);
-
+            boolean hasTerapagos = false;
             for (Pokemon pokemon : playerPartyStore) {
+                if(pokemon.getSpecies().getName().equals("Terapagos")){
+                    hasTerapagos = true;
+                }
                 EventUtils.revertFormesEnd(pokemon);
             }
 
@@ -130,6 +133,10 @@ public class RevertEventsHandler {
                     .map(SlotResult::stack)
                     .orElse(null);
 
+            if(teraOrb != null && hasTerapagos){
+                teraOrb.setDamageValue(0);
+            }
+
             if (teraOrb == null || teraOrb.getDamageValue() >= 100) {
                 hasTeraItemCurios = false;
             }
@@ -141,7 +148,7 @@ public class RevertEventsHandler {
             }
 
             if (MegaShowdownConfig.revertMegas && MegaShowdownConfig.mega &&
-                    MegaLogic.Possible(player, true) && !FormChangeHelper.hasMega(player)) {
+                    MegaLogic.Possible(player) && !FormChangeHelper.hasMega(player)) {
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
             } else {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));

@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
@@ -16,6 +17,7 @@ import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.item.HealingSource;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
@@ -168,13 +170,26 @@ public class CobbleEventsHandler {
 
         GlowHandler.applyTeraGlow(pokemon);
 
-        Player player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
+        ServerPlayer player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
+        boolean hasTerapagos = false;
 
-        CuriosApi.getCuriosInventory(player)
-                .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
-                        stack -> (stack.getItem() instanceof TeraOrb)
-                ))
-                .map(SlotResult::stack).ifPresent(teraOrb -> teraOrb.setDamageValue(teraOrb.getDamageValue() + 10));
+        if(player != null){
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            for(Pokemon pokemonParty: playerPartyStore){
+                if(pokemonParty.getSpecies().getName().equals("Terapagos")){
+                    hasTerapagos = true;
+                    break;
+                }
+            }
+        }
+
+        if(!hasTerapagos){
+            CuriosApi.getCuriosInventory(player)
+                    .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
+                            stack -> (stack.getItem() instanceof TeraOrb)
+                    ))
+                    .map(SlotResult::stack).ifPresent(teraOrb -> teraOrb.setDamageValue(teraOrb.getDamageValue() + 10));
+        }
 
         terastallizationEvent.getBattle().dispatchWaitingToFront(3F, () -> {
             SnowStormHandler.Companion.playAnimation(pk.getEntity(), Set.of("cry"), List.of());
@@ -189,16 +204,11 @@ public class CobbleEventsHandler {
         if (player == null || pokemonHealedEvent.getSource() != HealingSource.Force.INSTANCE) {
             return Unit.INSTANCE;
         }
-        ItemStack teraOrb = CuriosApi.getCuriosInventory(pokemonHealedEvent.getPokemon().getOwnerPlayer())
+        CuriosApi.getCuriosInventory(pokemonHealedEvent.getPokemon().getOwnerPlayer())
                 .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
                         stack -> (stack.getItem() instanceof TeraOrb)
                 ))
-                .map(SlotResult::stack)
-                .orElse(null);
-
-        if (teraOrb != null) {
-            teraOrb.setDamageValue(0);
-        }
+                .map(SlotResult::stack).ifPresent(teraOrb -> teraOrb.setDamageValue(0));
 
         return Unit.INSTANCE;
     }

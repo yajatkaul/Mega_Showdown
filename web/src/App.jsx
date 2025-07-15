@@ -124,7 +124,10 @@ function App() {
       title: "Gmax Data",
       data: {
         pokemon: "Charizard",
+        pokemonShowdownId: "charizard",
         gmaxMove: "gmax-wildfire",
+        blacklist_aspects: [["shiny"], ["galarian"]],
+        required_aspects: [["male"]],
       },
       details: [
         "# This is used to add custom gmax to pokemons",
@@ -146,6 +149,7 @@ function App() {
         apply_aspects: ["color=black"],
         revert_if: [["black"]],
         revert_aspects: ["color=green"],
+        blacklist_aspects: [["shiny"], ["galarian"]],
         custom_model_data: 1,
         effects: {
           minecraft: {
@@ -207,6 +211,7 @@ function App() {
         item_description: ["Unlocks ancient doors."],
         consume: 1,
         pokemons: ["Mew", "Mewtwo"],
+        blacklist_aspects: [["shiny"], ["galarian"]],
         apply_if: [["male"]],
         apply_aspects: ["galar=true"],
         revert_if: [["galar"]],

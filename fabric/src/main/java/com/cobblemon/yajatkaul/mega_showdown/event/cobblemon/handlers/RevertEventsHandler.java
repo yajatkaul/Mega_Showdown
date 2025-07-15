@@ -46,7 +46,11 @@ public class RevertEventsHandler {
         for (ServerPlayerEntity player : battleEvent.getBattle().getPlayers()) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
             checkKeldeo(playerPartyStore);
+            boolean hasTerapagos = false;
             for (Pokemon pokemon : playerPartyStore) {
+                if(pokemon.getSpecies().getName().equals("Terapagos")){
+                    hasTerapagos = true;
+                }
                 EventUtils.revertFormesEnd(pokemon);
             }
 
@@ -78,6 +82,10 @@ public class RevertEventsHandler {
                             ))
                             .findFirst()
                     ).orElse(null);
+
+            if(teraOrb != null && hasTerapagos){
+                teraOrb.setDamage(0);
+            }
 
             if (teraOrb == null || teraOrb.getDamage() >= 100) {
                 hasTeraItemTrinkets = false;

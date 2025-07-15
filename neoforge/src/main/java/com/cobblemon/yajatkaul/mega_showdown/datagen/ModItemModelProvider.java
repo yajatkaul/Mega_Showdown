@@ -246,5 +246,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get());
 
         basicItem(FormeChangeItems.MELTAN.get());
+        basicItem(ModItems.DEBUG_STICK.get());
     }
 }

@@ -1,14 +1,22 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
 
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -37,6 +45,20 @@ public class ModItems {
     public static final Item ARCHIE_ANCHOR = registerItem("archie_anchor", new MegaBraceletItem(new Item.Settings().maxCount(1)));
     public static final Item MAY_BRACELET = registerItem("may_bracelet", new MegaBraceletItem(new Item.Settings().maxCount(1)));
     public static final Item LISIA_MEGA_TIARA = registerItem("lisia_mega_tiara", new MegaBraceletItem(new Item.Settings().maxCount(1)));
+
+    public static final Item DEBUG_STICK = registerItem("debug_stick", new Item(new Item.Settings().maxCount(1)){
+        @Override
+        public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+            if(entity instanceof PokemonEntity pk){
+                user.sendMessage(
+                        Text.literal(String.valueOf(pk.getAspects())).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GREEN))),
+                        true
+                );
+            }
+
+            return ActionResult.SUCCESS;
+        }
+    });
 
     public static final Item SCROLL_OF_DARKNESS = registerItem("scroll_of_darkness", new Item(new Item.Settings().maxCount(1)) {
         @Override

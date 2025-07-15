@@ -5,8 +5,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.*;
 
@@ -54,7 +52,7 @@ public class DynamaxUtils {
         }
     }
 
-    private static void updateScalingAnimations() {
+    public static void updateScalingAnimations() {
         if (server == null) return;
 
         Iterator<Map.Entry<UUID, ScalingData>> iterator = activeScalingAnimations.entrySet().iterator();
@@ -94,10 +92,5 @@ public class DynamaxUtils {
                 entityCache.remove(entityId);
             }
         }
-    }
-
-    @SubscribeEvent
-    public void onServerTick(ServerTickEvent.Post event) {
-        DynamaxUtils.updateScalingAnimations();
     }
 }

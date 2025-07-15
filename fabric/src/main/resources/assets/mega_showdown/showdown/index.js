@@ -101,7 +101,6 @@ function receiveAbilityData(abilityId, abilityData) {
 }
 
 function receiveCustomGmaxMove(pokemonId, moveId) {
-  pokemonId = pokemonId.toLowerCase();
   battleActions.gmaxMap[pokemonId] = moveId;
 }
 

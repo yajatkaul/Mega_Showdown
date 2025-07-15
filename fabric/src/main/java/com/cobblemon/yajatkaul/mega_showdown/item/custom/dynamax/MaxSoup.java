@@ -2,6 +2,8 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,7 +39,17 @@ public class MaxSoup extends Item {
                 return ActionResult.PASS;
             }
 
-            if (!Utils.GMAX_SPECIES.contains(pokemon.getSpecies().getName())) {
+            boolean allow = false;
+            for(GmaxData gmaxData: Utils.gmaxRegistry){
+                if(pk.getPokemon().getSpecies().getName().equals(gmaxData.pokemon())
+                        && !HandlerUtils.listCheck(gmaxData.blacklist_aspects(), pokemon.getAspects(), true)
+                        && HandlerUtils.listCheck(gmaxData.required_aspects(), pokemon.getAspects(), false)){
+                    allow = true;
+                    break;
+                }
+            }
+
+            if (!allow) {
                 return ActionResult.PASS;
             }
 
@@ -63,7 +75,9 @@ public class MaxSoup extends Item {
             } else if (pokemon.getOwnerPlayer() == player && !pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(true);
 
-                player.setStackInHand(hand, new ItemStack(Items.BOWL));
+                if (!player.isCreative()) {
+                    player.setStackInHand(hand, new ItemStack(Items.BOWL));
+                }
                 Vec3d pos = pk.getPos();
 
                 player.getWorld().playSound(

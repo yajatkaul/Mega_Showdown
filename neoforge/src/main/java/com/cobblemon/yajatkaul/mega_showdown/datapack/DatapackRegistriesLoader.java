@@ -12,17 +12,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 public class DatapackRegistriesLoader {
-
     public static void registerCustomShowdown() {
-        Utils.GMAX_SPECIES.clear();
-        Utils.addGmaxToMap();
-        Utils.MEGA_POKEMONS.clear();
-        Utils.addMegaList();
         MegaCommands.VALID_ITEMS.clear();
 
         //MEGA
         for (MegaData pokemon : Utils.megaRegistry) {
-            Utils.MEGA_POKEMONS.add(pokemon.pokemon());
             ResourceLocation custom_stone_item_id = ResourceLocation.tryParse(pokemon.item_id());
             Item customStone = BuiltInRegistries.ITEM.get(custom_stone_item_id);
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
@@ -44,11 +38,6 @@ public class DatapackRegistriesLoader {
                 }
                 return null;
             });
-        }
-
-        //GMAX
-        for (GmaxData pokemon : Utils.gmaxRegistry) {
-            Utils.GMAX_SPECIES.add(pokemon.pokemon());
         }
     }
 

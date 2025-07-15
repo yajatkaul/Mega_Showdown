@@ -48,6 +48,7 @@ A huge thanks to everyone who allowed me to use there models from there pack
 - [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
 - [PokeStars](https://discord.gg/8k6NxrNPYw) for Gmax blastoise, toxtricity, sandaconda, snorlax, cinderace, rillaboom, corviknight and melmetal
 - Yahrim for commissioning zygarde line, gmax venasaur, meowth, machamp, butterfree
+- [Alphabet Soup](https://modrinth.com/datapack/alphabetsoup/version/2FMZ0j7c) for all unown forms
 
 ![](https://media.forgecdn.net/attachments/description/1189523/description_875092f1-66ff-4ede-8841-ae6c44bad7cf.png)
 

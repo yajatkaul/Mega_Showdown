@@ -23,10 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class ItemHandler {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
@@ -94,7 +91,7 @@ public class ItemHandler {
                         currentValue = pokeHandler.getPokemon();
                     }
 
-                    if (fusion.fusion_mons().contains(pokemon.getSpecies().getName())) {
+                    if (fusion.fusion_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fusion_blacklist_aspects(), pokemon.getAspects(), true)) {
                         for (List<String> condition : fusion.revert_if()) {
                             if (pokemon.getAspects().containsAll(condition)) {
                                 Pokemon pokemonSave = Pokemon.Companion.loadFromNBT(player.level().registryAccess(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
@@ -127,7 +124,7 @@ public class ItemHandler {
                                 }
                             }
                         }
-                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
+                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fuser_blacklist_aspects(), pokemon.getAspects(), true)) {
                         if (currentValue == null) {
                             if (fusion.fuser_fuse_if().isEmpty()) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));
@@ -167,7 +164,7 @@ public class ItemHandler {
                         return false;
                     }
 
-                    if (keyItem.pokemons().contains(pokemon.getSpecies().getName())) {
+                    if (keyItem.pokemons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(keyItem.blacklist_aspects(), pokemon.getAspects(), true)) {
                         if (keyItem.toggle_aspects().isEmpty()) {
                             for (List<String> condition : keyItem.revert_if()) {
                                 if (pokemon.getAspects().containsAll(condition)) {

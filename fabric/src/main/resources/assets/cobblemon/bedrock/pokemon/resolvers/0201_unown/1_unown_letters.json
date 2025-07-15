@@ -1,0 +1,214 @@
+{
+    "species": "cobblemon:unown",
+    "order": 1,
+    "variations": [
+        {
+            "aspects": [
+                "letter-a"
+            ],
+            "model": "cobblemon:unown_a.geo"
+        },
+        {
+            "aspects": [
+                "letter-b"
+            ],
+            "model": "cobblemon:unown_b.geo"
+        },
+        {
+            "aspects": [
+                "letter-c"
+            ],
+            "model": "cobblemon:unown_c.geo"
+        },
+        {
+            "aspects": [
+                "letter-d"
+            ],
+            "model": "cobblemon:unown_d.geo"
+        },
+        {
+            "aspects": [
+                "letter-e"
+            ],
+            "model": "cobblemon:unown_e.geo"
+        },
+        {
+            "aspects": [
+                "letter-f"
+            ],
+            "model": "cobblemon:unown_f.geo"
+        },
+        {
+            "aspects": [
+                "letter-g"
+            ],
+            "model": "cobblemon:unown_g.geo"
+        },
+        {
+            "aspects": [
+                "letter-h"
+            ],
+            "model": "cobblemon:unown_h.geo"
+        },
+        {
+            "aspects": [
+                "letter-i"
+            ],
+            "model": "cobblemon:unown_i.geo"
+        },
+        {
+            "aspects": [
+                "letter-j"
+            ],
+            "model": "cobblemon:unown_j.geo"
+        },
+        {
+            "aspects": [
+                "letter-k"
+            ],
+            "model": "cobblemon:unown_k.geo"
+        },
+        {
+            "aspects": [
+                "letter-l"
+            ],
+            "model": "cobblemon:unown_l.geo"
+        },
+        {
+            "aspects": [
+                "letter-m"
+            ],
+            "model": "cobblemon:unown_m.geo"
+        },
+        {
+            "aspects": [
+                "letter-n"
+            ],
+            "model": "cobblemon:unown_n.geo"
+        },
+        {
+            "aspects": [
+                "letter-o"
+            ],
+            "model": "cobblemon:unown_o.geo"
+        },
+        {
+            "aspects": [
+                "letter-p"
+            ],
+            "model": "cobblemon:unown_p.geo"
+        },
+        {
+            "aspects": [
+                "letter-q"
+            ],
+            "model": "cobblemon:unown_q.geo"
+        },
+        {
+            "aspects": [
+                "letter-r"
+            ],
+            "model": "cobblemon:unown_r.geo"
+        },
+        {
+            "aspects": [
+                "letter-s"
+            ],
+            "model": "cobblemon:unown_s.geo"
+        },
+        {
+            "aspects": [
+                "letter-t"
+            ],
+            "model": "cobblemon:unown_t.geo"
+        },
+        {
+            "aspects": [
+                "letter-u"
+            ],
+            "model": "cobblemon:unown_u.geo"
+        },
+        {
+            "aspects": [
+                "letter-v"
+            ],
+            "model": "cobblemon:unown_v.geo"
+        },
+        {
+            "aspects": [
+                "letter-w"
+            ],
+            "model": "cobblemon:unown_w.geo"
+        },
+        {
+            "aspects": [
+                "letter-x"
+            ],
+            "model": "cobblemon:unown_x.geo"
+        },
+        {
+            "aspects": [
+                "letter-y"
+            ],
+            "model": "cobblemon:unown_y.geo"
+        },
+        {
+            "aspects": [
+                "letter-z"
+            ],
+            "model": "cobblemon:unown_z.geo"
+        },
+        {
+            "aspects": [
+                "letter-exclamation"
+            ],
+            "model": "cobblemon:unown_exclamation.geo",
+            "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation.png",
+            "layers": [        {
+                "name": "emissive",
+                "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_emissive.png",
+                "emissive": true,
+                "translucent": true
+            }]
+        },
+        {
+            "aspects": [
+                "letter-exclamation","shiny"
+            ],
+            "model": "cobblemon:unown_exclamation.geo",
+            "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_shiny.png",
+            "layers": [        {
+                "name": "emissive",
+                "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_emissive.png",
+                "emissive": true,
+                "translucent": true
+            }]
+        },
+        {
+            "aspects": [
+                "letter-question"
+            ],
+            "model": "cobblemon:unown_question.geo",
+            "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation.png",
+            "layers": [        {
+                "name": "emissive",
+                "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_emissive.png",
+                "emissive": true,
+                "translucent": true
+            }]
+        },
+        {
+            "aspects": [
+                "letter-question","shiny"
+            ],
+            "model": "cobblemon:unown_question.geo",
+            "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_shiny.png",
+            "layers": [        {
+                "name": "emissive",
+                "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_emissive.png",
+                "emissive": true,
+                "translucent": true
+            }]
+        }
+    ]
+}

@@ -14,6 +14,7 @@ public record HeldItemData(
         Boolean tradable_form,
         List<String> item_description,
         List<String> pokemons,
+        List<List<String>> blacklist_aspects,
         List<List<String>> apply_if,
         List<String> apply_aspects,
         List<List<String>> revert_if,
@@ -28,13 +29,14 @@ public record HeldItemData(
             Codec.BOOL.optionalFieldOf("tradable_form").forGetter(h -> Optional.ofNullable(h.tradable_form())),
             Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(h -> Optional.ofNullable(h.item_description())),
             Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(HeldItemData::pokemons),
+            Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("blacklist_aspects").forGetter(h -> Optional.ofNullable(h.blacklist_aspects())),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("apply_if").forGetter(h -> Optional.ofNullable(h.apply_if())),
             Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(HeldItemData::apply_aspects),
             Codec.list(Codec.list(Codec.STRING)).fieldOf("revert_if").forGetter(HeldItemData::revert_if),
             Codec.list(Codec.STRING).fieldOf("revert_aspects").forGetter(HeldItemData::revert_aspects),
             Codec.INT.optionalFieldOf("custom_model_data").forGetter(h -> Optional.ofNullable(h.custom_model_data())),
             EffectsData.CODEC.optionalFieldOf("effects").forGetter(h -> Optional.ofNullable(h.effects()))
-    ).apply(instance, (msdId, itemId, itemName, tradableForm, itemDescription, pokemons, applyIf, applyAspects, revertIf, revertAspects, customModelData, effects) ->
+    ).apply(instance, (msdId, itemId, itemName, tradableForm, itemDescription, pokemons, blacklistAspects, applyIf, applyAspects, revertIf, revertAspects, customModelData, effects) ->
             new HeldItemData(
                     msdId,
                     itemId,
@@ -42,6 +44,7 @@ public record HeldItemData(
                     tradableForm.orElse(false),
                     itemDescription.orElse(List.of()),
                     pokemons,
+                    blacklistAspects.orElse(List.of()),
                     applyIf.orElse(List.of()),
                     applyAspects,
                     revertIf,

@@ -31,6 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HandlerUtils {
     public static EntityHitResult getEntityLookingAt(PlayerEntity player, double distance) {
@@ -300,5 +301,18 @@ public class HandlerUtils {
                 return Unit.INSTANCE;
             });
         }
+    }
+
+    public static boolean listCheck(List<List<String>> aspects, Set<String> pokemonAspects, boolean blacklist){
+        if(aspects.isEmpty()){
+            return !blacklist;
+        }
+        for(List<String> aspectList: aspects){
+            if(pokemonAspects.containsAll(aspectList)){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

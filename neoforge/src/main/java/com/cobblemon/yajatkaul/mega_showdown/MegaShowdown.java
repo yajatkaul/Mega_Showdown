@@ -13,6 +13,7 @@ import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.DatapackRegister;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.CobbleEvents;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.DynamaxUtils;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.ItemsRegistration;
 import com.cobblemon.yajatkaul.mega_showdown.item.inventory.ItemInventoryUtil;
@@ -36,6 +37,7 @@ import net.neoforged.neoforge.capabilities.ItemCapability;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -97,6 +99,11 @@ public final class MegaShowdown {
     }
 
     @SubscribeEvent
+    public void onServerTick(ServerTickEvent.Post event) {
+        DynamaxUtils.updateScalingAnimations();
+    }
+
+    @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         event.getServer().reloadableRegistries();
         Utils.registryLoader(event.getServer().registryAccess());
@@ -106,7 +113,7 @@ public final class MegaShowdown {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveMoveDataFn = service.context.getBindings("js").getMember("receiveCustomGmaxMove");
                 for (GmaxData gmax : Utils.gmaxRegistry) {
-                    receiveMoveDataFn.execute(gmax.pokemon(), gmax.gmaxMove());
+                    receiveMoveDataFn.execute(gmax.pokemonShowdownId(), gmax.gmaxMove());
                 }
             }
             return Unit.INSTANCE;

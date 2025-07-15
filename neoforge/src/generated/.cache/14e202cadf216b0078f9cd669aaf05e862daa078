@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-18T22:34:44.4776124	Item Models: mega_showdown
+// 1.21.1	2025-07-15T12:23:51.7221443	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -34,6 +34,7 @@ e3297ae4b723d9648a34f1df2798f73100356c0f assets/mega_showdown/models/item/chariz
 c3f936650210788ca59963e5fa5289524d2fc6b5 assets/mega_showdown/models/item/darkinium-z.json
 f3b8c5beedf5649613f226037db4df3b9409bb19 assets/mega_showdown/models/item/darkmemory.json
 5c549a62e1854b937e8d0c5b928a593680779fef assets/mega_showdown/models/item/dark_tera_shard.json
+75be6cc77a895e3b1e52dc1f70f5efbc1d0b3059 assets/mega_showdown/models/item/debug_stick.json
 3beb8ffb321c68b9854c3033778ef2c4a9b30835 assets/mega_showdown/models/item/debutante_trim.json
 a75f4047ad27107cf48f5aac2fd390f3578be4eb assets/mega_showdown/models/item/decidium-z.json
 5239ce9fc4e5a02040d061a62bfe1502540b4cb1 assets/mega_showdown/models/item/diamond_trim.json

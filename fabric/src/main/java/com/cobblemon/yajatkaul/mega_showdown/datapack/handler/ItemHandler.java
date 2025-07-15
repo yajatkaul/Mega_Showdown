@@ -87,7 +87,7 @@ public class ItemHandler {
                     PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayerEntity) player);
                     Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
 
-                    if (fusion.fusion_mons().contains(pokemon.getSpecies().getName())) {
+                    if (fusion.fusion_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fusion_blacklist_aspects(), pokemon.getAspects(), true)) {
                         for (List<String> condition : fusion.revert_if()) {
                             if (pokemon.getAspects().containsAll(condition)) {
                                 Pokemon pokemonSave = Pokemon.Companion.loadFromNBT(player.getWorld().getRegistryManager(), pokemon.getPersistentData().getCompound("fusion_pokemon"));
@@ -120,7 +120,7 @@ public class ItemHandler {
                                 }
                             }
                         }
-                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName())) {
+                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fusion_blacklist_aspects(), pokemon.getAspects(), true)) {
                         if (currentValue == null) {
                             if (fusion.fuser_fuse_if().isEmpty()) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, pokemon);
@@ -160,7 +160,7 @@ public class ItemHandler {
                         return TypedActionResult.pass(itemStack);
                     }
 
-                    if (keyItem.pokemons().contains(pokemon.getSpecies().getName())) {
+                    if (keyItem.pokemons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(keyItem.blacklist_aspects(), pokemon.getAspects(), true)) {
                         if (keyItem.toggle_aspects().isEmpty()) {
                             for (List<String> condition : keyItem.revert_if()) {
                                 if (pokemon.getAspects().containsAll(condition)) {

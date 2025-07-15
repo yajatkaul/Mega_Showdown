@@ -1,8 +1,14 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.MegaBraceletItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -62,6 +68,18 @@ public class ModItems {
     public static final DeferredItem<Item> LISIA_MEGA_TIARA = ITEMS.register("lisia_mega_tiara",
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<Item> DEBUG_STICK = ITEMS.register("debug_stick",
+            () -> new Item(new Item.Properties().stacksTo(1)){
+                @Override
+                public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity arg3, InteractionHand arg4) {
+                    if(arg3 instanceof PokemonEntity pk){
+                        player.displayClientMessage(Component.literal(String.valueOf(pk.getAspects()))
+                                .withStyle(ChatFormatting.GREEN), true);
+                    }
+
+                    return InteractionResult.SUCCESS;
+                }
+            });
 
     public static final DeferredItem<Item> SCROLL_OF_DARKNESS = ITEMS.register("scroll_of_darkness",
             () -> new Item(new Item.Properties().stacksTo(1)) {

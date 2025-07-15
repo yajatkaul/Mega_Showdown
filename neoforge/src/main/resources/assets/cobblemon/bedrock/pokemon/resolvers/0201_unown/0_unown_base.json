@@ -1,0 +1,24 @@
+{
+    "species": "cobblemon:unown",
+    "order": 0,
+    "variations": [
+        {
+            "aspects": [],
+            "poser": "cobblemon:unown",
+            "texture": "cobblemon:textures/pokemon/0201_unown/unown.png",
+            "model": "cobblemon:unown_question.geo",
+            "layers": [        {
+                "name": "emissive",
+                "texture": "cobblemon:textures/pokemon/0201_unown/unown_emissive.png",
+                "emissive": true,
+                "translucent": true
+            }]
+        },
+        {
+            "aspects": [
+                "shiny"
+            ],
+            "texture": "cobblemon:textures/pokemon/0201_unown/unown_shiny.png"
+        }
+    ]
+}
