@@ -12,7 +12,6 @@ import java.util.List;
 
 @Mixin(value = ClientBattle.class, remap = false)
 public class ClientBattleMixin implements ClientBattleExtension {
-
     @Shadow
     private List<SingleActionRequest> pendingActionRequests;
 

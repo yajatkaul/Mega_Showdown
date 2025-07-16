@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.mixin.battle;
+package com.cobblemon.yajatkaul.mega_showdown.mixin.battle.client;
 
 import com.cobblemon.mod.common.battles.ShiftActionResponse;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
@@ -10,20 +10,22 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleGimmickBu
 import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleTargetSelection;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(value = BattleMoveSelection.class, remap = false)
+@Mixin(value = BattleMoveSelection.class)
 public class BattleMoveSelectionMixin {
-    @Shadow
+    @Final
+    @Shadow(remap = false)
     private ShowdownMoveset moveSet;
 
-    @Shadow
+    @Final
+    @Shadow(remap = false)
     private BattleBackButton backButton;
 
     @Unique
@@ -86,12 +88,12 @@ public class BattleMoveSelectionMixin {
         return false;
     }
 
-    /**
-     * @author Yajat
-     * @reason Trust me im not a fan of overwrites
-     */
-    @Overwrite
-    public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
+    @Inject(
+            method = "renderWidget(Lnet/minecraft/client/gui/DrawContext;IIF)V",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         BattleMoveSelection self = (BattleMoveSelection) (Object) this;
 
         self.getMoveTiles().forEach(tile -> tile.render(context, mouseX, mouseY, delta));
@@ -123,5 +125,7 @@ public class BattleMoveSelectionMixin {
                 }
             }
         }
+
+        ci.cancel();
     }
 }

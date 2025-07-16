@@ -80,22 +80,6 @@ public class ModEvents {
                 });
             }
         }));
-
-        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            ServerPlayerEntity player;
-
-            if (alive) {
-                player = oldPlayer;
-            } else {
-                player = newPlayer;
-            }
-
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-            for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon);
-            }
-        });
     }
 
     private static ItemStack createExplorerMap(World world, BlockPos pos, Entity entity) {

@@ -18,6 +18,7 @@ import com.cobblemon.yajatkaul.mega_showdown.item.ItemRegister;
 import com.cobblemon.yajatkaul.mega_showdown.networking.PacketRegister;
 import com.cobblemon.yajatkaul.mega_showdown.screen.ModScreenHandlers;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
+import com.cobblemon.yajatkaul.mega_showdown.temp.TestCommand;
 import com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import com.cobblemon.yajatkaul.mega_showdown.utility.showdown.LoadShowdownItems;

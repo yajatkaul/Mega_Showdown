@@ -24,7 +24,7 @@
     "pokemon.ShowdownReloadMixin"
   ],
   "client": [
-    "battle.BattleMoveSelectionMixin",
+    "battle.client.BattleMoveSelectionMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryMixin"
   ],

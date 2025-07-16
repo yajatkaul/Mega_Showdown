@@ -119,8 +119,6 @@ class Side {
   canDynamaxNow() {
     if (this.battle.gen !== 9)
       return false;
-    if (this.battle.gameType === "multi")
-      return false;
     return !this.dynamaxUsed;
   }
   getChoice() {
