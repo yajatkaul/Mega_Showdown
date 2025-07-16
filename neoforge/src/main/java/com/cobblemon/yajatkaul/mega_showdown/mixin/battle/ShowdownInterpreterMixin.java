@@ -18,8 +18,6 @@ import java.util.Map;
 
 @Mixin(value = ShowdownInterpreter.class, remap = false)
 public abstract class ShowdownInterpreterMixin {
-
-
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void injectBurst(CallbackInfo ci) {
         try {

@@ -303,12 +303,12 @@ public class HandlerUtils {
         }
     }
 
-    public static boolean listCheck(List<List<String>> aspects, Set<String> pokemonAspects, boolean blacklist){
-        if(aspects.isEmpty()){
+    public static boolean listCheck(List<List<String>> aspects, Set<String> pokemonAspects, boolean blacklist) {
+        if (aspects.isEmpty()) {
             return !blacklist;
         }
-        for(List<String> aspectList: aspects){
-            if(pokemonAspects.containsAll(aspectList)){
+        for (List<String> aspectList : aspects) {
+            if (pokemonAspects.containsAll(aspectList)) {
                 return true;
             }
         }

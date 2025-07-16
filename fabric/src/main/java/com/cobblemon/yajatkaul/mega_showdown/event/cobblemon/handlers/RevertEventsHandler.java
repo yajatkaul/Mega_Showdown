@@ -5,9 +5,6 @@ import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
-import com.cobblemon.mod.common.api.moves.Move;
-import com.cobblemon.mod.common.api.moves.Moves;
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
@@ -45,10 +42,9 @@ public class RevertEventsHandler {
 
         for (ServerPlayerEntity player : battleEvent.getBattle().getPlayers()) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            checkKeldeo(playerPartyStore);
             boolean hasTerapagos = false;
             for (Pokemon pokemon : playerPartyStore) {
-                if(pokemon.getSpecies().getName().equals("Terapagos")){
+                if (pokemon.getSpecies().getName().equals("Terapagos")) {
                     hasTerapagos = true;
                 }
                 EventUtils.revertFormesEnd(pokemon);
@@ -83,7 +79,7 @@ public class RevertEventsHandler {
                             .findFirst()
                     ).orElse(null);
 
-            if(teraOrb != null && hasTerapagos){
+            if (teraOrb != null && hasTerapagos) {
                 teraOrb.setDamage(0);
             }
 
@@ -154,36 +150,6 @@ public class RevertEventsHandler {
         }
 
         return Unit.INSTANCE;
-    }
-
-    private static void checkKeldeo(PlayerPartyStore pokemons) {
-        for (Pokemon pokemon : pokemons) {
-            if (pokemon.getSpecies().getName().equals("Keldeo")) {
-                boolean hasMove = false;
-
-                for (Move move : pokemon.getMoveSet().getMoves()) {
-                    if (move.getName().equals(Moves.INSTANCE.getByName("secretsword").getName())) {
-                        hasMove = true;
-                    }
-                }
-
-                if (pokemon.getAspects().contains("resolute-form")) {
-                    if (!hasMove) {
-                        new StringSpeciesFeature("sword_form", "ordinary").apply(pokemon);
-                        if (pokemon.getEntity() != null) {
-                            EventUtils.playEvolveAnimation(pokemon.getEntity());
-                        }
-                    }
-                } else {
-                    if (hasMove) {
-                        new StringSpeciesFeature("sword_form", "resolute").apply(pokemon);
-                        if (pokemon.getEntity() != null) {
-                            EventUtils.playEvolveAnimation(pokemon.getEntity());
-                        }
-                    }
-                }
-            }
-        }
     }
 
     public static Unit hookBattleEnded(BattleStartedPostEvent event) {

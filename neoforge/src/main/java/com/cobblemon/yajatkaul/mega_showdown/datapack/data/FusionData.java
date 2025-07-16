@@ -42,7 +42,7 @@ public record FusionData(
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("fuser_blacklist_aspects", List.of()).forGetter(FusionData::fuser_blacklist_aspects),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("fuser_fuse_if").forGetter(f -> Optional.ofNullable(f.fuser_fuse_if())),
             Codec.list(Codec.STRING).fieldOf("fuser_mons").forGetter(FusionData::fuser_mons)
-    ).apply(instance, (msdId, itemId, itemName, itemDescription, tradableForm, customModelData, effects, fusionBlackListAspects, fuseIf, fusionAspects, revertIf, revertAspects, fusionMons, fuserBlackListAspects,fuserFuseIf, fuserMons) ->
+    ).apply(instance, (msdId, itemId, itemName, itemDescription, tradableForm, customModelData, effects, fusionBlackListAspects, fuseIf, fusionAspects, revertIf, revertAspects, fusionMons, fuserBlackListAspects, fuserFuseIf, fuserMons) ->
             new FusionData(
                     msdId,
                     itemId,

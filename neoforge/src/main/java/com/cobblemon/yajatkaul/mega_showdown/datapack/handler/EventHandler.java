@@ -27,7 +27,7 @@ public class EventHandler {
 
         for (HeldItemData heldItem : Utils.heldItemsRegistry) {
             Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(heldItem.item_id()));
-            if (heldItem.pokemons().contains(pokemon.getSpecies().getName())  && !HandlerUtils.listCheck(heldItem.blacklist_aspects(), pokemon.getAspects(), true)) {
+            if (heldItem.pokemons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(heldItem.blacklist_aspects(), pokemon.getAspects(), true)) {
                 ItemStack itemReceiving = event.getReceiving();
                 ItemStack itemReturning = event.getReturning();
                 if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReceiving)) {

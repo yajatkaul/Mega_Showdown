@@ -34,7 +34,8 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 public class MegaLogic {
     public static boolean Possible(Pokemon pokemon) {
@@ -114,11 +115,11 @@ public class MegaLogic {
             }
             ItemStack heldItem = pokemon.heldItem();
 
-            if(!pokemon.getSpecies().getName().equals("Rayquaza")){
-                for(MegaData megaData: Utils.megaRegistry){
-                    if(pokemon.getSpecies().getName().equals(megaData.pokemon())
+            if (!pokemon.getSpecies().getName().equals("Rayquaza")) {
+                for (MegaData megaData : Utils.megaRegistry) {
+                    if (pokemon.getSpecies().getName().equals(megaData.pokemon())
                             && HandlerUtils.listCheck(megaData.required_aspects(), pokemon.getAspects(), false)
-                            && !HandlerUtils.listCheck(megaData.blacklist_aspects(), pokemon.getAspects(), true)){
+                            && !HandlerUtils.listCheck(megaData.blacklist_aspects(), pokemon.getAspects(), true)) {
                         boolean isMega = pk.getAspects().stream()
                                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
@@ -127,21 +128,21 @@ public class MegaLogic {
                             return;
                         } else {
                             Item megaStone = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(megaData.item_id()));
-                            if(heldItem.is(megaStone)){
+                            if (heldItem.is(megaStone)) {
                                 Evolve(pk, playerContext, megaData.apply_aspects());
                                 return;
                             }
                         }
                     }
                 }
-            }else {
+            } else {
                 boolean isMega = pk.getAspects().stream()
                         .anyMatch(aspect -> aspect.startsWith("mega"));
 
                 if (isMega) {
                     Devolve(pk.getPokemon(), false);
                 } else {
-                    Evolve(pk, playerContext,  List.of("mega_evolution=mega"));
+                    Evolve(pk, playerContext, List.of("mega_evolution=mega"));
                 }
             }
         }

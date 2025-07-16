@@ -19,7 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getType;
 
 public class TeraShard extends Item {
     public TeraShard(Properties arg) {

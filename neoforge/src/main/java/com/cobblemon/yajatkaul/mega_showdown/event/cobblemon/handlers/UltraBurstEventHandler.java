@@ -1,7 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
@@ -22,7 +22,7 @@ public class UltraBurstEventHandler {
         BattlePokemon pokemon = event.getPokemon();
         PokemonBattle battle = event.getBattle();
 
-        new FlagSpeciesFeature("ultra", true).apply(pokemon.getEffectedPokemon());
+        new StringSpeciesFeature("prism_fusion", "ultra").apply(pokemon.getEffectedPokemon());
         UltraLogic.ultraAnimation(event.getPokemon().getEntity());
 
         for (ActiveBattlePokemon activeBattlePokemon : event.getBattle().getActivePokemon()) {

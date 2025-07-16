@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.utility.tera;
+package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.ElementalTypes;

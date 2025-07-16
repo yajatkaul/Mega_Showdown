@@ -13,8 +13,7 @@
         {
           "name": "emissive",
           "texture": "cobblemon:textures/pokemon/0003_venusaur/venusaur_gmax_emissive.png",
-          "emissive": true,
-          "translucent": true
+          "emissive": true
         }
       ]
     },
@@ -28,8 +27,7 @@
         {
           "name": "emissive",
           "texture": "cobblemon:textures/pokemon/0003_venusaur/venusaur_gmax_emissive.png",
-          "emissive": true,
-          "translucent": true
+          "emissive": true
         }
       ]
     }

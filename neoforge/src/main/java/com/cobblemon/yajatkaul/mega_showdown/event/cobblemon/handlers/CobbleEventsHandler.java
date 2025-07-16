@@ -32,14 +32,12 @@ import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraOrb;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
-import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -50,7 +48,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraTypeHelper.getTeraShardForType;
+import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getTeraShardForType;
 
 public class CobbleEventsHandler {
     public static Unit onHeldItemChange(HeldItemEvent.Pre event) {
@@ -164,26 +162,24 @@ public class CobbleEventsHandler {
             EventUtils.updatePackets(terastallizationEvent.getBattle(), terastallizationEvent.getPokemon());
         }
 
-        if (pk instanceof TeraAccessor accessor) {
-            accessor.setTeraEnabled(true);
-        }
+        pk.getPersistentData().putBoolean("is_tera", true);
 
         GlowHandler.applyTeraGlow(pokemon);
 
         ServerPlayer player = terastallizationEvent.getPokemon().getEffectedPokemon().getOwnerPlayer();
         boolean hasTerapagos = false;
 
-        if(player != null){
+        if (player != null) {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            for(Pokemon pokemonParty: playerPartyStore){
-                if(pokemonParty.getSpecies().getName().equals("Terapagos")){
+            for (Pokemon pokemonParty : playerPartyStore) {
+                if (pokemonParty.getSpecies().getName().equals("Terapagos")) {
                     hasTerapagos = true;
                     break;
                 }
             }
         }
 
-        if(!hasTerapagos){
+        if (!hasTerapagos) {
             CuriosApi.getCuriosInventory(player)
                     .flatMap(curiosInventory -> curiosInventory.findFirstCurio(
                             stack -> (stack.getItem() instanceof TeraOrb)
@@ -485,7 +481,7 @@ public class CobbleEventsHandler {
         PokemonEntity pokemon = pokemonSentPostEvent.getPokemonEntity();
         Pokemon pk = pokemonSentPostEvent.getPokemon();
 
-        if ((pk instanceof TeraAccessor accessor) && accessor.isTeraEnabled()) {
+        if (pk.getPersistentData().getBoolean("is_tera")) {
             GlowHandler.applyTeraGlow(pokemon);
         }
 

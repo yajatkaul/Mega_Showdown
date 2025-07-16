@@ -46,10 +46,10 @@ public class ModItems {
     public static final Item MAY_BRACELET = registerItem("may_bracelet", new MegaBraceletItem(new Item.Settings().maxCount(1)));
     public static final Item LISIA_MEGA_TIARA = registerItem("lisia_mega_tiara", new MegaBraceletItem(new Item.Settings().maxCount(1)));
 
-    public static final Item DEBUG_STICK = registerItem("debug_stick", new Item(new Item.Settings().maxCount(1)){
+    public static final Item DEBUG_STICK = registerItem("debug_stick", new Item(new Item.Settings().maxCount(1)) {
         @Override
         public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-            if(entity instanceof PokemonEntity pk){
+            if (entity instanceof PokemonEntity pk) {
                 user.sendMessage(
                         Text.literal(String.valueOf(pk.getAspects())).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GREEN))),
                         true

@@ -69,10 +69,10 @@ public class ModItems {
             () -> new MegaBraceletItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> DEBUG_STICK = ITEMS.register("debug_stick",
-            () -> new Item(new Item.Properties().stacksTo(1)){
+            () -> new Item(new Item.Properties().stacksTo(1)) {
                 @Override
                 public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity arg3, InteractionHand arg4) {
-                    if(arg3 instanceof PokemonEntity pk){
+                    if (arg3 instanceof PokemonEntity pk) {
                         player.displayClientMessage(Component.literal(String.valueOf(pk.getAspects()))
                                 .withStyle(ChatFormatting.GREEN), true);
                     }

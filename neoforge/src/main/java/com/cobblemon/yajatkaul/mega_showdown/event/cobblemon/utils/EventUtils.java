@@ -2,6 +2,8 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
+import com.cobblemon.mod.common.api.moves.Move;
+import com.cobblemon.mod.common.api.moves.Moves;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
@@ -17,7 +19,6 @@ import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
-import com.cobblemon.yajatkaul.mega_showdown.utility.tera.TeraAccessor;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -58,8 +59,8 @@ public class EventUtils {
             DynamaxUtils.startGradualScaling(pokemon.getEntity(), 1.0f);
         }
 
-        if (pokemon instanceof TeraAccessor pk) {
-            pk.setTeraEnabled(false);
+        if (pokemon.getPersistentData().getBoolean("is_tera")) {
+            pokemon.getPersistentData().remove("is_tera");
         }
 
         boolean isMega = pokemon.getAspects().stream()
@@ -69,7 +70,9 @@ public class EventUtils {
             MegaLogic.Devolve(pokemon, true);
         }
 
-        new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
+        if (pokemon.getAspects().contains("gmax")) {
+            new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
+        }
 
         if (pokemon.getSpecies().getName().equals("Castform")) {
             new StringSpeciesFeature("forecast_form", "normal").apply(pokemon);
@@ -136,6 +139,32 @@ public class EventUtils {
         CompoundTag pokemonPersistentData = pokemon.getPersistentData();
         if (pokemonPersistentData.contains("revert_aspect")) {
             HandlerUtils.applyAspects(HandlerUtils.decodeNbt(pokemonPersistentData.getList("revert_aspect", Tag.TAG_STRING)), pokemon);
+        }
+
+        if (pokemon.getSpecies().getName().equals("Keldeo")) {
+            boolean hasMove = false;
+
+            for (Move move : pokemon.getMoveSet().getMoves()) {
+                if (move.getName().equals(Moves.INSTANCE.getByName("secretsword").getName())) {
+                    hasMove = true;
+                }
+            }
+
+            if (pokemon.getAspects().contains("resolute")) {
+                if (!hasMove) {
+                    new StringSpeciesFeature("sword_form", "ordinary").apply(pokemon);
+                    if (pokemon.getEntity() != null) {
+                        EventUtils.playEvolveAnimation(pokemon.getEntity());
+                    }
+                }
+            } else {
+                if (hasMove) {
+                    new StringSpeciesFeature("sword_form", "resolute").apply(pokemon);
+                    if (pokemon.getEntity() != null) {
+                        EventUtils.playEvolveAnimation(pokemon.getEntity());
+                    }
+                }
+            }
         }
     }
 

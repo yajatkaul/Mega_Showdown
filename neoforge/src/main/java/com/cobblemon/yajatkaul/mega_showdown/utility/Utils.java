@@ -6,10 +6,6 @@ import com.cobblemon.yajatkaul.mega_showdown.datapack.data.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 public class Utils {
     public static Registry<KeyItemData> keyItemsRegistry;
     public static Registry<BattleFormChange> battleFormRegistry;

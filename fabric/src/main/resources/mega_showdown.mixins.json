@@ -3,12 +3,12 @@
   "package": "com.cobblemon.yajatkaul.mega_showdown.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BattleGimmickButtonMixin",
     "CobblemonDataProviderMixin",
     "ExceptionHandlerMixin",
     "GraalShowdownUnbundlerMixin",
     "accessors.MovesAccessor",
     "accessors.ShowdownActionRequestAccessor",
+    "battle.ClientBattleMixin",
     "battle.MoveActionResponseMixin",
     "battle.ShowdownActionRequestMixin",
     "battle.ShowdownInterpreterMixin",
@@ -22,7 +22,7 @@
     "pokemon.ShowdownReloadMixin"
   ],
   "client": [
-    "battle.GimmickTileMixin",
+    "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
     "client.ModelLoaderMixin",
     "client.ui.PCGUIMixin",

@@ -6,11 +6,11 @@
       "aspects": ["gmax"],
       "poser": "cobblemon:corviknight_gmax",
       "model": "cobblemon:corviknight_gmax.geo",
-      "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight.png",
+      "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_gmax.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_emissive.png",
+          "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_gmax_emissive.png",
           "emissive": true
         }
       ]
@@ -20,11 +20,11 @@
         "shiny",
         "gmax"
       ],
-      "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_shiny.png",
+      "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_gmax_shiny.png",
       "layers": [
         {
           "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_shiny_emissive.png",
+          "texture": "cobblemon:textures/pokemon/0823_corviknight/corviknight_gmax_shiny_emissive.png",
           "emissive": true
         }
       ]

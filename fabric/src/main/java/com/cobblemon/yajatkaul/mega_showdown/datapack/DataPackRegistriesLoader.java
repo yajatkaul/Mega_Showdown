@@ -1,7 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.datapack;
 
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
-import com.cobblemon.yajatkaul.mega_showdown.datapack.data.GmaxData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.ShowdownItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;

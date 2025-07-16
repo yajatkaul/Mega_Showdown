@@ -40,10 +40,10 @@ public class MaxSoup extends Item {
             }
 
             boolean allow = false;
-            for(GmaxData gmaxData: Utils.gmaxRegistry){
-                if(pk.getPokemon().getSpecies().getName().equals(gmaxData.pokemon())
+            for (GmaxData gmaxData : Utils.gmaxRegistry) {
+                if (pk.getPokemon().getSpecies().getName().equals(gmaxData.pokemon())
                         && !HandlerUtils.listCheck(gmaxData.blacklist_aspects(), pokemon.getAspects(), true)
-                        && HandlerUtils.listCheck(gmaxData.required_aspects(), pokemon.getAspects(), false)){
+                        && HandlerUtils.listCheck(gmaxData.required_aspects(), pokemon.getAspects(), false)) {
                     allow = true;
                     break;
                 }

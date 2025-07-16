@@ -4,163 +4,163 @@
     "variations": [
         {
             "aspects": [
-                "letter-a"
+                "character-a"
             ],
             "model": "cobblemon:unown_a.geo"
         },
         {
             "aspects": [
-                "letter-b"
+                "character-b"
             ],
             "model": "cobblemon:unown_b.geo"
         },
         {
             "aspects": [
-                "letter-c"
+                "character-c"
             ],
             "model": "cobblemon:unown_c.geo"
         },
         {
             "aspects": [
-                "letter-d"
+                "character-d"
             ],
             "model": "cobblemon:unown_d.geo"
         },
         {
             "aspects": [
-                "letter-e"
+                "character-e"
             ],
             "model": "cobblemon:unown_e.geo"
         },
         {
             "aspects": [
-                "letter-f"
+                "character-f"
             ],
             "model": "cobblemon:unown_f.geo"
         },
         {
             "aspects": [
-                "letter-g"
+                "character-g"
             ],
             "model": "cobblemon:unown_g.geo"
         },
         {
             "aspects": [
-                "letter-h"
+                "character-h"
             ],
             "model": "cobblemon:unown_h.geo"
         },
         {
             "aspects": [
-                "letter-i"
+                "character-i"
             ],
             "model": "cobblemon:unown_i.geo"
         },
         {
             "aspects": [
-                "letter-j"
+                "character-j"
             ],
             "model": "cobblemon:unown_j.geo"
         },
         {
             "aspects": [
-                "letter-k"
+                "character-k"
             ],
             "model": "cobblemon:unown_k.geo"
         },
         {
             "aspects": [
-                "letter-l"
+                "character-l"
             ],
             "model": "cobblemon:unown_l.geo"
         },
         {
             "aspects": [
-                "letter-m"
+                "character-m"
             ],
             "model": "cobblemon:unown_m.geo"
         },
         {
             "aspects": [
-                "letter-n"
+                "character-n"
             ],
             "model": "cobblemon:unown_n.geo"
         },
         {
             "aspects": [
-                "letter-o"
+                "character-o"
             ],
             "model": "cobblemon:unown_o.geo"
         },
         {
             "aspects": [
-                "letter-p"
+                "character-p"
             ],
             "model": "cobblemon:unown_p.geo"
         },
         {
             "aspects": [
-                "letter-q"
+                "character-q"
             ],
             "model": "cobblemon:unown_q.geo"
         },
         {
             "aspects": [
-                "letter-r"
+                "character-r"
             ],
             "model": "cobblemon:unown_r.geo"
         },
         {
             "aspects": [
-                "letter-s"
+                "character-s"
             ],
             "model": "cobblemon:unown_s.geo"
         },
         {
             "aspects": [
-                "letter-t"
+                "character-t"
             ],
             "model": "cobblemon:unown_t.geo"
         },
         {
             "aspects": [
-                "letter-u"
+                "character-u"
             ],
             "model": "cobblemon:unown_u.geo"
         },
         {
             "aspects": [
-                "letter-v"
+                "character-v"
             ],
             "model": "cobblemon:unown_v.geo"
         },
         {
             "aspects": [
-                "letter-w"
+                "character-w"
             ],
             "model": "cobblemon:unown_w.geo"
         },
         {
             "aspects": [
-                "letter-x"
+                "character-x"
             ],
             "model": "cobblemon:unown_x.geo"
         },
         {
             "aspects": [
-                "letter-y"
+                "character-y"
             ],
             "model": "cobblemon:unown_y.geo"
         },
         {
             "aspects": [
-                "letter-z"
+                "character-z"
             ],
             "model": "cobblemon:unown_z.geo"
         },
         {
             "aspects": [
-                "letter-exclamation"
+                "character-!"
             ],
             "model": "cobblemon:unown_exclamation.geo",
             "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation.png",
@@ -173,7 +173,7 @@
         },
         {
             "aspects": [
-                "letter-exclamation","shiny"
+                "character-!","shiny"
             ],
             "model": "cobblemon:unown_exclamation.geo",
             "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_shiny.png",
@@ -186,7 +186,7 @@
         },
         {
             "aspects": [
-                "letter-question"
+                "character-?"
             ],
             "model": "cobblemon:unown_question.geo",
             "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation.png",
@@ -199,7 +199,7 @@
         },
         {
             "aspects": [
-                "letter-question","shiny"
+                "character-?","shiny"
             ],
             "model": "cobblemon:unown_question.geo",
             "texture": "cobblemon:textures/pokemon/0201_unown/unown_punctuation_shiny.png",

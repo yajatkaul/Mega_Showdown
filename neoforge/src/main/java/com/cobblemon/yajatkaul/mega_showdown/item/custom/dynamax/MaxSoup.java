@@ -38,10 +38,10 @@ public class MaxSoup extends Item {
             }
 
             boolean allow = false;
-            for(GmaxData gmaxData: Utils.gmaxRegistry){
-                if(pk.getPokemon().getSpecies().getName().equals(gmaxData.pokemon())
+            for (GmaxData gmaxData : Utils.gmaxRegistry) {
+                if (pk.getPokemon().getSpecies().getName().equals(gmaxData.pokemon())
                         && !HandlerUtils.listCheck(gmaxData.blacklist_aspects(), pokemon.getAspects(), true)
-                        && HandlerUtils.listCheck(gmaxData.required_aspects(), pokemon.getAspects(), false)){
+                        && HandlerUtils.listCheck(gmaxData.required_aspects(), pokemon.getAspects(), false)) {
                     allow = true;
                     break;
                 }
@@ -54,7 +54,7 @@ public class MaxSoup extends Item {
             if (pokemon.getOwnerPlayer() == player && pokemon.getGmaxFactor()) {
                 pokemon.setGmaxFactor(false);
 
-                if(!player.isCreative()){
+                if (!player.isCreative()) {
                     player.setItemInHand(arg4, new ItemStack(Items.BOWL));
                 }
                 Vec3 pos = pk.position();

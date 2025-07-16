@@ -111,11 +111,11 @@ public class MegaLogic {
             }
             ItemStack heldItem = pokemon.heldItem();
 
-            if(!pokemon.getSpecies().getName().equals("Rayquaza")){
-                for(MegaData megaData: Utils.megaRegistry){
-                    if(pokemon.getSpecies().getName().equals(megaData.pokemon())
+            if (!pokemon.getSpecies().getName().equals("Rayquaza")) {
+                for (MegaData megaData : Utils.megaRegistry) {
+                    if (pokemon.getSpecies().getName().equals(megaData.pokemon())
                             && HandlerUtils.listCheck(megaData.required_aspects(), pokemon.getAspects(), false)
-                            && !HandlerUtils.listCheck(megaData.blacklist_aspects(), pokemon.getAspects(), true)){
+                            && !HandlerUtils.listCheck(megaData.blacklist_aspects(), pokemon.getAspects(), true)) {
                         boolean isMega = pk.getAspects().stream()
                                 .anyMatch(aspect -> aspect.startsWith("mega"));
 
@@ -124,21 +124,21 @@ public class MegaLogic {
                             return;
                         } else {
                             Item megaStone = Registries.ITEM.get(Identifier.tryParse(megaData.item_id()));
-                            if(heldItem.isOf(megaStone)){
+                            if (heldItem.isOf(megaStone)) {
                                 Evolve(pk, player, megaData.apply_aspects());
                                 return;
                             }
                         }
                     }
                 }
-            }else {
+            } else {
                 boolean isMega = pk.getAspects().stream()
                         .anyMatch(aspect -> aspect.startsWith("mega"));
 
                 if (isMega) {
                     Devolve(pk.getPokemon(), false);
                 } else {
-                    Evolve(pk, player,  List.of("mega_evolution=mega"));
+                    Evolve(pk, player, List.of("mega_evolution=mega"));
                 }
             }
         }
