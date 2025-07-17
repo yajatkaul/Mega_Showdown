@@ -119,6 +119,8 @@ class Side {
   canDynamaxNow() {
     if (this.battle.gen !== 9)
       return false;
+    if (this.battle.turn % 2 !== [1, 1, 0, 0][this.n])
+      return false;
     return !this.dynamaxUsed;
   }
   getChoice() {

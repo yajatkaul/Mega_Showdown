@@ -5,8 +5,8 @@ import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.client.gui.battle.BattleGUI;
 import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleBackButton;
 import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleMoveSelection;
-import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleShiftButton;
 import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleGimmickButton;
+import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleShiftButton;
 import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleTargetSelection;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -31,11 +31,14 @@ public class BattleMoveSelectionMixin {
     @Unique
     private List<BattleGimmickButton> cachedGimmickButtons = null;
 
+    @Unique
+    private BattleShiftButton cachedShiftButton = null;
+
     /**
      * @author Yajat
      * @reason I HATE MYSELF
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public boolean mousePrimaryClicked(double mouseX, double mouseY) {
         BattleMoveSelection self = (BattleMoveSelection) (Object) this;
 
@@ -80,7 +83,7 @@ public class BattleMoveSelectionMixin {
                 }
             }
             self.setMoveTiles(gimmick.toggle() ? gimmick.getTiles() : self.getBaseTiles());
-        } else if (self.getShiftButton() != null && self.getShiftButton().isHovered(mouseX, mouseY)) {
+        } else if (self.getShiftButton() != null && self.getShiftButton().isHovered(mouseX, mouseY) && cachedShiftButton.getEnabled()) {
             self.playDownSound(MinecraftClient.getInstance().getSoundManager());
             battleGUI.selectAction(self.getRequest(), new ShiftActionResponse());
         }
@@ -111,6 +114,13 @@ public class BattleMoveSelectionMixin {
                 cachedGimmickButtons.add(button);
             }
         }
+        if (cachedShiftButton == null){
+            cachedShiftButton = new BattleShiftButton(
+                    backButton.getX() + 22.5F,
+                    MinecraftClient.getInstance().getWindow().getScaledHeight() - 22F,
+                    self.getRequest()
+            );
+        }
 
         for (BattleGimmickButton button : cachedGimmickButtons) {
             button.render(context, mouseX, mouseY, delta);
@@ -119,7 +129,7 @@ public class BattleMoveSelectionMixin {
         if (self.getRequest().getActivePokemon().getFormat().getBattleType().getSlotsPerActor() == 3) {
             String pnx = self.getRequest().getActivePokemon().getPNX();
             if (pnx.length() >= 3 && (pnx.charAt(2) == 'a' || pnx.charAt(2) == 'c')) {
-                BattleShiftButton shiftButton = self.getShiftButton();
+                BattleShiftButton shiftButton = cachedShiftButton;
                 if (shiftButton != null) {
                     shiftButton.render(context, mouseX, mouseY, delta);
                 }
