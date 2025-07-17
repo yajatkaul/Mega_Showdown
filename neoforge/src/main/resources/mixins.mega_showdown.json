@@ -22,7 +22,6 @@
     "instructions.StartInstructionMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
-    "pokemon.PokemonMixin",
     "pokemon.ShowdownReloadMixin"
   ],
   "client": [
