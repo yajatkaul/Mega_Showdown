@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.yajatkaul"
-version = "10.0.2-release-b-neoforge"
+version = "10.0.2-release-c-neoforge"
 
 architectury {
     platformSetupLoomIde()

@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon
 import com.cobblemon.mod.common.battles.BattleTypes
 import com.cobblemon.mod.common.battles.MoveTarget
 import com.cobblemon.mod.common.battles.ShowdownMoveset
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown
 
 
 object Validator {
@@ -20,11 +21,12 @@ object Validator {
 
         val move = showdownMoveSet.moves.find { it.id == moveName } ?: return false
         val gimmickMove = move.gimmickMove
+        MegaShowdown.LOGGER.info(gimmickID)
         val isGimmickValid = gimmickMove != null && !gimmickMove.disabled
 
         if (!isGimmickValid && !move.canBeUsed()) return false
 
-        val target = if (gimmickID == "dynamax" && isGimmickValid) gimmickMove!!.target else move.target
+        val target = if ((gimmickID == "max" || gimmickID == "zmove") && isGimmickValid) gimmickMove!!.target else move.target
         val validTargets = target.targetList(activeBattlePokemon)
 
         val format = activeBattlePokemon.battle.format.battleType
@@ -34,7 +36,7 @@ object Validator {
         }
 
         val isGimmickAOEInSingles = format == BattleTypes.SINGLES &&
-                gimmickID == "dynamax" &&
+                (gimmickID == "max" || gimmickID == "zmove") &&
                 move.target in listOf(MoveTarget.allAdjacent, MoveTarget.allAdjacentFoes)
 
         if (targetPnx == null) {

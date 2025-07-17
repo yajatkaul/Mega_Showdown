@@ -20,7 +20,6 @@
     "battle.client.BattleGimmickButtonMixin",
     "instructions.EndInstructionMixin",
     "instructions.StartInstructionMixin",
-    "pokemon.PartyStoreMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "pokemon.PokemonMixin",
@@ -29,6 +28,7 @@
   "client": [
     "battle.client.BattleMoveSelectionMixin",
     "client.ui.PCGUIMixin",
+    "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin"
   ],
   "injectors": {
