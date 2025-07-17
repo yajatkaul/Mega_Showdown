@@ -9,18 +9,23 @@ public class DynamaxLevelHandler {
     public static void update(Pokemon pokemon, ServerPlayerEntity player) {
         if (pokemon.getSpecies().getDynamaxBlocked()) return;
 
-        IntSpeciesFeature dmaxLevel = pokemon.getFeature("dynamax_level");
-        if (dmaxLevel == null) {
+        final IntSpeciesFeature dmaxLevel;
+        IntSpeciesFeature existing = pokemon.getFeature("dynamax_level");
+        if (existing == null) {
             dmaxLevel = new IntSpeciesFeature("dynamax_level", pokemon.getDmaxLevel());
             pokemon.getFeatures().add(dmaxLevel);
             pokemon.updateAspects();
         } else {
-            dmaxLevel.setValue(pokemon.getDmaxLevel());
+            existing.setValue(pokemon.getDmaxLevel());
+            dmaxLevel = existing;
         }
         pokemon.notify(new SpeciesFeatureUpdatePacket(() -> pokemon, pokemon.getSpecies().resourceIdentifier, dmaxLevel));
 
         if (player != null) {
-            new SpeciesFeatureUpdatePacket(() -> pokemon, pokemon.getSpecies().resourceIdentifier, dmaxLevel).sendToPlayer(player);
+            // Delay to avoid sending the packet before the client's registered the Pokémon in their party
+            player.server.execute(() ->
+                new SpeciesFeatureUpdatePacket(() -> pokemon, pokemon.getSpecies().resourceIdentifier, dmaxLevel).sendToPlayer(player)
+            );
         }
     }
 
