@@ -118,11 +118,13 @@ public class ModEvents {
         if (!playerLoggedInEvent.getEntity().level().isClientSide) {
             ServerPlayer player = (ServerPlayer) playerLoggedInEvent.getEntity();
 
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            player.server.execute(() -> {
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
-            for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon);
-            }
+                for (Pokemon pokemon : playerPartyStore) {
+                    EventUtils.revertFormesEnd(pokemon);
+                }
+            });
         }
     }
 

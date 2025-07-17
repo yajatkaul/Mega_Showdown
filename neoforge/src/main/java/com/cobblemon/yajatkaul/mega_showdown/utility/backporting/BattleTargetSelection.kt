@@ -115,7 +115,6 @@ class BattleTargetSelection(
     }
     var targetTiles = baseTiles
 
-
     open inner class TargetTile(
         val targetSelection: BattleTargetSelection,
         val target: ActiveClientBattlePokemon,

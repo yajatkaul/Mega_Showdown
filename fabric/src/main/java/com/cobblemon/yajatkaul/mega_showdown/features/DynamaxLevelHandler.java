@@ -24,7 +24,7 @@ public class DynamaxLevelHandler {
         if (player != null) {
             // Delay to avoid sending the packet before the client's registered the Pokémon in their party
             player.server.execute(() ->
-                new SpeciesFeatureUpdatePacket(() -> pokemon, pokemon.getSpecies().resourceIdentifier, dmaxLevel).sendToPlayer(player)
+                    new SpeciesFeatureUpdatePacket(() -> pokemon, pokemon.getSpecies().resourceIdentifier, dmaxLevel).sendToPlayer(player)
             );
         }
     }

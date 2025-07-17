@@ -3,7 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.utility.backporting
 import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.client.battle.SingleActionRequest
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.client.gui.DrawContext
+import net.minecraft.client.gui.GuiGraphics
 
 class BattleShiftButton(val x: Float, val y: Float, val request: SingleActionRequest) {
     companion object {
@@ -18,11 +18,11 @@ class BattleShiftButton(val x: Float, val y: Float, val request: SingleActionReq
         get() = request.activePokemon.getFormat().battleType.slotsPerActor == 3
                 && (request.activePokemon.getPNX()[2] == 'a' || request.activePokemon.getPNX()[2] == 'c')
 
-    fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    fun render(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         if (!enabled)
             return
         blitk(
-            matrixStack = context.matrices,
+            matrixStack = context.pose(),
             texture = baseTexture,
             x = x * 6,
             y = y * 2,

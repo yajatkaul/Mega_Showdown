@@ -1173,6 +1173,15 @@ class Pokemon {
       source,
       effect
     });
+	if (this.baseSpecies.forme?.startsWith("Mega")) {
+		const baseForm = this.battle.dex.species.get(this.baseSpecies.baseSpecies);
+		//this.battle.debug(`Reverting ${this.name} from Mega to base species ${baseForm.name} upon fainting`);
+		this.formeChange(baseForm.name, null, true);
+		this.baseSpecies = baseForm;
+		//this.setAbility(baseForm.abilities[0]); // Reset base ability (optional but useful)
+		delete this.canMegaEvo;
+		//console.log(`[DEBUG] ${this.name} reverted to base species ${baseForm.name} on faint`);
+    }
     return d;
   }
   capture() {

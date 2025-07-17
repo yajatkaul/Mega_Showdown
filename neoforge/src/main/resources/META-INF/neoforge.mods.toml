@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Cobblemon: Mega Showdown"
 authors = "YajatKaul"
 description = '''
-Adding all the megas to the game
+Adding mega evolutions, z-moves, teralization, dynamax, ultra burst and fusions to the game
 '''
 #logoFile = ""
 

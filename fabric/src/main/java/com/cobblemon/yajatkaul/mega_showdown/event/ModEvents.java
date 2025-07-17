@@ -64,11 +64,13 @@ public class ModEvents {
         UseEntityCallback.EVENT.register(ModEvents::useOnEntity);
 
         ServerPlayerEvents.JOIN.register((player) -> {
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+            player.server.execute(() -> {
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
 
-            for (Pokemon pokemon : playerPartyStore) {
-                EventUtils.revertFormesEnd(pokemon);
-            }
+                for (Pokemon pokemon : playerPartyStore) {
+                    EventUtils.revertFormesEnd(pokemon);
+                }
+            });
         });
 
         LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {

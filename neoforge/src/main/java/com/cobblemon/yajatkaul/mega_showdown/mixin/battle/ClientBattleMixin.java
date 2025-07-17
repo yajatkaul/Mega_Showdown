@@ -4,14 +4,14 @@ import com.cobblemon.mod.common.battles.MoveActionResponse;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.client.battle.ClientBattle;
 import com.cobblemon.mod.common.client.battle.SingleActionRequest;
-import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.ClientBattleExtension;
+import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.interfaces.ClientBattleDuck;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 
 @Mixin(value = ClientBattle.class, remap = false)
-public class ClientBattleMixin implements ClientBattleExtension {
+public class ClientBattleMixin implements ClientBattleDuck {
     @Shadow
     private List<SingleActionRequest> pendingActionRequests;
 

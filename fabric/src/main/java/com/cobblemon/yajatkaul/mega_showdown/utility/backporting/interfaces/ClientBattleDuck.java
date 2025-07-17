@@ -1,7 +1,7 @@
-package com.cobblemon.yajatkaul.mega_showdown.utility.backporting;
+package com.cobblemon.yajatkaul.mega_showdown.utility.backporting.interfaces;
 
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
 
-public interface ClientBattleExtension {
+public interface ClientBattleDuck {
     boolean pendingGimmick(ShowdownMoveset.Gimmick gimmick);
 }
