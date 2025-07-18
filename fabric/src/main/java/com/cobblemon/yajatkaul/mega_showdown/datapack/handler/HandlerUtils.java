@@ -10,6 +10,9 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -21,6 +24,7 @@ import net.minecraft.nbt.NbtString;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -226,9 +230,24 @@ public class HandlerUtils {
         return aspects;
     }
 
-    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
+    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack, String item_id) {
         CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
-        return itemStack.isOf(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
+        String[] parts = item_id.split(":");
+        boolean hasEnchantment = parts.length >= 4;
+        boolean enchantmentCorrect = false;
+
+        if (hasEnchantment) {
+            String nameSpace = parts[2] + parts[3];
+
+            ItemEnchantmentsComponent enchantments = EnchantmentHelper.getEnchantments(itemStack);
+            for (RegistryEntry<Enchantment> entry : enchantments.getEnchantments()) {
+                if (nameSpace.equals(entry.getIdAsString())) {
+                    enchantmentCorrect = true;
+                    break;
+                }
+            }
+        }
+        return itemStack.isOf(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0) && (!hasEnchantment || enchantmentCorrect);
     }
 
     public static void applyAspects(List<String> aspects, Pokemon pokemon) {

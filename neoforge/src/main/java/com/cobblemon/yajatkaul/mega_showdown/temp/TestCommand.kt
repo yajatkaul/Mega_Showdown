@@ -1,11 +1,16 @@
 package com.cobblemon.yajatkaul.mega_showdown.temp
 
 import com.cobblemon.mod.common.Cobblemon
+import com.cobblemon.mod.common.CobblemonEntities
+import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
 import com.cobblemon.mod.common.api.Priority
+import com.cobblemon.mod.common.api.abilities.Abilities
 import com.cobblemon.mod.common.api.item.ability.AbilityChanger
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.scheduling.ServerTaskTracker
 import com.cobblemon.mod.common.api.scheduling.taskBuilder
+import com.cobblemon.mod.common.api.text.green
+import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.battles.BattleFormat
 import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.battles.BattleSide
@@ -13,6 +18,7 @@ import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.cobblemon.mod.common.battles.actor.PokemonBattleActor
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.entity.npc.NPCEntity
+import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.trade.ActiveTrade
 import com.cobblemon.mod.common.trade.DummyTradeParticipant
@@ -21,25 +27,18 @@ import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.toPokemon
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
+import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.serialization.JsonOps
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands
-import net.minecraft.server.level.ServerPlayer
-import java.io.File
-import java.io.PrintWriter
-import com.cobblemon.mod.common.CobblemonEntities
-import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
-import com.cobblemon.mod.common.api.abilities.Abilities
-import com.cobblemon.mod.common.api.text.green
-import com.cobblemon.mod.common.api.text.red
-import com.cobblemon.mod.common.entity.npc.NPCBattleActor
-import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket
-import com.mojang.brigadier.Command
 import net.minecraft.network.chat.Component
+import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.phys.AABB
+import java.io.File
+import java.io.PrintWriter
 
 @Suppress("unused")
 object TestCommand {
@@ -91,7 +90,8 @@ object TestCommand {
         val cloneTeam = player.party().toBattleTeam(true)
         cloneTeam.forEach { it.effectedPokemon.level = 100 }
         val scanBox = AABB.ofSize(player.position(), 9.0, 9.0, 9.0)
-        val results = player.level().getEntities(CobblemonEntities.POKEMON, scanBox) { entityPokemon -> entityPokemon.pokemon.isWild() }
+        val results = player.level()
+            .getEntities(CobblemonEntities.POKEMON, scanBox) { entityPokemon -> entityPokemon.pokemon.isWild() }
         val pokemonEntity = results.firstOrNull()
         if (pokemonEntity == null) {
             context.source.sendFailure(Component.literal("Cannot find any wild Pokémon in a 9x9x9 area"))
@@ -100,7 +100,13 @@ object TestCommand {
         BattleRegistry.startBattle(
             BattleFormat.GEN_9_SINGLES,
             BattleSide(PlayerBattleActor(player.uuid, cloneTeam)),
-            BattleSide(PokemonBattleActor(pokemonEntity.pokemon.uuid, BattlePokemon(pokemonEntity.pokemon), Cobblemon.config.defaultFleeDistance))
+            BattleSide(
+                PokemonBattleActor(
+                    pokemonEntity.pokemon.uuid,
+                    BattlePokemon(pokemonEntity.pokemon),
+                    Cobblemon.config.defaultFleeDistance
+                )
+            )
         )
     }
 
@@ -115,7 +121,13 @@ object TestCommand {
             )
         )
         this.trade = trade
-        playerEntity.sendPacket(TradeStartedPacket(trade.player2.uuid, trade.player2.name.copy(), trade.player2.party.mapNullPreserving(TradeStartedPacket::TradeablePokemon)))
+        playerEntity.sendPacket(
+            TradeStartedPacket(
+                trade.player2.uuid,
+                trade.player2.name.copy(),
+                trade.player2.party.mapNullPreserving(TradeStartedPacket::TradeablePokemon)
+            )
+        )
 
         taskBuilder()
             .interval(0.5F) // Run every half second
@@ -137,7 +149,8 @@ object TestCommand {
         val trade = this.trade ?: return
         val dummy = trade.player2 as DummyTradeParticipant
 
-        val currentDebugId = 0 // Change this number to some other number and hot reload when you want the later code block to run once.
+        val currentDebugId =
+            0 // Change this number to some other number and hot reload when you want the later code block to run once.
 
         if (lastDebugId != currentDebugId) {
             // Some code here, when hotswapped, will immediately run.
@@ -168,11 +181,11 @@ object TestCommand {
                 }
 
                 val posX = cols[index].toFloat()
-                val posY = cols[index+1].toFloat()
-                val posZ = cols[index+2].toFloat()
-                val rotX = cols[index+3].toFloat()
-                val rotY = cols[index+4].toFloat()
-                val rotZ = cols[index+5].toFloat()
+                val posY = cols[index + 1].toFloat()
+                val posZ = cols[index + 2].toFloat()
+                val rotX = cols[index + 3].toFloat()
+                val rotY = cols[index + 4].toFloat()
+                val rotZ = cols[index + 5].toFloat()
 
                 val position = JsonObject()
                 position.addProperty("x", posX)
@@ -294,34 +307,46 @@ object TestCommand {
     private fun testHiddenAbilityThroughoutEvolutions(): Component {
         // Hidden ability test, Dragonite HA differs from Dratini/Dragonair we need to ensure he keeps that ability until the end
         // Skip Dratini cause same HA irrelevant for this test
-        val pokemon = PokemonProperties.parse("dragonair level=${Cobblemon.config.maxPokemonLevel} hiddenability=true").create()
-        val dragonite = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Dragonair » Dragonite evolution").red()
+        val pokemon =
+            PokemonProperties.parse("dragonair level=${Cobblemon.config.maxPokemonLevel} hiddenability=true").create()
+        val dragonite = pokemon.evolutions.firstOrNull()
+            ?: return Component.literal("✖ Failed to find Dragonair » Dragonite evolution").red()
         dragonite.evolutionMethod(pokemon)
         val failed = pokemon.ability.index != 0 || pokemon.ability.priority != Priority.LOW || pokemon.ability.forced
         val symbol = if (failed) "✖" else "✔"
-        val result = Component.literal(" $symbol Dratini line final Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
+        val result =
+            Component.literal(" $symbol Dratini line final Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
         return if (failed) result.red() else result.green()
     }
 
     private fun testMiddleStageSingleAbility(): Component {
-        val pokemon = PokemonProperties.parse("scatterbug level=${Cobblemon.config.maxPokemonLevel} ability=compoundeyes").create()
-        val spewpa = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Scatterbug » Spewpa evolution").red()
+        val pokemon =
+            PokemonProperties.parse("scatterbug level=${Cobblemon.config.maxPokemonLevel} ability=compoundeyes")
+                .create()
+        val spewpa = pokemon.evolutions.firstOrNull()
+            ?: return Component.literal("✖ Failed to find Scatterbug » Spewpa evolution").red()
         spewpa.evolutionMethod(pokemon)
-        val vivillon = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Spewpa » Vivillon evolution").red()
+        val vivillon =
+            pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Spewpa » Vivillon evolution")
+                .red()
         vivillon.evolutionMethod(pokemon)
         val failed = pokemon.ability.index != 1 || pokemon.ability.priority != Priority.LOWEST || pokemon.ability.forced
         val symbol = if (failed) "✖" else "✔"
-        val result = Component.literal(" $symbol Scatterbug line final Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
+        val result =
+            Component.literal(" $symbol Scatterbug line final Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
         return if (failed) result.red() else result.green()
     }
 
     private fun testForcedAbility(): Component {
-        val pokemon = PokemonProperties.parse("magikarp level=${Cobblemon.config.maxPokemonLevel} ability=adaptability").create()
-        val gyarados = pokemon.evolutions.firstOrNull() ?: return Component.literal("✖ Failed to find Magikarp » Gyarados evolution").red()
+        val pokemon =
+            PokemonProperties.parse("magikarp level=${Cobblemon.config.maxPokemonLevel} ability=adaptability").create()
+        val gyarados = pokemon.evolutions.firstOrNull()
+            ?: return Component.literal("✖ Failed to find Magikarp » Gyarados evolution").red()
         gyarados.evolutionMethod(pokemon)
         val failed = !pokemon.ability.forced || pokemon.ability.template.name != "adaptability"
         val symbol = if (failed) "✖" else "✔"
-        val result = Component.literal(" $symbol Magikarp line forced Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
+        val result =
+            Component.literal(" $symbol Magikarp line forced Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
         return if (failed) result.red() else result.green()
     }
 
@@ -330,7 +355,8 @@ object TestCommand {
         pokemon.updateAbility(Abilities.getOrException("adaptability").create(false))
         val failed = !pokemon.ability.forced
         val symbol = if (failed) "✖" else "✔"
-        val result = Component.literal(" $symbol Rattata illegal non-forced (name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
+        val result =
+            Component.literal(" $symbol Rattata illegal non-forced (name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
         return if (failed) result.red() else result.green()
     }
 
@@ -338,7 +364,8 @@ object TestCommand {
         val pokemon = PokemonProperties.parse("rattata").create()
         val failed = !AbilityChanger.COMMON_ABILITY.performChange(pokemon)
         val symbol = if (failed) "✖" else "✔"
-        val result = Component.literal(" $symbol Rattata capsule Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
+        val result =
+            Component.literal(" $symbol Rattata capsule Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
         return if (failed) result.red() else result.green()
     }
 
@@ -347,7 +374,8 @@ object TestCommand {
         // It shouldn't change
         val failed = AbilityChanger.HIDDEN_ABILITY.performChange(pokemon)
         val symbol = if (failed) "✖" else "✔"
-        val result = Component.literal(" $symbol Magikarp patch Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
+        val result =
+            Component.literal(" $symbol Magikarp patch Ability(name=${pokemon.ability.name}, priority=${pokemon.ability.priority}, index=${pokemon.ability.index}, forced=${pokemon.ability.forced})")
         return if (failed) result.red() else result.green()
     }
 

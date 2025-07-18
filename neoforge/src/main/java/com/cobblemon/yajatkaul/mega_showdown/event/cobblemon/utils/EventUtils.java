@@ -106,7 +106,8 @@ public class EventUtils {
             if (pokemon.getEntity() != null) {
                 ultraAnimation(pokemon.getEntity());
             }
-            new FlagSpeciesFeature("ultra", false).apply(pokemon);
+            new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
+            pokemon.getPersistentData().remove("fusion_form");
         } else if (pokemon.getSpecies().getName().equals("Terapagos")) {
             new StringSpeciesFeature("tera_form", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Meloetta") && pokemon.getAspects().contains("pirouette-forme")) {

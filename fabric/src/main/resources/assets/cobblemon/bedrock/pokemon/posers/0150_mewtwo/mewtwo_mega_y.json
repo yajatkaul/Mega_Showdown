@@ -14,7 +14,7 @@
   "animations": {
     "faint": "q.bedrock_primary('mewtwo_mega_y', 'faint', q.curve('symmetrical_wide'))",
     "physical": "q.bedrock_primary('mewtwo_mega_y', 'physical', q.curve('symmetrical_wide'))",
-    "special": "q.bedrock_primary('mmewtwo_mega_y', 'special', q.curve('symmetrical_wide'))",
+    "special": "q.bedrock_primary('mewtwo_mega_y', 'special', q.curve('symmetrical_wide'))",
     "recoil": "q.bedrock_primary('mewtwo_mega_y', 'recoil', q.curve('symmetrical_wide'))"
   },
   "poses": {

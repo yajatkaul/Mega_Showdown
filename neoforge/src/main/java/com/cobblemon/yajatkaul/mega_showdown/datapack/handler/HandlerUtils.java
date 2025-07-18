@@ -7,7 +7,9 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.particles.EffectsData;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import kotlin.Unit;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -25,6 +27,9 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomModelData;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -138,9 +143,24 @@ public class HandlerUtils {
         }
     }
 
-    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
+    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack, String item_id) {
         CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
-        return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
+        String[] parts = item_id.split(":");
+        boolean hasEnchantment = parts.length >= 4;
+        boolean enchantmentCorrect = false;
+
+        if (hasEnchantment) {
+            String namespace = parts[2] + parts[3];
+            ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(itemStack);
+
+            for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
+                if (entry.getKey().getRegisteredName().equals(namespace)) {
+                    enchantmentCorrect = true;
+                    break;
+                }
+            }
+        }
+        return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0) && (!hasEnchantment || enchantmentCorrect);
     }
 
     public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply) {

@@ -55,7 +55,7 @@ public class ItemHandler {
         if (!itemStack.isEmpty()) {
             for (FusionData fusion : Utils.fusionRegistry) {
                 Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(fusion.item_id()));
-                if (HandlerUtils.itemValidator(item, fusion.custom_model_data(), itemStack)) {
+                if (HandlerUtils.itemValidator(item, fusion.custom_model_data(), itemStack, fusion.item_id())) {
                     EntityHitResult entityHit = HandlerUtils.getEntityLookingAt(player, 4.5f);
                     if (entityHit == null) {
                         PokeHandler pokeHandler = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
@@ -151,7 +151,7 @@ public class ItemHandler {
 
             for (KeyItemData keyItem : Utils.keyItemsRegistry) {
                 Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(keyItem.item_id()));
-                if (HandlerUtils.itemValidator(item, keyItem.custom_model_data(), itemStack)) {
+                if (HandlerUtils.itemValidator(item, keyItem.custom_model_data(), itemStack, keyItem.item_id())) {
                     EntityHitResult entityHit = HandlerUtils.getEntityLookingAt(player, 4.5f);
                     if (entityHit == null) {
                         return false;

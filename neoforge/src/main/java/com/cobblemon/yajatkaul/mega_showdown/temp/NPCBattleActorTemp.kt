@@ -47,7 +47,10 @@ class NPCBattleActorTemp(
             if (npc.isAlive) {
                 val allEntities = pokemonList.mapNotNull { it.entity }.toMutableList()
                 val finalFuture = CompletableFuture<Unit>()
-                chainFutures(allEntities.map { pokemonEntity -> { pokemonEntity.recallWithAnimation() } }.iterator(), finalFuture)
+                chainFutures(
+                    allEntities.map { pokemonEntity -> { pokemonEntity.recallWithAnimation() } }.iterator(),
+                    finalFuture
+                )
                 if (allEntities.isEmpty()) {
                     finalFuture.complete(Unit)
                 }

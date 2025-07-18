@@ -17,7 +17,7 @@ public class SummaryCompanionMixin {
             at = @At("TAIL"),
             remap = false
     )
-    private void onOpen(Collection<? extends Pokemon> party, boolean editable, int selection, CallbackInfo ci){
+    private void onOpen(Collection<? extends Pokemon> party, boolean editable, int selection, CallbackInfo ci) {
         party.forEach((GlobalFeatureManager::update));
     }
 }

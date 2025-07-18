@@ -307,7 +307,7 @@ public class MegaLogic {
 
             String candidateSpecies = null;
 
-            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
+            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem, megaPok.item_id())) {
                 candidateSpecies = megaPok.pokemon();
             }
 
@@ -428,7 +428,7 @@ public class MegaLogic {
 
             String candidateSpecies = null;
 
-            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
+            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem, megaPok.item_id())) {
                 candidateSpecies = megaPok.pokemon();
             }
 

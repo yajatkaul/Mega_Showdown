@@ -9,7 +9,6 @@ import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleMoveSelection;
 import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleShiftButton;
 import com.cobblemon.yajatkaul.mega_showdown.utility.backporting.BattleTargetSelection;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import org.spongepowered.asm.mixin.*;

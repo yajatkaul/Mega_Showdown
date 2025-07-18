@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon
 import com.cobblemon.mod.common.battles.BattleTypes
 import com.cobblemon.mod.common.battles.MoveTarget
 import com.cobblemon.mod.common.battles.ShowdownMoveset
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown
 
 
 object Validator {
@@ -21,34 +20,41 @@ object Validator {
 
         val move = showdownMoveSet.moves.find { it.id == moveName } ?: return false
         val gimmickMove = move.gimmickMove
-        MegaShowdown.LOGGER.info(gimmickID)
         val isGimmickValid = gimmickMove != null && !gimmickMove.disabled
 
         if (!isGimmickValid && !move.canBeUsed()) return false
 
-        val target = if ((gimmickID == "max" || gimmickID == "zmove") && isGimmickValid) gimmickMove!!.target else move.target
-        val validTargets = target.targetList(activeBattlePokemon)
+        val target = if (
+            isGimmickValid &&
+            gimmickID in listOf("zmove", "max") &&
+            gimmickMove?.move != move.id
+        ) gimmickMove!!.target else move.target
 
+        val validTargets = target.targetList(activeBattlePokemon)
         val format = activeBattlePokemon.battle.format.battleType
 
-        if (validTargets.isNullOrEmpty()) {
-            return targetPnx == null
-        }
+        val noTargetRequired = target in listOf(
+            MoveTarget.self,
+            MoveTarget.all,
+            MoveTarget.allAdjacent,
+            MoveTarget.allAdjacentFoes,
+            MoveTarget.allyTeam,
+            MoveTarget.allySide,
+            MoveTarget.foeSide,
+            MoveTarget.allies,
+            MoveTarget.randomNormal,
+            MoveTarget.scripted
+        )
 
-        val isGimmickAOEInSingles = format == BattleTypes.SINGLES &&
-                (gimmickID == "max" || gimmickID == "zmove") &&
-                move.target in listOf(MoveTarget.allAdjacent, MoveTarget.allAdjacentFoes)
+        val isMultiTarget = validTargets?.size?.let { it > 1 } == true
 
         if (targetPnx == null) {
-            return when {
-                isGimmickAOEInSingles -> true
-                format != BattleTypes.SINGLES && move.target == MoveTarget.adjacentFoe -> true
-                else -> false
-            }
+            if (noTargetRequired || isMultiTarget) return true
+            if (format == BattleTypes.SINGLES && target == MoveTarget.adjacentFoe) return true
+            return false
         }
 
         val (_, targetPokemon) = activeBattlePokemon.actor.battle.getActorAndActiveSlotFromPNX(targetPnx)
-
-        return targetPokemon in validTargets
+        return validTargets?.contains(targetPokemon) == true
     }
 }

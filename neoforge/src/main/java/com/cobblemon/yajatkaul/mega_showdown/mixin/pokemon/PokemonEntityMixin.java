@@ -3,6 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.mixin.pokemon;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import net.minecraft.nbt.CompoundTag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,12 +37,14 @@ public abstract class PokemonEntityMixin {
     )
     private void furfrouTick(CallbackInfo ci) {
         Pokemon pokemon = ((PokemonEntity) (Object) this).getPokemon();
+        CompoundTag persistentData = pokemon.getPersistentData();
 
-        if (pokemon.getPersistentData().getBoolean("trimmed")) {
-            pokemon.getPersistentData().putInt("trimmedTick", pokemon.getPersistentData().getInt("trimmedTick") + 1);
-            if (pokemon.getPersistentData().getInt("trimmedTick") >= 120000) {
+        if (persistentData.getBoolean("trimmed")) {
+            persistentData.putInt("trimmedTick", persistentData.getInt("trimmedTick") + 1);
+            if (persistentData.getInt("trimmedTick") >= 120000) {
+                persistentData.putInt("trimmedTick", 0);
                 new StringSpeciesFeature("poodle_trim", "natural").apply(pokemon);
-                pokemon.getPersistentData().putBoolean("trimmed", false);
+                persistentData.putBoolean("trimmed", false);
             }
         }
     }
