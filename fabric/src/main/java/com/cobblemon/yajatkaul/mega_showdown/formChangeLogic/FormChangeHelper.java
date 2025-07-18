@@ -6,10 +6,11 @@ import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FormChangeHelper {
-    public static List<String> mega_aspects = List.of("mega", "mega_y", "mega_x");
+    public static Set<String> mega_aspects = new HashSet<>(Set.of("mega", "mega_y", "mega_x"));
 
     public static boolean hasMega(ServerPlayerEntity player) {
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);

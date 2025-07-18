@@ -34,8 +34,8 @@
       "aspects": [
         "origin-forme"
       ],
-      "poser": "cobblemon:origindialga",
-      "model": "cobblemon:origindialga.geo",
+      "poser": "cobblemon:dialga_origin",
+      "model": "cobblemon:dialga_origin.geo",
       "texture": "cobblemon:textures/pokemon/0483_dialga/dialga_origin.png",
       "layers": [
         {

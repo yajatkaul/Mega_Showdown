@@ -15,6 +15,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
@@ -45,8 +46,7 @@ public class EventUtils {
             pokemon.getPersistentData().remove("is_tera");
         }
 
-        boolean isMega = pokemon.getAspects().stream()
-                .anyMatch(aspect -> aspect.startsWith("mega"));
+        boolean isMega = (pokemon.getAspects().stream().anyMatch(FormChangeHelper.mega_aspects::contains));
 
         if ((MegaShowdownConfig.revertMegas.get() || MegaShowdownConfig.battleModeOnly.get()) && isMega) {
             MegaLogic.Devolve(pokemon, true);

@@ -11,6 +11,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.MegaStones;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
@@ -293,7 +294,7 @@ public class HeldItemChangeHandler {
                 if (!pokemon.getEntity().isBattling()) {
                     SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
                 }
-                EventUtils.ultraAnimation(pokemon.getEntity());
+                UltraLogic.ultraAnimation(pokemon.getEntity());
                 new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
             }
         }
