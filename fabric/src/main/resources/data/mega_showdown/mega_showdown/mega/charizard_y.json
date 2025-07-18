@@ -7,7 +7,5 @@
   "custom_model_data": 0,
   "required_aspects": [],
   "pokemon": "Charizard",
-  "apply_aspects": [
-    "mega_evolution=mega_y"
-  ]
+  "apply_aspect": "mega_y"
 }

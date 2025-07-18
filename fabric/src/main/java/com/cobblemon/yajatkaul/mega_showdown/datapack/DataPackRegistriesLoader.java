@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.ShowdownItemData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -13,6 +14,8 @@ public class DataPackRegistriesLoader {
     public static void registerCustomShowdown() {
         //MEGA
         for (MegaData pokemon : Utils.megaRegistry) {
+            FormChangeHelper.mega_aspects.add(pokemon.apply_aspect());
+
             Identifier custom_stone_item_id = Identifier.tryParse(pokemon.item_id());
             Item customStone = Registries.ITEM.get(custom_stone_item_id);
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {

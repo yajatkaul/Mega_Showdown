@@ -116,8 +116,7 @@ public class MegaLogic {
                     if (pokemon.getSpecies().getName().equals(megaData.pokemon())
                             && HandlerUtils.listCheck(megaData.required_aspects(), pokemon.getAspects(), false)
                             && !HandlerUtils.listCheck(megaData.blacklist_aspects(), pokemon.getAspects(), true)) {
-                        boolean isMega = pk.getAspects().stream()
-                                .anyMatch(aspect -> aspect.startsWith("mega"));
+                        boolean isMega = (pokemon.getAspects().stream().anyMatch(FormChangeHelper.mega_aspects::contains));
 
                         if (isMega) {
                             Devolve(pk.getPokemon(), false);
@@ -125,32 +124,30 @@ public class MegaLogic {
                         } else {
                             Item megaStone = Registries.ITEM.get(Identifier.tryParse(megaData.item_id()));
                             if (heldItem.isOf(megaStone)) {
-                                Evolve(pk, player, megaData.apply_aspects());
+                                Evolve(pk, player, megaData.apply_aspect());
                                 return;
                             }
                         }
                     }
                 }
             } else {
-                boolean isMega = pk.getAspects().stream()
-                        .anyMatch(aspect -> aspect.startsWith("mega"));
+                boolean isMega = (pokemon.getAspects().stream().anyMatch(FormChangeHelper.mega_aspects::contains));
 
                 if (isMega) {
                     Devolve(pk.getPokemon(), false);
                 } else {
-                    Evolve(pk, player, List.of("mega_evolution=mega"));
+                    Evolve(pk, player, "mega");
                 }
             }
         }
     }
 
-    public static void Evolve(PokemonEntity context, PlayerEntity player, List<String> apply_aspects) {
+    public static void Evolve(PokemonEntity context, PlayerEntity player, String apply_aspects) {
         if (context.getPokemon().getOwnerPlayer() != player || player.getWorld().isClient) {
             return;
         }
 
         Pokemon pokemon = context.getPokemon();
-        ItemStack heldItem = pokemon.heldItem();
         boolean hasMega = FormChangeHelper.hasMega((ServerPlayerEntity) player);
 
         if (hasMega && !MegaShowdownConfig.multipleMegas.get()) {
@@ -190,14 +187,7 @@ public class MegaLogic {
             return;
         }
 
-        for (String aspect : apply_aspects) {
-            String[] aspectDiv = aspect.split("=");
-            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                megaEvolve(context, aspectDiv[0]);
-            } else {
-                megaEvolve(context, aspectDiv[1]);
-            }
-        }
+        megaEvolve(context, apply_aspects);
     }
 
     public static void Devolve(Pokemon context, Boolean fromBattle) {
@@ -328,14 +318,7 @@ public class MegaLogic {
 
             if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                    for (String aspect : megaPok.apply_aspects()) {
-                        String[] aspectDiv = aspect.split("=");
-                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                            megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                        } else {
-                            megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                        }
-                    }
+                    megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                     pokemon.setTradeable(false);
                 } else {
                     player.sendMessage(
@@ -348,14 +331,7 @@ public class MegaLogic {
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                        for (String aspect : megaPok.apply_aspects()) {
-                            String[] aspectDiv = aspect.split("=");
-                            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                                megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                            } else {
-                                megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                            }
-                        }
+                        megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                         pokemon.setTradeable(false);
                     } else {
                         player.sendMessage(
@@ -449,14 +425,7 @@ public class MegaLogic {
 
             if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                    for (String aspect : megaPok.apply_aspects()) {
-                        String[] aspectDiv = aspect.split("=");
-                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                            megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                        } else {
-                            megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                        }
-                    }
+                    megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                     pokemon.setTradeable(false);
                 }
                 return;
@@ -464,14 +433,7 @@ public class MegaLogic {
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                        for (String aspect : megaPok.apply_aspects()) {
-                            String[] aspectDiv = aspect.split("=");
-                            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                                megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                            } else {
-                                megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                            }
-                        }
+                        megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                         pokemon.setTradeable(false);
                     }
                     return;

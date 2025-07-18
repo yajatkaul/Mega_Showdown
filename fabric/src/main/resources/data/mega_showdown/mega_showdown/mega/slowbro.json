@@ -12,7 +12,5 @@
     ]
   ],
   "pokemon": "Slowbro",
-  "apply_aspects": [
-    "mega_evolution=mega"
-  ]
+  "apply_aspect": "mega"
 }

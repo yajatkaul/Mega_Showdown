@@ -34,13 +34,17 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MegaLogic {
-    public static boolean Possible(Pokemon pokemon) {
-        ServerPlayer player = pokemon.getOwnerPlayer();
-        if (pokemon.getEntity().getEntityData().get(PokemonEntity.getEVOLUTION_STARTED())) {
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final long COOLDOWN_TIME = 6000; // 6 sec
+
+    public static boolean Possible(ServerPlayer player, boolean fromBattle) {
+        UUID playerId = player.getUUID();
+        long currentTime = System.currentTimeMillis();
+
+        if (cooldowns.containsKey(playerId) && currentTime < cooldowns.get(playerId) && !fromBattle) {
             player.displayClientMessage(Component.translatable("message.mega_showdown.not_so_fast")
                     .withColor(0xFF0000), true);
             return false;
@@ -53,24 +57,19 @@ public class MegaLogic {
         boolean hasOffhandMegaItem = player.getOffhandItem().is(ModTags.Items.MEGA_BRACELETS);
         boolean hasMainhandMegaItem = player.getMainHandItem().is(ModTags.Items.MEGA_BRACELETS);
 
-        if (!hasMegaItemCurios && !hasOffhandMegaItem && !hasMainhandMegaItem) {
-            return false;
+        if (fromBattle) {
+            if (!hasMegaItemCurios && !hasOffhandMegaItem) {
+                return false;
+            }
+        } else {
+            if (!hasMegaItemCurios && !hasOffhandMegaItem && !hasMainhandMegaItem) {
+                return false;
+            }
         }
 
-        return true;
-    }
 
-    public static boolean Possible(ServerPlayer player) {
-        boolean hasMegaItemCurios = CuriosApi.getCuriosInventory(player)
-                .map(inventory -> inventory.isEquipped(stack -> (stack.is(ModTags.Items.MEGA_BRACELETS))))
-                .orElse(false);
-
-        boolean hasOffhandMegaItem = player.getOffhandItem().is(ModTags.Items.MEGA_BRACELETS);
-
-        if (!hasMegaItemCurios && !hasOffhandMegaItem) {
-            return false;
-        }
-
+        // Apply cooldown
+        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
         return true;
     }
 
@@ -110,7 +109,7 @@ public class MegaLogic {
             }
 
             Pokemon pokemon = pk.getPokemon();
-            if (!MegaShowdownConfig.mega || pokemon.getOwnerPlayer() != player || !Possible(pokemon)) {
+            if (!MegaShowdownConfig.mega || pokemon.getOwnerPlayer() != player || !Possible(player, false)) {
                 return;
             }
             ItemStack heldItem = pokemon.heldItem();
@@ -120,8 +119,7 @@ public class MegaLogic {
                     if (pokemon.getSpecies().getName().equals(megaData.pokemon())
                             && HandlerUtils.listCheck(megaData.required_aspects(), pokemon.getAspects(), false)
                             && !HandlerUtils.listCheck(megaData.blacklist_aspects(), pokemon.getAspects(), true)) {
-                        boolean isMega = pk.getAspects().stream()
-                                .anyMatch(aspect -> aspect.startsWith("mega"));
+                        boolean isMega = (pokemon.getAspects().stream().anyMatch(FormChangeHelper.mega_aspects::contains));
 
                         if (isMega) {
                             Devolve(pk.getPokemon(), false);
@@ -129,26 +127,25 @@ public class MegaLogic {
                         } else {
                             Item megaStone = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(megaData.item_id()));
                             if (heldItem.is(megaStone)) {
-                                Evolve(pk, playerContext, megaData.apply_aspects());
+                                Evolve(pk, playerContext, megaData.apply_aspect());
                                 return;
                             }
                         }
                     }
                 }
             } else {
-                boolean isMega = pk.getAspects().stream()
-                        .anyMatch(aspect -> aspect.startsWith("mega"));
+                boolean isMega = (pokemon.getAspects().stream().anyMatch(FormChangeHelper.mega_aspects::contains));
 
                 if (isMega) {
                     Devolve(pk.getPokemon(), false);
                 } else {
-                    Evolve(pk, playerContext, List.of("mega_evolution=mega"));
+                    Evolve(pk, playerContext, "mega");
                 }
             }
         }
     }
 
-    public static void Evolve(PokemonEntity context, Player player, List<String> apply_aspects) {
+    public static void Evolve(PokemonEntity context, Player player, String apply_aspect) {
         if (player.level().isClientSide) {
             return;
         }
@@ -186,14 +183,7 @@ public class MegaLogic {
             return;
         }
 
-        for (String aspect : apply_aspects) {
-            String[] aspectDiv = aspect.split("=");
-            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                megaEvolve(context, aspectDiv[0]);
-            } else {
-                megaEvolve(context, aspectDiv[1]);
-            }
-        }
+        megaEvolve(context, apply_aspect);
     }
 
     public static void Devolve(Pokemon context, boolean fromBattle) {
@@ -308,14 +298,7 @@ public class MegaLogic {
 
             if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                    for (String aspect : megaPok.apply_aspects()) {
-                        String[] aspectDiv = aspect.split("=");
-                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                            megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                        } else {
-                            megaEvolve(context, aspectDiv[1]);
-                        }
-                    }
+                    megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                     pokemon.setTradeable(false);
                 } else {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.incorrect_mega_stone")
@@ -327,14 +310,7 @@ public class MegaLogic {
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                        for (String aspect : megaPok.apply_aspects()) {
-                            String[] aspectDiv = aspect.split("=");
-                            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                                megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                            } else {
-                                megaEvolve(context, aspectDiv[1]);
-                            }
-                        }
+                        megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                         pokemon.setTradeable(false);
                     } else {
                         player.displayClientMessage(Component.translatable("message.mega_showdown.incorrect_mega_stone")
@@ -427,14 +403,7 @@ public class MegaLogic {
 
             if (megaPok.required_aspects().isEmpty()) {
                 if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                    for (String aspect : megaPok.apply_aspects()) {
-                        String[] aspectDiv = aspect.split("=");
-                        if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                            megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                        } else {
-                            megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                        }
-                    }
+                    megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                     pokemon.setTradeable(false);
                 }
                 return;
@@ -442,14 +411,7 @@ public class MegaLogic {
             for (List<String> condition : megaPok.required_aspects()) {
                 if (pokemon.getAspects().containsAll(condition)) {
                     if (candidateSpecies.equals(pokemon.getSpecies().getName())) {
-                        for (String aspect : megaPok.apply_aspects()) {
-                            String[] aspectDiv = aspect.split("=");
-                            if (aspectDiv[1].equals("true") || aspectDiv[1].equals("false")) {
-                                megaEvolve(context, aspectDiv[0], battlePokemon, pokemonBattle);
-                            } else {
-                                megaEvolve(context, aspectDiv[1], battlePokemon, pokemonBattle);
-                            }
-                        }
+                        megaEvolve(context, megaPok.apply_aspect(), battlePokemon, pokemonBattle);
                         pokemon.setTradeable(false);
                     }
                     return;

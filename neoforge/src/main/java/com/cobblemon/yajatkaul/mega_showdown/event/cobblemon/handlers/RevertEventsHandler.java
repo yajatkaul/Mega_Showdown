@@ -114,7 +114,7 @@ public class RevertEventsHandler {
             }
 
             if (MegaShowdownConfig.revertMegas && MegaShowdownConfig.mega &&
-                    MegaLogic.Possible(player) && !FormChangeHelper.hasMega(player)) {
+                    MegaLogic.Possible(player, true) && !FormChangeHelper.hasMega(player)) {
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
             } else {
                 data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));

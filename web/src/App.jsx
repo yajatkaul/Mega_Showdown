@@ -292,7 +292,7 @@ function App() {
         required_aspects: [["galar"]],
         blacklist_aspects: [["shiny"]],
         item_description: ["Mega Evolves Charizard into Mega Charizard X."],
-        apply_aspects: ["mega=mega_z"],
+        apply_aspect: "mega_z",
         custom_model_data: 101,
       },
       details: [
@@ -306,7 +306,7 @@ function App() {
         "`showdown_id*:` Showdown mega stone id to attach with this item",
         "`required_aspects:` If pokemon has this aspect only then it can mega, `default: []`. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
         "`blacklist_aspects:` If pokemon has this aspect it cant mega, `default: []`. You can have multiple options like if `[['galar']['shiny']]` then it will work if u have any of the above, if u want something such that it needs both of them then u can do `[['galar','shiny']]`",
-        "`apply_aspects*:` Showdown mega stone id to attach with this item",
+        "`apply_aspect*:` the mega form u want mega, mega_x, mega_y, if u want something else u need to edit the species feature file",
         "`pokemon*:` Pokemon on which u want to add a mega",
       ],
     },

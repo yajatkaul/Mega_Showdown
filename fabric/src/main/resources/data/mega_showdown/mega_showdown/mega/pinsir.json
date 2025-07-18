@@ -7,7 +7,5 @@
   "custom_model_data": 0,
   "required_aspects": [],
   "pokemon": "Pinsir",
-  "apply_aspects": [
-    "mega_evolution=mega"
-  ]
+  "apply_aspect": "mega"
 }

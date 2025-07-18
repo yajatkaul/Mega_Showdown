@@ -15,7 +15,7 @@ public record MegaData(
         List<List<String>> required_aspects,
         List<List<String>> blacklist_aspects,
         List<String> item_description,
-        List<String> apply_aspects,
+        String apply_aspect,
         Integer custom_model_data
 ) {
     public static final Codec<MegaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -27,9 +27,9 @@ public record MegaData(
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("required_aspects").forGetter(m -> Optional.ofNullable(m.required_aspects())),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("blacklist_aspects").forGetter(m -> Optional.ofNullable(m.blacklist_aspects())),
             Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(m -> Optional.ofNullable(m.item_description())),
-            Codec.list(Codec.STRING).fieldOf("apply_aspects").forGetter(MegaData::apply_aspects),
+            Codec.STRING.fieldOf("apply_aspects").forGetter(MegaData::apply_aspect),
             Codec.INT.optionalFieldOf("custom_model_data").forGetter(m -> Optional.ofNullable(m.custom_model_data()))
-    ).apply(instance, (msdId, showdownId, itemId, itemName, pokemon, requiredAspects, blacklistAspects, itemDescription, applyAspects, customModelData) ->
+    ).apply(instance, (msdId, showdownId, itemId, itemName, pokemon, requiredAspects, blacklistAspects, itemDescription, applyAspect, customModelData) ->
             new MegaData(
                     msdId,
                     showdownId,
@@ -39,7 +39,7 @@ public record MegaData(
                     requiredAspects.orElse(List.of()),
                     blacklistAspects.orElse(List.of()),
                     itemDescription.orElse(List.of()),
-                    applyAspects,
+                    applyAspect,
                     customModelData.orElse(0)
             )
     ));
