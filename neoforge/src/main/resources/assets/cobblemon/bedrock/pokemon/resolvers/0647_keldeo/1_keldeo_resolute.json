@@ -4,7 +4,7 @@
   "variations": [
     {
       "aspects": [
-        "resolute"
+        "resolute-form"
       ],
       "poser": "cobblemon:keldeo_resolut",
       "model": "cobblemon:keldeo_resolut.geo",
@@ -15,7 +15,7 @@
     {
       "aspects": [
         "shiny",
-        "resolute"
+        "resolute-form"
       ],
       "texture": "cobblemon:textures/pokemon/0647_keldeo/keldeo_resolut_shiny.png"
     }

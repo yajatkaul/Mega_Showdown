@@ -16,6 +16,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -81,7 +82,7 @@ public class EventUtils {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
             if (pokemon.getEntity() != null) {
-                ultraAnimation(pokemon.getEntity());
+                UltraLogic.ultraAnimation(pokemon.getEntity());
             }
             new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
             pokemon.getPersistentData().remove("fusion_form");
@@ -211,49 +212,6 @@ public class EventUtils {
 
                 serverWorld.spawnParticles(
                         ParticleTypes.ANGRY_VILLAGER, // Same particle type
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
-    }
-
-    public static void ultraAnimation(LivingEntity context) {
-        if (context.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3d entityPos = context.getPos(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getWidth();
-            double entityHeight = context.getHeight();
-            double entityDepth = entityWidth; // Usually same as width for most mobs
-
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1.2; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityDepth * scaleFactor;
-
-            // Play sound effect
-            serverWorld.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, // Change this if needed
-                    SoundCategory.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverWorld.spawnParticles(
-                        ParticleTypes.GLOW,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,

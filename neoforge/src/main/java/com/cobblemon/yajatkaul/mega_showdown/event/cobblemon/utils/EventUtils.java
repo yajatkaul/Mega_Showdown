@@ -16,6 +16,7 @@ import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.BattleFormChange;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
@@ -104,7 +105,7 @@ public class EventUtils {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
             if (pokemon.getEntity() != null) {
-                ultraAnimation(pokemon.getEntity());
+                UltraLogic.ultraAnimation(pokemon.getEntity());
             }
             new StringSpeciesFeature("prism_fusion", pokemon.getPersistentData().getString("fusion_form")).apply(pokemon);
             pokemon.getPersistentData().remove("fusion_form");
@@ -151,7 +152,7 @@ public class EventUtils {
                 }
             }
 
-            if (pokemon.getAspects().contains("resolute")) {
+            if (pokemon.getAspects().contains("resolute-form")) {
                 if (!hasMove) {
                     new StringSpeciesFeature("sword_form", "ordinary").apply(pokemon);
                     if (pokemon.getEntity() != null) {
@@ -234,48 +235,6 @@ public class EventUtils {
 
                 serverLevel.sendParticles(
                         ParticleTypes.ANGRY_VILLAGER, // Change this to any particle type
-                        entityPos.x + xOffset,
-                        entityPos.y + yOffset,
-                        entityPos.z + zOffset,
-                        1, // One particle per call for better spread
-                        0, 0, 0, // No movement velocity
-                        0.1 // Slight motion
-                );
-            }
-        }
-    }
-
-    public static void ultraAnimation(LivingEntity context) {
-        if (context.level() instanceof ServerLevel serverLevel) {
-            Vec3 entityPos = context.position(); // Get entity position
-
-            // Get entity's size
-            double entityWidth = context.getBbWidth();
-            double entityHeight = context.getBbHeight();
-
-            // Scaling factor to slightly expand particle spread beyond the entity's bounding box
-            double scaleFactor = 1.2; // Adjust this for more spread
-            double adjustedWidth = entityWidth * scaleFactor;
-            double adjustedHeight = entityHeight * scaleFactor;
-            double adjustedDepth = entityWidth * scaleFactor;
-
-            // Play sound effect
-            serverLevel.playSound(
-                    null, entityPos.x, entityPos.y, entityPos.z,
-                    SoundEvents.AMETHYST_BLOCK_CHIME, // Change this if needed
-                    SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-            );
-
-            // Adjust particle effect based on entity size
-            int particleCount = (int) (175 * adjustedWidth * adjustedHeight); // Scale particle amount
-
-            for (int i = 0; i < particleCount; i++) {
-                double xOffset = (Math.random() - 0.5) * adjustedWidth; // Random X within slightly expanded bounding box
-                double yOffset = Math.random() * adjustedHeight; // Random Y within slightly expanded bounding box
-                double zOffset = (Math.random() - 0.5) * adjustedDepth; // Random Z within slightly expanded bounding box
-
-                serverLevel.sendParticles(
-                        ParticleTypes.GLOW,
                         entityPos.x + xOffset,
                         entityPos.y + yOffset,
                         entityPos.z + zOffset,
