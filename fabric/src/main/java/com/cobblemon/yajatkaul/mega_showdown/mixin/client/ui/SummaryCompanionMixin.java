@@ -18,10 +18,6 @@ public class SummaryCompanionMixin {
             remap = false
     )
     private void onOpen(Collection<? extends Pokemon> party, boolean editable, int selection, CallbackInfo ci){
-      party.forEach((pokemon -> {
-          if (pokemon != null) {
-              GlobalFeatureManager.update(pokemon, pokemon.getOwnerPlayer());
-          }
-      }));
+        party.forEach((GlobalFeatureManager::update));
     }
 }
