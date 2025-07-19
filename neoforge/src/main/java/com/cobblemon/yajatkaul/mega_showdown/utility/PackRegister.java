@@ -17,48 +17,56 @@ public class PackRegister {
             var modContainer = ModList.get().getModContainerById(MegaShowdown.MOD_ID)
                     .orElseThrow(() -> new IllegalStateException("Mod container not found for ID: " + MegaShowdown.MOD_ID));
             var modFile = modContainer.getModInfo().getOwningFile().getFile();
-            Path packPath = modFile.findResource("resourcepacks", "gyaradosjumpingmega");
-
+            Path gyradosJumpMegaPath = modFile.findResource("resourcepacks", "gyaradosjumpingmega");
             // Create PackLocationInfo
-            PackLocationInfo packInfo = new PackLocationInfo(
+            PackLocationInfo gyradosJumpMegaInfo = new PackLocationInfo(
                     "gyaradosjumpingmega",           // Internal ID
                     Component.translatable("message.mega_showdown.gyrados_jump_mega"), // Display name
                     PackSource.BUILT_IN,              // Source
                     java.util.Optional.empty()       // No explicit format
             );
 
-            // Implement ResourcesSupplier
-            Pack.ResourcesSupplier resourcesSupplier = new Pack.ResourcesSupplier() {
-                @Override
-                public PackResources openPrimary(PackLocationInfo info) {
-                    return new PathPackResources(packInfo, packPath);
-                }
-
-                @Override
-                public PackResources openFull(PackLocationInfo info, Pack.Metadata metadata) {
-                    return new PathPackResources(packInfo, packPath);
-                }
-            };
-
-            // Create PackSelectionConfig
-            PackSelectionConfig selectionConfig = new PackSelectionConfig(
-                    false,                            // Enabled by default
-                    Pack.Position.TOP,               // Position in list
-                    true                            // Not required/fixed (toggleable)
+            Path regionBiasGmaxPath = modFile.findResource("resourcepacks", "regionbiasgmax");
+            // Create PackLocationInfo
+            PackLocationInfo regionBiasGmaxInfo = new PackLocationInfo(
+                    "regionbiasgmax",           // Internal ID
+                    Component.translatable("message.mega_showdown.region_bias_gmax"), // Display name
+                    PackSource.BUILT_IN,              // Source
+                    java.util.Optional.empty()       // No explicit format
             );
 
-            // Create the Pack
-            Pack pack = Pack.readMetaAndCreate(
-                    packInfo,                        // Pack info
-                    resourcesSupplier,               // Resources supplier
-                    PackType.CLIENT_RESOURCES,       // Pack type
-                    selectionConfig                  // Selection config
-            );
-
-            // Register the pack
-            if (pack != null) {
-                event.addRepositorySource((profileAdder) -> profileAdder.accept(pack));
-            }
+            event.addRepositorySource((profileAdder) -> profileAdder.accept(createPack(gyradosJumpMegaInfo, gyradosJumpMegaPath)));
+            event.addRepositorySource((profileAdder) -> profileAdder.accept(createPack(regionBiasGmaxInfo, regionBiasGmaxPath)));
         }
+    }
+
+    private static Pack createPack(PackLocationInfo packInfo, Path packPath){
+        // Implement ResourcesSupplier
+        Pack.ResourcesSupplier resourcesSupplier = new Pack.ResourcesSupplier() {
+            @Override
+            public PackResources openPrimary(PackLocationInfo info) {
+                return new PathPackResources(packInfo, packPath);
+            }
+
+            @Override
+            public PackResources openFull(PackLocationInfo info, Pack.Metadata metadata) {
+                return new PathPackResources(packInfo, packPath);
+            }
+        };
+
+        // Create PackSelectionConfig
+        PackSelectionConfig selectionConfig = new PackSelectionConfig(
+                false,                            // Enabled by default
+                Pack.Position.TOP,               // Position in list
+                true                            // Not required/fixed (toggleable)
+        );
+
+        // Create the Pack
+        return Pack.readMetaAndCreate(
+                packInfo,                        // Pack info
+                resourcesSupplier,               // Resources supplier
+                PackType.CLIENT_RESOURCES,       // Pack type
+                selectionConfig                  // Selection config
+        );
     }
 }

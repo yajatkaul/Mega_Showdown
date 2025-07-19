@@ -27,7 +27,7 @@ public record MegaData(
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("required_aspects").forGetter(m -> Optional.ofNullable(m.required_aspects())),
             Codec.list(Codec.list(Codec.STRING)).optionalFieldOf("blacklist_aspects").forGetter(m -> Optional.ofNullable(m.blacklist_aspects())),
             Codec.list(Codec.STRING).optionalFieldOf("item_description").forGetter(m -> Optional.ofNullable(m.item_description())),
-            Codec.STRING.fieldOf("apply_aspects").forGetter(MegaData::apply_aspect),
+            Codec.STRING.fieldOf("apply_aspect").forGetter(MegaData::apply_aspect),
             Codec.INT.optionalFieldOf("custom_model_data").forGetter(m -> Optional.ofNullable(m.custom_model_data()))
     ).apply(instance, (msdId, showdownId, itemId, itemName, pokemon, requiredAspects, blacklistAspects, itemDescription, applyAspect, customModelData) ->
             new MegaData(

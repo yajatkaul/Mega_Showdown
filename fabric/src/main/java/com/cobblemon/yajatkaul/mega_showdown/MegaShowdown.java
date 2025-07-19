@@ -66,6 +66,13 @@ public class MegaShowdown implements ModInitializer {
                 ResourcePackActivationType.NORMAL
         );
 
+        ResourceManagerHelper.registerBuiltinResourcePack(
+                Identifier.of(MOD_ID, "regionbiasgmax"),
+                FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
+                Text.translatable("message.mega_showdown.region_bias_gmax"),
+                ResourcePackActivationType.NORMAL
+        );
+
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
 
         DatapackRegister.register();

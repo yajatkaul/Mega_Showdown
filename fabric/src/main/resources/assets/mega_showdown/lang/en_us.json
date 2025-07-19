@@ -486,6 +486,7 @@
   "message.mega_showdown.resassembly_zygarde_req": "You need a zygarde with power-construct",
   "message.mega_showdown.cube_full": "Cube already has a zygarde",
   "message.mega_showdown.gyrados_jump_mega": "Gyrados Jumping Mega",
+  "message.mega_showdown.region_bias_gmax": "Region Bias Gmax",
   "message.mega_showdown.zygarde_missing": "Put your zygarde in the cube",
   "message.mega_showdown.lost_map": "Lost map",
   "message.mega_showdown.lost_map.desc": "This map leads you to the lost stone",

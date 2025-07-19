@@ -66,7 +66,7 @@ object TestCommand {
             BattleRegistry.startBattle(
                 battleFormat = BattleFormat.GEN_9_DOUBLES,
                 side1 = BattleSide(playerActor),
-                side2 = BattleSide(npcs[1])
+                side2 = BattleSide(npcs[1]),
             ).ifSuccessful {
                 it.battlePartyStores.add(player.party())
             }
