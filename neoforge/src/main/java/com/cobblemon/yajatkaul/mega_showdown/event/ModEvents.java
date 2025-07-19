@@ -114,21 +114,6 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    private static void onServerJoin(PlayerEvent.PlayerLoggedInEvent playerLoggedInEvent) {
-        if (!playerLoggedInEvent.getEntity().level().isClientSide) {
-            ServerPlayer player = (ServerPlayer) playerLoggedInEvent.getEntity();
-
-            player.server.execute(() -> {
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-                for (Pokemon pokemon : playerPartyStore) {
-                    EventUtils.revertFormesEnd(pokemon);
-                }
-            });
-        }
-    }
-
-    @SubscribeEvent
     private static void onLootTableLoad(LootTableLoadEvent event) {
         ResourceLocation lootTableId = event.getName();
         ResourceLocation cobblemonLunaHengeRuinLootTable = ResourceLocation.fromNamespaceAndPath("cobblemon", "ruins/common/luna_henge_ruins");
