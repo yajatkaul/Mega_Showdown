@@ -8,14 +8,17 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public class DormantCrystal extends CrystalBlock {
-    public DormantCrystal(float height, float xzOffset, Settings settings) {
-        super(height, xzOffset, settings.strength(3f)
+    public DormantCrystal(float height, float xzOffset, Settings settings, boolean dropExp) {
+        super(height,
+                xzOffset, settings.strength(3f)
                 .requiresTool()
                 .mapColor(MapColor.DIAMOND_BLUE)
                 .luminance((state) -> 15)
                 .nonOpaque()
                 .pistonBehavior(PistonBehavior.IGNORE)
-                .sounds(BlockSoundGroup.AMETHYST_CLUSTER));
+                .sounds(BlockSoundGroup.AMETHYST_CLUSTER),
+                dropExp
+        );
     }
 
     private static final VoxelShape SHAPE_UP = Block.createCuboidShape(5, 0, 4, 11, 4, 11);      // floor

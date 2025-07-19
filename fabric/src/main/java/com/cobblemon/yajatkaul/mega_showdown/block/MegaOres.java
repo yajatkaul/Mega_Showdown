@@ -23,7 +23,7 @@ public class MegaOres {
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
     public static final Block MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
-            new MegaStoneCrystal(4, 3, AbstractBlock.Settings.create()));
+            new MegaStoneCrystal(4, 3, AbstractBlock.Settings.create(), true));
 
     public static final Block MEGA_METEORID_DAWN_ORE = registerMeteoroidOre("mega_meteorid_dawn_ore");
     public static final Block MEGA_METEORID_DUSK_ORE = registerMeteoroidOre("mega_meteorid_dusk_ore");

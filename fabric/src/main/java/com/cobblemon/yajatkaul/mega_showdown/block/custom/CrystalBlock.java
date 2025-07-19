@@ -12,10 +12,12 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 public class CrystalBlock extends AmethystClusterBlock {
+    private final boolean dropExp;
     private static final IntProvider EXP_RANGE = UniformIntProvider.create(6, 9);
 
-    public CrystalBlock(float height, float xzOffset, Settings settings) {
+    public CrystalBlock(float height, float xzOffset, Settings settings, boolean dropExp) {
         super(height, xzOffset, settings);
+        this.dropExp = dropExp;
     }
 
     @Override
@@ -35,7 +37,7 @@ public class CrystalBlock extends AmethystClusterBlock {
 
     @Override
     protected void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack tool, boolean dropExperience) {
-        if (dropExperience) {
+        if (dropExperience && this.dropExp) {
             dropExperienceWhenMined(world, pos, tool, EXP_RANGE);
         }
         super.onStacksDropped(state, world, pos, tool, dropExperience);

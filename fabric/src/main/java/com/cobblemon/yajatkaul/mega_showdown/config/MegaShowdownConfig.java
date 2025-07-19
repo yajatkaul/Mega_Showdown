@@ -11,7 +11,6 @@ public class MegaShowdownConfig {
     public static final Supplier<Boolean> battleModeOnly;
     public static final Supplier<Boolean> zMoves;
     public static final Supplier<Boolean> teralization;
-    public static final Supplier<Boolean> disableTeraShardDrop;
     public static final Supplier<Boolean> dynamax;
     public static final Supplier<Boolean> mega;
     public static final Supplier<Boolean> etermaxForme;
@@ -21,6 +20,9 @@ public class MegaShowdownConfig {
     public static final Supplier<Boolean> showdownFilesLoading;
     public static final Supplier<Boolean> multiplePrimals;
     public static final Supplier<Boolean> revertMegas;
+    public static final Supplier<Integer> teraShardRequired;
+    public static final Supplier<Integer> teraShardDropRate;
+    public static final Supplier<Integer> stellarShardDropRate;
 
     static {
         // construct a new config builder
@@ -31,7 +33,6 @@ public class MegaShowdownConfig {
         battleModeOnly = builder.comment("Enable mega evolution only for battles").define("battleModeOnly", false);
         zMoves = builder.comment("Enables/Disables zMoves in game").define("zMoves", true);
         teralization = builder.comment("Enables/Disables teralization in game").define("teralization", true);
-        disableTeraShardDrop = builder.comment("Disables pokemons from dropping tera shards").define("disableTeraShardDrop", false);
         etermaxForme = builder.comment("Enables etermax eternus forme").define("etermaxForme", true);
         dynamax = builder.comment("Enables/Disables Dmaxing in game").define("dynamax", true);
         mega = builder.comment("Enables/Disables Mega in game").define("mega", true);
@@ -46,6 +47,9 @@ public class MegaShowdownConfig {
                  but can't since mega showdown keeps overriding the files""").define("showdownFilesLoading", true);
         multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", true);
         revertMegas = builder.comment("Enable/Disable mega pokemons form reverting when battle starts").define("revertMegas", true);
+        teraShardRequired = builder.comment("Number of tera shards required to change tera type").define("teraShardRequired", 50, 1 , 50);
+        teraShardDropRate = builder.comment("Terashard drop rate").define("teraShardDropRate", 10, 0 , 100);
+        stellarShardDropRate = builder.comment("Stellar tera shard drop rate").define("stellarShardDropRate", 1, 0 , 10);
 
         builder.build();
     }

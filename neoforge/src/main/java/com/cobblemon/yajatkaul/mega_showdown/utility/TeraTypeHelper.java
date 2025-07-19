@@ -11,34 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TeraTypeHelper {
-    private static final Map<Item, TeraType> ITEM_TO_TERA_MAP = new HashMap<>();
-
-    public static void loadShardData() {
-        ITEM_TO_TERA_MAP.put(TeraMoves.BUG_TERA_SHARD.get(), TeraTypes.getBUG());
-        ITEM_TO_TERA_MAP.put(TeraMoves.DARK_TERA_SHARD.get(), TeraTypes.getDARK());
-        ITEM_TO_TERA_MAP.put(TeraMoves.DRAGON_TERA_SHARD.get(), TeraTypes.getDRAGON());
-        ITEM_TO_TERA_MAP.put(TeraMoves.ELECTRIC_TERA_SHARD.get(), TeraTypes.getELECTRIC());
-        ITEM_TO_TERA_MAP.put(TeraMoves.FAIRY_TERA_SHARD.get(), TeraTypes.getFAIRY());
-        ITEM_TO_TERA_MAP.put(TeraMoves.FIGHTING_TERA_SHARD.get(), TeraTypes.getFIGHTING());
-        ITEM_TO_TERA_MAP.put(TeraMoves.FIRE_TERA_SHARD.get(), TeraTypes.getFIRE());
-        ITEM_TO_TERA_MAP.put(TeraMoves.FLYING_TERA_SHARD.get(), TeraTypes.getFLYING());
-        ITEM_TO_TERA_MAP.put(TeraMoves.GHOST_TERA_SHARD.get(), TeraTypes.getGHOST());
-        ITEM_TO_TERA_MAP.put(TeraMoves.GRASS_TERA_SHARD.get(), TeraTypes.getGRASS());
-        ITEM_TO_TERA_MAP.put(TeraMoves.GROUND_TERA_SHARD.get(), TeraTypes.getGROUND());
-        ITEM_TO_TERA_MAP.put(TeraMoves.ICE_TERA_SHARD.get(), TeraTypes.getICE());
-        ITEM_TO_TERA_MAP.put(TeraMoves.NORMAL_TERA_SHARD.get(), TeraTypes.getNORMAL());
-        ITEM_TO_TERA_MAP.put(TeraMoves.POISON_TERA_SHARD.get(), TeraTypes.getPOISON());
-        ITEM_TO_TERA_MAP.put(TeraMoves.PSYCHIC_TERA_SHARD.get(), TeraTypes.getPSYCHIC());
-        ITEM_TO_TERA_MAP.put(TeraMoves.ROCK_TERA_SHARD.get(), TeraTypes.getROCK());
-        ITEM_TO_TERA_MAP.put(TeraMoves.STEEL_TERA_SHARD.get(), TeraTypes.getSTEEL());
-        ITEM_TO_TERA_MAP.put(TeraMoves.STELLAR_TERA_SHARD.get(), TeraTypes.getSTELLAR());
-        ITEM_TO_TERA_MAP.put(TeraMoves.WATER_TERA_SHARD.get(), TeraTypes.getWATER());
-    }
-
-    public static TeraType getType(Item item) {
-        return ITEM_TO_TERA_MAP.getOrDefault(item, TeraTypes.getNORMAL());
-    }
-
     public static Item getTeraShardForType(Iterable<ElementalType> types) {
         var shard = TeraMoves.NORMAL_TERA_SHARD;
         for (ElementalType type : types) {

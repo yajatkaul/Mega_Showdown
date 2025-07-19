@@ -83,9 +83,7 @@ public class MegaShowdown implements ModInitializer {
 
     private void onServerStarted(MinecraftServer server) {
         Utils.registryLoader(server.getRegistryManager());
-
         LoadShowdownItems.registerRemapping();
-        TeraTypeHelper.loadShardData();
 
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {

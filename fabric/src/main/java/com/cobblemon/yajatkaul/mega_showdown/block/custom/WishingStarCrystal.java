@@ -15,13 +15,16 @@ import net.minecraft.world.World;
 import org.joml.Vector3f;
 
 public class WishingStarCrystal extends CrystalBlock {
-    public WishingStarCrystal(float height, float xzOffset, Settings settings) {
-        super(height, xzOffset, settings.strength(1.5f)
+    public WishingStarCrystal(float height, float xzOffset, Settings settings, boolean dropExp) {
+        super(height,
+                xzOffset,
+                settings.strength(1.5f)
                 .sounds(BlockSoundGroup.STONE)
                 .nonOpaque()
                 .requiresTool()
                 .pistonBehavior(PistonBehavior.IGNORE)
-                .luminance((state) -> 15));
+                .luminance((state) -> 15),
+                dropExp);
     }
 
     private static final VoxelShape SHAPE =

@@ -51,12 +51,18 @@ public class MegaShowdownConfig {
                     , this is for people who want to edit showdown\s
                      but can't since mega showdown keeps overriding the files""")
             .define("showdownFilesLoading", true);
-    private static final ModConfigSpec.BooleanValue DISABLE_TERASHARD_DROP = BUILDER
-            .comment("Disables pokemons from dropping tera shards")
-            .define("disableTeraShardDrop", false);
     private static final ModConfigSpec.BooleanValue REVERT_MEGAS = BUILDER
             .comment("Enable/Disable mega pokemons form reverting when battle starts")
             .define("revertMegas", true);
+    private static final ModConfigSpec.IntValue TERA_SHARDS_REQUIRED = BUILDER
+            .comment("Number of tera shards required to change tera type")
+            .defineInRange("teraShardRequired", 50, 1, 50);
+    private static final ModConfigSpec.IntValue TERA_SHARD_DROPRATE = BUILDER
+            .comment("Terashard drop rate")
+            .defineInRange("teraShardDropRate", 10, 0, 100);
+    private static final ModConfigSpec.IntValue STELLAR_SHARD_DROPRATE = BUILDER
+            .comment("Stellar tera drop rate")
+            .defineInRange("stellarShardDropRate", 1, 0, 100);
 
     public static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -64,7 +70,6 @@ public class MegaShowdownConfig {
     public static boolean battleModeOnly;
     public static boolean multiplePrimals;
     public static boolean zMoves;
-    public static boolean disableTeraShardDrop;
     public static boolean teralization;
     public static boolean etermaxForme;
     public static boolean dynamax;
@@ -74,6 +79,9 @@ public class MegaShowdownConfig {
     public static int dynamaxScaleFactor;
     public static boolean showdownFilesLoading;
     public static boolean revertMegas;
+    public static int teraShardRequired;
+    public static int teraShardDropRate;
+    public static int stellarShardDropRate;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
@@ -82,7 +90,6 @@ public class MegaShowdownConfig {
         multiplePrimals = MULTIPLE_PRIMALS.get();
         zMoves = Z_MOVES.get();
         teralization = TERA_EVO.get();
-        disableTeraShardDrop = DISABLE_TERASHARD_DROP.get();
         etermaxForme = ETERMAX_FORME.get();
         dynamax = DYNAMAX.get();
         dynamaxAnywhere = DYNAMAX_ANYWHERE.get();
@@ -91,5 +98,8 @@ public class MegaShowdownConfig {
         showdownFilesLoading = SHOWDOWN_FILES_LOADING.get();
         mega = MEGA.get();
         revertMegas = REVERT_MEGAS.get();
+        teraShardRequired = TERA_SHARDS_REQUIRED.get();
+        teraShardDropRate = TERA_SHARD_DROPRATE.get();
+        stellarShardDropRate = STELLAR_SHARD_DROPRATE.get();
     }
 }

@@ -66,10 +66,10 @@ public class ModBlocks {
             () -> new ReassemblyUnitBlock(BlockBehaviour.Properties.of()));
 
     public static final DeferredBlock<AmethystClusterBlock> WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
-            () -> new WishingStarCrystal(4, 3, BlockBehaviour.Properties.of()));
+            () -> new WishingStarCrystal(4, 3, BlockBehaviour.Properties.of(), true));
 
     public static final DeferredBlock<AmethystClusterBlock> DORMANT_CRYSTAL = registerBlock("dormant_crystal",
-            () -> new DormantCrystal(4, 3, BlockBehaviour.Properties.of()));
+            () -> new DormantCrystal(4, 3, BlockBehaviour.Properties.of(), false));
 
     public static final DeferredBlock<Block> ROTOM_WASHING_MACHINE = registerRotomBlock("rotom_washing_machine", "wash");
     public static final DeferredBlock<Block> ROTOM_FAN = registerRotomBlock("rotom_fan", "fan");

@@ -11,13 +11,14 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DormantCrystal extends CrystalBlock {
-    public DormantCrystal(float f, float g, Properties properties) {
+    public DormantCrystal(float f, float g, Properties properties, boolean dropExp) {
         super(f, g, properties.strength(3f)
                 .sound(SoundType.MEDIUM_AMETHYST_BUD)
                 .noOcclusion()
                 .requiresCorrectToolForDrops()
                 .pushReaction(PushReaction.IGNORE)
-                .lightLevel((state) -> 15));
+                .lightLevel((state) -> 15)
+                , dropExp);
     }
 
     private static final VoxelShape SHAPE_UP = Block.box(5, 0, 4, 11, 4, 11);      // floor

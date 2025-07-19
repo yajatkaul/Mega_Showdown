@@ -1,9 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.tera;
 
+import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,11 +23,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
-import static com.cobblemon.yajatkaul.mega_showdown.utility.TeraTypeHelper.getType;
-
 public class TeraShard extends Item {
-    public TeraShard(Settings settings) {
+    private final TeraType teraType;
+
+    public TeraShard(Settings settings, TeraType teraType) {
         super(settings);
+        this.teraType = teraType;
     }
 
     public static void particleEffect(LivingEntity context) {
@@ -83,28 +86,35 @@ public class TeraShard extends Item {
                 return ActionResult.PASS;
             }
 
-            Item shard = stack.getItem().asItem();
-
             if (pokemon.getSpecies().getName().equals("Ogerpon")
                     || pokemon.getSpecies().getName().equals("Terapagos")) {
                 return ActionResult.PASS;
             }
 
-            if (pokemon.getOwnerPlayer() == player && stack.getCount() == 50) {
-                stack.decrementUnlessCreative(50, player);
-                if (stack.getItem() != TeraMoves.STELLAR_TERA_SHARD.asItem()) {
+            final int required_shards = MegaShowdownConfig.teraShardRequired.get();
+
+            if (pokemon.getOwnerPlayer() == player && stack.getCount() == required_shards) {
+                if(pokemon.getTeraType() == teraType){
+                    player.sendMessage(
+                            Text.translatable("message.mega_showdown.same_tera").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                            true
+                    );
+                    return ActionResult.PASS;
+                }
+                stack.decrementUnlessCreative(MegaShowdownConfig.teraShardRequired.get(), player);
+                if (teraType != TeraTypes.getSTELLAR()) {
                     particleEffect(pokemon.getEntity());
-                    pokemon.setTeraType(getType(shard));
+                    pokemon.setTeraType(teraType);
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera");
                 } else {
                     particleEffect(pokemon.getEntity());
-                    pokemon.setTeraType(TeraTypes.getSTELLAR());
+                    pokemon.setTeraType(teraType);
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera");
                     AdvancementHelper.grantAdvancement((ServerPlayerEntity) player, "tera/change_tera_stellar");
                 }
-            } else if (pokemon.getOwnerPlayer() == player && stack.getCount() != 50) {
+            } else if (pokemon.getOwnerPlayer() == player && stack.getCount() != required_shards) {
                 player.sendMessage(
-                        Text.translatable("message.mega_showdown.tera_requirements").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
+                        Text.translatable("message.mega_showdown.tera_requirements", required_shards).setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                         true
                 );
             }

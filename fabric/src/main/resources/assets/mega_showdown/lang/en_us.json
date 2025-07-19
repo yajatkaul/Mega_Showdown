@@ -481,7 +481,7 @@
   "message.mega_showdown.battle_not_allowed": "Not allowed in battle",
   "message.mega_showdown.already_fused": "Already fused!",
   "message.mega_showdown.you_aint_slick": "Bro thought he could get away with it",
-  "message.mega_showdown.tera_requirements": "You need 50 of these to be used",
+  "message.mega_showdown.tera_requirements": "You need %d of these to be used",
   "message.mega_showdown.primal_limit": "You can only have one primal at a time",
   "message.mega_showdown.resassembly_zygarde_req": "You need a zygarde with power-construct",
   "message.mega_showdown.cube_full": "Cube already has a zygarde",
@@ -585,5 +585,6 @@
   "message.mega_showdown.machine_being_used": "Machine is currently in use",
   "cobblemon.ui.stash.meltan": "Meltans",
   "item.mega_showdown.meltan": "Meltan",
-  "message.mega_showdown.dmax_level_up": "%1$s has reached Dynamax Level: %2$s"
+  "message.mega_showdown.dmax_level_up": "%1$s has reached Dynamax Level: %2$s",
+  "message.mega_showdown.same_tera": "Your pokemon already has this tera type"
 }

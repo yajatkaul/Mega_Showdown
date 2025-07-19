@@ -69,7 +69,7 @@ public class ModBlocks {
             });
 
     public static final Block DORMANT_CRYSTAL = registerBlockWithToolTip("dormant_crystal",
-            new DormantCrystal(4, 3, AbstractBlock.Settings.create()));
+            new DormantCrystal(4, 3, AbstractBlock.Settings.create(), false));
 
     public static final Block MAX_MUSHROOM = Registry.register(
             Registries.BLOCK,
@@ -102,7 +102,7 @@ public class ModBlocks {
                     .sounds(BlockSoundGroup.METAL)));
 
     public static final Block WISHING_STAR_CRYSTAL = registerBlock("wishing_star_crystal",
-            new WishingStarCrystal(4, 3, AbstractBlock.Settings.create()));
+            new WishingStarCrystal(4, 3, AbstractBlock.Settings.create(), true));
 
     public static final Block ROTOM_WASHING_MACHINE = registerRotomBlock("rotom_washing_machine", "wash");
     public static final Block ROTOM_FAN = registerRotomBlock("rotom_fan", "fan");

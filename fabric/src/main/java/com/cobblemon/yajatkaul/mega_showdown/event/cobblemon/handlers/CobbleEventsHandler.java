@@ -201,20 +201,23 @@ public class CobbleEventsHandler {
     }
 
     public static Unit dropShardPokemon(LootDroppedEvent lootDroppedEvent) {
-        if (!MegaShowdownConfig.teralization.get() || MegaShowdownConfig.disableTeraShardDrop.get() || !(lootDroppedEvent.getEntity() instanceof PokemonEntity)) {
+        if (!MegaShowdownConfig.teralization.get() || !(lootDroppedEvent.getEntity() instanceof PokemonEntity)) {
             return Unit.INSTANCE;
         }
         Pokemon pokemon = ((PokemonEntity) lootDroppedEvent.getEntity()).getPokemon();
-
         Item correspondingTeraShard = getTeraShardForType(pokemon.getTypes());
 
         ItemDropEntry teraShardDropEntry = new ItemDropEntry();
         teraShardDropEntry.setItem(Registries.ITEM.getId(correspondingTeraShard));
 
-        int randomValue = new Random().nextInt(101);
-        if (randomValue >= 10 && randomValue <= 20) {
+        Random random = new Random();
+
+        boolean otherSuccess = random.nextDouble() < (MegaShowdownConfig.teraShardDropRate.get() / 100.0);
+        boolean stellarSuccess = random.nextDouble() < (MegaShowdownConfig.stellarShardDropRate.get() / 100.0);
+
+        if (otherSuccess) {
             lootDroppedEvent.getDrops().add(teraShardDropEntry);
-        } else if (randomValue == 33) {
+        } else if (stellarSuccess) {
             teraShardDropEntry.setItem(Registries.ITEM.getId(TeraMoves.STELLAR_TERA_SHARD));
             lootDroppedEvent.getDrops().add(teraShardDropEntry);
         }

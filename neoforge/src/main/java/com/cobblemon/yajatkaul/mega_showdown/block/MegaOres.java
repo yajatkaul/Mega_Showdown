@@ -27,7 +27,7 @@ public class MegaOres {
                             .sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<AmethystClusterBlock> MEGA_STONE_CRYSTAL = registerBlock("mega_stone_crystal",
-            () -> new MegaStoneCrystal(4, 3, BlockBehaviour.Properties.of()));
+            () -> new MegaStoneCrystal(4, 3, BlockBehaviour.Properties.of(), true));
 
     public static final DeferredBlock<Block> MEGA_METEORID_WATER_ORE = registerMeteoroidOre("mega_meteorid_water_ore");
 
