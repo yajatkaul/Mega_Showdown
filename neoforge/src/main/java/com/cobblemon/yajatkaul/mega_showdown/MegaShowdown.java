@@ -87,7 +87,6 @@ public final class MegaShowdown {
         });
 
         CobbleEvents.register();
-        TeraTypeHelper.loadShardData();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {

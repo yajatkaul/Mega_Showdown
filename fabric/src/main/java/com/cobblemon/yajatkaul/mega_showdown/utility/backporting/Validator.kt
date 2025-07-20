@@ -16,45 +16,25 @@ object Validator {
         targetPnx: String? = null,
         gimmickID: String? = null
     ): Boolean {
-        if (forceSwitch || showdownMoveSet == null) return false
-
-        val move = showdownMoveSet.moves.find { it.id == moveName } ?: return false
-        val gimmickMove = move.gimmickMove
-        val isGimmickValid = gimmickMove != null && !gimmickMove.disabled
-
-        if (!isGimmickValid && !move.canBeUsed()) return false
-
-        val target = if (
-            isGimmickValid &&
-            gimmickID in listOf("zmove", "max") &&
-            gimmickMove?.move != move.id
-        ) gimmickMove!!.target else move.target
-
-        val validTargets = target.targetList(activeBattlePokemon)
-        val format = activeBattlePokemon.battle.format.battleType
-
-        val noTargetRequired = target in listOf(
-            MoveTarget.self,
-            MoveTarget.all,
-            MoveTarget.allAdjacent,
-            MoveTarget.allAdjacentFoes,
-            MoveTarget.allyTeam,
-            MoveTarget.allySide,
-            MoveTarget.foeSide,
-            MoveTarget.allies,
-            MoveTarget.randomNormal,
-            MoveTarget.scripted
-        )
-
-        val isMultiTarget = validTargets?.size?.let { it > 1 } == true
-
-        if (targetPnx == null) {
-            if (noTargetRequired || isMultiTarget) return true
-            if (format == BattleTypes.SINGLES && target == MoveTarget.adjacentFoe) return true
+        if (forceSwitch || showdownMoveSet == null) {
             return false
         }
 
-        val (_, targetPokemon) = activeBattlePokemon.actor.battle.getActorAndActiveSlotFromPNX(targetPnx)
-        return validTargets?.contains(targetPokemon) == true
+        val move = showdownMoveSet.moves.find { it.id == moveName } ?: return false
+        val gimmickMove = move.gimmickMove
+        val validGimmickMove = gimmickMove != null && !gimmickMove.disabled
+        if (!validGimmickMove && !move.canBeUsed()) {
+            return false
+        }
+        val availableTargets = (if (gimmickID != null && validGimmickMove && gimmickID != "terastal") gimmickMove!!.target else move.target)
+            .targetList(activeBattlePokemon)?.takeIf { it.isNotEmpty() } ?: return true
+
+        val pnx = targetPnx ?: return false // If the targets list is non-null then they need to have specified a target
+        val (_, targetPokemon) = activeBattlePokemon.actor.battle.getActorAndActiveSlotFromPNX(pnx)
+        if (targetPokemon !in availableTargets) {
+            return false // It's not a possible target.
+        }
+
+        return true
     }
 }

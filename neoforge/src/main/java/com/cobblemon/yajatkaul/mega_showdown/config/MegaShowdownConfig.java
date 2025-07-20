@@ -57,12 +57,12 @@ public class MegaShowdownConfig {
     private static final ModConfigSpec.IntValue TERA_SHARDS_REQUIRED = BUILDER
             .comment("Number of tera shards required to change tera type")
             .defineInRange("teraShardRequired", 50, 1, 50);
-    private static final ModConfigSpec.IntValue TERA_SHARD_DROPRATE = BUILDER
+    private static final ModConfigSpec.DoubleValue TERA_SHARD_DROPRATE = BUILDER
             .comment("Terashard drop rate")
-            .defineInRange("teraShardDropRate", 10, 0, 100);
-    private static final ModConfigSpec.IntValue STELLAR_SHARD_DROPRATE = BUILDER
+            .defineInRange("teraShardDropRate", 10.0, -1, 100);
+    private static final ModConfigSpec.DoubleValue STELLAR_SHARD_DROPRATE = BUILDER
             .comment("Stellar tera drop rate")
-            .defineInRange("stellarShardDropRate", 1, 0, 100);
+            .defineInRange("stellarShardDropRate", 1.0, -1, 100);
 
     public static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -80,8 +80,8 @@ public class MegaShowdownConfig {
     public static boolean showdownFilesLoading;
     public static boolean revertMegas;
     public static int teraShardRequired;
-    public static int teraShardDropRate;
-    public static int stellarShardDropRate;
+    public static double teraShardDropRate;
+    public static double stellarShardDropRate;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {

@@ -21,8 +21,8 @@ public class MegaShowdownConfig {
     public static final Supplier<Boolean> multiplePrimals;
     public static final Supplier<Boolean> revertMegas;
     public static final Supplier<Integer> teraShardRequired;
-    public static final Supplier<Integer> teraShardDropRate;
-    public static final Supplier<Integer> stellarShardDropRate;
+    public static final Supplier<Double> teraShardDropRate;
+    public static final Supplier<Double> stellarShardDropRate;
 
     static {
         // construct a new config builder
@@ -48,8 +48,8 @@ public class MegaShowdownConfig {
         multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", true);
         revertMegas = builder.comment("Enable/Disable mega pokemons form reverting when battle starts").define("revertMegas", true);
         teraShardRequired = builder.comment("Number of tera shards required to change tera type").define("teraShardRequired", 50, 1 , 50);
-        teraShardDropRate = builder.comment("Terashard drop rate").define("teraShardDropRate", 10, 0 , 100);
-        stellarShardDropRate = builder.comment("Stellar tera shard drop rate").define("stellarShardDropRate", 1, 0 , 10);
+        teraShardDropRate = builder.comment("Terashard drop rate").define("teraShardDropRate", 10.0, -1 , 100);
+        stellarShardDropRate = builder.comment("Stellar tera shard drop rate").define("stellarShardDropRate", 1.0, -1, 10);
 
         builder.build();
     }
