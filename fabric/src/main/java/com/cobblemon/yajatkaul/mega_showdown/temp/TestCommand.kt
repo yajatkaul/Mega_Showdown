@@ -64,9 +64,9 @@ object TestCommand {
             //val playerActor2 = PlayerBattleActor(plyr[0].uuid, playerTeam2)
 
             BattleRegistry.startBattle(
-                battleFormat = BattleFormat.GEN_9_DOUBLES,
-                side1 = BattleSide(playerActor),
-                side2 = BattleSide(npcs[1]),
+                battleFormat = BattleFormat.GEN_9_MULTI,
+                side1 = BattleSide(playerActor, npcs[2]),
+                side2 = BattleSide(npcs[1], npcs[0]),
             ).ifSuccessful {
                 it.battlePartyStores.add(player.party())
             }

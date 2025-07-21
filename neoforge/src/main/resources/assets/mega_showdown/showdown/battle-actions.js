@@ -1624,31 +1624,38 @@ class BattleActions {
     baseDamage = this.battle.randomizer(baseDamage);
     if (type !== "???") {
       let stab = 1;
+	  const tera = pokemon.teraType.charAt(0).toUpperCase() + pokemon.teraType.slice(1).toLowerCase();
 	  // Ensure stellarBoostedTypes is initialized
       if (!pokemon.stellarBoostedTypes) {
         pokemon.stellarBoostedTypes = [];
 	  }
-      const isSTAB = move.forceSTAB || pokemon.hasType(type) || pokemon.getTypes(false, true).includes(type) || (pokemon.terastallized && pokemon.teraType.toLowerCase() === type.toLowerCase());
+      const isSTAB = move.forceSTAB || pokemon.hasType(type) || pokemon.getTypes(false, true).includes(type) || (pokemon.terastallized && tera === type);
       if (isSTAB) {
         stab = 1.5;
       }
-      if (pokemon.terastallized && pokemon.teraType.toLowerCase() === "stellar") {
+      if (pokemon.terastallized && tera === "Stellar") {
         if (!pokemon.stellarBoostedTypes.includes(type)) {
 			if (isSTAB) {
 				stab = 2;  // First-time Stellar Boost (2x STAB)
 				pokemon.stellarBoostedTypes.push(type);
+				//console.log(`[STAB] Stellar Tera with STAB - Type: ${type}, Boost: 2x`);
 			} else {
 				stab = 1.2;
 				pokemon.stellarBoostedTypes.push(type);
+				//console.log(`[STAB] Stellar Tera without STAB - Type: ${type}, Boost: 1.2x`);
 				// Do NOT change `stab = 1.5` here, keep the previous STAB value
-				//move.stellarBoosted = true;
 			}
 		}
 	  }
-	  if (pokemon.terastallized && (pokemon.teraType.toLowerCase() === type.toLowerCase())) {
+	  if (pokemon.terastallized && tera === type && pokemon.getTypes(false, true).includes(type)) {
         stab = 2;
+		//console.log(`[STAB] Tera Type and Type matches move Type - Type: ${type}, Boost: 2x`);
       }
 	  stab = this.battle.runEvent("ModifySTAB", pokemon, target, move, stab);
+	  //console.log(`[STAB]Final STAB: ${stab}`);
+	  //console.log(`[DEBUG] Pokémon Types: ${pokemon.types.join(", ")}`);
+	  //console.log(`[DEBUG] Pokémon Tera Type: ${tera}`);
+      //console.log(`[DEBUG] Move Type: ${type}`);
       baseDamage = this.battle.modify(baseDamage, stab);
     }
     let typeMod = target.runEffectiveness(move);
@@ -1761,6 +1768,7 @@ class BattleActions {
       this.battle.singleEvent("End", this.dex.abilities.get("Illusion"), pokemon.abilityState, pokemon);
     }
 	const type = pokemon.teraType.charAt(0).toUpperCase() + pokemon.teraType.slice(1).toLowerCase();
+	//console.log(`[Tera] ${pokemon.name} is terastallizing into: ${type}`);
 	this.battle.add("-terastallize", pokemon, type);
 	pokemon.canMegaEvo = null;
     pokemon.terastallized = type;

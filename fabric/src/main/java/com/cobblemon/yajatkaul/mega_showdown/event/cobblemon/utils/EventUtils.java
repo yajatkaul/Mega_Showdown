@@ -80,7 +80,7 @@ public class EventUtils {
             new StringSpeciesFeature("multitype", "normal").apply(pokemon);
         } else if (pokemon.getSpecies().getName().equals("Xerneas")) {
             new StringSpeciesFeature("life_mode", "neutral").apply(pokemon);
-        } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra")) {
+        } else if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra-fusion")) {
             if (pokemon.getEntity() != null) {
                 UltraLogic.ultraAnimation(pokemon.getEntity());
             }

@@ -6,5 +6,25 @@
     "width": 0.5,
     "height": 1,
     "fixed": false
-  }
+  },
+  "forms": [
+    {
+      "name": "F2",
+      "primaryType": "psychic",
+      "maleRatio": -1,
+      "height": 5,
+      "weight": 50,
+      "pokedex": [
+        "cobblemon.species.unown-f2.desc"
+      ],
+      "labels": [
+        "gen2"
+      ],
+      "aspects": [
+        "character-f"
+      ],
+      "evolutions": [],
+      "battleOnly": false
+    }
+  ]
 }
