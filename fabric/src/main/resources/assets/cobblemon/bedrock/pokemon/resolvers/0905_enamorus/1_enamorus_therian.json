@@ -3,23 +3,16 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "therian-forme"
-      ],
+      "aspects": [ "therian-forme" ],
       "poser": "cobblemon:enamorus_therian",
       "model": "cobblemon:enamorus_therian.geo",
-      "texture": "cobblemon:textures/pokemon/0905_enamorus/enamorus_therian.png",
-      "layers": []
+      "texture": "cobblemon:textures/pokemon/0905_enamorus/enamorus_therian.png"
     },
     {
-      "aspects": [
-        "therian-forme",
-        "shiny"
-      ],
+      "aspects": [ "therian-forme","shiny" ],
       "poser": "cobblemon:enamorus_therian",
       "model": "cobblemon:enamorus_therian.geo",
-      "texture": "cobblemon:textures/pokemon/0905_enamorus/enamorus_therian_shiny.png",
-      "layers": []
+      "texture": "cobblemon:textures/pokemon/0905_enamorus/enamorus_therian_shiny.png"
     }
   ]
 }
