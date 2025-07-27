@@ -52,8 +52,8 @@
   },
   "baseScale": 1,
   "hitbox": {
-    "width": 2,
-    "height": 4,
+    "width": 2.2,
+    "height": 2.5,
     "fixed": false
   },
   "baseExperienceYield": 300,
@@ -178,10 +178,10 @@
       "pokedex": [
         "cobblemon.species.landorus-therian.desc"
       ],
-      "baseScale": 1.4,
+      "baseScale": 1,
       "hitbox": {
-        "width": 2,
-        "height": 2,
+        "width": 1.85,
+        "height": 3,
         "fixed": false
       },
       "labels": [

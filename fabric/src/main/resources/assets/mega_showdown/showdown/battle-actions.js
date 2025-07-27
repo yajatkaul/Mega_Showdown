@@ -1661,15 +1661,22 @@ class BattleActions {
     let typeMod = target.runEffectiveness(move);
     typeMod = this.battle.clampIntRange(typeMod, -6, 6);
     target.getMoveHitData(move).typeMod = typeMod;
+	if (!suppressMessages) {
+	  if (typeMod >= 2) {
+        this.battle.add("-extremelyeffective", target);
+	  } else if (typeMod <= -2) {
+        this.battle.add("-mostlyineffective", target);
+      }
+    }
     if (typeMod > 0) {
-      if (!suppressMessages)
+      if (!suppressMessages && typeMod < 2)
         this.battle.add("-supereffective", target);
       for (let i = 0; i < typeMod; i++) {
         baseDamage *= 2;
       }
     }
     if (typeMod < 0) {
-      if (!suppressMessages)
+      if (!suppressMessages && typeMod > -2)
         this.battle.add("-resisted", target);
       for (let i = 0; i > typeMod; i--) {
         baseDamage = tr(baseDamage / 2);

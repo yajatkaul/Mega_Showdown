@@ -167,7 +167,7 @@
   "pokemon.landorustherian.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon/landorus_cry",
+        "name": "cobblemon:pokemon/landorustherian_cry",
         "volume": 0.8
       }
     ]
@@ -252,6 +252,30 @@
       }
     ]
   },
+  "pokemon.thundurustherian.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/thundurustherian_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.enamorus.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/enamorus_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.enamorustherian.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/enamorustherian_cry",
+        "volume": 0.8
+      }
+    ]
+  },
   "pokemon.tornadus.cry": {
     "sounds": [
       {
@@ -260,18 +284,10 @@
       }
     ]
   },
-  "pokemon.thundurustherian.cry": {
-    "sounds": [
-      {
-        "name": "cobblemon:pokemon/thundurus_cry",
-        "volume": 0.8
-      }
-    ]
-  },
   "pokemon.tornadustherian.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon/tornadus_cry",
+        "name": "cobblemon:pokemon/tornadustherian_cry",
         "volume": 0.8
       }
     ]

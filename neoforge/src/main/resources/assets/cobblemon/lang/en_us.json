@@ -837,5 +837,45 @@
   "cobblemon.species.unownn-?.desc": "This Pokémon is shaped like ancient writing. It is a mystery as to which came first, the ancient writings or the various UNOWN. Research into this topic is ongoing but nothing is known.",
   "cobblemon.battle.activate.terashift": "A glow surrounds %1$s!",
   "cobblemon.battle.activate.terashell": "%1$s made its shell gleam! It's distorting type matchups!",
-  "cobblemon.move.terastarstorm": "Tera Starstorm"
+  "cobblemon.move.terastarstorm": "Tera Starstorm",
+  "cobblemon.battle.extremelyeffective": "It was extremely effective!",
+  "cobblemon.battle.mostlyineffective": "It was mostly ineffective!",
+
+  "cobblemon.move.temperflare": "Temper Flare",
+  "cobblemon.move.temperflare.desc": "Power doubles if the user's last move failed.",
+
+  "cobblemon.move.supercellslam": "Supercell Slam",
+  "cobblemon.move.supercellslam.desc": "User is hurt by 50% of its max HP if it misses.",
+
+  "cobblemon.move.alluringvoice": "Alluring Voice",
+  "cobblemon.move.alluringvoice.desc": "100% confuse target that had a stat rise this turn.",
+
+  "cobblemon.move.psychicnoise": "Psychic Noise",
+  "cobblemon.move.psychicnoise.desc": "For 2 turns, the target is prevented from healing.",
+
+  "cobblemon.move.electroshot": "Electro Shot",
+  "cobblemon.move.electroshot.desc": "Raises Sp. Atk by 1, hits turn 2. Rain: no charge.",
+
+  "cobblemon.move.ficklebeam": "Fickle Beam",
+  "cobblemon.move.ficklebeam.desc": "Has a 30% chance this move's power is doubled.",
+
+  "cobblemon.move.burningbulwark": "Burning Bulwark",
+  "cobblemon.move.burningbulwark.desc": "Protects from damaging attacks. Contact: burn.",
+
+  "cobblemon.move.thunderclap": "Thunder Clap",
+  "cobblemon.move.thunderclap.desc": "Usually goes first. Fails if target is not attacking.",
+
+  "cobblemon.move.mightycleave": "Mighty Cleave",
+  "cobblemon.move.mightycleave.desc": "Bypasses protection without breaking it.",
+
+  "cobblemon.move.tachyoncutter": "Tachyon Cutter",
+  "cobblemon.move.tachyoncutter.desc": "Hits twice. This move does not check accuracy.",
+
+  "cobblemon.move.terastarstorm.desc": "Terapagos-Stellar: Stellar type, hits both foes.",
+
+  "cobblemon.move.hardpress": "Hard Press",
+  "cobblemon.move.hardpress.desc": "More power the more HP the target has left.",
+
+  "cobblemon.move.dragoncheer": "Dragon Cheer",
+  "cobblemon.move.dragoncheer.desc": "Ally: Crit ratio +1, or +2 if ally is Dragon type."
 }

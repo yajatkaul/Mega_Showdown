@@ -3,21 +3,16 @@
   "order": 1,
   "variations": [
     {
-      "aspects": [
-        "therian-forme"
-      ],
-      "poser": "cobblemon:landorustherian",
-      "model": "cobblemon:landorustherian.geo",
-      "texture": "cobblemon:textures/pokemon/0645_landorus/landorustherian.png",
-      "layers": []
+      "aspects": [ "therian-forme" ],
+      "poser": "cobblemon:landorus_therian",
+      "model": "cobblemon:landorus_therian.geo",
+      "texture": "cobblemon:textures/pokemon/0645_landorus/landorus_therian.png"
     },
     {
-      "aspects": [
-        "shiny",
-        "therian-forme"
-      ],
-      "texture": "cobblemon:textures/pokemon/0645_landorus/landorustherian_shiny.png",
-      "layers": []
+      "aspects": [ "therian-forme","shiny" ],
+      "poser": "cobblemon:landorus_therian",
+      "model": "cobblemon:landorus_therian.geo",
+      "texture": "cobblemon:textures/pokemon/0645_landorus/landorus_therian_shiny.png"
     }
   ]
 }

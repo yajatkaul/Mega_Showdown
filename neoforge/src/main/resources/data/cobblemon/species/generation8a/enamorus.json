@@ -36,8 +36,8 @@
   },
   "baseScale": 1,
   "hitbox": {
-    "width": 2,
-    "height": 3,
+    "width": 1.5,
+    "height": 2.5,
     "fixed": false
   },
   "baseStats": {
@@ -171,10 +171,10 @@
         "overcoat",
         "h:overcoat"
       ],
-      "baseScale": 1.1,
+      "baseScale": 1,
       "hitbox": {
-        "width": 2,
-        "height": 1,
+        "width": 2.5,
+        "height": 3.2,
         "fixed": false
       },
       "baseStats": {
