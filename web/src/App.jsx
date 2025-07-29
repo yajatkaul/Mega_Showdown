@@ -99,11 +99,13 @@ function App() {
           },
         },
         fuse_if: [["galar"]],
+        fusion_blacklist_aspects: [["orange"]],
         fusion_aspects: ["absofusion=true"],
         revert_if: [["absofusion"]],
         revert_aspects: ["absofusion=false"],
         fusion_mons: ["Charizard"],
         fuser_fuse_if: [["galar"]],
+        fuser_blacklist_aspects: [["shiny"]],
         fuser_mons: ["Venasaur"],
       },
       details: [
