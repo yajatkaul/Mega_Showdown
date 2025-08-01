@@ -122,6 +122,10 @@ public class ZygardeCube extends Item {
                         return InteractionResultHolder.success(stack);
                     }
 
+                    if(pokemon.getOwnerPlayer() != player) {
+                        return InteractionResultHolder.pass(stack);
+                    }
+
                     if (!pk.getAspects().contains("power-construct")) {
                         if (stack.get(DataManage.POKEMON_STORAGE) != null) {
                             player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")

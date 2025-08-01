@@ -213,6 +213,10 @@ public class ZygardeCube extends Item {
                         return TypedActionResult.success(stack);
                     }
 
+                    if(pokemon.getOwnerPlayer() != player) {
+                        return TypedActionResult.pass(stack);
+                    }
+
                     if (!pk.getAspects().contains("power-construct")) {
                         if (stack.get(DataManage.POKEMON_STORAGE) != null) {
                             player.sendMessage(
