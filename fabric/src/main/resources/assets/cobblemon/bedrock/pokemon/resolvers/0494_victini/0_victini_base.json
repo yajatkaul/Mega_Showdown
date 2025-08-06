@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:victini",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:victini",
+      "model": "cobblemon:victini.geo",
+      "texture": "cobblemon:textures/pokemon/0494_victini/victini.png",
+      "layers": []
+    },
+    {
+      "aspects": ["shiny"],
+      "texture": "cobblemon:textures/pokemon/0494_victini/victini_shiny.png",
+      "layers": []
+    }
+  ]
+}

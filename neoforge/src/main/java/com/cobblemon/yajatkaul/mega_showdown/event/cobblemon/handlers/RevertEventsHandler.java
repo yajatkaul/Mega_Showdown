@@ -39,6 +39,8 @@ public class RevertEventsHandler {
             return Unit.INSTANCE;
         }
 
+        pokemon.getPersistentData().putBoolean("is_tera", false);
+
         boolean isMega = pokemon.getAspects().stream()
                 .anyMatch(aspect -> aspect.startsWith("mega"));
 

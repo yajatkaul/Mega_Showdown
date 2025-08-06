@@ -150,7 +150,7 @@ public class HandlerUtils {
         boolean enchantmentCorrect = false;
 
         if (hasEnchantment) {
-            String namespace = parts[2] + parts[3];
+            String namespace = parts[2] + ":" + parts[3];
             ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(itemStack);
 
             for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {

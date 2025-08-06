@@ -237,7 +237,7 @@ public class HandlerUtils {
         boolean enchantmentCorrect = false;
 
         if (hasEnchantment) {
-            String nameSpace = parts[2] + parts[3];
+            String nameSpace = parts[2] + ":" + parts[3];
 
             ItemEnchantmentsComponent enchantments = EnchantmentHelper.getEnchantments(itemStack);
             for (RegistryEntry<Enchantment> entry : enchantments.getEnchantments()) {
