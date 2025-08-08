@@ -13,6 +13,7 @@ import com.cobblemon.mod.common.api.events.pokeball.ThrownPokeballHitEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
+import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionCompleteEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.item.HealingSource;
@@ -22,6 +23,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution;
 import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
@@ -38,6 +40,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -269,8 +272,26 @@ public class CobbleEventsHandler {
                 }
             }
             case "Arceus" -> {
-                EventUtils.playFormeChangeAnimation(pokemon.getEntity());
-                new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+                battle.dispatchWaitingToFront(3F, () -> {
+                    pokemonEntity.getWorld().playSound(
+                            null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                            ModSounds.ARCEUS_MULTITYPE,
+                            SoundCategory.PLAYERS, 0.2f, 1.3f
+                    );
+
+                    SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
+                            Identifier.tryParse("cobblemon:arceus_" + formeChangeEvent.getFormeName()), List.of("target"));
+                    pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+                    return Unit.INSTANCE;
+                });
+
+                pokemon.getEntity().after(4F, () -> {
+                    new StringSpeciesFeature("multitype", formeChangeEvent.getFormeName()).apply(pokemon);
+                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
+                    pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                    return Unit.INSTANCE;
+                });
             }
             case "Minior" -> {
                 if (formeChangeEvent.getFormeName().equals("meteor")) {
