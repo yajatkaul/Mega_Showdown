@@ -26,7 +26,7 @@ object Validator {
         if (!validGimmickMove && !move.canBeUsed()) {
             return false
         }
-        val availableTargets = (if (gimmickID != null && validGimmickMove && gimmickID != "terastal") gimmickMove!!.target else move.target)
+        val availableTargets = (if (gimmickID != null && validGimmickMove && gimmickID != "terastal" && gimmickID != "mega") gimmickMove!!.target else move.target)
             .targetList(activeBattlePokemon)?.takeIf { it.isNotEmpty() } ?: return true
 
         val pnx = targetPnx ?: return false // If the targets list is non-null then they need to have specified a target
