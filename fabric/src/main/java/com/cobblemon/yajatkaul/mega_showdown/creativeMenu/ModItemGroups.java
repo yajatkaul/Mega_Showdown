@@ -226,6 +226,7 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.ADAMANT_CRYSTAL);
                         entries.add(FormeChangeItems.LUSTROUS_GLOBE);
                         entries.add(FormeChangeItems.ASH_CAP);
+                        entries.add(FormeChangeItems.PIKA_CASE);
                         entries.add(RotomFormes.FAN);
                         entries.add(RotomFormes.FRIDGEUNIT);
                         entries.add(RotomFormes.MOWUNIT);

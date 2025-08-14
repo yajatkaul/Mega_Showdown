@@ -247,5 +247,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(FormeChangeItems.MELTAN.get());
         basicItem(ModItems.DEBUG_STICK.get());
+
+        basicItem(FormeChangeItems.PIKA_CASE.get());
     }
 }

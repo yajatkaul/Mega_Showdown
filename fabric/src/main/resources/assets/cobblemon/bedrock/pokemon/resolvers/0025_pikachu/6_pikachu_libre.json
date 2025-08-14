@@ -6,13 +6,13 @@
       "aspects": ["libre"],
       "poser": "cobblemon:pikachu",
       "model": "cobblemon:pikachu_libre.geo",
-      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_libre.png",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_libre.png",
       "layers": []
     },
     {
       "aspects": ["libre", "shiny"],
 	  "model": "cobblemon:pikachu_libre.geo",
-      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_libre_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_libre_shiny.png"
     }
   ]
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-15T12:23:51.7221443	Item Models: mega_showdown
+// 1.21.1	2025-08-14T18:52:26.2518811	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -139,6 +139,7 @@ a4f3d0f8703abbd6ef02b259f2a6bc6b71f51f27 assets/mega_showdown/models/item/pharao
 6ad66abc876feb4cc03a562c7f1be7d24e02f4e2 assets/mega_showdown/models/item/pidgeotite.json
 09054ce39dd29db659a9e9f8dae2bb25d690a9a2 assets/mega_showdown/models/item/pikanium-z.json
 df20cc318724f28fa3a85b6f519342e94585766a assets/mega_showdown/models/item/pikashunium-z.json
+4f486eb67adb5fa56027476f2a01cf551d011e5b assets/mega_showdown/models/item/pika_case.json
 ad2a66a7e1ebdb39bc5629741a61b5143a766a84 assets/mega_showdown/models/item/pink_nectar.json
 ad8a4c1c0a0f2a782def736db0a29fd6dc0c8517 assets/mega_showdown/models/item/pinsirite.json
 46ebfd23033ceae4038db17b8e83351c39c03903 assets/mega_showdown/models/item/pixieplate.json

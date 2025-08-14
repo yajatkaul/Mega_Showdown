@@ -642,6 +642,9 @@ public class FormeChangeItems {
                 }
             });
 
+    public static final DeferredItem<Item> PIKA_CASE = ITEMS.register("pika_case",
+            () -> new PikaCase(new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> REVEAL_GLASS = ITEMS.register("reveal_glass",
             () -> new RevealGlass(new Item.Properties().stacksTo(1)));
 

@@ -6,13 +6,13 @@
       "aspects": ["belle"],
       "poser": "cobblemon:pikachu",
       "model": "cobblemon:pikachu_belle.geo",
-      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_belle.png",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle.png",
       "layers": []
     },
     {
       "aspects": ["belle", "shiny"],
       "model": "cobblemon:pikachu_belle.geo",
-      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_belle_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_shiny.png"
     }
   ]
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-18T22:34:44.4850119	Recipes
+// 1.21.1	2025-08-14T18:57:33.3924996	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -49,6 +49,7 @@ e28fe7b8e9d6b66ed668edc71d3f77724db20b6e data/mega_showdown/advancement/recipes/
 21faa917b34157a23eb5172319b00a2eb4c9ba1b data/mega_showdown/advancement/recipes/misc/olivias_z-ring.json
 8e5b61faf4e2d0ede016735211d1f595ab2d3214 data/mega_showdown/advancement/recipes/misc/olivia_z-power_ring.json
 7426846b2ffd39950efb7ef9de74c4047a923b83 data/mega_showdown/advancement/recipes/misc/pedestal.json
+db713f3e1021514576be897d90ef7d5daa88dc41 data/mega_showdown/advancement/recipes/misc/pika_case.json
 96fb56f38e7eaa77fc5ec59dac4cada6c74c00dc data/mega_showdown/advancement/recipes/misc/pink_nectar.json
 89ac108ccdd0079095af5ff20b492f44d8ba5763 data/mega_showdown/advancement/recipes/misc/power_spot.json
 86c29a4c948b6fc931faa503c2c8f0d0476a4e63 data/mega_showdown/advancement/recipes/misc/purple_nectar.json
@@ -124,6 +125,7 @@ dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.j
 318ac2ecffc560e40e6c239142e25ea60186d49f data/mega_showdown/recipe/olivias_z-ring.json
 16bde255901bd5486bc91d3e249d2f29b279aeca data/mega_showdown/recipe/olivia_z-power_ring.json
 744c8cd74a30d903d8abe992ee2e27588923e795 data/mega_showdown/recipe/pedestal.json
+dd715ce367db7aaf2ce4b150994ca01510dacad4 data/mega_showdown/recipe/pika_case.json
 8bd6419854bd6ad7f14070024bbfe76e8eac763b data/mega_showdown/recipe/pink_nectar.json
 665e6e446b8e72bc520ebfdc82503da2b561dc52 data/mega_showdown/recipe/polished_mega_evo_block.json
 640985aa50ab1d16dba3101b6279327c8e67dcd2 data/mega_showdown/recipe/power_spot.json

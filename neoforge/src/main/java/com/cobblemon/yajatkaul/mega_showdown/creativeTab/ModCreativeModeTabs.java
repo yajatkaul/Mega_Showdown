@@ -234,6 +234,7 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.LUSTROUS_GLOBE);
                         output.accept(FormeChangeItems.ADAMANT_CRYSTAL);
                         output.accept(FormeChangeItems.ASH_CAP);
+                        output.accept(FormeChangeItems.PIKA_CASE);
                         output.accept(RotomFormes.WASHINGUNIT);
                         output.accept(RotomFormes.FANUNIT);
                         output.accept(RotomFormes.MOWUNIT);

@@ -21,6 +21,15 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, FormeChangeItems.PIKA_CASE.get())
+                .pattern("YYY")
+                .pattern("IEI")
+                .pattern("III")
+                .define('Y', Items.YELLOW_DYE)
+                .define('I', Items.IRON_INGOT)
+                .define('E', CobblemonItems.ELECTRIC_GEM)
+                .unlockedBy("has_electric_gem", has(CobblemonItems.ELECTRIC_GEM)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MEGA_BRACELET.get())
                 .pattern("IDI")
                 .pattern("AKA")

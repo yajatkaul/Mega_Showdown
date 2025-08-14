@@ -12,6 +12,17 @@
       "aspects": ["belle", "shiny", "region-bias-alola"],
 	  "model": "cobblemon:pikachu_belle.geo",
       "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_alola_bias_shiny.png"
+    },
+    {
+      "aspects": ["belle", "alolan"],
+      "model": "cobblemon:pikachu_belle.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_alola_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": ["belle", "shiny", "alolan"],
+      "model": "cobblemon:pikachu_belle.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_alola_bias_shiny.png"
     }
   ]
 }
