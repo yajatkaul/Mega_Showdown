@@ -1,0 +1,17 @@
+{
+  "species": "cobblemon:pikachu",
+  "order": 14,
+  "variations": [
+    {
+      "aspects": ["phd", "region-bias-alola"],
+	  "model": "cobblemon:pikachu_phd.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_phd_alola_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": ["phd", "shiny", "region-bias-alola"],
+	  "model": "cobblemon:pikachu_phd.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_phd_alola_bias_shiny.png"
+    }
+  ]
+}

@@ -82,7 +82,7 @@ class BattleTargetSelection(
 
     val targets = request.activePokemon.getAllActivePokemon()
     val targetType =
-        if (gimmickID != null && gimmickMove != null && gimmickID != "terastal") gimmickMove.target else move.target
+        if (gimmickID != null && gimmickMove != null && gimmickID != "terastal" && gimmickID != "mega") gimmickMove.target else move.target
     val backButton = BattleBackButton(x + 9F, Minecraft.getInstance().window.guiScaledHeight - 22F)
     val selectableTargetList = targetType.targetList(request.activePokemon)
     val multiTargetList =

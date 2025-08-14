@@ -1,0 +1,18 @@
+{
+  "species": "cobblemon:pikachu",
+  "order": 6,
+  "variations": [
+    {
+      "aspects": ["libre"],
+      "poser": "cobblemon:pikachu",
+      "model": "cobblemon:pikachu_libre.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_libre.png",
+      "layers": []
+    },
+    {
+      "aspects": ["libre", "shiny"],
+	  "model": "cobblemon:pikachu_libre.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_libre_shiny.png"
+    }
+  ]
+}

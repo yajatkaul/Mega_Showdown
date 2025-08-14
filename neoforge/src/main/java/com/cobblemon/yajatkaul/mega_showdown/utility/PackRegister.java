@@ -26,11 +26,11 @@ public class PackRegister {
                     java.util.Optional.empty()       // No explicit format
             );
 
-            Path regionBiasGmaxPath = modFile.findResource("resourcepacks", "regionbiasgmax");
+            Path regionBiasGmaxPath = modFile.findResource("resourcepacks", "regionbiasmsd");
             // Create PackLocationInfo
             PackLocationInfo regionBiasGmaxInfo = new PackLocationInfo(
-                    "regionbiasgmax",           // Internal ID
-                    Component.translatable("message.mega_showdown.region_bias_gmax"), // Display name
+                    "regionbiasmsd",           // Internal ID
+                    Component.translatable("message.mega_showdown.region_bias_msd"), // Display name
                     PackSource.BUILT_IN,              // Source
                     java.util.Optional.empty()       // No explicit format
             );

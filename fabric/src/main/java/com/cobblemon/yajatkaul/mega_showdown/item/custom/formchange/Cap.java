@@ -19,6 +19,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.List;
+
 public class Cap extends Item {
 
     public Cap(Settings settings) {
@@ -63,10 +65,20 @@ public class Cap extends Item {
         }
     }
 
+    private final List<String> black_list = List.of(
+            "cosplay",
+            "belle",
+            "libre",
+            "phd",
+            "pop_star",
+            "rock_star"
+    );
+
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 
-        if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()) {
+        if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()
+        && pk.getAspects().stream().noneMatch(black_list::contains)) {
             if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")) {
                 if (pk.getFriendship() < 200) {
                     user.sendMessage(

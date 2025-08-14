@@ -17,6 +17,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
+
 public class Cap extends Item {
     public Cap(Properties arg) {
         super(arg);
@@ -60,10 +62,21 @@ public class Cap extends Item {
         }
     }
 
+    private final List<String> black_list = List.of(
+            "cosplay",
+            "belle",
+            "libre",
+            "phd",
+            "pop_star",
+            "rock_star"
+    );
+
+
     @Override
     public InteractionResult interactLivingEntity(ItemStack arg, Player player, LivingEntity context, InteractionHand arg4) {
         if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player && !pk.isBattling() && !player.isCrouching()) {
-            if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")) {
+            if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")
+                    && pk.getAspects().stream().noneMatch(black_list::contains)) {
                 if (pk.getFriendship() < 200) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
                             .withColor(0xFF0000), true);

@@ -1,0 +1,24 @@
+{
+  "species": "cobblemon:pikachu",
+  "order": 17,
+  "variations": [
+    {
+      "aspects": [
+        "partner-cap",
+        "region-bias-alola"
+      ],
+      "poser": "cobblemon:pikachu",
+      "model": "cobblemon:pikachu_league_partner.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_league_partner_alola_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "partner-cap",
+        "shiny",
+        "region-bias-alola"
+      ],
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_league_partner_alola_bias_shiny.png"
+    }
+  ]
+}
