@@ -1,0 +1,40 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "pikachu-cosmetic",
+      "pokemon": "pikachu cosplay=cosplay",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "16-32",
+      "weight": 1.84,
+      "weightMultiplier": {
+        "multiplier": 5.0,
+        "condition": {
+          "isThundering": true
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "aether:skyroot_forest",
+          "aether:skyroot_woodland",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    }
+  ]
+}
