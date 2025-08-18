@@ -1765,6 +1765,12 @@ class BattleActions {
 	  if (pokemon.species.baseSpecies === "Rayquaza" && !pokemon.getItem().zMove) {
       return pokemon.teraType;
     }
+       if (
+          pokemon.species.name === "Groudon-Primal" ||
+          pokemon.species.name === "Kyogre-Primal"
+        ) {
+          return null;
+        }
       if (pokemon.getItem().zMove || pokemon.canMegaEvo || this.dex.gen !== 9 || pokemon.volatiles["dynamax"]) {
       return null;
     }
