@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-14T18:57:33.3924996	Recipes
+// 1.21.1	2025-08-19T17:00:09.7798474	Recipes
 6d9c3d74779b0fd6609e6ece7f99cc196f0844e7 data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_block.json
 8ed4ba2c781cd9caf43e8ae06417100ffa88778b data/mega_showdown/advancement/recipes/building_blocks/chiseled_mega_evo_brick.json
 8c73e7f94232342336bedb70396b55c3aea3bd8d data/mega_showdown/advancement/recipes/building_blocks/mega_evo_brick.json
@@ -48,6 +48,7 @@ e28fe7b8e9d6b66ed668edc71d3f77724db20b6e data/mega_showdown/advancement/recipes/
 5c7d37bd6f363dc1ffbbb5e55de384d07750916e data/mega_showdown/advancement/recipes/misc/n_solarizer.json
 21faa917b34157a23eb5172319b00a2eb4c9ba1b data/mega_showdown/advancement/recipes/misc/olivias_z-ring.json
 8e5b61faf4e2d0ede016735211d1f595ab2d3214 data/mega_showdown/advancement/recipes/misc/olivia_z-power_ring.json
+f391712c36eaf13a5409a2fe9db125830a888f92 data/mega_showdown/advancement/recipes/misc/omni_ring.json
 7426846b2ffd39950efb7ef9de74c4047a923b83 data/mega_showdown/advancement/recipes/misc/pedestal.json
 db713f3e1021514576be897d90ef7d5daa88dc41 data/mega_showdown/advancement/recipes/misc/pika_case.json
 96fb56f38e7eaa77fc5ec59dac4cada6c74c00dc data/mega_showdown/advancement/recipes/misc/pink_nectar.json
@@ -124,6 +125,7 @@ dbce4378c030bba3f061c7b2b930ef4e8352c786 data/mega_showdown/recipe/n_lunarizer.j
 3573a93f54ee2b0e480adb16216ac318323ee4b0 data/mega_showdown/recipe/n_solarizer.json
 318ac2ecffc560e40e6c239142e25ea60186d49f data/mega_showdown/recipe/olivias_z-ring.json
 16bde255901bd5486bc91d3e249d2f29b279aeca data/mega_showdown/recipe/olivia_z-power_ring.json
+8489b90e2893e4c2ee514f1949c5e62eff990be7 data/mega_showdown/recipe/omni_ring.json
 744c8cd74a30d903d8abe992ee2e27588923e795 data/mega_showdown/recipe/pedestal.json
 dd715ce367db7aaf2ce4b150994ca01510dacad4 data/mega_showdown/recipe/pika_case.json
 8bd6419854bd6ad7f14070024bbfe76e8eac763b data/mega_showdown/recipe/pink_nectar.json
@@ -134,7 +136,7 @@ dd715ce367db7aaf2ce4b150994ca01510dacad4 data/mega_showdown/recipe/pika_case.jso
 38d930c92fa0d308a21fadc15115da8fd43e0272 data/mega_showdown/recipe/red_nectar.json
 f2c8df58e0a8c4b99099e844f3a54e5fa1ea027c data/mega_showdown/recipe/reins_of_unity.json
 ddd89a03bf5f8bfd2a9a97048f93b0b7bf288213 data/mega_showdown/recipe/rocket_z-power_ring.json
-672b41412ad16fc0565184d0453947453a4c08ed data/mega_showdown/recipe/rotom_catalogue.json
+c2a7cc3b5f9b528291b791fc0202d65acaec5739 data/mega_showdown/recipe/rotom_catalogue.json
 478ef97854e244280c6e6bd4d800bd43715df878 data/mega_showdown/recipe/rotom_fan.json
 85ac1ad5a2a383fb3411b30eb9e66dcaf636fa0d data/mega_showdown/recipe/rotom_fridge.json
 78f6157bc8e62fd3915e8b98b320b32eea2d882e data/mega_showdown/recipe/rotom_mow.json

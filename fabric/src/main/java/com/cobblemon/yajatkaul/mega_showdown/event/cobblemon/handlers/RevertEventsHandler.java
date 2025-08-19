@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
+import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.block.ModBlocks;
@@ -41,24 +42,11 @@ public class RevertEventsHandler {
         }
 
         for (ServerPlayerEntity player : battleEvent.getBattle().getPlayers()) {
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-            boolean hasTerapagos = false;
-            for (Pokemon pokemon : playerPartyStore) {
-                if (pokemon.getSpecies().getName().equals("Terapagos")) {
-                    hasTerapagos = true;
-                }
-                EventUtils.revertFormesEnd(pokemon);
-            }
-
             GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
-            boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
-
-            if (isBlockNearby(player, ModBlocks.POWER_SPOT, MegaShowdownConfig.powerSpotRange.get()) || MegaShowdownConfig.dynamaxAnywhere.get()) {
-                if ((player.getOffHandStack().getItem() instanceof Dynamax
-                        || player.getOffHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
-                        || hasDMaxItemTrinkets) && MegaShowdownConfig.dynamax.get()) {
+            if (isBlockNearby(player, ModBlocks.POWER_SPOT, MegaShowdownConfig.powerSpotRange.get())
+                    || MegaShowdownConfig.dynamaxAnywhere.get()) {
+                if (hasGimmick(ShowdownMoveset.Gimmick.DYNAMAX, player)) {
                     data.getKeyItems().add(Identifier.of("cobblemon", "dynamax_band"));
                 } else {
                     data.getKeyItems().remove(Identifier.of("cobblemon", "dynamax_band"));
@@ -67,46 +55,19 @@ public class RevertEventsHandler {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "dynamax_band"));
             }
 
-            boolean hasTeraItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> (item.getItem() instanceof TeraItem))).orElse(false);
-
-            ItemStack teraOrb = TrinketsApi.getTrinketComponent(player)
-                    .flatMap(component -> component.getAllEquipped().stream()
-                            .map(Pair::getRight)
-                            .filter(stack -> !stack.isEmpty() && (
-                                    stack.getItem() instanceof TeraItem
-                            ))
-                            .findFirst()
-                    ).orElse(null);
-
-            if (teraOrb != null && hasTerapagos) {
-                teraOrb.setDamage(0);
-            }
-
-            if (teraOrb == null || teraOrb.getDamage() >= 100) {
-                hasTeraItemTrinkets = false;
-            }
-
-            if (hasTeraItemTrinkets && MegaShowdownConfig.teralization.get()) {
+            if (hasGimmick(ShowdownMoveset.Gimmick.TERASTALLIZATION, player)) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "tera_orb"));
             } else {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "tera_orb"));
             }
 
-            if (MegaShowdownConfig.revertMegas.get() && MegaShowdownConfig.mega.get() && MegaLogic.Possible(player, true)
-                    && !FormChangeHelper.hasMega(player)) {
+            if (hasGimmick(ShowdownMoveset.Gimmick.MEGA_EVOLUTION, player)) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "key_stone"));
             } else {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "key_stone"));
             }
 
-            boolean hasZItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                    trinkets.isEquipped(item -> (item.getItem() instanceof ZRingItem
-                            || item.isIn(ModTags.Items.Z_RINGS)))).orElse(false);
-
-            if ((player.getOffHandStack().getItem() instanceof ZRingItem
-                    || player.getOffHandStack().isIn(ModTags.Items.Z_RINGS)
-                    || hasZItemTrinkets) && MegaShowdownConfig.zMoves.get()) {
+            if (hasGimmick(ShowdownMoveset.Gimmick.Z_POWER, player)) {
                 data.getKeyItems().add(Identifier.of("cobblemon", "z_ring"));
             } else {
                 data.getKeyItems().remove(Identifier.of("cobblemon", "z_ring"));
@@ -114,6 +75,85 @@ public class RevertEventsHandler {
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayerEntity player) {
+        if(gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
+            if(!MegaShowdownConfig.dynamax.get()) {
+                return false;
+            }
+
+            boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                    trinkets.isEquipped(item -> item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
+
+            return player.getOffHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
+                    || player.getMainHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
+                    || hasDMaxItemTrinkets;
+        }
+
+        else if(gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
+            if(!MegaShowdownConfig.teralization.get()) {
+                return false;
+            }
+
+            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+
+            boolean hasTerapagos = false;
+            for (Pokemon pokemon : playerPartyStore) {
+                if (pokemon.getSpecies().getName().equals("Terapagos")) {
+                    hasTerapagos = true;
+                }
+                EventUtils.revertFormesEnd(pokemon);
+            }
+
+            ItemStack teraOrb = TrinketsApi.getTrinketComponent(player)
+                    .flatMap(component -> component.getAllEquipped().stream()
+                            .map(Pair::getRight)
+                            .filter(stack -> !stack.isEmpty() && (
+                                    stack.isIn(ModTags.Items.TERA_ORBS)
+                            ))
+                            .findFirst()
+                    ).orElse(null);
+
+            if(teraOrb == null) {
+                return false;
+            }
+
+            if (hasTerapagos) {
+                teraOrb.setDamage(0);
+            }
+
+            return teraOrb.getDamage() < 100;
+        }
+
+        else if(gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
+            if(!MegaShowdownConfig.zMoves.get()) {
+                return false;
+            }
+
+            boolean hasZPowerItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                    trinkets.isEquipped(item -> item.isIn(ModTags.Items.Z_RINGS))).orElse(false);
+
+            return player.getOffHandStack().isIn(ModTags.Items.Z_RINGS)
+                    || player.getMainHandStack().isIn(ModTags.Items.Z_RINGS)
+                    || hasZPowerItemTrinkets;
+        }
+
+        else if(gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
+            if(!MegaShowdownConfig.mega.get()) {
+                return false;
+            }
+
+            boolean hasKeystoneItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                    trinkets.isEquipped(item -> item.isIn(ModTags.Items.MEGA_BRACELETS))).orElse(false);
+
+            return (player.getOffHandStack().isIn(ModTags.Items.MEGA_BRACELETS)
+                    || player.getMainHandStack().isIn(ModTags.Items.MEGA_BRACELETS)
+                    || hasKeystoneItemTrinkets)
+                    && !FormChangeHelper.hasMega(player);
+        }
+
+        return false;
     }
 
     public static boolean isBlockNearby(ServerPlayerEntity player, Block targetBlock, int radius) {

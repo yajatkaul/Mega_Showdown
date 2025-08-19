@@ -21,6 +21,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ModTags.Items.MEGA_BRACELETS)
+                .add(ModItems.OMNI_RING.get())
+
                 .add(ModItems.ARCHIE_ANCHOR.get())
 
                 .add(ModItems.MAXIE_GLASSES.get())
@@ -126,6 +128,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaStones.VENUSAURITE.get());
 
         tag(ModTags.Items.Z_RINGS)
+                .add(ModItems.OMNI_RING.get())
+
                 .add(ZCrystals.Z_RING.get())
                 .add(ZCrystals.Z_RING_POWER.get())
                 .add(ZCrystals.Z_RING_BLACK.get())
@@ -143,10 +147,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ZCrystals.NANU_Z_POWER_RING.get())
         ;
 
-        tag(ModTags.Items.TERA_ITEMS)
+        tag(ModTags.Items.TERA_ORBS)
+                .add(ModItems.OMNI_RING.get())
                 .add(TeraMoves.TERA_ORB.get());
 
         tag(ModTags.Items.DYNAMAX_BAND)
+                .add(ModItems.OMNI_RING.get())
                 .add(DynamaxItems.DYNAMAX_BAND.get());
     }
 }

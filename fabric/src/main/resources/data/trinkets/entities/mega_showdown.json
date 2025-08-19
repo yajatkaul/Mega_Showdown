@@ -3,7 +3,7 @@
     "player"
   ],
   "slots": [
-    "hand/evowear",
+    "hand/mega_slot",
     "hand/z_slot",
     "hand/tera_slot",
     "hand/dynamax_slot"

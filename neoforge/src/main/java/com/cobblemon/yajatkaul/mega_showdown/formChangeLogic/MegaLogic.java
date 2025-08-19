@@ -54,23 +54,14 @@ public class MegaLogic {
                 .map(inventory -> inventory.isEquipped(stack -> (stack.is(ModTags.Items.MEGA_BRACELETS))))
                 .orElse(false);
 
-        boolean hasOffhandMegaItem = player.getOffhandItem().is(ModTags.Items.MEGA_BRACELETS);
-        boolean hasMainhandMegaItem = player.getMainHandItem().is(ModTags.Items.MEGA_BRACELETS);
-
-        if (fromBattle) {
-            if (!hasMegaItemCurios && !hasOffhandMegaItem) {
-                return false;
-            }
-        } else {
-            if (!hasMegaItemCurios && !hasOffhandMegaItem && !hasMainhandMegaItem) {
-                return false;
-            }
+        if (player.getOffhandItem().is(ModTags.Items.MEGA_BRACELETS)
+                || player.getMainHandItem().is(ModTags.Items.MEGA_BRACELETS)
+                || hasMegaItemCurios) {
+            cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
+            return true;
+        }else {
+            return false;
         }
-
-
-        // Apply cooldown
-        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
-        return true;
     }
 
     public static void EvoLogic(Player playerContext) {

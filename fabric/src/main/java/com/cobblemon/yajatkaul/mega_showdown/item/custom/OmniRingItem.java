@@ -2,8 +2,10 @@ package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -25,9 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
-public class MegaBraceletItem extends Item {
-    public MegaBraceletItem(Settings settings) {
+public class OmniRingItem extends Item {
+    public OmniRingItem(Settings settings) {
         super(settings);
     }
 
@@ -73,14 +74,15 @@ public class MegaBraceletItem extends Item {
     }
 
     @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity context, Hand hand) {
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity entity, Hand hand) {
         //Battle Mode only
         if (player.getWorld().isClient || player.isCrawling()) {
             return ActionResult.PASS;
         }
 
-        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
+        if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
             MegaLogic.EvoLogic((ServerPlayerEntity) player);
+            UltraLogic.ultraTransform((ServerPlayerEntity) player);
             return ActionResult.SUCCESS;
         }
 
@@ -89,7 +91,7 @@ public class MegaBraceletItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.translatable("tooltip.mega_showdown.megabracelet.tooltip"));
+        tooltip.add(Text.translatable("tooltip.mega_showdown.omni_ring.tooltip"));
         super.appendTooltip(stack, context, tooltip, type);
     }
 }

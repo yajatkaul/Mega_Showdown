@@ -3,7 +3,7 @@
     "minecraft:player"
   ],
   "slots": [
-    "evowear",
+    "mega_slot",
     "z_slot",
     "tera_slot",
     "dynamax_slot"

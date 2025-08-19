@@ -30,6 +30,20 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('E', CobblemonItems.ELECTRIC_GEM)
                 .unlockedBy("has_electric_gem", has(CobblemonItems.ELECTRIC_GEM)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.OMNI_RING.get())
+                .pattern(" W ")
+                .pattern("KNS")
+                .pattern(" T ")
+                .define('W', DynamaxItems.WISHING_STAR)
+                .define('K', MegaStones.KEYSTONE)
+                .define('N', Items.NETHERITE_INGOT)
+                .define('S',Ingredient.of(
+                        ZCrystals.SPARKLING_STONE_DARK,
+                        ZCrystals.SPARKLING_STONE_LIGHT
+                ))
+                .define('T', TeraMoves.TERA_ORB)
+                .unlockedBy("has_netherite_ingot", has(Items.NETHERITE_INGOT)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MEGA_BRACELET.get())
                 .pattern("IDI")
                 .pattern("AKA")
@@ -312,13 +326,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RotomFormes.ROTOM_CATALOGUE.get())
-                .pattern(" F ")
-                .pattern("OBW")
-                .pattern(" M ")
+                .pattern("   ")
+                .pattern("WBG")
+                .pattern("FMO")
                 .define('F', RotomFormes.FANUNIT)
                 .define('W', RotomFormes.WASHINGUNIT)
                 .define('M', RotomFormes.MOWUNIT)
                 .define('O', RotomFormes.OVENUNIT)
+                .define('G', RotomFormes.FRIDGEUNIT)
                 .define('B', Items.BOOK)
                 .unlockedBy("has_book", has(Items.BOOK)).save(recipeOutput);
 

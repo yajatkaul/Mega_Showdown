@@ -1,4 +1,4 @@
-package com.cobblemon.yajatkaul.mega_showdown.item.custom.zygarde;
+package com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
@@ -29,7 +29,7 @@ public class ZRingItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        if (!world.isClientSide) {
+        if (!world.isClientSide || player.isCrouching()) {
             ItemStack stack = player.getItemInHand(hand);
 
             // Get the player's Curios inventory
@@ -71,6 +71,7 @@ public class ZRingItem extends Item {
 
         if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
             UltraLogic.ultraTransform(player);
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;

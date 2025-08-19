@@ -1,10 +1,11 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
+import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -17,16 +18,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.List;
 import java.util.Optional;
 
-
-public class MegaBraceletItem extends Item {
-    public MegaBraceletItem(Properties arg) {
+public class OmniRingItem extends Item {
+    public OmniRingItem(Properties arg) {
         super(arg);
     }
 
@@ -67,23 +66,25 @@ public class MegaBraceletItem extends Item {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack arg, Player player, @NotNull LivingEntity context, InteractionHand hand) {
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
+        //Battle Mode only
         if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.PASS;
         }
 
-        if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
+        if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
+            UltraLogic.ultraTransform(player);
             MegaLogic.EvoLogic(player);
+
             return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;
     }
 
-
     @Override
     public void appendHoverText(ItemStack arg, TooltipContext arg2, List<Component> tooltipComponents, TooltipFlag arg3) {
-        tooltipComponents.add(Component.translatable("tooltip.mega_showdown.megabracelet.tooltip"));
+        tooltipComponents.add(Component.translatable("tooltip.mega_showdown.omni_ring.tooltip"));
         super.appendHoverText(arg, arg2, tooltipComponents, arg3);
     }
 }

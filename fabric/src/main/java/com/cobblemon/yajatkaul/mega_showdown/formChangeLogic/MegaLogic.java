@@ -2,13 +2,16 @@ package com.cobblemon.yajatkaul.mega_showdown.formChangeLogic;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
+import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
+import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.RevertEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
@@ -53,27 +56,17 @@ public class MegaLogic {
             return false;
         }
 
-        boolean hasMegaItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
-                trinkets.isEquipped(item -> (item.isIn(ModTags.Items.MEGA_BRACELETS)))).orElse(false);
+        boolean hasKeystoneItemTrinkets = TrinketsApi.getTrinketComponent(player).map(trinkets ->
+                trinkets.isEquipped(item -> item.isIn(ModTags.Items.MEGA_BRACELETS))).orElse(false);
 
-        boolean hasOffhandMegaItem = player.getOffHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
-        boolean hasMainhandMegaItem = player.getMainHandStack().isIn(ModTags.Items.MEGA_BRACELETS);
-
-
-        if (fromBattle) {
-            if (!hasMegaItemTrinkets && !hasOffhandMegaItem && !hasMainhandMegaItem) {
-                return false;
-            }
-        } else {
-            if (!hasMegaItemTrinkets && !hasOffhandMegaItem) {
-                return false;
-            }
+        if (player.getOffHandStack().isIn(ModTags.Items.MEGA_BRACELETS)
+                || player.getMainHandStack().isIn(ModTags.Items.MEGA_BRACELETS)
+                || hasKeystoneItemTrinkets) {
+            cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
+            return true;
+        }else {
+            return false;
         }
-
-
-        // Apply cooldown
-        cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
-        return true;
     }
 
     public static void EvoLogic(ServerPlayerEntity player) {

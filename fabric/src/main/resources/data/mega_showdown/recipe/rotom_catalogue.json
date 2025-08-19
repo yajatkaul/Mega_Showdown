@@ -8,6 +8,9 @@
     "F": {
       "item": "mega_showdown:rotom_fan"
     },
+    "G": {
+      "item": "mega_showdown:rotom_fridge"
+    },
     "M": {
       "item": "mega_showdown:rotom_mow"
     },
@@ -19,9 +22,9 @@
     }
   },
   "pattern": [
-    " F ",
-    "OBW",
-    " M "
+    "   ",
+    "WBG",
+    "FMO"
   ],
   "result": {
     "count": 1,

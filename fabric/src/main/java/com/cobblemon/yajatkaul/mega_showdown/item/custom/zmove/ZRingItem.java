@@ -71,15 +71,17 @@ public class ZRingItem extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack arg, PlayerEntity player, LivingEntity context, Hand hand) {
-        if (player.getWorld().isClient) {
+        if (player.getWorld().isClient || player.isCrawling()) {
             return ActionResult.PASS;
         }
 
         if (context instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == player) {
             UltraLogic.ultraTransform((ServerPlayerEntity) player);
+            return ActionResult.SUCCESS;
         }
 
-        return super.useOnEntity(arg, player, context, hand);
+        return ActionResult.PASS;
+
     }
 
     @Override

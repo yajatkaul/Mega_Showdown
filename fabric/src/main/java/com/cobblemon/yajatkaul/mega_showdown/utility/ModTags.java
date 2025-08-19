@@ -8,9 +8,10 @@ import net.minecraft.util.Identifier;
 
 public class ModTags {
     public static class Items {
-        public static final TagKey<Item> MEGA_BRACELETS = createTag("mega_bracelets");
-        public static final TagKey<Item> Z_RINGS = createTag("z_rings");
-        public static final TagKey<Item> DYNAMAX_BAND = createTag("dynamax_bands");
+        public static final TagKey<Item> MEGA_BRACELETS = createTag("mega_bracelet");
+        public static final TagKey<Item> TERA_ORBS = createTag("tera_orb");
+        public static final TagKey<Item> Z_RINGS = createTag("z_ring");
+        public static final TagKey<Item> DYNAMAX_BAND = createTag("dynamax_band");
         public static final TagKey<Item> ARCEUS_FORM_CHANGE = createTag("arceus_form_change");
 
 

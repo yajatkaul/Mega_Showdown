@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.item.ZCrystals;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.zygarde.ZRingItem;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;

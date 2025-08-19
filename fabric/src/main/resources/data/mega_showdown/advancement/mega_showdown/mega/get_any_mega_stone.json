@@ -23,7 +23,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#mega_showdown:mega_stones"
+            "items": "#mega_showdown:mega_stone"
           }
         ]
       }

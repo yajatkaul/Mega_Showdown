@@ -18,7 +18,7 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MegaShowdown.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> MEGA_SHOWDOWN_TAB = CREATIVE_MODE_TAB.register("mega_showdown_tab",
+    public static final Supplier<CreativeModeTab> MEGA_TAB = CREATIVE_MODE_TAB.register("mega_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.MEGA_BRACELET.get()))
                     .title(Component.translatable("creativeTab.mega_showdown.mega_showdown_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
@@ -330,12 +330,13 @@ public class ModCreativeModeTabs {
                     })
                     .build());
 
-    public static final Supplier<CreativeModeTab> KEY_TAB = CREATIVE_MODE_TAB.register("key_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PEDESTAL.get()))
+    public static final Supplier<CreativeModeTab> MEGA_SHOWDOWN_TAB = CREATIVE_MODE_TAB.register("mega_showdown",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.OMNI_RING.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "compi_tab"))
                     .title(Component.translatable("creativeTab.mega_showdown.key_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.PEDESTAL);
+                        output.accept(ModItems.OMNI_RING);
                     })
                     .build());
 

@@ -13,8 +13,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
-    public static final ItemGroup MEGA_SHOWDOWN_TAB = Registry.register(Registries.ITEM_GROUP,
-            Identifier.of(MegaShowdown.MOD_ID, "mega_showdown_tab"),
+    public static final ItemGroup MEGA_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "mega_tab"),
             FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.MEGA_BRACELET))
                     .displayName(Text.translatable("creativeTab.mega_showdown.mega_showdown_tab"))
                     .entries(((displayContext, entries) -> {
@@ -321,12 +321,13 @@ public class ModItemGroups {
                     }))
                     .build());
 
-    public static final ItemGroup KEY_TAB = Registry.register(Registries.ITEM_GROUP,
-            Identifier.of(MegaShowdown.MOD_ID, "key_tab"),
+    public static final ItemGroup MEGA_SHOWDOWN_TAB = Registry.register(Registries.ITEM_GROUP,
+            Identifier.of(MegaShowdown.MOD_ID, "mega_showdown_tab"),
             FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.PEDESTAL))
                     .displayName(Text.translatable("creativeTab.mega_showdown.key_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ModBlocks.PEDESTAL);
+                        entries.add(ModItems.OMNI_RING);
                     }))
                     .build());
 
