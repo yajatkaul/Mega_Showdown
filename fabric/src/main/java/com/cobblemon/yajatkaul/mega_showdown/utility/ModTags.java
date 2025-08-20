@@ -12,8 +12,8 @@ public class ModTags {
         public static final TagKey<Item> TERA_ORBS = createTag("tera_orb");
         public static final TagKey<Item> Z_RINGS = createTag("z_ring");
         public static final TagKey<Item> DYNAMAX_BAND = createTag("dynamax_band");
-        public static final TagKey<Item> ARCEUS_FORM_CHANGE = createTag("arceus_form_change");
 
+        public static final TagKey<Item> OMNI_RING = createTag("omni_ring");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(Registries.ITEM.getKey(), Identifier.of(MegaShowdown.MOD_ID, name));

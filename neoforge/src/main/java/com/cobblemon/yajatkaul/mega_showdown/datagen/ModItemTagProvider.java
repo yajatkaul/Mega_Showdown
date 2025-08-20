@@ -154,5 +154,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ModTags.Items.DYNAMAX_BAND)
                 .add(ModItems.OMNI_RING.get())
                 .add(DynamaxItems.DYNAMAX_BAND.get());
+
+        tag(ModTags.Items.OMNI_RING)
+                .add(ModItems.OMNI_RING.get());
     }
 }

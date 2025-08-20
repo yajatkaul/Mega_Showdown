@@ -1,5 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.curios.render;
 
+import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
+import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
@@ -22,6 +25,20 @@ public class CurioHandRenderer implements ICurioRenderer {
             , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
         if (stack.isEmpty()) return;
+
+        boolean hasDMaxItemTrinkets = CuriosApi.getCuriosInventory(slotContext.entity())
+                .map(inventory -> inventory
+                        .isEquipped(stack2 -> stack2.is(ModTags.Items.DYNAMAX_BAND)))
+                .orElse(false);
+
+        boolean hasOmniItemTrinkets = CuriosApi.getCuriosInventory(slotContext.entity())
+                .map(inventory -> inventory
+                        .isEquipped(stack2 -> stack2.is(ModTags.Items.OMNI_RING)))
+                .orElse(false);
+
+        if(hasOmniItemTrinkets && hasDMaxItemTrinkets && !stack.is(ModTags.Items.OMNI_RING)) {
+            return;
+        }
 
         LivingEntity entity = slotContext.entity();
         matrixStack.pushPose();

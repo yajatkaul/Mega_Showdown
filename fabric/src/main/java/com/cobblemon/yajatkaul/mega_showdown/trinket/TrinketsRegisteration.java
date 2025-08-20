@@ -46,5 +46,7 @@ public class TrinketsRegisteration {
 
         TrinketRendererRegistry.registerRenderer(DynamaxItems.DYNAMAX_BAND, new RenderHandTrinkets());
 
+        TrinketRendererRegistry.registerRenderer(ModItems.OMNI_RING, new RenderHandTrinkets());
+
     }
 }

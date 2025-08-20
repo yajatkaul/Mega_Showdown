@@ -52,5 +52,7 @@ public class Register {
         CuriosRendererRegistry.register(TeraMoves.TERA_ORB.get(), CurioBeltRenderer::new);
 
         CuriosRendererRegistry.register(DynamaxItems.DYNAMAX_BAND.get(), CurioHandRenderer::new);
+
+        CuriosRendererRegistry.register(ModItems.OMNI_RING.get(), CurioHandRenderer::new);
     }
 }
