@@ -427,5 +427,21 @@
         "volume": 0.8
       }
     ]
+  },
+  "pokemon.victini.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/victini_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.entei.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/entei_cry",
+        "volume": 0.8
+      }
+    ]
   }
 }

@@ -1,68 +1,7 @@
 {
   "implemented": true,
   "target": "cobblemon:rockruff",
-  "baseScale": 0.7,
-  "evolutions": [
-    {
-      "id": "rockruff_lycanroc",
-      "variant": "level_up",
-      "result": "lycanroc wolf_form=midday",
-      "consumeHeldItem": false,
-      "learnableMoves": [
-        "accelerock",
-        "suckerpunch"
-      ],
-      "requirements": [
-        {
-          "variant": "level",
-          "minLevel": 25
-        },
-        {
-          "variant": "time_range",
-          "range": "morning"
-        }
-      ]
-    },
-    {
-      "id": "rockruff_lycanrocdusk",
-      "variant": "level_up",
-      "result": "lycanroc wolf_form=dusk dusk",
-      "consumeHeldItem": false,
-      "learnableMoves": [
-        "accelerock",
-        "counter"
-      ],
-      "requirements": [
-        {
-          "variant": "level",
-          "minLevel": 25
-        },
-        {
-          "variant": "time_range",
-          "range": "dusk"
-        }
-      ]
-    },
-    {
-      "id": "rockruff_lycanrocmidnight",
-      "variant": "level_up",
-      "result": "lycanroc wolf_form=midnight midnight",
-      "consumeHeldItem": false,
-      "learnableMoves": [
-        "counter"
-      ],
-      "requirements": [
-        {
-          "variant": "level",
-          "minLevel": 25
-        },
-        {
-          "variant": "time_range",
-          "range": "midnight"
-        }
-      ]
-    }
-  ],
+  "baseScale": 1,
   "hitbox": {
     "width": 1,
     "height": 1,
