@@ -11,6 +11,6 @@
     "separation": 20,
     "spread_type": "triangular",
     "salt": 888644373,
-    "frequency": 1
+    "frequency": 0.25
   }
 }
