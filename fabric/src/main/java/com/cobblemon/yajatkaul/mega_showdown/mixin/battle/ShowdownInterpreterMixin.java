@@ -9,6 +9,8 @@ import com.cobblemon.mod.common.battles.dispatch.InterpreterInstruction;
 import com.cobblemon.mod.common.battles.interpreter.instructions.IgnoredInstruction;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.yajatkaul.mega_showdown.instructions.CanDynamaxInstruction;
+import com.cobblemon.yajatkaul.mega_showdown.instructions.MostlyIneffectiveInstruction;
+import com.cobblemon.yajatkaul.mega_showdown.instructions.SuperEffectiveInstruction;
 import com.cobblemon.yajatkaul.mega_showdown.instructions.UltraInstruction;
 import kotlin.jvm.functions.Function4;
 import kotlin.jvm.functions.Function6;
@@ -59,12 +61,16 @@ public abstract class ShowdownInterpreterMixin {
             });
 
             Object ultraBurstFunction = (Function4<PokemonBattle, InstructionSet, BattleMessage, Iterator<BattleMessage>, InterpreterInstruction>) (battle, set, message, messages) -> new UltraInstruction(message);
-
             updateInstructionParser.put("-burst", ultraBurstFunction);
 
             Object canDynamaxFunction = (Function4<PokemonBattle, InstructionSet, BattleMessage, Iterator<BattleMessage>, InterpreterInstruction>) (battle, set, message, messages) -> new CanDynamaxInstruction(message);
-
             updateInstructionParser.put("-candynamax", canDynamaxFunction);
+
+            Object extremelyEffectFunction = (Function4<PokemonBattle, InstructionSet, BattleMessage, Iterator<BattleMessage>, InterpreterInstruction>) (battle, set, message, messages) -> new SuperEffectiveInstruction(message, set);
+            updateInstructionParser.put("-extremelyeffective", extremelyEffectFunction);
+
+            Object mostlyIneffectFunction = (Function4<PokemonBattle, InstructionSet, BattleMessage, Iterator<BattleMessage>, InterpreterInstruction>) (battle, set, message, messages) -> new MostlyIneffectiveInstruction(message, set);
+            updateInstructionParser.put("-mostlyineffective", mostlyIneffectFunction);
         } catch (Exception e) {
             throw new RuntimeException("Failed to inject showdownInterpretations", e);
         }

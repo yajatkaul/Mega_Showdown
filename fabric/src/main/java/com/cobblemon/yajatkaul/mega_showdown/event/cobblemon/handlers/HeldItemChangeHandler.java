@@ -30,6 +30,7 @@ import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -66,13 +67,31 @@ public class HeldItemChangeHandler {
 
     public static void silvallyChange(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
+        PokemonEntity pokemonEntity = pokemon.getEntity();
+        BlockPos entityPos = pokemonEntity.getBlockPos();
+
         if (pokemon.getSpecies().getName().equals("Silvally")) {
             if (event.getReceiving().getItem() instanceof Memory memory) {
-                playHeldItemFormeChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
+                pokemonEntity.getWorld().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME,
+                        SoundCategory.PLAYERS, 0.2f, 1.3f
+                );
+
+                SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
+                        Identifier.tryParse("cobblemon:silvally_" + memory.getType() + "_effect"), List.of("target"));
+                pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+                pokemon.getEntity().after(0.4F, () -> {
+                    new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
+                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
+                    pokemon.getEntity().getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                    return Unit.INSTANCE;
+                });
             } else if (event.getReturning().getItem() instanceof Memory) {
                 playHeldItemFormeChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "normal").apply(pokemon);
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             }
         }
     }

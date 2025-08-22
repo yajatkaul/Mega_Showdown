@@ -64,13 +64,31 @@ public class HeldItemChangeFormes {
 
     public static void silvallyChange(HeldItemEvent.Pre event) {
         Pokemon pokemon = event.getPokemon();
+        PokemonEntity pokemonEntity = pokemon.getEntity();
+        BlockPos entityPos = pokemonEntity.blockPosition();
+
         if (pokemon.getSpecies().getName().equals("Silvally")) {
             if (event.getReceiving().getItem() instanceof Memory memory) {
-                playHeldItemChange(pokemon.getEntity());
-                new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
+                pokemonEntity.level().playSound(
+                        null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                        SoundEvents.AMETHYST_BLOCK_CHIME,
+                        SoundSource.PLAYERS, 0.2f, 1.3f
+                );
+
+                SnowStormHandler.Companion.snowStormPartileSpawner(pokemon.getEntity(),
+                        ResourceLocation.tryParse("cobblemon:silvally_" + memory.getType() + "_effect"), List.of("target"));
+                pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+                pokemon.getEntity().after(0.4F, () -> {
+                    new StringSpeciesFeature("rks_memory", memory.getType()).apply(pokemon);
+                    SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
+                    pokemon.getEntity().getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+                    return Unit.INSTANCE;
+                });
             } else if (event.getReturning().getItem() instanceof Memory) {
                 playHeldItemChange(pokemon.getEntity());
                 new StringSpeciesFeature("rks_memory", "normal").apply(pokemon);
+                SnowStormHandler.Companion.playAnimation(pokemon.getEntity(), Set.of("cry"), List.of());
             }
         }
     }

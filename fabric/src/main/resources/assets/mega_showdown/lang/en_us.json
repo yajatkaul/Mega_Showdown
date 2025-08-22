@@ -592,5 +592,11 @@
   "message.mega_showdown.same_tera": "Your pokemon already has this tera type",
 
   "item.mega_showdown.omni_ring": "Omni Ring",
-  "tooltip.mega_showdown.omni_ring.tooltip": "A device in Pokémon Champions. It is a bracelet worn by a Pokémon Trainer with support for special battle features."
+  "tooltip.mega_showdown.omni_ring.tooltip": "A device in Pokémon Champions. It is a bracelet worn by a Pokémon Trainer with support for special battle features.",
+
+  "cobblemon.battle.extremelyEffective": "It was extremely effective!",
+  "cobblemon.battle.mostlyIneffective": "It was mostly ineffective!",
+
+  "cobblemon.battle.extremelyEffective_spread": "It was extremely effective on %1$s!!",
+  "cobblemon.battle.mostlyIneffective_spread": "It was mostly ineffective on %1$s!!"
 }
