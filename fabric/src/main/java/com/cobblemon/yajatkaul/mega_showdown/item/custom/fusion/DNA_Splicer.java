@@ -181,11 +181,11 @@ public class DNA_Splicer extends Item {
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.inactive"));
-            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram")) {
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Reshiram") && pokemon.getEntity().getTethering() == null) {
                 stack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
                 playerPartyStore.remove(pk.getPokemon());
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));
-            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom")) {
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Zekrom") && pokemon.getEntity().getTethering() == null) {
                 stack.set(DataManage.POKEMON_STORAGE, pk.getPokemon());
                 playerPartyStore.remove(pk.getPokemon());
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.dna_splicer.charged"));

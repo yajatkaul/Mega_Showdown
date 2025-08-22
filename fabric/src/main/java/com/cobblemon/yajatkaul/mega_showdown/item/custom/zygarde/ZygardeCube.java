@@ -186,7 +186,7 @@ public class ZygardeCube extends Item {
                         return TypedActionResult.pass(stack);
                     }
 
-                    if (pk.getAspects().contains("core-percent")) {
+                    if (pk.getAspects().contains("core-percent") && pokemon.getEntity().getTethering() == null) {
                         SimpleInventory inventory = getInventory(stack, player);
 
                         if (inventory.getStack(1).getCount() >= 5) {
@@ -217,7 +217,7 @@ public class ZygardeCube extends Item {
                         return TypedActionResult.pass(stack);
                     }
 
-                    if (!pk.getAspects().contains("power-construct")) {
+                    if (!pk.getAspects().contains("power-construct") && pokemon.getEntity().getTethering() == null) {
                         if (stack.get(DataManage.POKEMON_STORAGE) != null) {
                             player.sendMessage(
                                     Text.translatable("message.mega_showdown.cube_full").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),

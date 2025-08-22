@@ -127,7 +127,7 @@ public class ItemHandler {
                                 }
                             }
                         }
-                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fuser_blacklist_aspects(), pokemon.getAspects(), true)) {
+                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fuser_blacklist_aspects(), pokemon.getAspects(), true) && pokemon.getEntity().getTethering() == null) {
                         if (currentValue == null) {
                             if (fusion.fuser_fuse_if().isEmpty()) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pokemon));

@@ -170,11 +170,11 @@ public class Unity extends Item {
 
                 stack.set(DataManage.POKEMON_STORAGE, null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.inactive"));
-            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier")) {
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Spectrier") && pokemon.getEntity().getTethering() == null) {
                 stack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
                 playerPartyStore.remove(pk.getPokemon());
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));
-            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier")) {
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Glastrier") && pokemon.getEntity().getTethering() == null) {
                 stack.set(DataManage.POKEMON_STORAGE, new PokeHandler(pk.getPokemon()));
                 playerPartyStore.remove(pk.getPokemon());
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.reins_of_unity.charged"));

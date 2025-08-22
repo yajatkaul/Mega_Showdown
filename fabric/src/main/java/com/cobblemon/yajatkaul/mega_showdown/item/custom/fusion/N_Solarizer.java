@@ -146,7 +146,7 @@ public class N_Solarizer extends Item {
                 pokemon.setTradeable(false);
 
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.inactive"));
-            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo")) {
+            } else if (currentValue == null && pokemon.getSpecies().getName().equals("Solgaleo") && pokemon.getEntity().getTethering() == null) {
                 stack.set(DataManage.POKEMON_STORAGE, pokemon);
                 playerPartyStore.remove(pokemon);
                 stack.set(DataComponentTypes.CUSTOM_NAME, Text.translatable("item.mega_showdown.n_solarizer.charged"));
