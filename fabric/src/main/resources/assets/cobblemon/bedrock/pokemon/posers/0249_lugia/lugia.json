@@ -101,6 +101,7 @@
     },
      "fly": {
       "transformTicks": 5,
+      "isBattle": false,
       "poseTypes": [ "FLY" ],
       "animations": [
         "q.look('head')",
@@ -119,7 +120,27 @@
     },
     "hover": {
       "transformTicks": 8,
+      "isBattle": false,
       "poseTypes": ["HOVER"],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('lugia', 'air_idle')"
+      ],
+      "transformedParts": [
+         {
+           "part": "wings",
+           "isVisible": true
+         },
+         {
+           "part": "wings_closed",
+           "isVisible": false
+         }
+        ]
+    },
+    "battle-flying": {
+      "transformTicks": 10,
+      "poseTypes": ["HOVER", "FLY"],
+      "isBattle": true,
       "animations": [
         "q.look('head')",
         "q.bedrock('lugia', 'air_idle')"
