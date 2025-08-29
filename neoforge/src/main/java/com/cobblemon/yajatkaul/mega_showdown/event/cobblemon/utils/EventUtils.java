@@ -25,13 +25,31 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
 public class EventUtils {
+    public static void giveItems(ServerPlayer player, ItemStack itemStack) {
+        if (player.getInventory().getFreeSlot() == -1) {
+            ItemEntity itemEntity = new ItemEntity(
+                    player.level(),
+                    player.getX(),
+                    player.getY() + 1,
+                    player.getZ(),
+                    itemStack
+            );
+            itemEntity.setPickUpDelay(20);
+            player.level().addFreshEntity(itemEntity);
+        } else {
+            player.addItem(itemStack);
+        }
+    }
     public static void updatePackets(PokemonBattle battle, BattlePokemon pk) {
         Pokemon pokemon = pk.getEntity().getPokemon();
 

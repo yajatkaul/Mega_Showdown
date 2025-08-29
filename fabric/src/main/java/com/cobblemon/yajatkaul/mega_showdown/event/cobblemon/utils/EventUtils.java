@@ -21,17 +21,36 @@ import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.UltraLogic;
 import com.cobblemon.yajatkaul.mega_showdown.item.CompiItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.Utils;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class EventUtils {
+    public static void giveItems(ServerPlayerEntity player, ItemStack itemStack) {
+        if (player.getInventory().getEmptySlot() == -1) {
+            ItemEntity itemEntity = new ItemEntity(
+                    player.getWorld(),
+                    player.getX(),
+                    player.getY() + 1,
+                    player.getZ(),
+                    itemStack
+            );
+            itemEntity.setPickupDelay(20);
+            player.getWorld().spawnEntity(itemEntity);
+        } else {
+            player.giveItemStack(itemStack);
+        }
+    }
+
     public static void revertFormesEnd(Pokemon pokemon) {
         if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
