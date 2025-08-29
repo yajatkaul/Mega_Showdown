@@ -38,6 +38,7 @@ import com.cobblemon.yajatkaul.mega_showdown.utility.GlowHandler;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -91,10 +92,26 @@ public class CobbleEventsHandler {
         Pokemon released = post.getPokemon();
 
         if (released.getSpecies().getName().equals("Meltan")) {
-            player.giveItemStack(new ItemStack(FormeChangeItems.MELTAN));
+            giveItems(player, new ItemStack(FormeChangeItems.MELTAN));
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static void giveItems(ServerPlayerEntity player, ItemStack itemStack) {
+        if (player.getInventory().getEmptySlot() == -1) {
+            ItemEntity itemEntity = new ItemEntity(
+                    player.getWorld(),
+                    player.getX(),
+                    player.getY() + 1,
+                    player.getZ(),
+                    itemStack
+            );
+            itemEntity.setPickupDelay(20);
+            player.getWorld().spawnEntity(itemEntity);
+        } else {
+            player.giveItemStack(itemStack);
+        }
     }
 
     public static Unit megaEvolution(MegaEvolutionEvent megaEvolutionEvent) {

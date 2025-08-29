@@ -38,6 +38,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -87,10 +88,26 @@ public class CobbleEventsHandler {
         ServerPlayer player = post.getPlayer();
 
         if (released.getSpecies().getName().equals("Meltan")) {
-            player.addItem(new ItemStack(FormeChangeItems.MELTAN.get()));
+            giveItems(player, new ItemStack(FormeChangeItems.MELTAN.get()));
         }
 
         return Unit.INSTANCE;
+    }
+
+    public static void giveItems(ServerPlayer player, ItemStack itemStack) {
+        if (player.getInventory().getFreeSlot() == -1) {
+            ItemEntity itemEntity = new ItemEntity(
+                    player.level(),
+                    player.getX(),
+                    player.getY() + 1,
+                    player.getZ(),
+                    itemStack
+            );
+            itemEntity.setPickUpDelay(20);
+            player.level().addFreshEntity(itemEntity);
+        } else {
+            player.addItem(itemStack);
+        }
     }
 
     public static Unit megaEvolution(MegaEvolutionEvent megaEvolutionEvent) {
