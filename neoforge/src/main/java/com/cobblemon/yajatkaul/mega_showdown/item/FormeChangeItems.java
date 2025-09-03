@@ -661,8 +661,7 @@ public class FormeChangeItems {
                     List.of(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "item/dye"))
             )
     );
-    public static final DeferredItem<Item> MELTAN = ITEMS.register("meltan",
-            () -> new Item(new Item.Properties().stacksTo(75)));
+
     //TRIMS
     public static final DeferredItem<Item> HEART_TRIM = ITEMS.register("heart_trim",
             () -> new FurfrouTrim(new Item.Properties().stacksTo(1).durability(100), "heart"));

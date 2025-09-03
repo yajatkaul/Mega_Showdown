@@ -245,7 +245,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(FormeChangeItems.PHARAOH_TRIM.get());
         basicItem(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE.get());
 
-        basicItem(FormeChangeItems.MELTAN.get());
         basicItem(ModItems.DEBUG_STICK.get());
 
         basicItem(FormeChangeItems.PIKA_CASE.get());

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_base-z": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mega_showdown:dragonium-z"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mega_showdown:kommonium-z"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_base-z"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mega_showdown:kommonium-z"
+    ]
+  }
+}

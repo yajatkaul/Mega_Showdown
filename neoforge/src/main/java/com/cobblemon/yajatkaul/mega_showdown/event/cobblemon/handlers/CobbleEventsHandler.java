@@ -83,17 +83,6 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit onReleasePokemon(ReleasePokemonEvent.Post post) {
-        Pokemon released = post.getPokemon();
-        ServerPlayer player = post.getPlayer();
-
-        if (released.getSpecies().getName().equals("Meltan")) {
-            EventUtils.giveItems(player, new ItemStack(FormeChangeItems.MELTAN.get()));
-        }
-
-        return Unit.INSTANCE;
-    }
-
     public static Unit megaEvolution(MegaEvolutionEvent megaEvolutionEvent) {
         PokemonBattle battle = megaEvolutionEvent.getBattle();
         Pokemon pokemon = megaEvolutionEvent.getPokemon().getEffectedPokemon();

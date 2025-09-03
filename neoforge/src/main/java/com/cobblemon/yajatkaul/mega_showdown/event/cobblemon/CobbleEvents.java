@@ -9,8 +9,6 @@ public class CobbleEvents {
     public static void register() {
         CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEventsHandler::onHeldItemChange);
 
-        CobblemonEvents.POKEMON_RELEASED_EVENT_POST.subscribe(Priority.NORMAL, CobbleEventsHandler::onReleasePokemon);
-
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, RevertEventsHandler::devolveFainted);
 
         CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, RevertEventsHandler::battleStarted);

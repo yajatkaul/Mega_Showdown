@@ -306,8 +306,6 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.KABUKI_TRIM);
                         output.accept(FormeChangeItems.PHARAOH_TRIM);
                         output.accept(FormeChangeItems.FURFROU_TRIM_SMITHING_TEMPLATE);
-
-                        output.accept(FormeChangeItems.MELTAN);
                     })
                     .build());
 

@@ -598,9 +598,6 @@ public class FormeChangeItems {
     public static final Item PIKA_CASE = registerItem("pika_case",
             new PikaCase(new Item.Settings().maxCount(1)));
 
-    public static final Item MELTAN = registerItem("meltan",
-            new Item(new Item.Settings().maxCount(75)));
-
     public static final Item REVEAL_GLASS = registerItem("reveal_glass",
             new RevealGlass(new Item.Settings().maxCount(1)));
 

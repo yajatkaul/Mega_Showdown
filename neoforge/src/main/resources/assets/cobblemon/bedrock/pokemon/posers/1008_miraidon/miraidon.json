@@ -1,0 +1,82 @@
+{
+  "portraitScale": 1.09,
+  "portraitTranslation": [
+    -0.23,
+    4.33,
+    0
+  ],
+  "profileScale": 0.33,
+  "profileTranslation": [
+    0.15,
+    1.53,
+    0
+  ],
+  "animations": {
+    "cry": "q.bedrock_stateful('miraidon', 'cry')"
+  },
+  "poses": {
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('miraidon', 'battle_idle')"
+      ],
+      "quirks": [        {
+          "name": "blink",
+          "animations": [
+            "bedrock(miraidon, blink)"
+          ]
+        }
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('miraidon', 'ground_idle')"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(miraidon, blink)"
+          ]
+        }
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('miraidon', 'ground_walk')"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(miraidon, blink)"
+          ]
+        }
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "animations": [
+        "q.bedrock('miraidon', 'sleep')"
+      ]
+    }
+  }
+}
