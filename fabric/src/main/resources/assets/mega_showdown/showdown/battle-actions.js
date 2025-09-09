@@ -2239,20 +2239,22 @@ class BattleActions {
       if (isSTAB) {
         stab = 1.5;
       }
-      if (pokemon.terastallized && tera === "Stellar") {
-        if (!pokemon.stellarBoostedTypes.includes(type)) {
-          if (isSTAB) {
-            stab = 2; // First-time Stellar Boost (2x STAB)
-            pokemon.stellarBoostedTypes.push(type);
-            //console.log(`[STAB] Stellar Tera with STAB - Type: ${type}, Boost: 2x`);
-          } else {
-            stab = 1.2;
-            pokemon.stellarBoostedTypes.push(type);
-            //console.log(`[STAB] Stellar Tera without STAB - Type: ${type}, Boost: 1.2x`);
-            // Do NOT change `stab = 1.5` here, keep the previous STAB value
-          }
-        }
-      }
+      if (pokemon.terastallized && tera === "Stellar" && pokemon.species.name === "Terapagos-Stellar") {
+		if (isSTAB && move.name !== "Tera Starstorm") {
+			stab = 2;
+		} else {
+			stab = 1.2;
+		}
+	  } else if (pokemon.terastallized && tera === "Stellar") {
+		  if (!pokemon.stellarBoostedTypes.includes(type)) {	
+		    if (isSTAB) {
+			  stab = 2;
+		    } else {
+			  stab = 1.2;
+		    }
+			pokemon.stellarBoostedTypes.push(type);
+		 }
+	  }
       if (
         pokemon.terastallized &&
         tera === type &&
@@ -2262,11 +2264,15 @@ class BattleActions {
         //console.log(`[STAB] Tera Type and Type matches move Type - Type: ${type}, Boost: 2x`);
       }
       stab = this.battle.runEvent("ModifySTAB", pokemon, target, move, stab);
-      //console.log(`[STAB]Final STAB: ${stab}`);
-      //console.log(`[DEBUG] Pokémon Types: ${pokemon.types.join(", ")}`);
+	  baseDamage = this.battle.modify(baseDamage, stab);
+	  //console.log(`===================================`);
+      //console.log(`[DEBUG] Pokémon Name: ${pokemon.baseSpecies?.name}`);
+	  //console.log(`[DEBUG] Pokémon Types: ${pokemon.types.join(", ")}`);
       //console.log(`[DEBUG] Pokémon Tera Type: ${tera}`);
-      //console.log(`[DEBUG] Move Type: ${type}`);
-      baseDamage = this.battle.modify(baseDamage, stab);
+      //console.log(`[DEBUG] Move Name: ${move}`);
+	  //console.log(`[DEBUG] Move Type: ${type}`);
+	  //console.log(`[STAB]Final STAB: ${stab}`);
+	  //console.log(`===================================`);
     }
     let typeMod = target.runEffectiveness(move);
     typeMod = this.battle.clampIntRange(typeMod, -6, 6);

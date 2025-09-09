@@ -3,8 +3,7 @@ package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent;
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent;
+import com.cobblemon.mod.common.api.events.battles.BattleStartedEvent;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
@@ -49,7 +48,7 @@ public class RevertEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit battleStarted(@NotNull BattleStartedPreEvent battleEvent) {
+    public static Unit battleStarted(@NotNull BattleStartedEvent.Pre battleEvent) {
         for (BattleActor pokemon : battleEvent.getBattle().getActors()) {
             for (BattlePokemon pk : pokemon.getPokemonList()) {
                 if (pk.getEffectedPokemon().getAspects().contains("core-percent")) {
@@ -197,7 +196,7 @@ public class RevertEventsHandler {
         return false;
     }
 
-    public static Unit hookBattleEnded(BattleStartedPostEvent event) {
+    public static Unit hookBattleEnded(BattleStartedEvent.Post event) {
         event.getBattle().getOnEndHandlers().add(battle -> {
             battle.getPlayers().forEach(serverPlayer -> {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);

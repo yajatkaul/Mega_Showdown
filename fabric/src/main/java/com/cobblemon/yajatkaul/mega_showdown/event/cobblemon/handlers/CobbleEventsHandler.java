@@ -12,10 +12,8 @@ import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
 import com.cobblemon.mod.common.api.events.pokeball.ThrownPokeballHitEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
-import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
-import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionCompleteEvent;
+import com.cobblemon.mod.common.api.events.pokemon.PokemonSentEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
-import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.item.HealingSource;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
@@ -23,14 +21,11 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.EventHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
-import com.cobblemon.yajatkaul.mega_showdown.item.FormeChangeItems;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
@@ -509,7 +504,7 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit pokemonSent(PokemonSentPostEvent pokemonSentPostEvent) {
+    public static Unit pokemonSent(PokemonSentEvent.Post pokemonSentPostEvent) {
         PokemonEntity pokemon = pokemonSentPostEvent.getPokemonEntity();
         Pokemon pk = pokemonSentPostEvent.getPokemon();
 

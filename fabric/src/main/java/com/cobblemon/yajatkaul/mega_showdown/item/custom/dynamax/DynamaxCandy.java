@@ -82,7 +82,7 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
             pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
 
             player.sendMessage(
-                    Text.translatable("message.mega_showdown.dmax_level_up", pokemon.getDisplayName(), pokemon.getDmaxLevel()).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GREEN))),
+                    Text.translatable("message.mega_showdown.dmax_level_up", pokemon.getDisplayName(false), pokemon.getDmaxLevel()).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GREEN))),
                     true
             );
 
@@ -113,7 +113,7 @@ public class DynamaxCandy extends MSDPokemonSelectingItem {
     }
 
     @Override
-    public boolean canUseOnPokemon(@NotNull Pokemon pokemon) {
+    public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {
         return pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel() && !pokemon.getSpecies().getDynamaxBlocked();
     }
 }

@@ -4,7 +4,6 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "CobblemonDataProviderMixin",
-    "ExceptionHandlerMixin",
     "GraalShowdownUnbundlerMixin",
     "accessors.MovesAccessor",
     "accessors.ShowdownActionRequestAccessor",

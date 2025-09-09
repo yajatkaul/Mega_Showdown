@@ -11,7 +11,7 @@ import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent;
 import com.cobblemon.mod.common.api.events.pokeball.ThrownPokeballHitEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
-import com.cobblemon.mod.common.api.events.pokemon.PokemonSentPostEvent;
+import com.cobblemon.mod.common.api.events.pokemon.PokemonSentEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent;
 import com.cobblemon.mod.common.api.item.HealingSource;
@@ -488,7 +488,7 @@ public class CobbleEventsHandler {
         return Unit.INSTANCE;
     }
 
-    public static Unit pokemonSent(PokemonSentPostEvent pokemonSentPostEvent) {
+    public static Unit pokemonSent(PokemonSentEvent.Post pokemonSentPostEvent) {
         PokemonEntity pokemon = pokemonSentPostEvent.getPokemonEntity();
         Pokemon pk = pokemonSentPostEvent.getPokemon();
 

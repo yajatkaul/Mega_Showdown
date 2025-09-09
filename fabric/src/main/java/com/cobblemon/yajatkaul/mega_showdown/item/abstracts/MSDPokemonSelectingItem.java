@@ -46,7 +46,7 @@ public abstract class MSDPokemonSelectingItem extends Item implements PokemonSel
     }
 
     @Override
-    public boolean canUseOnBattlePokemon(@NotNull BattlePokemon battlePokemon) {
+    public boolean canUseOnBattlePokemon(@NotNull ItemStack stack, @NotNull BattlePokemon battlePokemon) {
         return false;
     }
 

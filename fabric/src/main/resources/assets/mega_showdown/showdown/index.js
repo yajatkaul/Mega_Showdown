@@ -6,21 +6,25 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+/*-----------------------------------------------------------------------------------------------------------------
+NOTE: The functions in this file are used by GraalShowdownService, the default Showdown environment for Cobblemon.
+For the corresponding SocketShowdownService methods, see cobbled-debug-server.ts. For where the interface is 
+defined and configured, See ShowdownService.kt on the  main Cobblemon repo .
+-----------------------------------------------------------------------------------------------------------------*/
+
 // eslint-disable-next-line strict
 const BS = require("./sim/battle-stream");
+const Cobblemon = require("./sim/cobblemon/cobblemon").Cobblemon;
 const Dex = require("./sim/dex").Dex;
 
-const battleMap = new Map();
-const cobbledModId = "cobblemon";
-const CobblemonCache = require("./sim/cobblemon-cache");
-const BagItems = require("./sim/bag-items");
 const items = require("./data/mods/cobblemon/items");
-const moves = require("./data/mods/cobblemon/moves");
-const abilities = require("./data/mods/cobblemon/abilities");
 const battleActions = require("./sim/battle-actions");
 const conditions = require("./data/mods/cobblemon/conditions");
 const typechart = require("./data/mods/cobblemon/typechart");
 const scripts = require("./data/mods/cobblemon/scripts");
+
+const battleMap = new Map();
+const toID = Dex.toID;
 
 function startBattle(graalShowdown, battleId, requestMessages) {
   const battleStream = new BS.BattleStream();
@@ -50,54 +54,57 @@ function sendBattleMessage(battleId, messages) {
   }
 }
 
-function getCobbledMoves() {
-  return JSON.stringify(Dex.mod(cobbledModId).moves.all());
+function getTypeChart() {
+  return JSON.stringify(Dex.data.TypeChart);
 }
 
-function getCobbledAbilityIds() {
-  return JSON.stringify(
-    Dex.mod(cobbledModId)
-      .abilities.all()
-      .map((ability) => ability.id)
-  );
+function resetData(type) {
+  const registry = Cobblemon.getRegistry(type);
+  registry.reset();
 }
 
-function getCobbledItemIds() {
-  return JSON.stringify(
-    Dex.mod(cobbledModId)
-      .items.all()
-      .map((item) => item.id)
-  );
+function resetAll() {
+  for (const key of Cobblemon.registryKeys) {
+    Cobblemon.registries[key].reset();
+  }
 }
 
-function receiveSpeciesData(speciesArray) {
-  CobblemonCache.resetSpecies();
-  speciesArray.forEach((speciesJson) => {
-    const speciesData = JSON.parse(speciesJson);
-    CobblemonCache.registerSpecies(speciesData);
-  });
+function receiveData(data, type) {
+  const registry = Cobblemon.getRegistry(type);
+  const obj = () => {
+    try {
+      // at the moment we only (re)serialize Species on the mod side, but prefer neat JSON first
+      return JSON.parse(data);
+    } catch {
+      // loose unstructured JS objects with embedded functions and stuff (abilities, moves, bag items, etc.)
+      return eval(`(${data})`);
+    }
+  };
+  for (const [key, value] of Object.entries(obj())) {
+    registry.register(value, toID(key));
+  }
+  registry.invalidate();
 }
 
-function afterCobbledSpeciesInit() {
+function receiveEntry(data, type) {
+  const registry = Cobblemon.getRegistry(type);
+  registry.register(data, toID(key));
+  registry.invalidate();
+}
+
+function invalidate(type) {
+  const registry = Cobblemon.getRegistry(type);
+  registry.invalidate();
+}
+
+function getData(type) {
+  const registry = Cobblemon.getRegistry(type);
+  return JSON.stringify(registry.all());
+}
+
+function afterSpeciesInit() {
   Dex.modsLoaded = false;
   Dex.includeMods();
-}
-
-function receiveBagItemData(itemId, bagItem) {
-  BagItems.set(itemId, eval(`(${bagItem})`));
-}
-
-function receiveHeldItemData(itemId, itemData) {
-  items.Items[itemId] = eval(`(${itemData})`);
-}
-
-function receiveMoveData(moveId, moveData) {
-  moves.Moves[moveId] = eval(`(${moveData})`);
-  return JSON.stringify(moves.Moves[moveId]);
-}
-
-function receiveAbilityData(abilityId, abilityData) {
-  abilities.Abilities[abilityId] = eval(`(${abilityData})`);
 }
 
 function receiveCustomGmaxMove(pokemonId, moveId) {
@@ -116,4 +123,8 @@ function receiveScriptData(scriptId, scriptData) {
   const newFunctions = eval(`(${scriptData})`);
   if (!scripts.Scripts[scriptId]) scripts.Scripts[scriptId] = {};
   Object.assign(scripts.Scripts[scriptId], newFunctions);
+}
+
+function receiveHeldItemData(itemId, itemData) {
+  items.Items[itemId] = eval(`(${itemData})`);
 }

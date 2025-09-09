@@ -40,7 +40,11 @@ class MaxMushroom(
         override val itemName = "item.mega_showdown.max_mushroom"
         override val returnItem = Items.AIR
 
-        override fun canUse(battle: PokemonBattle, target: BattlePokemon): Boolean {
+        override fun canUse(
+            stack: ItemStack,
+            battle: PokemonBattle,
+            target: BattlePokemon
+        ): Boolean {
             return target.health > 0
         }
 
@@ -72,7 +76,7 @@ class MaxMushroom(
                     PartySelectCallbacks.createBattleSelect(
                         player = player,
                         pokemon = battlePokemon,
-                        canSelect = { bagItem.canUse(battle, it) }
+                        canSelect = { bagItem.canUse(stack, battle, it) }
                     ) { bp ->
                         if (actor.canFitForcedAction() && bp.health > 0 && battle.turn == turn && stack.isHeld(player)) {
                             player.playSound(CobblemonSounds.ITEM_USE, 1F, 1F)
@@ -115,7 +119,7 @@ class MaxMushroom(
                     PartySelectCallbacks.createBattleSelect(
                         player = player,
                         pokemon = battlePokemon,
-                        canSelect = { bagItem.canUse(battle, it) }
+                        canSelect = { bagItem.canUse(stack, battle, it) }
                     ) { bp ->
                         if (actor.canFitForcedAction() && bp.health > 0 && battle.turn == turn && stack.isHeld(player)) {
                             player.playSound(CobblemonSounds.ITEM_USE, 1F, 1F)

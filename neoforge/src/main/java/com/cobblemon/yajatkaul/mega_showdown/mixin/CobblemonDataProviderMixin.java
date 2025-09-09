@@ -20,8 +20,6 @@ public class CobblemonDataProviderMixin {
     private DataRegistry injectBeforeSpeciesRegister(CobblemonDataProvider instance, DataRegistry registry) {
         if (registry instanceof CobblemonScripts) {
             if (registry == CobblemonScripts.INSTANCE) {
-                instance.register(Abilities.INSTANCE);
-                instance.register(Moves.INSTANCE);
                 instance.register(Conditions.INSTANCE);
                 instance.register(HeldItems.INSTANCE);
                 instance.register(TypeCharts.INSTANCE);
