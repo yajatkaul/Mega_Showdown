@@ -1,5 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ConvertItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -57,7 +59,7 @@ public class CompiItems {
             });
 
     public static final DeferredItem<Item> CLEAR_AMULET = ITEMS.register("clear_amulet",
-            () -> new Item(new Item.Properties()) {
+            () -> new ConvertItem(new Item.Properties(), CobblemonItems.CLEAR_AMULET) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.clear_amulet.tooltip"));
@@ -66,7 +68,7 @@ public class CompiItems {
             });
 
     public static final DeferredItem<Item> LAGGING_TAIL = ITEMS.register("lagging_tail",
-            () -> new Item(new Item.Properties()) {
+            () -> new ConvertItem(new Item.Properties(), CobblemonItems.LAGGING_TAIL) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.lagging_tail.tooltip"));
@@ -93,7 +95,7 @@ public class CompiItems {
             });
 
     public static final DeferredItem<Item> GRIPCLAW = ITEMS.register("gripclaw",
-            () -> new Item(new Item.Properties()) {
+            () -> new ConvertItem(new Item.Properties(), CobblemonItems.GRIP_CLAW) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.gripclaw.tooltip"));
@@ -102,7 +104,7 @@ public class CompiItems {
             });
 
     public static final DeferredItem<Item> LUMINOUS_MOSS = ITEMS.register("luminous_moss",
-            () -> new Item(new Item.Properties()) {
+            () -> new ConvertItem(new Item.Properties(), CobblemonItems.LUMINOUS_MOSS) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.luminous_moss.tooltip"));

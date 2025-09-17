@@ -14,9 +14,6 @@ import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.FormChangeHelper;
 import com.cobblemon.yajatkaul.mega_showdown.formChangeLogic.MegaLogic;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.dynamax.Dynamax;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.tera.TeraItem;
-import com.cobblemon.yajatkaul.mega_showdown.item.custom.zmove.ZRingItem;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import dev.emi.trinkets.api.TrinketsApi;
 import kotlin.Unit;
@@ -77,8 +74,8 @@ public class RevertEventsHandler {
     }
 
     public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayerEntity player) {
-        if(gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
-            if(!MegaShowdownConfig.dynamax.get()) {
+        if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
+            if (!MegaShowdownConfig.dynamax.get()) {
                 return false;
             }
 
@@ -88,10 +85,8 @@ public class RevertEventsHandler {
             return player.getOffHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
                     || player.getMainHandStack().isIn(ModTags.Items.DYNAMAX_BAND)
                     || hasDMaxItemTrinkets;
-        }
-
-        else if(gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
-            if(!MegaShowdownConfig.teralization.get()) {
+        } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
+            if (!MegaShowdownConfig.teralization.get()) {
                 return false;
             }
 
@@ -114,7 +109,7 @@ public class RevertEventsHandler {
                             .findFirst()
                     ).orElse(null);
 
-            if(teraOrb == null) {
+            if (teraOrb == null) {
                 return false;
             }
 
@@ -123,10 +118,8 @@ public class RevertEventsHandler {
             }
 
             return teraOrb.getDamage() < 100;
-        }
-
-        else if(gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
-            if(!MegaShowdownConfig.zMoves.get()) {
+        } else if (gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
+            if (!MegaShowdownConfig.zMoves.get()) {
                 return false;
             }
 
@@ -136,10 +129,8 @@ public class RevertEventsHandler {
             return player.getOffHandStack().isIn(ModTags.Items.Z_RINGS)
                     || player.getMainHandStack().isIn(ModTags.Items.Z_RINGS)
                     || hasZPowerItemTrinkets;
-        }
-
-        else if(gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
-            if(!MegaShowdownConfig.mega.get()) {
+        } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
+            if (!MegaShowdownConfig.mega.get()) {
                 return false;
             }
 

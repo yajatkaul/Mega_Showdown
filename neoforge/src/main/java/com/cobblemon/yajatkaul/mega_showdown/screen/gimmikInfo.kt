@@ -1,10 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.screen
 
 import com.cobblemon.mod.common.api.gui.blitk
-import com.cobblemon.mod.common.client.render.drawScaledText
 import com.mojang.blaze3d.vertex.PoseStack
-import net.minecraft.client.gui.GuiGraphics
-import net.minecraft.network.chat.MutableComponent
 import net.minecraft.resources.ResourceLocation
 
 fun gimmikInfo(

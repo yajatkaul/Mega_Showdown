@@ -37,7 +37,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('W', DynamaxItems.WISHING_STAR)
                 .define('K', MegaStones.KEYSTONE)
                 .define('N', Items.NETHERITE_INGOT)
-                .define('S',Ingredient.of(
+                .define('S', Ingredient.of(
                         ZCrystals.SPARKLING_STONE_DARK,
                         ZCrystals.SPARKLING_STONE_LIGHT
                 ))

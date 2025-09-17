@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.trinket.renderers;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -28,7 +27,7 @@ public class RenderHandTrinkets implements TrinketRenderer {
         boolean hasDMaxItemTrinkets = TrinketsApi.getTrinketComponent(entity).map(trinkets ->
                 trinkets.isEquipped(item -> item.isIn(ModTags.Items.DYNAMAX_BAND))).orElse(false);
 
-        if(hasOmniItemTrinkets && hasDMaxItemTrinkets && !stack.isIn(ModTags.Items.OMNI_RING)) {
+        if (hasOmniItemTrinkets && hasDMaxItemTrinkets && !stack.isIn(ModTags.Items.OMNI_RING)) {
             return;
         }
 

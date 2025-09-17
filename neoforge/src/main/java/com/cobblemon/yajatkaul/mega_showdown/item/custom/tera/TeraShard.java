@@ -1,7 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.item.custom.tera;
 
 import com.cobblemon.mod.common.api.types.tera.TeraType;
-import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
@@ -23,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class TeraShard extends Item {
     private final TeraType teraType;
+
     public TeraShard(Properties arg, TeraType teraType) {
         super(arg);
         this.teraType = teraType;
@@ -48,7 +48,7 @@ public class TeraShard extends Item {
             final int required_shards = MegaShowdownConfig.teraShardRequired;
 
             if (pokemon.getOwnerPlayer() == player && arg.getCount() == required_shards) {
-                if(pokemon.getTeraType() == teraType){
+                if (pokemon.getTeraType() == teraType) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.same_tera")
                             .withColor(0xFF0000), true);
                     return InteractionResult.PASS;

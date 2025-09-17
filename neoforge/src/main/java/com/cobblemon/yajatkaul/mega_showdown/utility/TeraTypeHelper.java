@@ -2,13 +2,8 @@ package com.cobblemon.yajatkaul.mega_showdown.utility;
 
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
-import com.cobblemon.mod.common.api.types.tera.TeraType;
-import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import net.minecraft.world.item.Item;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class TeraTypeHelper {
     public static Item getTeraShardForType(Iterable<ElementalType> types) {

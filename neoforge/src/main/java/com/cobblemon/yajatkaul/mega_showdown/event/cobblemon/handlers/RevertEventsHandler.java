@@ -95,8 +95,8 @@ public class RevertEventsHandler {
     }
 
     public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
-        if(gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
-            if(!MegaShowdownConfig.dynamax) {
+        if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
+            if (!MegaShowdownConfig.dynamax) {
                 return false;
             }
 
@@ -108,10 +108,8 @@ public class RevertEventsHandler {
             return player.getOffhandItem().is(ModTags.Items.DYNAMAX_BAND)
                     || player.getMainHandItem().is(ModTags.Items.DYNAMAX_BAND)
                     || hasDMaxItemTrinkets;
-        }
-
-        else if(gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
-            if(!MegaShowdownConfig.teralization) {
+        } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
+            if (!MegaShowdownConfig.teralization) {
                 return false;
             }
 
@@ -132,7 +130,7 @@ public class RevertEventsHandler {
                     .map(SlotResult::stack)
                     .orElse(null);
 
-            if(teraOrb == null) {
+            if (teraOrb == null) {
                 return false;
             }
 
@@ -141,10 +139,8 @@ public class RevertEventsHandler {
             }
 
             return teraOrb.getDamageValue() < 100;
-        }
-
-        else if(gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
-            if(!MegaShowdownConfig.zMoves) {
+        } else if (gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
+            if (!MegaShowdownConfig.zMoves) {
                 return false;
             }
 
@@ -156,10 +152,8 @@ public class RevertEventsHandler {
             return player.getOffhandItem().is(ModTags.Items.Z_RINGS)
                     || player.getMainHandItem().is(ModTags.Items.Z_RINGS)
                     || hasZPowerItemTrinkets;
-        }
-
-        else if(gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
-            if(!MegaShowdownConfig.mega) {
+        } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
+            if (!MegaShowdownConfig.mega) {
                 return false;
             }
 

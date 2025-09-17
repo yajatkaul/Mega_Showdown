@@ -122,7 +122,7 @@ public class ZygardeCube extends Item {
                         return InteractionResultHolder.success(stack);
                     }
 
-                    if(pokemon.getOwnerPlayer() != player) {
+                    if (pokemon.getOwnerPlayer() != player) {
                         return InteractionResultHolder.pass(stack);
                     }
 

@@ -78,7 +78,7 @@ public class Cap extends Item {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 
         if (entity instanceof PokemonEntity pk && pk.getPokemon().getOwnerPlayer() == user && !pk.isBattling()
-        && pk.getAspects().stream().noneMatch(black_list::contains)) {
+                && pk.getAspects().stream().noneMatch(black_list::contains)) {
             if (pk.getPokemon().getSpecies().getName().equals("Pikachu") && !pk.getPokemon().getAspects().contains("partner-cap")) {
                 if (pk.getFriendship() < 200) {
                     user.sendMessage(

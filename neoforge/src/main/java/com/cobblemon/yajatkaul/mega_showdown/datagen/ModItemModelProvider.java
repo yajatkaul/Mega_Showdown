@@ -137,9 +137,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(FormeChangeItems.GRACIDEA_FLOWER.get());
 
-        basicItem(ModItems.SCROLL_OF_DARKNESS.get());
-        basicItem(ModItems.SCROLL_OF_WATERS.get());
-
         basicItem(FormeChangeItems.HEARTHFLAME_MASK.get());
         basicItem(FormeChangeItems.CORNERSTONE_MASK.get());
         basicItem(FormeChangeItems.WELLSPRING_MASK.get());

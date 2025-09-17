@@ -113,7 +113,7 @@ public class N_Solarizer extends Item {
             player.setItemInHand(hand, stack);
             return InteractionResultHolder.consume(stack);
         } else if (hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
-            if(pkmn.isBattling()) return InteractionResultHolder.pass(stack);
+            if (pkmn.isBattling()) return InteractionResultHolder.pass(stack);
 
             Pokemon context = pkmn.getPokemon();
 

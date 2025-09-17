@@ -16,11 +16,11 @@ import org.joml.Vector3f;
 public class WishingStarCrystal extends CrystalBlock {
     public WishingStarCrystal(float f, float g, Properties properties, boolean dropExp) {
         super(f, g, properties.strength(1.5f)
-                .sound(SoundType.MEDIUM_AMETHYST_BUD)
-                .noOcclusion()
-                .requiresCorrectToolForDrops()
-                .pushReaction(PushReaction.IGNORE)
-                .lightLevel((state) -> 15)
+                        .sound(SoundType.MEDIUM_AMETHYST_BUD)
+                        .noOcclusion()
+                        .requiresCorrectToolForDrops()
+                        .pushReaction(PushReaction.IGNORE)
+                        .lightLevel((state) -> 15)
                 , dropExp);
     }
 

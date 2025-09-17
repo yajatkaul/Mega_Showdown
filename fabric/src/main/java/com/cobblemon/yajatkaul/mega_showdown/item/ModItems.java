@@ -61,22 +61,6 @@ public class ModItems {
         }
     });
 
-    public static final Item SCROLL_OF_DARKNESS = registerItem("scroll_of_darkness", new Item(new Item.Settings().maxCount(1)) {
-        @Override
-        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            tooltip.add(Text.translatable("tooltip.mega_showdown.scroll_of_darkness.tooltip"));
-            super.appendTooltip(stack, context, tooltip, type);
-        }
-    });
-
-    public static final Item SCROLL_OF_WATERS = registerItem("scroll_of_waters", new Item(new Item.Settings().maxCount(1)) {
-        @Override
-        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            tooltip.add(Text.translatable("tooltip.mega_showdown.scroll_of_waters.tooltip"));
-            super.appendTooltip(stack, context, tooltip, type);
-        }
-    });
-
     public static final Item OMNI_RING = registerItem("omni_ring", new OmniRingItem(new Item.Settings().maxCount(1)));
 
     public static Item registerItem(String name, Item item) {

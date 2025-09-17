@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-03T09:06:47.3963231	Item Models: mega_showdown
+// 1.21.1	2025-09-17T18:39:45.0346875	Item Models: mega_showdown
 fcf12d0257ce63e9e76eabca7f52997e40f04b7b assets/mega_showdown/models/item/abomasite.json
 7958c364778d4557fec56a1e1c2e617b52c9c2c3 assets/mega_showdown/models/item/absolite.json
 6f6795965ebcac05b4ed523ceb3141b1904b7c50 assets/mega_showdown/models/item/adamant_crystal.json
@@ -166,8 +166,6 @@ d7c581f59921db9e84e30ff2b0b3bae5ac497201 assets/mega_showdown/models/item/rotom_
 1d86c091cc0e36501a8529ac559c66e81c9e03e3 assets/mega_showdown/models/item/salamencite.json
 8cfa3284bac0eafceea3621700a0862c8c37fbb9 assets/mega_showdown/models/item/sceptilite.json
 47336fc25d0ac20cc53e3badb788d2d663af5902 assets/mega_showdown/models/item/scizorite.json
-2e667d9de0b607ba53c9c98a9be0434670e58c1e assets/mega_showdown/models/item/scroll_of_darkness.json
-4737dc95a0e9ad15b8fcf36a973ee36d2e9bcbf1 assets/mega_showdown/models/item/scroll_of_waters.json
 8cad21f524ec91b1d1d71f62f8c1113bdf668eb7 assets/mega_showdown/models/item/sharpedonite.json
 9ed71d032e5cd9b79d44d0e9aabc39f3ea4ae6b5 assets/mega_showdown/models/item/shockdrive.json
 02b51105b2f0376ec2c039f0db312a81906f793a assets/mega_showdown/models/item/skyplate.json

@@ -13,11 +13,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class DormantCrystal extends CrystalBlock {
     public DormantCrystal(float f, float g, Properties properties, boolean dropExp) {
         super(f, g, properties.strength(3f)
-                .sound(SoundType.MEDIUM_AMETHYST_BUD)
-                .noOcclusion()
-                .requiresCorrectToolForDrops()
-                .pushReaction(PushReaction.IGNORE)
-                .lightLevel((state) -> 15)
+                        .sound(SoundType.MEDIUM_AMETHYST_BUD)
+                        .noOcclusion()
+                        .requiresCorrectToolForDrops()
+                        .pushReaction(PushReaction.IGNORE)
+                        .lightLevel((state) -> 15)
                 , dropExp);
     }
 

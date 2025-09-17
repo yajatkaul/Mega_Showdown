@@ -224,8 +224,6 @@ public class ModCreativeModeTabs {
                         output.accept(FormeChangeItems.PRISON_BOTTLE);
                         output.accept(FormeChangeItems.REINS_OF_UNITY);
                         output.accept(FormeChangeItems.GRACIDEA_FLOWER);
-                        output.accept(ModItems.SCROLL_OF_WATERS);
-                        output.accept(ModItems.SCROLL_OF_DARKNESS);
                         output.accept(FormeChangeItems.WELLSPRING_MASK);
                         output.accept(FormeChangeItems.CORNERSTONE_MASK);
                         output.accept(FormeChangeItems.HEARTHFLAME_MASK);

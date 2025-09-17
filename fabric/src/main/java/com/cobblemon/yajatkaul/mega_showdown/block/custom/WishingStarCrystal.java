@@ -19,11 +19,11 @@ public class WishingStarCrystal extends CrystalBlock {
         super(height,
                 xzOffset,
                 settings.strength(1.5f)
-                .sounds(BlockSoundGroup.STONE)
-                .nonOpaque()
-                .requiresTool()
-                .pistonBehavior(PistonBehavior.IGNORE)
-                .luminance((state) -> 15),
+                        .sounds(BlockSoundGroup.STONE)
+                        .nonOpaque()
+                        .requiresTool()
+                        .pistonBehavior(PistonBehavior.IGNORE)
+                        .luminance((state) -> 15),
                 dropExp);
     }
 

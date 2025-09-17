@@ -11,12 +11,12 @@ public class DormantCrystal extends CrystalBlock {
     public DormantCrystal(float height, float xzOffset, Settings settings, boolean dropExp) {
         super(height,
                 xzOffset, settings.strength(3f)
-                .requiresTool()
-                .mapColor(MapColor.DIAMOND_BLUE)
-                .luminance((state) -> 15)
-                .nonOpaque()
-                .pistonBehavior(PistonBehavior.IGNORE)
-                .sounds(BlockSoundGroup.AMETHYST_CLUSTER),
+                        .requiresTool()
+                        .mapColor(MapColor.DIAMOND_BLUE)
+                        .luminance((state) -> 15)
+                        .nonOpaque()
+                        .pistonBehavior(PistonBehavior.IGNORE)
+                        .sounds(BlockSoundGroup.AMETHYST_CLUSTER),
                 dropExp
         );
     }

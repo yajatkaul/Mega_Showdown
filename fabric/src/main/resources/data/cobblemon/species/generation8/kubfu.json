@@ -130,7 +130,7 @@
         "wickedblow"
       ],
       "requirements": [],
-      "requiredContext": "mega_showdown:scroll_of_darkness"
+      "requiredContext": "cobblemon:scroll_of_darkness"
     },
     {
       "id": "kubfu_urshifurapidstrike",
@@ -141,7 +141,7 @@
         "surgingstrikes"
       ],
       "requirements": [],
-      "requiredContext": "mega_showdown:scroll_of_waters"
+      "requiredContext": "cobblemon:scroll_of_waters"
     }
   ]
 }

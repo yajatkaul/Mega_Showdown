@@ -25,6 +25,7 @@
     "pokemon.ShowdownReloadMixin"
   ],
   "client": [
+    "StatWidgetMixin",
     "battle.client.BattleMoveSelectionMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",

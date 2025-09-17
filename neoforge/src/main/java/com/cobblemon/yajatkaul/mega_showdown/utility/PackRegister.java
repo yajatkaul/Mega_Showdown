@@ -40,7 +40,7 @@ public class PackRegister {
         }
     }
 
-    private static Pack createPack(PackLocationInfo packInfo, Path packPath){
+    private static Pack createPack(PackLocationInfo packInfo, Path packPath) {
         // Implement ResourcesSupplier
         Pack.ResourcesSupplier resourcesSupplier = new Pack.ResourcesSupplier() {
             @Override

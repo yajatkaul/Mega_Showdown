@@ -111,7 +111,7 @@ public class Unity extends Item {
             player.setStackInHand(hand, stack);
             return TypedActionResult.consume(stack);
         } else if (hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
-            if(pkmn.isBattling()) return TypedActionResult.pass(stack);
+            if (pkmn.isBattling()) return TypedActionResult.pass(stack);
 
             Pokemon context = pkmn.getPokemon();
 

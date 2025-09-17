@@ -17,11 +17,11 @@ public class MegaStoneCrystal extends CrystalBlock {
     public MegaStoneCrystal(float height, float xzOffset, Settings settings, boolean dropExp) {
         super(height,
                 xzOffset, settings.strength(1.5f)
-                .sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD)
-                .nonOpaque()
-                .requiresTool()
-                .pistonBehavior(PistonBehavior.IGNORE)
-                .luminance((state) -> 15),
+                        .sounds(BlockSoundGroup.MEDIUM_AMETHYST_BUD)
+                        .nonOpaque()
+                        .requiresTool()
+                        .pistonBehavior(PistonBehavior.IGNORE)
+                        .luminance((state) -> 15),
                 dropExp);
     }
 

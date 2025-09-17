@@ -2,16 +2,13 @@ package com.cobblemon.yajatkaul.mega_showdown.formChangeLogic;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
-import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.data.MegaData;
 import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
-import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.handlers.RevertEventsHandler;
 import com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils.EventUtils;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
@@ -64,7 +61,7 @@ public class MegaLogic {
                 || hasKeystoneItemTrinkets) {
             cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
             return true;
-        }else {
+        } else {
             return false;
         }
     }

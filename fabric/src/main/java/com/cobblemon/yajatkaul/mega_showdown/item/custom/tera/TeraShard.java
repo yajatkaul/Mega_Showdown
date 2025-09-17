@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.cobblemon.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.cobblemon.yajatkaul.mega_showdown.item.TeraMoves;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -94,7 +93,7 @@ public class TeraShard extends Item {
             final int required_shards = MegaShowdownConfig.teraShardRequired.get();
 
             if (pokemon.getOwnerPlayer() == player && stack.getCount() == required_shards) {
-                if(pokemon.getTeraType() == teraType){
+                if (pokemon.getTeraType() == teraType) {
                     player.sendMessage(
                             Text.translatable("message.mega_showdown.same_tera").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF0000))),
                             true

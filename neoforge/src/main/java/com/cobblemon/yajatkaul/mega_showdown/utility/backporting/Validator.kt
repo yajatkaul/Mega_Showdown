@@ -1,8 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.utility.backporting
 
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon
-import com.cobblemon.mod.common.battles.BattleTypes
-import com.cobblemon.mod.common.battles.MoveTarget
 import com.cobblemon.mod.common.battles.ShowdownMoveset
 
 object Validator {
@@ -25,8 +23,9 @@ object Validator {
         if (!validGimmickMove && !move.canBeUsed()) {
             return false
         }
-        val availableTargets = (if (gimmickID != null && validGimmickMove && gimmickID != "terastal" && gimmickID != "mega") gimmickMove!!.target else move.target)
-            .targetList(activeBattlePokemon)?.takeIf { it.isNotEmpty() } ?: return true
+        val availableTargets =
+            (if (gimmickID != null && validGimmickMove && gimmickID != "terastal" && gimmickID != "mega") gimmickMove!!.target else move.target)
+                .targetList(activeBattlePokemon)?.takeIf { it.isNotEmpty() } ?: return true
 
         val pnx = targetPnx ?: return false // If the targets list is non-null then they need to have specified a target
         val (_, targetPokemon) = activeBattlePokemon.actor.battle.getActorAndActiveSlotFromPNX(pnx)

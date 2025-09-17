@@ -18,7 +18,7 @@ public class EvolutionMixin {
     // Since im a genius and use the evolution data sync on every form change I had this gross idea to fix it, i want to die
     @Inject(method = "forceEvolve", at = @At("TAIL"))
     private void forceEvolve(Pokemon pk, CallbackInfo ci) {
-        if(consumeHeldItem) {
+        if (consumeHeldItem) {
             pk.setHeldItem$common(ItemStack.EMPTY);
         }
     }

@@ -1,6 +1,5 @@
 package com.cobblemon.yajatkaul.mega_showdown.curios.render;
 
-import com.cobblemon.yajatkaul.mega_showdown.item.ModItems;
 import com.cobblemon.yajatkaul.mega_showdown.utility.ModTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -21,7 +20,7 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 public class CurioHandRenderer implements ICurioRenderer {
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack
-            matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
+                                                                                  matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light
             , float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
         if (stack.isEmpty()) return;
@@ -36,7 +35,7 @@ public class CurioHandRenderer implements ICurioRenderer {
                         .isEquipped(stack2 -> stack2.is(ModTags.Items.OMNI_RING)))
                 .orElse(false);
 
-        if(hasOmniItemTrinkets && hasDMaxItemTrinkets && !stack.is(ModTags.Items.OMNI_RING)) {
+        if (hasOmniItemTrinkets && hasDMaxItemTrinkets && !stack.is(ModTags.Items.OMNI_RING)) {
             return;
         }
 

@@ -59,7 +59,7 @@ public class MegaLogic {
                 || hasMegaItemCurios) {
             cooldowns.put(playerId, currentTime + COOLDOWN_TIME);
             return true;
-        }else {
+        } else {
             return false;
         }
     }

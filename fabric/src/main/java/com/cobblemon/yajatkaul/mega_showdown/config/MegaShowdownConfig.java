@@ -47,8 +47,8 @@ public class MegaShowdownConfig {
                  but can't since mega showdown keeps overriding the files""").define("showdownFilesLoading", true);
         multiplePrimals = builder.comment("Allows you to have multiple primals").define("multiplePrimals", true);
         revertMegas = builder.comment("Enable/Disable mega pokemons form reverting when battle starts").define("revertMegas", true);
-        teraShardRequired = builder.comment("Number of tera shards required to change tera type").define("teraShardRequired", 50, 1 , 50);
-        teraShardDropRate = builder.comment("Terashard drop rate").define("teraShardDropRate", 10.0, -1 , 100);
+        teraShardRequired = builder.comment("Number of tera shards required to change tera type").define("teraShardRequired", 50, 1, 50);
+        teraShardDropRate = builder.comment("Terashard drop rate").define("teraShardDropRate", 10.0, -1, 100);
         stellarShardDropRate = builder.comment("Stellar tera shard drop rate").define("stellarShardDropRate", 1.0, -1, 10);
 
         builder.build();

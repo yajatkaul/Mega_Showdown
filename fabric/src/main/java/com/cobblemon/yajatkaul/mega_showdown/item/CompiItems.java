@@ -1,5 +1,7 @@
 package com.cobblemon.yajatkaul.mega_showdown.item;
 
+import com.cobblemon.mod.common.CobblemonItems;
+import com.cobblemon.yajatkaul.mega_showdown.item.custom.ConvertItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -50,7 +52,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item CLEAR_AMULET = registerItem("clear_amulet", new Item(new Item.Settings()) {
+    public static final Item CLEAR_AMULET = registerItem("clear_amulet", new ConvertItem(new Item.Settings(), CobblemonItems.CLEAR_AMULET) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.clear_amulet.tooltip"));
@@ -58,7 +60,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item LAGGING_TAIL = registerItem("lagging_tail", new Item(new Item.Settings()) {
+    public static final Item LAGGING_TAIL = registerItem("lagging_tail", new ConvertItem(new Item.Settings(), CobblemonItems.LAGGING_TAIL) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.lagging_tail.tooltip"));
@@ -82,7 +84,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item GRIPCLAW = registerItem("gripclaw", new Item(new Item.Settings()) {
+    public static final Item GRIPCLAW = registerItem("gripclaw", new ConvertItem(new Item.Settings(), CobblemonItems.GRIP_CLAW) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.gripclaw.tooltip"));
@@ -90,7 +92,7 @@ public class CompiItems {
         }
     });
 
-    public static final Item LUMINOUS_MOSS = registerItem("luminous_moss", new Item(new Item.Settings()) {
+    public static final Item LUMINOUS_MOSS = registerItem("luminous_moss", new ConvertItem(new Item.Settings(), CobblemonItems.LUMINOUS_MOSS) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.mega_showdown.luminous_moss.tooltip"));

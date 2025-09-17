@@ -216,8 +216,6 @@ public class ModItemGroups {
                         entries.add(FormeChangeItems.PRISON_BOTTLE);
                         entries.add(FormeChangeItems.REINS_OF_UNITY);
                         entries.add(FormeChangeItems.GRACIDEA_FLOWER);
-                        entries.add(ModItems.SCROLL_OF_DARKNESS);
-                        entries.add(ModItems.SCROLL_OF_WATERS);
                         entries.add(FormeChangeItems.WELLSPRING_MASK);
                         entries.add(FormeChangeItems.CORNERSTONE_MASK);
                         entries.add(FormeChangeItems.HEARTHFLAME_MASK);
@@ -311,18 +309,14 @@ public class ModItemGroups {
                         entries.add(CompiItems.ADAMANT_ORB);
                         entries.add(CompiItems.GRISEOUS_ORB);
                         entries.add(CompiItems.LUSTROUS_ORB);
-                        entries.add(CompiItems.CLEAR_AMULET);
-                        entries.add(CompiItems.LAGGING_TAIL);
                         entries.add(CompiItems.ADRENALINEORB);
                         entries.add(CompiItems.SOULDEW);
-                        entries.add(CompiItems.GRIPCLAW);
-                        entries.add(CompiItems.LUMINOUS_MOSS);
                     }))
                     .build());
 
     public static final ItemGroup MEGA_SHOWDOWN_TAB = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(MegaShowdown.MOD_ID, "mega_showdown_tab"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.PEDESTAL))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.OMNI_RING))
                     .displayName(Text.translatable("creativeTab.mega_showdown.key_tab"))
                     .entries(((displayContext, entries) -> {
                         entries.add(ModBlocks.PEDESTAL);

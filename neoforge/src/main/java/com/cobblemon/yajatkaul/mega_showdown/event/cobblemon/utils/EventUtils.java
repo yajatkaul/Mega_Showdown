@@ -50,6 +50,7 @@ public class EventUtils {
             player.addItem(itemStack);
         }
     }
+
     public static void updatePackets(PokemonBattle battle, BattlePokemon pk) {
         Pokemon pokemon = pk.getEntity().getPokemon();
 
