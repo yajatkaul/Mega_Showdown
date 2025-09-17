@@ -110,6 +110,8 @@ public class N_Lunarizer extends Item {
             player.setStackInHand(hand, stack);
             return TypedActionResult.consume(stack);
         } else if (hitResult != null && hitResult.getEntity() instanceof PokemonEntity pkmn) {
+            if(pkmn.isBattling()) return TypedActionResult.pass(stack);
+
             Pokemon context = pkmn.getPokemon();
 
             if (player.isCrawling()) {

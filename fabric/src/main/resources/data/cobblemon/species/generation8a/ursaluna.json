@@ -7,21 +7,158 @@
   "maleRatio": 0.5,
   "height": 24,
   "weight": 2900,
-  "pokedex": [
-    "cobblemon.species.ursaluna.desc"
-  ],
-  "labels": [
-    "gen8a"
-  ],
+  "pokedex": ["cobblemon.species.ursaluna.desc"],
+  "labels": ["gen8a"],
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "10-40",
+          "JUMP": "10-40",
+          "SKILL": "10-40",
+          "SPEED": "30-65",
+          "STAMINA": "55-85"
+        }
+      }
+    },
+    "seats": [
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "poseOffsets": [
+          {
+            "offset": {
+              "x": 0.010869641,
+              "y": -2.0120482,
+              "z": 0.06636892
+            },
+            "poseTypes": ["STAND"]
+          },
+          {
+            "offset": {
+              "x": 0.027785623,
+              "y": -1.9801829,
+              "z": 0.13352945
+            },
+            "poseTypes": ["WALK"]
+          },
+          {
+            "offset": {
+              "x": 0.010869641,
+              "y": -2.0120482,
+              "z": 0.06636892
+            },
+            "poseTypes": ["HOVER"]
+          },
+          {
+            "offset": {
+              "x": 0.010869641,
+              "y": -2.0120482,
+              "z": 0.06636892
+            },
+            "poseTypes": ["FLY"]
+          },
+          {
+            "offset": {
+              "x": 0.010869641,
+              "y": -2.0120482,
+              "z": 0.06636892
+            },
+            "poseTypes": ["FLOAT"]
+          },
+          {
+            "offset": {
+              "x": 0.027785623,
+              "y": -1.9801829,
+              "z": 0.13352945
+            },
+            "poseTypes": ["SWIM"]
+          },
+          {
+            "offset": {
+              "x": 0.010869641,
+              "y": -2.0120482,
+              "z": 0.06636892
+            },
+            "poseTypes": ["GLIDE"]
+          }
+        ]
+      },
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "poseOffsets": [
+          {
+            "offset": {
+              "x": 0.0,
+              "y": -1.5625,
+              "z": 1.0625
+            },
+            "poseTypes": ["STAND"]
+          },
+          {
+            "offset": {
+              "x": -0.010899445,
+              "y": -1.5354366,
+              "z": 1.0621194
+            },
+            "poseTypes": ["WALK"]
+          },
+          {
+            "offset": {
+              "x": 0.0,
+              "y": -1.5625,
+              "z": 1.0625
+            },
+            "poseTypes": ["HOVER"]
+          },
+          {
+            "offset": {
+              "x": 0.0,
+              "y": -1.5625,
+              "z": 1.0625
+            },
+            "poseTypes": ["FLY"]
+          },
+          {
+            "offset": {
+              "x": 0.0,
+              "y": -1.5625,
+              "z": 1.0625
+            },
+            "poseTypes": ["FLOAT"]
+          },
+          {
+            "offset": {
+              "x": -0.010899445,
+              "y": -1.5354366,
+              "z": 1.0621194
+            },
+            "poseTypes": ["SWIM"]
+          },
+          {
+            "offset": {
+              "x": 0.0,
+              "y": -1.5625,
+              "z": 1.0625
+            },
+            "poseTypes": ["GLIDE"]
+          }
+        ]
+      }
+    ]
+  },
   "aspects": [],
-  "abilities": [
-    "guts",
-    "bulletproof",
-    "h:unnerve"
-  ],
-  "eggGroups": [
-    "field"
-  ],
+  "abilities": ["guts", "bulletproof", "h:unnerve"],
+  "eggGroups": ["field"],
   "baseStats": {
     "hp": 130,
     "attack": 140,
@@ -216,19 +353,34 @@
       "maleRatio": 1,
       "height": 27,
       "weight": 3330,
-      "pokedex": [
-        "cobblemon.species.ursaluna-bloodmoon.desc"
-      ],
-      "labels": [
-        "gen9"
-      ],
-      "aspects": [
-        "bloodmoon"
-      ],
-      "abilities": [
-        "mindseye",
-        "h:mindseye"
-      ],
+      "pokedex": ["cobblemon.species.ursaluna-bloodmoon.desc"],
+      "labels": ["gen9"],
+      "riding": {
+        "behaviours": {
+          "LAND": {
+            "key": "cobblemon:land/horse",
+            "rideSounds": [],
+            "stats": {
+              "ACCELERATION": "30-60",
+              "JUMP": "30-65",
+              "SKILL": "20-50",
+              "SPEED": "20-40",
+              "STAMINA": "30-65"
+            }
+          }
+        },
+        "seats": [
+          {
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          }
+        ]
+      },
+      "aspects": ["bloodmoon"],
+      "abilities": ["mindseye", "h:mindseye"],
       "baseScale": 1,
       "hitbox": {
         "width": 1.8,

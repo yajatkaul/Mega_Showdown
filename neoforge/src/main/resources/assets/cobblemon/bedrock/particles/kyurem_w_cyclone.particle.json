@@ -5,7 +5,7 @@
       "identifier": "cobblemon:kyurem_w_cyclone",
       "basic_render_parameters": {
         "material": "particles_alpha",
-        "texture": "textures/particles/impact-fire"
+        "texture": "textures/particles/generic/impact/impact_fire"
       }
     },
     "curves": {

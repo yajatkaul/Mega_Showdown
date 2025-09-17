@@ -5,7 +5,7 @@
 			"identifier": "cobblemon:silvally_dragon",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/particles/impact-dragon"
+				"texture": "textures/particles/generic/impact/impact_dragon"
 			}
 		},
 		"components": {

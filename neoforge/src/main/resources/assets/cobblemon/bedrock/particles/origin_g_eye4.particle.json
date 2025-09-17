@@ -5,7 +5,7 @@
       "identifier": "cobblemon:origin_g_eye4",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particles/small-sparkle"
+        "texture": "textures/particles/generic/sparkle/smallsparkle"
       }
     },
     "curves": {

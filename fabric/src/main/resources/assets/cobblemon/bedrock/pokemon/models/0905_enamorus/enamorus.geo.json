@@ -532,6 +532,14 @@
 					"cubes": [
 						{"origin": [-4.4, 40.45, 0.75], "size": [2, 4, 0], "pivot": [-3.9, 42.45, 0.75], "rotation": [0, 0, -40], "uv": [16, 65], "mirror": true}
 					]
+				},
+				{
+					"name": "locator_seat_1",
+					"parent": "torso",
+					"pivot": [0, 23.5, 4],
+					"locators": {
+						"seat_1": [0, 24.5, 7]
+					}
 				}
 			]
 		}

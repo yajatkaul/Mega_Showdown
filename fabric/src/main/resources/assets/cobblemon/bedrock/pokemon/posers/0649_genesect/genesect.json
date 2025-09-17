@@ -14,8 +14,6 @@
   ],
   "poses": {
     "standing": {
-      "poseName": "standing",
-      "transformTicks": 10,
       "poseTypes": [
         "STAND",
         "NONE",
@@ -27,8 +25,6 @@
       ]
     },
     "walking": {
-      "poseName": "walking",
-      "transformTicks": 10,
       "poseTypes": [
         "WALK"
       ],
@@ -36,24 +32,16 @@
         "bedrock(genesect, ground_walk)"
       ]
     },
-    "flying": {
-      "poseName": "flying",
-      "transformTicks": 10,
-      "poseTypes": [
-        "FLY"
-      ],
+    "fly": {
+      "poseTypes": ["FLY"],
       "animations": [
-        "bedrock(genesect, air_fly)"
+        "q.bedrock('genesect', 'air_fly')"
       ]
     },
-    "hovering": {
-      "poseName": "hovering",
-      "transformTicks": 10,
-      "poseTypes": [
-        "HOVER"
-      ],
+    "hover": {
+      "poseTypes": ["HOVER"],
       "animations": [
-        "bedrock(genesect, air_fly)"
+        "q.bedrock('genesect', 'air_fly')"
       ]
     }
   }

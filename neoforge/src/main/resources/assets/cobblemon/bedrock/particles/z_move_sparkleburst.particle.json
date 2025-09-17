@@ -5,7 +5,7 @@
       "identifier": "cobblemon:z_move_sparkleburst",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particles/glowing_sparkle_yellow"
+        "texture": "textures/particles/generic/sparkle/glowingsparkle_yellow"
       }
     },
     "components": {

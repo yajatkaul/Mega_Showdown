@@ -586,6 +586,14 @@
 					]
 				},
 				{
+					"name": "locator_seat_1",
+					"parent": "head_cloud3",
+					"pivot": [0, 45, 10.5],
+					"locators": {
+						"seat_1": [0, 45, 10.5]
+					}
+				},
+				{
 					"name": "head",
 					"parent": "neck2",
 					"pivot": [0, 41.01, -11.52],

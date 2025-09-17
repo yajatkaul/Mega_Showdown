@@ -5,7 +5,7 @@
 			"identifier": "cobblemon:silvally_poison",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/particles/impact-poison"
+				"texture": "textures/particles/generic/impact/impact_poison"
 			}
 		},
 		"components": {

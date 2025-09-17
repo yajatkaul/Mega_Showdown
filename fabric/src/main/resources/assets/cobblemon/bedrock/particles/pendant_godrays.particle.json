@@ -5,7 +5,7 @@
       "identifier": "cobblemon:pendant_godrays",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particles/lightbeam"
+        "texture": "textures/particles/generic/lightbeam"
       }
     },
     "components": {

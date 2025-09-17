@@ -5,7 +5,7 @@
       "identifier": "cobblemon:origin_g_godray_temp",
       "basic_render_parameters": {
         "material": "particles_alpha",
-        "texture": "textures/particles/white_vanilla_smoke"
+        "texture": "textures/particles/vanilla/big_smoke_white"
       }
     },
     "components": {

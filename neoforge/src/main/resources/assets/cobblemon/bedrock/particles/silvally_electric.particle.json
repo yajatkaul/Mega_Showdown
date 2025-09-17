@@ -5,7 +5,7 @@
 			"identifier": "cobblemon:silvally_electric",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/particles/impact-electric"
+				"texture": "textures/particles/generic/impact/impact_electric"
 			}
 		},
 		"components": {

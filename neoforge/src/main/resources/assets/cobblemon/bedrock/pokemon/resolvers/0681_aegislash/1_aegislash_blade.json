@@ -6,17 +6,7 @@
       "aspects": [
         "blade-forme"
       ],
-      "poser": "cobblemon:aegislash_blade",
-      "model": "cobblemon:aegislash_blade.geo",
-      "texture": "cobblemon:textures/pokemon/0681_aegislash/aegislash.png",
-      "layers": []
-    },
-    {
-      "aspects": [
-        "blade-forme",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0681_aegislash/aegislash_shiny.png"
+      "poser": "cobblemon:aegislash_blade"
     }
   ]
 }

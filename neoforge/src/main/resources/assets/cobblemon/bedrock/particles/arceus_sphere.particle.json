@@ -5,7 +5,7 @@
       "identifier": "cobblemon:arceus_sphere",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particles/capturesparks"
+        "texture": "textures/particles/balls/capturesparks"
       }
     },
     "components": {

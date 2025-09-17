@@ -68,6 +68,14 @@
 					]
 				},
 				{
+					"name": "locator_seat_1",
+					"parent": "rear",
+					"pivot": [0, 170.5, -3],
+					"locators": {
+						"seat_1": [0, 33.5, 20]
+					}
+				},
+				{
 					"name": "torso_front",
 					"parent": "torso",
 					"pivot": [0, 27, -4.5]

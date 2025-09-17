@@ -5,7 +5,7 @@
       "identifier": "cobblemon:origin_g_cyclone",
       "basic_render_parameters": {
         "material": "particles_alpha",
-        "texture": "textures/particles/vanilla_smoke"
+        "texture": "textures/particles/vanilla/big_smoke"
       }
     },
     "curves": {

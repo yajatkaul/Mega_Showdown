@@ -5,7 +5,7 @@
       "identifier": "cobblemon:origin_particles",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particles/sparkle"
+        "texture": "textures/particles/generic/sparkle/sparkle"
       }
     },
     "components": {

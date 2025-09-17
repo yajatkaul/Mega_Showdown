@@ -5,6 +5,10 @@
       "name": "Cosplay",
       "pokedex": ["cobblemon.species.pikachu-cosplay.desc"],
       "aspects": ["cosplay"],
+      "maleRatio": 0,
+      "eggGroups": [
+        "undiscovered"
+      ],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:thundershock",
@@ -137,6 +141,10 @@
       "name": "Rockstar",
       "pokedex": ["cobblemon.species.pikachu-rockstar.desc"],
       "aspects": ["rock_star"],
+      "eggGroups": [
+        "undiscovered"
+      ],
+      "maleRatio": 0,
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:meteormash",
@@ -268,6 +276,10 @@
     {
       "name": "Popstar",
       "pokedex": ["cobblemon.species.pikachu-popstar.desc"],
+      "maleRatio": 0,
+      "eggGroups": [
+        "undiscovered"
+      ],
       "aspects": ["pop_star"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
@@ -401,6 +413,10 @@
       "name": "PhD",
       "pokedex": ["cobblemon.species.pikachu-phd.desc"],
       "aspects": ["phd"],
+      "maleRatio": 0,
+      "eggGroups": [
+        "undiscovered"
+      ],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:electricterrain",
@@ -533,7 +549,11 @@
       "name": "Libre",
       "pokedex": ["cobblemon.species.pikachu-libre.desc"],
       "aspects": ["libre"],
+      "eggGroups": [
+        "undiscovered"
+      ],
       "abilities": ["lightningrod", "h:lightningrod"],
+      "maleRatio": 0,
       "moves": [
         "form_change:flyingpress",
         "1:growl",
@@ -665,7 +685,11 @@
       "name": "Belle",
       "pokedex": ["cobblemon.species.pikachu-belle.desc"],
       "aspects": ["belle"],
+      "eggGroups": [
+        "undiscovered"
+      ],
       "abilities": ["lightningrod", "h:lightningrod"],
+      "maleRatio": 0,
       "moves": [
         "form_change:iciclecrash",
         "1:growl",

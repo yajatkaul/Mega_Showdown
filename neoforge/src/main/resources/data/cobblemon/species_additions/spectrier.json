@@ -1,6 +1,30 @@
 {
   "implemented": true,
   "target": "cobblemon:spectrier",
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "50-70",
+          "JUMP": "30-65",
+          "SKILL": "20-50",
+          "SPEED": "50-70",
+          "STAMINA": "30-65"
+        }
+      }
+    },
+    "seats": [
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      }
+    ]
+  },
   "baseScale": 0.85,
   "hitbox": {
     "width": 2.2,

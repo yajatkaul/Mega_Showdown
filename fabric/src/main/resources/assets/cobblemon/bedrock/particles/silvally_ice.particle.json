@@ -5,7 +5,7 @@
 			"identifier": "cobblemon:silvally_ice",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/particles/impact-ice"
+				"texture": "textures/particles/generic/impact/impact_ice"
 			}
 		},
 		"components": {

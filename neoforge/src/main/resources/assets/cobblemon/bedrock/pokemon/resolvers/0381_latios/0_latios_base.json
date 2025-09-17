@@ -4,8 +4,8 @@
   "variations": [
     {
       "aspects": [],
-      "poser": "cobblemon:latios",
-      "model": "cobblemon:latios.geo",
+      "poser": "cobblemon:latios2",
+      "model": "cobblemon:latios2.geo",
       "texture": "cobblemon:textures/pokemon/0381_latios/latios.png",
       "layers": []
     },

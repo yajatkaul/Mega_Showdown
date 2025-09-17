@@ -1,0 +1,436 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 9,
+  "name": "Blastoise",
+  "primaryType": "water",
+  "maleRatio": 0.875,
+  "height": 16,
+  "weight": 855,
+  "pokedex": [
+    "cobblemon.species.blastoise.desc"
+  ],
+  "labels": [
+    "gen1"
+  ],
+  "aspects": [],
+  "abilities": [
+    "torrent",
+    "h:raindish"
+  ],
+  "eggGroups": [
+    "monster",
+    "water_1"
+  ],
+  "baseStats": {
+    "hp": 79,
+    "attack": 83,
+    "defence": 100,
+    "special_attack": 85,
+    "special_defence": 105,
+    "speed": 78
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 0,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 3,
+    "speed": 0
+  },
+  "baseExperienceYield": 265,
+  "experienceGroup": "medium_slow",
+  "catchRate": 45,
+  "eggCycles": 20,
+  "baseFriendship": 50,
+  "baseScale": 0.9,
+  "hitbox": {
+    "height": 3,
+    "fixed": false,
+    "width": 1.8
+  },
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "30-65",
+          "JUMP": "0-10",
+          "SKILL": "10-40",
+          "SPEED": "0-10",
+          "STAMINA": "55-85"
+        }
+      },
+      "LIQUID": {
+        "key": "cobblemon:liquid/boat",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "55-85",
+          "JUMP": "0-10",
+          "SKILL": "10-40",
+          "SPEED": "30-65",
+          "STAMINA": "55-85"
+        }
+      }
+    },
+    "seats": [
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "poseOffsets": [
+          {
+            "offset": {
+              "x": -7.59989E-4,
+              "y": -2.7762213,
+              "z": -0.08708589
+            },
+            "poseTypes": [
+              "STAND"
+            ]
+          },
+          {
+            "offset": {
+              "x": 7.13408E-4,
+              "y": -2.888495,
+              "z": -0.031018771
+            },
+            "poseTypes": [
+              "WALK"
+            ]
+          },
+          {
+            "offset": {
+              "x": 0.00771302,
+              "y": -2.6115432,
+              "z": -0.75916904
+            },
+            "poseTypes": [
+              "FLOAT"
+            ]
+          },
+          {
+            "offset": {
+              "x": 0.003519386,
+              "y": -2.0652485,
+              "z": -1.142766
+            },
+            "poseTypes": [
+              "SWIM"
+            ]
+          }
+        ]
+      },
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "poseOffsets": [
+          {
+            "offset": {
+              "x": 0.0065662265,
+              "y": -1.938705,
+              "z": 0.75241566
+            },
+            "poseTypes": [
+              "STAND"
+            ]
+          },
+          {
+            "offset": {
+              "x": 0.1671896,
+              "y": -2.013784,
+              "z": 0.75219035
+            },
+            "poseTypes": [
+              "WALK"
+            ]
+          },
+          {
+            "offset": {
+              "x": 0.00441283,
+              "y": -2.3173895,
+              "z": 0.3896186
+            },
+            "poseTypes": [
+              "FLOAT"
+            ]
+          },
+          {
+            "offset": {
+              "x": -0.062409163,
+              "y": -2.3481708,
+              "z": 0.0069550956
+            },
+            "poseTypes": [
+              "SWIM"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "behaviour": {
+    "herd": {
+      "maxSize": "5"
+    },
+    "moving": {
+      "swim": {
+        "canBreatheUnderwater": true,
+        "canSwimInLava": false,
+        "canSwimInWater": true,
+        "swimSpeed": "0.2"
+      },
+      "walk": {
+        "walkSpeed": 0.17
+      }
+    },
+    "resting": {
+      "canSleep": true,
+      "light": "0-4"
+    }
+  },
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:turtle_scute",
+        "quantityRange": "0-3"
+      },
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 25.0
+      }
+    ]
+  },
+  "moves": [
+    "1:flashcannon",
+    "1:tackle",
+    "1:tailwhip",
+    "1:bubble",
+    "1:withdraw",
+    "1:watergun",
+    "1:skullbash",
+    "9:rapidspin",
+    "12:bite",
+    "15:waterpulse",
+    "20:protect",
+    "25:raindance",
+    "30:aquatail",
+    "35:shellsmash",
+    "42:irondefense",
+    "49:hydropump",
+    "56:wavecrash",
+    "egg:aquajet",
+    "egg:aquaring",
+    "egg:fakeout",
+    "egg:flail",
+    "egg:foresight",
+    "egg:lifedew",
+    "egg:mirrorcoat",
+    "egg:mist",
+    "egg:mudsport",
+    "egg:refresh",
+    "egg:waterspout",
+    "egg:wavecrash",
+    "egg:yawn",
+    "tm:aquatail",
+    "tm:aurasphere",
+    "tm:avalanche",
+    "tm:blizzard",
+    "tm:bodypress",
+    "tm:bodyslam",
+    "tm:brickbreak",
+    "tm:brine",
+    "tm:chillingwater",
+    "tm:crunch",
+    "tm:darkpulse",
+    "tm:dig",
+    "tm:dive",
+    "tm:doubleedge",
+    "tm:dragonpulse",
+    "tm:earthquake",
+    "tm:endure",
+    "tm:facade",
+    "tm:flashcannon",
+    "tm:fling",
+    "tm:flipturn",
+    "tm:focusblast",
+    "tm:focuspunch",
+    "tm:gigaimpact",
+    "tm:gyroball",
+    "tm:hail",
+    "tm:haze",
+    "tm:headbutt",
+    "tm:helpinghand",
+    "tm:hydrocannon",
+    "tm:hydropump",
+    "tm:hyperbeam",
+    "tm:icebeam",
+    "tm:icepunch",
+    "tm:icespinner",
+    "tm:icywind",
+    "tm:irondefense",
+    "tm:irontail",
+    "tm:liquidation",
+    "tm:megakick",
+    "tm:megapunch",
+    "tm:muddywater",
+    "tm:mudshot",
+    "tm:poweruppunch",
+    "tm:protect",
+    "tm:raindance",
+    "tm:rest",
+    "tm:roar",
+    "tm:rockclimb",
+    "tm:rockslide",
+    "tm:rocksmash",
+    "tm:rocktomb",
+    "tm:rollout",
+    "tm:scaryface",
+    "tm:signalbeam",
+    "tm:sleeptalk",
+    "tm:smackdown",
+    "tm:strength",
+    "tm:substitute",
+    "tm:surf",
+    "tm:takedown",
+    "tm:terablast",
+    "tm:terrainpulse",
+    "tm:waterpledge",
+    "tm:waterpulse",
+    "tm:weatherball",
+    "tm:whirlpool",
+    "tm:workup",
+    "tm:zenheadbutt",
+    "tutor:aquatail",
+    "tutor:block",
+    "tutor:darkpulse",
+    "tutor:dive",
+    "tutor:flashcannon",
+    "tutor:flipturn",
+    "tutor:focuspunch",
+    "tutor:gigaimpact",
+    "tutor:helpinghand",
+    "tutor:hydrocannon",
+    "tutor:hyperbeam",
+    "tutor:icebeam",
+    "tutor:icepunch",
+    "tutor:icywind",
+    "tutor:irondefense",
+    "tutor:irontail",
+    "tutor:liquidation",
+    "tutor:rest",
+    "tutor:rocksmash",
+    "tutor:rollout",
+    "tutor:signalbeam",
+    "tutor:sleeptalk",
+    "tutor:terrainpulse",
+    "tutor:waterpledge",
+    "tutor:waterpulse",
+    "tutor:zenheadbutt",
+    "legacy:attract",
+    "legacy:bide",
+    "legacy:bubblebeam",
+    "legacy:bulldoze",
+    "legacy:captivate",
+    "legacy:confide",
+    "legacy:confusion",
+    "legacy:counter",
+    "legacy:curse",
+    "legacy:defensecurl",
+    "legacy:doubleteam",
+    "legacy:dragontail",
+    "legacy:dynamicpunch",
+    "legacy:falseswipe",
+    "legacy:fissure",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:mimic",
+    "legacy:mudslap",
+    "legacy:naturalgift",
+    "legacy:outrage",
+    "legacy:rage",
+    "legacy:reflect",
+    "legacy:return",
+    "legacy:round",
+    "legacy:scald",
+    "legacy:secretpower",
+    "legacy:seismictoss",
+    "legacy:snore",
+    "legacy:submission",
+    "legacy:swagger",
+    "legacy:toxic",
+    "legacy:waterfall",
+    "special:block",
+    "special:celebrate",
+    "special:followme",
+    "special:hydrocannon"
+  ],
+  "preEvolution": "wartortle",
+  "evolutions": [],
+  "forms": [
+    {
+      "name": "Mega",
+      "primaryType": "water",
+      "maleRatio": 0.875,
+      "height": 16,
+      "weight": 1011,
+      "pokedex": [
+        "cobblemon.species.blastoise-mega.desc"
+      ],
+      "labels": [
+        "gen6",
+        "mega"
+      ],
+      "aspects": [
+        "mega"
+      ],
+      "abilities": [
+        "megalauncher",
+        "h:megalauncher"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 103,
+        "defence": 120,
+        "special_attack": 135,
+        "special_defence": 115,
+        "speed": 78
+      },
+      "baseExperienceYield": 315,
+      "behaviour": {
+        "herd": {
+          "maxSize": "6"
+        }
+      },
+      "evolutions": [],
+      "battleOnly": true,
+      "dynamaxBlocked": true
+    },
+    {
+      "name": "Gmax",
+      "primaryType": "water",
+      "maleRatio": 0.875,
+      "height": 250,
+      "weight": 0,
+      "pokedex": [
+        "cobblemon.species.blastoise-gmax.desc"
+      ],
+      "labels": [
+        "gen8",
+        "gmax"
+      ],
+      "aspects": [
+        "gmax"
+      ],
+      "evolutions": [],
+      "battleOnly": true,
+      "dynamaxBlocked": true
+    }
+  ]
+}

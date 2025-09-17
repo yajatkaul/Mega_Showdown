@@ -478,6 +478,14 @@
 					]
 				},
 				{
+					"name": "locator_seat_1",
+					"parent": "torso",
+					"pivot": [0, 17.5, 4],
+					"locators": {
+						"seat_1": [0, 18.5, 7]
+					}
+				},
+				{
 					"name": "cloud",
 					"parent": "mainthing",
 					"pivot": [-2.5, 9, 0.15],

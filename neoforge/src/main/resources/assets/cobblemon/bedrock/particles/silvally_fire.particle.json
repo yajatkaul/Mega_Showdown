@@ -5,7 +5,7 @@
 			"identifier": "cobblemon:silvally_fire",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/particles/impact-fire"
+				"texture": "textures/particles/generic/impact/impact_fire"
 			}
 		},
 		"components": {

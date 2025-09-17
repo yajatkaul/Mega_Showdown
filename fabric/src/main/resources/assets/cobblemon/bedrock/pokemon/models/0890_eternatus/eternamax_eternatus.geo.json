@@ -179,6 +179,14 @@
 					]
 				},
 				{
+					"name": "locator_seat_1",
+					"parent": "core",
+					"pivot": [0, 279.3, -22.5],
+					"locators": {
+						"seat_1": [0, 142.3, 0.5]
+					}
+				},
+				{
 					"name": "coil",
 					"parent": "body",
 					"pivot": [0, 57, 4]

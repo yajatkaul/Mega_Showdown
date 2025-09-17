@@ -5,7 +5,7 @@
       "identifier": "cobblemon:z_move_aura2",
       "basic_render_parameters": {
         "material": "particles_alpha",
-        "texture": "textures/particles/capturesparks"
+        "texture": "textures/particles/balls/capturesparks"
       }
     },
     "components": {

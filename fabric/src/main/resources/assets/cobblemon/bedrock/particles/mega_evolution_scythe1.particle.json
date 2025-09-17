@@ -5,7 +5,7 @@
       "identifier": "cobblemon:mega_evolution_scythe1",
       "basic_render_parameters": {
         "material": "particles_blend",
-        "texture": "textures/particles/glowing_sparkle_yellow"
+        "texture": "textures/particles/generic/sparkle/glowingsparkle_yellow"
       }
     },
     "components": {

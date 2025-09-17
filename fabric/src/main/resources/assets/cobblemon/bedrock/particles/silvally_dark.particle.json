@@ -5,7 +5,7 @@
 			"identifier": "cobblemon:silvally_dark",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/particles/impact-dark"
+				"texture": "textures/particles/generic/impact/impact_dark"
 			}
 		},
 		"components": {
