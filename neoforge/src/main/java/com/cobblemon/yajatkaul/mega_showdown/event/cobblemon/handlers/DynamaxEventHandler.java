@@ -77,6 +77,6 @@ public class DynamaxEventHandler {
             DynamaxUtils.server = serverLevel.getServer();
         }
 
-        DynamaxUtils.startGradualScaling(entity, 1.0f);
+        DynamaxUtils.resetToDefaultSize(entity);
     }
 }

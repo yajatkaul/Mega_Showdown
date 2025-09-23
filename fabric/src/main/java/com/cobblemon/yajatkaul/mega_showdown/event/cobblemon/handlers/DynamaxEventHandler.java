@@ -66,6 +66,6 @@ public class DynamaxEventHandler {
             DynamaxUtils.server = serverWorld.getServer();
         }
 
-        DynamaxUtils.startGradualScaling(pokemonEntity, 1.0f);
+        DynamaxUtils.resetToDefaultSize(pokemonEntity);
     }
 }

@@ -54,7 +54,7 @@ public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
         if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeStatusEffect(StatusEffects.GLOWING);
-            DynamaxUtils.startGradualScaling(pokemon.getEntity(), 1.0f);
+            DynamaxUtils.resetToDefaultSize(pokemon.getEntity());
         }
 
         if (pokemon.getAspects().contains("gmax")) {

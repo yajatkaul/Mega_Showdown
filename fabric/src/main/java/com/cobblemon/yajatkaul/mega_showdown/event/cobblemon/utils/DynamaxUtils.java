@@ -1,5 +1,6 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils;
 
+import com.cobblemon.yajatkaul.mega_showdown.MegaShowdown;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -13,7 +14,38 @@ public class DynamaxUtils {
     private static final WeakHashMap<UUID, LivingEntity> entityCache = new WeakHashMap<>();
     public static MinecraftServer server;
 
-    public static void startGradualScaling(LivingEntity entity, float targetScale) {
+    public static void startGradualScaling(LivingEntity entity, float targetHeightBlocks) {
+        UUID entityId = entity.getUuid();
+        EntityAttributeInstance scaleAttribute = entity.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
+
+        if (scaleAttribute != null) {
+            entityCache.put(entityId, entity);
+
+            float startScale = (float) scaleAttribute.getBaseValue();
+
+            // base height of the entity at scale = 1
+            float baseHeight = entity.getDimensions(entity.getPose()).height();
+            if (baseHeight <= 0) {
+                baseHeight = entity.getType().getHeight(); // fallback
+            }
+
+            float targetScale = targetHeightBlocks / baseHeight;
+
+            int durationTicks = 60;
+
+            ScalingData scalingData = new ScalingData(
+                    entity.getWorld().getRegistryKey().toString(),
+                    entityId,
+                    startScale,
+                    targetScale,
+                    durationTicks
+            );
+
+            activeScalingAnimations.put(entityId, scalingData);
+        }
+    }
+
+    public static void resetToDefaultSize(LivingEntity entity) {
         UUID entityId = entity.getUuid();
         EntityAttributeInstance scaleAttribute = entity.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
 
@@ -28,9 +60,8 @@ public class DynamaxUtils {
                     entity.getWorld().getRegistryKey().toString(),
                     entityId,
                     startScale,
-                    targetScale,
-                    durationTicks,
-                    0
+                    1.0f,
+                    durationTicks
             );
 
             activeScalingAnimations.put(entityId, scalingData);
@@ -87,13 +118,13 @@ public class DynamaxUtils {
         final int durationTicks;
         int currentTick;
 
-        public ScalingData(String worldId, UUID entityId, float startScale, float targetScale, int durationTicks, int currentTick) {
+        public ScalingData(String worldId, UUID entityId, float startScale, float targetScale, int durationTicks) {
             this.worldId = worldId;
             this.entityId = entityId;
             this.startScale = startScale;
             this.targetScale = targetScale;
             this.durationTicks = durationTicks;
-            this.currentTick = currentTick;
+            this.currentTick = 0;
         }
     }
 }

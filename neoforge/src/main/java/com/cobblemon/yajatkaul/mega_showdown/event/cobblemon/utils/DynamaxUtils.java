@@ -1,69 +1,82 @@
 package com.cobblemon.yajatkaul.mega_showdown.event.cobblemon.utils;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;
 
 public class DynamaxUtils {
-    private static final Map<UUID, DynamaxUtils.ScalingData> activeScalingAnimations = new HashMap<>();
+    private static final Map<UUID, ScalingData> activeScalingAnimations = new HashMap<>();
     private static final WeakHashMap<UUID, LivingEntity> entityCache = new WeakHashMap<>();
     public static MinecraftServer server;
 
-    private static class ScalingData {
-        final String worldId;
-        final UUID entityId;
-        final float startScale;
-        final float targetScale;
-        final int durationTicks;
-        int currentTick;
-
-        public ScalingData(String worldId, UUID entityId, float startScale, float targetScale, int durationTicks, int currentTick) {
-            this.worldId = worldId;
-            this.entityId = entityId;
-            this.startScale = startScale;
-            this.targetScale = targetScale;
-            this.durationTicks = durationTicks;
-            this.currentTick = currentTick;
-        }
-    }
-
-    public static void startGradualScaling(LivingEntity entity, float targetScale) {
+    public static void startGradualScaling(LivingEntity entity, float targetHeightBlocks) {
         UUID entityId = entity.getUUID();
-        AttributeInstance scaleAttr = entity.getAttribute(Attributes.SCALE);
+        AttributeInstance scaleAttribute = entity.getAttribute(Attributes.SCALE);
 
-        if (scaleAttr != null) {
+        if (scaleAttribute != null) {
             entityCache.put(entityId, entity);
-            float startScale = (float) scaleAttr.getBaseValue();
+
+            float startScale = (float) scaleAttribute.getBaseValue();
+
+            // base height of the entity at scale = 1
+            float baseHeight = entity.getDimensions(entity.getPose()).height();
+            if (baseHeight <= 0) {
+                baseHeight = entity.getType().getHeight(); // fallback
+            }
+
+            float targetScale = targetHeightBlocks / baseHeight;
+            int durationTicks = 60;
 
             ScalingData scalingData = new ScalingData(
                     entity.level().dimension().location().toString(),
                     entityId,
                     startScale,
                     targetScale,
-                    60,
-                    0
+                    durationTicks
             );
 
             activeScalingAnimations.put(entityId, scalingData);
         }
     }
 
-    public static void updateScalingAnimations() {
-        if (server == null) return;
+    public static void resetToDefaultSize(LivingEntity entity) {
+        UUID entityId = entity.getUUID();
+        AttributeInstance scaleAttribute = entity.getAttribute(Attributes.SCALE);
 
+        if (scaleAttribute != null) {
+            entityCache.put(entityId, entity);
+
+            float startScale = (float) scaleAttribute.getBaseValue();
+            int durationTicks = 60;
+
+            ScalingData scalingData = new ScalingData(
+                    entity.level().dimension().location().toString(),
+                    entityId,
+                    startScale,
+                    1.0f,
+                    durationTicks
+            );
+
+            activeScalingAnimations.put(entityId, scalingData);
+        }
+    }
+
+    public static void updateScalingAnimations(MinecraftServer server) {
         Iterator<Map.Entry<UUID, ScalingData>> iterator = activeScalingAnimations.entrySet().iterator();
 
         while (iterator.hasNext()) {
             Map.Entry<UUID, ScalingData> entry = iterator.next();
             UUID entityId = entry.getKey();
             ScalingData data = entry.getValue();
+
             data.currentTick++;
 
             LivingEntity entity = entityCache.get(entityId);
+
             if (entity == null || !entity.isAlive()) {
                 for (ServerLevel world : server.getAllLevels()) {
                     entity = (LivingEntity) world.getEntity(entityId);
@@ -75,12 +88,12 @@ public class DynamaxUtils {
             }
 
             if (entity != null && entity.isAlive()) {
-                AttributeInstance scaleAttr = entity.getAttribute(Attributes.SCALE);
-                if (scaleAttr != null) {
+                AttributeInstance scaleAttribute = entity.getAttribute(Attributes.SCALE);
+                if (scaleAttribute != null) {
                     float progress = Math.min(1.0f, (float) data.currentTick / data.durationTicks);
                     float newScale = data.startScale + (data.targetScale - data.startScale) * progress;
 
-                    scaleAttr.setBaseValue(newScale);
+                    scaleAttribute.setBaseValue(newScale);
                 }
 
                 if (data.currentTick >= data.durationTicks) {
@@ -91,6 +104,24 @@ public class DynamaxUtils {
                 iterator.remove();
                 entityCache.remove(entityId);
             }
+        }
+    }
+
+    private static class ScalingData {
+        final String worldId;
+        final UUID entityId;
+        final float startScale;
+        final float targetScale;
+        final int durationTicks;
+        int currentTick;
+
+        public ScalingData(String worldId, UUID entityId, float startScale, float targetScale, int durationTicks) {
+            this.worldId = worldId;
+            this.entityId = entityId;
+            this.startScale = startScale;
+            this.targetScale = targetScale;
+            this.durationTicks = durationTicks;
+            this.currentTick = 0;
         }
     }
 }

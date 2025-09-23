@@ -42,7 +42,7 @@ public class MegaShowdownConfig {
             .defineInRange("powerSpotRange", 20, 0, 10000);
     private static final ModConfigSpec.IntValue DMAX_SCALE_FACTOR = BUILDER
             .comment("By how many times should the pokemon size increase when g/dmaxing")
-            .defineInRange("dynamaxScaleFactor", 4, -10, 10000);
+            .defineInRange("dynamaxScaleFactor", 20, -10, 10000);
     private static final ModConfigSpec.BooleanValue SHOWDOWN_FILES_LOADING = BUILDER
             .comment("""
                      Enable/Disable loading of showdown files from the mod,\s

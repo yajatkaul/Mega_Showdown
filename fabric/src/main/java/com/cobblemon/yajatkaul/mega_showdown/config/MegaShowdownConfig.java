@@ -38,7 +38,7 @@ public class MegaShowdownConfig {
         mega = builder.comment("Enables/Disables Mega in game").define("mega", true);
         dynamaxAnywhere = builder.comment("Allows you to dynamax anywhere you dont need to be near the dynamax area").define("dynamaxAnywhere", false);
         powerSpotRange = builder.comment("Range around a power spot where Dynamax is allowed").define("powerSpotRange", 20, 0, 10000);
-        dynamaxScaleFactor = builder.comment("By how many times should the pokemon size increase when g/dmaxing").define("dynamaxScaleFactor", 4, -10, 10000);
+        dynamaxScaleFactor = builder.comment("By how many times should the pokemon size increase when g/dmaxing").define("dynamaxScaleFactor", 20, -10, 10000);
         showdownFilesLoading = builder.comment("""
                  Enable/Disable loading of showdown files from the mod,\s
                  note this means once you load the game and the showdown changes have been affected you disable

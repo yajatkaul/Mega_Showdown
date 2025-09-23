@@ -77,7 +77,7 @@ public class EventUtils {
     public static void revertFormesEnd(Pokemon pokemon) {
         if (pokemon.getEntity() != null) {
             pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-            DynamaxUtils.startGradualScaling(pokemon.getEntity(), 1.0f);
+            DynamaxUtils.resetToDefaultSize(pokemon.getEntity());
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {

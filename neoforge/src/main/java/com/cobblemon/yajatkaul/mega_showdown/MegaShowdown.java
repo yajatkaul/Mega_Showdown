@@ -98,7 +98,7 @@ public final class MegaShowdown {
 
     @SubscribeEvent
     public void onServerTick(ServerTickEvent.Post event) {
-        DynamaxUtils.updateScalingAnimations();
+        DynamaxUtils.updateScalingAnimations(event.getServer());
     }
 
     @SubscribeEvent
