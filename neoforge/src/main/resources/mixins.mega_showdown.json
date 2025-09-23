@@ -19,7 +19,6 @@
     "battle.client.BattleGimmickButtonMixin",
     "instructions.EndInstructionMixin",
     "instructions.StartInstructionMixin",
-    "pokemon.EvolutionMixin",
     "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "pokemon.ShowdownReloadMixin"
