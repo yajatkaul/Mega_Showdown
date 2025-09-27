@@ -19,12 +19,10 @@
     "battle.client.BattleGimmickButtonMixin",
     "instructions.EndInstructionMixin",
     "instructions.StartInstructionMixin",
-    "pokemon.PokemonClientDelegateMixin",
     "pokemon.PokemonEntityMixin",
     "pokemon.ShowdownReloadMixin"
   ],
   "client": [
-    "StatWidgetMixin",
     "battle.client.BattleMoveSelectionMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",

@@ -143,24 +143,10 @@ public class HandlerUtils {
         }
     }
 
-    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack, String item_id) {
+    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
         CustomModelData nbt = itemStack.get(DataComponents.CUSTOM_MODEL_DATA);
-        String[] parts = item_id.split(":");
-        boolean hasEnchantment = parts.length >= 4;
-        boolean enchantmentCorrect = false;
 
-        if (hasEnchantment) {
-            String namespace = parts[2] + ":" + parts[3];
-            ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(itemStack);
-
-            for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
-                if (entry.getKey().getRegisteredName().equals(namespace)) {
-                    enchantmentCorrect = true;
-                    break;
-                }
-            }
-        }
-        return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0) && (!hasEnchantment || enchantmentCorrect);
+        return itemStack.is(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
     }
 
     public static void applyEffects(EffectsData effects, PokemonEntity pokemon, List<String> aspects, boolean apply) {

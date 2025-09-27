@@ -230,24 +230,11 @@ public class HandlerUtils {
         return aspects;
     }
 
-    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack, String item_id) {
+    public static boolean itemValidator(Item item, Integer custom_model_data, ItemStack itemStack) {
         CustomModelDataComponent nbt = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA);
-        String[] parts = item_id.split(":");
-        boolean hasEnchantment = parts.length >= 4;
-        boolean enchantmentCorrect = false;
 
-        if (hasEnchantment) {
-            String nameSpace = parts[2] + ":" + parts[3];
-
-            ItemEnchantmentsComponent enchantments = EnchantmentHelper.getEnchantments(itemStack);
-            for (RegistryEntry<Enchantment> entry : enchantments.getEnchantments()) {
-                if (nameSpace.equals(entry.getIdAsString())) {
-                    enchantmentCorrect = true;
-                    break;
-                }
-            }
-        }
-        return itemStack.isOf(item) && ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0) && (!hasEnchantment || enchantmentCorrect);
+        return itemStack.isOf(item) &&
+                ((nbt != null && custom_model_data == nbt.value()) || custom_model_data == 0);
     }
 
     public static void applyAspects(List<String> aspects, Pokemon pokemon) {

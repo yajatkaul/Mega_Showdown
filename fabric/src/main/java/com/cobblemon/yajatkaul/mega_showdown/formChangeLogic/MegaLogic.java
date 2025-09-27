@@ -34,6 +34,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import org.objectweb.asm.Handle;
 
 import java.util.*;
 
@@ -113,7 +114,7 @@ public class MegaLogic {
                             return;
                         } else {
                             Item megaStone = Registries.ITEM.get(Identifier.tryParse(megaData.item_id()));
-                            if (heldItem.isOf(megaStone)) {
+                            if (HandlerUtils.itemValidator(megaStone, megaData.custom_model_data(), heldItem)) {
                                 Evolve(pk, player, megaData.apply_aspect());
                                 return;
                             }
@@ -287,7 +288,7 @@ public class MegaLogic {
 
             String candidateSpecies = null;
 
-            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem, megaPok.item_id())) {
+            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
                 candidateSpecies = megaPok.pokemon();
             }
 
@@ -394,7 +395,7 @@ public class MegaLogic {
 
             String candidateSpecies = null;
 
-            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem, megaPok.item_id())) {
+            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
                 candidateSpecies = megaPok.pokemon();
             }
 

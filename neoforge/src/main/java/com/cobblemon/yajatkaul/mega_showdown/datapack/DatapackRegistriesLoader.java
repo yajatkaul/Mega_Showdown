@@ -22,7 +22,7 @@ public class DatapackRegistriesLoader {
             ResourceLocation custom_stone_item_id = ResourceLocation.tryParse(pokemon.item_id());
             Item customStone = BuiltInRegistries.ITEM.get(custom_stone_item_id);
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                if (HandlerUtils.itemValidator(customStone, pokemon.custom_model_data(), stack, pokemon.item_id())) {
+                if (HandlerUtils.itemValidator(customStone, pokemon.custom_model_data(), stack)) {
                     return pokemon.showdown_id();
                 }
                 return null;
@@ -35,7 +35,7 @@ public class DatapackRegistriesLoader {
             Item customHeldItem = BuiltInRegistries.ITEM.get(custom_held_item_id);
 
             CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                if (HandlerUtils.itemValidator(customHeldItem, item.custom_model_data(), stack, item.item_id())) {
+                if (HandlerUtils.itemValidator(customHeldItem, item.custom_model_data(), stack)) {
                     return item.showdown_item_id();
                 }
                 return null;

@@ -31,7 +31,7 @@ public class EventHandler {
             if (heldItem.pokemons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(heldItem.blacklist_aspects(), pokemon.getAspects(), true)) {
                 ItemStack itemReceiving = event.getReceiving();
                 ItemStack itemReturning = event.getReturning();
-                if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReceiving, heldItem.item_id())) {
+                if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReceiving)) {
                     if (heldItem.apply_if().isEmpty()) {
                         HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.apply_aspects(), true);
                     }
@@ -41,7 +41,7 @@ public class EventHandler {
                             return;
                         }
                     }
-                } else if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReturning, heldItem.item_id())) {
+                } else if (HandlerUtils.itemValidator(item, heldItem.custom_model_data(), itemReturning)) {
                     for (List<String> condition : heldItem.revert_if()) {
                         if (pokemon.getAspects().containsAll(condition)) {
                             HandlerUtils.applyEffects(heldItem.effects(), pokemon.getEntity(), heldItem.revert_aspects(), false);

@@ -117,7 +117,7 @@ public class MegaLogic {
                             return;
                         } else {
                             Item megaStone = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(megaData.item_id()));
-                            if (heldItem.is(megaStone)) {
+                            if (HandlerUtils.itemValidator(megaStone, megaData.custom_model_data(), heldItem)) {
                                 Evolve(pk, playerContext, megaData.apply_aspect());
                                 return;
                             }
@@ -268,7 +268,7 @@ public class MegaLogic {
 
             String candidateSpecies = null;
 
-            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem, megaPok.item_id())) {
+            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
                 candidateSpecies = megaPok.pokemon();
             }
 
@@ -373,7 +373,7 @@ public class MegaLogic {
 
             String candidateSpecies = null;
 
-            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem, megaPok.item_id())) {
+            if (HandlerUtils.itemValidator(paperItem, megaPok.custom_model_data(), heldItem)) {
                 candidateSpecies = megaPok.pokemon();
             }
 

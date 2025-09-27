@@ -61,7 +61,7 @@ public class ItemHandler {
 
             for (FusionData fusion : Utils.fusionRegistry) {
                 Item item = Registries.ITEM.get(Identifier.tryParse(fusion.item_id()));
-                if (HandlerUtils.itemValidator(item, fusion.custom_model_data(), itemStack, fusion.item_id())) {
+                if (HandlerUtils.itemValidator(item, fusion.custom_model_data(), itemStack)) {
                     EntityHitResult entityHit = HandlerUtils.getEntityLookingAt(player, 4.5);
                     if (entityHit == null) {
                         Pokemon currentValue = itemStack.getOrDefault(DataManage.POKEMON_STORAGE, null);
@@ -144,7 +144,7 @@ public class ItemHandler {
 
             for (KeyItemData keyItem : Utils.keyItemsRegistry) {
                 Item item = Registries.ITEM.get(Identifier.tryParse(keyItem.item_id()));
-                if (HandlerUtils.itemValidator(item, keyItem.custom_model_data(), itemStack, keyItem.item_id())) {
+                if (HandlerUtils.itemValidator(item, keyItem.custom_model_data(), itemStack)) {
                     EntityHitResult entityHit = HandlerUtils.getEntityLookingAt(player, 4.5);
                     if (entityHit == null) {
                         return TypedActionResult.pass(itemStack);
