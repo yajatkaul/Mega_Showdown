@@ -15790,7 +15790,7 @@ const Moves = {
     onAfterMoveSecondarySelf(pokemon, target, move) {
       if (move.willChangeForme) {
         const meloettaForme = pokemon.species.id === "meloettapirouette" ? "" : "-Pirouette";
-        pokemon.formeChange("Meloetta" + meloettaForme, this.effect, false, "[msg]");
+        pokemon.formeChange("Meloetta" + meloettaForme, this.effect, true, "[msg]");
       }
     },
     target: "allAdjacentFoes",

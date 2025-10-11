@@ -17,19 +17,19 @@ public class CobblemonDataProviderMixin {
             method = "registerDefaults",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcom/cobblemon/mod/common/data/CobblemonDataProvider;register(Lcom/cobblemon/mod/common/api/data/DataRegistry;)Lcom/cobblemon/mod/common/api/data/DataRegistry;"
+                    target = "Lcom/cobblemon/mod/common/data/CobblemonDataProvider;register(Lcom/cobblemon/mod/common/api/data/DataRegistry;Z)Lcom/cobblemon/mod/common/api/data/DataRegistry;"
             )
     )
-    private DataRegistry injectBeforeSpeciesRegister(CobblemonDataProvider instance, DataRegistry registry) {
+    private DataRegistry injectBeforeSpeciesRegister(CobblemonDataProvider instance, DataRegistry registry, boolean reloadable) {
         if (registry instanceof CobblemonScripts) {
             if (registry == CobblemonScripts.INSTANCE) {
-                instance.register(Conditions.INSTANCE);
-                instance.register(HeldItems.INSTANCE);
-                instance.register(TypeCharts.INSTANCE);
-                instance.register(Scripts.INSTANCE);
+                instance.register(Conditions.INSTANCE, true);
+                instance.register(HeldItems.INSTANCE, true);
+                instance.register(TypeCharts.INSTANCE, true);
+                instance.register(Scripts.INSTANCE, true);
             }
-            return instance.register(registry);
+            return instance.register(registry, true);
         }
-        return instance.register(registry);
+        return instance.register(registry, true);
     }
 }

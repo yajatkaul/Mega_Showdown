@@ -364,7 +364,7 @@ const Abilities = {
       if (source.abilityState.battleBondTriggered)
         return;
 	  if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness >= 250) {
-		  source.formeChange("Greninja-Ash", this.effect, false, "[msg]");
+		  source.formeChange("Greninja-Ash", this.effect, true, "[msg]");
 	      source.abilityState.battleBondTriggered = true;
 	  }
       if (source.species.id === "greninjabond" && source.hp && !source.transformed && source.side.foePokemonLeft() && source.happiness < 250) {
@@ -1376,9 +1376,9 @@ const Abilities = {
     num: 18
   },
   flowergift: {
-    onStart(pokemon) {
-      this.singleEvent("WeatherChange", this.effect, this.effectState, pokemon);
-    },
+	onStart(pokemon) {
+	  this.singleEvent("WeatherChange", this.effect, this.effectState, pokemon);	  
+    },  
     onWeatherChange(pokemon) {
       if (!pokemon.isActive || pokemon.baseSpecies.baseSpecies !== "Cherrim" || pokemon.transformed)
         return;
@@ -1386,11 +1386,11 @@ const Abilities = {
         return;
       if (["sunnyday", "desolateland"].includes(pokemon.effectiveWeather())) {
         if (pokemon.species.id !== "cherrimsunshine") {
-          pokemon.formeChange("Cherrim-Sunshine", this.effect, false, "[msg]");
+          pokemon.formeChange("Cherrim-Sunshine", this.effect, true, "[msg]");	
         }
       } else {
         if (pokemon.species.id === "cherrimsunshine") {
-          pokemon.formeChange("Cherrim", this.effect, false, "[msg]");
+          pokemon.formeChange("Cherrim", this.effect, true, "[msg]");
         }
       }
     },
@@ -1499,7 +1499,7 @@ const Abilities = {
           break;
       }
       if (pokemon.isActive && forme) {
-        pokemon.formeChange(forme, this.effect, false, "[msg]");
+        pokemon.formeChange(forme, this.effect, true, "[msg]");
       }
     },
     flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1 },
@@ -4317,10 +4317,8 @@ const Abilities = {
   },
   shieldsdown: {
 		onStart(pokemon) {
-			console.log(`[SHIELDS DOWN] species.id=${pokemon.species.id}`);
 			if (pokemon.hp > pokemon.maxhp / 2 && pokemon.species.id == "minior") {
 				pokemon.formeChange('Minior-Meteor');
-				console.log(`[SHIELDS DOWN] species.id=${pokemon.species.id}`);
 			} else {
 				if (pokemon.species.id == "miniormeteor") {
 					return;
@@ -5744,7 +5742,7 @@ const Abilities = {
       pokemon.transformed = false;
       delete pokemon.volatiles["zenmode"];
       if (pokemon.species.baseSpecies === "Darmanitan" && pokemon.species.battleOnly) {
-        pokemon.formeChange(pokemon.species.battleOnly, this.effect, false, "[silent]");
+        pokemon.formeChange(pokemon.species.battleOnly, this.effect, true, "[silent]");
       }
     },
     condition: {
