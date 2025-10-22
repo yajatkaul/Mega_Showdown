@@ -382,7 +382,7 @@ public class FormeChangeItems {
             });
 
     public static final DeferredItem<Item> ELECTRIC_MEMORY = ITEMS.register("electricmemory",
-            () -> new Memory(new Item.Properties().stacksTo(1), "electic") {
+            () -> new Memory(new Item.Properties().stacksTo(1), "electric") {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.mega_showdown.electricmemory.tooltip"));
