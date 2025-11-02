@@ -210,7 +210,7 @@ public class HandlerUtils {
         }
     }
 
-    private static NbtList makeNbt(List<String> aspects) {
+    public static NbtList makeNbt(List<String> aspects) {
         NbtList nbtList = new NbtList();
 
         for (String aspect : aspects) {

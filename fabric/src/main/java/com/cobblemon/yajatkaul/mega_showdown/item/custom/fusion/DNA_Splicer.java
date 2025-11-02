@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.yajatkaul.mega_showdown.dataAttachments.DataManage;
+import com.cobblemon.yajatkaul.mega_showdown.datapack.handler.HandlerUtils;
 import com.cobblemon.yajatkaul.mega_showdown.sound.ModSounds;
 import com.cobblemon.yajatkaul.mega_showdown.utility.SnowStormHandler;
 import kotlin.Unit;
@@ -100,6 +101,7 @@ public class DNA_Splicer extends Item {
                 Identifier.tryParse("cobblemon:" + (black ? "kyurem_b_effect" : "kyurem_w_effect"))
                 , List.of("target"));
         pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+        pokemon.getPokemon().getPersistentData().put("revert_aspect", HandlerUtils.makeNbt(List.of("absofusion=" + (black ? "black" : "white"))));
 
         BlockPos entityPos = pokemon.getBlockPos();
         pokemon.getWorld().playSound(
@@ -110,6 +112,7 @@ public class DNA_Splicer extends Item {
 
         pokemon.after(4F, () -> {
             new StringSpeciesFeature("absofusion", black ? "black" : "white").apply(pokemon);
+            pokemon.getPokemon().getPersistentData().remove("revert_aspect");
             SnowStormHandler.Companion.playAnimation(pokemon, Set.of("cry"), List.of());
             pokemon.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), false);
             return Unit.INSTANCE;

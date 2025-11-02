@@ -80,7 +80,11 @@ public class ItemHandler {
                     }
 
                     Pokemon pokemon = pk.getPokemon();
-                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling() || pk.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
+                    if (pokemon.getOwnerPlayer() != player
+                            || pokemon.getEntity() == null
+                            || pk.isBattling()
+                            || pk.getTethering() != null
+                            || pk.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
                         return TypedActionResult.pass(itemStack);
                     }
 
@@ -120,7 +124,7 @@ public class ItemHandler {
                                 }
                             }
                         }
-                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fusion_blacklist_aspects(), pokemon.getAspects(), true) && pokemon.getEntity().getTethering() == null) {
+                    } else if (fusion.fuser_mons().contains(pokemon.getSpecies().getName()) && !HandlerUtils.listCheck(fusion.fusion_blacklist_aspects(), pokemon.getAspects(), true)) {
                         if (currentValue == null) {
                             if (fusion.fuser_fuse_if().isEmpty()) {
                                 itemStack.set(DataManage.POKEMON_STORAGE, pokemon);
@@ -156,7 +160,11 @@ public class ItemHandler {
                     }
 
                     Pokemon pokemon = pk.getPokemon();
-                    if (pokemon.getOwnerPlayer() != player || pokemon.getEntity() == null || pk.isBattling() || pk.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
+                    if (pokemon.getOwnerPlayer() != player
+                            || pokemon.getEntity() == null
+                            || pk.isBattling()
+                            || pk.getTethering() != null
+                            || pk.getDataTracker().get(PokemonEntity.getEVOLUTION_STARTED())) {
                         return TypedActionResult.pass(itemStack);
                     }
 

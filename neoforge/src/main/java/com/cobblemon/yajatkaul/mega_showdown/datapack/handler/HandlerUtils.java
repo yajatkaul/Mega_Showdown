@@ -217,7 +217,7 @@ public class HandlerUtils {
         }
     }
 
-    private static ListTag makeNbt(List<String> aspects) {
+    public static ListTag makeNbt(List<String> aspects) {
         ListTag nbtList = new ListTag();
 
         for (String aspect : aspects) {
