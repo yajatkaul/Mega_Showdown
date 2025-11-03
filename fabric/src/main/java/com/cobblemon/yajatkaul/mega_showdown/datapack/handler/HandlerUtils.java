@@ -172,6 +172,11 @@ public class HandlerUtils {
 
             context.getPokemon().getPersistentData().put("revert_aspect", makeNbt(aspects));
 
+            if(effects.snowStorm().particle_apply() == null) {
+                applyAspects(aspects, context.getPokemon());
+                return;
+            }
+
             Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_apply());
             if (particleId == null) {
                 MegaShowdown.LOGGER.error("Invalid snowstorm apply particle");
@@ -191,6 +196,11 @@ public class HandlerUtils {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
 
             context.getPokemon().getPersistentData().put("revert_aspect", makeNbt(aspects));
+
+            if(effects.snowStorm().particle_revert() == null) {
+                applyAspects(aspects, context.getPokemon());
+                return;
+            }
 
             Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_revert());
             if (particleId == null) {
@@ -276,6 +286,12 @@ public class HandlerUtils {
     private static void snowStromParticleEffect(PokemonEntity context, EffectsData effects, boolean apply, List<String> aspects, PokemonEntity other) {
         if (apply) {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            if(effects.snowStorm().particle_apply() == null) {
+                applyAspects(aspects, context.getPokemon());
+                return;
+            }
+
             Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_apply());
             if (particleId == null) {
                 MegaShowdown.LOGGER.error("Invalid snowstorm apply particle");
@@ -292,6 +308,12 @@ public class HandlerUtils {
             });
         } else {
             context.getDataTracker().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+
+            if(effects.snowStorm().particle_revert() == null) {
+                applyAspects(aspects, context.getPokemon());
+                return;
+            }
+
             Identifier particleId = Identifier.tryParse(effects.snowStorm().particle_revert());
             if (particleId == null) {
                 MegaShowdown.LOGGER.error("Invalid snowstorm revert particle");
