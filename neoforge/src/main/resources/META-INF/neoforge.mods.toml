@@ -1,38 +1,36 @@
-modLoader = "javafml"
-loaderVersion = "[2,)"
-#issueTrackerURL = ""
-license = "All Rights Reserved"
-
-[[mods]]
-modId = "mega_showdown"
-version = "${version}"
-displayName = "MegaShowdown"
-authors = ""
-description = '''
-
-'''
-#logoFile = ""
-
-[[dependencies.mega_showdown]]
-modId = "neoforge"
-type = "required"
-versionRange = "[21,)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.mega_showdown]]
-modId = "minecraft"
-type = "required"
-versionRange = "[1.21.1,)"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.mega_showdown]]
-modId = "architectury"
-type = "required"
-versionRange = "[13.0.8,)"
-ordering = "AFTER"
-side = "BOTH"
-
+modLoader = "javafml" #mandatory
+loaderVersion = "${neoforge_loader_version_range}" #mandatory
+license = "${license}" # Review your options at https://choosealicense.com/.
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+[[mods]] #mandatory
+modId = "${mod_id}" #mandatory
+version = "${version}" #mandatory
+displayName = "${mod_name}" #mandatory
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional (see https://docs.neoforged.net/docs/misc/updatechecker/)
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional (displayed in the mod UI)
+logoFile="${mod_id}.png" #optional
+credits="${credits}" #optional
+authors = "${mod_author}" #optional
+description = '''${description}''' #mandatory (Supports multiline text)
 [[mixins]]
-config = "mega_showdown.mixins.json"
+config = "${mod_id}.mixins.json"
+[[mixins]]
+config = "${mod_id}.neoforge.mixins.json"
+[[dependencies.${mod_id}]] #optional
+modId = "neoforge" #mandatory
+type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
+versionRange = "[${neoforge_version},)" #mandatory
+ordering = "NONE" # The order that this dependency should load in relation to your mod, required to be either 'BEFORE' or 'AFTER' if the dependency is not mandatory
+side = "BOTH" # Side this dependency is applied on - 'BOTH', 'CLIENT' or 'SERVER'
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+# Features are specific properties of the game environment, that you may want to declare you require. This example declares
+# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
+# stop your mod loading on the server for example.
+#[features.${mod_id}]
+#openGLVersion="[3.2,)"

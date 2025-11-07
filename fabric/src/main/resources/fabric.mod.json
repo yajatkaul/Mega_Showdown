@@ -1,37 +1,36 @@
 {
-  "schemaVersion": 1,
-  "id": "mega_showdown",
-  "version": "${version}",
-  "name": "MegaShowdown",
-  "description": "",
-  "authors": [
-    ""
-  ],
-  "contact": {
-    "homepage": ""
-  },
-  "license": "All-Rights-Reserved",
-  "icon": "assets/mega_showdown/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "com.github.yajatkaul.mega_showdown.fabric.Mega_showdownFabric"
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
     ],
-    "client": [
-      "com.github.yajatkaul.mega_showdown.fabric.client.Mega_showdownFabricClient"
-    ]
-  },
-  "mixins": [
-    "mega_showdown.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.17.3",
-    "minecraft": "~1.21.1",
-    "java": ">=21",
-    "architectury": ">=13.0.8",
-    "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
-  }
+    "contact": {
+        "homepage": "https://fabricmc.net/",
+        "sources": "https://github.com/FabricMC/fabric-example-mod"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.example.examplemod.ExampleMod"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=${java_version}"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
 }
+  
