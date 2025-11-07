@@ -1,45 +1,38 @@
 modLoader = "javafml"
-loaderVersion = "[1,)"
-#issueTrackerURL = "A valid URL to your issue tracker where people can open bug tickets"
-license = "MEGA SHOWDOWN LICENSE v2.0"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "All Rights Reserved"
 
 [[mods]]
 modId = "mega_showdown"
 version = "${version}"
-displayName = "Cobblemon: Mega Showdown"
-authors = "YajatKaul"
+displayName = "MegaShowdown"
+authors = ""
 description = '''
-Adding mega evolutions, z-moves, teralization, dynamax, ultra burst and fusions to the game
+
 '''
 #logoFile = ""
 
 [[dependencies.mega_showdown]]
-modId = "minecraft"
-mandatory = true
-versionRange = "[1.21.1]"
-ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.mega_showdown]]
 modId = "neoforge"
-mandatory = true
-versionRange = "[21.1.130,)"
+type = "required"
+versionRange = "[21,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.mega_showdown]]
-modId = "cobblemon"
-mandatory = true
-versionRange = "[1.6.1,)"
-ordering = "AFTER"
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.mega_showdown]]
-modId = "curios"
-mandatory = true
-versionRange = "[9.2.2+1.21.1,)"
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]
-config = "mixins.mega_showdown.json"
+config = "mega_showdown.mixins.json"
