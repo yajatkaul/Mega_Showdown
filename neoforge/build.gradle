@@ -1,52 +1,61 @@
 plugins {
-    id 'multiloader-loader'
-    id 'net.neoforged.moddev'
+    id 'com.github.johnrengelman.shadow'
 }
 
-neoForge {
-    version = neoforge_version
-    // Automatically enable neoforge AccessTransformers if the file exists
-    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
-    if (at.exists()) {
-        accessTransformers.from(at.absolutePath)
-    }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
-    runs {
-        configureEach {
-            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
-            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
-        }
-        client {
-            client()
-        }
-        data {
-            data()
+architectury {
+    platformSetupLoomIde()
+    neoForge()
+}
 
-            // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-
-        }
-        server {
-            server()
-        }
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
     }
-    mods {
-        "${mod_id}" {
-            sourceSet sourceSets.main
-        }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+repositories {
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
+}
 
 dependencies {
-    implementation "com.cobblemon:neoforge:$cobblemon_version"
+    neoForge "net.neoforged:neoforge:$rootProject.neoforge_version"
 
-    implementation "io.wispforest:accessories-neoforge:${accessories_version}"
+    modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
 
-    implementation "thedarkcolour:kotlinforforge-neoforge:${kotlin_for_forge_version}"
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
+
+    modImplementation "thedarkcolour:kotlinforforge:$project.kotlin_neo_version"
+
+    modImplementation "io.wispforest:accessories-neoforge:${project.accessories_version}"
+    modImplementation "com.cobblemon:neoforge:${project.cobblemon_version}"
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
 }
