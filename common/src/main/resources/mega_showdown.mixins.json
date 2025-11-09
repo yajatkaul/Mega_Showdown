@@ -4,8 +4,12 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "client.ui.PCGUIMixin",
+    "client.ui.SummaryCompanionMixin",
+    "client.ui.SummaryMixin"
   ],
   "mixins": [
+    "PokemonMixin"
   ],
   "injectors": {
     "defaultRequire": 1
