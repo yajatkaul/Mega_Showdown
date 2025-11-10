@@ -10,7 +10,6 @@ import kotlin.Unit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +47,7 @@ public record SnowStormParticle(
         pokemonPersistentData.putBoolean("form_changing", true);
         pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
 
-        if(this.particle_apply.isEmpty()) {
+        if (this.particle_apply.isEmpty()) {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
             return;
         }
@@ -94,7 +93,7 @@ public record SnowStormParticle(
         pokemonPersistentData.putBoolean("form_changing", true);
         pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
 
-        if(this.particle_revert.isEmpty()) {
+        if (this.particle_revert.isEmpty()) {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
             return;
         }

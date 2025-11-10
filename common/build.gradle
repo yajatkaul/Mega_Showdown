@@ -2,6 +2,12 @@ architectury {
     common rootProject.enabled_platforms.split(',')
 }
 
+loom {
+    enableTransitiveAccessWideners.set(true)
+    accessWidenerPath.set(file("src/main/resources/mega_showdown.accesswidener"))
+}
+
+
 dependencies {
     modCompileOnly "net.fabricmc:fabric-loader:$project.fabric_loader_version"
     modImplementation "dev.architectury:architectury:$project.architectury_api_version"

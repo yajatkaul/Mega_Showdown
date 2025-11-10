@@ -15,8 +15,4 @@ public class SpecialZCrystal extends ToolTipItem {
     public ElementalType getElement() {
         return element;
     }
-
-    public String getElementAsString() {
-        return element.toString();
-    }
 }

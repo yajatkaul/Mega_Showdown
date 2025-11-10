@@ -9,7 +9,16 @@
     "client.ui.SummaryMixin"
   ],
   "mixins": [
-    "PokemonMixin"
+    "CobblemonDataProviderMixin",
+    "GraalShowdownUnbundlerMixin",
+    "PokemonMixin",
+    "battle.EndInstructionMixin",
+    "battle.GimmickTileMixin",
+    "battle.MoveActionResponseMixin",
+    "battle.ShowdownActionRequestMixin",
+    "battle.ShowdownInterpreterMixin",
+    "battle.ShowdownSpeciesMixin",
+    "battle.StartInstructionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

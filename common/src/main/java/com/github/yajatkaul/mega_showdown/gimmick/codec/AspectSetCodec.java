@@ -1,6 +1,5 @@
 package com.github.yajatkaul.mega_showdown.gimmick.codec;
 
-import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 

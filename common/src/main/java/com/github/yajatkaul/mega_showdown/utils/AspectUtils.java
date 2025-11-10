@@ -12,9 +12,9 @@ import java.util.List;
 
 public class AspectUtils {
     public static void applyAspects(Pokemon pokemon, List<String> aspects) {
-        for (String aspect: aspects) {
+        for (String aspect : aspects) {
             String[] aspect_split = aspect.split("=");
-            if(aspect_split[1].equals("true") || aspect_split[1].equals("false")) {
+            if (aspect_split[1].equals("true") || aspect_split[1].equals("false")) {
                 new FlagSpeciesFeature(aspect_split[0], Boolean.parseBoolean(aspect_split[1])).apply(pokemon);
             } else {
                 new StringSpeciesFeature(aspect_split[0], aspect_split[1]).apply(pokemon);

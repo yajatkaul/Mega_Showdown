@@ -1,7 +1,6 @@
 package com.github.yajatkaul.mega_showdown.item.custom;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
 
 import java.util.List;
@@ -21,13 +20,13 @@ public class FormChangeItem extends ToolTipItem {
     }
 
     public void apply(Pokemon pokemon) {
-        if(pokemons.contains(pokemon.getSpecies().getName())) {
+        if (pokemons.contains(pokemon.getSpecies().getName())) {
             effect.applyEffects(pokemon.getEntity(), List.of(applyAspect), null);
         }
     }
 
     public void revert(Pokemon pokemon) {
-        if(pokemons.contains(pokemon.getSpecies().getName())) {
+        if (pokemons.contains(pokemon.getSpecies().getName())) {
             effect.revertEffects(pokemon.getEntity(), List.of(revertAspect), null);
         }
     }

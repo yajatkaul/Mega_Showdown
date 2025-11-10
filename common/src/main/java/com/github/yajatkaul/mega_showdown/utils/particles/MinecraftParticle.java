@@ -74,7 +74,7 @@ public record MinecraftParticle(
                 int baseParticleCount = (int) (100 * entityWidth * entityHeight);
                 int amplifier = 1;
 
-                if(this.particle_apply_amplifier.isPresent()) {
+                if (this.particle_apply_amplifier.isPresent()) {
                     amplifier = Math.max(1, this.particle_apply_amplifier.get());
                 }
 
@@ -147,7 +147,7 @@ public record MinecraftParticle(
                 int baseParticleCount = (int) (100 * entityWidth * entityHeight);
                 int amplifier = 1;
 
-                if(this.particle_revert_amplifier.isPresent()) {
+                if (this.particle_revert_amplifier.isPresent()) {
                     amplifier = Math.max(1, this.particle_revert_amplifier.get());
                 }
 

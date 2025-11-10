@@ -1,8 +1,13 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -24,5 +29,24 @@ public class PlayerUtils {
                 entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
                 0.3f
         );
+    }
+
+    public static boolean isBlockNearby(ServerPlayer player, TagKey<Block> blockTag, int radius) {
+        BlockPos playerPos = player.blockPosition();
+        ServerLevel level = player.serverLevel();
+
+        // scan a cube around the player
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dy = -radius; dy <= radius; dy++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    BlockPos checkPos = playerPos.offset(dx, dy, dz);
+                    if (level.getBlockState(checkPos).is(blockTag)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }

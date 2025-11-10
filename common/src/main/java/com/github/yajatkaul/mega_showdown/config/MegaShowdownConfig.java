@@ -17,6 +17,14 @@ public class MegaShowdownConfig {
 
     public static int teraShardRequired = 50;
     public static boolean multipleMegas = false;
+    public static boolean showdownFilesLoading = true;
+
+    public static boolean mega = true;
+    public static boolean zMoves = true;
+    public static boolean teralization = true;
+    public static boolean dynamax = true;
+    public static int powerSpotRange = 20;
+    public static boolean dynamaxAnywhere = true;
 
     public static void register() {
         load();
@@ -26,6 +34,14 @@ public class MegaShowdownConfig {
         JsonObject json = new JsonObject();
         json.addProperty("teraShardRequired", teraShardRequired);
         json.addProperty("multipleMegas", multipleMegas);
+        json.addProperty("showdownFilesLoading", showdownFilesLoading);
+
+        json.addProperty("mega", mega);
+        json.addProperty("zMoves", zMoves);
+        json.addProperty("teralization", teralization);
+        json.addProperty("dynamax", dynamax);
+        json.addProperty("powerSpotRange", powerSpotRange);
+        json.addProperty("dynamaxAnywhere", dynamaxAnywhere);
 
         try {
             Files.createDirectories(Path.of("./config/mega_showdown"));
@@ -55,6 +71,27 @@ public class MegaShowdownConfig {
             }
             if (json.has("multipleMegas")) {
                 multipleMegas = json.get("multipleMegas").getAsBoolean();
+            }
+            if (json.has("showdownFilesLoading")) {
+                showdownFilesLoading = json.get("showdownFilesLoading").getAsBoolean();
+            }
+            if (json.has("mega")) {
+                mega = json.get("mega").getAsBoolean();
+            }
+            if (json.has("zMoves")) {
+                zMoves = json.get("zMoves").getAsBoolean();
+            }
+            if (json.has("teralization")) {
+                teralization = json.get("teralization").getAsBoolean();
+            }
+            if (json.has("dynamax")) {
+                dynamax = json.get("dynamax").getAsBoolean();
+            }
+            if (json.has("powerSpotRange")) {
+                powerSpotRange = json.get("powerSpotRange").getAsInt();
+            }
+            if (json.has("dynamaxAnywhere")) {
+                dynamaxAnywhere = json.get("dynamaxAnywhere").getAsBoolean();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);
