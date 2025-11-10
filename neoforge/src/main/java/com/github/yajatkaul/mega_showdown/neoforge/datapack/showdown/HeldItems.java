@@ -1,17 +1,17 @@
-package com.github.yajatkaul.mega_showdown.datapack.showdown;
+package com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
+import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.ResourceManager;
-import org.graalvm.polyglot.Value;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
@@ -23,33 +23,37 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Conditions implements DataRegistry {
-    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/conditions");
-    private static final SimpleObservable<Conditions> OBSERVABLE = new SimpleObservable<>();
-    public static final Conditions INSTANCE = new Conditions();
-    private final Map<String, String> conditionScripts = new HashMap<>();
+public class HeldItems implements DataRegistry {
+    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/held_items");
+    private static final SimpleObservable<HeldItems> OBSERVABLE = new SimpleObservable<>();
+    public static final HeldItems INSTANCE = new HeldItems();
+    private final Map<String, String> heldItemsScripts = new HashMap<>();
 
-    private Conditions() {
-        OBSERVABLE.subscribe(Priority.NORMAL, this::conditionsLoad);
+    private HeldItems() {
+        OBSERVABLE.subscribe(Priority.NORMAL, this::heldItemsLoad);
     }
 
-    private Unit conditionsLoad(Conditions condition) {
+    private Unit heldItemsLoad(HeldItems heldItem) {
+        registerItems();
+        return Unit.INSTANCE;
+    }
+
+    public void registerItems() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
-                Value receiveConditionDataFn = service.context.getBindings("js").getMember("receiveConditionData");
-                for (Map.Entry<String, String> entry : Conditions.INSTANCE.getConditionScripts().entrySet()) {
-                    String conditionId = entry.getKey();
+                Value receiveHeldItemDataFn = service.context.getBindings("js").getMember("receiveHeldItemData");
+                for (Map.Entry<String, String> entry : HeldItems.INSTANCE.getHeldItemsScripts().entrySet()) {
+                    String itemId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    receiveConditionDataFn.execute(conditionId, js);
+                    receiveHeldItemDataFn.execute(itemId, js);
                 }
             }
             return Unit.INSTANCE;
         });
-        return Unit.INSTANCE;
     }
 
-    public Map<String, String> getConditionScripts() {
-        return conditionScripts;
+    public Map<String, String> getHeldItemsScripts() {
+        return heldItemsScripts;
     }
 
     @NotNull
@@ -72,14 +76,14 @@ public class Conditions implements DataRegistry {
 
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
-        conditionScripts.clear();
-        resourceManager.listResources("showdown/conditions", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
+        heldItemsScripts.clear();
+        resourceManager.listResources("showdown/held_items", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.open(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
-                String conditionId = new File(id.getPath()).getName().replace(".js", "");
-                conditionScripts.put(conditionId, js);
+                String itemId = new File(id.getPath()).getName().replace(".js", "");
+                heldItemsScripts.put(itemId, js);
             } catch (IOException e) {
-                MegaShowdown.LOGGER.error("Failed to load condition script: {} {}", id, e);
+                MegaShowdown.LOGGER.error("Failed to load held item script: {} {}", id, e);
             }
         });
 

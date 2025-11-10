@@ -22,7 +22,8 @@
     ]
   },
   "mixins": [
-    "mega_showdown.mixins.json"
+    "mega_showdown.mixins.json",
+    "mega_showdown.fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.17.3",

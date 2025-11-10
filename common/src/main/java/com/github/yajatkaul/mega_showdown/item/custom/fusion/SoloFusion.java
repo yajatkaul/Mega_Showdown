@@ -64,7 +64,10 @@ public class SoloFusion extends ToolTipItem {
         }
 
         EntityHitResult hitResult = PlayerUtils.getEntityLookingAt(player, 4.5f);
-        Entity entity = hitResult.getEntity();
+        Entity entity = null;
+        if (hitResult != null) {
+            entity = hitResult.getEntity();
+        }
 
         CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
         Pokemon pokemonStored = null;
@@ -81,7 +84,10 @@ public class SoloFusion extends ToolTipItem {
                 return InteractionResultHolder.pass(stack);
             }
 
-            if (mainPokemons.contains(pokemon.getSpecies().getName()) && checkEnabled(pokemon)) {
+            boolean isMain = mainPokemons.contains(pokemon.getSpecies().getName());
+            boolean isFusion = pokemons.contains(pokemon.getSpecies().getName());
+
+            if (isMain && checkEnabled(pokemon)) {
                 if (pokemonStored != null) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.already_fused")
                             .withStyle(ChatFormatting.RED), true);
@@ -102,7 +108,7 @@ public class SoloFusion extends ToolTipItem {
 
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
-            } else if (pokemonStored != null && mainPokemons.contains(pokemon.getSpecies().getName())) {
+            } else if (pokemonStored != null && isMain) {
                 effect.revertEffects(pokemonEntity, applyAspect, null);
                 pokemon.setTradeable(false);
 
@@ -111,13 +117,12 @@ public class SoloFusion extends ToolTipItem {
 
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
-            } else if (pokemonStored == null &&
-                    this.pokemons.contains(pokemon.getSpecies().getName())
-            ) {
-                CompoundTag pokemonNBT = new CompoundTag();
-                pokemon.saveToNBT(MegaShowdown.getServer().registryAccess(), pokemonNBT);
+            } else if (pokemonStored == null && isFusion) {
+                CompoundTag pokemonNBT = pokemon.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), pokemonNBT);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
+
+                playerPartyStore.remove(pokemon);
             }
         } else if (pokemonStored != null) {
             playerPartyStore.add(pokemonStored);

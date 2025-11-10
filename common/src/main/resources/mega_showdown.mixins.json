@@ -9,7 +9,6 @@
     "client.ui.SummaryMixin"
   ],
   "mixins": [
-    "CobblemonDataProviderMixin",
     "GraalShowdownUnbundlerMixin",
     "PokemonMixin",
     "battle.EndInstructionMixin",

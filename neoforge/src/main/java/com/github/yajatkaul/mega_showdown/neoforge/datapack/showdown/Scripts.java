@@ -1,17 +1,17 @@
-package com.github.yajatkaul.mega_showdown.datapack.showdown;
+package com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
+import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import kotlin.Unit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.ResourceManager;
-import org.graalvm.polyglot.Value;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
@@ -23,37 +23,37 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class TypeCharts implements DataRegistry {
-    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/typecharts");
-    private static final SimpleObservable<TypeCharts> OBSERVABLE = new SimpleObservable<>();
-    public static final TypeCharts INSTANCE = new TypeCharts();
-    private final Map<String, String> typeChartScripts = new HashMap<>();
+public class Scripts implements DataRegistry {
+    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/scripts");
+    private static final SimpleObservable<Scripts> OBSERVABLE = new SimpleObservable<>();
+    public static final Scripts INSTANCE = new Scripts();
+    private final Map<String, String> scripts = new HashMap<>();
 
-    private TypeCharts() {
-        OBSERVABLE.subscribe(Priority.NORMAL, this::typeChartsLoad);
+    private Scripts() {
+        OBSERVABLE.subscribe(Priority.NORMAL, this::scriptsLoad);
     }
 
-    private Unit typeChartsLoad(TypeCharts typeChart) {
-        registerTypeCharts();
+    private Unit scriptsLoad(Scripts scripts) {
+        registerScripts();
         return Unit.INSTANCE;
     }
 
-    public void registerTypeCharts() {
+    public void registerScripts() {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
-                Value receiveTypeChartDataFn = service.context.getBindings("js").getMember("receiveTypeChartData");
-                for (Map.Entry<String, String> entry : TypeCharts.INSTANCE.getTypeChartScripts().entrySet()) {
-                    String typeChartId = entry.getKey();
+                Value receiveScriptDataFn = service.context.getBindings("js").getMember("receiveScriptData");
+                for (Map.Entry<String, String> entry : Scripts.INSTANCE.getScripts().entrySet()) {
+                    String scriptId = entry.getKey();
                     String js = entry.getValue().replace("\n", " ");
-                    receiveTypeChartDataFn.execute(typeChartId, js);
+                    receiveScriptDataFn.execute(scriptId, js);
                 }
             }
             return Unit.INSTANCE;
         });
     }
 
-    public Map<String, String> getTypeChartScripts() {
-        return typeChartScripts;
+    public Map<String, String> getScripts() {
+        return scripts;
     }
 
     @NotNull
@@ -76,14 +76,14 @@ public class TypeCharts implements DataRegistry {
 
     @Override
     public void reload(@NotNull ResourceManager resourceManager) {
-        typeChartScripts.clear();
-        resourceManager.listResources("showdown/typecharts", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
+        scripts.clear();
+        resourceManager.listResources("showdown/scripts", path -> path.getPath().endsWith(".js")).forEach((id, resource) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.open(), StandardCharsets.UTF_8))) {
                 String js = reader.lines().collect(Collectors.joining("\n"));
-                String typeChartId = new File(id.getPath()).getName().replace(".js", "");
-                typeChartScripts.put(typeChartId, js);
+                String scriptId = new File(id.getPath()).getName().replace(".js", "");
+                scripts.put(scriptId, js);
             } catch (IOException e) {
-                MegaShowdown.LOGGER.error("Failed to load typechart script: {} {}", id, e);
+                MegaShowdown.LOGGER.error("Failed to load script: {} {}", id, e);
             }
         });
 

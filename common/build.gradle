@@ -14,5 +14,4 @@ dependencies {
 
     modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}"
     modCompileOnly "com.cobblemon:mod:${project.cobblemon_version}"
-    implementation "org.graalvm.sdk:graal-sdk:23.1.0"
 }

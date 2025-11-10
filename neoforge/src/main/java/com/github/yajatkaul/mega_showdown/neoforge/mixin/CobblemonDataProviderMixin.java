@@ -1,12 +1,12 @@
-package com.github.yajatkaul.mega_showdown.mixin;
+package com.github.yajatkaul.mega_showdown.neoforge.mixin;
 
 import com.cobblemon.mod.common.api.data.DataRegistry;
 import com.cobblemon.mod.common.api.scripting.CobblemonScripts;
 import com.cobblemon.mod.common.data.CobblemonDataProvider;
-import com.github.yajatkaul.mega_showdown.datapack.showdown.Conditions;
-import com.github.yajatkaul.mega_showdown.datapack.showdown.HeldItems;
-import com.github.yajatkaul.mega_showdown.datapack.showdown.Scripts;
-import com.github.yajatkaul.mega_showdown.datapack.showdown.TypeCharts;
+import com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown.Conditions;
+import com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown.HeldItems;
+import com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown.Scripts;
+import com.github.yajatkaul.mega_showdown.neoforge.datapack.showdown.TypeCharts;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

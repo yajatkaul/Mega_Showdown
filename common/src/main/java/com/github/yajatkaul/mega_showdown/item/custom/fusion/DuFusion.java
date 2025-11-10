@@ -78,7 +78,10 @@ public class DuFusion extends ToolTipItem {
         }
 
         EntityHitResult hitResult = PlayerUtils.getEntityLookingAt(player, 4.5f);
-        Entity entity = hitResult.getEntity();
+        Entity entity = null;
+        if (hitResult != null) {
+            entity = hitResult.getEntity();
+        }
 
         CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
         Pokemon pokemonStored = null;
@@ -140,10 +143,11 @@ public class DuFusion extends ToolTipItem {
                     pokemons1.contains(pokemon.getSpecies().getName()) ||
                     pokemons2.contains(pokemon.getSpecies().getName())
             ) {
-                CompoundTag pokemonNBT = new CompoundTag();
-                pokemon.saveToNBT(MegaShowdown.getServer().registryAccess(), pokemonNBT);
+                CompoundTag pokemonNBT = pokemon.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), pokemonNBT);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
+
+                playerPartyStore.remove(pokemon);
             }
         } else if (pokemonStored != null) {
             playerPartyStore.add(pokemonStored);

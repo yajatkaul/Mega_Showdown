@@ -227,7 +227,9 @@ public class MegaShowdownItems {
                                                           Effect effect2
     ) {
         return ITEMS.register(name, () -> new DuFusion(
-                new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
+                new Item.Properties()
+                        .arch$tab(MegaShowdownTabs.FORM_TAB)
+                        .stacksTo(1),
                 fusion1,
                 fusion2,
                 pokemon1,
@@ -250,7 +252,10 @@ public class MegaShowdownItems {
                                                             List<String> applyAspect,
                                                             List<String> revertAspect
     ) {
-        return ITEMS.register(name, () -> new SoloFusion(new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
+        return ITEMS.register(name, () -> new SoloFusion(
+                new Item.Properties()
+                        .arch$tab(MegaShowdownTabs.FORM_TAB)
+                        .stacksTo(1),
                 fusions,
                 pokemon,
                 pokemonMain,

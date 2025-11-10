@@ -2,3 +2,6 @@
 .idea
 build
 run
+
+.architectury-transformer
+.kotlin
