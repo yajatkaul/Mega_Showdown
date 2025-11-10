@@ -12,6 +12,10 @@ import com.github.yajatkaul.mega_showdown.item.custom.FormChangeItem;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.DuFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.SoloFusion;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.DynamaxBand;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaBracelet;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.TeraOrb;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.ZRing;
 import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
@@ -206,14 +210,54 @@ public class MegaShowdownItems {
 
     public static final RegistrySupplier<Item> DEBUG_STICK = registerItem("debug_stick", () -> new DebugStick(new Item.Properties()));
 
-    public static RegistrySupplier<Item> registerMegaStone(String name, MegaGimmick megaGimmick) {
+    public static final RegistrySupplier<Item> MEGA_BRACELET = registerMegaBracelet("mega_bracelet");
+
+    public static final RegistrySupplier<Item> TERA_ORB = registerTeraOrb("tera_orb");
+
+    public static final RegistrySupplier<Item> DYNAMAX_BAND = registerDynamaxBand("dynamax_band");
+
+    public static final RegistrySupplier<Item> Z_RING = registerZRing("z_ring");
+
+    private static RegistrySupplier<Item> registerMegaStone(String name, MegaGimmick megaGimmick) {
         return ITEMS.register(name, () -> new MegaStone(
                 new Item.Properties().arch$tab(MegaShowdownTabs.MEGA_TAB),
                 megaGimmick)
         );
     }
 
-    public static RegistrySupplier<Item> registerDuFusion(String name,
+    private static RegistrySupplier<Item> registerMegaBracelet(String name) {
+        return ITEMS.register(name, () -> new MegaBracelet(
+                new Item.Properties()
+                        .stacksTo(1)
+                        .arch$tab(MegaShowdownTabs.MEGA_TAB))
+        );
+    }
+
+    private static RegistrySupplier<Item> registerTeraOrb(String name) {
+        return ITEMS.register(name, () -> new TeraOrb(
+                new Item.Properties()
+                        .stacksTo(1)
+                        .arch$tab(MegaShowdownTabs.TERA_TAB))
+        );
+    }
+
+    private static RegistrySupplier<Item> registerDynamaxBand(String name) {
+        return ITEMS.register(name, () -> new DynamaxBand(
+                new Item.Properties()
+                        .stacksTo(1)
+                        .arch$tab(MegaShowdownTabs.DYNAMAX_TAB))
+        );
+    }
+
+    private static RegistrySupplier<Item> registerZRing(String name) {
+        return ITEMS.register(name, () -> new ZRing(
+                new Item.Properties()
+                        .stacksTo(1)
+                        .arch$tab(MegaShowdownTabs.Z_TAB))
+        );
+    }
+
+    private static RegistrySupplier<Item> registerDuFusion(String name,
                                                           List<String> fusion1,
                                                           List<String> fusion2,
                                                           List<String> pokemon1,
@@ -244,7 +288,7 @@ public class MegaShowdownItems {
         );
     }
 
-    public static RegistrySupplier<Item> registerSoloFusion(String name,
+    private static RegistrySupplier<Item> registerSoloFusion(String name,
                                                             List<String> fusions,
                                                             List<String> pokemon,
                                                             List<String> pokemonMain,
@@ -265,19 +309,19 @@ public class MegaShowdownItems {
         );
     }
 
-    public static RegistrySupplier<Item> registerTeraShards(String name, TeraType teraType) {
+    private static RegistrySupplier<Item> registerTeraShards(String name, TeraType teraType) {
         return ITEMS.register(name, () -> new TeraShard(new Item.Properties().arch$tab(MegaShowdownTabs.TERA_TAB), teraType));
     }
 
-    public static RegistrySupplier<Item> registerZElementalCrystals(String name, ElementalType type) {
+    private static RegistrySupplier<Item> registerZElementalCrystals(String name, ElementalType type) {
         return ITEMS.register(name, () -> new ElementalZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB), type));
     }
 
-    public static RegistrySupplier<Item> registerZSpecialCrystals(String name, ElementalType type) {
+    private static RegistrySupplier<Item> registerZSpecialCrystals(String name, ElementalType type) {
         return ITEMS.register(name, () -> new SpecialZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB), type));
     }
 
-    public static RegistrySupplier<Item> registerFormChangeItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect) {
+    private static RegistrySupplier<Item> registerFormChangeItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect) {
         return ITEMS.register(name,
                 () -> new FormChangeItem(
                         new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
@@ -288,13 +332,13 @@ public class MegaShowdownItems {
                 ));
     }
 
-    public static RegistrySupplier<Item> registerTooltipItem(String name, DeferredSupplier<CreativeModeTab> tab) {
+    private static RegistrySupplier<Item> registerTooltipItem(String name, DeferredSupplier<CreativeModeTab> tab) {
         return ITEMS.register(name, () -> new ToolTipItem(
                 new Item.Properties().arch$tab(tab))
         );
     }
 
-    public static RegistrySupplier<Item> registerItem(String name, Supplier<Item> item) {
+    private static RegistrySupplier<Item> registerItem(String name, Supplier<Item> item) {
         return ITEMS.register(name, item);
     }
 

@@ -49,6 +49,20 @@ public record MegaGimmick(
             return false;
         }
 
+        if (this.aspect_conditions.blacklist_aspects()
+                .stream()
+                .flatMap(List::stream)
+                .anyMatch(pokemon.getAspects()::contains)) {
+            return false;
+        }
+
+        if (!this.aspect_conditions.required_aspects()
+                .stream()
+                .flatMap(List::stream)
+                .allMatch(pokemon.getAspects()::contains)) {
+            return false;
+        }
+
         return pokemon.getSpecies().getName().equals(this.pokemon);
     }
 
@@ -116,7 +130,7 @@ public record MegaGimmick(
     public static MegaGimmick SCEPTILITE = createModItemMegaStone("sceptilite", "Sceptile", "mega");
     public static MegaGimmick SCIZORITE = createModItemMegaStone("scizorite", "Scizor", "mega");
     public static MegaGimmick SHARPEDONITE = createModItemMegaStone("sharpedonite", "Sharpedo", "mega");
-    public static MegaGimmick SLOWBRONITE = createModItemMegaStone("slowbronite", "Slowbro", "mega");
+    public static MegaGimmick SLOWBRONITE = createModItemMegaStoneWithBlackList("slowbronite", "Slowbro", "mega", "galarian");
     public static MegaGimmick STEELIXITE = createModItemMegaStone("steelixite", "Steelix", "mega");
     public static MegaGimmick SWAMPERTITE = createModItemMegaStone("swampertite", "Swampert", "mega");
     public static MegaGimmick TYRANITARITE = createModItemMegaStone("tyranitarite", "Tyranitar", "mega");
@@ -140,10 +154,40 @@ public record MegaGimmick(
         );
     }
 
+    public static MegaGimmick createModItemMegaStoneWithBlackList(String mega_stone_id,
+                                                                  String pokemon,
+                                                                  String aspect,
+                                                                  String blackListAspect
+    ) {
+        String mega_aspect = "mega_evolution" + aspect;
+        return new MegaGimmick(
+                "",
+                mega_stone_id,
+                "",
+                List.of(),
+                pokemon,
+                new AspectSetCodec(
+                        List.of(),
+                        List.of(List.of(blackListAspect)),
+                        List.of(mega_aspect),
+                        List.of("mega_evolution=none")
+                ),
+                0
+        );
+    }
+
     public static void megaEvolveInBattle(Pokemon pokemon, PokemonBattle battle, List<String> aspects, List<String> revertAspects) {
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
         pokemon.getPersistentData().put("battle_end_revert", AspectUtils.makeNbt(revertAspects));
         ParticlesList.megaEvolutionRevert.applyEffects(pokemon.getEntity(), aspects, null);
+    }
+
+    public static void megaEvolve(Pokemon pokemon, List<String> aspects) {
+        if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
+            ParticlesList.megaEvolutionRevert.revertEffects(pokemon.getEntity(), List.of("mega_evolution=false"), null);
+        } else {
+            ParticlesList.megaEvolutionRevert.applyEffects(pokemon.getEntity(), aspects, null);
+        }
     }
 }

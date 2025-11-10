@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.utils;
 import com.github.yajatkaul.mega_showdown.utils.particles.AnimationData;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
+import net.minecraft.core.particles.ParticleTypes;
 
 import java.util.List;
 import java.util.Optional;
@@ -77,6 +78,14 @@ public class ParticlesList {
 
     public static Effect nLunSolFusion = new Effect(
             Optional.of(simpleMinecraftParticles("minecraft:ash",
+                    "minecraft:ash",
+                    "minecraft:block.amethyst_block.chime",
+                    "minecraft:block.amethyst_block.chime")),
+            Optional.empty()
+    );
+
+    public static Effect ultraBurst = new Effect(
+            Optional.of(simpleMinecraftParticles("minecraft:glow",
                     "minecraft:ash",
                     "minecraft:block.amethyst_block.chime",
                     "minecraft:block.amethyst_block.chime")),

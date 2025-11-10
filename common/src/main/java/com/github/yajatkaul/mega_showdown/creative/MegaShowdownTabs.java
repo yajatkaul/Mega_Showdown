@@ -38,6 +38,14 @@ public class MegaShowdownTabs {
             )
     );
 
+    public static final RegistrySupplier<CreativeModeTab> DYNAMAX_TAB = CREATIVE_TABS.register(
+            "dynamax_tab",
+            () -> CreativeTabRegistry.create(
+                    Component.translatable("creativeTab.mega_showdown.dynamax_tab"),
+                    () -> new ItemStack(MegaShowdownItems.KEYSTONE) // Icon
+            )
+    );
+
     public static final RegistrySupplier<CreativeModeTab> FORM_TAB = CREATIVE_TABS.register(
             "form_tab",
             () -> CreativeTabRegistry.create(

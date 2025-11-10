@@ -22,6 +22,18 @@ configurations {
     }
 }
 
+File generatedResources = file("../common/src/generated")
+File defaultResources = file("../common/src/main/resources")
+loom {
+    runs {
+        register("data") {
+            data()
+            programArgs("--all", "--mod", "mega_showdown")
+            programArgs("--output", generatedResources.absolutePath, "--existing", defaultResources.absolutePath)
+        }
+    }
+}
+
 repositories {
     maven {
         name = 'NeoForged'
