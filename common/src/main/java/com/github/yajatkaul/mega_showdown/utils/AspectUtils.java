@@ -76,10 +76,18 @@ public class AspectUtils {
             AspectUtils.applyAspects(pokemon, aspects);
         }
 
-        if (pokemon.getEntity() != null &&
-                (pokemon.getPersistentData().getBoolean("is_tera")
-                        || pokemon.getPersistentData().getBoolean("is_max"))) {
-            pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+        if (pokemon.getPersistentData().getBoolean("is_tera")) {
+            pokemon.getPersistentData().putBoolean("is_tera", false);
+            if (pokemon.getEntity() != null && !pokemon.getEntity().isBattling()) {
+                pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+            }
+        }
+
+        if (pokemon.getPersistentData().getBoolean("is_max")) {
+            pokemon.getPersistentData().putBoolean("is_max", false);
+            if (pokemon.getEntity() != null && !pokemon.getEntity().isBattling()) {
+                pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+            }
         }
     }
 

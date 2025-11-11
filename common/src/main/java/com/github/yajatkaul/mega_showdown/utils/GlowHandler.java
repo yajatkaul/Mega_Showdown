@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.utils;
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
+import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;

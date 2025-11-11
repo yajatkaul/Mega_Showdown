@@ -28,6 +28,9 @@ public class MegaShowdownConfig {
     public static boolean dynamaxAnywhere = true;
     public static float dynamaxScaleFactor = 4f;
 
+    public static double teraShardDropRate = 10.0;
+    public static double stellarShardDropRate = 1.0;
+
     public static void register() {
         load();
     }
@@ -59,6 +62,8 @@ public class MegaShowdownConfig {
         json.addProperty("powerSpotRange", powerSpotRange);
         json.addProperty("dynamaxAnywhere", dynamaxAnywhere);
         json.addProperty("dynamaxScaleFactor", dynamaxScaleFactor);
+        json.addProperty("teraShardDropRate", teraShardDropRate);
+        json.addProperty("stellarShardDropRate", stellarShardDropRate);
         return json;
     }
 
@@ -103,6 +108,12 @@ public class MegaShowdownConfig {
             }
             if (json.has("dynamaxScaleFactor")) {
                 dynamaxScaleFactor = json.get("dynamaxScaleFactor").getAsFloat();
+            }
+            if (json.has("teraShardDropRate")) {
+                teraShardDropRate = json.get("teraShardDropRate").getAsDouble();
+            }
+            if (json.has("stellarShardDropRate")) {
+                stellarShardDropRate = json.get("stellarShardDropRate").getAsDouble();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);

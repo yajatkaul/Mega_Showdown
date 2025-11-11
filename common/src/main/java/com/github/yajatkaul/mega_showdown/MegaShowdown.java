@@ -6,6 +6,7 @@ import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.event.EventRegister;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
+import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
 import dev.architectury.event.events.common.LifecycleEvent;
 import net.minecraft.server.MinecraftServer;
@@ -29,6 +30,8 @@ public final class MegaShowdown {
         MegaShowdownItems.register();
         MegaShowdownTabs.register();
         MegaShowdownStatusEffects.register();
+
+        MegaShowdownMenuTypes.register();
 
         EventRegister.register();
 

@@ -11,6 +11,7 @@ import com.github.yajatkaul.mega_showdown.item.custom.DebugStick;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeItem;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.*;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.ZygardeCube;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.DuFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.SoloFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.gimmick.*;
@@ -224,6 +225,10 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> MAX_HONEY = registerItem("max_honey", () -> new MaxHoney(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
     public static final RegistrySupplier<Item> MAX_SOUP = registerItem("max_soup", () -> new MaxSoup(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
     public static final RegistrySupplier<Item> SWEET_MAX_SOUP = registerItem("sweet_max_soup", () -> new SweetMaxSoup(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
+
+    public static final RegistrySupplier<Item> ZYGARDE_CUBE = registerItem("zygarde_cube", () -> new ZygardeCube(new Item.Properties().stacksTo(1).arch$tab(MegaShowdownTabs.FORM_TAB)));
+    public static final RegistrySupplier<Item> ZYGARDE_CELL = registerItem("zygarde_cell", () -> new ToolTipItem(new Item.Properties().stacksTo(95).arch$tab(MegaShowdownTabs.FORM_TAB)));
+    public static final RegistrySupplier<Item> ZYGARDE_CORE = registerItem("zygarde_core", () -> new ToolTipItem(new Item.Properties().stacksTo(5).arch$tab(MegaShowdownTabs.FORM_TAB)));
 
     private static RegistrySupplier<Item> registerMegaStone(String name, MegaGimmick megaGimmick) {
         return ITEMS.register(name, () -> new MegaStone(

@@ -18,7 +18,7 @@
       "com.github.yajatkaul.mega_showdown.fabric.MegaShowdownFabric"
     ],
     "client": [
-      "com.github.yajatkaul.mega_showdown.fabric.client.MegaShowdownFabricClient"
+      "com.github.yajatkaul.mega_showdown.fabric.MegaShowdownFabricClient"
     ]
   },
   "mixins": [
