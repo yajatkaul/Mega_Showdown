@@ -111,7 +111,6 @@ public class DuFusion extends ToolTipItem {
                                 pokemon.getPersistentData().getCompound("fusion_pokemon")
                         );
                 playerPartyStore.add(pokemonInside);
-                pokemon.getPersistentData().remove("fusion_forme");
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName())) {
                     effect1.revertEffects(pokemonEntity, revertAspect1, null);

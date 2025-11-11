@@ -2,37 +2,42 @@ package com.github.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.Priority;
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
+import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
+import com.cobblemon.mod.common.api.item.HealingSource;
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
+import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
+import com.cobblemon.mod.common.battles.dispatch.UntilDispatch;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
+import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
+import com.github.yajatkaul.mega_showdown.api.event.UltraBurstCallback;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
-import com.github.yajatkaul.mega_showdown.item.custom.FormChangeItem;
+import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeItem;
 import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.tag.ModTags;
-import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
-import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
-import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
-import io.wispforest.accessories.Accessories;
-import io.wispforest.accessories.api.AccessoriesCapability;
+import com.github.yajatkaul.mega_showdown.utils.*;
 import kotlin.Unit;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 
 import java.util.List;
+import java.util.Set;
 
 @SuppressWarnings("SameReturnValue")
 public class CobbleEvents {
@@ -41,6 +46,112 @@ public class CobbleEvents {
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEvents::megaEvolution);
         CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, CobbleEvents::hookBattleEnded);
         CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEvents::battleStarting);
+        CobblemonEvents.TERASTALLIZATION.subscribe(Priority.NORMAL, CobbleEvents::terrastallizationUsed);
+        CobblemonEvents.POKEMON_HEALED.subscribe(Priority.NORMAL, CobbleEvents::healedPokemons);
+        CobblemonEvents.ZPOWER_USED.subscribe(Priority.NORMAL, CobbleEvents::zMovesUsed);
+
+        DynamaxStartCallback.EVENT.register(CobbleEvents::dynamaxStarted);
+        DynamaxEndCallback.EVENT.register(CobbleEvents::dynamaxEnded);
+        UltraBurstCallback.EVENT.register(CobbleEvents::ultraBurst);
+    }
+
+    private static void ultraBurst(PokemonBattle battle, BattlePokemon battlePokemon) {
+        Pokemon pokemon = battlePokemon.getEntity().getPokemon();
+        UltraGimmick.ultraBurstInBattle(pokemon, battlePokemon);
+    }
+
+    private static void dynamaxEnded(PokemonBattle battle, BattlePokemon battlePokemon) {
+        Pokemon pokemon = battlePokemon.getEffectedPokemon();
+        AspectUtils.scaleDownDynamax(pokemon.getEntity());
+
+        if (battlePokemon.getEntity().getPokemon().getAspects().contains("gmax")) {
+            battle.dispatchToFront(() -> {
+                new StringSpeciesFeature("dynamax_form", "none").apply(pokemon);
+                AspectUtils.updatePackets(battlePokemon);
+                return new UntilDispatch(() -> true);
+            });
+        }
+    }
+
+    private static void dynamaxStarted(PokemonBattle battle, BattlePokemon battlePokemon, Boolean gmax) {
+        Pokemon pokemon = battlePokemon.getEffectedPokemon();
+        if (gmax) {
+            pokemon.getPersistentData().put("battle_end_revert",
+                    AspectUtils.makeNbt(List.of("dynamax_form=none")));
+            battle.dispatchToFront(() -> {
+                new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon);
+                AspectUtils.updatePackets(battlePokemon);
+                return new UntilDispatch(() -> true);
+            });
+        }
+
+        AspectUtils.scaleUpDynamax(pokemon.getEntity());
+    }
+
+    private static Unit zMovesUsed(ZMoveUsedEvent event) {
+        PokemonEntity pokemonEntity = event.getPokemon().getEffectedPokemon().getEntity();
+        Pokemon pokemon = pokemonEntity.getPokemon();
+
+        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "z/z_moves");
+
+        if (pokemon.getSpecies().getName().equals("Pikachu") && pokemon.getAspects().contains("partner-cap")) {
+            AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_pikachu");
+        }
+
+        GlowHandler.applyZGlow(pokemonEntity);
+
+        ParticlesList.zMoves.applyEffectsBattle(pokemonEntity, List.of(), null, event.getPokemon());
+
+        return Unit.INSTANCE;
+    }
+
+    private static Unit healedPokemons(PokemonHealedEvent pokemonHealedEvent) {
+        ServerPlayer player = pokemonHealedEvent.getPokemon().getOwnerPlayer();
+        if (player == null || pokemonHealedEvent.getSource() != HealingSource.Force.INSTANCE) {
+            return Unit.INSTANCE;
+        }
+
+        ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
+        if (teraOrb != ItemStack.EMPTY) {
+            teraOrb.setDamageValue(0);
+        }
+
+        return Unit.INSTANCE;
+    }
+
+    private static Unit terrastallizationUsed(TerastallizationEvent event) {
+        PokemonEntity pokemonEntity = event.getPokemon().getEffectedPokemon().getEntity();
+        Pokemon pokemon = pokemonEntity.getPokemon();
+
+        AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
+
+        if (pokemon.getSpecies().getName().equals("Terapagos")) {
+            new StringSpeciesFeature("tera_form", "stellar").apply(pokemon);
+            AspectUtils.updatePackets(event.getPokemon());
+            ParticlesList.endRodParticles.apply(pokemonEntity);
+        } else if (pokemon.getSpecies().getName().equals("Ogerpon")) {
+            new FlagSpeciesFeature("embody-aspect", true).apply(pokemon);
+            AspectUtils.updatePackets(event.getPokemon());
+        }
+
+        pokemon.getPersistentData().putBoolean("is_tera", true);
+        GlowHandler.applyTeraGlow(pokemonEntity);
+
+        ServerPlayer player = pokemon.getOwnerPlayer();
+        if (!PlayerUtils.hasPokemon(player, "Terapagos")) {
+            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
+            if (teraOrb != ItemStack.EMPTY) {
+                teraOrb.setDamageValue(teraOrb.getDamageValue() + 10);
+            }
+        }
+
+        event.getBattle().dispatchWaitingToFront(2f, () -> {
+            PokemonBehaviourHelper.Companion.playAnimation(pokemonEntity, Set.of("cry"), List.of());
+            return Unit.INSTANCE;
+        });
+        //TODO add sounds
+
+        return Unit.INSTANCE;
     }
 
     public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
@@ -49,11 +160,11 @@ public class CobbleEvents {
                 return false;
             }
 
-            boolean hasDMaxItemTrinkets = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.DYNAMAX_BANDS);
+            boolean hasDMaxItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.DYNAMAX_BAND);
 
-            return player.getOffhandItem().is(ModTags.Items.DYNAMAX_BANDS)
-                    || player.getMainHandItem().is(ModTags.Items.DYNAMAX_BANDS)
-                    || hasDMaxItemTrinkets;
+            return player.getOffhandItem().is(ModTags.Items.DYNAMAX_BAND)
+                    || player.getMainHandItem().is(ModTags.Items.DYNAMAX_BAND)
+                    || hasDMaxItemAccessory;
         } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
             if (!MegaShowdownConfig.teralization) {
                 return false;
@@ -66,10 +177,10 @@ public class CobbleEvents {
                 if (pokemon.getSpecies().getName().equals("Terapagos")) {
                     hasTerapagos = true;
                 }
-                revertPokemonsIfRequired(pokemon);
+                AspectUtils.revertPokemonsIfRequired(pokemon);
             }
 
-            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORBS);
+            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
 
             if (teraOrb == null) {
                 return false;
@@ -85,21 +196,21 @@ public class CobbleEvents {
                 return false;
             }
 
-            boolean hasZPowerItemTrinkets = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.Z_RINGS);
+            boolean hasZPowerItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.Z_RING);
 
-            return player.getOffhandItem().is(ModTags.Items.Z_RINGS)
-                    || player.getMainHandItem().is(ModTags.Items.Z_RINGS)
-                    || hasZPowerItemTrinkets;
+            return player.getOffhandItem().is(ModTags.Items.Z_RING)
+                    || player.getMainHandItem().is(ModTags.Items.Z_RING)
+                    || hasZPowerItemAccessory;
         } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
             if (!MegaShowdownConfig.mega) {
                 return false;
             }
 
-            boolean hasKeystoneItemTrinkets = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.MEGA_BRACELETS);
+            boolean hasKeystoneItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.MEGA_BRACELET);
 
-            return (player.getOffhandItem().is(ModTags.Items.MEGA_BRACELETS)
-                    || player.getMainHandItem().is(ModTags.Items.MEGA_BRACELETS)
-                    || hasKeystoneItemTrinkets)
+            return (player.getOffhandItem().is(ModTags.Items.MEGA_BRACELET)
+                    || player.getMainHandItem().is(ModTags.Items.MEGA_BRACELET)
+                    || hasKeystoneItemAccessory)
                     && !MegaGimmick.hasMega(player);
         }
 
@@ -147,7 +258,7 @@ public class CobbleEvents {
         event.getBattle().getOnEndHandlers().add((battle -> {
             battle.getPlayers().forEach(serverPlayer -> {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-                revertPokemonsIfRequired(playerPartyStore);
+                AspectUtils.revertPokemonsIfRequired(playerPartyStore);
             });
 
             return Unit.INSTANCE;
@@ -156,38 +267,13 @@ public class CobbleEvents {
         return Unit.INSTANCE;
     }
 
-    private static void revertPokemonsIfRequired(Pokemon pokemon) {
-        if (pokemon.getPersistentData().contains("battle_end_revert")) {
-            AspectUtils.applyAspects(
-                    pokemon,
-                    AspectUtils.decodeNbt(pokemon.getPersistentData().getList("battle_end_revert", 8))
-            );
-        }
-
-        if (pokemon.getPersistentData().contains("apply_aspects")) {
-            List<String> aspects =
-                    AspectUtils.decodeNbt(pokemon.getPersistentData().getList("apply_aspects", 8));
-
-            AspectUtils.applyAspects(pokemon, aspects);
-        }
-
-        if (pokemon.getEntity() != null) {
-            pokemon.getEntity().removeEffect(MobEffects.GLOWING);
-        }
-    }
-    private static void revertPokemonsIfRequired(PlayerPartyStore playerPartyStore) {
-        for (Pokemon pokemon : playerPartyStore) {
-            revertPokemonsIfRequired(pokemon);
-        }
-    }
-
     private static Unit megaEvolution(MegaEvolutionEvent event) {
         Pokemon pokemon = event.getPokemon().getEntity().getPokemon();
         if (pokemon.heldItem().getItem() instanceof MegaStone megaStone) {
             if (megaStone.getMegaProps().canMega(pokemon)) {
                 MegaGimmick.megaEvolveInBattle(
                         pokemon,
-                        event.getBattle(),
+                        event.getPokemon(),
                         megaStone.getMegaProps().aspect_conditions().apply_aspects(),
                         megaStone.getMegaProps().aspect_conditions().revert_aspects()
                 );

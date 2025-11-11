@@ -18,7 +18,7 @@ public class MegaShowdownTabs {
             "mega_tab",
             () -> CreativeTabRegistry.create(
                     Component.translatable("creativeTab.mega_showdown.mega_tab"),
-                    () -> new ItemStack(MegaShowdownItems.KEYSTONE) // Icon
+                    () -> new ItemStack(MegaShowdownItems.MEGA_BRACELET) // Icon
             )
     );
 
@@ -26,7 +26,15 @@ public class MegaShowdownTabs {
             "tera_tab",
             () -> CreativeTabRegistry.create(
                     Component.translatable("creativeTab.mega_showdown.tera_tab"),
-                    () -> new ItemStack(MegaShowdownItems.KEYSTONE) // Icon
+                    () -> new ItemStack(MegaShowdownItems.TERA_ORB) // Icon
+            )
+    );
+
+    public static final RegistrySupplier<CreativeModeTab> KEY_TAB = CREATIVE_TABS.register(
+            "key_tab",
+            () -> CreativeTabRegistry.create(
+                    Component.translatable("creativeTab.mega_showdown.key_tab"),
+                    () -> new ItemStack(MegaShowdownItems.OMNI_RING) // Icon
             )
     );
 
@@ -34,7 +42,7 @@ public class MegaShowdownTabs {
             "z_tab",
             () -> CreativeTabRegistry.create(
                     Component.translatable("creativeTab.mega_showdown.z_tab"),
-                    () -> new ItemStack(MegaShowdownItems.KEYSTONE) // Icon
+                    () -> new ItemStack(MegaShowdownItems.Z_RING) // Icon
             )
     );
 
@@ -42,7 +50,7 @@ public class MegaShowdownTabs {
             "dynamax_tab",
             () -> CreativeTabRegistry.create(
                     Component.translatable("creativeTab.mega_showdown.dynamax_tab"),
-                    () -> new ItemStack(MegaShowdownItems.KEYSTONE) // Icon
+                    () -> new ItemStack(MegaShowdownItems.DYNAMAX_BAND) // Icon
             )
     );
 

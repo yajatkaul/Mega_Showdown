@@ -53,7 +53,7 @@ dependencies {
         exclude group: "net.neoforged.fancymodloader", module: "loader"
     }
 
-    modImplementation "io.wispforest:accessories-neoforge:${project.accessories_version}"
+    modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
     modImplementation "com.cobblemon:neoforge:${project.cobblemon_version}"
 }
 

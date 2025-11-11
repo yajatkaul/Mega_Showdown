@@ -1,6 +1,8 @@
 package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
+import com.github.yajatkaul.mega_showdown.tag.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -18,10 +20,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(BlockTags.MINEABLE_WITH_PICKAXE);
-//                .add(UltraPlantBlocks.BLUE_CRYSTAL.get())
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(MegaShowdownBlocks.POWER_SPOT.get());
 
-        tag(BlockTags.NEEDS_STONE_TOOL);
-//                .add(UltraPlantBlocks.BLUE_CRYSTAL.get())
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(MegaShowdownBlocks.POWER_SPOT.get());
+
+        tag(ModTags.Blocks.POWER_SPOT)
+                .add(MegaShowdownBlocks.POWER_SPOT.get());
     }
 }

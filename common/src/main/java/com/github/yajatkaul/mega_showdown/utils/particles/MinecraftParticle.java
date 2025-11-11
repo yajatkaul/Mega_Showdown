@@ -20,8 +20,8 @@ public record MinecraftParticle(
         Optional<String> particle_revert,
         Optional<String> sound_apply,
         Optional<String> sound_revert,
-        Optional<Integer> particle_apply_amplifier,
-        Optional<Integer> particle_revert_amplifier,
+        Optional<Float> particle_apply_amplifier,
+        Optional<Float> particle_revert_amplifier,
         Optional<AnimationData> animations
 ) {
     public static final Codec<MinecraftParticle> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -29,8 +29,8 @@ public record MinecraftParticle(
             Codec.STRING.optionalFieldOf("particle_revert").forGetter(MinecraftParticle::particle_revert),
             Codec.STRING.optionalFieldOf("sound_apply").forGetter(MinecraftParticle::sound_apply),
             Codec.STRING.optionalFieldOf("sound_revert").forGetter(MinecraftParticle::sound_revert),
-            Codec.INT.optionalFieldOf("particle_apply_amplifier").forGetter(MinecraftParticle::particle_apply_amplifier),
-            Codec.INT.optionalFieldOf("particle_revert_amplifier").forGetter(MinecraftParticle::particle_revert_amplifier),
+            Codec.FLOAT.optionalFieldOf("particle_apply_amplifier").forGetter(MinecraftParticle::particle_apply_amplifier),
+            Codec.FLOAT.optionalFieldOf("particle_revert_amplifier").forGetter(MinecraftParticle::particle_revert_amplifier),
             AnimationData.CODEC.optionalFieldOf("animations").forGetter(MinecraftParticle::animations)
     ).apply(instance, MinecraftParticle::new));
 
@@ -72,13 +72,13 @@ public record MinecraftParticle(
                 double entityHeight = context.getBbHeight();
 
                 int baseParticleCount = (int) (100 * entityWidth * entityHeight);
-                int amplifier = 1;
+                float amplifier = 1;
 
                 if (this.particle_apply_amplifier.isPresent()) {
                     amplifier = Math.max(1, this.particle_apply_amplifier.get());
                 }
 
-                int particleCount = baseParticleCount * amplifier; // Amplify particle count
+                float particleCount = baseParticleCount * amplifier; // Amplify particle count
                 double radius = entityWidth * (0.8 + amplifier * 0.1); // Slightly increase radius with amplifier
 
                 if (particleType instanceof ParticleOptions particle) {
@@ -145,13 +145,13 @@ public record MinecraftParticle(
                 double entityHeight = context.getBbHeight();
 
                 int baseParticleCount = (int) (100 * entityWidth * entityHeight);
-                int amplifier = 1;
+                float amplifier = 1;
 
                 if (this.particle_revert_amplifier.isPresent()) {
                     amplifier = Math.max(1, this.particle_revert_amplifier.get());
                 }
 
-                int particleCount = baseParticleCount * amplifier; // Amplify particle count
+                float particleCount = baseParticleCount * amplifier; // Amplify particle count
                 double radius = entityWidth * (0.8 + amplifier * 0.1); // Slightly increase radius with amplifier
 
                 if (particleType instanceof ParticleOptions particle) {

@@ -1,5 +1,6 @@
 package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -16,18 +17,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
-    //TODO COMPLETEEE
     @Override
     protected void generate() {
-//        dropSelf(UltraPlantBlocks.WIRE_BLOCK.get());
+        dropSelf(MegaShowdownBlocks.POWER_SPOT.get());
+        dropSelf(MegaShowdownBlocks.MAX_MUSHROOM.get());
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
         List<Block> blocks = new ArrayList<>();
-//        for (RegistrySupplier<Block> supplier : ModBlocksReg.BLOCKS) {
-//            blocks.add(supplier.get());
-//        }
+        for (RegistrySupplier<Block> supplier : MegaShowdownBlocks.BLOCKS) {
+            blocks.add(supplier.get());
+        }
         return blocks;
     }
 }

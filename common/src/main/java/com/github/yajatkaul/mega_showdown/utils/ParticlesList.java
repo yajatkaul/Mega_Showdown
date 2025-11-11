@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.utils;
 import com.github.yajatkaul.mega_showdown.utils.particles.AnimationData;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
-import net.minecraft.core.particles.ParticleTypes;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +15,9 @@ public class ParticlesList {
                     Optional.of("minecraft:end_rod"),
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.of(1),
+                    Optional.of(1f),
                     Optional.empty(),
-                    Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of()))
+                    Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
             )),
             Optional.empty()
     );
@@ -29,14 +28,14 @@ public class ParticlesList {
                     Optional.of("minecraft:end_rod"),
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.of(1),
+                    Optional.of(1f),
                     Optional.empty(),
-                    Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of()))
+                    Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
             )),
             Optional.empty()
     );
 
-    public static Effect megaEvolutionRevert = new Effect(
+    public static Effect megaEvolution = new Effect(
             Optional.of(defaultConfigMCParticles("minecraft:end_rod")),
             Optional.of(simpleSnowstormParticles("cobblemon:mega_evolution",
                     4.7f,
@@ -44,11 +43,19 @@ public class ParticlesList {
             )
     );
 
+    public static Effect zMoves = new Effect(
+            Optional.empty(),
+            Optional.of(zmoveSnowStorm("cobblemon:z_moves",
+                    4f,
+                    "mega_showdown:z_moves")
+            )
+    );
+
     public static Effect kyuremBlackFusion = new Effect(
             Optional.of(defaultConfigMCParticles("minecraft:ash")),
             Optional.of(simpleSnowstormParticles("cobblemon:kyurem_b_effect",
                     4f,
-                    "mega_showdown:kyurem_fusion")
+                    "mega_showdown:z_move")
             )
     );
 
@@ -92,6 +99,24 @@ public class ParticlesList {
             Optional.empty()
     );
 
+    public static MinecraftParticle calyrexDynamaxLevelUpParticles = simpleMinecraftParticlesApply(
+            "minecraft:soul_fire_flame",
+            "minecraft:block.amethyst_block.chime",
+            0.5f
+    );
+
+    public static MinecraftParticle otherDynamaxLevelUpParticles = simpleMinecraftParticlesApply(
+            "minecraft:flame",
+            "minecraft:block.amethyst_block.chime",
+            0.5f
+    );
+
+    public static MinecraftParticle endRodParticles = simpleMinecraftParticlesApply(
+            "minecraft:flame",
+            "minecraft:block.amethyst_block.chime",
+            1f
+    );
+
     public static MinecraftParticle defaultConfigMCParticles(String id) {
         return new MinecraftParticle(
                 Optional.empty(),
@@ -99,7 +124,7 @@ public class ParticlesList {
                 Optional.empty(),
                 Optional.empty(),
                 Optional.empty(),
-                Optional.of(1),
+                Optional.of(1f),
                 Optional.empty()
         );
     }
@@ -110,15 +135,27 @@ public class ParticlesList {
                 Optional.of(id_revert),
                 Optional.of(sound_apply),
                 Optional.of(sound_revert),
-                Optional.of(1),
-                Optional.of(1),
-                Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of()))
+                Optional.of(1.0f),
+                Optional.of(1.0f),
+                Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
+        );
+    }
+
+    public static MinecraftParticle simpleMinecraftParticlesApply(String id_apply, String sound_apply, float scale) {
+        return new MinecraftParticle(
+                Optional.of(id_apply),
+                Optional.empty(),
+                Optional.of(sound_apply),
+                Optional.empty(),
+                Optional.of(scale),
+                Optional.empty(),
+                Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
         );
     }
 
     public static SnowStormParticle simpleSnowstormParticles(String id, float dur, String sound_id) {
         return new SnowStormParticle(
-                Optional.of(List.of("root")),
+                Optional.of(List.of("target")),
                 Optional.empty(),
                 Optional.empty(),
                 Optional.empty(),
@@ -128,7 +165,23 @@ public class ParticlesList {
                 Optional.empty(),
                 Optional.of(sound_id),
                 Optional.empty(),
-                Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of()))
+                Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
+        );
+    }
+
+    public static SnowStormParticle zmoveSnowStorm(String id, float dur, String sound_id) {
+        return new SnowStormParticle(
+                Optional.of(List.of("target")),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(id),
+                Optional.of(dur),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(sound_id),
+                Optional.empty(),
+                Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 2.5f, 0))
         );
     }
 }

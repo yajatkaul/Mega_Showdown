@@ -43,4 +43,6 @@ side = "BOTH"
 
 [[mixins]]
 config = "mega_showdown.mixins.json"
+
+[[mixins]]
 config = "mega_showdown.neoforge.mixins.json"

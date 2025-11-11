@@ -2,10 +2,8 @@ package com.github.yajatkaul.mega_showdown.item.custom.gimmick;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
-import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
-import com.github.yajatkaul.mega_showdown.gimmick.ZGimmick;
+import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import io.wispforest.accessories.api.AccessoriesContainer;
@@ -42,12 +40,14 @@ public class ZRing extends ToolTipItem {
         }
 
         if (entity instanceof PokemonEntity pokemonEntity) {
-            ZGimmick.UltraBurst(pokemonEntity.getPokemon());
+            if (UltraGimmick.ultraBurst(pokemonEntity.getPokemon()) != 0) {
+                return InteractionResultHolder.success(stack);
+            }
         } else {
             AccessoriesContainer slot = capability.getContainer(SlotTypeLoader.getSlotType(level, "z_slot"));
             ExpandedSimpleContainer accessories = slot.getAccessories();
 
-            if(accessories == null) {
+            if (accessories == null) {
                 MegaShowdown.LOGGER.info("No z_slot found");
                 return InteractionResultHolder.pass(stack);
             }

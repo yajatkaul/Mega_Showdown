@@ -10,6 +10,7 @@
   ],
   "mixins": [
     "GraalShowdownUnbundlerMixin",
+    "PokemonEntityMixin",
     "PokemonMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",

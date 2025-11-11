@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.dispatch.InterpreterInstruction;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.util.LocalizationUtilsKt;
-import com.github.yajatkaul.mega_showdown.event.custom.UltraBurstEvents;
+import com.github.yajatkaul.mega_showdown.api.event.UltraBurstCallback;
 import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
@@ -23,7 +23,7 @@ public record UltraInstruction(
             MutableComponent pokemonName = battlePokemon.getName();
             pokemonBattle.broadcastChatMessage(LocalizationUtilsKt.battleLang("ultra", pokemonName).withStyle(ChatFormatting.YELLOW));
             pokemonBattle.getMinorBattleActions().put(battlePokemon.getUuid(), message);
-            UltraBurstEvents.ULTRA_BURST.invoker().onUltraBurst(pokemonBattle, battlePokemon);
+            UltraBurstCallback.EVENT.invoker().onUltraBurst(pokemonBattle, battlePokemon);
             return Unit.INSTANCE;
         });
     }

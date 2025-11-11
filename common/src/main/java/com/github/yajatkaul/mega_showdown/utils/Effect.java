@@ -1,5 +1,6 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
@@ -42,6 +43,36 @@ public record Effect(
             this.snowStorm.get().revert(context, aspects, other);
         } else {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
+        }
+    }
+
+    public void applyEffectsBattle(PokemonEntity context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+        if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
+            this.minecraft.get().apply(context);
+            this.snowStorm.get().applyBattle(context, aspects, other, battlePokemon);
+        } else if (this.minecraft().isPresent()) {
+            this.minecraft.get().apply(context);
+            AspectUtils.updatePackets(battlePokemon);
+        } else if (this.snowStorm().isPresent()) {
+            this.snowStorm.get().applyBattle(context, aspects, other, battlePokemon);
+        } else {
+            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            AspectUtils.updatePackets(battlePokemon);
+        }
+    }
+
+    public void revertEffectsBattle(PokemonEntity context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+        if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
+            this.minecraft.get().revert(context);
+            this.snowStorm.get().revertBattle(context, aspects, other, battlePokemon);
+        } else if (this.minecraft().isPresent()) {
+            this.minecraft.get().revert(context);
+            AspectUtils.updatePackets(battlePokemon);
+        } else if (this.snowStorm().isPresent()) {
+            this.snowStorm.get().revertBattle(context, aspects, other, battlePokemon);
+        } else {
+            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            AspectUtils.updatePackets(battlePokemon);
         }
     }
 }

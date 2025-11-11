@@ -31,7 +31,7 @@ public class DynamaxBand extends ToolTipItem {
         AccessoriesContainer slot = capability.getContainer(SlotTypeLoader.getSlotType(level, "dynamax_slot"));
         ExpandedSimpleContainer accessories = slot.getAccessories();
 
-        if(accessories == null) {
+        if (accessories == null) {
             MegaShowdown.LOGGER.info("No tera_slot found");
             return InteractionResultHolder.pass(stack);
         }

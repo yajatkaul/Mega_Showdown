@@ -4,6 +4,7 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,12 +26,27 @@ public class MegaShowdownConfig {
     public static boolean dynamax = true;
     public static int powerSpotRange = 20;
     public static boolean dynamaxAnywhere = true;
+    public static float dynamaxScaleFactor = 4f;
 
     public static void register() {
         load();
     }
 
     private static void save() {
+        JsonObject json = getJsonObject();
+
+        try {
+            Files.createDirectories(Path.of("./config/mega_showdown"));
+            try (FileWriter writer = new FileWriter(FILE_PATH)) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                writer.write(gson.toJson(json));
+            }
+        } catch (IOException e) {
+            MegaShowdown.LOGGER.error("Failed to save MegaShowdown config:", e);
+        }
+    }
+
+    private static @NotNull JsonObject getJsonObject() {
         JsonObject json = new JsonObject();
         json.addProperty("teraShardRequired", teraShardRequired);
         json.addProperty("multipleMegas", multipleMegas);
@@ -42,16 +58,8 @@ public class MegaShowdownConfig {
         json.addProperty("dynamax", dynamax);
         json.addProperty("powerSpotRange", powerSpotRange);
         json.addProperty("dynamaxAnywhere", dynamaxAnywhere);
-
-        try {
-            Files.createDirectories(Path.of("./config/mega_showdown"));
-            try (FileWriter writer = new FileWriter(FILE_PATH)) {
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                writer.write(gson.toJson(json));
-            }
-        } catch (IOException e) {
-            MegaShowdown.LOGGER.error("Failed to save MegaShowdown config:", e);
-        }
+        json.addProperty("dynamaxScaleFactor", dynamaxScaleFactor);
+        return json;
     }
 
     private static void load() {
@@ -92,6 +100,9 @@ public class MegaShowdownConfig {
             }
             if (json.has("dynamaxAnywhere")) {
                 dynamaxAnywhere = json.get("dynamaxAnywhere").getAsBoolean();
+            }
+            if (json.has("dynamaxScaleFactor")) {
+                dynamaxScaleFactor = json.get("dynamaxScaleFactor").getAsFloat();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);

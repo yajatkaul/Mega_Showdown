@@ -1,5 +1,8 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
+import com.cobblemon.mod.common.Cobblemon;
+import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -47,6 +50,16 @@ public class PlayerUtils {
             }
         }
 
+        return false;
+    }
+
+    public static boolean hasPokemon(ServerPlayer player, String pokemon) {
+        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+        for (Pokemon pokemonParty : playerPartyStore) {
+            if (pokemonParty.getSpecies().getName().equals("Terapagos")) {
+                return true;
+            }
+        }
         return false;
     }
 }

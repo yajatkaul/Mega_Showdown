@@ -1,10 +1,12 @@
 package com.github.yajatkaul.mega_showdown;
 
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.event.EventRegister;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
+import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
 import dev.architectury.event.events.common.LifecycleEvent;
 import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
@@ -23,8 +25,10 @@ public final class MegaShowdown {
         MegaShowdownConfig.register();
 
         MegaShowdownDataComponents.register();
+        MegaShowdownBlocks.register();
         MegaShowdownItems.register();
         MegaShowdownTabs.register();
+        MegaShowdownStatusEffects.register();
 
         EventRegister.register();
 

@@ -20,16 +20,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(ModTags.Items.MEGA_BRACELETS)
+        tag(ModTags.Items.MEGA_BRACELET)
+                .add(MegaShowdownItems.OMNI_RING.get())
                 .add(MegaShowdownItems.MEGA_BRACELET.get());
 
-        tag(ModTags.Items.DYNAMAX_BANDS)
+        tag(ModTags.Items.DYNAMAX_BAND)
+                .add(MegaShowdownItems.OMNI_RING.get())
                 .add(MegaShowdownItems.DYNAMAX_BAND.get());
 
-        tag(ModTags.Items.Z_RINGS)
+        tag(ModTags.Items.Z_RING)
+                .add(MegaShowdownItems.OMNI_RING.get())
                 .add(MegaShowdownItems.Z_RING.get());
 
-        tag(ModTags.Items.TERA_ORBS)
+        tag(ModTags.Items.TERA_ORB)
+                .add(MegaShowdownItems.OMNI_RING.get())
                 .add(MegaShowdownItems.TERA_ORB.get());
+
+        tag(ModTags.Items.OMNI_RING)
+                .add(MegaShowdownItems.OMNI_RING.get());
     }
 }

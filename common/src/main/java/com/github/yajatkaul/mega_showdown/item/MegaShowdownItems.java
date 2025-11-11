@@ -8,14 +8,12 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.item.custom.DebugStick;
-import com.github.yajatkaul.mega_showdown.item.custom.FormChangeItem;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeItem;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
+import com.github.yajatkaul.mega_showdown.item.custom.dynamax.*;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.DuFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.SoloFusion;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.DynamaxBand;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaBracelet;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.TeraOrb;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.ZRing;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.*;
 import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
@@ -89,7 +87,8 @@ public class MegaShowdownItems {
             "reversion_state=primal",
             "reversion_state=standard",
             List.of("Groudon"),
-            ParticlesList.groudonPrimalRevert
+            ParticlesList.groudonPrimalRevert,
+            false
     );
 
     public static final RegistrySupplier<Item> BLUE_ORB = registerFormChangeItems(
@@ -97,7 +96,8 @@ public class MegaShowdownItems {
             "reversion_state=primal",
             "reversion_state=standard",
             List.of("Kyogre"),
-            ParticlesList.kyogrePrimalRevert
+            ParticlesList.kyogrePrimalRevert,
+            false
     );
 
     public static final RegistrySupplier<Item> NORMAL_TERA_SHARD = registerTeraShards("normal_tera_shard", TeraTypes.getNORMAL());
@@ -218,6 +218,13 @@ public class MegaShowdownItems {
 
     public static final RegistrySupplier<Item> Z_RING = registerZRing("z_ring");
 
+    public static final RegistrySupplier<Item> OMNI_RING = registerOmniRing("omni_ring");
+
+    public static final RegistrySupplier<Item> DYNAMAX_CANDY = registerItem("dynamax_candy", () -> new DynamaxCandy(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
+    public static final RegistrySupplier<Item> MAX_HONEY = registerItem("max_honey", () -> new MaxHoney(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
+    public static final RegistrySupplier<Item> MAX_SOUP = registerItem("max_soup", () -> new MaxSoup(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
+    public static final RegistrySupplier<Item> SWEET_MAX_SOUP = registerItem("sweet_max_soup", () -> new SweetMaxSoup(new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
+
     private static RegistrySupplier<Item> registerMegaStone(String name, MegaGimmick megaGimmick) {
         return ITEMS.register(name, () -> new MegaStone(
                 new Item.Properties().arch$tab(MegaShowdownTabs.MEGA_TAB),
@@ -233,10 +240,19 @@ public class MegaShowdownItems {
         );
     }
 
+    private static RegistrySupplier<Item> registerOmniRing(String name) {
+        return ITEMS.register(name, () -> new OmniRing(
+                new Item.Properties()
+                        .stacksTo(1)
+                        .arch$tab(MegaShowdownTabs.KEY_TAB))
+        );
+    }
+
     private static RegistrySupplier<Item> registerTeraOrb(String name) {
         return ITEMS.register(name, () -> new TeraOrb(
                 new Item.Properties()
                         .stacksTo(1)
+                        .durability(100)
                         .arch$tab(MegaShowdownTabs.TERA_TAB))
         );
     }
@@ -258,17 +274,17 @@ public class MegaShowdownItems {
     }
 
     private static RegistrySupplier<Item> registerDuFusion(String name,
-                                                          List<String> fusion1,
-                                                          List<String> fusion2,
-                                                          List<String> pokemon1,
-                                                          List<String> pokemon2,
-                                                          List<String> pokemonMain,
-                                                          List<String> applyAspect1,
-                                                          List<String> applyAspect2,
-                                                          List<String> revertAspect1,
-                                                          List<String> revertAspect2,
-                                                          Effect effect1,
-                                                          Effect effect2
+                                                           List<String> fusion1,
+                                                           List<String> fusion2,
+                                                           List<String> pokemon1,
+                                                           List<String> pokemon2,
+                                                           List<String> pokemonMain,
+                                                           List<String> applyAspect1,
+                                                           List<String> applyAspect2,
+                                                           List<String> revertAspect1,
+                                                           List<String> revertAspect2,
+                                                           Effect effect1,
+                                                           Effect effect2
     ) {
         return ITEMS.register(name, () -> new DuFusion(
                 new Item.Properties()
@@ -289,12 +305,12 @@ public class MegaShowdownItems {
     }
 
     private static RegistrySupplier<Item> registerSoloFusion(String name,
-                                                            List<String> fusions,
-                                                            List<String> pokemon,
-                                                            List<String> pokemonMain,
-                                                            Effect effect,
-                                                            List<String> applyAspect,
-                                                            List<String> revertAspect
+                                                             List<String> fusions,
+                                                             List<String> pokemon,
+                                                             List<String> pokemonMain,
+                                                             Effect effect,
+                                                             List<String> applyAspect,
+                                                             List<String> revertAspect
     ) {
         return ITEMS.register(name, () -> new SoloFusion(
                 new Item.Properties()
@@ -321,14 +337,15 @@ public class MegaShowdownItems {
         return ITEMS.register(name, () -> new SpecialZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB), type));
     }
 
-    private static RegistrySupplier<Item> registerFormChangeItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect) {
+    private static RegistrySupplier<Item> registerFormChangeItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect, boolean tradable) {
         return ITEMS.register(name,
                 () -> new FormChangeItem(
                         new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
                         revertAspect,
                         applyAspect,
                         pokemons,
-                        effect
+                        effect,
+                        tradable
                 ));
     }
 

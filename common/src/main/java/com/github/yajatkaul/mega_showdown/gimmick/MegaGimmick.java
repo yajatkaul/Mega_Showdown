@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
@@ -176,18 +177,21 @@ public record MegaGimmick(
         );
     }
 
-    public static void megaEvolveInBattle(Pokemon pokemon, PokemonBattle battle, List<String> aspects, List<String> revertAspects) {
+    public static void megaEvolveInBattle(Pokemon pokemon, BattlePokemon battlePokemon, List<String> aspects, List<String> revertAspects) {
+        PokemonBattle battle = battlePokemon.actor.getBattle();
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
         pokemon.getPersistentData().put("battle_end_revert", AspectUtils.makeNbt(revertAspects));
-        ParticlesList.megaEvolutionRevert.applyEffects(pokemon.getEntity(), aspects, null);
+        ParticlesList.megaEvolution.applyEffectsBattle(pokemon.getEntity(), aspects, null, battlePokemon);
     }
 
     public static void megaEvolve(Pokemon pokemon, List<String> aspects) {
         if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
-            ParticlesList.megaEvolutionRevert.revertEffects(pokemon.getEntity(), List.of("mega_evolution=false"), null);
+            ParticlesList.megaEvolution.revertEffects(pokemon.getEntity(), List.of("mega_evolution=false"), null);
+            pokemon.setTradeable(true);
         } else {
-            ParticlesList.megaEvolutionRevert.applyEffects(pokemon.getEntity(), aspects, null);
+            ParticlesList.megaEvolution.applyEffects(pokemon.getEntity(), aspects, null);
+            pokemon.setTradeable(false);
         }
     }
 }
