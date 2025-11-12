@@ -15,6 +15,7 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.isHeld
+import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
@@ -34,7 +35,7 @@ import net.minecraft.world.level.block.Block
 open class MaxMushroom(
     block: Block,
     settings: Properties
-) : BlockItem(block, settings), HealingSource {
+) : ToolTipBlockItem(block, settings), HealingSource {
 
     private val bagItem = object : BagItem {
         override val itemName = "item.mega_showdown.max_mushroom"

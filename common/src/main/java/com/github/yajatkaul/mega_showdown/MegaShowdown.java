@@ -1,5 +1,6 @@
 package com.github.yajatkaul.mega_showdown;
 
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
@@ -30,6 +31,7 @@ public final class MegaShowdown {
 
         MegaShowdownDataComponents.register();
         MegaShowdownBlocks.register();
+        MegaShowdownBlockEntities.register();
         MegaShowdownItems.register();
         MegaShowdownTabs.register();
         MegaShowdownStatusEffects.register();

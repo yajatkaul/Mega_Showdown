@@ -53,7 +53,7 @@ public class TeraShard extends Item {
                             .withColor(0xFF0000), true);
                     return InteractionResult.PASS;
                 }
-                itemStack.shrink(required_shards);
+                itemStack.consume(required_shards, player);
 
                 if (this == MegaShowdownItems.STELLAR_TERA_SHARD.get()) {
                     AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/change_tera_stellar");

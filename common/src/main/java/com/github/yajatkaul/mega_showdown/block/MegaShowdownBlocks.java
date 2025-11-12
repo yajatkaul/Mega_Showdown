@@ -3,21 +3,25 @@ package com.github.yajatkaul.mega_showdown.block;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.custom.CustomHitBoxBlock;
 import com.github.yajatkaul.mega_showdown.block.custom.MaxMushroomBlock;
+import com.github.yajatkaul.mega_showdown.block.custom.ReassemblyUnitBlock;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.MaxMushroom;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.Gracedia;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MegaShowdownBlocks {
@@ -35,18 +39,52 @@ public class MegaShowdownBlocks {
             MegaShowdownTabs.DYNAMAX_TAB
     );
 
-    public static final RegistrySupplier<Block> MAX_MUSHROOM = registerMaxMushroom("max_mushroom", () ->
-            new MaxMushroomBlock(BlockBehaviour.Properties.of().noCollission().sound(SoundType.FLOWERING_AZALEA)));
+    public static final RegistrySupplier<Block> MAX_MUSHROOM = registerBlockWithBlockItems(
+            "max_mushroom",
+            () -> new MaxMushroomBlock(BlockBehaviour.Properties.of()
+                    .noCollission()
+                    .sound(SoundType.FLOWERING_AZALEA)
+            ),
+            block -> new MaxMushroom(block.get(), new Item.Properties())
+    );
+
+    public static final RegistrySupplier<Block> GRACIDEA_FLOWER = registerBlockWithBlockItems("gracidea_flower",
+            () -> new FlowerBlock(MobEffects.HEAL, 8, BlockBehaviour.Properties.of()
+                    .noCollission()
+                    .noOcclusion()
+                    .lightLevel((state) -> 15)
+                    .instabreak()
+                    .sound(SoundType.GRASS)),
+            (block) -> new Gracedia(block.get(), new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB)));
+
+    public static final RegistrySupplier<Block> POTTED_GRACIDEA = registerFlowerPlotBlock("potted_gracidea", GRACIDEA_FLOWER.get());
+
+    public static final RegistrySupplier<Block> REASSEMBLY_UNIT = registerBlockWithToolTip(
+            "reassembly_unit",
+            () -> new ReassemblyUnitBlock(BlockBehaviour.Properties.of()),
+            MegaShowdownTabs.FORM_TAB
+    );
+
+    private static RegistrySupplier<Block> registerFlowerPlotBlock(String name, Block block) {
+        return BLOCKS.register(name, () -> new FlowerPotBlock(block,
+                BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)
+                        .noOcclusion()
+                        .instabreak()
+        ));
+    }
+
+    private static RegistrySupplier<Block> registerBlockWithBlockItems(String name,
+                                                               Supplier<Block> block,
+                                                               Function<RegistrySupplier<Block>, Item> itemFactory
+    ) {
+        RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, block);
+        MegaShowdownItems.ITEMS.register(name, () -> itemFactory.apply(blockSupplier));
+        return blockSupplier;
+    }
 
     private static RegistrySupplier<Block> registerBlock(String name, Supplier<Block> block) {
         RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, block);
         MegaShowdownItems.ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), new Item.Properties()));
-        return blockSupplier;
-    }
-
-    private static RegistrySupplier<Block> registerMaxMushroom(String name, Supplier<Block> block) {
-        RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, block);
-        MegaShowdownItems.ITEMS.register(name, () -> new MaxMushroom(blockSupplier.get(), new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB)));
         return blockSupplier;
     }
 
