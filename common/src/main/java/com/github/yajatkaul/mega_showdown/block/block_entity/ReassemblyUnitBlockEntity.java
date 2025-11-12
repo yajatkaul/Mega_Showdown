@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -81,6 +82,10 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
     public void setStage(ReassembleStage stage) {
         this.stage = stage;
         if (this.level instanceof ServerLevel serverLevel) {
+            BlockState currentState = serverLevel.getBlockState(this.getBlockPos());
+            BlockState newState = currentState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage);
+            serverLevel.setBlock(this.getBlockPos(), newState, Block.UPDATE_ALL);
+
             setChanged(serverLevel, this.getBlockPos(), this.getBlockState());
         }
     }

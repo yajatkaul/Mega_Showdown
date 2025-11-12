@@ -20,6 +20,7 @@ import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.isHeld
 import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.party
+import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
@@ -32,9 +33,7 @@ import net.minecraft.world.item.Items
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.Level
 
-class MaxHoney(properties: Properties) : CobblemonItem(Properties()), HealingSource {
-
-
+class MaxHoney(properties: Properties) : ToolTipItem(Properties()), HealingSource {
     val bagItem = object : BagItem {
         override val itemName = "item.mega_showdown.max_honey"
         override val returnItem = Items.AIR
@@ -122,15 +121,5 @@ class MaxHoney(properties: Properties) : CobblemonItem(Properties()), HealingSou
             }
             return InteractionResultHolder.success(stack)
         }
-    }
-
-    override fun appendHoverText(
-        arg: ItemStack,
-        arg2: TooltipContext,
-        tooltipComponents: MutableList<Component>,
-        arg3: TooltipFlag
-    ) {
-        tooltipComponents.add(Component.translatable("tooltip.mega_showdown.max_honey.tooltip"))
-        super.appendHoverText(arg, arg2, tooltipComponents, arg3)
     }
 }

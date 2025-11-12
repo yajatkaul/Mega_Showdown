@@ -145,14 +145,4 @@ open class MaxMushroom(
         }
         return super.useOn(arg)
     }
-
-    override fun appendHoverText(
-        stack: ItemStack,
-        context: TooltipContext,
-        tooltipComponents: MutableList<Component>,
-        flag: TooltipFlag
-    ) {
-        tooltipComponents.add(Component.translatable("tooltip.mega_showdown.max_mushroom.tooltip"))
-        super.appendHoverText(stack, context, tooltipComponents, flag)
-    }
 }

@@ -10,8 +10,10 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
@@ -32,6 +34,22 @@ public class PlayerUtils {
                 entity -> !entity.isSpectator() && entity instanceof LivingEntity && entity.isPickable(),
                 0.3f
         );
+    }
+
+    public static BlockHitResult getBlockLookingAt(Player player, float distance) {
+        Vec3 eyePos = player.getEyePosition();
+        Vec3 lookVec = player.getViewVector(1.0F);
+        Vec3 targetPos = eyePos.add(lookVec.scale(distance));
+
+        ClipContext clipContext = new ClipContext(
+                eyePos,
+                targetPos,
+                ClipContext.Block.OUTLINE,
+                ClipContext.Fluid.NONE,
+                player
+        );
+
+        return player.level().clip(clipContext);
     }
 
     public static boolean isBlockNearby(ServerPlayer player, TagKey<Block> blockTag, int radius) {

@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
@@ -25,7 +26,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.List;
 
@@ -43,6 +46,7 @@ public class ZygardeCube extends ToolTipItem {
         }
 
         EntityHitResult hitResult = PlayerUtils.getEntityLookingAt(player, 4.5f);
+
         Entity entity = null;
         if (hitResult != null) {
             entity = hitResult.getEntity();
@@ -115,6 +119,8 @@ public class ZygardeCube extends ToolTipItem {
             }
 
         } else {
+            BlockHitResult blockHitResult = PlayerUtils.getBlockLookingAt(player, 4.5f);
+
             if (storedPokemon != null) {
                 playerPartyStore.add(storedPokemon);
                 stack.remove(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
@@ -122,6 +128,10 @@ public class ZygardeCube extends ToolTipItem {
 
                 return InteractionResultHolder.success(stack);
             } else {
+                if (blockHitResult.getType() == HitResult.Type.BLOCK &&
+                        level.getBlockState(blockHitResult.getBlockPos()).is(MegaShowdownBlocks.REASSEMBLY_UNIT.get())) {
+                    return InteractionResultHolder.pass(stack);
+                }
                 player.openMenu(
                         new SimpleMenuProvider(
                                 (id, playerInventory, playerEntity) ->

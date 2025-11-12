@@ -25,7 +25,7 @@ public class MegaShowdownConfig {
     public static boolean teralization = true;
     public static boolean dynamax = true;
     public static int powerSpotRange = 20;
-    public static boolean dynamaxAnywhere = true;
+    public static boolean dynamaxAnywhere = false;
     public static float dynamaxScaleFactor = 4f;
 
     public static double teraShardDropRate = 10.0;
@@ -118,5 +118,9 @@ public class MegaShowdownConfig {
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);
         }
+    }
+
+    public static int getDynamaxScaleDuration() {
+        return (int) (MegaShowdownConfig.dynamaxScaleFactor / 0.1f);
     }
 }

@@ -14,28 +14,39 @@ import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.ZygardeCube;
 import com.github.yajatkaul.mega_showdown.utils.NBTInventoryUtils;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -43,18 +54,75 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ReassemblyUnitBlock extends BaseEntityBlock {
     public static final EnumProperty<ReassemblyUnitBlockEntity.ReassembleStage> REASSEMBLE_STAGE
             = EnumProperty.create("reassemble_stage", ReassemblyUnitBlockEntity.ReassembleStage.class);
+    public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
+    private static final VoxelShape UPPER_SHAPE = Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape LOWER_SHAPE = Block.box(1, 0, 1, 15, 16, 15);
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        return state.getValue(HALF) == DoubleBlockHalf.UPPER ? UPPER_SHAPE : LOWER_SHAPE;
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
+        DoubleBlockHalf doubleblockhalf = blockState.getValue(HALF);
+        if (direction.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (direction == Direction.UP) || blockState2.is(this) && blockState2.getValue(HALF) != doubleblockhalf) {
+            return doubleblockhalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !blockState.canSurvive(levelAccessor, blockPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
+        } else {
+            return Blocks.AIR.defaultBlockState();
+        }
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
+        level.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), 3);
+    }
+
+    @Override
+    public BlockState playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
+        DoubleBlockHalf doubleblockhalf = blockState.getValue(HALF);
+        if (doubleblockhalf == DoubleBlockHalf.UPPER) {
+            BlockPos blockpos = blockPos.below();
+            BlockState blockstate = level.getBlockState(blockpos);
+            if (blockstate.is(blockState.getBlock()) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                BlockState blockstate1 = blockstate.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                level.setBlock(blockpos, blockstate1, 35);
+                level.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
+            }
+        }
+        return super.playerWillDestroy(level, blockPos, blockState, player);
+    }
+
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos pos = context.getClickedPos();
+        Level level = context.getLevel();
+        Direction playerFacing = context.getHorizontalDirection();
+
+        if (pos.getY() < level.getMaxBuildHeight() - 1 && level.getBlockState(pos.above()).canBeReplaced(context)) {
+            return this.defaultBlockState()
+                    .setValue(HALF, DoubleBlockHalf.LOWER)
+                    .setValue(FACING, playerFacing.getOpposite());
+        } else {
+            return null;
+        }
+    }
 
     public static final MapCodec<ReassemblyUnitBlock> CODEC = simpleCodec(ReassemblyUnitBlock::new);
 
     public ReassemblyUnitBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
+                .setValue(HALF, DoubleBlockHalf.LOWER)
+                .setValue(FACING, Direction.NORTH)
                 .setValue(REASSEMBLE_STAGE, ReassemblyUnitBlockEntity.ReassembleStage.IDLE));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(REASSEMBLE_STAGE);
+        builder.add(FACING, HALF, REASSEMBLE_STAGE);
     }
 
     @Override
@@ -68,16 +136,16 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
             return ItemInteractionResult.FAIL;
         }
 
-        //TODO state.getValue(HALF) == DoubleBlockHalf.UPPER logic later
+        pos = blockState.getValue(HALF) == DoubleBlockHalf.UPPER
+                ? pos.below()
+                : pos;
 
         if (level.getBlockEntity(pos) instanceof ReassemblyUnitBlockEntity blockEntity) {
             if (itemStack.getItem() instanceof ZygardeCube) {
-                CompoundTag tag = itemStack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+                CompoundTag tag = itemStack.getOrDefault(MegaShowdownDataComponents.NBT_COMPONENT.get(),
+                        new CompoundTag());
                 CompoundTag storedTag = itemStack.get(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
                 Pokemon storedPokemon = null;
-                if (tag == null) {
-                    tag = new CompoundTag();
-                }
                 if (storedTag != null) {
                     storedPokemon = new Pokemon().loadFromNBT(MegaShowdown.getServer().registryAccess(), storedTag);
                 }
@@ -109,7 +177,8 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                             simpleContainer.setItem(0, slot0);
                             simpleContainer.setItem(1, slot1);
                         } else {
-                            //TODO add user message
+                            player.displayClientMessage(Component.translatable("message.mega_showdown.not_enough_cells_core")
+                                            .withStyle(ChatFormatting.RED), true);
                             return ItemInteractionResult.FAIL;
                         }
 
@@ -139,8 +208,11 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                         itemStack.remove(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
                     }
                     return ItemInteractionResult.SUCCESS;
+                } else {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.machine_being_used")
+                            .withStyle(ChatFormatting.RED), true);
                 }
-            }else if (itemStack.getItem() instanceof PokeBallItem pokeBall) {
+            } else if (itemStack.getItem() instanceof PokeBallItem pokeBall) {
                 if (blockEntity.isFinished()) {
                     int shinyRoll = ThreadLocalRandom.current().nextInt(1, (int) (Cobblemon.config.getShinyRate() + 1)); // 8193 is exclusive
                     Pokemon zygarde = PokemonProperties.Companion.parse("zygarde").create();
@@ -175,7 +247,9 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new ReassemblyUnitBlockEntity(blockPos, blockState);
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return state.getValue(HALF) == DoubleBlockHalf.LOWER
+                ? new ReassemblyUnitBlockEntity(pos, state)
+                : null;
     }
 }

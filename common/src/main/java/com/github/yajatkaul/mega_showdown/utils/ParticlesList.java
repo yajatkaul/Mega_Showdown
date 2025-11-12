@@ -112,13 +112,24 @@ public class ParticlesList {
     );
 
     public static MinecraftParticle endRodParticles = simpleMinecraftParticlesApply(
-            "minecraft:flame",
+            "minecraft:end_rod",
             "minecraft:block.amethyst_block.chime",
             1f
     );
 
+    public static MinecraftParticle glowParticles = simpleMinecraftParticlesApply(
+            "minecraft:glow",
+            "minecraft:block.amethyst_block.chime",
+            1.2f
+    );
+
     public static Effect defaultParticles = new Effect(
             Optional.of(endRodParticles),
+            Optional.empty()
+    );
+
+    public static Effect defaultGlowParticles = new Effect(
+            Optional.of(glowParticles),
             Optional.empty()
     );
 

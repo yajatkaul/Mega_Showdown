@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -159,5 +160,20 @@ public class DuFusion extends ToolTipItem {
 
     private boolean checkEnabled(Pokemon pokemon) {
         return pokemon.getAspects().stream().anyMatch(fusions1::contains) || pokemon.getAspects().stream().anyMatch(fusions2::contains);
+    }
+
+    @Override
+    public void onDestroyed(ItemEntity itemEntity) {
+        CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+        Pokemon pokemonStored = null;
+        if (compoundTag != null) {
+            pokemonStored = new Pokemon().loadFromNBT(MegaShowdown.getServer().registryAccess(), compoundTag);
+        }
+        if (pokemonStored != null) {
+            if (itemEntity.getOwner() instanceof ServerPlayer player) {
+                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+                playerPartyStore.add(pokemonStored);
+            }
+        }
     }
 }

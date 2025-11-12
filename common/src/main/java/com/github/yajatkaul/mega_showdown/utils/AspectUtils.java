@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
 import net.minecraft.nbt.ListTag;
@@ -78,15 +79,15 @@ public class AspectUtils {
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {
             pokemon.getPersistentData().putBoolean("is_tera", false);
-            if (pokemon.getEntity() != null && !pokemon.getEntity().isBattling()) {
+            if (pokemon.getEntity() != null) {
                 pokemon.getEntity().removeEffect(MobEffects.GLOWING);
             }
         }
 
         if (pokemon.getPersistentData().getBoolean("is_max")) {
             pokemon.getPersistentData().putBoolean("is_max", false);
-            if (pokemon.getEntity() != null && !pokemon.getEntity().isBattling()) {
-                pokemon.getEntity().removeEffect(MobEffects.GLOWING);
+            if (pokemon.getEntity() != null) {
+                AspectUtils.scaleDownDynamax(pokemon.getEntity());
             }
         }
     }
@@ -118,10 +119,11 @@ public class AspectUtils {
     }
 
     public static void scaleDownDynamax(PokemonEntity pokemonEntity) {
-        DelayedTicker.add(new DelayedTicker((int) (MegaShowdownConfig.dynamaxScaleFactor / 0.1f)) {
+        DelayedTicker.add(new DelayedTicker(MegaShowdownConfig.getDynamaxScaleDuration()) {
             @Override
             protected void function() {
                 if (!pokemonEntity.isRemoved() && pokemonEntity.hasEffect(MegaShowdownStatusEffects.DYNAMAX)) {
+                    pokemonEntity.removeEffect(MegaShowdownStatusEffects.DYNAMAX);
                     pokemonEntity.addEffect(
                             new MobEffectInstance(
                                     MegaShowdownStatusEffects.DYNAMAX,
@@ -146,22 +148,22 @@ public class AspectUtils {
 
     public static void scaleUpDynamax(PokemonEntity pokemonEntity) {
         GlowHandler.applyDynamaxGlow(pokemonEntity);
-        DelayedTicker.add(new DelayedTicker((int) (MegaShowdownConfig.dynamaxScaleFactor / 0.1f)) {
+        DelayedTicker.add(new DelayedTicker(MegaShowdownConfig.getDynamaxScaleDuration()) {
             @Override
             protected void function() {
-                if (!pokemonEntity.isRemoved() && pokemonEntity.hasEffect(MegaShowdownStatusEffects.DYNAMAX)) {
+                if (!pokemonEntity.isRemoved()) {
                     pokemonEntity.addEffect(
                             new MobEffectInstance(
                                     MegaShowdownStatusEffects.DYNAMAX,
                                     Integer.MAX_VALUE,
-                                    (this.maxAge - this.age),
+                                    this.age,
                                     true,
                                     true,
                                     true
-                            ),
-                            null
+                            )
                     );
-                } else {
+                }
+                else {
                     this.age = this.maxAge;
                 }
             }

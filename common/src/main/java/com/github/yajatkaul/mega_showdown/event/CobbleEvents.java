@@ -187,6 +187,7 @@ public class CobbleEvents {
         }
 
         pokemon.getPersistentData().putBoolean("is_max", true);
+        battle.dispatchWaitingToFront(MegaShowdownConfig.getDynamaxScaleDuration() / 20f, () -> Unit.INSTANCE);
 
         AspectUtils.scaleUpDynamax(pokemon.getEntity());
     }

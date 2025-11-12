@@ -11,8 +11,10 @@ import com.github.yajatkaul.mega_showdown.key_mapping.MegaShowdownKeybinds;
 import com.github.yajatkaul.mega_showdown.networking.MegaShowdownNetworkHandler;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
+import com.github.yajatkaul.mega_showdown.utils.DelayedTicker;
 import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.event.events.common.LifecycleEvent;
+import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +44,8 @@ public final class MegaShowdown {
 
         EventRegister.register();
 
-        LifecycleEvent.SERVER_STARTED.register((minecraftServer) -> {
-            server = minecraftServer;
-        });
+        LifecycleEvent.SERVER_STARTED.register((minecraftServer) -> server = minecraftServer);
+
+        TickEvent.SERVER_PRE.register((server) -> DelayedTicker.runAll());
     }
 }
