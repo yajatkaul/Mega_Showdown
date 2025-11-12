@@ -1,6 +1,5 @@
 package com.github.yajatkaul.mega_showdown.screen.custom;
 
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
@@ -15,9 +14,9 @@ public class ZygardeSlots extends Slot {
     public boolean mayPlace(ItemStack stack) {
         int index = this.getContainerSlot();
         if (index == 0) {
-            return stack.is(MegaShowdownItems.ZYGARDE_CELL);
+            return stack.is(MegaShowdownItems.ZYGARDE_CELL.get());
         } else if (index == 1) {
-            return stack.is(MegaShowdownItems.ZYGARDE_CORE);
+            return stack.is(MegaShowdownItems.ZYGARDE_CORE.get());
         }
         return false;
     }

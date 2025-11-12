@@ -117,6 +117,11 @@ public class ParticlesList {
             1f
     );
 
+    public static Effect defaultParticles = new Effect(
+            Optional.of(endRodParticles),
+            Optional.empty()
+    );
+
     public static MinecraftParticle defaultConfigMCParticles(String id) {
         return new MinecraftParticle(
                 Optional.empty(),

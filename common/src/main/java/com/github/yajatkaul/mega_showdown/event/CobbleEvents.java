@@ -31,6 +31,7 @@ import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
 import com.github.yajatkaul.mega_showdown.api.event.UltraBurstCallback;
+import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
@@ -43,7 +44,6 @@ import kotlin.Unit;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -77,7 +77,7 @@ public class CobbleEvents {
             return Unit.INSTANCE;
         }
 
-        if (event.getEntity() instanceof  PokemonEntity pokemonEntity) {
+        if (event.getEntity() instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
             Item correspondingTeraShard = TeraHelper.getTeraShardForType(pokemon.getTypes());
             ItemDropEntry teraShardDropEntry = new ItemDropEntry();
@@ -392,12 +392,22 @@ public class CobbleEvents {
             return Unit.INSTANCE;
         }
 
+        if (event.getReturning().getItem() == event.getReceiving().getItem()){
+            return Unit.INSTANCE;
+        }
+
         if (event.getReturning().getItem() instanceof FormChangeItem formChangeItem) {
             formChangeItem.revert(event.getPokemon());
         }
 
         if (event.getReceiving().getItem() instanceof FormChangeItem formChangeItem) {
             formChangeItem.apply(event.getPokemon());
+        }
+
+        MegaGimmick megaGimmick = event.getReturning().get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+        Pokemon pokemon = event.getPokemon();
+        if (megaGimmick != null && megaGimmick.pokemon().contains(pokemon.getSpecies().getName())) {
+            MegaGimmick.megaToggle(pokemon.getEntity());
         }
 
         return Unit.INSTANCE;

@@ -31,7 +31,6 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.Level
-import kotlin.collections.toList
 
 class MaxHoney(properties: Properties) : CobblemonItem(Properties()), HealingSource {
 
@@ -87,7 +86,7 @@ class MaxHoney(properties: Properties) : CobblemonItem(Properties()), HealingSou
                                 )
                             )
                             val stackName = BuiltInRegistries.ITEM.getKey(stack.item)
-                            stack.consume(1, player);
+                            stack.consume(1, player)
                             CobblemonCriteria.POKEMON_INTERACT.trigger(
                                 player,
                                 PokemonInteractContext(bp.effectedPokemon.species.resourceIdentifier, stackName)

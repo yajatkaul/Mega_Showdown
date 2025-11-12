@@ -117,8 +117,8 @@ public class AspectUtils {
         }
     }
 
-    public static void scaleDownDynamax (PokemonEntity pokemonEntity) {
-        DelayedTicker.add(new DelayedTicker((int)(MegaShowdownConfig.dynamaxScaleFactor / 0.1f)) {
+    public static void scaleDownDynamax(PokemonEntity pokemonEntity) {
+        DelayedTicker.add(new DelayedTicker((int) (MegaShowdownConfig.dynamaxScaleFactor / 0.1f)) {
             @Override
             protected void function() {
                 if (!pokemonEntity.isRemoved() && pokemonEntity.hasEffect(MegaShowdownStatusEffects.DYNAMAX)) {
@@ -133,8 +133,7 @@ public class AspectUtils {
                             ),
                             null
                     );
-                }
-                else {
+                } else {
                     this.age = this.maxAge;
                 }
                 if (this.age == this.maxAge) {
@@ -145,9 +144,9 @@ public class AspectUtils {
         });
     }
 
-    public static void scaleUpDynamax (PokemonEntity pokemonEntity) {
+    public static void scaleUpDynamax(PokemonEntity pokemonEntity) {
         GlowHandler.applyDynamaxGlow(pokemonEntity);
-        DelayedTicker.add(new DelayedTicker((int)(MegaShowdownConfig.dynamaxScaleFactor / 0.1f)) {
+        DelayedTicker.add(new DelayedTicker((int) (MegaShowdownConfig.dynamaxScaleFactor / 0.1f)) {
             @Override
             protected void function() {
                 if (!pokemonEntity.isRemoved() && pokemonEntity.hasEffect(MegaShowdownStatusEffects.DYNAMAX)) {
@@ -162,8 +161,7 @@ public class AspectUtils {
                             ),
                             null
                     );
-                }
-                else {
+                } else {
                     this.age = this.maxAge;
                 }
             }

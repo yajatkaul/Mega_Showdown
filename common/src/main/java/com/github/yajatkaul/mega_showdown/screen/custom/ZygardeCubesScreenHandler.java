@@ -1,9 +1,6 @@
 package com.github.yajatkaul.mega_showdown.screen.custom;
 
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
-import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
-import com.github.yajatkaul.mega_showdown.item.custom.form_change.ZygardeCube;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.utils.NBTInventoryUtils;
 import net.minecraft.nbt.CompoundTag;
@@ -17,28 +14,11 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
-    private static final int HOTBAR_SLOT_COUNT = 9;
-    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;
     private final ItemStack cube;
     private final SimpleContainer cubeInv;
 
     public ZygardeCubesScreenHandler(int id, Inventory inv) {
-        super(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), id);
-        this.cube = ItemStack.EMPTY;
-        this.cubeInv = new SimpleContainer(2);
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
-
-        // Add custom inventory slots
-        this.addSlot(new ZygardeSlots(this.cubeInv, 0, 62, 36));
-        this.addSlot(new ZygardeSlots(this.cubeInv, 1, 98, 36));
+        this(id, inv, ItemStack.EMPTY);
     }
 
     public ZygardeCubesScreenHandler(int id, Inventory inv, ItemStack cube) {
@@ -50,69 +30,44 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
             compoundTag = new CompoundTag();
         }
         cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), compoundTag);
-        cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag);
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
+        this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag);
 
         this.addSlot(new ZygardeSlots(this.cubeInv, 0, 62, 36));
         this.addSlot(new ZygardeSlots(this.cubeInv, 1, 98, 36));
+
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
     }
 
     @Override
-    public @NotNull ItemStack quickMoveStack(Player playerIn, int pIndex) {
-        Slot sourceSlot = slots.get(pIndex);
-        if (!sourceSlot.hasItem()) return ItemStack.EMPTY;
-        ItemStack sourceStack = sourceSlot.getItem();
-        ItemStack copyOfSourceStack = sourceStack.copy();
+    public @NotNull ItemStack quickMoveStack(Player playerIn, int invSlot) {
+        ItemStack newStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(invSlot);
+        if (slot.hasItem()) {
+            ItemStack originalStack = slot.getItem();
+            newStack = originalStack.copy();
+            if (invSlot < this.cubeInv.getContainerSize()) {
+                if (!this.moveItemStackTo(originalStack, this.cubeInv.getContainerSize(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(originalStack, 0, this.cubeInv.getContainerSize(), false)) {
+                return ItemStack.EMPTY;
+            }
 
-        // Check if we're trying to move a Zygarde Cube from player inventory
-        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT &&
-                sourceStack == this.cube) {
-            // Close the menu and return empty to prevent the move
-            playerIn.closeContainer();
-            return ItemStack.EMPTY;
+            if (originalStack.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
         }
-
-        boolean moved;
-
-        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // Move from player inventory to custom inventory
-            moved = moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
-                    TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false);
-        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // Move from custom inventory to player inventory
-            moved = moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
-                    VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false);
-        } else {
-            MegaShowdown.LOGGER.info("Invalid slotIndex: {}", pIndex);
-            return ItemStack.EMPTY;
-        }
-
-        if (!moved) return ItemStack.EMPTY;
-
-        if (sourceStack.isEmpty()) {
-            sourceSlot.set(ItemStack.EMPTY);
-        } else {
-            sourceSlot.setChanged();
-        }
-
-        sourceSlot.onTake(playerIn, sourceStack);
-
-        if (cube.getItem() instanceof ZygardeCube) {
-            CompoundTag updatedTag = NBTInventoryUtils.serializeInventory(this.cubeInv);
-            cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), updatedTag);
-        }
-
-        return copyOfSourceStack;
+        return newStack;
     }
 
     @Override
     public void clicked(int slotId, int dragType, ClickType clickType, Player player) {
-        if (clickType == ClickType.THROW && slotId >= 0 && slotId < slots.size()) {
+        if (slotId >= 0 && slotId < slots.size()) {
             Slot slot = slots.get(slotId);
             if (slot.hasItem() && slot.getItem() == this.cube) {
-                player.closeContainer();
                 return;
             }
         }
@@ -123,6 +78,13 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return true;
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv);
+        this.cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), tag);
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

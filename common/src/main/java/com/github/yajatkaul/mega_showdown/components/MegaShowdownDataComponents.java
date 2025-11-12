@@ -6,8 +6,6 @@ import dev.architectury.registry.registries.DeferredRegister;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
 
 import java.util.function.Supplier;
 
@@ -24,6 +22,13 @@ public class MegaShowdownDataComponents {
 
     public static final Supplier<DataComponentType<CompoundTag>> NBT_COMPONENT = REGISTRAR.register(
             "nbt_component",
+            () -> DataComponentType.<CompoundTag>builder()
+                    .persistent(CompoundTag.CODEC)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<CompoundTag>> NBT_2_COMPONENT = REGISTRAR.register(
+            "nbt_2_component",
             () -> DataComponentType.<CompoundTag>builder()
                     .persistent(CompoundTag.CODEC)
                     .build()

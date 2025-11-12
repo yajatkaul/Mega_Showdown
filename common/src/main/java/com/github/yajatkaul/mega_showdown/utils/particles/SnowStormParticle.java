@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.utils.particles;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
-import com.github.yajatkaul.mega_showdown.event.CobbleEvents;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.PokemonBehaviourHelper;
 import com.mojang.serialization.Codec;

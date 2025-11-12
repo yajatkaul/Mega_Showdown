@@ -15,6 +15,11 @@ public class AdvancementHelper {
         }
         AdvancementHolder advancementHolder = player.getServer().getAdvancements().get(advancementLocation);
 
+        if (advancementHolder == null) {
+            MegaShowdown.LOGGER.info("No advancement found: {}", advancementId);
+            return;
+        }
+
         AdvancementProgress progress = player.getAdvancements().getOrStartProgress(advancementHolder);
         if (!progress.isDone()) {
             for (String criterion : progress.getRemainingCriteria()) {

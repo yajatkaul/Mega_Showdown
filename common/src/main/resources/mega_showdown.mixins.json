@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "battle.BattleMoveSelectionMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin"
@@ -12,6 +13,7 @@
     "GraalShowdownUnbundlerMixin",
     "PokemonEntityMixin",
     "PokemonMixin",
+    "battle.BattleGimmickButtonCompanionMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",
     "battle.MoveActionResponseMixin",

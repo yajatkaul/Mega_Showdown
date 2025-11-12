@@ -5,9 +5,11 @@ import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
+import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
@@ -16,6 +18,7 @@ import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +29,7 @@ public record MegaGimmick(
         String showdown_id,
         String item_name,
         List<String> item_description,
-        String pokemon,
+        List<String> pokemon,
         AspectSetCodec aspect_conditions,
         Integer custom_model_data
 ) {
@@ -37,7 +40,7 @@ public record MegaGimmick(
             Codec.STRING.fieldOf("showdown_id").forGetter(MegaGimmick::showdown_id),
             Codec.STRING.optionalFieldOf("item_name", "No Name").forGetter(MegaGimmick::item_name),
             Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(MegaGimmick::item_description),
-            Codec.STRING.fieldOf("pokemon").forGetter(MegaGimmick::pokemon),
+            Codec.list(Codec.STRING).fieldOf("pokemon").forGetter(MegaGimmick::pokemon),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MegaGimmick::aspect_conditions),
             Codec.INT.fieldOf("custom_model_data").forGetter(MegaGimmick::custom_model_data)
     ).apply(instance, MegaGimmick::new));
@@ -144,7 +147,7 @@ public record MegaGimmick(
                 mega_stone_id,
                 "",
                 List.of(),
-                pokemon,
+                List.of(pokemon),
                 new AspectSetCodec(
                         List.of(),
                         List.of(),
@@ -166,7 +169,7 @@ public record MegaGimmick(
                 mega_stone_id,
                 "",
                 List.of(),
-                pokemon,
+                List.of(pokemon),
                 new AspectSetCodec(
                         List.of(),
                         List.of(List.of(blackListAspect)),
@@ -185,13 +188,42 @@ public record MegaGimmick(
         ParticlesList.megaEvolution.applyEffectsBattle(pokemon.getEntity(), aspects, null, battlePokemon);
     }
 
-    public static void megaEvolve(Pokemon pokemon, List<String> aspects) {
-        if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
-            ParticlesList.megaEvolution.revertEffects(pokemon.getEntity(), List.of("mega_evolution=false"), null);
-            pokemon.setTradeable(true);
-        } else {
-            ParticlesList.megaEvolution.applyEffects(pokemon.getEntity(), aspects, null);
-            pokemon.setTradeable(false);
+    private static void megaEvolve(Pokemon pokemon, List<String> aspects) {
+        ParticlesList.megaEvolution.applyEffects(pokemon.getEntity(), aspects, null);
+        pokemon.setTradeable(false);
+    }
+
+    public static void megaToggle(PokemonEntity pokemonEntity) {
+        ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
+
+        if (heldItem.getItem() instanceof MegaStone megaStone) {
+            MegaGimmick megaGimmick = megaStone.getMegaProps();
+            Pokemon pokemon = pokemonEntity.getPokemon();
+
+            if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
+                if (pokemon.getSpecies().getName().equals("Rayquaza")) {
+                    ParticlesList.megaEvolution.revertEffects(pokemon.getEntity(), List.of("mega_evolution=none"), null);
+                }
+                ParticlesList.megaEvolution.revertEffects(pokemon.getEntity(), megaGimmick.aspect_conditions.revert_aspects(), null);
+                pokemon.setTradeable(true);
+            } else if (megaGimmick.canMega(pokemon)) {
+                MegaGimmick.megaEvolve(pokemon, megaGimmick.aspect_conditions().apply_aspects());
+            } else if (pokemonEntity.getPokemon().getSpecies().getName().equals("Rayquaza")) {
+                boolean found = false;
+                for (int i = 0; i < 4; i++) {
+                    if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
+                        MegaGimmick.megaEvolve(pokemon, List.of("mega"));
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    if (pokemon.getOwnerPlayer() instanceof ServerPlayer player) {
+                        player.displayClientMessage(Component.translatable("message.mega_showdown.rayquaza_no_dragonascent")
+                                .withStyle(ChatFormatting.RED), true);
+                    }
+                }
+            }
         }
     }
 }

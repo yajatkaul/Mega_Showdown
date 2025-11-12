@@ -88,7 +88,7 @@ open class MaxMushroom(
                                 )
                             )
                             val stackName = BuiltInRegistries.ITEM.getKey(stack.item)
-                            stack.consume(1, player);
+                            stack.consume(1, player)
                             CobblemonCriteria.POKEMON_INTERACT.trigger(
                                 player,
                                 PokemonInteractContext(bp.effectedPokemon.species.resourceIdentifier, stackName)
@@ -131,7 +131,7 @@ open class MaxMushroom(
                                 )
                             )
                             val stackName = BuiltInRegistries.ITEM.getKey(stack.item)
-                            stack.consume(1, player);
+                            stack.consume(1, player)
                             CobblemonCriteria.POKEMON_INTERACT.trigger(
                                 player,
                                 PokemonInteractContext(bp.effectedPokemon.species.resourceIdentifier, stackName)

@@ -9,28 +9,28 @@ public abstract class DelayedTicker {
     protected final int maxAge;
     protected int age;
 
-    public DelayedTicker (int maxAge) {
+    public DelayedTicker(int maxAge) {
         this.age = 0;
         this.maxAge = maxAge;
     }
 
-    public static void add (DelayedTicker ticker) {
+    public static void add(DelayedTicker ticker) {
         tickers.add(ticker);
     }
 
-    public static void runAll () {
+    public static void runAll() {
         tickers.removeIf(DelayedTicker::isDone);
         tickers.forEach(DelayedTicker::run);
     }
 
-    public void run () {
+    public void run() {
         this.function();
         ++this.age;
     }
 
-    public boolean isDone () {
+    public boolean isDone() {
         return this.age > this.maxAge;
     }
 
-    protected abstract void function ();
+    protected abstract void function();
 }

@@ -46,7 +46,8 @@ public class MaxMushroomBlock extends SweetBerryBushBlock implements Bonemealabl
     }
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {}
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    }
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
