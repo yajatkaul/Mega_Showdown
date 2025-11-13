@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.drop.ItemDropEntry;
 import com.cobblemon.mod.common.api.events.CobblemonEvents;
 import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent;
 import com.cobblemon.mod.common.api.events.battles.BattleStartedEvent;
+import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent;
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent;
@@ -31,12 +32,15 @@ import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
 import com.github.yajatkaul.mega_showdown.api.event.UltraBurstCallback;
+import com.github.yajatkaul.mega_showdown.codec.BattleFormChange;
+import com.github.yajatkaul.mega_showdown.codec.HeldItemFormChange;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
+import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
-import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeItem;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
 import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.tag.ModTags;
 import com.github.yajatkaul.mega_showdown.utils.*;
@@ -66,10 +70,33 @@ public class CobbleEvents {
         CobblemonEvents.THROWN_POKEBALL_HIT.subscribe(Priority.NORMAL, CobbleEvents::pokeballHit);
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEvents::fixTera);
         CobblemonEvents.LOOT_DROPPED.subscribe(Priority.NORMAL, CobbleEvents::dropShardPokemon);
+        CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEvents::formChanged);
 
         DynamaxStartCallback.EVENT.register(CobbleEvents::dynamaxStarted);
         DynamaxEndCallback.EVENT.register(CobbleEvents::dynamaxEnded);
         UltraBurstCallback.EVENT.register(CobbleEvents::ultraBurst);
+    }
+
+    private static Unit formChanged(FormeChangeEvent formeChangeEvent) {
+        if (formeChangeEvent.getFormeName().equals("x") || formeChangeEvent.getFormeName().equals("y")
+                || formeChangeEvent.getFormeName().equals("mega") || formeChangeEvent.getFormeName().equals("tera")) {
+            return Unit.INSTANCE;
+        }
+        PokemonBattle pokemonBattle = formeChangeEvent.getBattle();
+        BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
+
+        for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
+            if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())) {
+                battleFormChange.effect().applyEffectsBattle(formeChangeEvent.getPokemon().getEntity(),
+                        battleFormChange.aspects().apply_aspects(),
+                        null,
+                        battlePokemon
+                );
+                return Unit.INSTANCE;
+            }
+        }
+
+        return Unit.INSTANCE;
     }
 
     private static Unit dropShardPokemon(LootDroppedEvent event) {
@@ -392,21 +419,34 @@ public class CobbleEvents {
             event.cancel();
             return Unit.INSTANCE;
         }
+        Pokemon pokemon = event.getPokemon();
 
-        if (event.getReturning().getItem() == event.getReceiving().getItem()){
+        ItemStack itemReceiving = event.getReceiving();
+        ItemStack itemReturning = event.getReturning();
+
+        if (itemReturning.getItem() == event.getReceiving().getItem()) {
             return Unit.INSTANCE;
         }
 
-        if (event.getReturning().getItem() instanceof FormChangeItem formChangeItem) {
-            formChangeItem.revert(event.getPokemon());
+        if (itemReturning.getItem() instanceof FormChangeHeldItem formChangeItem) {
+            formChangeItem.revert(pokemon);
         }
 
-        if (event.getReceiving().getItem() instanceof FormChangeItem formChangeItem) {
-            formChangeItem.apply(event.getPokemon());
+        if (itemReceiving.getItem() instanceof FormChangeHeldItem formChangeItem) {
+            formChangeItem.apply(pokemon);
+        }
+
+        HeldItemFormChange heldItemFormChangeReceiving = itemReceiving.get(MegaShowdownDataComponents.HELD_ITEM_FORM_CHANGE_COMPONENT.get());
+        HeldItemFormChange heldItemFormChangeReturning = itemReturning.get(MegaShowdownDataComponents.HELD_ITEM_FORM_CHANGE_COMPONENT.get());
+
+        if (heldItemFormChangeReturning != null) {
+            heldItemFormChangeReturning.revert(pokemon);
+        }
+        if (heldItemFormChangeReceiving != null) {
+            heldItemFormChangeReceiving.apply(pokemon);
         }
 
         MegaGimmick megaGimmick = event.getReturning().get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
-        Pokemon pokemon = event.getPokemon();
         if (megaGimmick != null && megaGimmick.pokemon().contains(pokemon.getSpecies().getName())) {
             MegaGimmick.megaToggle(pokemon.getEntity());
         }

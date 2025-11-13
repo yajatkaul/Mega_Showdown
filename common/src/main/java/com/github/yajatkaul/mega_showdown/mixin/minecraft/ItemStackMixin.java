@@ -1,0 +1,62 @@
+package com.github.yajatkaul.mega_showdown.mixin.minecraft;
+
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.github.yajatkaul.mega_showdown.codec.DuFusion;
+import com.github.yajatkaul.mega_showdown.codec.FormChangeInteractItem;
+import com.github.yajatkaul.mega_showdown.codec.SoloFusion;
+import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(value = ItemStack.class, remap = false)
+public class ItemStackMixin {
+    @Inject(method = "onDestroyed", at = @At("HEAD"))
+    private void onDestroyed(ItemEntity itemEntity, CallbackInfo ci) {
+        ItemStack stack = itemEntity.getItem();
+        DuFusion duFusion = stack.get(MegaShowdownDataComponents.DU_FUSION_COMPONENT.get());
+        if (duFusion != null) {
+            duFusion.onDestroyed(itemEntity);
+        }
+
+        SoloFusion soloFusion = stack.get(MegaShowdownDataComponents.SOLO_FUSION_COMPONENT.get());
+        if (soloFusion != null) {
+            soloFusion.onDestroyed(itemEntity);
+        }
+    }
+
+    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
+    private void useOnEntity(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+        ItemStack stack = player.getItemInHand(interactionHand);
+        DuFusion duFusion = stack.get(MegaShowdownDataComponents.DU_FUSION_COMPONENT.get());
+        if (duFusion != null) {
+            cir.setReturnValue(duFusion.use(level, player, interactionHand));
+        }
+        SoloFusion soloFusion = stack.get(MegaShowdownDataComponents.SOLO_FUSION_COMPONENT.get());
+        if (soloFusion != null) {
+            cir.setReturnValue(soloFusion.use(level, player, interactionHand));
+        }
+    }
+
+    @Inject(method = "interactLivingEntity", at = @At("HEAD"), cancellable = true)
+    private void useOnEntity(Player player, LivingEntity entity, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
+        if (entity instanceof PokemonEntity pokemonEntity) {
+            ItemStack stack = player.getItemInHand(interactionHand);
+            FormChangeInteractItem formChangeInteractItem = stack.get(MegaShowdownDataComponents.FORM_CHANGE_INTERACT_COMPONENT.get());
+
+            if (formChangeInteractItem != null) {
+                cir.setReturnValue(formChangeInteractItem.interactLivingEntity(player, pokemonEntity, stack));
+            }
+        }
+    }
+}

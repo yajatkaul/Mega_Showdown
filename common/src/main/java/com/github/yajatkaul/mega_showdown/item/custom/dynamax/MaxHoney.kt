@@ -13,7 +13,6 @@ import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.battles.BagItemActionResponse
 import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
-import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.battleLang
@@ -22,7 +21,6 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.party
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
@@ -30,7 +28,6 @@ import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.Level
 
 class MaxHoney(properties: Properties) : ToolTipItem(Properties()), HealingSource {

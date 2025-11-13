@@ -20,7 +20,8 @@
     "battle.ShowdownActionRequestMixin",
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
-    "battle.StartInstructionMixin"
+    "battle.StartInstructionMixin",
+    "minecraft.ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

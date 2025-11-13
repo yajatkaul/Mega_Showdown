@@ -29,7 +29,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -178,7 +180,7 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                             simpleContainer.setItem(1, slot1);
                         } else {
                             player.displayClientMessage(Component.translatable("message.mega_showdown.not_enough_cells_core")
-                                            .withStyle(ChatFormatting.RED), true);
+                                    .withStyle(ChatFormatting.RED), true);
                             return ItemInteractionResult.FAIL;
                         }
 

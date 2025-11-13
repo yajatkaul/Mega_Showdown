@@ -41,7 +41,7 @@ public class ZygardeCube extends ToolTipItem {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
-        if (level.isClientSide) {
+        if (level.isClientSide || player.isCrouching()) {
             return InteractionResultHolder.pass(stack);
         }
 
@@ -60,12 +60,13 @@ public class ZygardeCube extends ToolTipItem {
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
         if (entity instanceof PokemonEntity pokemonEntity) {
-            if (player.isCrouching()) {
+            Pokemon pokemon = pokemonEntity.getPokemon();
+
+            if (pokemonEntity.isBattling() || pokemonEntity.getTethering() != null || pokemon.getPersistentData().contains("form_changing")) {
                 return InteractionResultHolder.pass(stack);
             }
 
-            Pokemon pokemon = pokemonEntity.getPokemon();
-            if (pokemon.getAspects().contains("core-percent") && pokemonEntity.getTethering() == null) {
+            if (pokemon.getAspects().contains("core-percent")) {
                 CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
                 if (compoundTag == null) {
                     compoundTag = new CompoundTag();
@@ -97,7 +98,7 @@ public class ZygardeCube extends ToolTipItem {
                 return InteractionResultHolder.pass(stack);
             }
 
-            if (!pokemon.getAspects().contains("power-construct") && pokemonEntity.getTethering() == null) {
+            if (!pokemon.getAspects().contains("power-construct")) {
                 if (storedPokemon != null) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
                             .withStyle(ChatFormatting.RED), true);
@@ -108,7 +109,7 @@ public class ZygardeCube extends ToolTipItem {
                 stack.set(MegaShowdownDataComponents.NBT_2_COMPONENT.get(), thisPokemon);
                 playerPartyStore.remove(pokemon);
                 return InteractionResultHolder.success(stack);
-            } else if (pokemon.getAspects().contains("power-construct")) {
+            } else {
                 if (pokemon.getAspects().contains("10-percent")) {
                     ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of("percent_cells=50"), null);
                     return InteractionResultHolder.success(stack);

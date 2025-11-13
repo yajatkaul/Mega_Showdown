@@ -27,22 +27,20 @@ import java.util.Set;
 public record MegaGimmick(
         String msd_id,
         String showdown_id,
-        String item_name,
-        List<String> item_description,
         List<String> pokemon,
-        AspectSetCodec aspect_conditions,
-        Integer custom_model_data
+        AspectSetCodec aspect_conditions
 ) {
-    public static Set<String> mega_aspects = new HashSet<>(Set.of("mega", "mega_y", "mega_x"));
+    private static final Set<String> mega_aspects = new HashSet<>(Set.of("mega", "mega_y", "mega_x"));
+
+    public static void appendMegaAspect(String aspect) {
+        mega_aspects.add(aspect);
+    }
 
     public static final Codec<MegaGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("msd_id").forGetter(MegaGimmick::msd_id),
             Codec.STRING.fieldOf("showdown_id").forGetter(MegaGimmick::showdown_id),
-            Codec.STRING.optionalFieldOf("item_name", "No Name").forGetter(MegaGimmick::item_name),
-            Codec.list(Codec.STRING).optionalFieldOf("item_description", List.of()).forGetter(MegaGimmick::item_description),
             Codec.list(Codec.STRING).fieldOf("pokemon").forGetter(MegaGimmick::pokemon),
-            AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MegaGimmick::aspect_conditions),
-            Codec.INT.fieldOf("custom_model_data").forGetter(MegaGimmick::custom_model_data)
+            AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MegaGimmick::aspect_conditions)
     ).apply(instance, MegaGimmick::new));
 
     public boolean canMega(Pokemon pokemon) {
@@ -53,21 +51,11 @@ public record MegaGimmick(
             return false;
         }
 
-        if (this.aspect_conditions.blacklist_aspects()
-                .stream()
-                .flatMap(List::stream)
-                .anyMatch(pokemon.getAspects()::contains)) {
+        if (!this.aspect_conditions.validate_apply(pokemon)) {
             return false;
         }
 
-        if (!this.aspect_conditions.required_aspects()
-                .stream()
-                .flatMap(List::stream)
-                .allMatch(pokemon.getAspects()::contains)) {
-            return false;
-        }
-
-        return pokemon.getSpecies().getName().equals(this.pokemon);
+        return this.pokemon.contains(pokemon.getSpecies().getName());
     }
 
     public static boolean hasMega(ServerPlayer player) {
@@ -145,16 +133,15 @@ public record MegaGimmick(
         return new MegaGimmick(
                 "",
                 mega_stone_id,
-                "",
-                List.of(),
                 List.of(pokemon),
                 new AspectSetCodec(
                         List.of(),
                         List.of(),
+                        List.of(),
+                        List.of(),
                         List.of(mega_aspect),
                         List.of("mega_evolution=none")
-                ),
-                0
+                )
         );
     }
 
@@ -167,16 +154,15 @@ public record MegaGimmick(
         return new MegaGimmick(
                 "",
                 mega_stone_id,
-                "",
-                List.of(),
                 List.of(pokemon),
                 new AspectSetCodec(
+                        List.of(),
+                        List.of(),
                         List.of(),
                         List.of(List.of(blackListAspect)),
                         List.of(mega_aspect),
                         List.of("mega_evolution=none")
-                ),
-                0
+                )
         );
     }
 

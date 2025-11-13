@@ -5,13 +5,15 @@ import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
-import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.item.custom.DebugStick;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.item.custom.dynamax.*;
-import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeItem;
+import com.github.yajatkaul.mega_showdown.item.custom.dynamax.DynamaxCandy;
+import com.github.yajatkaul.mega_showdown.item.custom.dynamax.MaxHoney;
+import com.github.yajatkaul.mega_showdown.item.custom.dynamax.MaxSoup;
+import com.github.yajatkaul.mega_showdown.item.custom.dynamax.SweetMaxSoup;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.ZygardeCube;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.DuFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.SoloFusion;
@@ -346,7 +348,7 @@ public class MegaShowdownItems {
 
     private static RegistrySupplier<Item> registerFormChangeItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect, boolean tradable) {
         return ITEMS.register(name,
-                () -> new FormChangeItem(
+                () -> new FormChangeHeldItem(
                         new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
                         revertAspect,
                         applyAspect,

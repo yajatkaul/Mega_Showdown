@@ -1,6 +1,5 @@
 package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
-import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem;
@@ -9,7 +8,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
@@ -28,11 +26,7 @@ public class Gracedia extends ToolTipBlockItem {
 
         if (context instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
-            if (pokemon.getEntity() == null || pokemon.getEntity().level().isClientSide || pokemon.getEntity().isBattling()) {
-                return InteractionResult.PASS;
-            }
-
-            if (pokemon.getOwnerPlayer() != player) {
+            if (pokemon.getEntity().isBattling() || pokemon.getOwnerPlayer() != player || pokemon.getPersistentData().contains("form_changing")) {
                 return InteractionResult.PASS;
             }
 

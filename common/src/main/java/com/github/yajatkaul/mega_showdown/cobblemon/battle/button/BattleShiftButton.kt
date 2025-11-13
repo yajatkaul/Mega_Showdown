@@ -4,8 +4,6 @@ import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.client.battle.SingleActionRequest
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.client.gui.GuiGraphics
-import kotlin.ranges.contains
-import kotlin.ranges.rangeTo
 
 class BattleShiftButton(val x: Float, val y: Float, val request: SingleActionRequest) {
     companion object {

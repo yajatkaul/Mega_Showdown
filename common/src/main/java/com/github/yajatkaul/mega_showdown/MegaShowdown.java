@@ -5,14 +5,13 @@ import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
+import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.event.EventRegister;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
-import com.github.yajatkaul.mega_showdown.key_mapping.MegaShowdownKeybinds;
 import com.github.yajatkaul.mega_showdown.networking.MegaShowdownNetworkHandler;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
 import com.github.yajatkaul.mega_showdown.utils.DelayedTicker;
-import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.server.MinecraftServer;
@@ -44,7 +43,10 @@ public final class MegaShowdown {
 
         EventRegister.register();
 
-        LifecycleEvent.SERVER_STARTED.register((minecraftServer) -> server = minecraftServer);
+        LifecycleEvent.SERVER_STARTING.register((minecraftServer) -> {
+            server = minecraftServer;
+            MegaShowdownDatapackRegister.registerShowdownDatapackItems();
+        });
 
         TickEvent.SERVER_PRE.register((server) -> DelayedTicker.runAll());
     }

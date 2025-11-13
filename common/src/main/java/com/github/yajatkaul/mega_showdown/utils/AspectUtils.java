@@ -12,7 +12,6 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemo
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
 import net.minecraft.nbt.ListTag;
@@ -162,8 +161,7 @@ public class AspectUtils {
                                     true
                             )
                     );
-                }
-                else {
+                } else {
                     this.age = this.maxAge;
                 }
             }
