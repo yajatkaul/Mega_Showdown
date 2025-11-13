@@ -48,11 +48,6 @@ public class FormChangeInteractToggleItem extends ToolTipItem {
                 return InteractionResult.PASS;
             }
 
-            if (form_apply_order.size() == 1
-                    && pokemon.getAspects().stream().anyMatch(form_apply_order::contains)) {
-                return InteractionResult.PASS;
-            }
-
             int currentIndex = -1;
             for (int i = 0; i < form_apply_order.size(); i++) {
                 String form = form_apply_order.get(i);

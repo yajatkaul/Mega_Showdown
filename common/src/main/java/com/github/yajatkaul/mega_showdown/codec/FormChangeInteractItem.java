@@ -14,17 +14,13 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 public record FormChangeInteractItem(
-        List<String> form_apply_order,
-        List<AspectSetCodec> aspect_conditions,
-        List<List<String>> form_aspect_apply_order,
+        AspectSetCodec aspect_conditions,
         List<String> pokemons,
         List<Effect> effects,
         int consume
 ) {
     public static final Codec<FormChangeInteractItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.STRING.listOf().fieldOf("form_apply_order").forGetter(FormChangeInteractItem::form_apply_order),
-            AspectSetCodec.CODEC.listOf().fieldOf("aspect_conditions").forGetter(FormChangeInteractItem::aspect_conditions),
-            Codec.STRING.listOf().listOf().fieldOf("form_aspect_apply_order").forGetter(FormChangeInteractItem::form_aspect_apply_order),
+            AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(FormChangeInteractItem::aspect_conditions),
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(FormChangeInteractItem::pokemons),
             Effect.EFFECT_MAP_CODEC.listOf().fieldOf("effects").forGetter(FormChangeInteractItem::effects),
             Codec.INT.optionalFieldOf("consume", 0).forGetter(FormChangeInteractItem::consume)
@@ -42,32 +38,15 @@ public record FormChangeInteractItem(
                 return InteractionResult.PASS;
             }
 
-            int currentIndex = -1;
-            for (int i = 0; i < form_apply_order.size(); i++) {
-                String form = form_apply_order.get(i);
-                boolean hasAspect = pokemon.getAspects().stream().anyMatch(aspect -> aspect.equalsIgnoreCase(form));
-                if (hasAspect) {
-                    currentIndex = i;
-                    break;
-                }
+            if (aspect_conditions.validate_apply(pokemon)) {
+                effects.getFirst().applyEffects(pokemonEntity, aspect_conditions.apply_aspects(), null);
+                stack.consume(consume, livingEntity);
+                return InteractionResult.SUCCESS;
+            } else if (aspect_conditions.validate_revert(pokemon)) {
+                effects.getFirst().applyEffects(pokemonEntity, aspect_conditions.revert_aspects(), null);
+                stack.consume(consume, livingEntity);
+                return InteractionResult.SUCCESS;
             }
-
-            if (currentIndex == -1) {
-                return InteractionResult.PASS;
-            }
-
-            if (currentIndex + 1 > form_apply_order.size() - 1) {
-                if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                    effects.getFirst().applyEffects(pokemonEntity, form_aspect_apply_order.getFirst(), null);
-                }
-            } else {
-                if (aspect_conditions.get(currentIndex + 1).validate_apply(pokemon)) {
-                    effects.get(currentIndex + 1).applyEffects(pokemonEntity, form_aspect_apply_order.get(currentIndex + 1), null);
-                }
-            }
-            stack.consume(consume, livingEntity);
-
-            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;

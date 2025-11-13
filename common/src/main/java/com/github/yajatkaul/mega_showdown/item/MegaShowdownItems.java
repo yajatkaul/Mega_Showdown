@@ -744,6 +744,10 @@ public class MegaShowdownItems {
             0
     );
 
+    public static final RegistrySupplier<Item> ROTOM_CATALOGUE = registerItem(
+            "rotom_catalogue", () -> new RotomCatalogue(new Item.Properties().stacksTo(1).arch$tab(MegaShowdownTabs.FORM_TAB))
+    );
+
     public static final RegistrySupplier<Item> REVEAL_GLASS = registerFormChangeInteractItem(
             "reveal_glass",
             "therian-forme",
@@ -785,11 +789,11 @@ public class MegaShowdownItems {
     }
 
     private static RegistrySupplier<Item> registerFormChangeInteractToggleItem(String name,
-                                                                         List<String> form_apply_order,
-                                                                         List<String> form_aspect_apply_order,
-                                                                         List<String> pokemons,
-                                                                         List<Effect> effects,
-                                                                         int consume
+                                                                               List<String> form_apply_order,
+                                                                               List<String> form_aspect_apply_order,
+                                                                               List<String> pokemons,
+                                                                               List<Effect> effects,
+                                                                               int consume
     ) {
         return ITEMS.register(name, () -> new FormChangeInteractToggleItem(
                 new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),

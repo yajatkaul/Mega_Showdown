@@ -147,11 +147,11 @@ public class MegaShowdownBlocks {
 
     private static RegistrySupplier<Block> registerRotomBlock(String name, String form) {
         return registerBlockWithBlockItem(name, () ->
-                new RotomUnitBlock(BlockBehaviour.Properties.of()
-                        .requiresCorrectToolForDrops()
-                        .strength(2)
-                        .mapColor(DyeColor.ORANGE)
-                        .sound(SoundType.METAL), form),
+                        new RotomUnitBlock(BlockBehaviour.Properties.of()
+                                .requiresCorrectToolForDrops()
+                                .strength(2)
+                                .mapColor(DyeColor.ORANGE)
+                                .sound(SoundType.METAL), form),
                 (block) -> new RotomUnitItem(
                         block.get(),
                         new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),

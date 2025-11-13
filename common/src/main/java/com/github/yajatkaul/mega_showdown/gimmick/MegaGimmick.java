@@ -180,6 +180,10 @@ public record MegaGimmick(
     }
 
     public static void megaToggle(PokemonEntity pokemonEntity) {
+        if (!MegaShowdownConfig.outSideMega) {
+            return;
+        }
+
         ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
 
         if (heldItem.getItem() instanceof MegaStone megaStone) {

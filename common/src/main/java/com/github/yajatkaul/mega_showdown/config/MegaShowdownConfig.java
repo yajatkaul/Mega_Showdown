@@ -17,6 +17,8 @@ public class MegaShowdownConfig {
     private static final String FILE_PATH = "./config/mega_showdown/config.json";
 
     public static int teraShardRequired = 50;
+    public static boolean outSideMega = true;
+    public static boolean outSideUltraBurst = false;
     public static boolean multipleMegas = false;
     public static boolean showdownFilesLoading = true;
 
@@ -70,6 +72,8 @@ public class MegaShowdownConfig {
         json.addProperty("stellarShardDropRate", stellarShardDropRate);
         json.addProperty("likoPendentDuration", likoPendentDuration);
         json.addProperty("minBondingRequired", minBondingRequired);
+        json.addProperty("outSideMega", outSideMega);
+        json.addProperty("outSideUltraBurst", outSideUltraBurst);
         return json;
     }
 
@@ -126,6 +130,12 @@ public class MegaShowdownConfig {
             }
             if (json.has("minBondingRequired")) {
                 minBondingRequired = json.get("minBondingRequired").getAsInt();
+            }
+            if (json.has("outSideMega")) {
+                outSideMega = json.get("outSideMega").getAsBoolean();
+            }
+            if (json.has("outSideUltraBurst")) {
+                outSideUltraBurst = json.get("outSideUltraBurst").getAsBoolean();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);

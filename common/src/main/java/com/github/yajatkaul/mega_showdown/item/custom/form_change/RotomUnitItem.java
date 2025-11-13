@@ -39,7 +39,7 @@ public class RotomUnitItem extends ToolTipBlockItem {
 
         if (livingEntity instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
-            if (!pokemon.getSpecies().getName().equals("Rotom") || pokemon.getAspects().stream().anyMatch(rotomAspects::contains)){
+            if (!pokemon.getSpecies().getName().equals("Rotom") || pokemon.getAspects().stream().anyMatch(rotomAspects::contains)) {
                 return InteractionResult.PASS;
             }
 

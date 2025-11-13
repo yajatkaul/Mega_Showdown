@@ -12,6 +12,7 @@ public class DatapackRegistry {
     public static void register() {
         DynamicRegistries.registerSynced(EFFECT_REGISTRY_KEY, Effect.CODEC);
 
+        DynamicRegistries.registerSynced(FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY, FormChangeToggleInteractItem.CODEC);
         DynamicRegistries.registerSynced(FORM_CHANGE_INTERACT_REGISTRY_KEY, FormChangeInteractItem.CODEC);
         DynamicRegistries.registerSynced(SOLO_FUSION_REGISTRY_KEY, SoloFusion.CODEC);
         DynamicRegistries.registerSynced(DU_FUSION_REGISTRY_KEY, DuFusion.CODEC);

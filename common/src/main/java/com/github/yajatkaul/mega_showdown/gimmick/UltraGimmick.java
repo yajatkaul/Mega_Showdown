@@ -1,8 +1,8 @@
 package com.github.yajatkaul.mega_showdown.gimmick;
 
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 
@@ -10,6 +10,10 @@ import java.util.List;
 
 public class UltraGimmick {
     public static int ultraBurst(Pokemon pokemon) {
+        if (MegaShowdownConfig.outSideUltraBurst) {
+            return 0;
+        }
+
         if (canUltraBurst(pokemon)) {
             if (pokemon.getAspects().contains("dawn-fusion")) {
                 pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dusk");
@@ -47,9 +51,5 @@ public class UltraGimmick {
             return pokemon.getAspects().contains("dawn-fusion") || pokemon.getAspects().contains("dusk-fusion");
         }
         return false;
-    }
-
-    public static void tryUltraBurst(PokemonEntity pokemonEntity) {
-
     }
 }

@@ -2,19 +2,23 @@ package com.github.yajatkaul.mega_showdown.item.custom.dynamax;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
+import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class SweetMaxSoup extends ToolTipItem {
+public class SweetMaxSoup extends PokemonSelectingItem {
     public SweetMaxSoup(Properties arg) {
         super(arg);
     }
@@ -68,6 +72,16 @@ public class SweetMaxSoup extends ToolTipItem {
             }
         }
 
-        return super.interactLivingEntity(stack, player, context, arg4);
+        return InteractionResult.PASS;
+    }
+
+    @Override
+    public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        return null;
+    }
+
+    @Override
+    public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {
+        return pokemon.getSpecies().getName().equals("Urshifu");
     }
 }

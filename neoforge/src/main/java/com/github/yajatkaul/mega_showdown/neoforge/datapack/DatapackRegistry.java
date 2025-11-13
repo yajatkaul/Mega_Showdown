@@ -16,6 +16,11 @@ public class DatapackRegistry {
                 Effect.CODEC
         );
         event.dataPackRegistry(
+                FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY,
+                FormChangeToggleInteractItem.CODEC,
+                FormChangeToggleInteractItem.CODEC
+        );
+        event.dataPackRegistry(
                 FORM_CHANGE_INTERACT_REGISTRY_KEY,
                 FormChangeInteractItem.CODEC,
                 FormChangeInteractItem.CODEC

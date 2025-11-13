@@ -3,9 +3,7 @@ package com.github.yajatkaul.mega_showdown.item.custom.dynamax;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,12 +14,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
 
 public class MaxSoup extends PokemonSelectingItem {
@@ -30,7 +26,7 @@ public class MaxSoup extends PokemonSelectingItem {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand hand) {
+    public @NotNull InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity context, InteractionHand hand) {
         if (player.level().isClientSide || player.isCrouching()) {
             return InteractionResult.PASS;
         }
@@ -41,7 +37,7 @@ public class MaxSoup extends PokemonSelectingItem {
                 return InteractionResult.PASS;
             }
 
-            if (!pokemon.getSpecies().getForms().stream().anyMatch(formData -> formData.getLabels().contains("gmax"))) {
+            if (!pokemon.getSpecies().getForms().stream().anyMatch(formData -> formData.getLabels().contains("gmax")) || pokemon.getSpecies().getName().equals("Urshifu")) {
                 return InteractionResult.PASS;
             }
 
@@ -81,14 +77,7 @@ public class MaxSoup extends PokemonSelectingItem {
             return InteractionResult.SUCCESS;
         }
 
-        return super.interactLivingEntity(stack, player, context, hand);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
-        tooltipComponents.add(Component.translatable("tooltip." + id.getNamespace() + "." + id.getPath() + ".tooltip"));
-        super.appendHoverText(itemStack, tooltipContext, tooltipComponents, tooltipFlag);
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -135,6 +124,6 @@ public class MaxSoup extends PokemonSelectingItem {
 
     @Override
     public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {
-        return pokemon.getSpecies().getForms().stream().anyMatch(formData -> formData.getLabels().contains("gmax"));
+        return pokemon.getSpecies().getForms().stream().anyMatch(formData -> formData.getLabels().contains("gmax")) && !pokemon.getSpecies().getName().equals("Urshifu");
     }
 }

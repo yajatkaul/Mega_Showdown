@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.mixin.minecraft;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.codec.DuFusion;
 import com.github.yajatkaul.mega_showdown.codec.FormChangeInteractItem;
+import com.github.yajatkaul.mega_showdown.codec.FormChangeToggleInteractItem;
 import com.github.yajatkaul.mega_showdown.codec.SoloFusion;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import net.minecraft.world.InteractionHand;
@@ -52,6 +53,12 @@ public class ItemStackMixin {
     private void useOnEntity(Player player, LivingEntity entity, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
         if (entity instanceof PokemonEntity pokemonEntity) {
             ItemStack stack = player.getItemInHand(interactionHand);
+            FormChangeToggleInteractItem formChangeToggleInteractItem = stack.get(MegaShowdownDataComponents.FORM_CHANGE_TOGGLE_INTERACT_COMPONENT.get());
+
+            if (formChangeToggleInteractItem != null) {
+                cir.setReturnValue(formChangeToggleInteractItem.interactLivingEntity(player, pokemonEntity, stack));
+            }
+
             FormChangeInteractItem formChangeInteractItem = stack.get(MegaShowdownDataComponents.FORM_CHANGE_INTERACT_COMPONENT.get());
 
             if (formChangeInteractItem != null) {

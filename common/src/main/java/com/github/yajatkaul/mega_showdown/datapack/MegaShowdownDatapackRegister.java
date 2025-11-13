@@ -15,6 +15,8 @@ public class MegaShowdownDatapackRegister {
     public static final ResourceKey<Registry<Effect>> EFFECT_REGISTRY_KEY =
             ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "effect"));
 
+    public static final ResourceKey<Registry<FormChangeToggleInteractItem>> FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change_toggle_interact"));
     public static final ResourceKey<Registry<FormChangeInteractItem>> FORM_CHANGE_INTERACT_REGISTRY_KEY =
             ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "form_change_interact"));
     public static final ResourceKey<Registry<SoloFusion>> SOLO_FUSION_REGISTRY_KEY =
@@ -38,9 +40,10 @@ public class MegaShowdownDatapackRegister {
     public static Registry<SoloFusion> SOLO_FUSION_REGISTRY;
     public static Registry<DuFusion> DU_FUSION_REGISTRY;
     public static Registry<HeldItemFormChange> HELD_ITEM_FORM_CHANGE_REGISTRY;
-    public static Registry<FormChangeInteractItem> FORM_CHANGE_INTERACT_REGISTRY;
+    public static Registry<FormChangeToggleInteractItem> FORM_CHANGE_TOGGLE_INTERACT_REGISTRY;
     public static Registry<BattleFormChange> BATTLE_FORM_CHANGE_REGISTRY;
     public static Registry<Effect> EFFECT_REGISTRY;
+    public static Registry<FormChangeInteractItem> FORM_CHANGE_INTERACT_REGISTRY;
 
     public static void registerShowdownDatapackItems() {
         EFFECT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.EFFECT_REGISTRY_KEY);
@@ -50,8 +53,9 @@ public class MegaShowdownDatapackRegister {
         SOLO_FUSION_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.SOLO_FUSION_REGISTRY_KEY);
         DU_FUSION_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.DU_FUSION_REGISTRY_KEY);
         HELD_ITEM_FORM_CHANGE_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY_KEY);
-        FORM_CHANGE_INTERACT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY_KEY);
+        FORM_CHANGE_TOGGLE_INTERACT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY);
         BATTLE_FORM_CHANGE_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY_KEY);
+        FORM_CHANGE_INTERACT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY_KEY);
 
         for (MegaGimmick megaGimmick : MEGA_REGISTRY) {
             for (String aspect : megaGimmick.aspect_conditions().apply_aspects()) {

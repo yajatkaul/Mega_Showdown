@@ -2,29 +2,39 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem;
+import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class DeoxysMeteoridItem extends ToolTipBlockItem {
-    private final List<String> form_apply_order = List.of("normal-forme", "attack-forme", "speed-forme", "defense-forme");
-    private final List<List<String>> form_aspect_apply_order = List.of(
-            List.of("meteorite_forme=normal"),
-            List.of("meteorite_forme=attack"),
-            List.of("meteorite_forme=speed"),
-            List.of("meteorite_forme=defense")
+public class RotomCatalogue extends ToolTipItem {
+    private final List<String> form_apply_order = List.of(
+            "heat-appliance",
+            "fan-appliance",
+            "mow-appliance",
+            "frost-appliance",
+            "wash-appliance",
+            "none-appliance"
+    );
+    private final List<String> form_aspect_apply_order = List.of(
+            "appliance=heat",
+            "appliance=fan",
+            "appliance=mow",
+            "appliance=frost",
+            "appliance=wash",
+            "appliance=none"
     );
 
-    public DeoxysMeteoridItem(Block block, Properties properties) {
-        super(block, properties);
+    public RotomCatalogue(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -36,7 +46,7 @@ public class DeoxysMeteoridItem extends ToolTipBlockItem {
         if (livingEntity instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
 
-            if (!pokemon.getSpecies().getName().equals("Deoxys") || pokemonEntity.isBattling() || pokemonEntity.getTethering() != null || pokemon.getPersistentData().contains("form_changing")) {
+            if (!pokemon.getSpecies().getName().equals("Rotom") || pokemonEntity.isBattling() || pokemonEntity.getTethering() != null || pokemon.getPersistentData().contains("form_changing")) {
                 return InteractionResult.PASS;
             }
 
@@ -51,14 +61,15 @@ public class DeoxysMeteoridItem extends ToolTipBlockItem {
             }
 
             if (currentIndex == -1) {
-                return InteractionResult.PASS;
+                currentIndex = 5;
             }
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
-                ParticlesList.defaultParticles.applyEffects(pokemonEntity, form_aspect_apply_order.getFirst(), null);
+                ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of(form_aspect_apply_order.getFirst()), null);
             } else {
-                ParticlesList.defaultParticles.applyEffects(pokemonEntity, form_aspect_apply_order.get(currentIndex + 1), null);
+                ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
             }
+            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
 
             return InteractionResult.SUCCESS;
         }

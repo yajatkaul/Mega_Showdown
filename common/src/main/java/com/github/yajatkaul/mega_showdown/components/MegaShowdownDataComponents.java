@@ -64,6 +64,13 @@ public class MegaShowdownDataComponents {
                     .build()
     );
 
+    public static final Supplier<DataComponentType<FormChangeToggleInteractItem>> FORM_CHANGE_TOGGLE_INTERACT_COMPONENT = REGISTRAR.register(
+            "form_change_toggle_interact_component",
+            () -> DataComponentType.<FormChangeToggleInteractItem>builder()
+                    .persistent(FormChangeToggleInteractItem.CODEC)
+                    .build()
+    );
+
     public static final Supplier<DataComponentType<FormChangeInteractItem>> FORM_CHANGE_INTERACT_COMPONENT = REGISTRAR.register(
             "form_change_interact_component",
             () -> DataComponentType.<FormChangeInteractItem>builder()

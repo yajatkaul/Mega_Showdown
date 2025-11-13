@@ -1,13 +1,9 @@
 package com.github.yajatkaul.mega_showdown.mixin.minecraft;
 
-import com.github.yajatkaul.mega_showdown.codec.DuFusion;
-import com.github.yajatkaul.mega_showdown.codec.SoloFusion;
-import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.LikosPendant;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ItemInHandRenderer.class)
 public class ItemInHandRendererMixin {
-    @Shadow @Final
+    @Shadow
+    @Final
     private Minecraft minecraft;
 
     @Shadow
