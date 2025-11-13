@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.components;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.*;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
+import com.mojang.serialization.Codec;
 import dev.architectury.registry.registries.DeferredRegister;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -67,6 +68,13 @@ public class MegaShowdownDataComponents {
             "form_change_interact_component",
             () -> DataComponentType.<FormChangeInteractItem>builder()
                     .persistent(FormChangeInteractItem.CODEC)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> LIKO_PENDANT_TICK_COMPONENT = REGISTRAR.register(
+            "liko_pendant_tick_component",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
                     .build()
     );
 

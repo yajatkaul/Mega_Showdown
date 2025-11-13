@@ -43,6 +43,17 @@ public class ParticlesList {
             )
     );
 
+    public static Effect likosPendantAnim = new Effect(
+            Optional.of(defaultConfigMCParticles("minecraft:end_rod")),
+            Optional.empty()
+    );
+
+    public static Effect heartAnim = new Effect(
+            Optional.of(defaultConfigMCParticles("minecraft:heart")),
+            Optional.empty()
+    );
+
+
     public static Effect zMoves = new Effect(
             Optional.empty(),
             Optional.of(zmoveSnowStorm("cobblemon:z_moves",

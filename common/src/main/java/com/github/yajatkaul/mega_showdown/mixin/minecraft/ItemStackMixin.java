@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = ItemStack.class, remap = false)
+@Mixin(value = ItemStack.class)
 public class ItemStackMixin {
     @Inject(method = "onDestroyed", at = @At("HEAD"))
     private void onDestroyed(ItemEntity itemEntity, CallbackInfo ci) {

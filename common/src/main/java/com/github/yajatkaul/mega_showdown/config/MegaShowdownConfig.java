@@ -31,6 +31,10 @@ public class MegaShowdownConfig {
     public static double teraShardDropRate = 10.0;
     public static double stellarShardDropRate = 1.0;
 
+    public static int likoPendentDuration = 72000;
+
+    public static int minBondingRequired = 200;
+
     public static void register() {
         load();
     }
@@ -64,6 +68,8 @@ public class MegaShowdownConfig {
         json.addProperty("dynamaxScaleFactor", dynamaxScaleFactor);
         json.addProperty("teraShardDropRate", teraShardDropRate);
         json.addProperty("stellarShardDropRate", stellarShardDropRate);
+        json.addProperty("likoPendentDuration", likoPendentDuration);
+        json.addProperty("minBondingRequired", minBondingRequired);
         return json;
     }
 
@@ -114,6 +120,12 @@ public class MegaShowdownConfig {
             }
             if (json.has("stellarShardDropRate")) {
                 stellarShardDropRate = json.get("stellarShardDropRate").getAsDouble();
+            }
+            if (json.has("likoPendentDuration")) {
+                likoPendentDuration = json.get("likoPendentDuration").getAsInt() * 20;
+            }
+            if (json.has("minBondingRequired")) {
+                minBondingRequired = json.get("minBondingRequired").getAsInt();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);

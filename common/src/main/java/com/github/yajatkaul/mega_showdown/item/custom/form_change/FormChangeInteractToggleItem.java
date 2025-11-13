@@ -13,32 +13,26 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class FormChangeInteractItem extends ToolTipItem {
-    private final String form_aspect_name;
-    private final String form_aspect_apply;
+public class FormChangeInteractToggleItem extends ToolTipItem {
+    private final List<String> form_apply_order;
+    private final List<String> form_aspect_apply_order;
     private final List<String> pokemons;
-    private final Effect effects;
+    private final List<Effect> effects;
     private final int consume;
-    private final boolean revertable;
-    private final String form_aspect_revert;
 
-    public FormChangeInteractItem(Properties properties,
-                                  String form_aspect_name,
-                                  String form_aspect_apply,
-                                  List<String> pokemons,
-                                  Effect effects,
-                                  int consume,
-                                  boolean revertable,
-                                  String form_aspect_revert
+    public FormChangeInteractToggleItem(Properties properties,
+                                        List<String> form_apply_order,
+                                        List<String> form_aspect_apply_order,
+                                        List<String> pokemons,
+                                        List<Effect> effects,
+                                        int consume
     ) {
         super(properties);
-        this.form_aspect_name = form_aspect_name;
-        this.form_aspect_apply = form_aspect_apply;
-        this.form_aspect_revert = form_aspect_revert;
+        this.form_apply_order = form_apply_order;
+        this.form_aspect_apply_order = form_aspect_apply_order;
         this.pokemons = pokemons;
         this.effects = effects;
         this.consume = consume;
-        this.revertable = revertable;
     }
 
     @Override
@@ -54,16 +48,30 @@ public class FormChangeInteractItem extends ToolTipItem {
                 return InteractionResult.PASS;
             }
 
-            if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
+            if (form_apply_order.size() == 1
+                    && pokemon.getAspects().stream().anyMatch(form_apply_order::contains)) {
                 return InteractionResult.PASS;
-            } else if (pokemon.getAspects().contains(form_aspect_name)) {
-                effects.revertEffects(pokemonEntity, List.of(form_aspect_revert), null);
-                itemStack.consume(consume, livingEntity);
-
-                return InteractionResult.SUCCESS;
             }
 
-            effects.applyEffects(pokemonEntity, List.of(form_aspect_apply), null);
+            int currentIndex = -1;
+            for (int i = 0; i < form_apply_order.size(); i++) {
+                String form = form_apply_order.get(i);
+                boolean hasAspect = pokemon.getAspects().stream().anyMatch(aspect -> aspect.equalsIgnoreCase(form));
+                if (hasAspect) {
+                    currentIndex = i;
+                    break;
+                }
+            }
+
+            if (currentIndex == -1) {
+                return InteractionResult.PASS;
+            }
+
+            if (currentIndex + 1 > form_apply_order.size() - 1) {
+                effects.getFirst().applyEffects(pokemonEntity, List.of(form_aspect_apply_order.getFirst()), null);
+            } else {
+                effects.get(currentIndex + 1).applyEffects(pokemonEntity, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
+            }
             itemStack.consume(consume, livingEntity);
 
             return InteractionResult.SUCCESS;

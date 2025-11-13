@@ -5,7 +5,9 @@ import com.github.yajatkaul.mega_showdown.block.custom.*;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.MaxMushroom;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.DeoxysMeteoridItem;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.Gracedia;
+import com.github.yajatkaul.mega_showdown.item.custom.form_change.RotomUnitItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -73,6 +75,9 @@ public class MegaShowdownBlocks {
             MegaShowdownTabs.FORM_TAB
     );
 
+    public static final RegistrySupplier<Block> MEGA_METEOROID_BLOCK = registerMeteoroidBlock("mega_meteorid_block");
+    public static final RegistrySupplier<Block> MEGA_METEOROID_RADIATED_BLOCK = registerMeteoroidBlock("mega_meteorid_radiated_block");
+
     public static final RegistrySupplier<Block> KEYSTONE_ORE = registerBlock("keystone_ore",
             () -> new DropExperienceBlock(UniformInt.of(6, 9),
                     BlockBehaviour
@@ -132,6 +137,43 @@ public class MegaShowdownBlocks {
     public static final RegistrySupplier<Block> DORMANT_CRYSTAL = registerBlock("dormant_crystal",
             () -> new DormantCrystal(4, 3, BlockBehaviour.Properties.of(), false), MegaShowdownTabs.TERA_TAB);
 
+    public static final RegistrySupplier<Block> DEOXYS_METEORITE = registerDeoxysMeteorite("deoxys_meteorite");
+
+    public static final RegistrySupplier<Block> ROTOM_WASHING_MACHINE = registerRotomBlock("rotom_washing_machine", "wash");
+    public static final RegistrySupplier<Block> ROTOM_FAN = registerRotomBlock("rotom_fan", "fan");
+    public static final RegistrySupplier<Block> ROTOM_MOW = registerRotomBlock("rotom_mow", "mow");
+    public static final RegistrySupplier<Block> ROTOM_FRIDGE = registerRotomBlock("rotom_fridge", "frost");
+    public static final RegistrySupplier<Block> ROTOM_OVEN = registerRotomBlock("rotom_oven", "heat");
+
+    private static RegistrySupplier<Block> registerRotomBlock(String name, String form) {
+        return registerBlockWithBlockItem(name, () ->
+                new RotomUnitBlock(BlockBehaviour.Properties.of()
+                        .requiresCorrectToolForDrops()
+                        .strength(2)
+                        .mapColor(DyeColor.ORANGE)
+                        .sound(SoundType.METAL), form),
+                (block) -> new RotomUnitItem(
+                        block.get(),
+                        new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
+                        form
+                ));
+    }
+
+    private static RegistrySupplier<Block> registerDeoxysMeteorite(String name) {
+        RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, () -> new Block(
+                BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .mapColor(MapColor.COLOR_PURPLE)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.STONE)
+        ));
+
+        MegaShowdownItems.ITEMS.register(name,
+                () -> new DeoxysMeteoridItem(blockSupplier.get(),
+                        new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB)));
+        return blockSupplier;
+    }
+
     private static RegistrySupplier<Block> registerFlowerPlotBlock(String name, Supplier<Block> block) {
         return BLOCKS.register(name, () -> new FlowerPotBlock(block.get(),
                 BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)
@@ -143,6 +185,21 @@ public class MegaShowdownBlocks {
     private static RegistrySupplier<Block> registerMeteoroidOre(String name) {
         RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, () -> new DropExperienceBlock(
                 UniformInt.of(3, 6),
+                BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .mapColor(MapColor.COLOR_PURPLE)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.STONE)
+        ));
+
+        MegaShowdownItems.ITEMS.register(name,
+                () -> new BlockItem(blockSupplier.get(),
+                        new Item.Properties().arch$tab(MegaShowdownTabs.MEGA_TAB)));
+        return blockSupplier;
+    }
+
+    private static RegistrySupplier<Block> registerMeteoroidBlock(String name) {
+        RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, () -> new Block(
                 BlockBehaviour.Properties.of()
                         .strength(3f)
                         .mapColor(MapColor.COLOR_PURPLE)

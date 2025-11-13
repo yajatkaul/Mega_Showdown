@@ -33,6 +33,7 @@ public record Effect(
             this.snowStorm.get().apply(context, aspects, other);
         } else if (this.minecraft().isPresent()) {
             this.minecraft.get().apply(context);
+            AspectUtils.applyAspects(context.getPokemon(), aspects);
         } else if (this.snowStorm().isPresent()) {
             this.snowStorm.get().apply(context, aspects, other);
         } else {
@@ -46,6 +47,7 @@ public record Effect(
             this.snowStorm.get().revert(context, aspects, other);
         } else if (this.minecraft().isPresent()) {
             this.minecraft.get().revert(context);
+            AspectUtils.applyAspects(context.getPokemon(), aspects);
         } else if (this.snowStorm().isPresent()) {
             this.snowStorm.get().revert(context, aspects, other);
         } else {

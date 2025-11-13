@@ -22,6 +22,14 @@ public class MegaShowdownTabs {
             )
     );
 
+    public static final RegistrySupplier<CreativeModeTab> COMPI_TAB = CREATIVE_TABS.register(
+            "compi_tab",
+            () -> CreativeTabRegistry.create(
+                    Component.translatable("creativeTab.mega_showdown.compi_tab"),
+                    () -> new ItemStack(MegaShowdownItems.BOOSTER_ENERGY) // Icon
+            )
+    );
+
     public static final RegistrySupplier<CreativeModeTab> TERA_TAB = CREATIVE_TABS.register(
             "tera_tab",
             () -> CreativeTabRegistry.create(
@@ -57,7 +65,7 @@ public class MegaShowdownTabs {
     public static final RegistrySupplier<CreativeModeTab> FORM_TAB = CREATIVE_TABS.register(
             "form_tab",
             () -> CreativeTabRegistry.create(
-                    Component.translatable("creativeTab.mega_showdown.forms_tab"),
+                    Component.translatable("creativeTab.mega_showdown.form_tab"),
                     () -> new ItemStack(MegaShowdownItems.BLUE_ORB) // Icon
             )
     );
