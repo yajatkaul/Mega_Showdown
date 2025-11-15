@@ -60,7 +60,7 @@ public record SnowStormParticle(
             return;
         }
 
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.get(), other, this.target_apply.get());
+        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.orElse(null), other, this.target_apply.orElse(null));
 
         this.apply_after.ifPresentOrElse((apply_after) -> {
             context.after(apply_after, () -> {
@@ -102,7 +102,7 @@ public record SnowStormParticle(
             MegaShowdown.LOGGER.error("Invalid snowstorm revert particle");
             return;
         }
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.get(), other, this.target_apply.get());
+        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.orElse(null), other, this.target_apply.orElse(null));
 
         this.revert_after.ifPresentOrElse((revert_after) -> {
             context.after(revert_after, () -> {
@@ -146,7 +146,7 @@ public record SnowStormParticle(
             return;
         }
 
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.get(), other, this.target_apply.get());
+        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.orElse(null), other, this.target_apply.orElse(null));
 
         this.apply_after.ifPresentOrElse((apply_after) -> {
             context.after(apply_after, () -> {
@@ -193,7 +193,7 @@ public record SnowStormParticle(
             MegaShowdown.LOGGER.error("Invalid snowstorm revert particle during battle");
             return;
         }
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.get(), other, this.target_apply.get());
+        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.orElse(null), other, this.target_apply.orElse(null));
 
         this.revert_after.ifPresentOrElse((revert_after) -> {
             context.after(revert_after, () -> {

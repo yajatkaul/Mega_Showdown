@@ -5,6 +5,9 @@
   "minVersion": "0.8",
   "client": [
     "battle.BattleMoveSelectionMixin",
+    "client.ItemRendererMixin",
+    "client.MinecraftMixin",
+    "client.ModeBakeryMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",

@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:zygarde_cube",
+  "itemId_3d": "mega_showdown:zygarde_cube_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:zygarde_cube_3d",
+    "guiLoc": "mega_showdown:zygarde_cube",
+    "groundLoc": "mega_showdown:zygarde_cube",
+    "fixedLoc": "mega_showdown:zygarde_cube_3d"
+  }
+}

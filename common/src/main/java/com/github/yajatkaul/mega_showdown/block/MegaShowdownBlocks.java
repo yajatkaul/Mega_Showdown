@@ -224,7 +224,7 @@ public class MegaShowdownBlocks {
 
     private static RegistrySupplier<Block> registerBlock(String name, Supplier<Block> block, DeferredSupplier<CreativeModeTab> tab) {
         RegistrySupplier<Block> blockSupplier = BLOCKS.register(name, block);
-        MegaShowdownItems.ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), new Item.Properties()));
+        MegaShowdownItems.ITEMS.register(name, () -> new BlockItem(blockSupplier.get(), new Item.Properties().arch$tab(tab)));
         return blockSupplier;
     }
 

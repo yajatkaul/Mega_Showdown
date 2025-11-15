@@ -22,6 +22,7 @@ public class ModTags {
         public static final TagKey<Item> Z_CRYSTAL = createTag("z_crystal");
         public static final TagKey<Item> Z_RING = createTag("z_ring");
         public static final TagKey<Item> TERA_ORB = createTag("tera_orb");
+        public static final TagKey<Item> TERA_SHARD = createTag("tera_shard");
         public static final TagKey<Item> DYNAMAX_BAND = createTag("dynamax_band");
 
         public static final TagKey<Item> OMNI_RING = createTag("omni_ring");

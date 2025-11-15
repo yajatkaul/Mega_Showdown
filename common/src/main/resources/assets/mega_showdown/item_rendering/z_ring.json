@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:z_ring",
+  "itemId_3d": "mega_showdown:z_ring_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:z_ring_3d",
+    "guiLoc": "mega_showdown:z_ring",
+    "groundLoc": "mega_showdown:z_ring",
+    "fixedLoc": "mega_showdown:z_ring_3d"
+  }
+}

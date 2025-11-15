@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -59,7 +60,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownItems.GARCHOMPITE.get());
         basicItem(MegaShowdownItems.LUCARIONITE.get());
         basicItem(MegaShowdownItems.ABOMASITE.get());
-        basicItem(MegaShowdownItems.GALLADITE.get());
+        basicItem(MegaShowdownItems.GLALITITE.get());
         basicItem(MegaShowdownItems.AUDINITE.get());
         basicItem(MegaShowdownItems.DIANCITE.get());
 
@@ -212,5 +213,24 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownItems.LUSTROUS_ORB.get());
         basicItem(MegaShowdownItems.ADRENALINE_ORB.get());
         basicItem(MegaShowdownItems.SOUL_DEW.get());
+
+        basicItem(MegaShowdownItems.MEGA_BRACELET.get());
+        basicItem(MegaShowdownItems.DYNAMAX_BAND.get());
+        basicItem(MegaShowdownItems.TERA_ORB.get());
+        basicItem(MegaShowdownItems.Z_RING.get());
+        basicItem(MegaShowdownItems.OMNI_RING.get());
+
+        basicItem(MegaShowdownItems.LIKOS_PENDANT.get());
+
+        basicItem(MegaShowdownItems.ZYGARDE_CUBE.get());
+
+        basicItem(MegaShowdownBlocks.GRACIDEA_FLOWER.get().asItem());
+        basicItem(MegaShowdownBlocks.ROTOM_FAN.get().asItem());
+        basicItem(MegaShowdownBlocks.ROTOM_FRIDGE.get().asItem());
+        basicItem(MegaShowdownBlocks.ROTOM_MOW.get().asItem());
+        basicItem(MegaShowdownBlocks.ROTOM_OVEN.get().asItem());
+        basicItem(MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get().asItem());
+
+        basicItem(MegaShowdownBlocks.DORMANT_CRYSTAL.get().asItem());
     }
 }

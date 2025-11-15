@@ -1,0 +1,138 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "cobblemon:z_moves",
+      "basic_render_parameters": {
+        "material": "particles_alpha",
+        "texture": "textures/particles/invisible"
+      }
+    },
+    "events": {
+      "event_buildup": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_buildup",
+          "type": "emitter_bound"
+        }
+      },
+      "event_buildup2": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_buildup2",
+          "type": "emitter_bound"
+        }
+      },
+      "event_burst": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_burst",
+          "type": "emitter_bound"
+        }
+      },
+      "event_godrays": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_godrays",
+          "type": "particle"
+        }
+      },
+      "event_godrays2": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_godrays2",
+          "type": "particle"
+        }
+      },
+      "event_sparkleburst": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_sparkleburst",
+          "type": "emitter_bound"
+        }
+      },
+      "event_shockburst": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_shockburst",
+          "type": "emitter_bound"
+        }
+      },
+      "event_implode": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_implode",
+          "type": "emitter_bound"
+        }
+      },
+      "event_aura": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_aura",
+          "type": "emitter_bound"
+        }
+      },
+      "event_aura2": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_aura2",
+          "type": "emitter_bound"
+        }
+      },
+      "event_icon": {
+        "particle_effect": {
+          "effect": "cobblemon:z_move_icon",
+          "type": "emitter_bound"
+        }
+      }
+    },
+    "components": {
+      "minecraft:emitter_local_space": {
+        "position": true,
+        "rotation": true
+      },
+      "minecraft:emitter_rate_instant": {
+        "num_particles": 1
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 3
+      },
+      "minecraft:emitter_lifetime_events": {
+        "creation_event": "event_buildup",
+        "timeline": {
+          "0.1": "event_buildup2",
+          "0.41": "event_godrays",
+          "0.45": "event_godrays2",
+          "2.50": "event_implode",
+          "2.56": "event_burst",
+          "2.57": "event_shockburst",
+          "2.58": "event_aura2",
+          "2.59": "event_aura",
+          "2.60": "event_sparkleburst",
+          "2.61": "event_icon"
+        }
+      },
+      "minecraft:emitter_shape_point": {
+        "offset": [
+          0,
+          1,
+          0
+        ]
+      },
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": "0.7 * math.max(q.entity_size, 1)"
+      },
+      "minecraft:particle_initial_speed": 0,
+      "minecraft:particle_motion_dynamic": {},
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          0.2,
+          0.2
+        ],
+        "facing_camera_mode": "rotate_xyz",
+        "uv": {
+          "texture_width": 16,
+          "texture_height": 16,
+          "uv": [
+            0,
+            0
+          ],
+          "uv_size": [
+            16,
+            16
+          ]
+        }
+      }
+    }
+  }
+}

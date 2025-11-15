@@ -21,12 +21,63 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(MegaShowdownBlocks.POWER_SPOT.get());
+                .add(
+                        MegaShowdownBlocks.WISHING_STAR_CRYSTAL.get(),
+                        MegaShowdownBlocks.KEYSTONE_ORE.get(),
+                        MegaShowdownBlocks.MEGA_STONE_CRYSTAL.get(),
+                        MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get(),
+                        MegaShowdownBlocks.MEGA_METEOROID_RADIATED_BLOCK.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_DAWN_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_DUSK_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_FIRE_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_ICE_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_LEAF_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_MOON_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_SHINY_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_SUN_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_THUNDER_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_WATER_ORE.get(),
+                        MegaShowdownBlocks.DEOXYS_METEORITE.get(),
+                        MegaShowdownBlocks.POWER_SPOT.get(),
+                        MegaShowdownBlocks.REASSEMBLY_UNIT.get(),
+                        MegaShowdownBlocks.DORMANT_CRYSTAL.get(),
+                        MegaShowdownBlocks.ROTOM_MOW.get(),
+                        MegaShowdownBlocks.ROTOM_OVEN.get(),
+                        MegaShowdownBlocks.ROTOM_FAN.get(),
+                        MegaShowdownBlocks.ROTOM_FRIDGE.get(),
+                        MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get()
+                );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(MegaShowdownBlocks.POWER_SPOT.get());
+                .add(
+                        MegaShowdownBlocks.WISHING_STAR_CRYSTAL.get(),
+                        MegaShowdownBlocks.MEGA_STONE_CRYSTAL.get(),
+                        MegaShowdownBlocks.KEYSTONE_ORE.get(),
+                        MegaShowdownBlocks.DEOXYS_METEORITE.get(),
+                        MegaShowdownBlocks.POWER_SPOT.get(),
+                        MegaShowdownBlocks.DORMANT_CRYSTAL.get()
+                );
 
         tag(ModTags.Blocks.POWER_SPOT)
-                .add(MegaShowdownBlocks.POWER_SPOT.get());
+                .add(
+                        MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get(),
+                        MegaShowdownBlocks.MEGA_METEOROID_RADIATED_BLOCK.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_DAWN_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_DUSK_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_FIRE_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_ICE_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_LEAF_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_MOON_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_SHINY_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_SUN_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_THUNDER_ORE.get(),
+                        MegaShowdownBlocks.MEGA_METEORID_WATER_ORE.get(),
+                        MegaShowdownBlocks.REASSEMBLY_UNIT.get(),
+                        MegaShowdownBlocks.ROTOM_MOW.get(),
+                        MegaShowdownBlocks.ROTOM_OVEN.get(),
+                        MegaShowdownBlocks.ROTOM_FAN.get(),
+                        MegaShowdownBlocks.ROTOM_FRIDGE.get(),
+                        MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get()
+                );
     }
 }

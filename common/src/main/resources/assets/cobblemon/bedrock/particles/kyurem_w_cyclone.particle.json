@@ -1,0 +1,78 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "cobblemon:kyurem_w_cyclone",
+      "basic_render_parameters": {
+        "material": "particles_alpha",
+        "texture": "textures/particles/generic/impact/impact_fire"
+      }
+    },
+    "curves": {
+      "variable.tornado": {
+        "type": "linear",
+        "input": "variable.particle_age",
+        "horizontal_range": "variable.particle_lifetime",
+        "nodes": [
+          0,
+          0.2,
+          0.16,
+          0.34,
+          0.68,
+          0.6,
+          0.82,
+          0.85,
+          1.08
+        ]
+      }
+    },
+    "components": {
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate": 50,
+        "max_particles": 1000
+      },
+      "minecraft:emitter_lifetime_looping": {
+        "active_time": 1.5
+      },
+      "minecraft:emitter_shape_point": {},
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": 0.5
+      },
+      "minecraft:particle_motion_parametric": {
+        "relative_position": [
+          "math.cos(variable.particle_age * -360 + variable.particle_random_2 * 360) * 4.3",
+          "variable.particle_age * 20 - 5",
+          "math.sin(variable.particle_age * -360 + variable.particle_random_2 * 360) * 4.3 - -2.5"
+        ]
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          0.4,
+          0.4
+        ],
+        "facing_camera_mode": "rotate_xyz",
+        "uv": {
+          "texture_width": 8,
+          "texture_height": 56,
+          "flipbook": {
+            "base_UV": [
+              0,
+              0
+            ],
+            "size_UV": [
+              8,
+              8
+            ],
+            "step_UV": [
+              0,
+              8
+            ],
+            "frames_per_second": 30,
+            "max_frame": 6,
+            "loop": true
+          }
+        }
+      }
+    }
+  }
+}

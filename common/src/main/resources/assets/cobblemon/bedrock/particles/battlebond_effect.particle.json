@@ -1,0 +1,77 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "cobblemon:battlebond_effect",
+      "basic_render_parameters": {
+        "material": "particles_alpha",
+        "texture": "textures/particles/invisible"
+      }
+    },
+    "events": {
+      "event_cyclone": {
+        "particle_effect": {
+          "effect": "cobblemon:battlebond_cyclone",
+          "type": "emitter_bound"
+        }
+      },
+      "event_cyclone2": {
+        "particle_effect": {
+          "effect": "cobblemon:battlebond_cyclone2",
+          "type": "emitter_bound"
+        }
+      },
+      "event_cyclonetrail": {
+        "particle_effect": {
+          "effect": "cobblemon:battlebond_cyclonetrail",
+          "type": "emitter_bound"
+        }
+      }
+    },
+    "components": {
+      "minecraft:emitter_local_space": {
+        "position": true,
+        "rotation": true
+      },
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate": 4,
+        "max_particles": 100
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 3
+      },
+      "minecraft:emitter_lifetime_events": {
+        "creation_event": "event_cyclone",
+        "timeline": {
+          "0.02": "event_cyclone2",
+          "1.00": "event_cyclonetrail"
+        }
+      },
+      "minecraft:emitter_shape_point": {},
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": 1
+      },
+      "minecraft:particle_initial_speed": 0,
+      "minecraft:particle_motion_dynamic": {},
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          0.2,
+          0.2
+        ],
+        "facing_camera_mode": "rotate_xyz",
+        "uv": {
+          "texture_width": 16,
+          "texture_height": 16,
+          "uv": [
+            0,
+            0
+          ],
+          "uv_size": [
+            16,
+            16
+          ]
+        }
+      }
+    }
+  }
+}

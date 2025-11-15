@@ -99,6 +99,7 @@ public record MegaGimmick(
     public static MegaGimmick CHARIZARDITE_Y = createModItemMegaStone("charizarditey", "Charizard", "mega_y");
     public static MegaGimmick DIANCITE = createModItemMegaStone("diancite", "Diancie", "mega");
     public static MegaGimmick GALLADITE = createModItemMegaStone("galladite", "Gallade", "mega");
+    public static MegaGimmick GLALITITE = createModItemMegaStone("glalitite", "Glalie", "mega");
     public static MegaGimmick GARCHOMPITE = createModItemMegaStone("garchompite", "Garchomp", "mega");
     public static MegaGimmick GARDEVOIRITE = createModItemMegaStone("gardevoirite", "Gardevoir", "mega");
     public static MegaGimmick GENGARITE = createModItemMegaStone("gengarite", "Gengar", "mega");

@@ -37,33 +37,41 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
         this.stage = stage;
         this.cookTime = 0;
         this.maxCookTime = durationTicks;
-
         if (level != null) {
-            level.setBlock(worldPosition, getBlockState().setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
+            BlockPos lowerPos = worldPosition;
+            BlockPos upperPos = lowerPos.above();
+
+            BlockState lowerState = level.getBlockState(lowerPos);
+            level.setBlock(lowerPos, lowerState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
+
+            BlockState upperState = level.getBlockState(upperPos);
+            if (upperState.getBlock() instanceof ReassemblyUnitBlock) {
+                level.setBlock(upperPos, upperState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
+            }
         }
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, ReassemblyUnitBlockEntity be) {
         if (level.isClientSide) return;
 
-        if (be.maxCookTime != -1) {
-            be.cookTime++;
+        if (be.cookTime >= be.maxCookTime) {
+            ReassembleStage finishedStage = switch (be.stage) {
+                case ReassembleStage.COOKING_10 -> ReassembleStage.FINISHED_10;
+                case ReassembleStage.COOKING_50 -> ReassembleStage.FINISHED_50;
+                case ReassembleStage.COOKING_100 -> ReassembleStage.FINISHED_100;
+                default -> ReassembleStage.IDLE;
+            };
+            be.stage = finishedStage;
+            be.maxCookTime = -1;
+            be.cookTime = 0;
 
-            if (be.cookTime >= be.maxCookTime) {
-                ReassembleStage finishedStage = switch (be.stage) {
-                    case ReassembleStage.COOKING_10 -> ReassembleStage.FINISHED_10;
-                    case ReassembleStage.COOKING_50 -> ReassembleStage.FINISHED_50;
-                    case ReassembleStage.COOKING_100 -> ReassembleStage.FINISHED_100;
-                    default -> ReassembleStage.IDLE;
-                };
-
-                be.stage = finishedStage;
-                be.maxCookTime = -1;
-                be.cookTime = 0;
-
-                level.setBlock(pos, state.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, finishedStage), 3);
-                setChanged(level, pos, state);
+            level.setBlock(pos, state.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, finishedStage), 3);
+            BlockState upperState = level.getBlockState(pos.above());
+            if (upperState.getBlock() instanceof ReassemblyUnitBlock) {
+                level.setBlock(pos.above(), upperState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, finishedStage), 3);
             }
+
+            setChanged(level, pos, state);
         }
     }
 
@@ -82,11 +90,22 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
     public void setStage(ReassembleStage stage) {
         this.stage = stage;
         if (this.level instanceof ServerLevel serverLevel) {
-            BlockState currentState = serverLevel.getBlockState(this.getBlockPos());
-            BlockState newState = currentState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage);
-            serverLevel.setBlock(this.getBlockPos(), newState, Block.UPDATE_ALL);
+            BlockPos lowerPos = this.getBlockPos();
+            BlockPos upperPos = lowerPos.above();
 
-            setChanged(serverLevel, this.getBlockPos(), this.getBlockState());
+            BlockState lowerState = serverLevel.getBlockState(lowerPos);
+            if (lowerState.getBlock() instanceof ReassemblyUnitBlock) {
+                BlockState newLowerState = lowerState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage);
+                serverLevel.setBlock(lowerPos, newLowerState, Block.UPDATE_ALL);
+            }
+
+            BlockState upperState = serverLevel.getBlockState(upperPos);
+            if (upperState.getBlock() instanceof ReassemblyUnitBlock) {
+                BlockState newUpperState = upperState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage);
+                serverLevel.setBlock(upperPos, newUpperState, Block.UPDATE_ALL);
+            }
+
+            setChanged(serverLevel, lowerPos, this.getBlockState());
         }
     }
 

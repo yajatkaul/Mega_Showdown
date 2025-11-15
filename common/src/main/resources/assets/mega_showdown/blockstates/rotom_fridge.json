@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mega_showdown:block/rotom_fridge",
+      "y": 0
+    },
+    "facing=south": {
+      "model": "mega_showdown:block/rotom_fridge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mega_showdown:block/rotom_fridge",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "mega_showdown:block/rotom_fridge",
+      "y": 90
+    }
+  }
+}

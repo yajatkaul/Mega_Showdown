@@ -24,14 +24,14 @@ class PokemonBehaviourHelper {
             entity: PokemonEntity,
             particleId: ResourceLocation,
             source: List<String>?,
-            targetEntity: PokemonEntity,
+            targetEntity: PokemonEntity?,
             target: List<String>?
         ) {
             val packet = SpawnSnowstormEntityParticlePacket(
                 particleId,
                 sourceEntityId = entity.id,
                 sourceLocators = source ?: listOf(),
-                targetedEntityId = targetEntity.id,
+                targetedEntityId = targetEntity?.id,
                 targetLocators = target
             )
 

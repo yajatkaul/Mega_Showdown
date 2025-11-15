@@ -1,0 +1,123 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "cobblemon:origin_g_effect",
+      "basic_render_parameters": {
+        "material": "particles_alpha",
+        "texture": "textures/particles/invisible"
+      }
+    },
+    "events": {
+      "event_buildup": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_buildup",
+          "type": "emitter_bound"
+        }
+      },
+      "event_buildup2": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_buildup2",
+          "type": "emitter_bound"
+        }
+      },
+      "event_godray": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_godray",
+          "type": "particle"
+        }
+      },
+      "event_burst": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_burst",
+          "type": "emitter_bound"
+        }
+      },
+      "event_eye1": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_eye1",
+          "type": "emitter_bound"
+        }
+      },
+      "event_eye2": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_eye2",
+          "type": "emitter_bound"
+        }
+      },
+      "event_cyclone": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_cyclone",
+          "type": "emitter_bound"
+        }
+      },
+      "event_eye3": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_eye3",
+          "type": "emitter_bound"
+        }
+      },
+      "event_eye4": {
+        "particle_effect": {
+          "effect": "cobblemon:origin_g_eye4",
+          "type": "emitter_bound"
+        }
+      }
+    },
+    "components": {
+      "minecraft:emitter_local_space": {
+        "position": true,
+        "rotation": true
+      },
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate": 4,
+        "max_particles": 100
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 4
+      },
+      "minecraft:emitter_lifetime_events": {
+        "creation_event": [
+          "event_buildup",
+          "event_godray",
+          "event_eye1",
+          "event_eye2"
+        ],
+        "timeline": {
+          "1.70": "event_buildup2",
+          "2.00": "event_cyclone",
+          "2.50": [
+            "event_eye3",
+            "event_eye4"
+          ],
+          "3.99": "event_burst"
+        }
+      },
+      "minecraft:emitter_shape_point": {},
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": 1
+      },
+      "minecraft:particle_initial_speed": 0,
+      "minecraft:particle_motion_dynamic": {},
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          0.2,
+          0.2
+        ],
+        "facing_camera_mode": "rotate_xyz",
+        "uv": {
+          "texture_width": 16,
+          "texture_height": 16,
+          "uv": [
+            0,
+            0
+          ],
+          "uv_size": [
+            16,
+            16
+          ]
+        }
+      }
+    }
+  }
+}

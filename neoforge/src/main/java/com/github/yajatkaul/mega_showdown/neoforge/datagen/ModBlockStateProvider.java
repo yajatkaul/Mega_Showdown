@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -13,7 +14,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-//        blockWithItem(UltraPlantBlocks.BLUE_CRYSTAL.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEOROID_RADIATED_BLOCK.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_WATER_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_DAWN_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_DUSK_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_FIRE_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_ICE_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_LEAF_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_MOON_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_SHINY_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_SUN_ORE.get());
+        blockWithItem(MegaShowdownBlocks.MEGA_METEORID_THUNDER_ORE.get());
+        blockWithItem(MegaShowdownBlocks.KEYSTONE_ORE.get());
+
+        blockWithItem(MegaShowdownBlocks.DEOXYS_METEORITE.get());
     }
 
     private void blockWithItem(Block deferredBlock) {

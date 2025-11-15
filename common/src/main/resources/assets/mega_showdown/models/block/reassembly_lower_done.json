@@ -1,0 +1,7 @@
+{
+  "parent": "mega_showdown:block/reassembly_lower",
+  "textures": {
+    "0": "mega_showdown:block/reassembly_done",
+    "particle": "mega_showdown:block/reassembly_done"
+  }
+}

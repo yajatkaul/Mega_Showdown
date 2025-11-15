@@ -35,6 +35,7 @@ public final class MegaShowdown {
         MegaShowdownBlocks.register();
         MegaShowdownBlockEntities.register();
         MegaShowdownItems.register();
+
         MegaShowdownTabs.register();
         MegaShowdownStatusEffects.register();
 

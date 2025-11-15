@@ -57,6 +57,7 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> CHARIZARDITE_Y = registerMegaStone("charizardite_y", MegaGimmick.CHARIZARDITE_Y);
     public static final RegistrySupplier<Item> DIANCITE = registerMegaStone("diancite", MegaGimmick.DIANCITE);
     public static final RegistrySupplier<Item> GALLADITE = registerMegaStone("galladite", MegaGimmick.GALLADITE);
+    public static final RegistrySupplier<Item> GLALITITE = registerMegaStone("glalitite", MegaGimmick.GLALITITE);
     public static final RegistrySupplier<Item> GARCHOMPITE = registerMegaStone("garchompite", MegaGimmick.GARCHOMPITE);
     public static final RegistrySupplier<Item> GARDEVOIRITE = registerMegaStone("gardevoirite", MegaGimmick.GARDEVOIRITE);
     public static final RegistrySupplier<Item> GENGARITE = registerMegaStone("gengarite", MegaGimmick.GENGARITE);
