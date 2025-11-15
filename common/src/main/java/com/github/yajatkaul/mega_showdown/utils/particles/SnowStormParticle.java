@@ -50,6 +50,7 @@ public record SnowStormParticle(
 
         if (this.particle_apply.isEmpty()) {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
+            resetFormChangingState(context, pokemonPersistentData);
             return;
         }
 
@@ -64,9 +65,7 @@ public record SnowStormParticle(
         this.apply_after.ifPresentOrElse((apply_after) -> {
             context.after(apply_after, () -> {
                 AspectUtils.applyAspects(context.getPokemon(), aspects);
-                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                pokemonPersistentData.remove("form_changing");
-                pokemonPersistentData.remove("apply_aspects");
+                resetFormChangingState(context, pokemonPersistentData);
 
                 this.animations.ifPresent((animation) -> {
                     animation.applyAnimations(context);
@@ -76,9 +75,7 @@ public record SnowStormParticle(
             });
         }, () -> {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
-            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-            pokemonPersistentData.remove("form_changing");
-            pokemonPersistentData.remove("apply_aspects");
+            resetFormChangingState(context, pokemonPersistentData);
 
             this.animations.ifPresent((animation) -> {
                 animation.applyAnimations(context);
@@ -96,6 +93,7 @@ public record SnowStormParticle(
 
         if (this.particle_revert.isEmpty()) {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
+            resetFormChangingState(context, pokemonPersistentData);
             return;
         }
 
@@ -109,9 +107,8 @@ public record SnowStormParticle(
         this.revert_after.ifPresentOrElse((revert_after) -> {
             context.after(revert_after, () -> {
                 AspectUtils.applyAspects(context.getPokemon(), aspects);
-                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                pokemonPersistentData.remove("form_changing");
-                pokemonPersistentData.remove("apply_aspects");
+                resetFormChangingState(context, pokemonPersistentData);
+
 
                 this.animations.ifPresent((animation) -> {
                     animation.revertAnimations(context);
@@ -121,9 +118,7 @@ public record SnowStormParticle(
             });
         }, () -> {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
-            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-            pokemonPersistentData.remove("form_changing");
-            pokemonPersistentData.remove("apply_aspects");
+            resetFormChangingState(context, pokemonPersistentData);
 
             this.animations.ifPresent((animation) -> {
                 animation.revertAnimations(context);
@@ -141,6 +136,7 @@ public record SnowStormParticle(
         if (this.particle_apply.isEmpty()) {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
             AspectUtils.updatePackets(battlePokemon);
+            resetFormChangingState(context, pokemonPersistentData);
             return;
         }
 
@@ -155,9 +151,8 @@ public record SnowStormParticle(
         this.apply_after.ifPresentOrElse((apply_after) -> {
             context.after(apply_after, () -> {
                 AspectUtils.applyAspects(context.getPokemon(), aspects);
-                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                pokemonPersistentData.remove("form_changing");
-                pokemonPersistentData.remove("apply_aspects");
+                resetFormChangingState(context, pokemonPersistentData);
+
                 AspectUtils.updatePackets(battlePokemon);
 
                 this.animations.ifPresent((animation) -> {
@@ -168,9 +163,8 @@ public record SnowStormParticle(
             });
         }, () -> {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
-            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-            pokemonPersistentData.remove("form_changing");
-            pokemonPersistentData.remove("apply_aspects");
+            resetFormChangingState(context, pokemonPersistentData);
+
             AspectUtils.updatePackets(battlePokemon);
 
             this.animations.ifPresent((animation) -> {
@@ -190,6 +184,7 @@ public record SnowStormParticle(
         if (this.particle_revert.isEmpty()) {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
             AspectUtils.updatePackets(battlePokemon);
+            resetFormChangingState(context, pokemonPersistentData);
             return;
         }
 
@@ -203,9 +198,8 @@ public record SnowStormParticle(
         this.revert_after.ifPresentOrElse((revert_after) -> {
             context.after(revert_after, () -> {
                 AspectUtils.applyAspects(context.getPokemon(), aspects);
-                context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                pokemonPersistentData.remove("form_changing");
-                pokemonPersistentData.remove("apply_aspects");
+                resetFormChangingState(context, pokemonPersistentData);
+
                 AspectUtils.updatePackets(battlePokemon);
 
                 this.animations.ifPresent((animation) -> {
@@ -216,14 +210,19 @@ public record SnowStormParticle(
             });
         }, () -> {
             AspectUtils.applyAspects(context.getPokemon(), aspects);
-            context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-            pokemonPersistentData.remove("form_changing");
-            pokemonPersistentData.remove("apply_aspects");
+            resetFormChangingState(context, pokemonPersistentData);
+
             AspectUtils.updatePackets(battlePokemon);
 
             this.animations.ifPresent((animation) -> {
                 animation.revertAnimations(context);
             });
         });
+    }
+
+    private void resetFormChangingState(PokemonEntity context, CompoundTag pokemonPersistentData) {
+        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
+        pokemonPersistentData.remove("form_changing");
+        pokemonPersistentData.remove("apply_aspects");
     }
 }

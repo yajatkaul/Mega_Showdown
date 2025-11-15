@@ -37,11 +37,11 @@ import com.github.yajatkaul.mega_showdown.codec.HeldItemFormChange;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
+import com.github.yajatkaul.mega_showdown.gimmick.GimmickTurnCheck;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
-import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.tag.ModTags;
 import com.github.yajatkaul.mega_showdown.utils.*;
 import kotlin.Unit;
@@ -60,8 +60,7 @@ public class CobbleEvents {
     public static void register() {
         CobblemonEvents.HELD_ITEM_PRE.subscribe(Priority.NORMAL, CobbleEvents::heldItemChange);
         CobblemonEvents.MEGA_EVOLUTION.subscribe(Priority.NORMAL, CobbleEvents::megaEvolution);
-        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, CobbleEvents::hookBattleEnded);
-        CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, CobbleEvents::battleStarting);
+        CobblemonEvents.BATTLE_STARTED_POST.subscribe(Priority.NORMAL, CobbleEvents::hookBattleStarted);
         CobblemonEvents.TERASTALLIZATION.subscribe(Priority.NORMAL, CobbleEvents::terrastallizationUsed);
         CobblemonEvents.POKEMON_HEALED.subscribe(Priority.NORMAL, CobbleEvents::healedPokemons);
         CobblemonEvents.ZPOWER_USED.subscribe(Priority.NORMAL, CobbleEvents::zMovesUsed);
@@ -82,7 +81,6 @@ public class CobbleEvents {
                 || formeChangeEvent.getFormeName().equals("mega") || formeChangeEvent.getFormeName().equals("tera")) {
             return Unit.INSTANCE;
         }
-        PokemonBattle pokemonBattle = formeChangeEvent.getBattle();
         BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
 
         for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
@@ -285,107 +283,9 @@ public class CobbleEvents {
         return Unit.INSTANCE;
     }
 
-    public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
-        if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
-            if (!MegaShowdownConfig.dynamax) {
-                return false;
-            }
+    private static Unit hookBattleStarted(BattleStartedEvent.Post event) {
+        event.getBattle().getPlayers().forEach(GimmickTurnCheck::check);
 
-            boolean hasDMaxItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.DYNAMAX_BAND);
-
-            return player.getOffhandItem().is(ModTags.Items.DYNAMAX_BAND)
-                    || player.getMainHandItem().is(ModTags.Items.DYNAMAX_BAND)
-                    || hasDMaxItemAccessory;
-        } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
-            if (!MegaShowdownConfig.teralization) {
-                return false;
-            }
-
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-            boolean hasTerapagos = false;
-            for (Pokemon pokemon : playerPartyStore) {
-                if (pokemon.getSpecies().getName().equals("Terapagos")) {
-                    hasTerapagos = true;
-                }
-                AspectUtils.revertPokemonsIfRequired(pokemon);
-            }
-
-            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
-
-            if (teraOrb == null) {
-                return false;
-            }
-
-            if (hasTerapagos) {
-                teraOrb.setDamageValue(0);
-            }
-
-            return teraOrb.getDamageValue() < 100;
-        } else if (gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
-            if (!MegaShowdownConfig.zMoves) {
-                return false;
-            }
-
-            boolean hasZPowerItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.Z_RING);
-
-            return player.getOffhandItem().is(ModTags.Items.Z_RING)
-                    || player.getMainHandItem().is(ModTags.Items.Z_RING)
-                    || hasZPowerItemAccessory;
-        } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
-            if (!MegaShowdownConfig.mega) {
-                return false;
-            }
-
-            boolean hasKeystoneItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.MEGA_BRACELET);
-
-            return (player.getOffhandItem().is(ModTags.Items.MEGA_BRACELET)
-                    || player.getMainHandItem().is(ModTags.Items.MEGA_BRACELET)
-                    || hasKeystoneItemAccessory)
-                    && !MegaGimmick.hasMega(player);
-        }
-
-        return false;
-    }
-
-    private static Unit battleStarting(BattleStartedEvent.Pre event) {
-        for (ServerPlayer player : event.getBattle().getPlayers()) {
-            GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
-
-            if (PlayerUtils.isBlockNearby(player, ModTags.Blocks.POWER_SPOT, MegaShowdownConfig.powerSpotRange)
-                    || MegaShowdownConfig.dynamaxAnywhere) {
-                if (hasGimmick(ShowdownMoveset.Gimmick.DYNAMAX, player)) {
-                    data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
-                } else {
-                    data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
-                }
-            } else {
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
-            }
-
-            if (hasGimmick(ShowdownMoveset.Gimmick.TERASTALLIZATION, player)) {
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_orb"));
-            } else {
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_orb"));
-            }
-
-            if (hasGimmick(ShowdownMoveset.Gimmick.MEGA_EVOLUTION, player)) {
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
-            } else {
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "key_stone"));
-            }
-
-            if (hasGimmick(ShowdownMoveset.Gimmick.Z_POWER, player)) {
-                data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "z_ring"));
-            } else {
-                data.getKeyItems().remove(ResourceLocation.fromNamespaceAndPath("cobblemon", "z_ring"));
-            }
-        }
-
-        return Unit.INSTANCE;
-    }
-
-    private static Unit hookBattleEnded(BattleStartedEvent.Post event) {
         event.getBattle().getOnEndHandlers().add((battle -> {
             battle.getPlayers().forEach(serverPlayer -> {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
@@ -400,13 +300,14 @@ public class CobbleEvents {
 
     private static Unit megaEvolution(MegaEvolutionEvent event) {
         Pokemon pokemon = event.getPokemon().getEntity().getPokemon();
-        if (pokemon.heldItem().getItem() instanceof MegaStone megaStone) {
-            if (megaStone.getMegaProps().canMega(pokemon)) {
+        MegaGimmick megaGimmick = pokemon.heldItem().get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+        if (megaGimmick != null) {
+            if (megaGimmick.canMega(pokemon)) {
                 MegaGimmick.megaEvolveInBattle(
                         pokemon,
                         event.getPokemon(),
-                        megaStone.getMegaProps().aspect_conditions().apply_aspects(),
-                        megaStone.getMegaProps().aspect_conditions().revert_aspects()
+                        megaGimmick.aspect_conditions().apply_aspects(),
+                        megaGimmick.aspect_conditions().revert_aspects()
                 );
             }
         }
@@ -447,7 +348,9 @@ public class CobbleEvents {
         }
 
         MegaGimmick megaGimmick = event.getReturning().get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
-        if (megaGimmick != null && megaGimmick.pokemon().contains(pokemon.getSpecies().getName())) {
+        if (megaGimmick != null
+                && megaGimmick.pokemon().contains(pokemon.getSpecies().getName())
+                && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
             MegaGimmick.megaToggle(pokemon.getEntity());
         }
 

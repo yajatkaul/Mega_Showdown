@@ -93,6 +93,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         add(MegaShowdownBlocks.MEGA_METEORID_WATER_ORE.get(),
                 block -> createOreDrop(block, CobblemonItems.WATER_STONE));
+
+
+        dropSelf(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get());
+        dropSelf(MegaShowdownBlocks.MEGA_METEOROID_RADIATED_BLOCK.get());
+
+        dropSelf(MegaShowdownBlocks.DEOXYS_METEORITE.get());
+
+        dropSelf(MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get());
+        dropSelf(MegaShowdownBlocks.ROTOM_FAN.get());
+        dropSelf(MegaShowdownBlocks.ROTOM_FRIDGE.get());
+        dropSelf(MegaShowdownBlocks.ROTOM_MOW.get());
+        dropSelf(MegaShowdownBlocks.ROTOM_OVEN.get());
     }
 
     @Override

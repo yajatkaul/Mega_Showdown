@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[2,)"
 #issueTrackerURL = ""
-license = "All Rights Reserved"
+license = "MEGA SHOWDOWN LICENSE v2.1"
 
 [[mods]]
 modId = "mega_showdown"

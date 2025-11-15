@@ -19,7 +19,6 @@ import com.github.yajatkaul.mega_showdown.item.custom.form_change.*;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.DuFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.fusion.SoloFusion;
 import com.github.yajatkaul.mega_showdown.item.custom.gimmick.*;
-import com.github.yajatkaul.mega_showdown.item.custom.mega.MegaStone;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.LikosPendant;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
@@ -126,7 +125,10 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> FAIRY_TERA_SHARD = registerTeraShards("fairy_tera_shard", TeraTypes.getFAIRY());
     public static final RegistrySupplier<Item> STELLAR_TERA_SHARD = registerTeraShards("stellar_tera_shard", TeraTypes.getSTELLAR());
 
+
+    public static final RegistrySupplier<Item> BLANK_Z = registerItem("blank_z", () -> new ToolTipItem(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB)));
     // Elemental Z-Crystals
+    public static final RegistrySupplier<Item> NORMALIUM_Z = registerZElementalCrystals("normalium_z", ElementalTypes.INSTANCE.getNORMAL());
     public static final RegistrySupplier<Item> BUGINIUM_Z = registerZElementalCrystals("buginium_z", ElementalTypes.INSTANCE.getBUG());
     public static final RegistrySupplier<Item> DARKINIUM_Z = registerZElementalCrystals("darkinium_z", ElementalTypes.INSTANCE.getDARK());
     public static final RegistrySupplier<Item> DRAGONIUM_Z = registerZElementalCrystals("dragonium_z", ElementalTypes.INSTANCE.getDRAGON());
@@ -240,7 +242,7 @@ public class MegaShowdownItems {
             () -> new LikosPendant(new Item.Properties().stacksTo(1)
                     .stacksTo(1)
                     .component(MegaShowdownDataComponents.LIKO_PENDANT_TICK_COMPONENT.get(), MegaShowdownConfig.likoPendentDuration)
-                    .arch$tab(MegaShowdownTabs.KEY_TAB))
+                    .arch$tab(MegaShowdownTabs.TERA_TAB))
     );
 
     public static final RegistrySupplier<Item> PINK_NECTAR = registerFormChangeInteractItem(
@@ -306,7 +308,7 @@ public class MegaShowdownItems {
     );
 
     public static final RegistrySupplier<Item> HEARTHFLAME_MASK = registerFormChangeHeldItems(
-            "wellspring_mask",
+            "hearthflame_mask",
             "ogre_mask=teal",
             "ogre_mask=hearthflame",
             List.of("Ogerpon"),
@@ -434,7 +436,7 @@ public class MegaShowdownItems {
     );
 
     public static final RegistrySupplier<Item> INSECT_PLATE = registerFormChangeHeldItems(
-            "mind_plate",
+            "insect_plate",
             "multitype=normal",
             "multitype=bug",
             List.of("Arceus"),
@@ -806,9 +808,10 @@ public class MegaShowdownItems {
     }
 
     private static RegistrySupplier<Item> registerMegaStone(String name, MegaGimmick megaGimmick) {
-        return ITEMS.register(name, () -> new MegaStone(
-                new Item.Properties().arch$tab(MegaShowdownTabs.MEGA_TAB),
-                megaGimmick)
+        return ITEMS.register(name, () -> new ToolTipItem(
+                new Item.Properties()
+                        .component(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get(), megaGimmick)
+                        .arch$tab(MegaShowdownTabs.MEGA_TAB))
         );
     }
 

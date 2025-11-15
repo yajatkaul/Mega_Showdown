@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.battles.model.actor.BattleActor;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.ShowdownActionRequest;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
+import com.github.yajatkaul.mega_showdown.gimmick.GimmickTurnCheck;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,6 +22,10 @@ public class ShowdownActionRequestMixin {
     @Shadow
     private List<ShowdownMoveset> active;
 
+    @Inject(method = "sanitize", at = @At("HEAD"), remap = false)
+    private void beforeSanitize (PokemonBattle battle, BattleActor battleActor, CallbackInfo ci) {
+        battle.getPlayers().forEach(GimmickTurnCheck::check);
+    }
 
     @Inject(method = "sanitize", at = @At("TAIL"), remap = false)
     private void afterSanitize(PokemonBattle battle, BattleActor battleActor, CallbackInfo ci) {

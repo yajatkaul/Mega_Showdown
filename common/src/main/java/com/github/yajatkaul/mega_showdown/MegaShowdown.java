@@ -12,6 +12,7 @@ import com.github.yajatkaul.mega_showdown.networking.MegaShowdownNetworkHandler;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
 import com.github.yajatkaul.mega_showdown.utils.DelayedTicker;
+import com.github.yajatkaul.mega_showdown.utils.ShowdownItemsLoad;
 import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.server.MinecraftServer;
@@ -46,6 +47,7 @@ public final class MegaShowdown {
         LifecycleEvent.SERVER_STARTING.register((minecraftServer) -> {
             server = minecraftServer;
             MegaShowdownDatapackRegister.registerShowdownDatapackItems();
+            ShowdownItemsLoad.load();
         });
 
         TickEvent.SERVER_PRE.register((server) -> DelayedTicker.runAll());

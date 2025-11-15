@@ -68,14 +68,25 @@ public class MegaShowdownDatapackRegister {
             }
         }
 
-        for (ShowdownItem item : SHOWDOWN_ITEM_REGISTRY) {
-            CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
-                ShowdownItem showdownItem = stack.get(MegaShowdownDataComponents.SHOWDOWN_ITEM_COMPONENT.get());
-                if (showdownItem != null && showdownItem.equals(item)) {
-                    return item.showdown_item_id();
-                }
+        CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
+            ShowdownItem showdownItem = stack.get(MegaShowdownDataComponents.SHOWDOWN_ITEM_COMPONENT.get());
+
+            if (showdownItem == null) {
                 return null;
-            });
-        }
+            }
+
+            return showdownItem.showdown_item_id();
+        }));
+
+        CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
+            MegaGimmick megaGimmick = stack.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+
+            if (megaGimmick == null) {
+                return null;
+            }
+
+            MegaShowdown.LOGGER.info(megaGimmick.showdown_id());
+            return megaGimmick.showdown_id();
+        }));
     }
 }
