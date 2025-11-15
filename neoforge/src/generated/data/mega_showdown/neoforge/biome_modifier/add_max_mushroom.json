@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "minecraft:lush_caves",
-  "features": "mega_showdown:max_mushroom_placed_key",
-  "step": "vegetal_decoration"
-}

@@ -1,0 +1,75 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+architectury {
+    platformSetupLoomIde()
+    neoForge()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+File generatedResources = file("../common/src/generated")
+File defaultResources = file("../common/src/main/resources")
+loom {
+    runs {
+        register("data") {
+            data()
+            programArgs("--all", "--mod", "mega_showdown")
+            programArgs("--output", generatedResources.absolutePath, "--existing", defaultResources.absolutePath)
+        }
+    }
+}
+
+repositories {
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
+}
+
+dependencies {
+    neoForge "net.neoforged:neoforge:$project.neoforge_version"
+
+    modImplementation "dev.architectury:architectury-neoforge:$project.architectury_api_version"
+
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
+
+    forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${project.kotlin_neo_version}") {
+        exclude group: "net.neoforged.fancymodloader", module: "loader"
+    }
+
+    modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
+    modImplementation "com.cobblemon:neoforge:${project.cobblemon_version}"
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+}

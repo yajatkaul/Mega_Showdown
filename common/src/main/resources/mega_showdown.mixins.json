@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "package": "com.github.yajatkaul.mega_showdown.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "battle.BattleMoveSelectionMixin",
+    "client.ItemRendererMixin",
+    "client.MinecraftMixin",
+    "client.ModeBakeryMixin",
+    "client.ui.PCGUIMixin",
+    "client.ui.SummaryCompanionMixin",
+    "client.ui.SummaryMixin",
+    "minecraft.ItemInHandRendererMixin"
+  ],
+  "mixins": [
+    "GraalShowdownUnbundlerMixin",
+    "PokemonEntityMixin",
+    "PokemonMixin",
+    "battle.BattleGimmickButtonCompanionMixin",
+    "battle.EndInstructionMixin",
+    "battle.GimmickTileMixin",
+    "battle.MoveActionResponseMixin",
+    "battle.ShowdownActionRequestMixin",
+    "battle.ShowdownInterpreterMixin",
+    "battle.ShowdownSpeciesMixin",
+    "battle.StartInstructionMixin",
+    "minecraft.ItemStackMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

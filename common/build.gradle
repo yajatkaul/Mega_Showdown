@@ -1,0 +1,24 @@
+architectury {
+    common rootProject.enabled_platforms.split(',')
+}
+
+loom {
+    enableTransitiveAccessWideners.set(true)
+    accessWidenerPath.set(file("src/main/resources/mega_showdown.accesswidener"))
+}
+
+File generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir(generatedResources)
+    }
+}
+
+dependencies {
+    modCompileOnly "net.fabricmc:fabric-loader:$project.fabric_loader_version"
+    modImplementation "dev.architectury:architectury:$project.architectury_api_version"
+
+    modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}"
+    modCompileOnly "com.cobblemon:mod:${project.cobblemon_version}"
+}

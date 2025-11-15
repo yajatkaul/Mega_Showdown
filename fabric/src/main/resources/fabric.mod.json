@@ -2,33 +2,35 @@
   "schemaVersion": 1,
   "id": "mega_showdown",
   "version": "${version}",
-  "name": "Cobblemon: Mega Showdown",
-  "description": "Adding mega evolutions, z-moves, teralization, dynamax, ultra burst and fusions to the game",
+  "name": "Cobblemon:Mega Showdown",
+  "description": "",
   "authors": [
-    "YajatKaul"
+    "Yajat Kaul"
   ],
-  "license": "MEGA SHOWDOWN LICENSE v2.0",
-  "icon": "assets/icon.png",
+  "contact": {
+    "homepage": "https://github.com/yajatkaul"
+  },
+  "license": "MEGA SHOWDOWN LICENSE v2.1",
+  "icon": "assets/mega_showdown/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cobblemon.yajatkaul.mega_showdown.MegaShowdown"
-    ],
-    "fabric-datagen": [
-      "com.cobblemon.yajatkaul.mega_showdown.datagen.ModDataGenerator"
+      "com.github.yajatkaul.mega_showdown.fabric.MegaShowdownFabric"
     ],
     "client": [
-      "com.cobblemon.yajatkaul.mega_showdown.MegaShowdownClient"
+      "com.github.yajatkaul.mega_showdown.fabric.MegaShowdownFabricClient"
     ]
   },
   "mixins": [
-    "mega_showdown.mixins.json"
+    "mega_showdown.mixins.json",
+    "mega_showdown.fabric.mixins.json"
   ],
   "depends": {
-    "minecraft": "1.21.1",
-    "cobblemon": ">=1.6.1",
-    "fabric-api": ">=0.116.1",
-    "supermartijn642configlib": ">=1.1.8",
-    "trinkets": ">=3.10.0"
+    "fabricloader": ">=0.17.3",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*",
+    "cobblemon": "=1.7"
   }
 }
