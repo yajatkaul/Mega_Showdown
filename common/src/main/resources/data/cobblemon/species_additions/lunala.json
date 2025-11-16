@@ -1,0 +1,21 @@
+{
+  "implemented": true,
+  "target": "cobblemon:lunala",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 4,
+    "height": 5,
+    "fixed": false
+  },
+  "behaviour": {
+    "moving": {
+      "swim": {
+        "avoidsWater": true,
+        "canSwimInWater": false
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  }
+}

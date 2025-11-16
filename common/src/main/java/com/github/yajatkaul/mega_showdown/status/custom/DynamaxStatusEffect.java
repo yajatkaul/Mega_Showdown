@@ -12,7 +12,7 @@ public class DynamaxStatusEffect extends MobEffect {
         super(MobEffectCategory.BENEFICIAL, 0x7C2123);
         this.addAttributeModifier(
                 Attributes.SCALE,
-                ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "dynamax_size"),
+                ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "dynamax"),
                 0.1,
                 AttributeModifier.Operation.ADD_VALUE
         );

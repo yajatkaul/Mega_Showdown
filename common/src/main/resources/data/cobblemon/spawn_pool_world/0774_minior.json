@@ -1,0 +1,159 @@
+{
+  "enabled": "true",
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "minior-1",
+      "pokemon": "minior meteor_shield=meteor",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "rare",
+      "level": "20-30",
+      "weight": 9.0,
+      "condition": {
+        "timeRange": "day",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_overworld"
+        ]
+      }
+    },
+    {
+      "id": "minior-2",
+      "pokemon": "minior meteor_shield=core core_color=red",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_hills"
+        ]
+      }
+    },
+    {
+      "id": "minior-3",
+      "pokemon": "minior meteor_shield=core core_color=orange",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_savanna"
+        ]
+      }
+    },
+    {
+      "id": "minior-4",
+      "pokemon": "minior meteor_shield=core core_color=yellow",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_plains"
+        ]
+      }
+    },
+    {
+      "id": "minior-5",
+      "pokemon": "minior meteor_shield=core core_color=green",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle"
+        ]
+      }
+    },
+    {
+      "id": "minior-6",
+      "pokemon": "minior meteor_shield=core core_color=blue",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_freshwater"
+        ]
+      }
+    },
+    {
+      "id": "minior-7",
+      "pokemon": "minior meteor_shield=core core_color=indigo",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_cold"
+        ]
+      }
+    },
+    {
+      "id": "minior-8",
+      "pokemon": "minior meteor_shield=core core_color=violet",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "context": "grounded",
+      "bucket": "uncommon",
+      "level": "20-30",
+      "weight": 5.0,
+      "condition": {
+        "timeRange": "night",
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_mountain"
+        ]
+      }
+    }
+  ]
+}

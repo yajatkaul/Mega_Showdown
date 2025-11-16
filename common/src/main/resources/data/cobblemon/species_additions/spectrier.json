@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:spectrier",
+  "baseScale": 0.85,
+  "hitbox": {
+    "width": 2.2,
+    "height": 3.3,
+    "fixed": false
+  }
+}

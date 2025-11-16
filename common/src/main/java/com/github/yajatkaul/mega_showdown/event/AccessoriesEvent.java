@@ -18,7 +18,7 @@ public class AccessoriesEvent {
     private static TriState onUnequip(ItemStack itemStack, SlotReference reference) {
         LivingEntity entity = reference.entity();
         if (entity instanceof ServerPlayer player) {
-            PokemonBattle battle = BattleRegistry.INSTANCE.getBattleByParticipatingPlayer(player);
+            PokemonBattle battle = BattleRegistry.getBattleByParticipatingPlayer(player);
 
             if (battle != null && itemStack.is(ModTags.Items.TERA_ORB)) {
                 return TriState.FALSE;

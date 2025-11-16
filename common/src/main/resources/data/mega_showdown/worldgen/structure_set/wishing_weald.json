@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "mega_showdown:wishing_weald",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 42,
+    "separation": 20,
+    "salt": 121568,
+    "frequency": 0.25
+  }
+}

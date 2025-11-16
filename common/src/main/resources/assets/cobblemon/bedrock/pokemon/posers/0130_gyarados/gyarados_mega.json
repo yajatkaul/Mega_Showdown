@@ -1,0 +1,177 @@
+{
+  "portraitScale": 1.49,
+  "portraitTranslation": [
+    -1.39,
+    1.99,
+    0
+  ],
+  "profileScale": 0.38,
+  "profileTranslation": [
+    -0.15,
+    1.18,
+    -10
+  ],
+  "animations": {
+    "cry": "q.bedrock_stateful('gyarados_mega', 'cry')"
+  },
+  "poses": {
+    "portrait": {
+      "poseTypes": [
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "battle-standing": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'battle_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "standing": {
+      "poseTypes": [
+        "STAND",
+        "NONE"
+      ],
+      "isBattle": false,
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "walking": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'ground_walk')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "flying": {
+      "poseTypes": [
+        "FLY"
+      ],
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'air_fly')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "hover": {
+      "poseTypes": [
+        "FLOAT",
+        "HOVER",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isTouchingWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'air_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "float": {
+      "poseTypes": [
+        "FLOAT"
+      ],
+      "isSubmergedInWater": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "swim": {
+      "poseTypes": [
+        "SWIM"
+      ],
+      "isSubmergedInWater": true,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'water_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "sleep": {
+      "poseTypes": [
+        "SLEEP"
+      ],
+      "isTouchingWater": false,
+      "animations": [
+        "q.bedrock('gyarados_mega', 'sleep')"
+      ]
+    },
+    "surface_idle": {
+      "poseTypes": [
+        "STAND"
+      ],
+      "isTouchingWater": true,
+      "isSubmergedInWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ]
+    },
+    "surface_swim": {
+      "poseTypes": [
+        "WALK"
+      ],
+      "isTouchingWater": true,
+      "isSubmergedInWater": false,
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('gyarados_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('gyarados_mega', 'blink')"
+      ],
+      "transformedParts": [
+        {
+          "part": "body",
+          "position": [
+            0,
+            9,
+            0
+          ]
+        }
+      ]
+    }
+  }
+}

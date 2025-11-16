@@ -1,0 +1,22 @@
+{
+  "species": "cobblemon:pinsir",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "mega"
+      ],
+      "model": "cobblemon:pinsir_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "model": "cobblemon:pinsir_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega_shiny.png"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "target": "cobblemon:hooh",
+  "implemented": true,
+  "baseScale": 1,
+  "hitbox": {
+    "width": 4,
+    "height": 5,
+    "fixed": false
+  }
+}

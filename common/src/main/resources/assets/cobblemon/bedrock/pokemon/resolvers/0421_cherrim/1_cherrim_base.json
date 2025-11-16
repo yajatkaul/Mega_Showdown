@@ -1,0 +1,24 @@
+{
+  "species": "cobblemon:cherrim",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "sunshine-form"
+      ],
+      "poser": "cobblemon:cherrim_sunshine",
+      "model": "cobblemon:cherrim_sunshine.geo",
+      "texture": "cobblemon:textures/pokemon/0421_cherrim/cherrim_sunshine.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny",
+        "sunshine-form"
+      ],
+      "texture": "cobblemon:textures/pokemon/0421_cherrim/cherrim_sunshine_shiny.png",
+      "layers": []
+    }
+  ]
+}
+

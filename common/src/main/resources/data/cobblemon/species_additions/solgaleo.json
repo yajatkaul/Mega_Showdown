@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:solgaleo",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 4,
+    "height": 4,
+    "fixed": false
+  }
+}

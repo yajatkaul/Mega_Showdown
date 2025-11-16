@@ -1,0 +1,40 @@
+{
+  "implemented": true,
+  "target": "cobblemon:melmetal",
+  "baseScale": 1.2,
+  "hitbox": {
+    "width": 2.4,
+    "height": 3.3,
+    "fixed": false
+  },
+  "drops": {
+    "amount": "1",
+    "entries": [
+      {
+        "item": "minecraft:iron_block",
+        "quantityRange": "1-2",
+        "percentage": 50
+      }
+    ]
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "depth": "normal",
+      "light": "0-4"
+    },
+    "moving": {
+      "canLook": false,
+      "walk": {
+        "walkSpeed": 0.195,
+        "canWalk": true,
+        "avoidsLand": false
+      },
+      "swim": {
+        "swimSpeed": 0.1,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      }
+    }
+  }
+}

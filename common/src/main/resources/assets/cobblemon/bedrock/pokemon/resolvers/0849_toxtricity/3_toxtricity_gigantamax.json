@@ -1,0 +1,61 @@
+{
+  "species": "cobblemon:toxtricity",
+  "order": 3,
+  "variations": [
+    {
+      "aspects": [
+        "gmax"
+      ],
+      "poser": "cobblemon:toxtricitygmax",
+      "model": "cobblemon:toxtricity_gigantamax.geo",
+      "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_emissive.png",
+          "emissive": true
+        },
+        {
+          "name": "glow",
+          "emissive": true,
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_emissive_1.png",
+              "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_emissive_2.png"
+            ],
+            "fps": 9,
+            "loop": true
+          },
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "gmax",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_emissive.png",
+          "emissive": true
+        },
+        {
+          "name": "glow",
+          "emissive": true,
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_emissive_1.png",
+              "cobblemon:textures/pokemon/0849_toxtricity/toxtricity_gigantamax_emissive_2.png"
+            ],
+            "fps": 9,
+            "loop": true
+          },
+          "translucent": true
+        }
+      ]
+    }
+  ]
+}

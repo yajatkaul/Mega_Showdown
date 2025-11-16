@@ -1,0 +1,24 @@
+{
+  "species": "cobblemon:zygarde",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": ["10-percent"],
+      "poser": "cobblemon:zygarde_10",
+      "model": "cobblemon:zygarde_10.geo",
+      "texture": "cobblemon:textures/pokemon/0718_zygarde/10/zygarde10.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0718_zygarde/10/zygarde10_emissive.png"
+        }
+      ]
+    },
+    {
+      "aspects": ["10-percent", "shiny"],
+      "texture": "cobblemon:textures/pokemon/0718_zygarde/10/zygarde10_shiny.png",
+      "layers": []
+    }
+  ]
+}

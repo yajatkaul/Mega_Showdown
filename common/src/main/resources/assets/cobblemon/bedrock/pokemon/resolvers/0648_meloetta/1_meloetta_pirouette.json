@@ -1,0 +1,22 @@
+{
+  "species": "cobblemon:meloetta",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "pirouette-forme"
+      ],
+      "poser": "cobblemon:meloetta_pirouette",
+      "model": "cobblemon:meloetta_pirouette.geo",
+      "texture": "cobblemon:textures/pokemon/0648_meloetta/meloetta_pirouette.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny",
+        "pirouette-forme"
+      ],
+      "texture": "cobblemon:textures/pokemon/0648_meloetta/meloetta_pirouette_shiny.png"
+    }
+  ]
+}

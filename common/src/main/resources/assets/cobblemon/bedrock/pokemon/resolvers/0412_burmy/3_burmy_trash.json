@@ -1,0 +1,22 @@
+{
+  "species": "cobblemon:burmy",
+  "order": 3,
+  "variations": [
+    {
+      "aspects": [
+        "trash-cloak"
+      ],
+      "poser": "cobblemon:burmy",
+      "model": "cobblemon:burmy_trash.geo",
+      "texture": "cobblemon:textures/pokemon/0412_burmy/burmy_trash.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny",
+        "trash-cloak"
+      ],
+      "texture": "cobblemon:textures/pokemon/0412_burmy/burmy_trash_shiny.png"
+    }
+  ]
+}

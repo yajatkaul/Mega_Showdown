@@ -1,0 +1,10 @@
+{
+  "pokemon": [
+    "giratina",
+    "palkia",
+    "dialga"
+  ],
+  "features": [
+    "orb_forme"
+  ]
+}

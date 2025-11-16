@@ -1,0 +1,35 @@
+{
+  "species": "cobblemon:wishiwashi",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "school-form"
+      ],
+      "poser": "cobblemon:wishiwashi_schooling",
+      "model": "cobblemon:wishiwashi_school.geo",
+      "texture": "cobblemon:textures/pokemon/0746_wishiwashi/wishiwashi_school.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0746_wishiwashi/wishiwashi_school_emissive.png"
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny",
+        "school-form"
+      ],
+      "texture": "cobblemon:textures/pokemon/0746_wishiwashi/wishiwashi_school_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0746_wishiwashi/wishiwashi_school_shiny_emissive.png"
+        }
+      ]
+    }
+  ]
+}

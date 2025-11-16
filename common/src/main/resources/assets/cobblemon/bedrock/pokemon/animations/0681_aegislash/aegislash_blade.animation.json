@@ -1,0 +1,396 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.aegislash_blade.ground_idle": {
+      "loop": true,
+      "bones": {
+        "eye2": {
+          "position": [
+            0.5,
+            0,
+            0
+          ]
+        },
+        "arm_left": {
+          "rotation": [
+            0,
+            22.5,
+            37.5
+          ]
+        },
+        "arm_left4": {
+          "rotation": [
+            0,
+            0,
+            42.5
+          ]
+        },
+        "arm_left5": {
+          "rotation": [
+            0,
+            30,
+            0
+          ]
+        },
+        "arm_left6": {
+          "rotation": [
+            0,
+            22.5,
+            27.5
+          ]
+        },
+        "arm_left7": {
+          "rotation": [
+            0,
+            17.5,
+            0
+          ]
+        },
+        "hand_left": {
+          "rotation": [
+            0,
+            0,
+            25
+          ]
+        },
+        "arm_right": {
+          "rotation": [
+            66.33765,
+            -8.31087,
+            -18.25612
+          ]
+        },
+        "arm_right2": {
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        "arm_right3": {
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        "arm_right4": {
+          "rotation": [
+            0,
+            -12.5,
+            0
+          ]
+        },
+        "arm_right5": {
+          "rotation": [
+            0,
+            -7.5,
+            0
+          ]
+        },
+        "arm_right6": {
+          "rotation": [
+            0,
+            -52.5,
+            0
+          ]
+        },
+        "arm_right7": {
+          "rotation": [
+            0,
+            0,
+            -12.5
+          ]
+        },
+        "finger_right": {
+          "rotation": [
+            0,
+            12.5,
+            0
+          ]
+        },
+        "finger_right7": {
+          "rotation": [
+            0,
+            -7.5,
+            0
+          ]
+        },
+        "finger_right10": {
+          "rotation": [
+            0,
+            -17.5,
+            0
+          ]
+        },
+        "shield_arm": {
+          "rotation": [
+            0,
+            22.5,
+            37.5
+          ]
+        },
+        "shield_arm4": {
+          "rotation": [
+            0,
+            0,
+            42.5
+          ]
+        },
+        "shield_arm5": {
+          "rotation": [
+            0,
+            30,
+            0
+          ]
+        },
+        "shield_arm6": {
+          "rotation": [
+            0,
+            22.5,
+            27.5
+          ]
+        },
+        "shield_arm7": {
+          "rotation": [
+            0,
+            17.5,
+            0
+          ]
+        },
+        "shield_hand": {
+          "rotation": [
+            0,
+            0,
+            25
+          ]
+        },
+        "body": {
+          "rotation": [
+            "0+math.sin(q.anim_time*90*1-90)*2",
+            0,
+            0
+          ],
+          "position": [
+            0,
+            "2+math.sin(q.anim_time*90*1)*1",
+            0
+          ]
+        }
+      }
+    },
+    "animation.aegislash_blade.ground_walk": {
+      "loop": true,
+      "bones": {
+        "eye2": {
+          "position": [
+            0.5,
+            0,
+            0
+          ]
+        },
+        "arm_left": {
+          "rotation": [
+            0,
+            22.5,
+            37.5
+          ]
+        },
+        "arm_left4": {
+          "rotation": [
+            0,
+            0,
+            42.5
+          ]
+        },
+        "arm_left5": {
+          "rotation": [
+            0,
+            30,
+            0
+          ]
+        },
+        "arm_left6": {
+          "rotation": [
+            0,
+            22.5,
+            27.5
+          ]
+        },
+        "arm_left7": {
+          "rotation": [
+            0,
+            17.5,
+            0
+          ]
+        },
+        "hand_left": {
+          "rotation": [
+            0,
+            0,
+            25
+          ]
+        },
+        "arm_right": {
+          "rotation": [
+            66.33765,
+            -8.31087,
+            -18.25612
+          ]
+        },
+        "arm_right2": {
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        "arm_right3": {
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        "arm_right4": {
+          "rotation": [
+            0,
+            -12.5,
+            0
+          ]
+        },
+        "arm_right5": {
+          "rotation": [
+            0,
+            -7.5,
+            0
+          ]
+        },
+        "arm_right6": {
+          "rotation": [
+            0,
+            -52.5,
+            0
+          ]
+        },
+        "arm_right7": {
+          "rotation": [
+            0,
+            0,
+            -12.5
+          ]
+        },
+        "finger_right": {
+          "rotation": [
+            0,
+            12.5,
+            0
+          ]
+        },
+        "finger_right7": {
+          "rotation": [
+            0,
+            -7.5,
+            0
+          ]
+        },
+        "finger_right10": {
+          "rotation": [
+            0,
+            -17.5,
+            0
+          ]
+        },
+        "shield_arm": {
+          "rotation": [
+            0,
+            22.5,
+            37.5
+          ]
+        },
+        "shield_arm4": {
+          "rotation": [
+            0,
+            0,
+            42.5
+          ]
+        },
+        "shield_arm5": {
+          "rotation": [
+            0,
+            30,
+            0
+          ]
+        },
+        "shield_arm6": {
+          "rotation": [
+            0,
+            22.5,
+            27.5
+          ]
+        },
+        "shield_arm7": {
+          "rotation": [
+            0,
+            17.5,
+            0
+          ]
+        },
+        "shield_hand": {
+          "rotation": [
+            0,
+            0,
+            25
+          ]
+        },
+        "body": {
+          "rotation": [
+            "27.5+math.sin(q.anim_time*90*2-90)*2",
+            0,
+            0
+          ],
+          "position": [
+            0,
+            "2+math.sin(q.anim_time*90*2)*1.5",
+            -9
+          ]
+        }
+      }
+    },
+    "animation.aegislash_blade.blink": {
+      "animation_length": 0.5,
+      "bones": {
+        "eyelid": {
+          "position": {
+            "0.0417": [
+              0,
+              0,
+              0
+            ],
+            "0.0833": [
+              0,
+              0,
+              -0.1
+            ],
+            "0.125": [
+              0,
+              0,
+              -0.1
+            ],
+            "0.1667": [
+              0,
+              0,
+              -0.1
+            ],
+            "0.2083": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "geckolib_format_version": 2
+}

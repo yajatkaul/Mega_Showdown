@@ -1,0 +1,20 @@
+{
+  "implemented": true,
+  "target": "cobblemon:meloetta",
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
+  "baseScale": 0.8,
+  "hitbox": {
+    "width": 1,
+    "height": 1.5,
+    "fixed": false
+  }
+}

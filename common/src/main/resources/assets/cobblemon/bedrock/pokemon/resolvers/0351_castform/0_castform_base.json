@@ -1,0 +1,88 @@
+{
+  "species": "cobblemon:castform",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:castform",
+      "model": "cobblemon:castform.geo",
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_shiny.png"
+    },
+    {
+      "aspects": [
+        "snowy-form"
+      ],
+      "model": "cobblemon:castform_snowy.geo",
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy.png",
+      "layers": [
+        {
+          "name": "outter",
+          "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy_outter.png",
+          "emissive": false,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny",
+        "snowy-form"
+      ],
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_snowy_shiny.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "sunny-form"
+      ],
+      "model": "cobblemon:castform_sunny.geo",
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_sunny.png",
+      "layers": [
+        {
+          "name": "outter",
+          "texture": "cobblemon:textures/pokemon/0351_castform/castform_sunny_outter.png",
+          "emissive": false,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny",
+        "sunny-form"
+      ],
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_sunny_shiny.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "rainy-form"
+      ],
+      "model": "cobblemon:castform_rainy.geo",
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_rainy.png",
+      "layers": [
+        {
+          "name": "outter",
+          "texture": "cobblemon:textures/pokemon/0351_castform/castform_rainy_outter.png",
+          "emissive": false,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny",
+        "rainy-form"
+      ],
+      "texture": "cobblemon:textures/pokemon/0351_castform/castform_rainy_shiny.png",
+      "layers": []
+    }
+  ]
+}

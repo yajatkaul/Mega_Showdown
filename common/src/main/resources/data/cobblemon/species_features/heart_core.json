@@ -1,0 +1,13 @@
+{
+  "type": "choice",
+  "keys": [
+    "heart_core"
+  ],
+  "default": "purple",
+  "choices": [
+    "green",
+    "purple"
+  ],
+  "isAspect": true,
+  "aspectFormat": "{{choice}}-color"
+}

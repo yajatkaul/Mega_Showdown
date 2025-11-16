@@ -1,0 +1,32 @@
+{
+  "implemented": true,
+  "target": "cobblemon:genesect",
+  "behaviour": {
+    "resting": {
+      "canSleep": false,
+      "depth": "normal",
+      "light": "4-15"
+    },
+    "moving": {
+      "canLook": false,
+      "walk": {
+        "canWalk": true,
+        "avoidsLand": false
+      },
+      "swim": {
+        "swimSpeed": 0.1,
+        "canSwimInWater": false,
+        "canBreatheUnderwater": false
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
+  "baseScale": 0.8,
+  "hitbox": {
+    "width": 0.8,
+    "height": 2.0,
+    "fixed": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "implemented": true,
+  "target": "cobblemon:keldeo",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 2,
+    "height": 2.2,
+    "fixed": false
+  }
+}

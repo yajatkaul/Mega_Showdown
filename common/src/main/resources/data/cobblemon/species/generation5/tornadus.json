@@ -1,0 +1,214 @@
+{
+  "implemented": true,
+  "nationalPokedexNumber": 641,
+  "name": "Tornadus",
+  "primaryType": "flying",
+  "maleRatio": 1,
+  "height": 15,
+  "weight": 630,
+  "pokedex": [
+    "cobblemon.species.tornadus.desc"
+  ],
+  "labels": [
+    "gen5",
+    "legendary"
+  ],
+  "aspects": [
+    "incarnate-forme"
+  ],
+  "abilities": [
+    "prankster",
+    "h:defiant"
+  ],
+  "eggGroups": [
+    "undiscovered"
+  ],
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "canWalk": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
+  "baseScale": 1,
+  "hitbox": {
+    "width": 2.2,
+    "height": 2.5,
+    "fixed": false
+  },
+  "baseStats": {
+    "hp": 79,
+    "attack": 115,
+    "defence": 70,
+    "special_attack": 125,
+    "special_defence": 80,
+    "speed": 111
+  },
+  "evYield": {
+    "hp": 0,
+    "attack": 3,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
+  "baseExperienceYield": 290,
+  "experienceGroup": "slow",
+  "catchRate": 3,
+  "eggCycles": 120,
+  "baseFriendship": 90,
+  "moves": [
+    "1:astonish",
+    "1:gust",
+    "5:leer",
+    "10:swagger",
+    "15:bite",
+    "20:aircutter",
+    "25:agility",
+    "30:tailwind",
+    "35:airslash",
+    "40:crunch",
+    "45:extrasensory",
+    "50:uproar",
+    "55:hammerarm",
+    "60:raindance",
+    "65:hurricane",
+    "70:thrash",
+    "77:bleakwindstorm",
+    "tm:acrobatics",
+    "tm:agility",
+    "tm:aircutter",
+    "tm:airslash",
+    "tm:assurance",
+    "tm:bodyslam",
+    "tm:brickbreak",
+    "tm:brutalswing",
+    "tm:bulkup",
+    "tm:chillingwater",
+    "tm:crunch",
+    "tm:darkpulse",
+    "tm:defog",
+    "tm:embargo",
+    "tm:endure",
+    "tm:facade",
+    "tm:fling",
+    "tm:fly",
+    "tm:focusblast",
+    "tm:foulplay",
+    "tm:gigaimpact",
+    "tm:grassknot",
+    "tm:heatwave",
+    "tm:hurricane",
+    "tm:hyperbeam",
+    "tm:icywind",
+    "tm:incinerate",
+    "tm:irontail",
+    "tm:knockoff",
+    "tm:lashout",
+    "tm:metronome",
+    "tm:nastyplot",
+    "tm:payback",
+    "tm:protect",
+    "tm:psychic",
+    "tm:raindance",
+    "tm:rest",
+    "tm:revenge",
+    "tm:reversal",
+    "tm:rocksmash",
+    "tm:roleplay",
+    "tm:sandstorm",
+    "tm:scaryface",
+    "tm:skydrop",
+    "tm:sleeptalk",
+    "tm:sludgebomb",
+    "tm:sludgewave",
+    "tm:smackdown",
+    "tm:snowscape",
+    "tm:strength",
+    "tm:substitute",
+    "tm:sunnyday",
+    "tm:superpower",
+    "tm:swagger",
+    "tm:tailwind",
+    "tm:takedown",
+    "tm:taunt",
+    "tm:terablast",
+    "tm:thief",
+    "tm:torment",
+    "tm:uproar",
+    "tm:uturn",
+    "tm:weatherball",
+    "tutor:aircutter",
+    "tutor:bulkup",
+    "tutor:darkpulse",
+    "tutor:defog",
+    "tutor:foulplay",
+    "tutor:gigaimpact",
+    "tutor:heatwave",
+    "tutor:hyperbeam",
+    "tutor:icywind",
+    "tutor:irontail",
+    "tutor:knockoff",
+    "tutor:lashout",
+    "tutor:psychic",
+    "tutor:rest",
+    "tutor:rocksmash",
+    "tutor:roleplay",
+    "tutor:sleeptalk",
+    "tutor:sludgebomb",
+    "tutor:superpower",
+    "tutor:tailwind",
+    "tutor:uproar"
+  ],
+  "evolutions": [],
+  "forms": [
+    {
+      "name": "Therian",
+      "primaryType": "flying",
+      "maleRatio": 1,
+      "height": 14,
+      "weight": 630,
+      "pokedex": [
+        "cobblemon.species.tornadus-therian.desc"
+      ],
+      "baseScale": 1,
+      "hitbox": {
+        "width": 2,
+        "height": 3.5,
+        "fixed": false
+      },
+      "labels": [
+        "gen5",
+        "legendary"
+      ],
+      "aspects": [
+        "therian-forme"
+      ],
+      "abilities": [
+        "regenerator",
+        "h:regenerator"
+      ],
+      "baseStats": {
+        "hp": 79,
+        "attack": 100,
+        "defence": 80,
+        "special_attack": 110,
+        "special_defence": 90,
+        "speed": 121
+      },
+      "evYield": {
+        "hp": 0,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 0,
+        "special_defence": 0,
+        "speed": 3
+      },
+      "evolutions": [],
+      "battleOnly": false
+    }
+  ]
+}

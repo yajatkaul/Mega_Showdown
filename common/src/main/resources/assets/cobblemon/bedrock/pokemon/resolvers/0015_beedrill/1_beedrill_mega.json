@@ -1,0 +1,39 @@
+{
+  "species": "cobblemon:beedrill",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "mega"
+      ],
+      "poser": "cobblemon:beedrill_mega",
+      "model": "cobblemon:beedrillmega.geo",
+      "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrillmega.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrill_emissive.png",
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "poser": "cobblemon:beedrill_mega",
+      "model": "cobblemon:beedrillmega.geo",
+      "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrillmega_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "emissive": true,
+          "texture": "cobblemon:textures/pokemon/0015_beedrill/beedrill_shiny_emissive.png",
+          "translucent": true
+        }
+      ]
+    }
+  ]
+}

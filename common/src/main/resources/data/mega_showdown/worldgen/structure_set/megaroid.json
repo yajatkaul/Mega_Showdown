@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "mega_showdown:megaroid",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 38,
+    "separation": 20,
+    "salt": 486448540,
+    "frequency": 0.5
+  }
+}

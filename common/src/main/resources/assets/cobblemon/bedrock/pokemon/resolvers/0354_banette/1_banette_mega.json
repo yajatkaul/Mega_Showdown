@@ -1,0 +1,37 @@
+{
+  "species": "cobblemon:banette",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "mega"
+      ],
+      "poser": "cobblemon:banette_mega",
+      "model": "cobblemon:banette_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0354_banette/megabanette.png",
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0354_banette/banette_mega_emissive.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "poser": "cobblemon:banette_mega",
+      "model": "cobblemon:banette_mega.geo",
+      "texture": "cobblemon:textures/pokemon/0354_banette/megabanette_shiny.png",
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0354_banette/banette_mega_emissive.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

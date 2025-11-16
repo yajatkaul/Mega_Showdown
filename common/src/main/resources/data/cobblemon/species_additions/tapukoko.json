@@ -1,0 +1,23 @@
+{
+  "implemented": true,
+  "target": "cobblemon:tapukoko",
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.35
+      }
+    },
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "depth": "normal",
+      "light": "0-4"
+    }
+  },
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1.1,
+    "height": 2.3,
+    "fixed": false
+  }
+}

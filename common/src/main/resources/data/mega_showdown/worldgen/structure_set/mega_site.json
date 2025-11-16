@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "mega_showdown:mega_site",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 32,
+    "separation": 8,
+    "salt": 726448540,
+    "frequency": 0.5
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "head": "head",
+  "portraitScale": 1.25,
+  "portraitTranslation": [
+    0,
+    0.5,
+    0
+  ],
+  "profileScale": 0.8,
+  "profileTranslation": [
+    0,
+    0.4,
+    0
+  ],
+  "cry": "bedrock(meloetta_pirouette, cry)",
+  "poses": {
+    "standing": {
+      "poseName": "standing",
+      "transformTicks": 10,
+      "poseTypes": [
+        "STAND",
+        "NONE",
+        "PORTRAIT",
+        "PROFILE"
+      ],
+      "isBattle": false,
+      "animations": [
+        "look",
+        "bedrock(meloetta_pirouette, ground_idle)"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(meloetta_pirouette, blink)"
+          ]
+        }
+      ]
+    },
+    "walking": {
+      "poseName": "walking",
+      "transformTicks": 10,
+      "poseTypes": [
+        "WALK"
+      ],
+      "animations": [
+        "look",
+        "bedrock(meloetta_pirouette, ground_walk)"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(meloetta_pirouette, blink)"
+          ]
+        }
+      ]
+    },
+    "battle-idle": {
+      "poseName": "battle-idle",
+      "transformTicks": 10,
+      "poseTypes": [
+        "STAND"
+      ],
+      "isBattle": true,
+      "animations": [
+        "look",
+        "bedrock(meloetta_pirouette, battle_idle)"
+      ],
+      "quirks": [
+        {
+          "name": "blink",
+          "animations": [
+            "bedrock(meloetta_pirouette, blink)"
+          ]
+        }
+      ]
+    }
+  }
+}

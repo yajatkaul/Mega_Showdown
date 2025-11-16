@@ -1,0 +1,42 @@
+{
+  "species": "cobblemon:medicham",
+  "order": 3,
+  "variations": [
+    {
+      "aspects": [
+        "mega"
+      ],
+      "model": "cobblemon:mega_medicham.geo",
+      "texture": "cobblemon:textures/pokemon/0308_medicham/megamedicham.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "model": "cobblemon:mega_medicham.geo",
+      "texture": "cobblemon:textures/pokemon/0308_medicham/megamedicham_shiny.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mega",
+        "female"
+      ],
+      "model": "cobblemon:mega_medicham.geo",
+      "texture": "cobblemon:textures/pokemon/0308_medicham/megamedicham.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny",
+        "female"
+      ],
+      "model": "cobblemon:mega_medicham.geo",
+      "texture": "cobblemon:textures/pokemon/0308_medicham/megamedicham_shiny.png",
+      "layers": []
+    }
+  ]
+}
