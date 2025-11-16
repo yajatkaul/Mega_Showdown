@@ -56,10 +56,7 @@ public class ParticlesList {
 
     public static Effect zMoves = new Effect(
             Optional.empty(),
-            Optional.of(zmoveSnowStorm("cobblemon:z_moves",
-                    4f,
-                    "mega_showdown:z_moves")
-            )
+            Optional.of(zmoveSnowStorm())
     );
 
     public static Effect kyuremBlackFusion = new Effect(
@@ -196,17 +193,17 @@ public class ParticlesList {
         );
     }
 
-    public static SnowStormParticle zmoveSnowStorm(String id, float dur, String sound_id) {
+    public static SnowStormParticle zmoveSnowStorm() {
         return new SnowStormParticle(
                 Optional.of(List.of("target")),
                 Optional.empty(),
                 Optional.empty(),
                 Optional.empty(),
-                Optional.of(id),
-                Optional.of(dur),
+                Optional.of("cobblemon:z_moves"),
+                Optional.of(4f),
                 Optional.empty(),
                 Optional.empty(),
-                Optional.of(sound_id),
+                Optional.of("mega_showdown:z_move"),
                 Optional.empty(),
                 Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 2.5f, 0))
         );

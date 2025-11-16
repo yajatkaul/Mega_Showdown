@@ -49,7 +49,7 @@ public class MegaShowdownBlocks {
                     .noCollission()
                     .sound(SoundType.FLOWERING_AZALEA)
             ),
-            block -> new MaxMushroom(block.get(), new Item.Properties())
+            block -> new MaxMushroom(block.get(), new Item.Properties().arch$tab(MegaShowdownTabs.DYNAMAX_TAB))
     );
 
     public static final RegistrySupplier<Block> GRACIDEA_FLOWER = registerBlockWithBlockItem("gracidea_flower",

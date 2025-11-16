@@ -5,6 +5,8 @@
     "headLoc": "mega_showdown:zygarde_cube_3d",
     "guiLoc": "mega_showdown:zygarde_cube",
     "groundLoc": "mega_showdown:zygarde_cube",
-    "fixedLoc": "mega_showdown:zygarde_cube_3d"
+    "fixedLoc": "mega_showdown:zygarde_cube_3d",
+    "hand": "mega_showdown:zygarde_cube_3d",
+    "hand3rd": "mega_showdown:zygarde_cube_3d"
   }
 }

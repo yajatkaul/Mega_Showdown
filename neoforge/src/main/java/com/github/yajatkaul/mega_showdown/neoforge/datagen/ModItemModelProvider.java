@@ -215,6 +215,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownItems.SOUL_DEW.get());
 
         basicItem(MegaShowdownItems.MEGA_BRACELET.get());
+        basicItem(MegaShowdownItems.LISIA_MEGA_TIARA.get());
+
         basicItem(MegaShowdownItems.DYNAMAX_BAND.get());
         basicItem(MegaShowdownItems.TERA_ORB.get());
         basicItem(MegaShowdownItems.Z_RING.get());
@@ -232,5 +234,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get().asItem());
 
         basicItem(MegaShowdownBlocks.DORMANT_CRYSTAL.get().asItem());
+        basicItem(MegaShowdownBlocks.MAX_MUSHROOM.get().asItem());
     }
 }

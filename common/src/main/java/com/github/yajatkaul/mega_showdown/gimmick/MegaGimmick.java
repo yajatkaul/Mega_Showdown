@@ -34,6 +34,7 @@ public record MegaGimmick(
     public static void appendMegaAspect(String aspect) {
         mega_aspects.add(aspect);
     }
+
     public static Set<String> getMegaAspects() {
         return mega_aspects;
     }

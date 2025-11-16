@@ -5,6 +5,8 @@
     "headLoc": "mega_showdown:tera_orb_3d",
     "guiLoc": "mega_showdown:tera_orb",
     "groundLoc": "mega_showdown:tera_orb",
-    "fixedLoc": "mega_showdown:tera_orb_3d"
+    "fixedLoc": "mega_showdown:tera_orb_3d",
+    "hand": "mega_showdown:tera_orb_3d",
+    "hand3rd": "mega_showdown:tera_orb_3d"
   }
 }

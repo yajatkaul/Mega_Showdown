@@ -49,7 +49,10 @@ public class GimmickTurnCheck {
     }
 
     public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
-        if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
+        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.OMNI_RING);
+        if (hasOmniRing) {
+            return true;
+        } else if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
             if (!MegaShowdownConfig.dynamax) {
                 return false;
             }

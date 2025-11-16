@@ -8,8 +8,13 @@ import com.github.yajatkaul.mega_showdown.utils.PokemonBehaviourHelper;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import kotlin.Unit;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +66,7 @@ public record SnowStormParticle(
         }
 
         PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.orElse(null), other, this.target_apply.orElse(null));
+        applySounds(context, (ServerLevel) context.level());
 
         this.apply_after.ifPresentOrElse((apply_after) -> {
             context.after(apply_after, () -> {
@@ -103,6 +109,7 @@ public record SnowStormParticle(
             return;
         }
         PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.orElse(null), other, this.target_apply.orElse(null));
+        revertSounds(context, (ServerLevel) context.level());
 
         this.revert_after.ifPresentOrElse((revert_after) -> {
             context.after(revert_after, () -> {
@@ -147,6 +154,7 @@ public record SnowStormParticle(
         }
 
         PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.orElse(null), other, this.target_apply.orElse(null));
+        applySounds(context, (ServerLevel) context.level());
 
         this.apply_after.ifPresentOrElse((apply_after) -> {
             context.after(apply_after, () -> {
@@ -193,7 +201,9 @@ public record SnowStormParticle(
             MegaShowdown.LOGGER.error("Invalid snowstorm revert particle during battle");
             return;
         }
+
         PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.orElse(null), other, this.target_apply.orElse(null));
+        revertSounds(context, (ServerLevel) context.level());
 
         this.revert_after.ifPresentOrElse((revert_after) -> {
             context.after(revert_after, () -> {
@@ -224,5 +234,51 @@ public record SnowStormParticle(
         context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
         pokemonPersistentData.remove("form_changing");
         pokemonPersistentData.remove("apply_aspects");
+    }
+
+    public void applySounds(PokemonEntity context, ServerLevel level) {
+        this.sound_apply.ifPresent((sound_apply) -> {
+            String[] partsSound;
+            partsSound = sound_apply.split(":");
+            ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
+            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
+
+            Vec3 entityPos = context.position();
+
+            if (soundEvent == null) {
+                MegaShowdown.LOGGER.error("Invalid Sound Apply used for pokemon: {}, sound id: {}",
+                        context.getPokemon().getSpecies().getName(),
+                        sound_apply);
+            } else {
+                level.playSound(
+                        null, entityPos.x, entityPos.y, entityPos.z,
+                        soundEvent,
+                        SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+                );
+            }
+        });
+    }
+
+    public void revertSounds(PokemonEntity context, ServerLevel level) {
+        this.sound_revert.ifPresent((sound_revert) -> {
+            String[] partsSound;
+            partsSound = sound_revert.split(":");
+            ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
+            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
+
+            Vec3 entityPos = context.position();
+
+            if (soundEvent == null) {
+                MegaShowdown.LOGGER.error("Invalid Sound Revert used for pokemon: {}, sound id: {}",
+                        context.getPokemon().getSpecies().getName(),
+                        sound_apply);
+            } else {
+                level.playSound(
+                        null, entityPos.x, entityPos.y, entityPos.z,
+                        soundEvent,
+                        SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
+                );
+            }
+        });
     }
 }

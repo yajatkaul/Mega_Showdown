@@ -23,7 +23,7 @@ public class ShowdownActionRequestMixin {
     private List<ShowdownMoveset> active;
 
     @Inject(method = "sanitize", at = @At("HEAD"), remap = false)
-    private void beforeSanitize (PokemonBattle battle, BattleActor battleActor, CallbackInfo ci) {
+    private void beforeSanitize(PokemonBattle battle, BattleActor battleActor, CallbackInfo ci) {
         battle.getPlayers().forEach(GimmickTurnCheck::check);
     }
 

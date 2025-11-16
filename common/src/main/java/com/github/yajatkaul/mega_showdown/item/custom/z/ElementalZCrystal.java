@@ -21,7 +21,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
                              boolean tradable,
                              ElementalType element
     ) {
-        super(properties, revertAspect, applyAspect, pokemons, effect, tradable);
+        super(properties, revertAspect, applyAspect, pokemons, effect, tradable, false);
         this.element = element;
         this.pokemons = pokemons;
         this.effect = effect;

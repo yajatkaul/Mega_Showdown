@@ -54,7 +54,11 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, ReassemblyUnitBlockEntity be) {
         if (level.isClientSide) return;
 
-        if (be.cookTime >= be.maxCookTime) {
+        if (be.isCooking()) {
+            be.cookTime++;
+        }
+
+        if (be.cookTime >= be.maxCookTime && be.maxCookTime > 0) {
             ReassembleStage finishedStage = switch (be.stage) {
                 case ReassembleStage.COOKING_10 -> ReassembleStage.FINISHED_10;
                 case ReassembleStage.COOKING_50 -> ReassembleStage.FINISHED_50;
@@ -77,6 +81,10 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
 
     public boolean isIdle() {
         return stage == ReassembleStage.IDLE;
+    }
+
+    public boolean isCooking() {
+        return stage == ReassembleStage.COOKING_10 || stage == ReassembleStage.COOKING_50 || stage == ReassembleStage.COOKING_100;
     }
 
     public boolean isFinished() {

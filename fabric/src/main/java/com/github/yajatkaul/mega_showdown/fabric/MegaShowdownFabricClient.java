@@ -2,15 +2,12 @@ package com.github.yajatkaul.mega_showdown.fabric;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdownClient;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
-import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
-import dev.architectury.registry.ReloadListenerRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.server.packs.PackType;
 
 public final class MegaShowdownFabricClient implements ClientModInitializer {
     @Override

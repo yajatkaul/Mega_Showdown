@@ -1,6 +1,5 @@
 package com.github.yajatkaul.mega_showdown.mixin.client;
 
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.item.ItemRenderingCodec;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -18,7 +17,7 @@ public abstract class ModeBakeryMixin {
 
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/model/ModelBakery;loadSpecialItemModelAndDependencies(Lnet/minecraft/client/resources/model/ModelResourceLocation;)V", ordinal = 1))
     private void onInit(CallbackInfo ci) {
-        for (ItemRenderingCodec itemRender: ItemRenderingLoader.REGISTRY) {
+        for (ItemRenderingCodec itemRender : ItemRenderingLoader.REGISTRY) {
             this.loadSpecialItemModelAndDependencies(ModelResourceLocation.inventory(itemRender.itemId()));
             this.loadSpecialItemModelAndDependencies(ModelResourceLocation.inventory(itemRender.itemId_3d()));
         }

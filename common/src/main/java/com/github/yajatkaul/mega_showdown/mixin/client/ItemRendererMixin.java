@@ -1,13 +1,10 @@
 package com.github.yajatkaul.mega_showdown.mixin.client;
 
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.item.ItemRenderingCodec;
 import com.github.yajatkaul.mega_showdown.codec.item.PerspectivesCodec;
 import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.ItemModelShaper;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -36,18 +33,26 @@ public abstract class ItemRendererMixin {
             argsOnly = true
     )
     public BakedModel modifyModel(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ItemDisplayContext renderMode) {
-        for (ItemRenderingCodec itemRender: ItemRenderingLoader.REGISTRY) {
+        for (ItemRenderingCodec itemRender : ItemRenderingLoader.REGISTRY) {
             Item item = BuiltInRegistries.ITEM.get(itemRender.itemId());
             PerspectivesCodec perspectives = itemRender.perspectivesCodec();
             if (stack.getItem() == item) {
                 if (renderMode == ItemDisplayContext.GUI) {
-                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.guiLoc()));
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.guiLoc().get()));
                 } else if (renderMode == ItemDisplayContext.HEAD) {
-                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.headLoc()));
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.headLoc().get()));
                 } else if (renderMode == ItemDisplayContext.GROUND) {
-                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.groundLoc()));
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.groundLoc().get()));
                 } else if (renderMode == ItemDisplayContext.FIXED) {
-                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.fixedLoc()));
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.fixedLoc().get()));
+                } else if (renderMode == ItemDisplayContext.FIRST_PERSON_LEFT_HAND) {
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.hand().get()));
+                } else if (renderMode == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.hand().get()));
+                } else if (renderMode == ItemDisplayContext.THIRD_PERSON_LEFT_HAND) {
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.hand3rd().get()));
+                } else if (renderMode == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+                    return getItemModelShaper().getModelManager().getModel(ModelResourceLocation.inventory(perspectives.hand3rd().get()));
                 }
             }
         }
@@ -60,7 +65,7 @@ public abstract class ItemRendererMixin {
             ordinal = 1
     )
     public BakedModel getHeldItemModelMixin(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack) {
-        for (ItemRenderingCodec itemRender: ItemRenderingLoader.REGISTRY) {
+        for (ItemRenderingCodec itemRender : ItemRenderingLoader.REGISTRY) {
             Item item = BuiltInRegistries.ITEM.get(itemRender.itemId());
             if (stack.getItem() == item) {
                 return this.itemModelShaper.getModelManager().getModel(ModelResourceLocation.inventory(itemRender.itemId_3d()));

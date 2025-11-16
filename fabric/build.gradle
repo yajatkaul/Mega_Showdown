@@ -34,7 +34,7 @@ dependencies {
 
     modImplementation "net.fabricmc:fabric-language-kotlin:$project.kotlin_fabric_version"
 
-    modImplementation "io.wispforest:accessories-fabric:${project.accessories_version}"
+    modImplementation include("io.wispforest:accessories-fabric:${project.accessories_version}")
     modImplementation "com.cobblemon:fabric:${project.cobblemon_version}"
 }
 

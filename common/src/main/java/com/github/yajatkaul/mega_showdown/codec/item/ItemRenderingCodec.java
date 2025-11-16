@@ -13,5 +13,8 @@ public record ItemRenderingCodec(
             ResourceLocation.CODEC.fieldOf("itemId").forGetter(ItemRenderingCodec::itemId),
             ResourceLocation.CODEC.fieldOf("itemId_3d").forGetter(ItemRenderingCodec::itemId_3d),
             PerspectivesCodec.CODEC.fieldOf("perspectives").forGetter(ItemRenderingCodec::perspectivesCodec)
-    ).apply(instance, ItemRenderingCodec::new));
+    ).apply(instance, (itemId, itemId_3d, prespectivesCodec) -> {
+        prespectivesCodec = prespectivesCodec.withDefaults(itemId);
+        return new ItemRenderingCodec(itemId, itemId_3d, prespectivesCodec);
+    }));
 }

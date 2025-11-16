@@ -5,6 +5,8 @@
     "headLoc": "mega_showdown:mega_bracelet_3d",
     "guiLoc": "mega_showdown:mega_bracelet",
     "groundLoc": "mega_showdown:mega_bracelet",
-    "fixedLoc": "mega_showdown:mega_bracelet_3d"
+    "fixedLoc": "mega_showdown:mega_bracelet_3d",
+    "hand": "mega_showdown:mega_bracelet_3d",
+    "hand3rd": "mega_showdown:mega_bracelet_3d"
   }
 }
