@@ -95,7 +95,7 @@ public class SoloFusion extends ToolTipItem {
                     return InteractionResultHolder.pass(stack);
                 }
 
-                effect.revertEffects(pokemonEntity, revertAspect, null);
+                effect.revertEffects(pokemon, revertAspect, null);
 
                 pokemon.setTradeable(true);
 
@@ -110,7 +110,7 @@ public class SoloFusion extends ToolTipItem {
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
-                effect.revertEffects(pokemonEntity, applyAspect, null);
+                effect.revertEffects(pokemon, applyAspect, null);
                 pokemon.setTradeable(false);
 
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());

@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public abstract class PokemonSelectingItem extends Item implements com.cobblemon.mod.common.api.item.PokemonSelectingItem {
+public abstract class PokemonSelectingItem extends ToolTipItem implements com.cobblemon.mod.common.api.item.PokemonSelectingItem {
     public PokemonSelectingItem(Properties settings) {
         super(settings);
     }

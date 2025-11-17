@@ -58,11 +58,11 @@ public record FormChangeToggleInteractItem(
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
                 if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                    effects.getFirst().applyEffects(pokemonEntity, form_aspect_apply_order.getFirst(), null);
+                    effects.getFirst().applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
                 }
             } else {
                 if (aspect_conditions.get(currentIndex + 1).validate_apply(pokemon)) {
-                    effects.get(currentIndex + 1).applyEffects(pokemonEntity, form_aspect_apply_order.get(currentIndex + 1), null);
+                    effects.get(currentIndex + 1).applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
                 }
             }
             stack.consume(consume, livingEntity);

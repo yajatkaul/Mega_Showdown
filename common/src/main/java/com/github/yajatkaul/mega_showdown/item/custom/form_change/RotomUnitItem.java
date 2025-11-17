@@ -43,7 +43,7 @@ public class RotomUnitItem extends ToolTipBlockItem {
                 return InteractionResult.PASS;
             }
 
-            ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of(String.format("appliance=%s", this.form)), null);
+            ParticlesList.defaultParticles.applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), null);
             itemStack.consume(1, player);
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
             return InteractionResult.SUCCESS;

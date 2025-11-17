@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:wishing_star_crystal"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.find_wishing_star.title",
+      "fallback": "Falling Rocks? Nah, Free Power!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.find_wishing_star.description",
+      "fallback": "Find a Wishing Star"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/dynamax/find_dynamax_structure",
+  "criteria": {
+    "obtained_wishing_star": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "mega_showdown:wishing_star"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_wishing_star"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -111,10 +111,10 @@ public class ZygardeCube extends ToolTipItem {
                 return InteractionResultHolder.success(stack);
             } else {
                 if (pokemon.getAspects().contains("10-percent")) {
-                    ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of("percent_cells=50"), null);
+                    ParticlesList.defaultParticles.applyEffects(pokemon, List.of("percent_cells=50"), null);
                     return InteractionResultHolder.success(stack);
                 } else if (pokemon.getAspects().contains("50-percent")) {
-                    ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of("percent_cells=10"), null);
+                    ParticlesList.defaultParticles.applyEffects(pokemon, List.of("percent_cells=10"), null);
                     return InteractionResultHolder.success(stack);
                 }
             }

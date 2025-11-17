@@ -1,0 +1,550 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:ultranecrozium-z"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.get_all_z_move.title",
+      "fallback": "Crystal Collector Extraordinaire!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.get_all_z_move.description",
+      "fallback": "Collect all types of Z-Crystals"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/z/z_moves",
+  "criteria": {
+    "aloraichium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:aloraichium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "buginium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:buginium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "darkinium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:darkinium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "decidium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:decidium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "dragonium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:dragonium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "eevium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:eevium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "electrium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:electrium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "fairium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:fairium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "fightinium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:fightinium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "firium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:firium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "flyinium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:flyinium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "ghostium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:ghostium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "grassium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:grassium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "groundium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:groundium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "icium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:icium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "incinium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:incinium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "kommonium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:kommonium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "lunalium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:lunalium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "lycanium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:lycanium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "marshadium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:marshadium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "mewnium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:mewnium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "mimikium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:mimikium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "normalium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:normalium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "pikanium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:pikanium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "pikashunium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:pikashunium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "poisonium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:poisonium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "primarium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:primarium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "psychium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:psychium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "rockium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:rockium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "snorlium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:snorlium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "solganium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:solganium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "steelium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:steelium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "tapunium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:tapunium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "ultranecrozium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:ultranecrozium-z"
+            ]
+          }
+        ]
+      }
+    },
+    "waterium-z": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:waterium-z"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "aloraichium-z"
+    ],
+    [
+      "buginium-z"
+    ],
+    [
+      "darkinium-z"
+    ],
+    [
+      "decidium-z"
+    ],
+    [
+      "dragonium-z"
+    ],
+    [
+      "eevium-z"
+    ],
+    [
+      "electrium-z"
+    ],
+    [
+      "fairium-z"
+    ],
+    [
+      "fightinium-z"
+    ],
+    [
+      "firium-z"
+    ],
+    [
+      "flyinium-z"
+    ],
+    [
+      "ghostium-z"
+    ],
+    [
+      "grassium-z"
+    ],
+    [
+      "groundium-z"
+    ],
+    [
+      "icium-z"
+    ],
+    [
+      "incinium-z"
+    ],
+    [
+      "kommonium-z"
+    ],
+    [
+      "lunalium-z"
+    ],
+    [
+      "lycanium-z"
+    ],
+    [
+      "marshadium-z"
+    ],
+    [
+      "mewnium-z"
+    ],
+    [
+      "mimikium-z"
+    ],
+    [
+      "normalium-z"
+    ],
+    [
+      "pikanium-z"
+    ],
+    [
+      "pikashunium-z"
+    ],
+    [
+      "poisonium-z"
+    ],
+    [
+      "primarium-z"
+    ],
+    [
+      "psychium-z"
+    ],
+    [
+      "rockium-z"
+    ],
+    [
+      "snorlium-z"
+    ],
+    [
+      "solganium-z"
+    ],
+    [
+      "steelium-z"
+    ],
+    [
+      "tapunium-z"
+    ],
+    [
+      "ultranecrozium-z"
+    ],
+    [
+      "waterium-z"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

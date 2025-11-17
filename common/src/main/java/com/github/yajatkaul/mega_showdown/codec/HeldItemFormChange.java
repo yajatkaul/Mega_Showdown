@@ -17,13 +17,13 @@ public record HeldItemFormChange(
     public static final Codec<HeldItemFormChange> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(HeldItemFormChange::pokemons),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(HeldItemFormChange::aspect_conditions),
-            Effect.EFFECT_MAP_CODEC.fieldOf("effect").forGetter(HeldItemFormChange::effect),
+            Effect.EFFECT_MAP_CODEC.optionalFieldOf("effect", Effect.empty()).forGetter(HeldItemFormChange::effect),
             Codec.BOOL.fieldOf("tradable").forGetter(HeldItemFormChange::tradable)
     ).apply(instance, HeldItemFormChange::new));
 
     public void apply(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName()) && aspect_conditions().validate_apply(pokemon)) {
-            effect.applyEffects(pokemon.getEntity(), aspect_conditions.apply_aspects(), null);
+            effect.applyEffects(pokemon, aspect_conditions.apply_aspects(), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -32,7 +32,7 @@ public record HeldItemFormChange(
 
     public void revert(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName()) && aspect_conditions().validate_revert(pokemon)) {
-            effect.revertEffects(pokemon.getEntity(), aspect_conditions.revert_aspects(), null);
+            effect.revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

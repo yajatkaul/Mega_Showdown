@@ -20,14 +20,14 @@ public class UltraGimmick {
             } else {
                 pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
             }
-            ParticlesList.ultraBurst.applyEffects(pokemon.getEntity(), List.of("prism_fusion=ultra"), null);
+            ParticlesList.ultraBurst.applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
             pokemon.setTradeable(false);
             return -1;
         } else if (pokemon.getAspects().contains("ultra")) {
             String org_form = pokemon.getPersistentData().getString("necrozma_form");
             pokemon.getPersistentData().remove("necrozma_form");
 
-            ParticlesList.ultraBurst.revertEffects(pokemon.getEntity(), List.of(org_form), null);
+            ParticlesList.ultraBurst.revertEffects(pokemon, List.of(org_form), null);
             pokemon.setTradeable(true);
             return 1;
         }
@@ -43,7 +43,7 @@ public class UltraGimmick {
                     .put("battle_end_revert", AspectUtils.makeNbt(List.of("prism_fusion=dawn")));
         }
 
-        ParticlesList.ultraBurst.applyEffectsBattle(pokemon.getEntity(), List.of("prism_fusion=ultra"), null, battlePokemon);
+        ParticlesList.ultraBurst.applyEffectsBattle(pokemon, List.of("prism_fusion=ultra"), null, battlePokemon);
     }
 
     private static boolean canUltraBurst(Pokemon pokemon) {

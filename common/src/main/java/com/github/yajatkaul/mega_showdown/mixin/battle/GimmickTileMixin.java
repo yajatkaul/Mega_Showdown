@@ -35,7 +35,7 @@ public class GimmickTileMixin {
         this.move = tile.getMove();
 
         if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION || gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
-            tile.setMoveTemplate(Moves.INSTANCE.getByNameOrDummy(move.id));
+            tile.setMoveTemplate(Moves.getByNameOrDummy(move.id));
             tile.setRgb(SimpleMathExtensionsKt.toRGB(tile.getMoveTemplate().getEffectiveElementalType(tile.getPokemon()).getHue()));
         }
     }

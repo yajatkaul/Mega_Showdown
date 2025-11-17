@@ -45,7 +45,7 @@ public final class MegaShowdown {
 
         MegaShowdownMenuTypes.register();
 
-//        EventRegister.register();
+        EventRegister.register();
 
         LifecycleEvent.SERVER_STARTING.register((minecraftServer) -> {
             server = minecraftServer;

@@ -120,6 +120,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownItems.PIKASHUNIUM_Z.get());
         basicItem(MegaShowdownItems.MIMIKIUM_Z.get());
         basicItem(MegaShowdownItems.BLANK_Z.get());
+        basicItem(MegaShowdownItems.SPARKLING_STONE_DARK.get());
+        basicItem(MegaShowdownItems.SPARKLING_STONE_LIGHT.get());
 
         basicItem(MegaShowdownItems.RED_ORB.get());
         basicItem(MegaShowdownItems.BLUE_ORB.get());
@@ -215,11 +217,44 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MegaShowdownItems.SOUL_DEW.get());
 
         basicItem(MegaShowdownItems.MEGA_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_RED_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_YELLOW_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_PINK_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_GREEN_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_BLUE_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_BLACK_BRACELET.get());
+
+        basicItem(MegaShowdownItems.MAY_BRACELET.get());
+        basicItem(MegaShowdownItems.MEGA_RING.get());
+        basicItem(MegaShowdownItems.LYSANDRE_RING.get());
+
+        basicItem(MegaShowdownItems.BRENDAN_MEGA_CUFF.get());
+        basicItem(MegaShowdownItems.KORRINA_GLOVE.get());
+        basicItem(MegaShowdownItems.MAXIE_GLASSES.get());
+        basicItem(MegaShowdownItems.ARCHIE_ANCHOR.get());
         basicItem(MegaShowdownItems.LISIA_MEGA_TIARA.get());
 
         basicItem(MegaShowdownItems.DYNAMAX_BAND.get());
         basicItem(MegaShowdownItems.TERA_ORB.get());
+
         basicItem(MegaShowdownItems.Z_RING.get());
+        basicItem(MegaShowdownItems.Z_RING_BLACK.get());
+        basicItem(MegaShowdownItems.Z_RING_YELLOW.get());
+        basicItem(MegaShowdownItems.Z_RING_GREEN.get());
+        basicItem(MegaShowdownItems.Z_RING_BLUE.get());
+        basicItem(MegaShowdownItems.Z_RING_PINK.get());
+        basicItem(MegaShowdownItems.Z_RING_RED.get());
+
+        basicItem(MegaShowdownItems.OLIVIAS_Z_RING.get());
+        basicItem(MegaShowdownItems.HAPUS_Z_RING.get());
+
+        basicItem(MegaShowdownItems.Z_RING_POWER.get());
+        basicItem(MegaShowdownItems.OLIVIA_Z_POWER_RING.get());
+        basicItem(MegaShowdownItems.HAPU_Z_POWER_RING.get());
+        basicItem(MegaShowdownItems.ROCKET_Z_POWER_RING.get());
+        basicItem(MegaShowdownItems.GLADION_Z_POWER_RING.get());
+        basicItem(MegaShowdownItems.NANU_Z_POWER_RING.get());
+
         basicItem(MegaShowdownItems.OMNI_RING.get());
 
         basicItem(MegaShowdownItems.LIKOS_PENDANT.get());

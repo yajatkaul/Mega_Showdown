@@ -57,7 +57,7 @@ public class RotomUnitBlock extends Block {
 
         if (entity instanceof PokemonEntity pokemonEntity && pokemonEntity.getPokemon().getSpecies().getName().equals("Rotom") && pokemonEntity.getAspects().stream().noneMatch(rotomAspects::contains)) {
             new StringSpeciesFeature("appliance", form).apply(pokemonEntity);
-            ParticlesList.defaultParticles.applyEffects(pokemonEntity, List.of(String.format("appliance=%s", form)), null);
+            ParticlesList.defaultParticles.applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), null);
             level.destroyBlock(pos, false);
             level.levelEvent(2001, pos, Block.getId(state));
         }

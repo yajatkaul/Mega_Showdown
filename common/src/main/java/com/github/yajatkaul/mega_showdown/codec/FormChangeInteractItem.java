@@ -16,13 +16,13 @@ import java.util.List;
 public record FormChangeInteractItem(
         AspectSetCodec aspect_conditions,
         List<String> pokemons,
-        List<Effect> effects,
+        Effect effects,
         int consume
 ) {
     public static final Codec<FormChangeInteractItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(FormChangeInteractItem::aspect_conditions),
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(FormChangeInteractItem::pokemons),
-            Effect.EFFECT_MAP_CODEC.listOf().fieldOf("effects").forGetter(FormChangeInteractItem::effects),
+            Effect.EFFECT_MAP_CODEC.optionalFieldOf("effects", Effect.empty()).forGetter(FormChangeInteractItem::effects),
             Codec.INT.optionalFieldOf("consume", 0).forGetter(FormChangeInteractItem::consume)
     ).apply(instance, FormChangeInteractItem::new));
 
@@ -39,11 +39,11 @@ public record FormChangeInteractItem(
             }
 
             if (aspect_conditions.validate_apply(pokemon)) {
-                effects.getFirst().applyEffects(pokemonEntity, aspect_conditions.apply_aspects(), null);
+                effects.applyEffects(pokemon, aspect_conditions.apply_aspects(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             } else if (aspect_conditions.validate_revert(pokemon)) {
-                effects.getFirst().applyEffects(pokemonEntity, aspect_conditions.revert_aspects(), null);
+                effects.applyEffects(pokemon, aspect_conditions.revert_aspects(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             }

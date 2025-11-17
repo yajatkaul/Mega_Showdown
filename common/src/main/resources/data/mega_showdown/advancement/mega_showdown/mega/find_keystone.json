@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:keystone"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.find_keystone.title",
+      "fallback": "Finally, Some Plot Armor!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.find_keystone.description",
+      "fallback": "Find a Keystone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/mega/find_mega_structure",
+  "criteria": {
+    "obtained_keystone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "mega_showdown:keystone"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_keystone"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

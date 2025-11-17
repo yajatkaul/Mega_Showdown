@@ -82,7 +82,7 @@ public class CobbleEvents {
 
         for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
             if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())) {
-                battleFormChange.effect().applyEffectsBattle(formeChangeEvent.getPokemon().getEntity(),
+                battleFormChange.effect().applyEffectsBattle(formeChangeEvent.getPokemon().getEntity().getPokemon(),
                         battleFormChange.aspects().apply_aspects(),
                         null,
                         battlePokemon
@@ -226,7 +226,7 @@ public class CobbleEvents {
 
         GlowHandler.applyZGlow(pokemonEntity);
 
-        ParticlesList.zMoves.applyEffectsBattle(pokemonEntity, List.of(), null, event.getPokemon());
+        ParticlesList.zMoves.applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
 
         return Unit.INSTANCE;
     }

@@ -21,7 +21,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
                              boolean tradable,
                              ElementalType element
     ) {
-        super(properties, revertAspect, applyAspect, pokemons, effect, tradable, false);
+        super(properties, revertAspect, applyAspect, pokemons, effect, tradable, null, null);
         this.element = element;
         this.pokemons = pokemons;
         this.effect = effect;
@@ -31,7 +31,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
     @Override
     public void apply(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName())) {
-            effect.applyEffects(pokemon.getEntity(), List.of(String.format("multitype=%s", this.element.getName())), null);
+            effect.applyEffects(pokemon, List.of(String.format("multitype=%s", this.element.getName())), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -41,7 +41,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
     @Override
     public void revert(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName())) {
-            effect.revertEffects(pokemon.getEntity(), List.of("multitype=normal"), null);
+            effect.revertEffects(pokemon, List.of("multitype=normal"), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

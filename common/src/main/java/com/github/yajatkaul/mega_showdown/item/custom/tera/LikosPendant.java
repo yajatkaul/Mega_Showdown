@@ -135,7 +135,7 @@ public class LikosPendant extends ToolTipItem {
             level.addFreshEntity(terapagos);
 
             terapagos.after(0.01f, () -> {
-                ParticlesList.likosPendantAnim.applyEffects(terapagos, List.of(), null);
+                ParticlesList.likosPendantAnim.applyEffects(terapagos.getPokemon(), List.of(), null);
                 return Unit.INSTANCE;
             });
 

@@ -39,7 +39,7 @@ public record SoloFusion(
             Codec.STRING.listOf().fieldOf("fusions").forGetter(SoloFusion::fusions),
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(SoloFusion::pokemons),
             Codec.STRING.listOf().fieldOf("main_pokemons").forGetter(SoloFusion::mainPokemons),
-            Effect.EFFECT_MAP_CODEC.fieldOf("effect").forGetter(SoloFusion::effect),
+            Effect.EFFECT_MAP_CODEC.optionalFieldOf("effect", Effect.empty()).forGetter(SoloFusion::effect),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(SoloFusion::aspect_conditions)
     ).apply(instance, SoloFusion::new));
 
@@ -83,7 +83,7 @@ public record SoloFusion(
                 }
 
                 if (aspect_conditions.validate_revert(pokemon)) {
-                    effect.revertEffects(pokemonEntity, aspect_conditions.revert_aspects(), null);
+                    effect.revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -102,7 +102,7 @@ public record SoloFusion(
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
                 if (aspect_conditions.validate_apply(pokemon)) {
-                    effect.revertEffects(pokemonEntity, aspect_conditions.apply_aspects(), null);
+                    effect.revertEffects(pokemon, aspect_conditions.apply_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:charizardite_x"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.get_any_mega_stone.title",
+      "fallback": "Cooking with Extra Evolution!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.get_any_mega_stone.description",
+      "fallback": "Craft any mega stone"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/mega/find_raw_megastone",
+  "criteria": {
+    "obtained_mega_stones": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#mega_showdown:mega_stone"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtained_mega_stones"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

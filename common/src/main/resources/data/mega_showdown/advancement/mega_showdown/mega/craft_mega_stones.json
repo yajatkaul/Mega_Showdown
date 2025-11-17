@@ -1,0 +1,730 @@
+{
+  "display": {
+    "icon": {
+      "id": "mega_showdown:mewtwonite_x"
+    },
+    "title": {
+      "translate": "advancement.mega_showdown.craft_mega_stones.title",
+      "fallback": "Gotta Collect 'Em All... Mega Style!"
+    },
+    "description": {
+      "translate": "advancement.mega_showdown.craft_mega_stones.description",
+      "fallback": "Collect all types of Mega Stones"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mega_showdown:mega_showdown/mega/get_any_mega_stone",
+  "criteria": {
+    "mega_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:mega_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "absolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:absolite"
+            ]
+          }
+        ]
+      }
+    },
+    "aerodactylite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:aerodactylite"
+            ]
+          }
+        ]
+      }
+    },
+    "aggronite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:aggronite"
+            ]
+          }
+        ]
+      }
+    },
+    "alakazite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:alakazite"
+            ]
+          }
+        ]
+      }
+    },
+    "altarianite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:altarianite"
+            ]
+          }
+        ]
+      }
+    },
+    "ampharosite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:ampharosite"
+            ]
+          }
+        ]
+      }
+    },
+    "audinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:audinite"
+            ]
+          }
+        ]
+      }
+    },
+    "banettite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:banettite"
+            ]
+          }
+        ]
+      }
+    },
+    "beedrillite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:beedrillite"
+            ]
+          }
+        ]
+      }
+    },
+    "blastoisinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:blastoisinite"
+            ]
+          }
+        ]
+      }
+    },
+    "blazikenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:blazikenite"
+            ]
+          }
+        ]
+      }
+    },
+    "cameruptite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:cameruptite"
+            ]
+          }
+        ]
+      }
+    },
+    "charizardite_y": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:charizardite_y"
+            ]
+          }
+        ]
+      }
+    },
+    "charizardite_x": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:charizardite_x"
+            ]
+          }
+        ]
+      }
+    },
+    "diancite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:diancite"
+            ]
+          }
+        ]
+      }
+    },
+    "galladite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:galladite"
+            ]
+          }
+        ]
+      }
+    },
+    "garchompite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:garchompite"
+            ]
+          }
+        ]
+      }
+    },
+    "gardevoirite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:gardevoirite"
+            ]
+          }
+        ]
+      }
+    },
+    "gengarite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:gengarite"
+            ]
+          }
+        ]
+      }
+    },
+    "glalitite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:glalitite"
+            ]
+          }
+        ]
+      }
+    },
+    "gyaradosite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:gyaradosite"
+            ]
+          }
+        ]
+      }
+    },
+    "heracronite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:heracronite"
+            ]
+          }
+        ]
+      }
+    },
+    "houndoominite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:houndoominite"
+            ]
+          }
+        ]
+      }
+    },
+    "kangaskhanite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:kangaskhanite"
+            ]
+          }
+        ]
+      }
+    },
+    "latiasite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:latiasite"
+            ]
+          }
+        ]
+      }
+    },
+    "latiosite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:latiosite"
+            ]
+          }
+        ]
+      }
+    },
+    "lopunnite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:lopunnite"
+            ]
+          }
+        ]
+      }
+    },
+    "lucarionite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:lucarionite"
+            ]
+          }
+        ]
+      }
+    },
+    "manectite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:manectite"
+            ]
+          }
+        ]
+      }
+    },
+    "mawilite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:mawilite"
+            ]
+          }
+        ]
+      }
+    },
+    "medichamite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:medichamite"
+            ]
+          }
+        ]
+      }
+    },
+    "metagrossite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:metagrossite"
+            ]
+          }
+        ]
+      }
+    },
+    "mewtwonite_y": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:mewtwonite_y"
+            ]
+          }
+        ]
+      }
+    },
+    "mewtwonite_x": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:mewtwonite_x"
+            ]
+          }
+        ]
+      }
+    },
+    "pidgeotite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:pidgeotite"
+            ]
+          }
+        ]
+      }
+    },
+    "pinsirite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:pinsirite"
+            ]
+          }
+        ]
+      }
+    },
+    "sablenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:sablenite"
+            ]
+          }
+        ]
+      }
+    },
+    "salamencite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:salamencite"
+            ]
+          }
+        ]
+      }
+    },
+    "scizorite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:scizorite"
+            ]
+          }
+        ]
+      }
+    },
+    "sceptilite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:sceptilite"
+            ]
+          }
+        ]
+      }
+    },
+    "sharpedonite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:sharpedonite"
+            ]
+          }
+        ]
+      }
+    },
+    "slowbronite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:slowbronite"
+            ]
+          }
+        ]
+      }
+    },
+    "steelixite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:steelixite"
+            ]
+          }
+        ]
+      }
+    },
+    "swampertite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:swampertite"
+            ]
+          }
+        ]
+      }
+    },
+    "tyranitarite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:tyranitarite"
+            ]
+          }
+        ]
+      }
+    },
+    "venusaurite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mega_showdown:venusaurite"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mega_stone"
+    ],
+    [
+      "absolite"
+    ],
+    [
+      "aerodactylite"
+    ],
+    [
+      "aggronite"
+    ],
+    [
+      "alakazite"
+    ],
+    [
+      "altarianite"
+    ],
+    [
+      "ampharosite"
+    ],
+    [
+      "audinite"
+    ],
+    [
+      "banettite"
+    ],
+    [
+      "beedrillite"
+    ],
+    [
+      "blastoisinite"
+    ],
+    [
+      "blazikenite"
+    ],
+    [
+      "cameruptite"
+    ],
+    [
+      "charizardite_y"
+    ],
+    [
+      "charizardite_x"
+    ],
+    [
+      "diancite"
+    ],
+    [
+      "galladite"
+    ],
+    [
+      "garchompite"
+    ],
+    [
+      "gardevoirite"
+    ],
+    [
+      "gengarite"
+    ],
+    [
+      "glalitite"
+    ],
+    [
+      "gyaradosite"
+    ],
+    [
+      "heracronite"
+    ],
+    [
+      "houndoominite"
+    ],
+    [
+      "kangaskhanite"
+    ],
+    [
+      "latiasite"
+    ],
+    [
+      "latiosite"
+    ],
+    [
+      "lopunnite"
+    ],
+    [
+      "lucarionite"
+    ],
+    [
+      "manectite"
+    ],
+    [
+      "mawilite"
+    ],
+    [
+      "medichamite"
+    ],
+    [
+      "metagrossite"
+    ],
+    [
+      "mewtwonite_y"
+    ],
+    [
+      "mewtwonite_x"
+    ],
+    [
+      "pidgeotite"
+    ],
+    [
+      "pinsirite"
+    ],
+    [
+      "sablenite"
+    ],
+    [
+      "salamencite"
+    ],
+    [
+      "scizorite"
+    ],
+    [
+      "sceptilite"
+    ],
+    [
+      "sharpedonite"
+    ],
+    [
+      "slowbronite"
+    ],
+    [
+      "steelixite"
+    ],
+    [
+      "swampertite"
+    ],
+    [
+      "tyranitarite"
+    ],
+    [
+      "venusaurite"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

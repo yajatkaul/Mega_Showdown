@@ -1,19 +1,17 @@
 package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
+import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FormChangeInteractItem extends ToolTipItem {
+public class FormChangeInteractItem extends PokemonSelectingItem {
     private final String form_aspect_name;
     private final String form_aspect_apply;
     private final List<String> pokemons;
@@ -42,33 +40,24 @@ public class FormChangeInteractItem extends ToolTipItem {
     }
 
     @Override
-    public @NotNull InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity livingEntity, InteractionHand interactionHand) {
-        if (player.level().isClientSide || player.isCrouching()) {
-            return InteractionResult.PASS;
+    public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
+            return InteractionResultHolder.pass(itemStack);
+        } else if (pokemon.getAspects().contains(form_aspect_name)) {
+            effects.revertEffects(pokemon, List.of(form_aspect_revert), null);
+            itemStack.consume(consume, serverPlayer);
+
+            return InteractionResultHolder.success(itemStack);
         }
 
-        if (livingEntity instanceof PokemonEntity pokemonEntity) {
-            Pokemon pokemon = pokemonEntity.getPokemon();
+        effects.applyEffects(pokemon, List.of(form_aspect_apply), null);
+        itemStack.consume(consume, serverPlayer);
 
-            if (!pokemons.contains(pokemon.getSpecies().getName()) || pokemonEntity.isBattling() || pokemonEntity.getTethering() != null || pokemon.getPersistentData().contains("form_changing")) {
-                return InteractionResult.PASS;
-            }
+        return InteractionResultHolder.success(itemStack);
+    }
 
-            if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
-                return InteractionResult.PASS;
-            } else if (pokemon.getAspects().contains(form_aspect_name)) {
-                effects.revertEffects(pokemonEntity, List.of(form_aspect_revert), null);
-                itemStack.consume(consume, livingEntity);
-
-                return InteractionResult.SUCCESS;
-            }
-
-            effects.applyEffects(pokemonEntity, List.of(form_aspect_apply), null);
-            itemStack.consume(consume, livingEntity);
-
-            return InteractionResult.SUCCESS;
-        }
-
-        return InteractionResult.PASS;
+    @Override
+    public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {
+        return pokemons.contains(pokemon.getSpecies().getName()) && !pokemon.getPersistentData().contains("form_changing");
     }
 }

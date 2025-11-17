@@ -21,14 +21,44 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ModTags.Items.MEGA_BRACELET)
-                .add(MegaShowdownItems.MEGA_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_RED_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_YELLOW_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_PINK_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_GREEN_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_BLUE_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_BLACK_BRACELET.get())
+
+                .add(MegaShowdownItems.MAY_BRACELET.get())
+                .add(MegaShowdownItems.MEGA_RING.get())
+                .add(MegaShowdownItems.LYSANDRE_RING.get())
+
+                .add(MegaShowdownItems.BRENDAN_MEGA_CUFF.get())
+                .add(MegaShowdownItems.KORRINA_GLOVE.get())
+                .add(MegaShowdownItems.MAXIE_GLASSES.get())
+                .add(MegaShowdownItems.ARCHIE_ANCHOR.get())
                 .add(MegaShowdownItems.LISIA_MEGA_TIARA.get());
 
         tag(ModTags.Items.DYNAMAX_BAND)
                 .add(MegaShowdownItems.DYNAMAX_BAND.get());
 
         tag(ModTags.Items.Z_RING)
-                .add(MegaShowdownItems.Z_RING.get());
+                .add(MegaShowdownItems.Z_RING.get())
+                .add(MegaShowdownItems.Z_RING_BLACK.get())
+                .add(MegaShowdownItems.Z_RING_YELLOW.get())
+                .add(MegaShowdownItems.Z_RING_GREEN.get())
+                .add(MegaShowdownItems.Z_RING_BLUE.get())
+                .add(MegaShowdownItems.Z_RING_PINK.get())
+                .add(MegaShowdownItems.Z_RING_RED.get())
+
+                .add(MegaShowdownItems.OLIVIAS_Z_RING.get())
+                .add(MegaShowdownItems.HAPUS_Z_RING.get())
+
+                .add(MegaShowdownItems.Z_RING_POWER.get())
+                .add(MegaShowdownItems.OLIVIA_Z_POWER_RING.get())
+                .add(MegaShowdownItems.HAPU_Z_POWER_RING.get())
+                .add(MegaShowdownItems.ROCKET_Z_POWER_RING.get())
+                .add(MegaShowdownItems.GLADION_Z_POWER_RING.get())
+                .add(MegaShowdownItems.NANU_Z_POWER_RING.get());
 
         tag(ModTags.Items.TERA_ORB)
                 .add(MegaShowdownItems.TERA_ORB.get());

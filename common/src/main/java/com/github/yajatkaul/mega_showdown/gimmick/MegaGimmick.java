@@ -172,11 +172,11 @@ public record MegaGimmick(
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
         pokemon.getPersistentData().put("battle_end_revert", AspectUtils.makeNbt(revertAspects));
-        ParticlesList.megaEvolution.applyEffectsBattle(pokemon.getEntity(), aspects, null, battlePokemon);
+        ParticlesList.megaEvolution.applyEffectsBattle(pokemon, aspects, null, battlePokemon);
     }
 
     private static void megaEvolve(Pokemon pokemon, List<String> aspects) {
-        ParticlesList.megaEvolution.applyEffects(pokemon.getEntity(), aspects, null);
+        ParticlesList.megaEvolution.applyEffects(pokemon, aspects, null);
         pokemon.setTradeable(false);
     }
 
@@ -193,9 +193,9 @@ public record MegaGimmick(
         if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
             if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
                 if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-                    ParticlesList.megaEvolution.revertEffects(pokemon.getEntity(), List.of("mega_evolution=none"), null);
+                    ParticlesList.megaEvolution.revertEffects(pokemon, List.of("mega_evolution=none"), null);
                 } else {
-                    ParticlesList.megaEvolution.revertEffects(pokemon.getEntity(), megaGimmick.aspect_conditions.revert_aspects(), null);
+                    ParticlesList.megaEvolution.revertEffects(pokemon, megaGimmick.aspect_conditions.revert_aspects(), null);
                 }
                 pokemon.setTradeable(true);
             } else if (pokemonEntity.getPokemon().getSpecies().getName().equals("Rayquaza")) {

@@ -2,6 +2,7 @@ package com.github.yajatkaul.mega_showdown.utils;
 
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
@@ -22,65 +23,81 @@ public record Effect(
             SnowStormParticle.CODEC.optionalFieldOf("snowstorm").forGetter(Effect::snowStorm)
     ).apply(instance, Effect::new));
 
+    public static Effect empty() {
+        return new Effect(Optional.empty(), Optional.empty());
+    }
+
     public static final Codec<Effect> EFFECT_MAP_CODEC = Codec.STRING.xmap(
             id -> MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.parse(id)), // decode: String -> Effect
-            effect -> String.valueOf(MegaShowdownDatapackRegister.EFFECT_REGISTRY.getId(effect)) // encode: Effect -> String
+            effect -> String.valueOf(MegaShowdownDatapackRegister.EFFECT_REGISTRY.getKey(effect)) // encode: Effect -> String
     ).stable();
 
-    public void applyEffects(PokemonEntity context, List<String> aspects, @Nullable PokemonEntity other) {
+    public void applyEffects(Pokemon context, List<String> aspects, @Nullable PokemonEntity other) {
+        if (context.getEntity() == null) {
+            AspectUtils.applyAspects(context, aspects);
+        }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
-            this.minecraft.get().apply(context);
-            this.snowStorm.get().apply(context, aspects, other);
+            this.minecraft.get().apply(context.getEntity());
+            this.snowStorm.get().apply(context.getEntity(), aspects, other);
         } else if (this.minecraft().isPresent()) {
-            this.minecraft.get().apply(context);
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            this.minecraft.get().apply(context.getEntity());
+            AspectUtils.applyAspects(context, aspects);
         } else if (this.snowStorm().isPresent()) {
-            this.snowStorm.get().apply(context, aspects, other);
+            this.snowStorm.get().apply(context.getEntity(), aspects, other);
         } else {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            AspectUtils.applyAspects(context, aspects);
         }
     }
 
-    public void revertEffects(PokemonEntity context, List<String> aspects, @Nullable PokemonEntity other) {
+    public void revertEffects(Pokemon context, List<String> aspects, @Nullable PokemonEntity other) {
+        if (context.getEntity() == null) {
+            AspectUtils.applyAspects(context, aspects);
+        }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
-            this.minecraft.get().revert(context);
-            this.snowStorm.get().revert(context, aspects, other);
+            this.minecraft.get().revert(context.getEntity());
+            this.snowStorm.get().revert(context.getEntity(), aspects, other);
         } else if (this.minecraft().isPresent()) {
-            this.minecraft.get().revert(context);
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            this.minecraft.get().revert(context.getEntity());
+            AspectUtils.applyAspects(context, aspects);
         } else if (this.snowStorm().isPresent()) {
-            this.snowStorm.get().revert(context, aspects, other);
+            this.snowStorm.get().revert(context.getEntity(), aspects, other);
         } else {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            AspectUtils.applyAspects(context, aspects);
         }
     }
 
-    public void applyEffectsBattle(PokemonEntity context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+    public void applyEffectsBattle(Pokemon context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+        if (context.getEntity() == null) {
+            AspectUtils.applyAspects(context, aspects);
+        }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
-            this.minecraft.get().apply(context);
-            this.snowStorm.get().applyBattle(context, aspects, other, battlePokemon);
+            this.minecraft.get().apply(context.getEntity());
+            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon);
         } else if (this.minecraft().isPresent()) {
-            this.minecraft.get().apply(context);
+            this.minecraft.get().apply(context.getEntity());
             AspectUtils.updatePackets(battlePokemon);
         } else if (this.snowStorm().isPresent()) {
-            this.snowStorm.get().applyBattle(context, aspects, other, battlePokemon);
+            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon);
         } else {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            AspectUtils.applyAspects(context, aspects);
             AspectUtils.updatePackets(battlePokemon);
         }
     }
 
-    public void revertEffectsBattle(PokemonEntity context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+    public void revertEffectsBattle(Pokemon context, List<String> aspects, @Nullable PokemonEntity other, BattlePokemon battlePokemon) {
+        if (context.getEntity() == null) {
+            AspectUtils.applyAspects(context, aspects);
+        }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
-            this.minecraft.get().revert(context);
-            this.snowStorm.get().revertBattle(context, aspects, other, battlePokemon);
+            this.minecraft.get().revert(context.getEntity());
+            this.snowStorm.get().revertBattle(context.getEntity(), aspects, other, battlePokemon);
         } else if (this.minecraft().isPresent()) {
-            this.minecraft.get().revert(context);
+            this.minecraft.get().revert(context.getEntity());
             AspectUtils.updatePackets(battlePokemon);
         } else if (this.snowStorm().isPresent()) {
-            this.snowStorm.get().revertBattle(context, aspects, other, battlePokemon);
+            this.snowStorm.get().revertBattle(context.getEntity(), aspects, other, battlePokemon);
         } else {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
+            AspectUtils.applyAspects(context, aspects);
             AspectUtils.updatePackets(battlePokemon);
         }
     }

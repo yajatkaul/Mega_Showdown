@@ -35,6 +35,9 @@ public record MinecraftParticle(
     ).apply(instance, MinecraftParticle::new));
 
     public void apply(PokemonEntity context) {
+        if (context == null) {
+            return;
+        }
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position();
 
@@ -108,6 +111,9 @@ public record MinecraftParticle(
     }
 
     public void revert(PokemonEntity context) {
+        if (context == null) {
+            return;
+        }
         if (context.level() instanceof ServerLevel serverLevel) {
             Vec3 entityPos = context.position();
 

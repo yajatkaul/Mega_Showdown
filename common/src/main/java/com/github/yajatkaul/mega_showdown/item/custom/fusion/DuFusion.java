@@ -114,9 +114,9 @@ public class DuFusion extends ToolTipItem {
                 playerPartyStore.add(pokemonInside);
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName())) {
-                    effect1.revertEffects(pokemonEntity, revertAspect1, null);
+                    effect1.revertEffects(pokemon, revertAspect1, null);
                 } else {
-                    effect2.revertEffects(pokemonEntity, revertAspect2, null);
+                    effect2.revertEffects(pokemon, revertAspect2, null);
                 }
 
                 pokemon.setTradeable(true);
@@ -134,9 +134,9 @@ public class DuFusion extends ToolTipItem {
                 pokemon.setTradeable(false);
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName())) {
-                    effect1.applyEffects(pokemonEntity, applyAspect1, null);
+                    effect1.applyEffects(pokemon, applyAspect1, null);
                 } else {
-                    effect1.applyEffects(pokemonEntity, applyAspect2, null);
+                    effect1.applyEffects(pokemon, applyAspect2, null);
                 }
 
             } else if (pokemonStored == null &&

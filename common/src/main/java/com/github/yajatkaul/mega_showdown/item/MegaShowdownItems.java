@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
+import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
@@ -29,10 +30,15 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class MegaShowdownItems {
@@ -95,7 +101,7 @@ public class MegaShowdownItems {
             List.of("Groudon"),
             ParticlesList.groudonPrimalRevert,
             false,
-            false
+            null
     );
 
     public static final RegistrySupplier<Item> BLUE_ORB = registerFormChangeHeldItems(
@@ -105,7 +111,7 @@ public class MegaShowdownItems {
             List.of("Kyogre"),
             ParticlesList.kyogrePrimalRevert,
             false,
-            false
+            null
     );
 
     public static final RegistrySupplier<Item> NORMAL_TERA_SHARD = registerTeraShards("normal_tera_shard", TeraTypes.getNORMAL());
@@ -129,6 +135,8 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> STELLAR_TERA_SHARD = registerTeraShards("stellar_tera_shard", TeraTypes.getSTELLAR());
 
 
+    public static final RegistrySupplier<Item> SPARKLING_STONE_LIGHT = registerItem("sparkling_stone_light", () -> new ToolTipItem(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB)));
+    public static final RegistrySupplier<Item> SPARKLING_STONE_DARK = registerItem("sparkling_stone_dark", () -> new ToolTipItem(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB)));
     public static final RegistrySupplier<Item> BLANK_Z = registerItem("blank_z", () -> new ToolTipItem(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB)));
     // Elemental Z-Crystals
     public static final RegistrySupplier<Item> NORMALIUM_Z = registerZElementalCrystals("normalium_z", ElementalTypes.INSTANCE.getNORMAL());
@@ -222,6 +230,21 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> DEBUG_STICK = registerItem("debug_stick", () -> new DebugStick(new Item.Properties()));
 
     public static final RegistrySupplier<Item> MEGA_BRACELET = registerMegaBracelet("mega_bracelet");
+    public static final RegistrySupplier<Item> MEGA_RED_BRACELET = registerMegaBracelet("mega_bracelet_red");
+    public static final RegistrySupplier<Item> MEGA_YELLOW_BRACELET = registerMegaBracelet("mega_bracelet_yellow");
+    public static final RegistrySupplier<Item> MEGA_PINK_BRACELET = registerMegaBracelet("mega_bracelet_pink");
+    public static final RegistrySupplier<Item> MEGA_GREEN_BRACELET = registerMegaBracelet("mega_bracelet_green");
+    public static final RegistrySupplier<Item> MEGA_BLUE_BRACELET = registerMegaBracelet("mega_bracelet_blue");
+    public static final RegistrySupplier<Item> MEGA_BLACK_BRACELET = registerMegaBracelet("mega_bracelet_black");
+
+    public static final RegistrySupplier<Item> MAY_BRACELET = registerMegaBracelet("may_bracelet");
+    public static final RegistrySupplier<Item> MEGA_RING = registerMegaBracelet("mega_ring");
+    public static final RegistrySupplier<Item> LYSANDRE_RING = registerMegaBracelet("lysandre_ring");
+
+    public static final RegistrySupplier<Item> BRENDAN_MEGA_CUFF = registerMegaBracelet("brendan_mega_cuff");
+    public static final RegistrySupplier<Item> KORRINA_GLOVE = registerMegaBracelet("korrina_glove");
+    public static final RegistrySupplier<Item> MAXIE_GLASSES = registerMegaBracelet("maxie_glasses");
+    public static final RegistrySupplier<Item> ARCHIE_ANCHOR = registerMegaBracelet("archie_anchor");
     public static final RegistrySupplier<Item> LISIA_MEGA_TIARA = registerMegaBracelet("lisia_mega_tiara");
 
     public static final RegistrySupplier<Item> TERA_ORB = registerTeraOrb("tera_orb");
@@ -229,6 +252,22 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> DYNAMAX_BAND = registerDynamaxBand("dynamax_band");
 
     public static final RegistrySupplier<Item> Z_RING = registerZRing("z_ring");
+    public static final RegistrySupplier<Item> Z_RING_BLACK = registerZRing("z_ring_black");
+    public static final RegistrySupplier<Item> Z_RING_YELLOW = registerZRing("z_ring_yellow");
+    public static final RegistrySupplier<Item> Z_RING_GREEN = registerZRing("z_ring_green");
+    public static final RegistrySupplier<Item> Z_RING_BLUE = registerZRing("z_ring_blue");
+    public static final RegistrySupplier<Item> Z_RING_PINK = registerZRing("z_ring_pink");
+    public static final RegistrySupplier<Item> Z_RING_RED = registerZRing("z_ring_red");
+
+    public static final RegistrySupplier<Item> OLIVIAS_Z_RING = registerZRing("olivias_z_ring");
+    public static final RegistrySupplier<Item> HAPUS_Z_RING = registerZRing("hapus_z_ring");
+
+    public static final RegistrySupplier<Item> Z_RING_POWER = registerZRing("z_power_ring");
+    public static final RegistrySupplier<Item> OLIVIA_Z_POWER_RING = registerZRing("olivia_z_power_ring");
+    public static final RegistrySupplier<Item> HAPU_Z_POWER_RING = registerZRing("hapu_z_power_ring");
+    public static final RegistrySupplier<Item> ROCKET_Z_POWER_RING = registerZRing("rocket_z_power_ring");
+    public static final RegistrySupplier<Item> GLADION_Z_POWER_RING = registerZRing("gladion_z_power_ring");
+    public static final RegistrySupplier<Item> NANU_Z_POWER_RING = registerZRing("nanu_z_power_ring");
 
     public static final RegistrySupplier<Item> OMNI_RING = registerOmniRing("omni_ring");
 
@@ -300,7 +339,12 @@ public class MegaShowdownItems {
             List.of("Ogerpon"),
             ParticlesList.defaultParticles,
             true,
-            false
+            (pokemon -> {
+                pokemon.setTeraType(TeraTypes.getROCK());
+            }),
+            (pokemon -> {
+                pokemon.setTeraType(TeraTypes.getGRASS());
+            })
     );
 
     public static final RegistrySupplier<Item> WELLSPRING_MASK = registerFormChangeHeldItems(
@@ -310,7 +354,12 @@ public class MegaShowdownItems {
             List.of("Ogerpon"),
             ParticlesList.defaultParticles,
             true,
-            false
+            (pokemon -> {
+                pokemon.setTeraType(TeraTypes.getWATER());
+            }),
+            (pokemon -> {
+                pokemon.setTeraType(TeraTypes.getGRASS());
+            })
     );
 
     public static final RegistrySupplier<Item> HEARTHFLAME_MASK = registerFormChangeHeldItems(
@@ -320,7 +369,12 @@ public class MegaShowdownItems {
             List.of("Ogerpon"),
             ParticlesList.defaultParticles,
             true,
-            false
+            (pokemon -> {
+                pokemon.setTeraType(TeraTypes.getFIRE());
+            }),
+            (pokemon -> {
+                pokemon.setTeraType(TeraTypes.getGRASS());
+            })
     );
 
     public static final RegistrySupplier<Item> GRISEOUS_CORE = registerFormChangeHeldItems(
@@ -329,8 +383,7 @@ public class MegaShowdownItems {
             "orb_forme=origin",
             List.of("Giratina"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> ASH_CAP = registerItem("ash_cap", () -> new AshCap(new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB)));
@@ -341,8 +394,7 @@ public class MegaShowdownItems {
             "orb_forme=altered",
             List.of("Dialga"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> LUSTROUS_GLOBE = registerFormChangeHeldItems(
@@ -351,8 +403,7 @@ public class MegaShowdownItems {
             "orb_forme=altered",
             List.of("Palkia"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> FLAME_PLATE = registerFormChangeHeldItems(
@@ -361,8 +412,7 @@ public class MegaShowdownItems {
             "multitype=fire",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> SPLASH_PLATE = registerFormChangeHeldItems(
@@ -371,8 +421,7 @@ public class MegaShowdownItems {
             "multitype=water",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> ZAP_PLATE = registerFormChangeHeldItems(
@@ -381,8 +430,7 @@ public class MegaShowdownItems {
             "multitype=electric",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> MEADOW_PLATE = registerFormChangeHeldItems(
@@ -391,8 +439,7 @@ public class MegaShowdownItems {
             "multitype=grass",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> ICICLE_PLATE = registerFormChangeHeldItems(
@@ -401,8 +448,7 @@ public class MegaShowdownItems {
             "multitype=ice",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> FIST_PLATE = registerFormChangeHeldItems(
@@ -411,8 +457,7 @@ public class MegaShowdownItems {
             "multitype=fighting",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> TOXIC_PLATE = registerFormChangeHeldItems(
@@ -421,8 +466,7 @@ public class MegaShowdownItems {
             "multitype=poison",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> EARTH_PLATE = registerFormChangeHeldItems(
@@ -431,8 +475,7 @@ public class MegaShowdownItems {
             "multitype=ground",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> SKY_PLATE = registerFormChangeHeldItems(
@@ -441,8 +484,7 @@ public class MegaShowdownItems {
             "multitype=sky",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> MIND_PLATE = registerFormChangeHeldItems(
@@ -451,8 +493,7 @@ public class MegaShowdownItems {
             "multitype=psychic",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> INSECT_PLATE = registerFormChangeHeldItems(
@@ -461,8 +502,7 @@ public class MegaShowdownItems {
             "multitype=bug",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> STONE_PLATE = registerFormChangeHeldItems(
@@ -471,8 +511,7 @@ public class MegaShowdownItems {
             "multitype=rock",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> SPOOKY_PLATE = registerFormChangeHeldItems(
@@ -481,8 +520,7 @@ public class MegaShowdownItems {
             "multitype=ghost",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> DRACO_PLATE = registerFormChangeHeldItems(
@@ -491,8 +529,7 @@ public class MegaShowdownItems {
             "multitype=dragon",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> DREAD_PLATE = registerFormChangeHeldItems(
@@ -501,8 +538,7 @@ public class MegaShowdownItems {
             "multitype=dark",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> IRON_PLATE = registerFormChangeHeldItems(
@@ -511,8 +547,7 @@ public class MegaShowdownItems {
             "multitype=steel",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> PIXIE_PLATE = registerFormChangeHeldItems(
@@ -521,8 +556,7 @@ public class MegaShowdownItems {
             "multitype=fairy",
             List.of("Arceus"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> BUG_MEMORY = registerFormChangeHeldItems(
@@ -531,8 +565,7 @@ public class MegaShowdownItems {
             "multitype=bug",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> DARK_MEMORY = registerFormChangeHeldItems(
@@ -541,8 +574,7 @@ public class MegaShowdownItems {
             "multitype=dark",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> DRAGON_MEMORY = registerFormChangeHeldItems(
@@ -551,8 +583,7 @@ public class MegaShowdownItems {
             "multitype=dragon",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> ELECTRIC_MEMORY = registerFormChangeHeldItems(
@@ -561,8 +592,7 @@ public class MegaShowdownItems {
             "multitype=electric",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> FAIRY_MEMORY = registerFormChangeHeldItems(
@@ -571,8 +601,7 @@ public class MegaShowdownItems {
             "multitype=fairy",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> FIGHTING_MEMORY = registerFormChangeHeldItems(
@@ -581,8 +610,7 @@ public class MegaShowdownItems {
             "multitype=fighting",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> FIRE_MEMORY = registerFormChangeHeldItems(
@@ -591,8 +619,7 @@ public class MegaShowdownItems {
             "multitype=fire",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> FLYING_MEMORY = registerFormChangeHeldItems(
@@ -601,8 +628,7 @@ public class MegaShowdownItems {
             "multitype=flying",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> GHOST_MEMORY = registerFormChangeHeldItems(
@@ -611,8 +637,7 @@ public class MegaShowdownItems {
             "multitype=ghost",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> GRASS_MEMORY = registerFormChangeHeldItems(
@@ -621,8 +646,7 @@ public class MegaShowdownItems {
             "multitype=grass",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> GROUND_MEMORY = registerFormChangeHeldItems(
@@ -631,8 +655,7 @@ public class MegaShowdownItems {
             "multitype=ground",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> ICE_MEMORY = registerFormChangeHeldItems(
@@ -641,8 +664,7 @@ public class MegaShowdownItems {
             "multitype=ice",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> POISON_MEMORY = registerFormChangeHeldItems(
@@ -651,8 +673,7 @@ public class MegaShowdownItems {
             "multitype=poison",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> PSYCHIC_MEMORY = registerFormChangeHeldItems(
@@ -661,8 +682,7 @@ public class MegaShowdownItems {
             "multitype=psychic",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> ROCK_MEMORY = registerFormChangeHeldItems(
@@ -671,8 +691,7 @@ public class MegaShowdownItems {
             "multitype=rock",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> STEEL_MEMORY = registerFormChangeHeldItems(
@@ -681,8 +700,7 @@ public class MegaShowdownItems {
             "multitype=steel",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> WATER_MEMORY = registerFormChangeHeldItems(
@@ -691,8 +709,7 @@ public class MegaShowdownItems {
             "multitype=water",
             List.of("Silvally"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> BURN_DRIVE = registerFormChangeHeldItems(
@@ -701,8 +718,7 @@ public class MegaShowdownItems {
             "techno_drive=water",
             List.of("Genesect"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> CHILL_DRIVE = registerFormChangeHeldItems(
@@ -711,8 +727,7 @@ public class MegaShowdownItems {
             "techno_drive=ice",
             List.of("Genesect"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> DOUSE_DRIVE = registerFormChangeHeldItems(
@@ -721,8 +736,7 @@ public class MegaShowdownItems {
             "techno_drive=water",
             List.of("Genesect"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> SHOCK_DRIVE = registerFormChangeHeldItems(
@@ -731,28 +745,43 @@ public class MegaShowdownItems {
             "techno_drive=electric",
             List.of("Genesect"),
             ParticlesList.defaultParticles,
-            true,
-            false
+            true
     );
 
     public static final RegistrySupplier<Item> RUSTED_SWORD = registerFormChangeHeldItems(
             "rusted_sword",
-            "crowned=none",
+            "crowned=false",
             "crowned=true",
             List.of("Zacian"),
             ParticlesList.defaultParticles,
             true,
-            true
+            (pokemon -> {
+                Level level = pokemon.getEntity().level();
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
+                if (lightning != null) {
+                    lightning.moveTo(Vec3.atBottomCenterOf(pokemon.getEntity().blockPosition()));
+                    lightning.setVisualOnly(true);
+                    level.addFreshEntity(lightning);
+                }
+            })
     );
 
     public static final RegistrySupplier<Item> RUSTED_SHIELD = registerFormChangeHeldItems(
             "rusted_shield",
-            "crowned=none",
+            "crowned=false",
             "crowned=true",
             List.of("Zamazenta"),
             ParticlesList.defaultParticles,
             true,
-            true
+            (pokemon -> {
+                Level level = pokemon.getEntity().level();
+                LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level);
+                if (lightning != null) {
+                    lightning.moveTo(Vec3.atBottomCenterOf(pokemon.getEntity().blockPosition()));
+                    lightning.setVisualOnly(true);
+                    level.addFreshEntity(lightning);
+                }
+            })
     );
 
     public static final RegistrySupplier<Item> PRISON_BOTTLE = registerFormChangeInteractItem(
@@ -977,7 +1006,7 @@ public class MegaShowdownItems {
         return ITEMS.register(name, () -> new SpecialZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB), type));
     }
 
-    private static RegistrySupplier<Item> registerFormChangeHeldItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect, boolean tradable, boolean thunder) {
+    private static RegistrySupplier<Item> registerFormChangeHeldItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect, boolean tradable) {
         return ITEMS.register(name,
                 () -> new FormChangeHeldItem(
                         new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
@@ -986,7 +1015,36 @@ public class MegaShowdownItems {
                         pokemons,
                         effect,
                         tradable,
-                        thunder
+                        null,
+                        null
+                ));
+    }
+
+    private static RegistrySupplier<Item> registerFormChangeHeldItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect, boolean tradable, Consumer<Pokemon> callBack) {
+        return ITEMS.register(name,
+                () -> new FormChangeHeldItem(
+                        new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
+                        revertAspect,
+                        applyAspect,
+                        pokemons,
+                        effect,
+                        tradable,
+                        callBack,
+                        null
+                ));
+    }
+
+    private static RegistrySupplier<Item> registerFormChangeHeldItems(String name, String revertAspect, String applyAspect, List<String> pokemons, Effect effect, boolean tradable, Consumer<Pokemon> callBackApply, Consumer<Pokemon> callBackRevert) {
+        return ITEMS.register(name,
+                () -> new FormChangeHeldItem(
+                        new Item.Properties().arch$tab(MegaShowdownTabs.FORM_TAB),
+                        revertAspect,
+                        applyAspect,
+                        pokemons,
+                        effect,
+                        tradable,
+                        callBackApply,
+                        callBackRevert
                 ));
     }
 

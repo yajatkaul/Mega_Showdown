@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:mega_bracelet_red",
+  "itemId_3d": "mega_showdown:mega_bracelet_red_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:mega_bracelet_red_3d",
+    "fixedLoc": "mega_showdown:mega_bracelet_red_3d",
+    "hand": "mega_showdown:mega_bracelet_red_3d",
+    "hand3rd": "mega_showdown:mega_bracelet_red_3d"
+  }
+}

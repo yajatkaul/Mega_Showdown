@@ -1,0 +1,28 @@
+{
+  "species": "cobblemon:pikachu",
+  "order": 11,
+  "variations": [
+    {
+      "aspects": ["cosplay", "region-bias-alola"],
+	  "model": "cobblemon:pikachu_cosplay.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_alola_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": ["cosplay", "shiny", "region-bias-alola"],
+	  "model": "cobblemon:pikachu_cosplay.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_alola_bias_shiny.png"
+    },
+    {
+      "aspects": ["cosplay", "alolan"],
+      "model": "cobblemon:pikachu_cosplay.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_alola_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": ["cosplay", "shiny", "alolan"],
+      "model": "cobblemon:pikachu_cosplay.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_alola_bias_shiny.png"
+    }
+  ]
+}

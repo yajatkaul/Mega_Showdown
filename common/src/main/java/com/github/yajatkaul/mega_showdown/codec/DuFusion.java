@@ -49,8 +49,8 @@ public record DuFusion(
             AspectSetCodec.CODEC.fieldOf("pokemon_2_aspect_conditions").forGetter(DuFusion::pokemon_1_aspect_conditions),
             Codec.STRING.listOf().fieldOf("main_pokemons").forGetter(DuFusion::mainPokemons),
             AspectSetCodec.CODEC.fieldOf("pokemon_main_aspect_conditions").forGetter(DuFusion::pokemon_1_aspect_conditions),
-            Effect.EFFECT_MAP_CODEC.fieldOf("effect_for_fusion1").forGetter(DuFusion::effect1),
-            Effect.EFFECT_MAP_CODEC.fieldOf("effect_for_fusion2").forGetter(DuFusion::effect2)
+            Effect.EFFECT_MAP_CODEC.optionalFieldOf("effect_for_fusion1", Effect.empty()).forGetter(DuFusion::effect1),
+            Effect.EFFECT_MAP_CODEC.optionalFieldOf("effect_for_fusion2", Effect.empty()).forGetter(DuFusion::effect2)
     ).apply(instance, DuFusion::new));
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -98,9 +98,9 @@ public record DuFusion(
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName()) &&
                         pokemon_1_aspect_conditions.validate_revert(pokemon)) {
-                    effect1.revertEffects(pokemonEntity, pokemon_1_aspect_conditions.revert_aspects(), null);
+                    effect1.revertEffects(pokemon, pokemon_1_aspect_conditions.revert_aspects(), null);
                 } else if (pokemon_2_aspect_conditions.validate_revert(pokemon)) {
-                    effect2.revertEffects(pokemonEntity, pokemon_2_aspect_conditions.revert_aspects(), null);
+                    effect2.revertEffects(pokemon, pokemon_2_aspect_conditions.revert_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -121,9 +121,9 @@ public record DuFusion(
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName()) &&
                         pokemon_1_aspect_conditions.validate_apply(pokemon)) {
-                    effect1.applyEffects(pokemonEntity, pokemon_1_aspect_conditions.apply_aspects(), null);
+                    effect1.applyEffects(pokemon, pokemon_1_aspect_conditions.apply_aspects(), null);
                 } else if (pokemon_2_aspect_conditions.validate_apply(pokemon)) {
-                    effect1.applyEffects(pokemonEntity, pokemon_2_aspect_conditions.apply_aspects(), null);
+                    effect1.applyEffects(pokemon, pokemon_2_aspect_conditions.apply_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }

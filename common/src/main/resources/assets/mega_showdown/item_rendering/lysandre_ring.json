@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:lysandre_ring",
+  "itemId_3d": "mega_showdown:lysandre_ring_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:lysandre_ring_3d",
+    "fixedLoc": "mega_showdown:lysandre_ring_3d",
+    "hand": "mega_showdown:lysandre_ring_3d",
+    "hand3rd": "mega_showdown:lysandre_ring_3d"
+  }
+}
