@@ -458,6 +458,14 @@
 					"pivot": [1.21569, 21.1375, 3.99252]
 				},
 				{
+					"name": "locator_seat_1",
+					"parent": "bottorso",
+					"pivot": [0, 157.3, -15],
+					"locators": {
+						"seat_1": [0, 20.3, 8]
+					}
+				},
+				{
 					"name": "leg_left",
 					"parent": "body",
 					"pivot": [-5.89237, 15.51452, 0.1697],

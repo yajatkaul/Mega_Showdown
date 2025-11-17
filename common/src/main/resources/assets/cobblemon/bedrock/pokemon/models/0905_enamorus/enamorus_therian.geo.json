@@ -6,7 +6,7 @@
 				"identifier": "geometry.enamorus_therian",
 				"texture_width": 256,
 				"texture_height": 256,
-				"visible_bounds_width": 6,
+				"visible_bounds_width": 24,
 				"visible_bounds_height": 4.5,
 				"visible_bounds_offset": [0, 1.75, 0]
 			},
@@ -598,6 +598,14 @@
 					"cubes": [
 						{"origin": [-1, 32.5, 25.16], "size": [2, 2, 5], "inflate": 0.01, "uv": [114, 168]}
 					]
+				},
+				{
+					"name": "locator_seat_1",
+					"parent": "body",
+					"pivot": [0, 34.5, -3],
+					"locators": {
+						"seat_1": [0, 35.5, 0]
+					}
 				}
 			]
 		}

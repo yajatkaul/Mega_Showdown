@@ -1410,6 +1410,14 @@
 					]
 				},
 				{
+					"name": "locator_seat_1",
+					"parent": "torso",
+					"pivot": [0, 41, -9.5],
+					"locators": {
+						"seat_1": [0, 41, -9.5]
+					}
+				},
+				{
 					"name": "left_leg_bone",
 					"parent": "body",
 					"pivot": [9.5, 28, 10],

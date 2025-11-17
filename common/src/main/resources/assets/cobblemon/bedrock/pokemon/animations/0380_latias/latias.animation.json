@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.latias.ground_idle": {
+    "animation.latias2.ground_idle": {
       "loop": true,
       "bones": {
         "body": {
@@ -123,7 +123,7 @@
         }
       }
     },
-    "animation.latias.battle_idle": {
+    "animation.latias2.battle_idle": {
       "loop": true,
       "bones": {
         "body": {
@@ -280,7 +280,7 @@
         }
       }
     },
-    "animation.latias.ground_walk": {
+    "animation.latias2.ground_walk": {
       "loop": true,
       "bones": {
         "body": {
@@ -395,7 +395,7 @@
         }
       }
     },
-    "animation.latias.blink": {
+    "animation.latias2.blink": {
       "animation_length": 0.1667,
       "bones": {
         "eye_left": {
@@ -428,7 +428,7 @@
         }
       }
     },
-    "animation.latias.cry": {
+    "animation.latias2.cry": {
       "animation_length": 3,
       "bones": {
         "body": {
