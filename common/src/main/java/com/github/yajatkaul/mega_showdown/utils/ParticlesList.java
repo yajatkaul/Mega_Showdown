@@ -1,40 +1,15 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
+import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.utils.particles.AnimationData;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 import java.util.Optional;
 
 public class ParticlesList {
-    //TODO adds sounds to these 3
-    public static Effect groudonPrimalRevert = new Effect(
-            Optional.of(new MinecraftParticle(
-                    Optional.of("minecraft:campfire_cosy_smoke"),
-                    Optional.of("minecraft:end_rod"),
-                    Optional.empty(),
-                    Optional.empty(),
-                    Optional.of(1f),
-                    Optional.empty(),
-                    Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
-            )),
-            Optional.empty()
-    );
-
-    public static Effect kyogrePrimalRevert = new Effect(
-            Optional.of(new MinecraftParticle(
-                    Optional.of("minecraft:bubble"),
-                    Optional.of("minecraft:end_rod"),
-                    Optional.empty(),
-                    Optional.empty(),
-                    Optional.of(1f),
-                    Optional.empty(),
-                    Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
-            )),
-            Optional.empty()
-    );
-
     public static Effect megaEvolution = new Effect(
             Optional.of(defaultConfigMCParticles("minecraft:end_rod")),
             Optional.of(simpleSnowstormParticles("cobblemon:mega_evolution",
@@ -52,7 +27,6 @@ public class ParticlesList {
             Optional.of(defaultConfigMCParticles("minecraft:heart")),
             Optional.empty()
     );
-
 
     public static Effect zMoves = new Effect(
             Optional.empty(),
@@ -207,5 +181,14 @@ public class ParticlesList {
                 Optional.empty(),
                 Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 2.5f, 0))
         );
+    }
+
+    public static Effect getEffect(String effectId) {
+        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId));
+        if (effect == null) {
+            return Effect.empty();
+        } else {
+            return effect;
+        }
     }
 }

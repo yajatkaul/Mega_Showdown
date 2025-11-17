@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemStack;
@@ -15,21 +16,21 @@ public class FormChangeInteractToggleItem extends PokemonSelectingItem {
     private final List<String> form_apply_order;
     private final List<String> form_aspect_apply_order;
     private final List<String> pokemons;
-    private final List<Effect> effects;
+    private final List<String> effectIds;
     private final int consume;
 
     public FormChangeInteractToggleItem(Properties properties,
                                         List<String> form_apply_order,
                                         List<String> form_aspect_apply_order,
                                         List<String> pokemons,
-                                        List<Effect> effects,
+                                        List<String> effectIds,
                                         int consume
     ) {
         super(properties);
         this.form_apply_order = form_apply_order;
         this.form_aspect_apply_order = form_aspect_apply_order;
         this.pokemons = pokemons;
-        this.effects = effects;
+        this.effectIds = effectIds;
         this.consume = consume;
     }
 
@@ -50,9 +51,9 @@ public class FormChangeInteractToggleItem extends PokemonSelectingItem {
         }
 
         if (currentIndex + 1 > form_apply_order.size() - 1) {
-            effects.getFirst().applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
+            ParticlesList.getEffect(effectIds.getFirst()).applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
         } else {
-            effects.get(currentIndex + 1).applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
+            ParticlesList.getEffect(effectIds.get(currentIndex + 1)).applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
         }
         itemStack.consume(consume, serverPlayer);
 

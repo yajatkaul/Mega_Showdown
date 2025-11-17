@@ -47,231 +47,106 @@ public record SnowStormParticle(
     ).apply(instance, SnowStormParticle::new));
 
     public void apply(PokemonEntity context, List<String> aspects, PokemonEntity other) {
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-
-        CompoundTag pokemonPersistentData = context.getPokemon().getPersistentData();
-        pokemonPersistentData.putBoolean("form_changing", true);
-        pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
-
-        if (this.particle_apply.isEmpty()) {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            resetFormChangingState(context, pokemonPersistentData);
-            return;
-        }
-
-        ResourceLocation particleId = ResourceLocation.tryParse(this.particle_apply.get());
-        if (particleId == null) {
-            MegaShowdown.LOGGER.error("Invalid snowstorm apply particle");
-            return;
-        }
-
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.orElse(null), other, this.target_apply.orElse(null));
-        applySounds(context, (ServerLevel) context.level());
-
-        this.apply_after.ifPresentOrElse((apply_after) -> {
-            context.after(apply_after, () -> {
-                AspectUtils.applyAspects(context.getPokemon(), aspects);
-                resetFormChangingState(context, pokemonPersistentData);
-
-                this.animations.ifPresent((animation) -> {
-                    animation.applyAnimations(context);
-                });
-
-                return Unit.INSTANCE;
-            });
-        }, () -> {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            resetFormChangingState(context, pokemonPersistentData);
-
-            this.animations.ifPresent((animation) -> {
-                animation.applyAnimations(context);
-            });
-        });
-
+        processTransformation(context, aspects, other, null, true);
     }
 
     public void revert(PokemonEntity context, List<String> aspects, PokemonEntity other) {
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-
-        CompoundTag pokemonPersistentData = context.getPokemon().getPersistentData();
-        pokemonPersistentData.putBoolean("form_changing", true);
-        pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
-
-        if (this.particle_revert.isEmpty()) {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            resetFormChangingState(context, pokemonPersistentData);
-            return;
-        }
-
-        ResourceLocation particleId = ResourceLocation.tryParse(this.particle_revert.get());
-        if (particleId == null) {
-            MegaShowdown.LOGGER.error("Invalid snowstorm revert particle");
-            return;
-        }
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.orElse(null), other, this.target_apply.orElse(null));
-        revertSounds(context, (ServerLevel) context.level());
-
-        this.revert_after.ifPresentOrElse((revert_after) -> {
-            context.after(revert_after, () -> {
-                AspectUtils.applyAspects(context.getPokemon(), aspects);
-                resetFormChangingState(context, pokemonPersistentData);
-
-
-                this.animations.ifPresent((animation) -> {
-                    animation.revertAnimations(context);
-                });
-
-                return Unit.INSTANCE;
-            });
-        }, () -> {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            resetFormChangingState(context, pokemonPersistentData);
-
-            this.animations.ifPresent((animation) -> {
-                animation.revertAnimations(context);
-            });
-        });
+        processTransformation(context, aspects, other, null, false);
     }
 
     public void applyBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon) {
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-
-        CompoundTag pokemonPersistentData = context.getPokemon().getPersistentData();
-        pokemonPersistentData.putBoolean("form_changing", true);
-        pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
-
-        if (this.particle_apply.isEmpty()) {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            AspectUtils.updatePackets(battlePokemon);
-            resetFormChangingState(context, pokemonPersistentData);
-            return;
-        }
-
-        ResourceLocation particleId = ResourceLocation.tryParse(this.particle_apply.get());
-        if (particleId == null) {
-            MegaShowdown.LOGGER.error("Invalid snowstorm apply particle during battle");
-            return;
-        }
-
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_apply.orElse(null), other, this.target_apply.orElse(null));
-        applySounds(context, (ServerLevel) context.level());
-
-        this.apply_after.ifPresentOrElse((apply_after) -> {
-            context.after(apply_after, () -> {
-                AspectUtils.applyAspects(context.getPokemon(), aspects);
-                resetFormChangingState(context, pokemonPersistentData);
-
-                AspectUtils.updatePackets(battlePokemon);
-
-                this.animations.ifPresent((animation) -> {
-                    animation.applyAnimations(context);
-                });
-
-                return Unit.INSTANCE;
-            });
-        }, () -> {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            resetFormChangingState(context, pokemonPersistentData);
-
-            AspectUtils.updatePackets(battlePokemon);
-
-            this.animations.ifPresent((animation) -> {
-                animation.applyAnimations(context);
-            });
-        });
-
+        processTransformation(context, aspects, other, battlePokemon, true);
     }
 
     public void revertBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon) {
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
+        processTransformation(context, aspects, other, battlePokemon, false);
+    }
+
+    private void processTransformation(PokemonEntity context, List<String> aspects, PokemonEntity other,
+                                       BattlePokemon battlePokemon, boolean isApply) {
+        context.setNoAi(true);
 
         CompoundTag pokemonPersistentData = context.getPokemon().getPersistentData();
         pokemonPersistentData.putBoolean("form_changing", true);
         pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
 
-        if (this.particle_revert.isEmpty()) {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            AspectUtils.updatePackets(battlePokemon);
-            resetFormChangingState(context, pokemonPersistentData);
+        Optional<String> particle = isApply ? particle_apply : particle_revert;
+        Optional<List<String>> sourceParticles = isApply ? source_apply : source_revert;
+        Optional<List<String>> targetParticles = isApply ? target_apply : target_revert;
+        Optional<Float> delay = isApply ? apply_after : revert_after;
+
+        if (particle.isEmpty()) {
+            applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon, isApply);
             return;
         }
 
-        ResourceLocation particleId = ResourceLocation.tryParse(this.particle_revert.get());
+        ResourceLocation particleId = ResourceLocation.tryParse(particle.get());
         if (particleId == null) {
-            MegaShowdown.LOGGER.error("Invalid snowstorm revert particle during battle");
+            MegaShowdown.LOGGER.error("Invalid snowstorm {} particle{}",
+                    isApply ? "apply" : "revert",
+                    battlePokemon != null ? " during battle" : "");
             return;
         }
 
-        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(context, particleId, this.source_revert.orElse(null), other, this.target_apply.orElse(null));
-        revertSounds(context, (ServerLevel) context.level());
+        PokemonBehaviourHelper.Companion.snowStormPartileSpawner(
+                context, particleId, sourceParticles.orElse(null), other, targetParticles.orElse(null)
+        );
+        playSound(context, (ServerLevel) context.level(), isApply);
 
-        this.revert_after.ifPresentOrElse((revert_after) -> {
-            context.after(revert_after, () -> {
-                AspectUtils.applyAspects(context.getPokemon(), aspects);
-                resetFormChangingState(context, pokemonPersistentData);
+        delay.ifPresentOrElse(
+                delayValue -> context.after(delayValue, () -> {
+                    applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon, isApply);
+                    return Unit.INSTANCE;
+                }),
+                () -> applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon, isApply)
+        );
+    }
 
-                AspectUtils.updatePackets(battlePokemon);
+    private void applyAspectsAndCleanup(PokemonEntity context, List<String> aspects,
+                                        CompoundTag pokemonPersistentData, BattlePokemon battlePokemon,
+                                        boolean isApply) {
+        AspectUtils.applyAspects(context.getPokemon(), aspects);
 
-                this.animations.ifPresent((animation) -> {
-                    animation.revertAnimations(context);
-                });
-
-                return Unit.INSTANCE;
-            });
-        }, () -> {
-            AspectUtils.applyAspects(context.getPokemon(), aspects);
-            resetFormChangingState(context, pokemonPersistentData);
-
+        if (battlePokemon != null) {
             AspectUtils.updatePackets(battlePokemon);
+        }
 
-            this.animations.ifPresent((animation) -> {
-                animation.revertAnimations(context);
-            });
-        });
-    }
+        resetFormChangingState(context, pokemonPersistentData);
 
-    private void resetFormChangingState(PokemonEntity context, CompoundTag pokemonPersistentData) {
-        context.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-        pokemonPersistentData.remove("form_changing");
-        pokemonPersistentData.remove("apply_aspects");
-    }
-
-    public void applySounds(PokemonEntity context, ServerLevel level) {
-        this.sound_apply.ifPresent((sound_apply) -> {
-            String[] partsSound;
-            partsSound = sound_apply.split(":");
-            ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
-            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
-
-            Vec3 entityPos = context.position();
-
-            if (soundEvent == null) {
-                MegaShowdown.LOGGER.error("Invalid Sound Apply used for pokemon: {}, sound id: {}",
-                        context.getPokemon().getSpecies().getName(),
-                        sound_apply);
+        animations.ifPresent(animation -> {
+            if (isApply) {
+                animation.applyAnimations(context);
             } else {
-                level.playSound(
-                        null, entityPos.x, entityPos.y, entityPos.z,
-                        soundEvent,
-                        SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-                );
+                animation.revertAnimations(context);
             }
         });
     }
 
-    public void revertSounds(PokemonEntity context, ServerLevel level) {
-        this.sound_revert.ifPresent((sound_revert) -> {
-            String[] partsSound;
-            partsSound = sound_revert.split(":");
-            ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
-            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
+    private void resetFormChangingState(PokemonEntity context, CompoundTag pokemonPersistentData) {
+        context.setNoAi(false);
+        pokemonPersistentData.remove("form_changing");
+        pokemonPersistentData.remove("apply_aspects");
+    }
 
+    private void playSound(PokemonEntity context, ServerLevel level, boolean isApply) {
+        Optional<String> sound = isApply ? sound_apply : sound_revert;
+        String soundType = isApply ? "Apply" : "Revert";
+
+        sound.ifPresent(soundId -> {
+            String[] parts = soundId.split(":");
+            if (parts.length != 2) {
+                MegaShowdown.LOGGER.error("Invalid Sound {} format for pokemon: {}, sound id: {}",
+                        soundType, context.getPokemon().getSpecies().getName(), soundId);
+                return;
+            }
+
+            ResourceLocation soundResourceId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
+            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(soundResourceId);
             Vec3 entityPos = context.position();
 
             if (soundEvent == null) {
-                MegaShowdown.LOGGER.error("Invalid Sound Revert used for pokemon: {}, sound id: {}",
-                        context.getPokemon().getSpecies().getName(),
-                        sound_apply);
+                MegaShowdown.LOGGER.error("Invalid Sound {} used for pokemon: {}, sound id: {}",
+                        soundType, context.getPokemon().getSpecies().getName(), soundId);
             } else {
                 level.playSound(
                         null, entityPos.x, entityPos.y, entityPos.z,

@@ -1,0 +1,34 @@
+{
+  "minecraft": {
+    "particle_revert": "minecraft:end_rod",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "animations": {
+      "animations_apply": [
+        "cry"
+      ],
+      "expressions_apply": [],
+      "animations_revert": [
+        "cry"
+      ],
+      "expressions_revert": []
+    }
+  },
+  "snowstorm": {
+    "source_apply": [
+      "target"
+    ],
+    "particle_apply": "cobblemon:arceus_poison",
+    "apply_after": 3,
+    "sound_apply": "mega_showdown:arceus_multitype",
+    "animations": {
+      "animations_apply": [
+        "cry"
+      ],
+      "expressions_apply": [],
+      "animations_revert": [
+        "cry"
+      ],
+      "expressions_revert": []
+    }
+  }
+}

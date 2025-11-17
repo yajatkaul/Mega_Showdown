@@ -79,14 +79,17 @@ public class CobbleEvents {
             return Unit.INSTANCE;
         }
         BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
+        Pokemon pokemon = formeChangeEvent.getPokemon().getEffectedPokemon();
 
         for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
-            if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())) {
-                battleFormChange.effect().applyEffectsBattle(formeChangeEvent.getPokemon().getEntity().getPokemon(),
+            if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())
+                    && battleFormChange.pokemons().contains(pokemon.getSpecies().getName())) {
+                battleFormChange.effect().applyEffectsBattle(pokemon,
                         battleFormChange.aspects().apply_aspects(),
                         null,
                         battlePokemon
                 );
+                pokemon.getPersistentData().put("battle_end_revert", AspectUtils.makeNbt(battleFormChange.aspects().revert_aspects()));
                 return Unit.INSTANCE;
             }
         }

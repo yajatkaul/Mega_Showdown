@@ -3,6 +3,7 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +16,7 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
     private final String form_aspect_name;
     private final String form_aspect_apply;
     private final List<String> pokemons;
-    private final Effect effects;
+    private final String effectId;
     private final int consume;
     private final boolean revertable;
     private final String form_aspect_revert;
@@ -24,7 +25,7 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
                                   String form_aspect_name,
                                   String form_aspect_apply,
                                   List<String> pokemons,
-                                  Effect effects,
+                                  String effectId,
                                   int consume,
                                   boolean revertable,
                                   String form_aspect_revert
@@ -34,7 +35,7 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
         this.form_aspect_apply = form_aspect_apply;
         this.form_aspect_revert = form_aspect_revert;
         this.pokemons = pokemons;
-        this.effects = effects;
+        this.effectId = effectId;
         this.consume = consume;
         this.revertable = revertable;
     }
@@ -44,13 +45,13 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
         if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
             return InteractionResultHolder.pass(itemStack);
         } else if (pokemon.getAspects().contains(form_aspect_name)) {
-            effects.revertEffects(pokemon, List.of(form_aspect_revert), null);
+            ParticlesList.getEffect(effectId).revertEffects(pokemon, List.of(form_aspect_revert), null);
             itemStack.consume(consume, serverPlayer);
 
             return InteractionResultHolder.success(itemStack);
         }
 
-        effects.applyEffects(pokemon, List.of(form_aspect_apply), null);
+        ParticlesList.getEffect(effectId).applyEffects(pokemon, List.of(form_aspect_apply), null);
         itemStack.consume(consume, serverPlayer);
 
         return InteractionResultHolder.success(itemStack);

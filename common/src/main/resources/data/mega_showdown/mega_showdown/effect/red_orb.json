@@ -1,0 +1,13 @@
+{
+  "minecraft": {
+    "particle_revert": "minecraft:campfire_cosy_smoke",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "particle_apply": "minecraft:end_rod",
+    "animations": {
+      "animations_apply": ["cry"],
+      "expressions_apply": [],
+      "animations_revert": ["cry"],
+      "expressions_revert": []
+    }
+  }
+}
