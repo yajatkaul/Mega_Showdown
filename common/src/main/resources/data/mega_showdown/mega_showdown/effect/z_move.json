@@ -1,0 +1,16 @@
+{
+  "snowstorm": {
+    "source_apply": [
+      "target"
+    ],
+    "particle_apply": "cobblemon:z_moves",
+    "apply_after": 4,
+    "sound_apply": "mega_showdown:z_move",
+    "animations": {
+      "apply_delay": 2.5,
+      "animations_apply": [
+        "cry"
+      ]
+    }
+  }
+}

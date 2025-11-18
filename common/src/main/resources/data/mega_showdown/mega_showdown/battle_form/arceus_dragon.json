@@ -1,0 +1,9 @@
+{
+  "pokemons": ["Arceus"],
+  "showdownFormChangeId": "dragon",
+  "aspects": {
+    "apply_aspects": ["multitype=dragon"],
+    "revert_aspects": ["multitype=normal"]
+  },
+  "effects": "mega_showdown:arceus_dragon"
+}

@@ -1,0 +1,20 @@
+{
+  "minecraft": {
+    "particle_revert": "minecraft:end_rod",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "animations": {
+      "animations_revert": ["cry"],
+      "expressions_revert": []
+    }
+  },
+  "snowstorm": {
+    "source_apply": ["target"],
+    "particle_apply": "cobblemon:wishiwashi_effect",
+    "apply_after": 4.5,
+    "sound_apply": "mega_showdown:form_change_basic",
+    "animations": {
+      "apply_delay": 0.5,
+      "animations_apply": ["cry"]
+    }
+  }
+}

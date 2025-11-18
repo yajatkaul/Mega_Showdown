@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:dynamax_band",
+  "itemId_3d": "mega_showdown:dynamax_band_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:dynamax_band_3d",
+    "fixedLoc": "mega_showdown:dynamax_band_3d",
+    "hand": "mega_showdown:dynamax_band_3d",
+    "hand3rd": "mega_showdown:dynamax_band_3d"
+  }
+}

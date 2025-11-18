@@ -1,0 +1,9 @@
+{
+  "pokemons": ["Arceus"],
+  "showdownFormChangeId": "psychic",
+  "aspects": {
+    "apply_aspects": ["multitype=psychic"],
+    "revert_aspects": ["multitype=normal"]
+  },
+  "effects": "mega_showdown:arceus_psychic"
+}

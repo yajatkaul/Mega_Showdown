@@ -1,0 +1,28 @@
+{
+  "species": "cobblemon:sharpedo",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [
+        "mega"
+      ],
+      "model": "cobblemon:sharpedomega.geo",
+      "texture": "cobblemon:textures/pokemon/0319_sharpedo/sharpedomega.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0319_sharpedo/megasharpedo_emmissive.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "mega",
+        "shiny"
+      ],
+      "model": "cobblemon:sharpedomega.geo",
+      "texture": "cobblemon:textures/pokemon/0319_sharpedo/sharpedomega_shiny.png"
+    }
+  ]
+}

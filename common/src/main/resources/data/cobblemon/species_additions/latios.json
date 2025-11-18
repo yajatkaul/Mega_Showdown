@@ -1,0 +1,21 @@
+{
+  "implemented": true,
+  "target": "cobblemon:latios",
+  "baseScale": 1,
+  "hitbox": {
+    "width": 2.2,
+    "height": 2.5,
+    "fixed": false
+  },
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.31
+      },
+      "fly": {
+        "canFly": true,
+        "flySpeedHorizontal": 0.7
+      }
+    }
+  }
+}

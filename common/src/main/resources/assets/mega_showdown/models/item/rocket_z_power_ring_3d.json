@@ -1,0 +1,7 @@
+{
+  "parent": "mega_showdown:item/z_power_ring_3d",
+  "gui_light": "front",
+  "textures": {
+    "0": "mega_showdown:item/rocket_z_power_ring_3d"
+  }
+}

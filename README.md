@@ -36,19 +36,15 @@
 
 A huge thanks to everyone who allowed me to use there models from there pack
 
-- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Kubfu and formes, Arceus and formes, Silvaly and formes
+- [Pokemans Pack](https://modrinth.com/datapack/cobblemon-pokemans) Used for Groudon, Kyogre and there Primals, Zacian, Zamazenta, kelido, hoopa (unbound), Silvaly and formes, eternatus
 - [Souls Megas](https://modrinth.com/datapack/soul-megas-free-megas-for-all) Used for all the mega models
-- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, rotom and formes, gensect, maltan, malmetal, furfrou and Marshadow
+- [MissingMons](https://modrinth.com/datapack/missingmons-cobblemon) Used for Rockruff, Lycanroc, Ogerpon, rotom formes, shaymin, gensect, maltan, malmetaland Marshadow
 - [AshiMons](https://modrinth.com/datapack/ashimons) Used for Calyrex and its fusions
-- [MysticMons](https://modrinth.com/datapack/mysticmons) Used for Necrozma, Ultranecrozma, Lunala, Solgaleo, cosmog, cosmeum, genies base formes
-- [LackingMons](https://modrinth.com/datapack/lackingmons) for Eternamax eternatus
 - [HydroReanimodelPack](https://modrinth.com/datapack/hydro-reanimodel-pack?version=1.21.1&loader=datapack) for Creation trio and origin formes, lake trio, solgelio, lunala, necrozma(dusk/dawn), burmy line
 - [Cobblemon Sol and Luna](https://legacy.curseforge.com/minecraft/data-packs/cobblemon-sol-and-luna-addon) for castform and its forme
 - [Minior overhaul addon](https://modrinth.com/datapack/minior-overhaul/versions) for Minior and its forme
-- [ServidorCobblemon](https://discord.gg/8k6NxrNPYw) for Oricorio and all the formes, all genie formes, all zygarde formes, blood moon ursuluna
 - [PokeStars](https://discord.gg/8k6NxrNPYw) for Gmax blastoise, toxtricity, sandaconda, snorlax, cinderace, rillaboom, corviknight and melmetal
 - Yahrim for commissioning zygarde line, gmax venasaur, meowth, machamp, butterfree
-- [Alphabet Soup](https://modrinth.com/datapack/alphabetsoup/version/2FMZ0j7c) for all unown forms
 
 ![](https://media.forgecdn.net/attachments/description/1189523/description_875092f1-66ff-4ede-8841-ae6c44bad7cf.png)
 

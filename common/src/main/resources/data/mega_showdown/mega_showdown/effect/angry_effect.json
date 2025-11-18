@@ -1,0 +1,16 @@
+{
+  "minecraft": {
+    "particle_apply": "minecraft:angry_effect",
+    "particle_revert": "minecraft:angry_effect",
+    "sound_apply": "minecraft:block.amethyst_block.chime",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "particle_apply_amplifier": 1,
+    "particle_revert_amplifier": 1,
+    "animations": {
+      "animations_apply": ["cry"],
+      "expressions_apply": [],
+      "animations_revert": ["cry"],
+      "expressions_revert": []
+    }
+  }
+}

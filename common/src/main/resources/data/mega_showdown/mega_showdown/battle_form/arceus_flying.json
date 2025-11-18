@@ -1,0 +1,9 @@
+{
+  "pokemons": ["Arceus"],
+  "showdownFormChangeId": "flying",
+  "aspects": {
+    "apply_aspects": ["multitype=flying"],
+    "revert_aspects": ["multitype=normal"]
+  },
+  "effects": "mega_showdown:arceus_flying"
+}

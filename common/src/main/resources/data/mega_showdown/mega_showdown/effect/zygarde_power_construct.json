@@ -1,0 +1,19 @@
+{
+  "minecraft": {
+    "particle_revert": "minecraft:end_rod",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "animations": {
+      "animations_revert": ["cry"],
+      "expressions_revert": []
+    }
+  },
+  "snowstorm": {
+    "source_apply": ["target"],
+    "particle_apply": "cobblemon:power_construct_event",
+    "apply_after": 4,
+    "sound_apply": "mega_showdown:form_change_basic",
+    "animations": {
+      "animations_apply": ["cry"]
+    }
+  }
+}

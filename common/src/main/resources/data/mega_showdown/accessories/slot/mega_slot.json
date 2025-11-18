@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "amount": 1,
+  "operation": "set",
+  "order": 1,
+  "icon": "mega_showdown:gui/slot/mega_slot"
+}

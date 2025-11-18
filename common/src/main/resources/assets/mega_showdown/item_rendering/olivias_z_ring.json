@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:olivias_z_ring",
+  "itemId_3d": "mega_showdown:olivias_z_ring_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:olivias_z_ring_3d",
+    "fixedLoc": "mega_showdown:olivias_z_ring_3d",
+    "hand": "mega_showdown:olivias_z_ring_3d",
+    "hand3rd": "mega_showdown:olivias_z_ring_3d"
+  }
+}

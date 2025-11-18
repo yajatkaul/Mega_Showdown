@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:brendan_mega_cuff",
+  "itemId_3d": "mega_showdown:brendan_mega_cuff_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:brendan_mega_cuff_3d",
+    "fixedLoc": "mega_showdown:brendan_mega_cuff_3d",
+    "hand": "mega_showdown:brendan_mega_cuff_3d",
+    "hand3rd": "mega_showdown:brendan_mega_cuff_3d"
+  }
+}

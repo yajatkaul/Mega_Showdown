@@ -1,0 +1,415 @@
+{
+  "textures": {
+    "1": "mega_showdown:item/keystone_base",
+    "2": "mega_showdown:item/mega_bracelet_3d"
+  },
+  "gui_light": "front",
+  "elements": [
+    {
+      "name": "Stone",
+      "from": [
+        -0.01,
+        0.5,
+        2
+      ],
+      "to": [
+        -0.01,
+        1.5,
+        3
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          -6,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "west": {
+          "uv": [
+            2,
+            2,
+            6,
+            6
+          ],
+          "texture": "#1"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            0,
+            4
+          ],
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "name": "up",
+      "from": [
+        -0.5,
+        1.5,
+        2
+      ],
+      "to": [
+        0,
+        1.5,
+        3
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          -5,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "down": {
+          "uv": [
+            6,
+            2,
+            2,
+            0
+          ],
+          "rotation": 90,
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "name": "down",
+      "from": [
+        -0.5,
+        0.5,
+        2
+      ],
+      "to": [
+        0,
+        0.5,
+        3
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          -5,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "up": {
+          "uv": [
+            6,
+            8,
+            2,
+            6
+          ],
+          "rotation": 270,
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "name": "left",
+      "from": [
+        -0.5,
+        0.5,
+        2
+      ],
+      "to": [
+        0,
+        1.5,
+        2
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0.5,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "south": {
+          "uv": [
+            0,
+            2,
+            2,
+            6
+          ],
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "name": "right",
+      "from": [
+        -0.5,
+        0.5,
+        3
+      ],
+      "to": [
+        0,
+        1.5,
+        3
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          -5,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            2,
+            8,
+            6
+          ],
+          "texture": "#1"
+        },
+        "down": {
+          "uv": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "name": "base",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        5,
+        2,
+        5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          -1,
+          0,
+          2
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            0,
+            10,
+            2
+          ],
+          "texture": "#2"
+        },
+        "east": {
+          "uv": [
+            5,
+            0,
+            10,
+            2
+          ],
+          "texture": "#2"
+        },
+        "south": {
+          "uv": [
+            5,
+            0,
+            10,
+            2
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            5,
+            0,
+            10,
+            2
+          ],
+          "texture": "#2"
+        },
+        "up": {
+          "uv": [
+            5,
+            5,
+            0,
+            0
+          ],
+          "texture": "#2"
+        },
+        "down": {
+          "uv": [
+            5,
+            5,
+            0,
+            10
+          ],
+          "texture": "#2"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        90,
+        180,
+        0
+      ],
+      "translation": [
+        -5.5,
+        3.5,
+        9
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        -5.5,
+        -7.5,
+        9
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        15,
+        60,
+        -90
+      ],
+      "translation": [
+        6,
+        -2,
+        0
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        15,
+        -120,
+        90
+      ],
+      "translation": [
+        -4.75,
+        0,
+        -4.25
+      ]
+    },
+    "ground": {
+      "translation": [
+        6.75,
+        6.75,
+        6.75
+      ],
+      "scale": [
+        1.25,
+        1.25,
+        1.25
+      ]
+    },
+    "gui": {
+      "rotation": [
+        0,
+        60,
+        15
+      ],
+      "translation": [
+        13,
+        16,
+        0
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "translation": [
+        -16.5,
+        24,
+        16.5
+      ],
+      "scale": [
+        3,
+        3,
+        3
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "translation": [
+        -13.5,
+        17.5,
+        14.5
+      ],
+      "scale": [
+        2.5,
+        2.5,
+        2.5
+      ]
+    }
+  },
+  "groups": [
+    {
+      "name": "bracelet",
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "color": 0,
+      "children": [
+        {
+          "name": "keystone",
+          "origin": [
+            8,
+            8,
+            8
+          ],
+          "color": 0,
+          "children": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        5
+      ]
+    }
+  ]
+}

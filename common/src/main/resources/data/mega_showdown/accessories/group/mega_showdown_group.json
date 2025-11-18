@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "order": 1,
+  "slots": [
+    "mega_slot",
+    "dynamax_slot",
+    "tera_slot",
+    "z_slot"
+  ],
+  "icon": "mega_showdown:gui/group/mega_showdown"
+}

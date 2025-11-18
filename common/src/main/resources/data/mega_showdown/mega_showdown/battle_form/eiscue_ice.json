@@ -1,0 +1,9 @@
+{
+  "pokemons": ["Eiscue"],
+  "showdownFormChangeId": "eiscue",
+  "aspects": {
+    "apply_aspects": ["penguin_head=ice_face"],
+    "revert_aspects": ["penguin_head=noice_face"]
+  },
+  "effects": "mega_showdown:end_rod"
+}

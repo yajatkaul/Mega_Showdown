@@ -1,0 +1,23 @@
+package com.github.yajatkaul.mega_showdown.fabric;
+
+import com.github.yajatkaul.mega_showdown.MegaShowdownClient;
+import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
+import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
+import com.github.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.RenderType;
+
+public final class MegaShowdownFabricClient implements ClientModInitializer {
+    @Override
+    public void onInitializeClient() {
+        MenuScreens.register(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
+        MegaShowdownClient.init();
+
+        BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.GRACIDEA_FLOWER.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.POTTED_GRACIDEA.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.REASSEMBLY_UNIT.get(), RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.WISHING_STAR_CRYSTAL.get(), RenderType.translucent());
+    }
+}

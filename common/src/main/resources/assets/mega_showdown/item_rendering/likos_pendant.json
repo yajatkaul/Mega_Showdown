@@ -1,0 +1,10 @@
+{
+  "itemId": "mega_showdown:likos_pendant",
+  "itemId_3d": "mega_showdown:likos_pendant_3d",
+  "perspectives": {
+    "headLoc": "mega_showdown:likos_pendant_3d",
+    "guiLoc": "mega_showdown:likos_pendant",
+    "groundLoc": "mega_showdown:likos_pendant",
+    "fixedLoc": "mega_showdown:likos_pendant"
+  }
+}

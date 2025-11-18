@@ -1,0 +1,16 @@
+{
+  "minecraft": {
+    "particle_apply": "minecraft:end_rod",
+    "particle_revert": "minecraft:end_rod",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "sound_apply": "minecraft:block.amethyst_block.chime",
+    "animations": {
+      "animations_revert": [
+        "cry"
+      ],
+      "animations_apply": [
+        "cry"
+      ]
+    }
+  }
+}
