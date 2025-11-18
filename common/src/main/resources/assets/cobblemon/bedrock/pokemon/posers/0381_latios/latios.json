@@ -13,7 +13,7 @@
   ],
   "rootBone": "latios",
   "animations": {
-    "cry": "q.bedrock_stateful('latios', 'cry')"
+    "cry": "q.bedrock_stateful('latios2', 'cry')"
   },
   "poses": {
     "battle-standing": {
@@ -23,10 +23,10 @@
       "isBattle": true,
       "animations": [
         "q.look('head')",
-        "q.bedrock('latios', 'battle_idle')"
+        "q.bedrock('latios2', 'battle_idle')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latios', 'blink')"
+        "q.bedrock_quirk('latios2', 'blink')"
       ]
     },
     "standing": {
@@ -40,10 +40,10 @@
       "isBattle": false,
       "animations": [
         "q.look('head')",
-        "q.bedrock('latios', 'ground_idle')"
+        "q.bedrock('latios2', 'ground_idle')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latios', 'blink')"
+        "q.bedrock_quirk('latios2', 'blink')"
       ]
     },
     "walking": {
@@ -53,10 +53,10 @@
       ],
       "animations": [
         "q.look('head')",
-        "q.bedrock('latios', 'ground_walk')"
+        "q.bedrock('latios2', 'ground_walk')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latios', 'blink')"
+        "q.bedrock_quirk('latios2', 'blink')"
       ]
     }
   }

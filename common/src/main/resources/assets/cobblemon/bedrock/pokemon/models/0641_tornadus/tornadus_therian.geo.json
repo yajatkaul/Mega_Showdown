@@ -6,7 +6,7 @@
 				"identifier": "geometry.tornadus_therian",
 				"texture_width": 256,
 				"texture_height": 256,
-				"visible_bounds_width": 7,
+				"visible_bounds_width": 12,
 				"visible_bounds_height": 5.5,
 				"visible_bounds_offset": [0, 2.25, 0]
 			},
@@ -162,6 +162,14 @@
 					"cubes": [
 						{"origin": [-2, 16.52296, 26.83106], "size": [4, 0, 6], "uv": [42, 146]}
 					]
+				},
+				{
+					"name": "locator_seat_1",
+					"parent": "tail_cloud2",
+					"pivot": [0, 23.5, 7],
+					"locators": {
+						"seat_1": [0, 24.5, 10]
+					}
 				},
 				{
 					"name": "chest",
