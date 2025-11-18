@@ -7,8 +7,8 @@
 				"texture_width": 256,
 				"texture_height": 256,
 				"visible_bounds_width": 10,
-				"visible_bounds_height": 6.5,
-				"visible_bounds_offset": [0, 2.75, 0]
+				"visible_bounds_height": 10,
+				"visible_bounds_offset": [0, 1, 0]
 			},
 			"bones": [
 				{
@@ -632,6 +632,14 @@
 					"cubes": [
 						{"origin": [12.53454, 52.36549, -5.36912], "size": [5, 0, 3], "uv": [116, 28], "mirror": true}
 					]
+				},
+				{
+					"name": "locator_seat_1",
+					"parent": "chest2",
+					"pivot": [0, 41.5, 11],
+					"locators": {
+						"seat_1": [0, 42.5, 14]
+					}
 				},
 				{
 					"name": "lowbody_rotote_back",
