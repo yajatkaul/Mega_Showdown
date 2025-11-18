@@ -6,8 +6,12 @@
     "apply_after": 4,
     "particle_revert": "cobblemon:origin_effect",
     "revert_after": 4,
-    "sound_apply": "mega_showdown:origin_form",
-    "sound_revert": "mega_showdown:origin_form",
+    "sound_apply": {
+      "sound_id": "mega_showdown:origin_form"
+    },
+    "sound_revert": {
+      "sound_id": "mega_showdown:origin_form"
+    },
     "animations": {
       "animations_apply": ["cry"],
       "expressions_apply": [],

@@ -1,7 +1,9 @@
 {
   "minecraft": {
     "particle_revert": "minecraft:end_rod",
-    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "sound_revert": {
+      "sound_id": "minecraft:block.amethyst_block.chime"
+    },
     "animations": {
       "animations_apply": ["cry"],
       "expressions_apply": [],
@@ -13,7 +15,9 @@
     "source_apply": ["target"],
     "particle_apply": "cobblemon:silvally_dark_effect",
     "apply_after": 0.4,
-    "sound_apply": "minecraft:block.amethyst_block.chime",
+    "sound_apply": {
+      "sound_id": "minecraft:block.amethyst_block.chime"
+    },
     "animations": {
       "animations_apply": ["cry"],
       "expressions_apply": [],

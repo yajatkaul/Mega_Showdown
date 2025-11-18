@@ -1,9 +1,9 @@
 {
   "pokemons": ["Arceus"],
-  "showdownFormChangeId": "poison",
+  "showdown_form_change_id": "poison",
   "aspects": {
     "apply_aspects": ["multitype=poison"],
     "revert_aspects": ["multitype=normal"]
   },
-  "effects": "mega_showdown:arceus_poison"
+  "effect": "mega_showdown:arceus_poison"
 }

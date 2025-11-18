@@ -1,6 +1,6 @@
 {
   "pokemons": ["Aegislash"],
-  "showdownFormChangeId": "blade",
+  "showdown_form_change_id": "blade",
   "aspects": {
     "apply_aspects": ["stance_forme=blade"],
     "revert_aspects": ["stance_forme=shield"]

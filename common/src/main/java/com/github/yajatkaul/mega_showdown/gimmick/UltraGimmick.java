@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
+import com.mojang.datafixers.util.Pair;
 
 import java.util.List;
 
@@ -36,11 +37,19 @@ public class UltraGimmick {
 
     public static void ultraBurstInBattle(Pokemon pokemon, BattlePokemon battlePokemon) {
         if (pokemon.getAspects().contains("dawn-fusion")) {
-            pokemon.getPersistentData()
-                    .put("battle_end_revert", AspectUtils.makeNbt(List.of("prism_fusion=dusk")));
+            AspectUtils.appendRevertDataPokemon(
+                    ParticlesList.getEffect("mega_showdown:ultra_burst"),
+                    List.of("prism_fusion=dusk"),
+                    pokemon,
+                    "battle_end_revert"
+            );
         } else {
-            pokemon.getPersistentData()
-                    .put("battle_end_revert", AspectUtils.makeNbt(List.of("prism_fusion=dawn")));
+            AspectUtils.appendRevertDataPokemon(
+                    ParticlesList.getEffect("mega_showdown:ultra_burst"),
+                    List.of("prism_fusion=dawn"),
+                    pokemon,
+                    "battle_end_revert"
+            );
         }
 
         ParticlesList.getEffect("mega_showdown:ultra_burst").applyEffectsBattle(pokemon, List.of("prism_fusion=ultra"), null, battlePokemon);

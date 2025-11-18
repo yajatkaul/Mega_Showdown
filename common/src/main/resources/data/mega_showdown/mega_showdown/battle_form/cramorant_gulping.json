@@ -1,9 +1,9 @@
 {
   "pokemons": ["Cramorant"],
-  "showdownFormChangeId": "gulping",
+  "showdown_form_change_id": "gulping",
   "aspects": {
     "apply_aspects": ["missile_form=gulping"],
     "revert_aspects": ["missile_form=none"]
   },
-  "effects": "mega_showdown:end_rod"
+  "effect": "mega_showdown:end_rod"
 }

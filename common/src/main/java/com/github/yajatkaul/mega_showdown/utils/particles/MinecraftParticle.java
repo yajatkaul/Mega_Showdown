@@ -18,8 +18,8 @@ import java.util.Optional;
 public record MinecraftParticle(
         Optional<String> particle_apply,
         Optional<String> particle_revert,
-        Optional<String> sound_apply,
-        Optional<String> sound_revert,
+        Optional<SoundCodec> sound_apply,
+        Optional<SoundCodec> sound_revert,
         Optional<Float> particle_apply_amplifier,
         Optional<Float> particle_revert_amplifier,
         Optional<AnimationData> animations
@@ -27,8 +27,8 @@ public record MinecraftParticle(
     public static final Codec<MinecraftParticle> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.optionalFieldOf("particle_apply").forGetter(MinecraftParticle::particle_apply),
             Codec.STRING.optionalFieldOf("particle_revert").forGetter(MinecraftParticle::particle_revert),
-            Codec.STRING.optionalFieldOf("sound_apply").forGetter(MinecraftParticle::sound_apply),
-            Codec.STRING.optionalFieldOf("sound_revert").forGetter(MinecraftParticle::sound_revert),
+            SoundCodec.CODEC.optionalFieldOf("sound_apply").forGetter(MinecraftParticle::sound_apply),
+            SoundCodec.CODEC.optionalFieldOf("sound_revert").forGetter(MinecraftParticle::sound_revert),
             Codec.FLOAT.optionalFieldOf("particle_apply_amplifier").forGetter(MinecraftParticle::particle_apply_amplifier),
             Codec.FLOAT.optionalFieldOf("particle_revert_amplifier").forGetter(MinecraftParticle::particle_revert_amplifier),
             AnimationData.CODEC.optionalFieldOf("animations").forGetter(MinecraftParticle::animations)
@@ -46,22 +46,7 @@ public record MinecraftParticle(
             });
 
             this.sound_apply.ifPresent((sound_apply) -> {
-                String[] partsSound;
-                partsSound = sound_apply.split(":");
-                ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
-                SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
-
-                if (soundEvent == null) {
-                    MegaShowdown.LOGGER.error("Invalid Sound Apply used for pokemon: {}, sound id: {}",
-                            context.getPokemon().getSpecies().getName(),
-                            sound_apply);
-                } else {
-                    serverLevel.playSound(
-                            null, entityPos.x, entityPos.y, entityPos.z,
-                            soundEvent,
-                            SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-                    );
-                }
+                sound_apply.play(context);
             });
 
             this.particle_apply.ifPresent((particle_apply) -> {
@@ -122,22 +107,7 @@ public record MinecraftParticle(
             });
 
             this.sound_revert.ifPresent((sound_revert) -> {
-                String[] partsSound;
-                partsSound = sound_revert.split(":");
-                ResourceLocation custom_sound_id = ResourceLocation.fromNamespaceAndPath(partsSound[0], partsSound[1]);
-                SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(custom_sound_id);
-
-                if (soundEvent == null) {
-                    MegaShowdown.LOGGER.error("Invalid Sound Revert used for pokemon: {}, sound id: {}",
-                            context.getPokemon().getSpecies().getName(),
-                            sound_revert);
-                } else {
-                    serverLevel.playSound(
-                            null, entityPos.x, entityPos.y, entityPos.z,
-                            soundEvent,
-                            SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-                    );
-                }
+                sound_revert.play(context);
             });
 
             this.particle_revert.ifPresent((particle_revert) -> {

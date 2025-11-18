@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.tag.ModTags;
 import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
@@ -73,13 +74,12 @@ public class GimmickTurnCheck {
             for (Pokemon pokemon : playerPartyStore) {
                 if (pokemon.getSpecies().getName().equals("Terapagos")) {
                     hasTerapagos = true;
+                    break;
                 }
-                AspectUtils.revertPokemonsIfRequired(pokemon);
             }
 
             ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
-
-            if (teraOrb == null) {
+            if (teraOrb == ItemStack.EMPTY) {
                 return false;
             }
 

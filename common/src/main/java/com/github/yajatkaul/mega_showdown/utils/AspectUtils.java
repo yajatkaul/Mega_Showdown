@@ -14,9 +14,12 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdate
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.nbt.Tag;
+import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
+import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.nbt.*;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
@@ -35,24 +38,41 @@ public class AspectUtils {
         }
     }
 
-    public static ListTag makeNbt(List<String> aspects) {
-        ListTag nbtList = new ListTag();
-
-        for (String aspect : aspects) {
-            nbtList.add(StringTag.valueOf(aspect));
-        }
-
-        return nbtList;
+    public record EffectPair(
+            Effect effect,
+            List<String> aspects
+    ) {
+        public static final Codec<EffectPair> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Effect.CODEC.fieldOf("effect").forGetter(EffectPair::effect),
+                Codec.STRING.listOf().fieldOf("aspects").forGetter(EffectPair::aspects)
+        ).apply(instance, EffectPair::new));
     }
 
-    public static List<String> decodeNbt(ListTag nbtList) {
-        List<String> aspects = new ArrayList<>();
+    public static void appendRevertDataPokemon(Effect effect, List<String> string, Pokemon pokemon, String tagName) {
+        EffectPair effectPair = new EffectPair(effect, string);
 
-        for (Tag element : nbtList) {
-            aspects.add(element.getAsString());
-        }
+        List<EffectPair> existing = getRevertDataPokemon(pokemon, tagName);
 
-        return aspects;
+        existing.add(effectPair);
+
+        Tag encoded =
+                EffectPair.CODEC.listOf()
+                        .encodeStart(NbtOps.INSTANCE, existing)
+                        .getOrThrow();
+
+        pokemon.getPersistentData().put(tagName, encoded);
+    }
+
+    public static List<EffectPair> getRevertDataPokemon(Pokemon pokemon, String tagName) {
+        Tag raw = pokemon.getPersistentData().get(tagName);
+
+        if (raw == null) return new ArrayList<>();
+
+        return EffectPair.CODEC.listOf()
+                .parse(NbtOps.INSTANCE, raw)
+                .result()
+                .map(ArrayList::new)
+                .orElseGet(ArrayList::new);
     }
 
     public static void revertPokemonsIfRequired(PlayerPartyStore playerPartyStore) {
@@ -63,17 +83,25 @@ public class AspectUtils {
 
     public static void revertPokemonsIfRequired(Pokemon pokemon) {
         if (pokemon.getPersistentData().contains("battle_end_revert")) {
-            AspectUtils.applyAspects(
+            List<EffectPair> aspects = AspectUtils.getRevertDataPokemon(
                     pokemon,
-                    AspectUtils.decodeNbt(pokemon.getPersistentData().getList("battle_end_revert", 8))
+                    "battle_end_revert"
             );
+
+            for (EffectPair effectPair: aspects) {
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+            }
         }
 
         if (pokemon.getPersistentData().contains("apply_aspects")) {
-            List<String> aspects =
-                    AspectUtils.decodeNbt(pokemon.getPersistentData().getList("apply_aspects", 8));
+            List<EffectPair> aspects = AspectUtils.getRevertDataPokemon(
+                    pokemon,
+                    "apply_aspects"
+            );
 
-            AspectUtils.applyAspects(pokemon, aspects);
+            for (EffectPair effectPair: aspects) {
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+            }
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {
@@ -88,6 +116,10 @@ public class AspectUtils {
             if (pokemon.getEntity() != null) {
                 AspectUtils.scaleDownDynamax(pokemon.getEntity());
             }
+        }
+
+        if (pokemon.getPersistentData().getBoolean("form_changing")) {
+            pokemon.getPersistentData().putBoolean("form_changing", false);
         }
     }
 

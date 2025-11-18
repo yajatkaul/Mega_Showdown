@@ -21,6 +21,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ModTags.Items.MEGA_BRACELET)
+                .add(MegaShowdownItems.MEGA_BRACELET.get())
                 .add(MegaShowdownItems.MEGA_RED_BRACELET.get())
                 .add(MegaShowdownItems.MEGA_YELLOW_BRACELET.get())
                 .add(MegaShowdownItems.MEGA_PINK_BRACELET.get())

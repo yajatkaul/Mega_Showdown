@@ -60,24 +60,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(ModTags.Blocks.POWER_SPOT)
                 .add(
-                        MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get(),
-                        MegaShowdownBlocks.MEGA_METEOROID_RADIATED_BLOCK.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_DAWN_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_DUSK_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_FIRE_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_ICE_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_LEAF_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_MOON_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_SHINY_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_SUN_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_THUNDER_ORE.get(),
-                        MegaShowdownBlocks.MEGA_METEORID_WATER_ORE.get(),
-                        MegaShowdownBlocks.REASSEMBLY_UNIT.get(),
-                        MegaShowdownBlocks.ROTOM_MOW.get(),
-                        MegaShowdownBlocks.ROTOM_OVEN.get(),
-                        MegaShowdownBlocks.ROTOM_FAN.get(),
-                        MegaShowdownBlocks.ROTOM_FRIDGE.get(),
-                        MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get()
+                        MegaShowdownBlocks.POWER_SPOT.get()
                 );
     }
 }

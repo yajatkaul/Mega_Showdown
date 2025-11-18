@@ -15,8 +15,9 @@
   ],
   "mixins": [
     "GraalShowdownUnbundlerMixin",
+    "PokemonClientDelegateMixin",
     "PokemonEntityMixin",
-    "PokemonMixin",
+    "PlayerPartyStoreMixin",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",

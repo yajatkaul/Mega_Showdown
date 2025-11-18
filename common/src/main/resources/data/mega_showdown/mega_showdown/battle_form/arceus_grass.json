@@ -1,9 +1,9 @@
 {
   "pokemons": ["Arceus"],
-  "showdownFormChangeId": "grass",
+  "showdown_form_change_id": "grass",
   "aspects": {
     "apply_aspects": ["multitype=grass"],
     "revert_aspects": ["multitype=normal"]
   },
-  "effects": "mega_showdown:arceus_grass"
+  "effect": "mega_showdown:arceus_grass"
 }

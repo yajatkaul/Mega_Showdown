@@ -1,2 +1,5 @@
 # TODO
-- Maybe add custom's to deoxys/gracedia/zygarde cube 
+- Make animation playing independent of animation playing maybe have custom battle pause dur or something
+- Fix class names
+- Keldeo and burmy form change
+- Add pedistal

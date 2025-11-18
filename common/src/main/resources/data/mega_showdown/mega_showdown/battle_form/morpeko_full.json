@@ -1,9 +1,8 @@
 {
   "pokemons": ["Morpeko"],
-  "showdownFormChangeId": "morpeko",
+  "showdown_form_change_id": "morpeko",
   "aspects": {
-    "apply_aspects": ["hunger_mode=full_belly"],
-    "revert_aspects": ["hunger_mode=hangry"]
+    "apply_aspects": ["hunger_mode=full_belly"]
   },
-  "effects": "mega_showdown:end_rod"
+  "effect": "mega_showdown:end_rod"
 }

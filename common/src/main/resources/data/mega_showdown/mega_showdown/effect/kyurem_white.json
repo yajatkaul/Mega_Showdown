@@ -1,24 +1,22 @@
 {
   "minecraft": {
     "particle_revert": "minecraft:ash",
-    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "sound_revert": {
+      "sound_id": "minecraft:block.amethyst_block.chime"
+    },
     "animations": {
-      "animations_revert": [
-        "cry"
-      ]
+      "animations_revert": ["cry"]
     }
   },
   "snowstorm": {
-    "source_apply": [
-      "target"
-    ],
+    "source_apply": ["target"],
     "particle_apply": "cobblemon:kyurem_w_effect",
     "apply_after": 4,
-    "sound_apply": "mega_showdown:kyurem_fusion",
+    "sound_apply": {
+      "sound_id": "mega_showdown:kyurem_fusion"
+    },
     "animations": {
-      "animations_apply": [
-        "cry"
-      ]
+      "animations_apply": ["cry"]
     }
   }
 }
