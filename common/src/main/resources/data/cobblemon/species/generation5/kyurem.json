@@ -6,22 +6,35 @@
   "maleRatio": -1,
   "height": 30,
   "weight": 3250,
-  "pokedex": [
-    "cobblemon.species.kyurem.desc"
-  ],
-  "labels": [
-    "gen5",
-    "legendary",
-    "restricted"
-  ],
+  "pokedex": ["cobblemon.species.kyurem.desc"],
+  "labels": ["gen5", "legendary", "restricted"],
   "aspects": [],
-  "abilities": [
-    "pressure",
-    "h:pressure"
-  ],
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "abilities": ["pressure", "h:pressure"],
+  "eggGroups": ["undiscovered"],
+  "riding": {
+    "behaviours": {
+      "LAND": {
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "30-60",
+          "JUMP": "30-65",
+          "SKILL": "20-50",
+          "SPEED": "20-40",
+          "STAMINA": "30-65"
+        }
+      }
+    },
+    "seats": [
+      {
+        "offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      }
+    ]
+  },
   "baseStats": {
     "hp": 125,
     "attack": 130,
@@ -173,24 +186,48 @@
       "name": "White",
       "primaryType": "dragon",
       "secondaryType": "ice",
+      "riding": {
+        "behaviours": {
+          "AIR": {
+            "key": "cobblemon:air/bird",
+            "rideSounds": [],
+            "stats": {
+              "ACCELERATION": "41-60",
+              "JUMP": "41-60",
+              "SKILL": "41-60",
+              "SPEED": "21-40",
+              "STAMINA": "41-60"
+            }
+          },
+          "LAND": {
+            "key": "cobblemon:land/horse",
+            "rideSounds": [],
+            "stats": {
+              "ACCELERATION": "21-40",
+              "JUMP": "41-60",
+              "SKILL": "21-40",
+              "SPEED": "21-40",
+              "STAMINA": "41-60"
+            }
+          }
+        },
+        "seats": [
+          {
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          }
+        ]
+      },
       "maleRatio": -1,
       "height": 36,
       "weight": 3250,
-      "pokedex": [
-        "cobblemon.species.kyurem-white.desc"
-      ],
-      "labels": [
-        "gen5",
-        "legendary",
-        "restricted"
-      ],
-      "aspects": [
-        "white-fusion"
-      ],
-      "abilities": [
-        "turboblaze",
-        "h:turboblaze"
-      ],
+      "pokedex": ["cobblemon.species.kyurem-white.desc"],
+      "labels": ["gen5", "legendary", "restricted"],
+      "aspects": ["white-fusion"],
+      "abilities": ["turboblaze", "h:turboblaze"],
       "baseStats": {
         "hp": 125,
         "attack": 120,
@@ -333,24 +370,48 @@
       "name": "Black",
       "primaryType": "dragon",
       "secondaryType": "ice",
+      "riding": {
+        "behaviours": {
+          "AIR": {
+            "key": "cobblemon:air/bird",
+            "rideSounds": [],
+            "stats": {
+              "ACCELERATION": "41-60",
+              "JUMP": "41-60",
+              "SKILL": "41-60",
+              "SPEED": "21-40",
+              "STAMINA": "41-60"
+            }
+          },
+          "LAND": {
+            "key": "cobblemon:land/horse",
+            "rideSounds": [],
+            "stats": {
+              "ACCELERATION": "21-40",
+              "JUMP": "41-60",
+              "SKILL": "21-40",
+              "SPEED": "21-40",
+              "STAMINA": "41-60"
+            }
+          }
+        },
+        "seats": [
+          {
+            "offset": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          }
+        ]
+      },
       "maleRatio": -1,
       "height": 33,
       "weight": 3250,
-      "pokedex": [
-        "cobblemon.species.kyurem-black.desc"
-      ],
-      "labels": [
-        "gen5",
-        "legendary",
-        "restricted"
-      ],
-      "aspects": [
-        "black-fusion"
-      ],
-      "abilities": [
-        "teravolt",
-        "h:teravolt"
-      ],
+      "pokedex": ["cobblemon.species.kyurem-black.desc"],
+      "labels": ["gen5", "legendary", "restricted"],
+      "aspects": ["black-fusion"],
+      "abilities": ["teravolt", "h:teravolt"],
       "baseStats": {
         "hp": 125,
         "attack": 170,
