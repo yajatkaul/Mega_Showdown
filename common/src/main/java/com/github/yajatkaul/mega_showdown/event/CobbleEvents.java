@@ -86,7 +86,8 @@ public class CobbleEvents {
 
         for (BattleFormChange battleFormChange : MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY) {
             if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())
-                    && battleFormChange.pokemons().contains(pokemon.getSpecies().getName())) {
+                    && battleFormChange.pokemons().contains(pokemon.getSpecies().getName())
+                    && battleFormChange.aspects().validate_apply(pokemon)) {
                 battleFormChange.effect().applyEffectsBattle(pokemon,
                         battleFormChange.aspects().apply_aspects(),
                         null,

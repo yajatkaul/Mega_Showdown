@@ -1,0 +1,9 @@
+{
+  "pokemons": ["Terapagos"],
+  "showdownFormChangeId": "terastal",
+  "aspects": {
+    "apply_aspects": ["tera_form=terastal"],
+    "revert_aspects": ["tera_form=normal"]
+  },
+  "effects": "mega_showdown:end_rod"
+}

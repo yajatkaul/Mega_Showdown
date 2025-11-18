@@ -1,0 +1,8 @@
+{
+  "pokemons": ["Xerneas"],
+  "showdownFormChangeId": "active",
+  "aspects": {
+    "apply_aspects": ["life_mode=active"],
+    "revert_aspects": ["life_mode=inactive"]
+  }
+}
