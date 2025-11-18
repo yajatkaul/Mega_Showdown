@@ -45,7 +45,7 @@ public class AshCap extends PokemonSelectingItem {
                 return InteractionResultHolder.pass(itemStack);
             }
 
-            ParticlesList.heartAnim.applyEffects(pokemon, List.of("league_cap=partner"), null);
+            ParticlesList.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("league_cap=partner"), null);
             AdvancementHelper.grantAdvancement(serverPlayer, "bond/ash_cap_bond");
             itemStack.consume(1, serverPlayer);
         } else if (pokemon.getSpecies().getName().equals("Greninja") && !pokemon.getAspects().contains("bond")) {
@@ -54,7 +54,7 @@ public class AshCap extends PokemonSelectingItem {
                         .withStyle(ChatFormatting.RED), true);
                 return InteractionResultHolder.pass(itemStack);
             }
-            ParticlesList.heartAnim.applyEffects(pokemon, List.of("battle_bond=bond"), null);
+            ParticlesList.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("battle_bond=bond"), null);
             AdvancementHelper.grantAdvancement(serverPlayer, "bond/ash_cap_bond");
             itemStack.consume(1, serverPlayer);
         }

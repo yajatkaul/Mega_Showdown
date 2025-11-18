@@ -8,6 +8,7 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -38,8 +39,8 @@ public class DuFusion extends ToolTipItem {
     private final List<String> applyAspect2;
     private final List<String> revertAspect1;
     private final List<String> revertAspect2;
-    private final Effect effect1;
-    private final Effect effect2;
+    private final String effectId1;
+    private final String effectId2;
 
     public DuFusion(Properties properties,
                     List<String> fusions1,
@@ -51,8 +52,8 @@ public class DuFusion extends ToolTipItem {
                     List<String> applyAspect2,
                     List<String> revertAspect1,
                     List<String> revertAspect2,
-                    Effect effect1,
-                    Effect effect2
+                    String effectId1,
+                    String effectId2
     ) {
         super(properties);
         this.fusions1 = fusions1;
@@ -64,8 +65,8 @@ public class DuFusion extends ToolTipItem {
         this.applyAspect2 = applyAspect2;
         this.revertAspect1 = revertAspect1;
         this.revertAspect2 = revertAspect2;
-        this.effect1 = effect1;
-        this.effect2 = effect2;
+        this.effectId1 = effectId1;
+        this.effectId2 = effectId2;
 
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(this);
         this.namespace = id.getNamespace();
@@ -114,9 +115,9 @@ public class DuFusion extends ToolTipItem {
                 playerPartyStore.add(pokemonInside);
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName())) {
-                    effect1.revertEffects(pokemon, revertAspect1, null);
+                    ParticlesList.getEffect(effectId1).revertEffects(pokemon, revertAspect1, null);
                 } else {
-                    effect2.revertEffects(pokemon, revertAspect2, null);
+                    ParticlesList.getEffect(effectId2).revertEffects(pokemon, revertAspect2, null);
                 }
 
                 pokemon.setTradeable(true);
@@ -134,9 +135,9 @@ public class DuFusion extends ToolTipItem {
                 pokemon.setTradeable(false);
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName())) {
-                    effect1.applyEffects(pokemon, applyAspect1, null);
+                    ParticlesList.getEffect(effectId1).revertEffects(pokemon, applyAspect1, null);
                 } else {
-                    effect1.applyEffects(pokemon, applyAspect2, null);
+                    ParticlesList.getEffect(effectId2).revertEffects(pokemon, applyAspect1, null);
                 }
 
             } else if (pokemonStored == null &&

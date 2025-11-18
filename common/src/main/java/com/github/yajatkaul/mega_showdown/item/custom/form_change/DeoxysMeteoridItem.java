@@ -55,9 +55,9 @@ public class DeoxysMeteoridItem extends ToolTipBlockItem {
             }
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
-                ParticlesList.defaultParticles.applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+                ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
             } else {
-                ParticlesList.defaultParticles.applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
+                ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
             }
 
             return InteractionResult.SUCCESS;

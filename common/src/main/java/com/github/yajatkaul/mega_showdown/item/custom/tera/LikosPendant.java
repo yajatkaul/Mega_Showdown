@@ -60,12 +60,13 @@ public class LikosPendant extends ToolTipItem {
         }
 
         AccessoriesContainer slot = capability.getContainer(SlotTypeLoader.getSlotType(level, "tera_slot"));
-        ExpandedSimpleContainer accessories = slot.getAccessories();
 
-        if (accessories == null) {
+        if (slot == null) {
             MegaShowdown.LOGGER.info("No tera_slot found");
             return InteractionResultHolder.pass(stack);
         }
+
+        ExpandedSimpleContainer accessories = slot.getAccessories();
 
         for (int i = 0; i < accessories.getContainerSize(); i++) {
             if (accessories.getItem(i).isEmpty()) {
@@ -134,17 +135,7 @@ public class LikosPendant extends ToolTipItem {
 
             level.addFreshEntity(terapagos);
 
-            terapagos.after(0.01f, () -> {
-                ParticlesList.likosPendantAnim.applyEffects(terapagos.getPokemon(), List.of(), null);
-                return Unit.INSTANCE;
-            });
-
-            terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), true);
-
-            terapagos.after(4F, () -> {
-                terapagos.getEntityData().set(PokemonEntity.getEVOLUTION_STARTED(), false);
-                return Unit.INSTANCE;
-            });
+            ParticlesList.getEffect("mega_showdown:pendant_effect").applyEffects(terapagos.getPokemon(), List.of(), null);
         }
     }
 }

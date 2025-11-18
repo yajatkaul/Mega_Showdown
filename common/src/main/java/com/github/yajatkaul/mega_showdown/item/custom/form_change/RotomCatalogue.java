@@ -56,9 +56,9 @@ public class RotomCatalogue extends PokemonSelectingItem {
         }
 
         if (currentIndex + 1 > form_apply_order.size() - 1) {
-            ParticlesList.defaultParticles.applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
+            ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
         } else {
-            ParticlesList.defaultParticles.applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
+            ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
         }
         AdvancementHelper.grantAdvancement(serverPlayer, "rotom/rotom_form_change");
 

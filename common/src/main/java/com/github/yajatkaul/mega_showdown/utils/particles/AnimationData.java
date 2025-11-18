@@ -22,8 +22,8 @@ public record AnimationData(
             Codec.list(Codec.STRING).optionalFieldOf("expressions_apply", List.of()).forGetter(AnimationData::expressions_apply),
             Codec.list(Codec.STRING).optionalFieldOf("animations_revert", List.of()).forGetter(AnimationData::animations_revert),
             Codec.list(Codec.STRING).optionalFieldOf("expressions_revert", List.of()).forGetter(AnimationData::expressions_revert),
-            Codec.FLOAT.optionalFieldOf("applyDelay", 0f).forGetter(AnimationData::applyDelay),
-            Codec.FLOAT.optionalFieldOf("revertDelay", 0f).forGetter(AnimationData::revertDelay)
+            Codec.FLOAT.optionalFieldOf("apply_delay", 0f).forGetter(AnimationData::applyDelay),
+            Codec.FLOAT.optionalFieldOf("revert_delay", 0f).forGetter(AnimationData::revertDelay)
     ).apply(instance, AnimationData::new));
 
     public void applyAnimations(PokemonEntity context) {

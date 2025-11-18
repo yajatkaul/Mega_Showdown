@@ -114,6 +114,16 @@ public class MegaShowdownItems {
             null
     );
 
+    public static final RegistrySupplier<Item> STAR_CORE = registerFormChangeHeldItems(
+            "star_core",
+            "eternamax=false",
+            "eternamax=true",
+            List.of("Eternatus"),
+            null,
+            false,
+            null
+    );
+
     public static final RegistrySupplier<Item> NORMAL_TERA_SHARD = registerTeraShards("normal_tera_shard", TeraTypes.getNORMAL());
     public static final RegistrySupplier<Item> FIRE_TERA_SHARD = registerTeraShards("fire_tera_shard", TeraTypes.getFIRE());
     public static final RegistrySupplier<Item> WATER_TERA_SHARD = registerTeraShards("water_tera_shard", TeraTypes.getWATER());
@@ -187,8 +197,8 @@ public class MegaShowdownItems {
             List.of("absofusion=white"),
             List.of("absofusion=none"),
             List.of("absofusion=none"),
-            ParticlesList.kyuremBlackFusion,
-            ParticlesList.kyuremWhiteFusion
+            "mega_showdown:kyurem_black",
+            "mega_showdown:kyurem_white"
     );
 
     public static final RegistrySupplier<Item> REINS_OF_UNITY = registerDuFusion(
@@ -202,8 +212,8 @@ public class MegaShowdownItems {
             List.of("king_steed=ice"),
             List.of("king_steed=none"),
             List.of("king_steed=none"),
-            ParticlesList.calyrexShadowFusion,
-            ParticlesList.calyrexIceFusion
+            "mega_showdown:calyres_shadow",
+            "mega_showdown:calyres_ice"
     );
 
     public static final RegistrySupplier<Item> N_LUNARIZER = registerSoloFusion(
@@ -211,7 +221,7 @@ public class MegaShowdownItems {
             List.of("dusk-fusion", "dawn-fusion"),
             List.of("Lunala"),
             List.of("Necrozma"),
-            ParticlesList.nLunSolFusion,
+            "mega_showdown:n_lunar",
             List.of("prism_fusion=dawn"),
             List.of("prism_fusion=none")
     );
@@ -221,7 +231,7 @@ public class MegaShowdownItems {
             List.of("dusk-fusion", "dawn-fusion"),
             List.of("Solgaleo"),
             List.of("Necrozma"),
-            ParticlesList.nLunSolFusion,
+            "mega_showdown:n_solar",
             List.of("prism_fusion=dusk"),
             List.of("prism_fusion=none")
     );
@@ -944,8 +954,8 @@ public class MegaShowdownItems {
                                                            List<String> applyAspect2,
                                                            List<String> revertAspect1,
                                                            List<String> revertAspect2,
-                                                           Effect effect1,
-                                                           Effect effect2
+                                                           String effect1,
+                                                           String effect2
     ) {
         return ITEMS.register(name, () -> new DuFusion(
                 new Item.Properties()
@@ -969,7 +979,7 @@ public class MegaShowdownItems {
                                                              List<String> fusions,
                                                              List<String> pokemon,
                                                              List<String> pokemonMain,
-                                                             Effect effect,
+                                                             String effectId,
                                                              List<String> applyAspect,
                                                              List<String> revertAspect
     ) {
@@ -980,7 +990,7 @@ public class MegaShowdownItems {
                 fusions,
                 pokemon,
                 pokemonMain,
-                effect,
+                effectId,
                 applyAspect,
                 revertAspect)
         );

@@ -270,5 +270,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(MegaShowdownBlocks.DORMANT_CRYSTAL.get().asItem());
         basicItem(MegaShowdownBlocks.MAX_MUSHROOM.get().asItem());
+        basicItem(MegaShowdownItems.STAR_CORE.get());
     }
 }

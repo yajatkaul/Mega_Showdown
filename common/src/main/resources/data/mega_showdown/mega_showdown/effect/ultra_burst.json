@@ -1,0 +1,16 @@
+{
+  "minecraft": {
+    "particle_apply": "minecraft:glow",
+    "particle_revert": "minecraft:ash",
+    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "sound_apply": "minecraft:block.amethyst_block.chime",
+    "animations": {
+      "animations_revert": [
+        "cry"
+      ],
+      "animations_apply": [
+        "cry"
+      ]
+    }
+  }
+}

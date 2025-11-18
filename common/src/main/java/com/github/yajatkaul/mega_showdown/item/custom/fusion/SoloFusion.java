@@ -8,6 +8,7 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -32,7 +33,7 @@ public class SoloFusion extends ToolTipItem {
     private final List<String> pokemons;
     private final List<String> mainPokemons;
     private final String namespace;
-    private final Effect effect;
+    private final String effectId;
     private final List<String> applyAspect;
     private final List<String> revertAspect;
 
@@ -40,7 +41,7 @@ public class SoloFusion extends ToolTipItem {
                       List<String> fusions,
                       List<String> pokemons,
                       List<String> mainPokemons,
-                      Effect effect,
+                      String effectId,
                       List<String> applyAspect,
                       List<String> revertAspect
     ) {
@@ -51,7 +52,7 @@ public class SoloFusion extends ToolTipItem {
 
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(this);
         this.namespace = id.getNamespace();
-        this.effect = effect;
+        this.effectId = effectId;
 
         this.applyAspect = applyAspect;
         this.revertAspect = revertAspect;
@@ -95,7 +96,7 @@ public class SoloFusion extends ToolTipItem {
                     return InteractionResultHolder.pass(stack);
                 }
 
-                effect.revertEffects(pokemon, revertAspect, null);
+                ParticlesList.getEffect(effectId).revertEffects(pokemon, revertAspect, null);
 
                 pokemon.setTradeable(true);
 
@@ -110,7 +111,7 @@ public class SoloFusion extends ToolTipItem {
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
-                effect.revertEffects(pokemon, applyAspect, null);
+                ParticlesList.getEffect(effectId).revertEffects(pokemon, applyAspect, null);
                 pokemon.setTradeable(false);
 
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());

@@ -36,9 +36,9 @@ public class Gracedia extends ToolTipBlockItem {
                 boolean isSkyFormActive = pokemon.getAspects().contains("sky-forme");
 
                 if (isDaytime && !isSkyFormActive) {
-                    ParticlesList.defaultParticles.applyEffects(pokemon, List.of("gracidea_forme=sky"), null);
+                    ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("gracidea_forme=sky"), null);
                 } else if (!isDaytime && isSkyFormActive) {
-                    ParticlesList.defaultParticles.applyEffects(pokemon, List.of("gracidea_forme=land"), null);
+                    ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("gracidea_forme=land"), null);
                 }
 
                 return InteractionResult.SUCCESS;

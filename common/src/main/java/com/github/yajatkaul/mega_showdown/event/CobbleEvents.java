@@ -40,11 +40,14 @@ import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
+import com.github.yajatkaul.mega_showdown.sound.MegaShowdownSounds;
 import com.github.yajatkaul.mega_showdown.tag.ModTags;
 import com.github.yajatkaul.mega_showdown.utils.*;
 import kotlin.Unit;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -213,8 +216,20 @@ public class CobbleEvents {
 
         pokemon.getPersistentData().putBoolean("is_max", true);
         battle.dispatchWaitingToFront(MegaShowdownConfig.getDynamaxScaleDuration() / 20f, () -> Unit.INSTANCE);
+        
+        PokemonEntity pokemonEntity = pokemon.getEntity();
 
-        AspectUtils.scaleUpDynamax(pokemon.getEntity());
+        if (pokemonEntity != null) {
+            AspectUtils.scaleUpDynamax(pokemon.getEntity());
+
+            //TODO make this a datapack thing
+            BlockPos entityPos = pokemon.getEntity().getOnPos();
+            pokemonEntity.level().playSound(
+                    null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                    MegaShowdownSounds.TERASTALLIZATION.get(),
+                    SoundSource.PLAYERS, 0.2f, 0.8f
+            );
+        }
     }
 
     private static Unit zMovesUsed(ZMoveUsedEvent event) {
@@ -229,7 +244,7 @@ public class CobbleEvents {
 
         GlowHandler.applyZGlow(pokemonEntity);
 
-        ParticlesList.zMoves.applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
+        ParticlesList.getEffect("mega_showdown:z_move").applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
 
         return Unit.INSTANCE;
     }
@@ -255,12 +270,9 @@ public class CobbleEvents {
         AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
 
         if (pokemon.getSpecies().getName().equals("Terapagos")) {
-            new StringSpeciesFeature("tera_form", "stellar").apply(pokemon);
-            AspectUtils.updatePackets(event.getPokemon());
-            ParticlesList.endRodParticles.apply(pokemonEntity);
+            ParticlesList.getEffect("mega_showdown:terapagos_stellar").applyEffects(pokemon, List.of("tera_form=stellar"), null);
         } else if (pokemon.getSpecies().getName().equals("Ogerpon")) {
-            new FlagSpeciesFeature("embody-aspect", true).apply(pokemon);
-            AspectUtils.updatePackets(event.getPokemon());
+            ParticlesList.getEffect("mega_showdown:orgepon_embody").applyEffects(pokemon, List.of("embody-aspect=true"), null);
         }
 
         pokemon.getPersistentData().putBoolean("is_tera", true);
@@ -278,7 +290,15 @@ public class CobbleEvents {
             PokemonBehaviourHelper.Companion.playAnimation(pokemonEntity, Set.of("cry"), List.of());
             return Unit.INSTANCE;
         });
-        //TODO add sounds
+
+        //TODO make this a datapack thing
+
+        BlockPos entityPos = pokemonEntity.getOnPos();
+        pokemonEntity.level().playSound(
+                null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
+                MegaShowdownSounds.TERASTALLIZATION.get(),
+                SoundSource.PLAYERS, 0.2f, 0.8f
+        );
 
         return Unit.INSTANCE;
     }
