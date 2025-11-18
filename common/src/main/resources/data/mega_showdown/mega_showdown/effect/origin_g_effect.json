@@ -6,8 +6,12 @@
     "apply_after": 3.8,
     "particle_revert": "cobblemon:origin_g_effect",
     "revert_after": 3.8,
-    "sound_apply": "mega_showdown:giratina",
-    "sound_revert": "mega_showdown:giratina",
+    "sound_apply": {
+      "sound_id": "mega_showdown:giratina"
+    },
+    "sound_revert": {
+      "sound_id": "mega_showdown:giratina"
+    },
     "animations": {
       "animations_apply": ["cry"],
       "expressions_apply": [],

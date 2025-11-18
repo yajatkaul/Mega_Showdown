@@ -1,9 +1,9 @@
 {
   "pokemons": ["Arceus"],
-  "showdownFormChangeId": "ground",
+  "showdown_form_change_id": "ground",
   "aspects": {
     "apply_aspects": ["multitype=ground"],
     "revert_aspects": ["multitype=normal"]
   },
-  "effects": "mega_showdown:arceus_ground"
+  "effect": "mega_showdown:arceus_ground"
 }

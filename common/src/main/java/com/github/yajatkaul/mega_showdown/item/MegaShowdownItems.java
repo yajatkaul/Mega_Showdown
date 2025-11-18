@@ -96,8 +96,8 @@ public class MegaShowdownItems {
 
     public static final RegistrySupplier<Item> RED_ORB = registerFormChangeHeldItems(
             "red_orb",
-            "reversion_state=primal",
             "reversion_state=standard",
+            "reversion_state=primal",
             List.of("Groudon"),
             "mega_showdown:red_orb",
             false,
@@ -106,8 +106,8 @@ public class MegaShowdownItems {
 
     public static final RegistrySupplier<Item> BLUE_ORB = registerFormChangeHeldItems(
             "blue_orb",
-            "reversion_state=primal",
             "reversion_state=standard",
+            "reversion_state=primal",
             List.of("Kyogre"),
             "mega_showdown:blue_orb",
             false,

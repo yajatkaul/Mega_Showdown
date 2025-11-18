@@ -1,7 +1,9 @@
 {
   "minecraft": {
     "particle_revert": "minecraft:campfire_cosy_smoke",
-    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "sound_revert": {
+      "sound_id": "minecraft:block.amethyst_block.chime"
+    },
     "particle_apply": "minecraft:end_rod",
     "animations": {
       "animations_apply": ["cry"],

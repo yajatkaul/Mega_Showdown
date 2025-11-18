@@ -1,9 +1,9 @@
 {
   "pokemons": ["Darmanitan"],
-  "showdownFormChangeId": "zen",
+  "showdown_form_change_id": "zen",
   "aspects": {
     "apply_aspects": ["blazing_mode=zen"],
     "revert_aspects": ["blazing_mode=standard"]
   },
-  "effects": "mega_showdown:end_rod"
+  "effect": "mega_showdown:end_rod"
 }

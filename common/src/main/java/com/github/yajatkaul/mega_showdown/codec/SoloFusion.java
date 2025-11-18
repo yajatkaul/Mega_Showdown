@@ -8,6 +8,7 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -16,6 +17,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -27,19 +29,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
+import java.util.Optional;
 
 public record SoloFusion(
         List<String> fusions,
         List<String> pokemons,
         List<String> mainPokemons,
-        Effect effect,
+        Optional<ResourceLocation> effect,
         AspectSetCodec aspect_conditions
 ) {
     public static final Codec<SoloFusion> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.listOf().fieldOf("fusions").forGetter(SoloFusion::fusions),
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(SoloFusion::pokemons),
             Codec.STRING.listOf().fieldOf("main_pokemons").forGetter(SoloFusion::mainPokemons),
-            Effect.EFFECT_MAP_CODEC.optionalFieldOf("effect", Effect.empty()).forGetter(SoloFusion::effect),
+            ResourceLocation.CODEC.optionalFieldOf("effect").forGetter(SoloFusion::effect),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(SoloFusion::aspect_conditions)
     ).apply(instance, SoloFusion::new));
 
@@ -83,7 +86,7 @@ public record SoloFusion(
                 }
 
                 if (aspect_conditions.validate_revert(pokemon)) {
-                    effect.revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
+                    ParticlesList.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -102,7 +105,7 @@ public record SoloFusion(
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
                 if (aspect_conditions.validate_apply(pokemon)) {
-                    effect.revertEffects(pokemon, aspect_conditions.apply_aspects(), null);
+                    ParticlesList.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.apply_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }

@@ -20,7 +20,7 @@ public abstract class PokemonEntityMixin {
         PokemonEntity self = (PokemonEntity) (Object) this;
 
         boolean form_changing = self.getPokemon().getPersistentData().getBoolean("form_changing");
-        if (self.getEntityData().get(PokemonEntity.getEVOLUTION_STARTED()) || form_changing) {
+        if (form_changing) {
             CompletableFuture<Pokemon> future = new CompletableFuture<>();
             future.complete(self.getPokemon());
             cir.setReturnValue(future);

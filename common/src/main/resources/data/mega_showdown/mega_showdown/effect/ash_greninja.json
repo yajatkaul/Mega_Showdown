@@ -1,7 +1,9 @@
 {
   "minecraft": {
     "particle_revert": "minecraft:end_rod",
-    "sound_revert": "minecraft:block.amethyst_block.chime",
+    "sound_revert": {
+      "sound_id": "minecraft:block.amethyst_block.chime"
+    },
     "animations": {
       "animations_revert": ["cry"],
       "expressions_revert": []
@@ -11,7 +13,9 @@
     "source_apply": ["root"],
     "particle_apply": "cobblemon:battlebond_effect",
     "apply_after": 4,
-    "sound_apply": "mega_showdown:form_change_basic",
+    "sound_apply": {
+      "sound_id": "mega_showdown:form_change_basic"
+    },
     "animations": {
       "animations_apply": ["cry"]
     }

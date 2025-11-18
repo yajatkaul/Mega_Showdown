@@ -4,8 +4,10 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +20,7 @@ public record FormChangeToggleInteractItem(
         List<AspectSetCodec> aspect_conditions,
         List<List<String>> form_aspect_apply_order,
         List<String> pokemons,
-        List<Effect> effects,
+        List<ResourceLocation> effects,
         int consume
 ) {
     public static final Codec<FormChangeToggleInteractItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -26,7 +28,7 @@ public record FormChangeToggleInteractItem(
             AspectSetCodec.CODEC.listOf().fieldOf("aspect_conditions").forGetter(FormChangeToggleInteractItem::aspect_conditions),
             Codec.STRING.listOf().listOf().fieldOf("form_aspect_apply_order").forGetter(FormChangeToggleInteractItem::form_aspect_apply_order),
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(FormChangeToggleInteractItem::pokemons),
-            Effect.EFFECT_MAP_CODEC.listOf().fieldOf("effects").forGetter(FormChangeToggleInteractItem::effects),
+            ResourceLocation.CODEC.listOf().fieldOf("effects").forGetter(FormChangeToggleInteractItem::effects),
             Codec.INT.optionalFieldOf("consume", 0).forGetter(FormChangeToggleInteractItem::consume)
     ).apply(instance, FormChangeToggleInteractItem::new));
 
@@ -58,11 +60,11 @@ public record FormChangeToggleInteractItem(
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
                 if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                    effects.getFirst().applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+                    ParticlesList.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
                 }
             } else {
                 if (aspect_conditions.get(currentIndex + 1).validate_apply(pokemon)) {
-                    effects.get(currentIndex + 1).applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
+                    ParticlesList.getEffect(effects.get(currentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
                 }
             }
             stack.consume(consume, livingEntity);

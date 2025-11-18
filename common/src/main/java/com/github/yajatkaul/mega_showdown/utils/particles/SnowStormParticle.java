@@ -4,7 +4,10 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
+import com.github.yajatkaul.mega_showdown.utils.Effect;
+import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PokemonBehaviourHelper;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import kotlin.Unit;
@@ -28,8 +31,8 @@ public record SnowStormParticle(
         Optional<Float> apply_after,
         Optional<String> particle_revert,
         Optional<Float> revert_after,
-        Optional<String> sound_apply,
-        Optional<String> sound_revert,
+        Optional<SoundCodec> sound_apply,
+        Optional<SoundCodec> sound_revert,
         Optional<AnimationData> animations
 ) {
     public static final Codec<SnowStormParticle> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -41,8 +44,8 @@ public record SnowStormParticle(
             Codec.FLOAT.optionalFieldOf("apply_after").forGetter(SnowStormParticle::apply_after),
             Codec.STRING.optionalFieldOf("particle_revert").forGetter(SnowStormParticle::particle_revert),
             Codec.FLOAT.optionalFieldOf("revert_after").forGetter(SnowStormParticle::revert_after),
-            Codec.STRING.optionalFieldOf("sound_apply").forGetter(SnowStormParticle::sound_apply),
-            Codec.STRING.optionalFieldOf("sound_revert").forGetter(SnowStormParticle::sound_revert),
+            SoundCodec.CODEC.optionalFieldOf("sound_apply").forGetter(SnowStormParticle::sound_apply),
+            SoundCodec.CODEC.optionalFieldOf("sound_revert").forGetter(SnowStormParticle::sound_revert),
             AnimationData.CODEC.optionalFieldOf("animations").forGetter(SnowStormParticle::animations)
     ).apply(instance, SnowStormParticle::new));
 
@@ -58,17 +61,19 @@ public record SnowStormParticle(
         processTransformation(context, aspects, other, battlePokemon, true);
     }
 
-    public void revertBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon) {
-        processTransformation(context, aspects, other, battlePokemon, false);
-    }
-
     private void processTransformation(PokemonEntity context, List<String> aspects, PokemonEntity other,
                                        BattlePokemon battlePokemon, boolean isApply) {
         context.setNoAi(true);
 
         CompoundTag pokemonPersistentData = context.getPokemon().getPersistentData();
         pokemonPersistentData.putBoolean("form_changing", true);
-        pokemonPersistentData.put("apply_aspects", AspectUtils.makeNbt(aspects));
+
+        AspectUtils.appendRevertDataPokemon(
+                Effect.empty(),
+                aspects,
+                context.getPokemon(),
+                "apply_aspects"
+        );
 
         Optional<String> particle = isApply ? particle_apply : particle_revert;
         Optional<List<String>> sourceParticles = isApply ? source_apply : source_revert;
@@ -91,7 +96,7 @@ public record SnowStormParticle(
         PokemonBehaviourHelper.Companion.snowStormPartileSpawner(
                 context, particleId, sourceParticles.orElse(null), other, targetParticles.orElse(null)
         );
-        playSound(context, (ServerLevel) context.level(), isApply);
+        playSound(context, isApply);
 
         delay.ifPresentOrElse(
                 delayValue -> context.after(delayValue, () -> {
@@ -128,32 +133,9 @@ public record SnowStormParticle(
         pokemonPersistentData.remove("apply_aspects");
     }
 
-    private void playSound(PokemonEntity context, ServerLevel level, boolean isApply) {
-        Optional<String> sound = isApply ? sound_apply : sound_revert;
-        String soundType = isApply ? "Apply" : "Revert";
+    private void playSound(PokemonEntity context, boolean isApply) {
+        Optional<SoundCodec> sound = isApply ? sound_apply : sound_revert;
 
-        sound.ifPresent(soundId -> {
-            String[] parts = soundId.split(":");
-            if (parts.length != 2) {
-                MegaShowdown.LOGGER.error("Invalid Sound {} format for pokemon: {}, sound id: {}",
-                        soundType, context.getPokemon().getSpecies().getName(), soundId);
-                return;
-            }
-
-            ResourceLocation soundResourceId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
-            SoundEvent soundEvent = BuiltInRegistries.SOUND_EVENT.get(soundResourceId);
-            Vec3 entityPos = context.position();
-
-            if (soundEvent == null) {
-                MegaShowdown.LOGGER.error("Invalid Sound {} used for pokemon: {}, sound id: {}",
-                        soundType, context.getPokemon().getSpecies().getName(), soundId);
-            } else {
-                level.playSound(
-                        null, entityPos.x, entityPos.y, entityPos.z,
-                        soundEvent,
-                        SoundSource.PLAYERS, 1.5f, 0.5f + (float) Math.random() * 0.5f
-                );
-            }
-        });
+        sound.ifPresent((soundCodec -> soundCodec.play(context)));
     }
 }

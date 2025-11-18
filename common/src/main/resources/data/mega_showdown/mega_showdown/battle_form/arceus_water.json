@@ -1,9 +1,9 @@
 {
   "pokemons": ["Arceus"],
-  "showdownFormChangeId": "water",
+  "showdown_form_change_id": "water",
   "aspects": {
     "apply_aspects": ["multitype=water"],
     "revert_aspects": ["multitype=normal"]
   },
-  "effects": "mega_showdown:arceus_water"
+  "effect": "mega_showdown:arceus_water"
 }

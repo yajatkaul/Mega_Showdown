@@ -1,9 +1,9 @@
 {
   "pokemons": ["Meloetta"],
-  "showdownFormChangeId": "pirouette",
+  "showdown_form_change_id": "pirouette",
   "aspects": {
     "apply_aspects": ["song_forme=pirouette"],
     "revert_aspects": ["song_forme=aria"]
   },
-  "effects": "mega_showdown:end_rod"
+  "effect": "mega_showdown:end_rod"
 }

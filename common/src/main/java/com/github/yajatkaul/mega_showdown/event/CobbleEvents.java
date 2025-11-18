@@ -26,6 +26,7 @@ import com.cobblemon.mod.common.battles.dispatch.UntilDispatch;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
@@ -43,6 +44,7 @@ import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeld
 import com.github.yajatkaul.mega_showdown.sound.MegaShowdownSounds;
 import com.github.yajatkaul.mega_showdown.tag.ModTags;
 import com.github.yajatkaul.mega_showdown.utils.*;
+import com.mojang.datafixers.util.Pair;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -88,12 +90,18 @@ public class CobbleEvents {
             if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())
                     && battleFormChange.pokemons().contains(pokemon.getSpecies().getName())
                     && battleFormChange.aspects().validate_apply(pokemon)) {
-                battleFormChange.effect().applyEffectsBattle(pokemon,
+                ParticlesList.getEffect(battleFormChange.effect()).applyEffectsBattle(pokemon,
                         battleFormChange.aspects().apply_aspects(),
                         null,
                         battlePokemon
                 );
-                pokemon.getPersistentData().put("battle_end_revert", AspectUtils.makeNbt(battleFormChange.aspects().revert_aspects()));
+
+                AspectUtils.appendRevertDataPokemon(
+                        ParticlesList.getEffect(battleFormChange.effect()),
+                        battleFormChange.aspects().revert_aspects(),
+                        pokemon,
+                        "battle_end_revert"
+                );
                 return Unit.INSTANCE;
             }
         }
@@ -172,10 +180,11 @@ public class CobbleEvents {
         Pokemon pokemon = event.getKilled().getEffectedPokemon();
 
         if (pokemon.getPersistentData().contains("battle_end_revert")) {
-            AspectUtils.applyAspects(
-                    pokemon,
-                    AspectUtils.decodeNbt(pokemon.getPersistentData().getList("battle_end_revert", 8))
-            );
+            List<AspectUtils.EffectPair> effects = AspectUtils.getRevertDataPokemon(pokemon, "battle_end_revert");
+
+            for (AspectUtils.EffectPair effectPair: effects) {
+                effectPair.effect().revertEffects(pokemon, effectPair.aspects(), null);
+            }
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {
@@ -206,8 +215,13 @@ public class CobbleEvents {
     private static void dynamaxStarted(PokemonBattle battle, BattlePokemon battlePokemon, Boolean gmax) {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
         if (gmax) {
-            pokemon.getPersistentData().put("battle_end_revert",
-                    AspectUtils.makeNbt(List.of("dynamax_form=none")));
+            AspectUtils.appendRevertDataPokemon(
+                    Effect.empty(),
+                    List.of("dynamax_form=none"),
+                    pokemon,
+                    "battle_end_revert"
+            );
+
             battle.dispatchToFront(() -> {
                 new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon);
                 AspectUtils.updatePackets(battlePokemon);
@@ -227,7 +241,7 @@ public class CobbleEvents {
             BlockPos entityPos = pokemon.getEntity().getOnPos();
             pokemonEntity.level().playSound(
                     null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
-                    MegaShowdownSounds.TERASTALLIZATION.get(),
+                    MegaShowdownSounds.DYNAMAX.get(),
                     SoundSource.PLAYERS, 0.2f, 0.8f
             );
         }

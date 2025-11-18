@@ -1,9 +1,9 @@
 {
   "pokemons": ["Arceus"],
-  "showdownFormChangeId": "bug",
+  "showdown_form_change_id": "bug",
   "aspects": {
     "apply_aspects": ["multitype=bug"],
     "revert_aspects": ["multitype=normal"]
   },
-  "effects": "mega_showdown:arceus_bug"
+  "effect": "mega_showdown:arceus_bug"
 }

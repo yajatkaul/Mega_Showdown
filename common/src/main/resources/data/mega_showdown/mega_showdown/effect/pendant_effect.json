@@ -1,15 +1,13 @@
 {
   "snowstorm": {
-    "source_apply": [
-      "target"
-    ],
+    "source_apply": ["target"],
     "particle_apply": "cobblemon:pendant_effect",
     "apply_after": 0.01,
-    "sound_apply": "mega_showdown:terapagos_spawn",
+    "sound_apply": {
+      "sound_id": "mega_showdown:terapagos_spawn"
+    },
     "animations": {
-      "animations_apply": [
-        "cry"
-      ]
+      "animations_apply": ["cry"]
     }
   }
 }

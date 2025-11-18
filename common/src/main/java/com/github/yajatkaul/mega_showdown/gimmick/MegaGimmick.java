@@ -12,6 +12,7 @@ import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import kotlin.Unit;
@@ -171,7 +172,12 @@ public record MegaGimmick(
         PokemonBattle battle = battlePokemon.actor.getBattle();
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
-        pokemon.getPersistentData().put("battle_end_revert", AspectUtils.makeNbt(revertAspects));
+        AspectUtils.appendRevertDataPokemon(
+                ParticlesList.getEffect("mega_showdown:mega_evolution"),
+                revertAspects,
+                pokemon,
+                "battle_end_revert"
+        );
         ParticlesList.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, aspects, null, battlePokemon);
     }
 

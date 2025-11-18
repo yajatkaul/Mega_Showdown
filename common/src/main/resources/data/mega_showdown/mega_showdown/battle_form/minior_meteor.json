@@ -1,9 +1,8 @@
 {
   "pokemons": ["Minior"],
-  "showdownFormChangeId": "meteor",
+  "showdown_form_change_id": "meteor",
   "aspects": {
-    "apply_aspects": ["meteor_shield=meteor"],
-    "revert_aspects": ["meteor_shield=core"]
+    "apply_aspects": ["meteor_shield=meteor"]
   },
-  "effects": "mega_showdown:end_rod"
+  "effect": "mega_showdown:end_rod"
 }

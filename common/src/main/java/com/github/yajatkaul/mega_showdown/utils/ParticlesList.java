@@ -4,6 +4,7 @@ import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.utils.particles.AnimationData;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
+import com.github.yajatkaul.mega_showdown.utils.particles.SoundCodec;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
@@ -12,23 +13,23 @@ import java.util.Optional;
 public class ParticlesList {
     public static MinecraftParticle calyrexDynamaxLevelUpParticles = simpleMinecraftParticlesApply(
             "minecraft:soul_fire_flame",
-            "minecraft:block.amethyst_block.chime",
+            new SoundCodec("minecraft:block.amethyst_block.chime", 1, 1),
             0.5f
     );
 
     public static MinecraftParticle otherDynamaxLevelUpParticles = simpleMinecraftParticlesApply(
             "minecraft:flame",
-            "minecraft:block.amethyst_block.chime",
+            new SoundCodec("minecraft:block.amethyst_block.chime", 1, 1),
             0.5f
     );
 
     public static MinecraftParticle glowParticles = simpleMinecraftParticlesApply(
             "minecraft:glow",
-            "minecraft:block.amethyst_block.chime",
+            new SoundCodec("minecraft:block.amethyst_block.chime", 1, 1),
             1.2f
     );
 
-    public static MinecraftParticle simpleMinecraftParticlesApply(String id_apply, String sound_apply, float scale) {
+    public static MinecraftParticle simpleMinecraftParticlesApply(String id_apply, SoundCodec sound_apply, float scale) {
         return new MinecraftParticle(
                 Optional.of(id_apply),
                 Optional.empty(),
@@ -42,6 +43,15 @@ public class ParticlesList {
 
     public static Effect getEffect(String effectId) {
         Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId));
+        if (effect == null) {
+            return Effect.empty();
+        } else {
+            return effect;
+        }
+    }
+
+    public static Effect getEffect(ResourceLocation effectId) {
+        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId);
         if (effect == null) {
             return Effect.empty();
         } else {

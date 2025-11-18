@@ -72,11 +72,4 @@ public abstract class PokemonSelectingItem extends ToolTipItem implements com.co
     public InteractionResultHolder<ItemStack> interactGeneralBattle(@NotNull ServerPlayer player, @NotNull ItemStack itemStack, @NotNull BattleActor battleActor) {
         return InteractionResultHolder.fail(itemStack);
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
-        tooltipComponents.add(Component.translatable("tooltip." + id.getNamespace() + "." + id.getPath() + ".tooltip"));
-        super.appendHoverText(itemStack, tooltipContext, tooltipComponents, tooltipFlag);
-    }
 }

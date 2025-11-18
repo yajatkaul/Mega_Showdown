@@ -1,9 +1,9 @@
 {
   "pokemons": ["Arceus"],
-  "showdownFormChangeId": "ice",
+  "showdown_form_change_id": "ice",
   "aspects": {
     "apply_aspects": ["multitype=ice"],
     "revert_aspects": ["multitype=normal"]
   },
-  "effects": "mega_showdown:arceus_ice"
+  "effect": "mega_showdown:arceus_ice"
 }

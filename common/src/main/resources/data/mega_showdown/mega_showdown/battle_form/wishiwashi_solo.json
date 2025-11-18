@@ -1,9 +1,8 @@
 {
   "pokemons": ["Wishiwashi"],
-  "showdownFormChangeId": "wishiwashi",
+  "showdown_form_change_id": "wishiwashi",
   "aspects": {
-    "apply_aspects": ["schooling_form=solo"],
-    "revert_aspects": ["schooling_form=school"]
+    "apply_aspects": ["schooling_form=solo"]
   },
-  "effects": "mega_showdown:end_rod"
+  "effect": "mega_showdown:end_rod"
 }
