@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -10,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Optional;
 
 public class NBTInventoryUtils {
-    public static CompoundTag serializeInventory(SimpleContainer inventory) {
+    public static CompoundTag serializeInventory(SimpleContainer inventory, RegistryAccess registryAccess) {
         CompoundTag tag = new CompoundTag();
         ListTag itemsList = new ListTag();
 
@@ -20,7 +21,7 @@ public class NBTInventoryUtils {
                 CompoundTag entry = new CompoundTag();
                 entry.putByte("Slot", (byte) i);
 
-                Tag encodedStack = stack.save(MegaShowdown.getServer().registryAccess());
+                Tag encodedStack = stack.save(registryAccess);
                 entry.put("Item", encodedStack);
 
                 itemsList.add(entry);
@@ -31,7 +32,10 @@ public class NBTInventoryUtils {
         return tag;
     }
 
-    public static SimpleContainer deserializeInventory(CompoundTag tag) {
+    public static SimpleContainer deserializeInventory(CompoundTag tag, RegistryAccess registryAccess) {
+        if (registryAccess == null) {
+            MegaShowdown.LOGGER.error("Registry Access is null");
+        }
         SimpleContainer inventory = new SimpleContainer(2);
         ListTag itemsList = tag.getList("Items", Tag.TAG_COMPOUND);
 
@@ -41,7 +45,7 @@ public class NBTInventoryUtils {
 
             CompoundTag itemTag = entry.getCompound("Item");
 
-            Optional<ItemStack> optionalStack = ItemStack.parse(MegaShowdown.getServer().registryAccess(), itemTag);
+            Optional<ItemStack> optionalStack = ItemStack.parse(registryAccess, itemTag);
 
             optionalStack.ifPresent(stack -> {
                 if (!stack.isEmpty() && slot < inventory.getContainerSize()) {

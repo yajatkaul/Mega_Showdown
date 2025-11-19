@@ -7,20 +7,15 @@ import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleTransformPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokemonPacket;
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
-import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
-import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
-import com.mojang.datafixers.util.Pair;
+import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.nbt.*;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.effect.MobEffects;
 
 import java.util.ArrayList;
@@ -88,7 +83,7 @@ public class AspectUtils {
                     "battle_end_revert"
             );
 
-            for (EffectPair effectPair: aspects) {
+            for (EffectPair effectPair : aspects) {
                 effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
             }
         }
@@ -99,7 +94,7 @@ public class AspectUtils {
                     "apply_aspects"
             );
 
-            for (EffectPair effectPair: aspects) {
+            for (EffectPair effectPair : aspects) {
                 effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
             }
         }
@@ -114,7 +109,7 @@ public class AspectUtils {
         if (pokemon.getPersistentData().getBoolean("is_max")) {
             pokemon.getPersistentData().putBoolean("is_max", false);
             if (pokemon.getEntity() != null) {
-                AspectUtils.scaleDownDynamax(pokemon.getEntity());
+                MaxGimmick.scaleDownDynamax(pokemon.getEntity());
             }
         }
 
@@ -147,56 +142,5 @@ public class AspectUtils {
                         false);
             }
         }
-    }
-
-    public static void scaleDownDynamax(PokemonEntity pokemonEntity) {
-        DelayedTicker.add(new DelayedTicker(MegaShowdownConfig.getDynamaxScaleDuration()) {
-            @Override
-            protected void function() {
-                if (!pokemonEntity.isRemoved() && pokemonEntity.hasEffect(MegaShowdownStatusEffects.DYNAMAX)) {
-                    pokemonEntity.removeEffect(MegaShowdownStatusEffects.DYNAMAX);
-                    pokemonEntity.addEffect(
-                            new MobEffectInstance(
-                                    MegaShowdownStatusEffects.DYNAMAX,
-                                    Integer.MAX_VALUE,
-                                    (this.maxAge - this.age),
-                                    true,
-                                    true,
-                                    true
-                            ),
-                            null
-                    );
-                } else {
-                    this.age = this.maxAge;
-                }
-                if (this.age == this.maxAge) {
-                    pokemonEntity.removeEffect(MobEffects.GLOWING);
-                    pokemonEntity.removeEffect(MegaShowdownStatusEffects.DYNAMAX);
-                }
-            }
-        });
-    }
-
-    public static void scaleUpDynamax(PokemonEntity pokemonEntity) {
-        GlowHandler.applyDynamaxGlow(pokemonEntity);
-        DelayedTicker.add(new DelayedTicker(MegaShowdownConfig.getDynamaxScaleDuration()) {
-            @Override
-            protected void function() {
-                if (!pokemonEntity.isRemoved()) {
-                    pokemonEntity.addEffect(
-                            new MobEffectInstance(
-                                    MegaShowdownStatusEffects.DYNAMAX,
-                                    Integer.MAX_VALUE,
-                                    this.age,
-                                    true,
-                                    true,
-                                    true
-                            )
-                    );
-                } else {
-                    this.age = this.maxAge;
-                }
-            }
-        });
     }
 }

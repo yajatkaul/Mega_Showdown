@@ -25,10 +25,6 @@ public final class MegaShowdown {
     public static final Logger LOGGER = LoggerFactory.getLogger("MegaShowdown");
     private static MinecraftServer server;
 
-    public static MinecraftServer getServer() {
-        return server;
-    }
-
     public static void init() {
         MegaShowdownConfig.register();
 
@@ -48,8 +44,7 @@ public final class MegaShowdown {
         EventRegister.register();
 
         LifecycleEvent.SERVER_STARTING.register((minecraftServer) -> {
-            server = minecraftServer;
-            MegaShowdownDatapackRegister.registerShowdownDatapackItems();
+            MegaShowdownDatapackRegister.registerShowdownDatapackItems(minecraftServer);
             ShowdownItemsLoad.load();
         });
 

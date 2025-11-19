@@ -88,7 +88,10 @@ public class PedestalBlock extends BaseEntityBlock {
             if (pedestalBlockEntity.inventory.getItem(0).isEmpty() && stack.isEmpty()) {
                 return ItemInteractionResult.FAIL;
             } else if (pedestalBlockEntity.inventory.getItem(0).isEmpty() && !stack.isEmpty()) {
-                pedestalBlockEntity.inventory.setItem(0, stack.copy());
+                ItemStack copyStack = stack.copy();
+                copyStack.setCount(1);
+
+                pedestalBlockEntity.inventory.setItem(0, copyStack);
                 stack.shrink(1);
                 level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
             } else if (stack.isEmpty()) {

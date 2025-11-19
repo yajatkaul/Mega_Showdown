@@ -9,7 +9,6 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
-import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.item.custom.DebugStick;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.DynamaxCandy;
@@ -24,8 +23,6 @@ import com.github.yajatkaul.mega_showdown.item.custom.tera.LikosPendant;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
 import com.github.yajatkaul.mega_showdown.item.custom.z.SpecialZCrystal;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -46,53 +43,54 @@ public class MegaShowdownItems {
 
     public static final RegistrySupplier<Item> KEYSTONE = registerTooltipItem("keystone", MegaShowdownTabs.MEGA_TAB);
     public static final RegistrySupplier<Item> MEGA_STONE = registerTooltipItem("mega_stone", MegaShowdownTabs.MEGA_TAB);
-    public static final RegistrySupplier<Item> ABOMASITE = registerMegaStone("abomasite", MegaGimmick.ABOMASITE);
-    public static final RegistrySupplier<Item> ABSOLITE = registerMegaStone("absolite", MegaGimmick.ABSOLITE);
-    public static final RegistrySupplier<Item> AERODACTYLITE = registerMegaStone("aerodactylite", MegaGimmick.AERODACTYLITE);
-    public static final RegistrySupplier<Item> AGGRONITE = registerMegaStone("aggronite", MegaGimmick.AGGRONITE);
-    public static final RegistrySupplier<Item> ALAKAZITE = registerMegaStone("alakazite", MegaGimmick.ALAKAZITE);
-    public static final RegistrySupplier<Item> ALTARIANITE = registerMegaStone("altarianite", MegaGimmick.ALTARIANITE);
-    public static final RegistrySupplier<Item> AMPHAROSITE = registerMegaStone("ampharosite", MegaGimmick.AMPHAROSITE);
-    public static final RegistrySupplier<Item> AUDINITE = registerMegaStone("audinite", MegaGimmick.AUDINITE);
-    public static final RegistrySupplier<Item> BANETTITE = registerMegaStone("banettite", MegaGimmick.BANETTITE);
-    public static final RegistrySupplier<Item> BEEDRILLITE = registerMegaStone("beedrillite", MegaGimmick.BEEDRILLITE);
-    public static final RegistrySupplier<Item> BLASTOISINITE = registerMegaStone("blastoisinite", MegaGimmick.BLASTOISINITE);
-    public static final RegistrySupplier<Item> BLAZIKENITE = registerMegaStone("blazikenite", MegaGimmick.BLAZIKENITE);
-    public static final RegistrySupplier<Item> CAMERUPTITE = registerMegaStone("cameruptite", MegaGimmick.CAMERUPTITE);
-    public static final RegistrySupplier<Item> CHARIZARDITE_X = registerMegaStone("charizardite_x", MegaGimmick.CHARIZARDITE_X);
-    public static final RegistrySupplier<Item> CHARIZARDITE_Y = registerMegaStone("charizardite_y", MegaGimmick.CHARIZARDITE_Y);
-    public static final RegistrySupplier<Item> DIANCITE = registerMegaStone("diancite", MegaGimmick.DIANCITE);
-    public static final RegistrySupplier<Item> GALLADITE = registerMegaStone("galladite", MegaGimmick.GALLADITE);
-    public static final RegistrySupplier<Item> GLALITITE = registerMegaStone("glalitite", MegaGimmick.GLALITITE);
-    public static final RegistrySupplier<Item> GARCHOMPITE = registerMegaStone("garchompite", MegaGimmick.GARCHOMPITE);
-    public static final RegistrySupplier<Item> GARDEVOIRITE = registerMegaStone("gardevoirite", MegaGimmick.GARDEVOIRITE);
-    public static final RegistrySupplier<Item> GENGARITE = registerMegaStone("gengarite", MegaGimmick.GENGARITE);
-    public static final RegistrySupplier<Item> GYARADOSITE = registerMegaStone("gyaradosite", MegaGimmick.GYARADOSITE);
-    public static final RegistrySupplier<Item> HERACRONITE = registerMegaStone("heracronite", MegaGimmick.HERACRONITE);
-    public static final RegistrySupplier<Item> HOUNDOOMINITE = registerMegaStone("houndoominite", MegaGimmick.HOUNDOOMINITE);
-    public static final RegistrySupplier<Item> KANGASKHANITE = registerMegaStone("kangaskhanite", MegaGimmick.KANGASKHANITE);
-    public static final RegistrySupplier<Item> LATIASITE = registerMegaStone("latiasite", MegaGimmick.LATIASITE);
-    public static final RegistrySupplier<Item> LATIOSITE = registerMegaStone("latiosite", MegaGimmick.LATIOSITE);
-    public static final RegistrySupplier<Item> LOPUNNITE = registerMegaStone("lopunnite", MegaGimmick.LOPUNNITE);
-    public static final RegistrySupplier<Item> LUCARIONITE = registerMegaStone("lucarionite", MegaGimmick.LUCARIONITE);
-    public static final RegistrySupplier<Item> MANECTITE = registerMegaStone("manectite", MegaGimmick.MANECTITE);
-    public static final RegistrySupplier<Item> MAWILITE = registerMegaStone("mawilite", MegaGimmick.MAWILITE);
-    public static final RegistrySupplier<Item> MEDICHAMITE = registerMegaStone("medichamite", MegaGimmick.MEDICHAMITE);
-    public static final RegistrySupplier<Item> METAGROSSITE = registerMegaStone("metagrossite", MegaGimmick.METAGROSSITE);
-    public static final RegistrySupplier<Item> MEWTWONITE_X = registerMegaStone("mewtwonite_x", MegaGimmick.MEWTWONITE_X);
-    public static final RegistrySupplier<Item> MEWTWONITE_Y = registerMegaStone("mewtwonite_y", MegaGimmick.MEWTWONITE_Y);
-    public static final RegistrySupplier<Item> PIDGEOTITE = registerMegaStone("pidgeotite", MegaGimmick.PIDGEOTITE);
-    public static final RegistrySupplier<Item> PINSIRITE = registerMegaStone("pinsirite", MegaGimmick.PINSIRITE);
-    public static final RegistrySupplier<Item> SABLENITE = registerMegaStone("sablenite", MegaGimmick.SABLENITE);
-    public static final RegistrySupplier<Item> SALAMENCITE = registerMegaStone("salamencite", MegaGimmick.SALAMENCITE);
-    public static final RegistrySupplier<Item> SCEPTILITE = registerMegaStone("sceptilite", MegaGimmick.SCEPTILITE);
-    public static final RegistrySupplier<Item> SCIZORITE = registerMegaStone("scizorite", MegaGimmick.SCIZORITE);
-    public static final RegistrySupplier<Item> SHARPEDONITE = registerMegaStone("sharpedonite", MegaGimmick.SHARPEDONITE);
-    public static final RegistrySupplier<Item> SLOWBRONITE = registerMegaStone("slowbronite", MegaGimmick.SLOWBRONITE);
-    public static final RegistrySupplier<Item> STEELIXITE = registerMegaStone("steelixite", MegaGimmick.STEELIXITE);
-    public static final RegistrySupplier<Item> SWAMPERTITE = registerMegaStone("swampertite", MegaGimmick.SWAMPERTITE);
-    public static final RegistrySupplier<Item> TYRANITARITE = registerMegaStone("tyranitarite", MegaGimmick.TYRANITARITE);
-    public static final RegistrySupplier<Item> VENUSAURITE = registerMegaStone("venusaurite", MegaGimmick.VENUSAURITE);
+
+    public static final RegistrySupplier<Item> ABOMASITE = registerMegaStone("abomasite");
+    public static final RegistrySupplier<Item> ABSOLITE = registerMegaStone("absolite");
+    public static final RegistrySupplier<Item> AERODACTYLITE = registerMegaStone("aerodactylite");
+    public static final RegistrySupplier<Item> AGGRONITE = registerMegaStone("aggronite");
+    public static final RegistrySupplier<Item> ALAKAZITE = registerMegaStone("alakazite");
+    public static final RegistrySupplier<Item> ALTARIANITE = registerMegaStone("altarianite");
+    public static final RegistrySupplier<Item> AMPHAROSITE = registerMegaStone("ampharosite");
+    public static final RegistrySupplier<Item> AUDINITE = registerMegaStone("audinite");
+    public static final RegistrySupplier<Item> BANETTITE = registerMegaStone("banettite");
+    public static final RegistrySupplier<Item> BEEDRILLITE = registerMegaStone("beedrillite");
+    public static final RegistrySupplier<Item> BLASTOISINITE = registerMegaStone("blastoisinite");
+    public static final RegistrySupplier<Item> BLAZIKENITE = registerMegaStone("blazikenite");
+    public static final RegistrySupplier<Item> CAMERUPTITE = registerMegaStone("cameruptite");
+    public static final RegistrySupplier<Item> CHARIZARDITE_X = registerMegaStone("charizardite_x");
+    public static final RegistrySupplier<Item> CHARIZARDITE_Y = registerMegaStone("charizardite_y");
+    public static final RegistrySupplier<Item> DIANCITE = registerMegaStone("diancite");
+    public static final RegistrySupplier<Item> GALLADITE = registerMegaStone("galladite");
+    public static final RegistrySupplier<Item> GLALITITE = registerMegaStone("glalitite");
+    public static final RegistrySupplier<Item> GARCHOMPITE = registerMegaStone("garchompite");
+    public static final RegistrySupplier<Item> GARDEVOIRITE = registerMegaStone("gardevoirite");
+    public static final RegistrySupplier<Item> GENGARITE = registerMegaStone("gengarite");
+    public static final RegistrySupplier<Item> GYARADOSITE = registerMegaStone("gyaradosite");
+    public static final RegistrySupplier<Item> HERACRONITE = registerMegaStone("heracronite");
+    public static final RegistrySupplier<Item> HOUNDOOMINITE = registerMegaStone("houndoominite");
+    public static final RegistrySupplier<Item> KANGASKHANITE = registerMegaStone("kangaskhanite");
+    public static final RegistrySupplier<Item> LATIASITE = registerMegaStone("latiasite");
+    public static final RegistrySupplier<Item> LATIOSITE = registerMegaStone("latiosite");
+    public static final RegistrySupplier<Item> LOPUNNITE = registerMegaStone("lopunnite");
+    public static final RegistrySupplier<Item> LUCARIONITE = registerMegaStone("lucarionite");
+    public static final RegistrySupplier<Item> MANECTITE = registerMegaStone("manectite");
+    public static final RegistrySupplier<Item> MAWILITE = registerMegaStone("mawilite");
+    public static final RegistrySupplier<Item> MEDICHAMITE = registerMegaStone("medichamite");
+    public static final RegistrySupplier<Item> METAGROSSITE = registerMegaStone("metagrossite");
+    public static final RegistrySupplier<Item> MEWTWONITE_X = registerMegaStone("mewtwonite_x");
+    public static final RegistrySupplier<Item> MEWTWONITE_Y = registerMegaStone("mewtwonite_y");
+    public static final RegistrySupplier<Item> PIDGEOTITE = registerMegaStone("pidgeotite");
+    public static final RegistrySupplier<Item> PINSIRITE = registerMegaStone("pinsirite");
+    public static final RegistrySupplier<Item> SABLENITE = registerMegaStone("sablenite");
+    public static final RegistrySupplier<Item> SALAMENCITE = registerMegaStone("salamencite");
+    public static final RegistrySupplier<Item> SCEPTILITE = registerMegaStone("sceptilite");
+    public static final RegistrySupplier<Item> SCIZORITE = registerMegaStone("scizorite");
+    public static final RegistrySupplier<Item> SHARPEDONITE = registerMegaStone("sharpedonite");
+    public static final RegistrySupplier<Item> SLOWBRONITE = registerMegaStone("slowbronite");
+    public static final RegistrySupplier<Item> STEELIXITE = registerMegaStone("steelixite");
+    public static final RegistrySupplier<Item> SWAMPERTITE = registerMegaStone("swampertite");
+    public static final RegistrySupplier<Item> TYRANITARITE = registerMegaStone("tyranitarite");
+    public static final RegistrySupplier<Item> VENUSAURITE = registerMegaStone("venusaurite");
 
     public static final RegistrySupplier<Item> RED_ORB = registerFormChangeHeldItems(
             "red_orb",
@@ -895,11 +893,11 @@ public class MegaShowdownItems {
         ));
     }
 
-    private static RegistrySupplier<Item> registerMegaStone(String name, MegaGimmick megaGimmick) {
-        return ITEMS.register(name, () -> new ToolTipItem(
+    private static RegistrySupplier<Item> registerMegaStone(String name) {
+        return ITEMS.register(name, () -> new MegaStone(
                 new Item.Properties()
-                        .component(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get(), megaGimmick)
-                        .arch$tab(MegaShowdownTabs.MEGA_TAB))
+                        .arch$tab(MegaShowdownTabs.MEGA_TAB),
+                name)
         );
     }
 

@@ -1,0 +1,14 @@
+{
+  "showdown_id": "charizarditex",
+  "pokemons": [
+    "Charizard"
+  ],
+  "aspect": {
+    "apply_aspects": [
+      "mega_evolution=mega_x"
+    ],
+    "revert_aspects": [
+      "mega_evolution=none"
+    ]
+  }
+}

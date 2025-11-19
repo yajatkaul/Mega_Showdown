@@ -11,26 +11,29 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
     private final ItemStack cube;
     private final SimpleContainer cubeInv;
+    private final Level level;
 
     public ZygardeCubesScreenHandler(int id, Inventory inv) {
-        this(id, inv, ItemStack.EMPTY);
+        this(id, inv, ItemStack.EMPTY, null);
     }
 
-    public ZygardeCubesScreenHandler(int id, Inventory inv, ItemStack cube) {
+    public ZygardeCubesScreenHandler(int id, Inventory inv, ItemStack cube, Level level) {
         super(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), id);
         this.cube = cube;
+        this.level = level;
 
         CompoundTag compoundTag = cube.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
         if (compoundTag == null) {
             compoundTag = new CompoundTag();
         }
         cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), compoundTag);
-        this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag);
+        this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
 
         this.addSlot(new ZygardeSlots(this.cubeInv, 0, 62, 36));
         this.addSlot(new ZygardeSlots(this.cubeInv, 1, 98, 36));
@@ -83,7 +86,7 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
-        CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv);
+        CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv, level.registryAccess());
         this.cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), tag);
     }
 

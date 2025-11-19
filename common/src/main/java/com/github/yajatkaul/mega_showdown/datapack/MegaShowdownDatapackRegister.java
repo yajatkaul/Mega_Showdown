@@ -6,11 +6,12 @@ import com.github.yajatkaul.mega_showdown.codec.*;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 
 public class MegaShowdownDatapackRegister {
     public static final ResourceKey<Registry<Effect>> EFFECT_REGISTRY_KEY =
@@ -46,17 +47,17 @@ public class MegaShowdownDatapackRegister {
     public static Registry<Effect> EFFECT_REGISTRY;
     public static Registry<FormChangeInteractItem> FORM_CHANGE_INTERACT_REGISTRY;
 
-    public static void registerShowdownDatapackItems() {
-        EFFECT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.EFFECT_REGISTRY_KEY);
-        MEGA_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.MEGA_REGISTRY_KEY);
-        SHOWDOWN_ITEM_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.SHOWDOWN_ITEM_REGISTRY_KEY);
-        GMAX_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.GMAX_REGISTRY_KEY);
-        SOLO_FUSION_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.SOLO_FUSION_REGISTRY_KEY);
-        DU_FUSION_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.DU_FUSION_REGISTRY_KEY);
-        HELD_ITEM_FORM_CHANGE_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY_KEY);
-        FORM_CHANGE_TOGGLE_INTERACT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY);
-        BATTLE_FORM_CHANGE_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY_KEY);
-        FORM_CHANGE_INTERACT_REGISTRY = MegaShowdown.getServer().registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY_KEY);
+    public static void registerShowdownDatapackItems(MinecraftServer server) {
+        EFFECT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.EFFECT_REGISTRY_KEY);
+        MEGA_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.MEGA_REGISTRY_KEY);
+        SHOWDOWN_ITEM_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.SHOWDOWN_ITEM_REGISTRY_KEY);
+        GMAX_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.GMAX_REGISTRY_KEY);
+        SOLO_FUSION_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.SOLO_FUSION_REGISTRY_KEY);
+        DU_FUSION_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.DU_FUSION_REGISTRY_KEY);
+        HELD_ITEM_FORM_CHANGE_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY_KEY);
+        FORM_CHANGE_TOGGLE_INTERACT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY);
+        BATTLE_FORM_CHANGE_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY_KEY);
+        FORM_CHANGE_INTERACT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY_KEY);
 
         for (MegaGimmick megaGimmick : MEGA_REGISTRY) {
             for (String aspect : megaGimmick.aspect_conditions().apply_aspects()) {
@@ -80,13 +81,18 @@ public class MegaShowdownDatapackRegister {
         }));
 
         CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
-            MegaGimmick megaGimmick = stack.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+            MegaGimmick megaGimmick;
+
+            if (stack.getItem() instanceof MegaStone megaStone) {
+                megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(megaStone.getMegaStone());
+            } else {
+                megaGimmick = stack.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+            }
 
             if (megaGimmick == null) {
                 return null;
             }
 
-            MegaShowdown.LOGGER.info(megaGimmick.showdown_id());
             return megaGimmick.showdown_id();
         }));
     }

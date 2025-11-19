@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import org.jetbrains.annotations.Nullable;
 

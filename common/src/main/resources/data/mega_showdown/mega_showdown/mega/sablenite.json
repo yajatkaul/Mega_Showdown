@@ -1,0 +1,14 @@
+{
+  "showdown_id": "sablenite",
+  "pokemons": [
+    "Sableye"
+  ],
+  "aspect": {
+    "apply_aspects": [
+      "mega_evolution=mega"
+    ],
+    "revert_aspects": [
+      "mega_evolution=none"
+    ]
+  }
+}

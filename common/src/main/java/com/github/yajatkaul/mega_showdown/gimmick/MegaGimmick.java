@@ -9,10 +9,11 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
+import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
+import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import kotlin.Unit;
@@ -27,7 +28,7 @@ import java.util.Set;
 
 public record MegaGimmick(
         String showdown_id,
-        List<String> pokemon,
+        List<String> pokemons,
         AspectSetCodec aspect_conditions
 ) {
     private static final Set<String> mega_aspects = new HashSet<>(Set.of("mega", "mega_y", "mega_x"));
@@ -42,8 +43,8 @@ public record MegaGimmick(
 
     public static final Codec<MegaGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("showdown_id").forGetter(MegaGimmick::showdown_id),
-            Codec.list(Codec.STRING).fieldOf("pokemon").forGetter(MegaGimmick::pokemon),
-            AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MegaGimmick::aspect_conditions)
+            Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(MegaGimmick::pokemons),
+            AspectSetCodec.CODEC.fieldOf("aspect").forGetter(MegaGimmick::aspect_conditions)
     ).apply(instance, MegaGimmick::new));
 
     public boolean canMega(Pokemon pokemon) {
@@ -58,7 +59,7 @@ public record MegaGimmick(
             return false;
         }
 
-        return this.pokemon.contains(pokemon.getSpecies().getName());
+        return this.pokemons.contains(pokemon.getSpecies().getName());
     }
 
     public static boolean hasMega(ServerPlayer player) {
@@ -84,90 +85,6 @@ public record MegaGimmick(
         return false;
     }
 
-    public static MegaGimmick ABOMASITE = createModItemMegaStone("abomasite", "Abomasnow", "mega");
-    public static MegaGimmick ABSOLITE = createModItemMegaStone("absolite", "Absol", "mega");
-    public static MegaGimmick AERODACTYLITE = createModItemMegaStone("aerodactylite", "Aerodactyl", "mega");
-    public static MegaGimmick AGGRONITE = createModItemMegaStone("aggronite", "Aggron", "mega");
-    public static MegaGimmick ALAKAZITE = createModItemMegaStone("alakazite", "Alakazam", "mega");
-    public static MegaGimmick ALTARIANITE = createModItemMegaStone("altarianite", "Altaria", "mega");
-    public static MegaGimmick AMPHAROSITE = createModItemMegaStone("ampharosite", "Ampharos", "mega");
-    public static MegaGimmick AUDINITE = createModItemMegaStone("audinite", "Audino", "mega");
-    public static MegaGimmick BANETTITE = createModItemMegaStone("banettite", "Banette", "mega");
-    public static MegaGimmick BEEDRILLITE = createModItemMegaStone("beedrillite", "Beedrill", "mega");
-    public static MegaGimmick BLASTOISINITE = createModItemMegaStone("blastoisinite", "Blastoise", "mega");
-    public static MegaGimmick BLAZIKENITE = createModItemMegaStone("blazikenite", "Blaziken", "mega");
-    public static MegaGimmick CAMERUPTITE = createModItemMegaStone("cameruptite", "Camerupt", "mega");
-    public static MegaGimmick CHARIZARDITE_X = createModItemMegaStone("charizarditex", "Charizard", "mega_x");
-    public static MegaGimmick CHARIZARDITE_Y = createModItemMegaStone("charizarditey", "Charizard", "mega_y");
-    public static MegaGimmick DIANCITE = createModItemMegaStone("diancite", "Diancie", "mega");
-    public static MegaGimmick GALLADITE = createModItemMegaStone("galladite", "Gallade", "mega");
-    public static MegaGimmick GLALITITE = createModItemMegaStone("glalitite", "Glalie", "mega");
-    public static MegaGimmick GARCHOMPITE = createModItemMegaStone("garchompite", "Garchomp", "mega");
-    public static MegaGimmick GARDEVOIRITE = createModItemMegaStone("gardevoirite", "Gardevoir", "mega");
-    public static MegaGimmick GENGARITE = createModItemMegaStone("gengarite", "Gengar", "mega");
-    public static MegaGimmick GYARADOSITE = createModItemMegaStone("gyaradosite", "Gyarados", "mega");
-    public static MegaGimmick HERACRONITE = createModItemMegaStone("heracronite", "Heracross", "mega");
-    public static MegaGimmick HOUNDOOMINITE = createModItemMegaStone("houndoominite", "Houndoom", "mega");
-    public static MegaGimmick KANGASKHANITE = createModItemMegaStone("kangaskhanite", "Kangaskhan", "mega");
-    public static MegaGimmick LATIASITE = createModItemMegaStone("latiasite", "Latias", "mega");
-    public static MegaGimmick LATIOSITE = createModItemMegaStone("latiosite", "Latios", "mega");
-    public static MegaGimmick LOPUNNITE = createModItemMegaStone("lopunnite", "Lopunny", "mega");
-    public static MegaGimmick LUCARIONITE = createModItemMegaStone("lucarionite", "Lucario", "mega");
-    public static MegaGimmick MANECTITE = createModItemMegaStone("manectite", "Manectric", "mega");
-    public static MegaGimmick MAWILITE = createModItemMegaStone("mawilite", "Mawile", "mega");
-    public static MegaGimmick MEDICHAMITE = createModItemMegaStone("medichamite", "Medicham", "mega");
-    public static MegaGimmick METAGROSSITE = createModItemMegaStone("metagrossite", "Metagross", "mega");
-    public static MegaGimmick MEWTWONITE_X = createModItemMegaStone("mewtwonitex", "Mewtwo", "mega_x");
-    public static MegaGimmick MEWTWONITE_Y = createModItemMegaStone("mewtwonitey", "Mewtwo", "mega_y");
-    public static MegaGimmick PIDGEOTITE = createModItemMegaStone("pidgeotite", "Pidgeot", "mega");
-    public static MegaGimmick PINSIRITE = createModItemMegaStone("pinsirite", "Pinsir", "mega");
-    public static MegaGimmick SABLENITE = createModItemMegaStone("sablenite", "Sableye", "mega");
-    public static MegaGimmick SALAMENCITE = createModItemMegaStone("salamencite", "Salamence", "mega");
-    public static MegaGimmick SCEPTILITE = createModItemMegaStone("sceptilite", "Sceptile", "mega");
-    public static MegaGimmick SCIZORITE = createModItemMegaStone("scizorite", "Scizor", "mega");
-    public static MegaGimmick SHARPEDONITE = createModItemMegaStone("sharpedonite", "Sharpedo", "mega");
-    public static MegaGimmick SLOWBRONITE = createModItemMegaStoneWithBlackList("slowbronite", "Slowbro", "mega", "galarian");
-    public static MegaGimmick STEELIXITE = createModItemMegaStone("steelixite", "Steelix", "mega");
-    public static MegaGimmick SWAMPERTITE = createModItemMegaStone("swampertite", "Swampert", "mega");
-    public static MegaGimmick TYRANITARITE = createModItemMegaStone("tyranitarite", "Tyranitar", "mega");
-    public static MegaGimmick VENUSAURITE = createModItemMegaStone("venusaurite", "Venusaur", "mega");
-
-    public static MegaGimmick createModItemMegaStone(String mega_stone_id, String pokemon, String aspect) {
-        String mega_aspect = "mega_evolution=" + aspect;
-        return new MegaGimmick(
-                mega_stone_id,
-                List.of(pokemon),
-                new AspectSetCodec(
-                        List.of(),
-                        List.of(),
-                        List.of(),
-                        List.of(),
-                        List.of(mega_aspect),
-                        List.of("mega_evolution=none")
-                )
-        );
-    }
-
-    public static MegaGimmick createModItemMegaStoneWithBlackList(String mega_stone_id,
-                                                                  String pokemon,
-                                                                  String aspect,
-                                                                  String blackListAspect
-    ) {
-        String mega_aspect = "mega_evolution=" + aspect;
-        return new MegaGimmick(
-                mega_stone_id,
-                List.of(pokemon),
-                new AspectSetCodec(
-                        List.of(),
-                        List.of(),
-                        List.of(),
-                        List.of(List.of(blackListAspect)),
-                        List.of(mega_aspect),
-                        List.of("mega_evolution=none")
-                )
-        );
-    }
-
     public static void megaEvolveInBattle(Pokemon pokemon, BattlePokemon battlePokemon, List<String> aspects, List<String> revertAspects) {
         PokemonBattle battle = battlePokemon.actor.getBattle();
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
@@ -178,21 +95,36 @@ public record MegaGimmick(
                 pokemon,
                 "battle_end_revert"
         );
+
         ParticlesList.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, aspects, null, battlePokemon);
     }
 
-    private static void megaEvolve(Pokemon pokemon, List<String> aspects) {
+    private static void megaEvolve(Pokemon pokemon, List<String> aspects, List<String> revertAspects) {
         ParticlesList.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, aspects, null);
+
+        AspectUtils.appendRevertDataPokemon(
+                ParticlesList.getEffect("mega_showdown:mega_evolution"),
+                revertAspects,
+                pokemon,
+                "apply_aspects"
+        );
+
         pokemon.setTradeable(false);
     }
 
     public static void megaToggle(PokemonEntity pokemonEntity) {
-        if (!MegaShowdownConfig.outSideMega) {
+        if (!MegaShowdownConfig.outSideMega || pokemonEntity.getPokemon().getPersistentData().getBoolean("form_changing")) {
             return;
         }
 
         ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
-        MegaGimmick megaGimmick = heldItem.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+        MegaGimmick megaGimmick;
+
+        if (heldItem.getItem() instanceof MegaStone megaStone) {
+            megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(megaStone.getMegaStone());
+        } else {
+            megaGimmick = heldItem.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+        }
 
         Pokemon pokemon = pokemonEntity.getPokemon();
 
@@ -208,7 +140,7 @@ public record MegaGimmick(
                 boolean found = false;
                 for (int i = 0; i < 4; i++) {
                     if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
-                        MegaGimmick.megaEvolve(pokemon, List.of("mega"));
+                        MegaGimmick.megaEvolve(pokemon, List.of("mega_evolution=mega"), List.of("mega_evolution=none"));
                         found = true;
                         break;
                     }
@@ -220,7 +152,7 @@ public record MegaGimmick(
                     }
                 }
             } else if (megaGimmick.canMega(pokemon)) {
-                MegaGimmick.megaEvolve(pokemon, megaGimmick.aspect_conditions().apply_aspects());
+                MegaGimmick.megaEvolve(pokemon, megaGimmick.aspect_conditions.apply_aspects(), megaGimmick.aspect_conditions.revert_aspects());
             }
         }
     }

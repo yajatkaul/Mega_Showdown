@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.item.custom.z;
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 
 import java.util.List;
