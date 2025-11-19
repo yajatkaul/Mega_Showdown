@@ -11,5 +11,13 @@
       "animations_revert": ["cry"],
       "expressions_revert": []
     }
+  },
+  "snowstorm": {
+    "source_apply": ["target"],
+    "particle_apply": "cobblemon:primal_groudon",
+    "apply_after": 4.8,
+    "animations": {
+      "animations_apply": ["cry"]
+    }
   }
 }

@@ -2,8 +2,7 @@
   "pokemons": ["Shaymin"],
   "showdown_form_change_id": "shaymin",
   "aspects": {
-    "apply_aspects": ["gracidea_forme=land"],
-    "revert_aspects": ["gracidea_forme=sky"]
+    "apply_aspects": ["gracidea_forme=land"]
   },
-  "effect": "mega_showdown:end_rod"
+  "effect": "mega_showdown:shaymin_effect"
 }

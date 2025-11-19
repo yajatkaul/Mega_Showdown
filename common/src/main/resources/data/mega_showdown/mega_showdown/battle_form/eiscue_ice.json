@@ -3,7 +3,7 @@
   "showdown_form_change_id": "eiscue",
   "aspects": {
     "apply_aspects": ["penguin_head=ice_face"],
-    "revert_aspects": ["penguin_head=noice_face"]
+    "revert_aspects": []
   },
   "effect": "mega_showdown:end_rod"
 }

@@ -5,5 +5,5 @@
     "apply_aspects": ["song_forme=pirouette"],
     "revert_aspects": ["song_forme=aria"]
   },
-  "effect": "mega_showdown:end_rod"
+  "effect": "mega_showdown:meloetta_music"
 }
