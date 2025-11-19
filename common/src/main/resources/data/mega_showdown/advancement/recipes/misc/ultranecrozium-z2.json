@@ -5,10 +5,10 @@
       "conditions": {
         "items": [
           {
-            "items": "mega_showdown:lunalium-z"
+            "items": "mega_showdown:lunalium_z"
           },
           {
-            "items": "mega_showdown:solganium-z"
+            "items": "mega_showdown:solganium_z"
           }
         ]
       },
@@ -16,7 +16,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mega_showdown:ultranecrozium-z"
+        "recipe": "mega_showdown:ultranecrozium_z"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mega_showdown:ultranecrozium-z"
+      "mega_showdown:ultranecrozium_z"
     ]
   }
 }

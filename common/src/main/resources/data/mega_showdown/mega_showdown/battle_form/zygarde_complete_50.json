@@ -4,7 +4,7 @@
   "aspects": {
     "apply_aspects": ["percent_cells=complete"],
     "revert_aspects": ["percent_cells=50"],
-    "required_aspects": ["50-percent"]
+    "required_aspects_apply": [["50-percent"]]
   },
   "effect": "mega_showdown:zygarde_power_construct"
 }
