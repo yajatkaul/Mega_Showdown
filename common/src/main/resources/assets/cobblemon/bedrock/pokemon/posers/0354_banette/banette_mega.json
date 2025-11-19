@@ -1,22 +1,13 @@
 {
-  "head": "head",
-  "portraitScale": 3,
-  "portraitTranslation": [
-    -0.15,
-    -1.25,
-    0
-  ],
-  "profileScale": 1,
-  "profileTranslation": [
-    0,
-    0.25,
-    0
-  ],
-  "faint": "bedrock(banette_mega, sleep)",
+  "portraitScale": 1.74,
+  "portraitTranslation": [-0.15,0.15,0],
+  "profileScale": 0.85,
+  "profileTranslation": [0,0.47,0],
+  "rootBone": "banette",
+  "animations": {
+  },
   "poses": {
     "standing": {
-      "poseName": "standing",
-      "transformTicks": 10,
       "poseTypes": [
         "STAND",
         "NONE",
@@ -24,35 +15,53 @@
         "PROFILE"
       ],
       "animations": [
-        "look",
-        "bedrock(banette_mega, ground_idle)"
+        "q.look('head')",
+        "q.look('tendril2', -1, 1, 10, -35, 0, 0)",
+        "q.bedrock('banette_mega', 'ground_idle')"
       ],
       "quirks": [
-        {
-          "name": "blink",
-          "animations": [
-            "bedrock(banette_mega, blink)"
-          ]
-        }
+        "q.bedrock_quirk('banette', 'blink')"
       ]
     },
     "walking": {
-      "poseName": "walking",
-      "transformTicks": 10,
       "poseTypes": [
         "WALK"
       ],
       "animations": [
-        "look",
-        "bedrock(banette_mega, ground_walk)"
+        "q.look('head')",
+        "q.look('tendril2', -1, 1, 10, -35, 0, 0)",
+        "q.bedrock('banette_mega', 'ground_idle')",
+        "q.biped_walk(2, 1, 'leg_left', 'leg_right')"
       ],
       "quirks": [
-        {
-          "name": "blink",
-          "animations": [
-            "bedrock(banette_mega, blink)"
-          ]
-        }
+        "q.bedrock_quirk('banette', 'blink')"
+      ]
+    },
+    "hover": {
+      "poseTypes": [
+        "HOVER",
+        "FLOAT"
+      ],
+      "animations": [
+        "q.pitch_tilt('body')",
+        "q.look('head')",
+        "q.bedrock('banette_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('banette', 'blink')"
+      ]
+    },
+    "fly": {
+      "poseTypes": [
+        "FLY",
+        "SWIM"
+      ],
+      "animations": [
+        "q.pitch_tilt('body')",
+        "q.bedrock('banette_mega', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('banette', 'blink')"
       ]
     }
   }
