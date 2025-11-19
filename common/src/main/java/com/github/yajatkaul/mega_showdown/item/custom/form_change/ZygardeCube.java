@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
@@ -55,7 +54,7 @@ public class ZygardeCube extends ToolTipItem {
         CompoundTag storedTag = stack.get(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
         Pokemon storedPokemon = null;
         if (storedTag != null) {
-            storedPokemon = new Pokemon().loadFromNBT(MegaShowdown.getServer().registryAccess(), storedTag);
+            storedPokemon = new Pokemon().loadFromNBT(level.registryAccess(), storedTag);
         }
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
@@ -71,7 +70,7 @@ public class ZygardeCube extends ToolTipItem {
                 if (compoundTag == null) {
                     compoundTag = new CompoundTag();
                 }
-                SimpleContainer inventory = NBTInventoryUtils.deserializeInventory(compoundTag);
+                SimpleContainer inventory = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
 
                 if (inventory.getItem(1).getCount() >= 5) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.cube_core_full")
@@ -82,7 +81,7 @@ public class ZygardeCube extends ToolTipItem {
                 ItemStack newStack = new ItemStack(MegaShowdownItems.ZYGARDE_CORE.get(), count);
                 inventory.setItem(1, newStack);
 
-                CompoundTag updatedTag = NBTInventoryUtils.serializeInventory(inventory);
+                CompoundTag updatedTag = NBTInventoryUtils.serializeInventory(inventory, level.registryAccess());
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), updatedTag);
 
                 if (pokemon.isPlayerOwned()) {
@@ -105,7 +104,7 @@ public class ZygardeCube extends ToolTipItem {
                     return InteractionResultHolder.pass(stack);
                 }
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
-                CompoundTag thisPokemon = pokemon.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());
+                CompoundTag thisPokemon = pokemon.saveToNBT(level.registryAccess(), new CompoundTag());
                 stack.set(MegaShowdownDataComponents.NBT_2_COMPONENT.get(), thisPokemon);
                 playerPartyStore.remove(pokemon);
                 return InteractionResultHolder.success(stack);
@@ -136,7 +135,7 @@ public class ZygardeCube extends ToolTipItem {
                 player.openMenu(
                         new SimpleMenuProvider(
                                 (id, playerInventory, playerEntity) ->
-                                        new ZygardeCubesScreenHandler(id, playerInventory, stack),
+                                        new ZygardeCubesScreenHandler(id, playerInventory, stack, level),
                                 Component.translatable("menu.zygade_cube")
                         )
                 );

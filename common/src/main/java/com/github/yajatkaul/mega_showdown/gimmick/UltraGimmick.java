@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
-import com.mojang.datafixers.util.Pair;
 
 import java.util.List;
 

@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.utils;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.utils.particles.AnimationData;
 import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
-import com.github.yajatkaul.mega_showdown.utils.particles.SnowStormParticle;
 import com.github.yajatkaul.mega_showdown.utils.particles.SoundCodec;
 import net.minecraft.resources.ResourceLocation;
 

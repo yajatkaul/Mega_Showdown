@@ -4,10 +4,8 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
@@ -74,7 +72,7 @@ public class SoloFusion extends ToolTipItem {
         CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
         Pokemon pokemonStored = null;
         if (compoundTag != null) {
-            pokemonStored = new Pokemon().loadFromNBT(MegaShowdown.getServer().registryAccess(), compoundTag);
+            pokemonStored = new Pokemon().loadFromNBT(level.registryAccess(), compoundTag);
         }
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
@@ -102,7 +100,7 @@ public class SoloFusion extends ToolTipItem {
 
                 Pokemon pokemonInside =
                         Pokemon.Companion.loadFromNBT(
-                                MegaShowdown.getServer().registryAccess(),
+                                level.registryAccess(),
                                 pokemon.getPersistentData().getCompound("fusion_pokemon")
                         );
                 playerPartyStore.add(pokemonInside);
@@ -114,13 +112,13 @@ public class SoloFusion extends ToolTipItem {
                 ParticlesList.getEffect(effectId).revertEffects(pokemon, applyAspect, null);
                 pokemon.setTradeable(false);
 
-                CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());
+                CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(level.registryAccess(), new CompoundTag());
                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored == null && isFusion) {
-                CompoundTag pokemonNBT = pokemon.saveToNBT(MegaShowdown.getServer().registryAccess(), new CompoundTag());
+                CompoundTag pokemonNBT = pokemon.saveToNBT(level.registryAccess(), new CompoundTag());
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), pokemonNBT);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
 
@@ -144,7 +142,7 @@ public class SoloFusion extends ToolTipItem {
         CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_COMPONENT.get());
         Pokemon pokemonStored = null;
         if (compoundTag != null) {
-            pokemonStored = new Pokemon().loadFromNBT(MegaShowdown.getServer().registryAccess(), compoundTag);
+            pokemonStored = new Pokemon().loadFromNBT(itemEntity.level().registryAccess(), compoundTag);
         }
         if (pokemonStored != null) {
             if (itemEntity.getOwner() instanceof ServerPlayer player) {

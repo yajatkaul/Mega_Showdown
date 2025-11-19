@@ -12,14 +12,10 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
 public class ModLootPoolProvider implements LootTableSubProvider {
@@ -79,9 +75,9 @@ public class ModLootPoolProvider implements LootTableSubProvider {
                                 .setRolls(UniformGenerator.between(0.0f, 1.0f))
                                 .setBonusRolls(ConstantValue.exactly(0.0f))
                                 .add(NestedLootTable.lootTableReference(
-                                        ResourceKey.create(Registries.LOOT_TABLE,
-                                                ResourceLocation.fromNamespaceAndPath("cobblemon", "sets/any_type_gem"))
-                                )
+                                                ResourceKey.create(Registries.LOOT_TABLE,
+                                                        ResourceLocation.fromNamespaceAndPath("cobblemon", "sets/any_type_gem"))
+                                        )
                                         .setWeight(1))
                         )
                         .withPool(LootPool.lootPool()

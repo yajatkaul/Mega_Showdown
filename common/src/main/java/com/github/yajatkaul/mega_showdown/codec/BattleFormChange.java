@@ -1,14 +1,11 @@
 package com.github.yajatkaul.mega_showdown.codec;
 
-import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
-import java.util.Optional;
 
 public record BattleFormChange(
         List<String> pokemons,

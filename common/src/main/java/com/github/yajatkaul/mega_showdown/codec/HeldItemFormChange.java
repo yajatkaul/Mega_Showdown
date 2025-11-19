@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown.codec;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
 import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

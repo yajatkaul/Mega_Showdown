@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.item.PokeBallItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.block_entity.ReassemblyUnitBlockEntity;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
@@ -151,12 +150,12 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                 CompoundTag storedTag = itemStack.get(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
                 Pokemon storedPokemon = null;
                 if (storedTag != null) {
-                    storedPokemon = new Pokemon().loadFromNBT(MegaShowdown.getServer().registryAccess(), storedTag);
+                    storedPokemon = new Pokemon().loadFromNBT(level.registryAccess(), storedTag);
                 }
 
                 if (blockEntity.isIdle()) {
                     if (storedPokemon == null) {
-                        SimpleContainer simpleContainer = NBTInventoryUtils.deserializeInventory(tag);
+                        SimpleContainer simpleContainer = NBTInventoryUtils.deserializeInventory(tag, level.registryAccess());
                         ItemStack slot0 = simpleContainer.getItem(0);
                         ItemStack slot1 = simpleContainer.getItem(1);
 
@@ -186,7 +185,7 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                             return ItemInteractionResult.FAIL;
                         }
 
-                        itemStack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), NBTInventoryUtils.serializeInventory(simpleContainer));
+                        itemStack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), NBTInventoryUtils.serializeInventory(simpleContainer, level.registryAccess()));
                     } else {
                         ItemStack cells = new ItemStack(MegaShowdownItems.ZYGARDE_CELL.get());
                         ItemStack cores = new ItemStack(MegaShowdownItems.ZYGARDE_CORE.get());

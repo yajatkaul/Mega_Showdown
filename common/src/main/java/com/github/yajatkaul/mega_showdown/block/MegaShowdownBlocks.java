@@ -75,6 +75,17 @@ public class MegaShowdownBlocks {
             MegaShowdownTabs.FORM_TAB
     );
 
+    public static final RegistrySupplier<Block> PEDESTAL = registerBlockWithToolTip(
+            "pedestal",
+            () -> new PedestalBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_GRAY)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .sound(SoundType.STONE)
+                    .strength(2f)),
+            MegaShowdownTabs.KEY_TAB
+    );
+
     public static final RegistrySupplier<Block> MEGA_METEOROID_BLOCK = registerMeteoroidBlock("mega_meteorid_block");
     public static final RegistrySupplier<Block> MEGA_METEOROID_RADIATED_BLOCK = registerMeteoroidBlock("mega_meteorid_radiated_block");
 
@@ -134,7 +145,7 @@ public class MegaShowdownBlocks {
             ), MegaShowdownTabs.DYNAMAX_TAB
     );
 
-    public static final RegistrySupplier<Block> DORMANT_CRYSTAL = registerBlock("dormant_crystal",
+    public static final RegistrySupplier<Block> DORMANT_CRYSTAL = registerBlockWithToolTip("dormant_crystal",
             () -> new DormantCrystal(4, 3, BlockBehaviour.Properties.of(), false), MegaShowdownTabs.TERA_TAB);
 
     public static final RegistrySupplier<Block> DEOXYS_METEORITE = registerDeoxysMeteorite("deoxys_meteorite");

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mega_showdown:psychium-z"
+            "items": "mega_showdown:psychium_z"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mega_showdown:mewnium-z"
+        "recipe": "mega_showdown:mewnium_z"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mega_showdown:mewnium-z"
+      "mega_showdown:mewnium_z"
     ]
   }
 }

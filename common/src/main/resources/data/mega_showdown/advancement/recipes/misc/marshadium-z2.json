@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mega_showdown:ghostium-z"
+            "items": "mega_showdown:ghostium_z"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mega_showdown:marshadium-z"
+        "recipe": "mega_showdown:marshadium_z"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mega_showdown:marshadium-z"
+      "mega_showdown:marshadium_z"
     ]
   }
 }

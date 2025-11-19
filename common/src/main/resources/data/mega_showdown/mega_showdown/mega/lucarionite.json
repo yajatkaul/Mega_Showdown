@@ -1,0 +1,14 @@
+{
+  "showdown_id": "lucarionite",
+  "pokemons": [
+    "Lucario"
+  ],
+  "aspect": {
+    "apply_aspects": [
+      "mega_evolution=mega"
+    ],
+    "revert_aspects": [
+      "mega_evolution=none"
+    ]
+  }
+}

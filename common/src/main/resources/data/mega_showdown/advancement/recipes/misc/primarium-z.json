@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mega_showdown:blank-z"
+            "items": "mega_showdown:blank_z"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mega_showdown:primarium-z"
+        "recipe": "mega_showdown:primarium_z"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mega_showdown:primarium-z"
+      "mega_showdown:primarium_z"
     ]
   }
 }

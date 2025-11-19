@@ -9,8 +9,6 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
@@ -87,7 +85,7 @@ public record MinecraftParticle(
                         );
                     }
                 } else {
-                    MegaShowdown.LOGGER.error("Invalid Particle Apply used for pokemon: {}, particle id: {}",
+                    MegaShowdown.LOGGER.error("Invalid Particle Apply used for pokemons: {}, particle id: {}",
                             context.getPokemon().getSpecies().getName(),
                             particle_apply);
                 }
@@ -148,7 +146,7 @@ public record MinecraftParticle(
                         );
                     }
                 } else {
-                    MegaShowdown.LOGGER.error("Invalid Particle Revert used for pokemon: {}, particle id: {}",
+                    MegaShowdown.LOGGER.error("Invalid Particle Revert used for pokemons: {}, particle id: {}",
                             context.getPokemon().getSpecies().getName(),
                             particle_revert);
                 }

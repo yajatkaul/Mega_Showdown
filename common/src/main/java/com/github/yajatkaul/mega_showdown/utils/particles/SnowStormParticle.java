@@ -5,19 +5,12 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.Effect;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PokemonBehaviourHelper;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import kotlin.Unit;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.Optional;
@@ -81,9 +74,17 @@ public record SnowStormParticle(
         Optional<Float> delay = isApply ? apply_after : revert_after;
 
         if (particle.isEmpty()) {
-            applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon, isApply);
+            applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon);
             return;
         }
+
+        animations.ifPresent(animation -> {
+            if (isApply) {
+                animation.applyAnimations(context);
+            } else {
+                animation.revertAnimations(context);
+            }
+        });
 
         ResourceLocation particleId = ResourceLocation.tryParse(particle.get());
         if (particleId == null) {
@@ -100,16 +101,15 @@ public record SnowStormParticle(
 
         delay.ifPresentOrElse(
                 delayValue -> context.after(delayValue, () -> {
-                    applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon, isApply);
+                    applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon);
                     return Unit.INSTANCE;
                 }),
-                () -> applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon, isApply)
+                () -> applyAspectsAndCleanup(context, aspects, pokemonPersistentData, battlePokemon)
         );
     }
 
     private void applyAspectsAndCleanup(PokemonEntity context, List<String> aspects,
-                                        CompoundTag pokemonPersistentData, BattlePokemon battlePokemon,
-                                        boolean isApply) {
+                                        CompoundTag pokemonPersistentData, BattlePokemon battlePokemon) {
         AspectUtils.applyAspects(context.getPokemon(), aspects);
 
         if (battlePokemon != null) {
@@ -117,14 +117,6 @@ public record SnowStormParticle(
         }
 
         resetFormChangingState(context, pokemonPersistentData);
-
-        animations.ifPresent(animation -> {
-            if (isApply) {
-                animation.applyAnimations(context);
-            } else {
-                animation.revertAnimations(context);
-            }
-        });
     }
 
     private void resetFormChangingState(PokemonEntity context, CompoundTag pokemonPersistentData) {

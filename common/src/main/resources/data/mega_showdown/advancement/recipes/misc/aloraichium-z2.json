@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mega_showdown:electrium-z"
+            "items": "mega_showdown:electrium_z"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mega_showdown:aloraichium-z"
+        "recipe": "mega_showdown:aloraichium_z"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mega_showdown:aloraichium-z"
+      "mega_showdown:aloraichium_z"
     ]
   }
 }

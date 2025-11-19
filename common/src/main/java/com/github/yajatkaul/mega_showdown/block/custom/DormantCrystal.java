@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class DormantCrystal extends CrystalBlock {
     public DormantCrystal(float f, float g, Properties properties, boolean dropExp) {
@@ -29,7 +30,7 @@ public class DormantCrystal extends CrystalBlock {
     private static final VoxelShape SHAPE_EAST = Block.box(0, 4, 5, 4, 11, 11);    // east wall
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
         return switch (state.getValue(AmethystClusterBlock.FACING)) {
             case DOWN -> SHAPE_DOWN;
             case NORTH -> SHAPE_NORTH;

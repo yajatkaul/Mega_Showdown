@@ -10,7 +10,7 @@
     }
   },
   "snowstorm": {
-    "source_apply": ["target"],
+    "source_apply": ["root"],
     "particle_apply": "cobblemon:power_construct_event",
     "apply_after": 4,
     "sound_apply": {

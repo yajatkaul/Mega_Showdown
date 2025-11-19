@@ -1,7 +1,6 @@
 package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import net.minecraft.core.HolderLookup;
