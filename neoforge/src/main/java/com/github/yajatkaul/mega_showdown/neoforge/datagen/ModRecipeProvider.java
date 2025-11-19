@@ -661,14 +661,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('N', Items.NETHERITE_INGOT)
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT)).save(recipeOutput);
 
-        //TODO pedistal
-//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownBlocks.PEDESTAL.get())
-//                .pattern(" S ")
-//                .pattern(" B ")
-//                .pattern("   ")
-//                .define('S', Items.SMOOTH_STONE_SLAB)
-//                .define('B', Items.CHISELED_STONE_BRICKS)
-//                .unlockedBy("has_chiseled_stone_bricks", has(Items.CHISELED_STONE_BRICKS)).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownBlocks.PEDESTAL.get())
+                .pattern(" S ")
+                .pattern(" B ")
+                .pattern("   ")
+                .define('S', Items.SMOOTH_STONE_SLAB)
+                .define('B', Items.CHISELED_STONE_BRICKS)
+                .unlockedBy("has_chiseled_stone_bricks", has(Items.CHISELED_STONE_BRICKS)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownBlocks.REASSEMBLY_UNIT.get())
                 .pattern("RRR")

@@ -1,4 +1,4 @@
-package com.github.yajatkaul.mega_showdown.neoforge.worldgen;
+package com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import net.minecraft.core.Holder;
@@ -15,7 +15,6 @@ import java.util.List;
 public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> MAX_MUSHROOM_PLACED_KEY = registerKey("max_mushroom_placed_key");
-    public static final ResourceKey<PlacedFeature> GRACIDEA_FLOWER_PLACED_KEY = registerKey("gracidea_flower_placed_key");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -26,13 +25,6 @@ public class ModPlacedFeatures {
                         InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-59), VerticalAnchor.absolute(64)),
                         BiomeFilter.biome()));
-
-//        register(context, GRACIDEA_FLOWER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GRACIDEA_FLOWER_KEY),
-//                List.of(RarityFilter.onAverageOnceEvery(900),
-//                        CountPlacement.of(1),
-//                        InSquarePlacement.spread(),
-//                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-//                        BiomeFilter.biome()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "MoveSlotWidgetMixin",
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
     "client.MinecraftMixin",
@@ -15,9 +16,9 @@
   ],
   "mixins": [
     "GraalShowdownUnbundlerMixin",
+    "PlayerPartyStoreMixin",
     "PokemonClientDelegateMixin",
     "PokemonEntityMixin",
-    "PlayerPartyStoreMixin",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",

@@ -1,4 +1,4 @@
-package com.github.yajatkaul.mega_showdown.neoforge.worldgen;
+package com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
@@ -31,18 +31,6 @@ public class ModConfiguredFeatures {
                                         .defaultBlockState().setValue(SweetBerryBushBlock.AGE, Integer.valueOf(3)))
                         ), List.of(Blocks.MOSS_BLOCK)
                 ));
-
-//        register(context, GRACIDEA_FLOWER_KEY, Feature.RANDOM_PATCH,
-//                new RandomPatchConfiguration(
-//                        3,
-//                        1,
-//                        2,
-//                        PlacementUtils.onlyWhenEmpty(
-//                                Feature.SIMPLE_BLOCK,
-//                                new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GRACIDEA_FLOWER.get().defaultBlockState()))
-//                        )
-//                )
-//        );
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

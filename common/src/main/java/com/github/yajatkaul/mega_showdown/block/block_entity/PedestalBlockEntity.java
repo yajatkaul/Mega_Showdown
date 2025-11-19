@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +26,7 @@ public class PedestalBlockEntity extends BlockEntity {
 
     public void clearContents() {
         inventory.setItem(0, ItemStack.EMPTY);
+        sync();
     }
 
     public void drops() {
@@ -40,7 +42,7 @@ public class PedestalBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        NBTInventoryUtils.deserializeInventory(tag.getCompound("inventory"), level.registryAccess());
+        inventory.setItem(0, NBTInventoryUtils.deserializeInventory(tag.getCompound("inventory"), level.registryAccess()).getItem(0));
     }
 
     @Nullable
@@ -52,5 +54,12 @@ public class PedestalBlockEntity extends BlockEntity {
     @Override
     public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return saveWithoutMetadata(pRegistries);
+    }
+
+    public void sync() {
+        setChanged();
+        if (level instanceof ServerLevel serverLevel) {
+            serverLevel.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 }

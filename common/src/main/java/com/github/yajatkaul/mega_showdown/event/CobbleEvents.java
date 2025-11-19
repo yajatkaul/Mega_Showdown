@@ -42,7 +42,7 @@ import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
 import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
 import com.github.yajatkaul.mega_showdown.sound.MegaShowdownSounds;
-import com.github.yajatkaul.mega_showdown.tag.ModTags;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.github.yajatkaul.mega_showdown.utils.*;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
@@ -55,6 +55,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CobbleEvents {
     public static void register() {
@@ -174,6 +175,7 @@ public class CobbleEvents {
             for (AspectUtils.EffectPair effectPair : effects) {
                 effectPair.effect().revertEffects(pokemon, effectPair.aspects(), null);
             }
+            pokemon.getPersistentData().remove("battle_end_revert");
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {
@@ -262,7 +264,7 @@ public class CobbleEvents {
             return;
         }
 
-        ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
+        ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
         if (teraOrb != ItemStack.EMPTY) {
             teraOrb.setDamageValue(0);
         }
@@ -285,7 +287,7 @@ public class CobbleEvents {
 
         ServerPlayer player = pokemon.getOwnerPlayer();
         if (!PlayerUtils.hasPokemon(player, "Terapagos")) {
-            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
+            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
             if (teraOrb != ItemStack.EMPTY) {
                 teraOrb.setDamageValue(teraOrb.getDamageValue() + 10);
             }
@@ -307,11 +309,16 @@ public class CobbleEvents {
     }
 
     private static void hookBattlePre(BattleStartedEvent.Pre event) {
+        AtomicBoolean cancelled = new AtomicBoolean(false);
         event.getBattle().getActivePokemon().forEach(pkmn -> {
             if (pkmn.getBattlePokemon().getEffectedPokemon().getAspects().contains("core-percent")) {
                 event.cancel();
+                cancelled.set(true);
             }
         });
+        if (cancelled.get()) {
+            return;
+        }
 
         event.getBattle().getPlayers().forEach(serverPlayer -> {
             PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
@@ -323,11 +330,7 @@ public class CobbleEvents {
         event.getBattle().getPlayers().forEach(GimmickTurnCheck::check);
 
         event.getBattle().getOnEndHandlers().add((battle -> {
-            battle.getPlayers().forEach(serverPlayer -> {
-                PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(serverPlayer);
-                AspectUtils.revertPokemonsIfRequired(playerPartyStore);
-            });
-
+            battle.getPlayers().forEach(AspectUtils::revertPokemonsIfRequired);
             return Unit.INSTANCE;
         }));
     }

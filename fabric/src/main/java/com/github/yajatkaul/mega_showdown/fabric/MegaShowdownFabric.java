@@ -9,13 +9,22 @@ import com.github.yajatkaul.mega_showdown.fabric.datapack.DatapackRegistry;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import kotlin.Unit;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.GenerationStep;
 
 public final class MegaShowdownFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         MegaShowdown.init();
         DatapackRegistry.register();
+        generateModWorldGen();
+
         ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
             Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
                 if (showdownService instanceof GraalShowdownService service) {
@@ -27,5 +36,12 @@ public final class MegaShowdownFabric implements ModInitializer {
                 return Unit.INSTANCE;
             });
         });
+    }
+
+    public static void generateModWorldGen() {
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.LUSH_CAVES),
+                GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE,
+                        ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "max_mushroom_placed_key"))
+        );
     }
 }

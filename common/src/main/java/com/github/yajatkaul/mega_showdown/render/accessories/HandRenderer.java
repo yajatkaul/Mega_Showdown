@@ -1,6 +1,6 @@
 package com.github.yajatkaul.mega_showdown.render.accessories;
 
-import com.github.yajatkaul.mega_showdown.tag.ModTags;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -35,9 +35,9 @@ public class HandRenderer implements AccessoryRenderer {
         LivingEntity entity = reference.entity();
 
         ItemStack handStack = entity.getItemInHand(entity.getUsedItemHand());
-        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(entity, ModTags.Items.OMNI_RING);
+        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(entity, MegaShowdownTags.Items.OMNI_RING);
 
-        if ((hasOmniRing && stack.is(ModTags.Items.DYNAMAX_BAND)) || handStack.is(ModTags.Items.MEGA_BRACELET) || handStack.is(ModTags.Items.Z_RING) || handStack.is(ModTags.Items.DYNAMAX_BAND) || handStack.is(ModTags.Items.OMNI_RING)) {
+        if ((hasOmniRing && stack.is(MegaShowdownTags.Items.DYNAMAX_BAND)) || handStack.is(MegaShowdownTags.Items.MEGA_BRACELET) || handStack.is(MegaShowdownTags.Items.Z_RING) || handStack.is(MegaShowdownTags.Items.DYNAMAX_BAND) || handStack.is(MegaShowdownTags.Items.OMNI_RING)) {
             return;
         }
 

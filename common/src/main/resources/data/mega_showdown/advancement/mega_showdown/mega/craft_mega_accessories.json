@@ -54,13 +54,13 @@
         ]
       }
     },
-    "megabracelet": {
+    "mega_bracelet": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet"
+              "mega_showdown:mega_bracelet"
             ]
           }
         ]
@@ -78,37 +78,37 @@
         ]
       }
     },
-    "megabracelet_black": {
+    "mega_bracelet_black": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet_black"
+              "mega_showdown:mega_bracelet_black"
             ]
           }
         ]
       }
     },
-    "megabracelet_pink": {
+    "mega_bracelet_pink": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet_pink"
+              "mega_showdown:mega_bracelet_pink"
             ]
           }
         ]
       }
     },
-    "megabracelet_green": {
+    "mega_bracelet_green": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet_green"
+              "mega_showdown:mega_bracelet_green"
             ]
           }
         ]
@@ -120,7 +120,7 @@
         "items": [
           {
             "items": [
-              "mega_showdown:megaring"
+              "mega_showdown:mega_ring"
             ]
           }
         ]
@@ -138,37 +138,37 @@
         ]
       }
     },
-    "megabracelet_red": {
+    "mega_bracelet_red": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet_red"
+              "mega_showdown:mega_bracelet_red"
             ]
           }
         ]
       }
     },
-    "megabracelet_blue": {
+    "mega_bracelet_blue": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet_blue"
+              "mega_showdown:mega_bracelet_blue"
             ]
           }
         ]
       }
     },
-    "megabracelet_yellow": {
+    "mega_bracelet_yellow": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "mega_showdown:megabracelet_yellow"
+              "mega_showdown:mega_bracelet_yellow"
             ]
           }
         ]
@@ -198,34 +198,34 @@
       "korrina_glove"
     ],
     [
-      "megabracelet"
+      "mega_bracelet"
     ],
     [
       "may_bracelet"
     ],
     [
-      "megabracelet_black"
+      "mega_bracelet_black"
     ],
     [
-      "megabracelet_pink"
+      "mega_bracelet_pink"
     ],
     [
-      "megabracelet_green"
+      "mega_bracelet_green"
     ],
     [
-      "megaring"
+      "mega_ring"
     ],
     [
       "lysandre_ring"
     ],
     [
-      "megabracelet_red"
+      "mega_bracelet_red"
     ],
     [
-      "megabracelet_blue"
+      "mega_bracelet_blue"
     ],
     [
-      "megabracelet_yellow"
+      "mega_bracelet_yellow"
     ],
     [
       "brendan_mega_cuff"

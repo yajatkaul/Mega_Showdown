@@ -10,32 +10,27 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:clear_amulet",
+          "name": "cobblemon:clear_amulet",
           "weight": 1
         },
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:lagging_tail",
+          "name": "cobblemon:lagging_tail",
           "weight": 1
         },
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:gripclaw",
+          "name": "cobblemon:grip_claw",
           "weight": 1
         },
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:souldew",
+          "name": "mega_showdown:soul_dew",
           "weight": 1
         },
         {
           "type": "minecraft:item",
-          "name": "mega_showdown:adrenalineorb",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mega_showdown:luminous_moss",
+          "name": "mega_showdown:adrenaline_orb",
           "weight": 1
         }
       ]

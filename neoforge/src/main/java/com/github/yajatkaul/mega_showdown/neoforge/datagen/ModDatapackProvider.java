@@ -1,9 +1,9 @@
 package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
-import com.github.yajatkaul.mega_showdown.neoforge.worldgen.ModBiomeModifiers;
-import com.github.yajatkaul.mega_showdown.neoforge.worldgen.ModConfiguredFeatures;
-import com.github.yajatkaul.mega_showdown.neoforge.worldgen.ModPlacedFeatures;
+import com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen.ModBiomeModifiers;
+import com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen.ModConfiguredFeatures;
+import com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen.ModPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

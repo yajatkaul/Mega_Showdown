@@ -28,6 +28,7 @@ public record Effect(
     public void applyEffects(Pokemon context, List<String> aspects, @Nullable PokemonEntity other) {
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
+            return;
         }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
             this.minecraft.get().apply(context.getEntity());
@@ -45,6 +46,7 @@ public record Effect(
     public void revertEffects(Pokemon context, List<String> aspects, @Nullable PokemonEntity other) {
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
+            return;
         }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
             this.minecraft.get().revert(context.getEntity());
@@ -63,6 +65,7 @@ public record Effect(
         if (context.getEntity() == null) {
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.updatePackets(battlePokemon);
+            return;
         }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
             this.minecraft.get().apply(context.getEntity());

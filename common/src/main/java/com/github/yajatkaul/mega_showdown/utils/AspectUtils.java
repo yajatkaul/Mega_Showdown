@@ -1,5 +1,6 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType;
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature;
@@ -12,11 +13,15 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleUpdateTeamPokem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.AbilityUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.biome.Biome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +75,29 @@ public class AspectUtils {
                 .orElseGet(ArrayList::new);
     }
 
+    public static void revertPokemonsIfRequired(ServerPlayer player) {
+        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+        for (Pokemon pokemon : playerPartyStore) {
+            AspectUtils.revertPokemonsIfRequired(pokemon);
+
+            if (pokemon.getSpecies().getName().equals("Burmy")) {
+                Holder<Biome> biomeHolder = player.serverLevel().getBiome(player.blockPosition());
+
+                boolean isSandy = biomeHolder.is(MegaShowdownTags.Biomes.sandyKey);
+                boolean isForest = biomeHolder.is(MegaShowdownTags.Biomes.forestKey);
+                boolean isTrash = biomeHolder.is(MegaShowdownTags.Biomes.trashKey);
+
+                if (isForest) {
+                    new StringSpeciesFeature("bagworm_cloak", "plant").apply(pokemon);
+                } else if (isSandy) {
+                    new StringSpeciesFeature("bagworm_cloak", "sandy").apply(pokemon);
+                } else if (isTrash) {
+                    new StringSpeciesFeature("bagworm_cloak", "trash").apply(pokemon);
+                }
+            }
+        }
+    }
+
     public static void revertPokemonsIfRequired(PlayerPartyStore playerPartyStore) {
         for (Pokemon pokemon : playerPartyStore) {
             AspectUtils.revertPokemonsIfRequired(pokemon);
@@ -86,6 +114,21 @@ public class AspectUtils {
             for (EffectPair effectPair : aspects) {
                 effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
             }
+
+            pokemon.getPersistentData().remove("battle_end_revert");
+        }
+
+        if (pokemon.getPersistentData().contains("revert_aspects")) {
+            List<EffectPair> aspects = AspectUtils.getRevertDataPokemon(
+                    pokemon,
+                    "revert_aspects"
+            );
+
+            for (EffectPair effectPair : aspects) {
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+            }
+
+            pokemon.getPersistentData().remove("revert_aspects");
         }
 
         if (pokemon.getPersistentData().contains("apply_aspects")) {
@@ -97,6 +140,8 @@ public class AspectUtils {
             for (EffectPair effectPair : aspects) {
                 effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
             }
+
+            pokemon.getPersistentData().remove("apply_aspects");
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {

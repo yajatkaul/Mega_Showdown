@@ -17,11 +17,24 @@ public class UltraGimmick {
         if (canUltraBurst(pokemon)) {
             if (pokemon.getAspects().contains("dawn-fusion")) {
                 pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dusk");
+                AspectUtils.appendRevertDataPokemon(
+                        ParticlesList.getEffect("mega_showdown:ultra_burst"),
+                        List.of("prism_fusion=dusk"),
+                        pokemon,
+                        "revert_aspects"
+                );
             } else {
                 pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
+                AspectUtils.appendRevertDataPokemon(
+                        ParticlesList.getEffect("mega_showdown:ultra_burst"),
+                        List.of("prism_fusion=dawn"),
+                        pokemon,
+                        "revert_aspects"
+                );
             }
             ParticlesList.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
             pokemon.setTradeable(false);
+
             return -1;
         } else if (pokemon.getAspects().contains("ultra")) {
             String org_form = pokemon.getPersistentData().getString("necrozma_form");
@@ -29,6 +42,7 @@ public class UltraGimmick {
 
             ParticlesList.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), null);
             pokemon.setTradeable(true);
+
             return 1;
         }
         return 0;

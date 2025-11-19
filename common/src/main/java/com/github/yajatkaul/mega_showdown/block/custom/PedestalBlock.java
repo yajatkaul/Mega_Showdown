@@ -58,7 +58,6 @@ public class PedestalBlock extends BaseEntityBlock {
         return CODEC;
     }
 
-
     @Override
     protected @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
@@ -92,6 +91,8 @@ public class PedestalBlock extends BaseEntityBlock {
                 copyStack.setCount(1);
 
                 pedestalBlockEntity.inventory.setItem(0, copyStack);
+                pedestalBlockEntity.sync();
+
                 stack.shrink(1);
                 level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1f, 2f);
             } else if (stack.isEmpty()) {

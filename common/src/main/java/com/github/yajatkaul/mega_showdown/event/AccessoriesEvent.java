@@ -2,7 +2,7 @@ package com.github.yajatkaul.mega_showdown.event;
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.battles.BattleRegistry;
-import com.github.yajatkaul.mega_showdown.tag.ModTags;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import io.wispforest.accessories.api.events.CanUnequipCallback;
 import io.wispforest.accessories.api.slot.SlotReference;
 import net.fabricmc.fabric.api.util.TriState;
@@ -20,7 +20,7 @@ public class AccessoriesEvent {
         if (entity instanceof ServerPlayer player) {
             PokemonBattle battle = BattleRegistry.getBattleByParticipatingPlayer(player);
 
-            if (battle != null && itemStack.is(ModTags.Items.TERA_ORB)) {
+            if (battle != null && itemStack.is(MegaShowdownTags.Items.TERA_ORB)) {
                 return TriState.FALSE;
             }
         }

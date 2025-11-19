@@ -33,6 +33,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(MegaShowdownBlocks.PEDESTAL.get());
         dropSelf(MegaShowdownBlocks.POWER_SPOT.get());
         add(MegaShowdownBlocks.MAX_MUSHROOM.get(),
                 createMaxMushroomDrops(MegaShowdownBlocks.MAX_MUSHROOM.get(), MegaShowdownBlocks.MAX_MUSHROOM.get().asItem()));

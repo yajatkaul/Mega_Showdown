@@ -1,4 +1,4 @@
-package com.github.yajatkaul.mega_showdown.neoforge.worldgen;
+package com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen;
 
 import net.minecraft.world.level.levelgen.placement.*;
 

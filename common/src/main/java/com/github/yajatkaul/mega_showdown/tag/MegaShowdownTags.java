@@ -5,9 +5,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
-public class ModTags {
+public class MegaShowdownTags {
     public static class Blocks {
         public static final TagKey<Block> POWER_SPOT = createTag("power_spot");
 
@@ -30,5 +31,20 @@ public class ModTags {
         private static TagKey<Item> createTag(String string) {
             return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, string));
         }
+    }
+
+    public static class Biomes {
+        public static final TagKey<Biome> sandyKey = TagKey.create(
+                Registries.BIOME,
+                ResourceLocation.tryParse("cobblemon:is_sandy")
+        );
+        public static final TagKey<Biome> trashKey = TagKey.create(
+                Registries.BIOME,
+                ResourceLocation.tryParse("cobblemon:is_cave")
+        );
+        public static final TagKey<Biome> forestKey = TagKey.create(
+                Registries.BIOME,
+                ResourceLocation.tryParse("cobblemon:is_forest")
+        );
     }
 }

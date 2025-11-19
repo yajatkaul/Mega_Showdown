@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:blank-z"
+      "id": "mega_showdown:blank_z"
     },
     "title": {
       "translate": "advancement.mega_showdown.get_blank_move.title",
@@ -9,7 +9,7 @@
     },
     "description": {
       "translate": "advancement.mega_showdown.get_blank_move.description",
-      "fallback": "Obtain the blank-z"
+      "fallback": "Obtain the Blank-Z"
     },
     "frame": "task",
     "show_toast": true,
@@ -23,7 +23,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mega_showdown:blank-z"
+            "items": "mega_showdown:blank_z"
           }
         ]
       }

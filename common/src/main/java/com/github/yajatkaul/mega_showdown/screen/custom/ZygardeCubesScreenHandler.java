@@ -33,7 +33,12 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
             compoundTag = new CompoundTag();
         }
         cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), compoundTag);
-        this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
+
+        if (level != null) {
+            this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
+        } else {
+            this.cubeInv = new SimpleContainer(2);
+        }
 
         this.addSlot(new ZygardeSlots(this.cubeInv, 0, 62, 36));
         this.addSlot(new ZygardeSlots(this.cubeInv, 1, 98, 36));
@@ -86,8 +91,10 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
-        CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv, level.registryAccess());
-        this.cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), tag);
+        if (level != null) {
+            CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv, level.registryAccess());
+            this.cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), tag);
+        }
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

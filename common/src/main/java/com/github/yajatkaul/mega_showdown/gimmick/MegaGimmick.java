@@ -106,7 +106,7 @@ public record MegaGimmick(
                 ParticlesList.getEffect("mega_showdown:mega_evolution"),
                 revertAspects,
                 pokemon,
-                "apply_aspects"
+                "revert_aspects"
         );
 
         pokemon.setTradeable(false);

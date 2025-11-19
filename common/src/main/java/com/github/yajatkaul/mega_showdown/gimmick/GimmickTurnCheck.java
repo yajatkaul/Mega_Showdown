@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.battles.ShowdownMoveset;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.github.yajatkaul.mega_showdown.tag.ModTags;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +17,7 @@ public class GimmickTurnCheck {
     public static void check(ServerPlayer player) {
         GeneralPlayerData data = Cobblemon.INSTANCE.getPlayerDataManager().getGenericData(player);
 
-        if (PlayerUtils.isBlockNearby(player, ModTags.Blocks.POWER_SPOT, MegaShowdownConfig.powerSpotRange)
+        if (PlayerUtils.isBlockNearby(player, MegaShowdownTags.Blocks.POWER_SPOT, MegaShowdownConfig.powerSpotRange)
                 || MegaShowdownConfig.dynamaxAnywhere) {
             if (hasGimmick(ShowdownMoveset.Gimmick.DYNAMAX, player)) {
                 data.getKeyItems().add(ResourceLocation.fromNamespaceAndPath("cobblemon", "dynamax_band"));
@@ -48,7 +48,7 @@ public class GimmickTurnCheck {
     }
 
     public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
-        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.OMNI_RING);
+        boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
         if (hasOmniRing) {
             return true;
         } else if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
@@ -56,10 +56,10 @@ public class GimmickTurnCheck {
                 return false;
             }
 
-            boolean hasDMaxItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.DYNAMAX_BAND);
+            boolean hasDMaxItemAccessory = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.DYNAMAX_BAND);
 
-            return player.getOffhandItem().is(ModTags.Items.DYNAMAX_BAND)
-                    || player.getMainHandItem().is(ModTags.Items.DYNAMAX_BAND)
+            return player.getOffhandItem().is(MegaShowdownTags.Items.DYNAMAX_BAND)
+                    || player.getMainHandItem().is(MegaShowdownTags.Items.DYNAMAX_BAND)
                     || hasDMaxItemAccessory;
         } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
             if (!MegaShowdownConfig.teralization) {
@@ -76,7 +76,7 @@ public class GimmickTurnCheck {
                 }
             }
 
-            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, ModTags.Items.TERA_ORB);
+            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
             if (teraOrb == ItemStack.EMPTY) {
                 return false;
             }
@@ -91,20 +91,20 @@ public class GimmickTurnCheck {
                 return false;
             }
 
-            boolean hasZPowerItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.Z_RING);
+            boolean hasZPowerItemAccessory = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
 
-            return player.getOffhandItem().is(ModTags.Items.Z_RING)
-                    || player.getMainHandItem().is(ModTags.Items.Z_RING)
+            return player.getOffhandItem().is(MegaShowdownTags.Items.Z_RING)
+                    || player.getMainHandItem().is(MegaShowdownTags.Items.Z_RING)
                     || hasZPowerItemAccessory;
         } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
             if (!MegaShowdownConfig.mega) {
                 return false;
             }
 
-            boolean hasKeystoneItemAccessory = AccessoriesUtils.checkTagInAccessories(player, ModTags.Items.MEGA_BRACELET);
+            boolean hasKeystoneItemAccessory = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET);
 
-            return (player.getOffhandItem().is(ModTags.Items.MEGA_BRACELET)
-                    || player.getMainHandItem().is(ModTags.Items.MEGA_BRACELET)
+            return (player.getOffhandItem().is(MegaShowdownTags.Items.MEGA_BRACELET)
+                    || player.getMainHandItem().is(MegaShowdownTags.Items.MEGA_BRACELET)
                     || hasKeystoneItemAccessory)
                     && !MegaGimmick.hasMega(player);
         }

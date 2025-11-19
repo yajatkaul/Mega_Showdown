@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:normalium-z"
+      "id": "mega_showdown:normalium_z"
     },
     "title": {
       "translate": "advancement.mega_showdown.get_z_move.title",
@@ -9,7 +9,7 @@
     },
     "description": {
       "translate": "advancement.mega_showdown.get_z_move.description",
-      "fallback": "Obtain any z move"
+      "fallback": "Obtain any Z-move"
     },
     "frame": "task",
     "show_toast": true,

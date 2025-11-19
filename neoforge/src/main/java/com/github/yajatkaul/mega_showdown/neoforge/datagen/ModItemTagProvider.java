@@ -2,7 +2,7 @@ package com.github.yajatkaul.mega_showdown.neoforge.datagen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
-import com.github.yajatkaul.mega_showdown.tag.ModTags;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -20,7 +20,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(ModTags.Items.MEGA_BRACELET)
+        tag(MegaShowdownTags.Items.MEGA_BRACELET)
                 .add(MegaShowdownItems.MEGA_BRACELET.get())
                 .add(MegaShowdownItems.MEGA_RED_BRACELET.get())
                 .add(MegaShowdownItems.MEGA_YELLOW_BRACELET.get())
@@ -39,10 +39,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaShowdownItems.ARCHIE_ANCHOR.get())
                 .add(MegaShowdownItems.LISIA_MEGA_TIARA.get());
 
-        tag(ModTags.Items.DYNAMAX_BAND)
+        tag(MegaShowdownTags.Items.DYNAMAX_BAND)
                 .add(MegaShowdownItems.DYNAMAX_BAND.get());
 
-        tag(ModTags.Items.Z_RING)
+        tag(MegaShowdownTags.Items.Z_RING)
                 .add(MegaShowdownItems.Z_RING.get())
                 .add(MegaShowdownItems.Z_RING_BLACK.get())
                 .add(MegaShowdownItems.Z_RING_YELLOW.get())
@@ -61,13 +61,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaShowdownItems.GLADION_Z_POWER_RING.get())
                 .add(MegaShowdownItems.NANU_Z_POWER_RING.get());
 
-        tag(ModTags.Items.TERA_ORB)
+        tag(MegaShowdownTags.Items.TERA_ORB)
                 .add(MegaShowdownItems.TERA_ORB.get());
 
-        tag(ModTags.Items.OMNI_RING)
+        tag(MegaShowdownTags.Items.OMNI_RING)
                 .add(MegaShowdownItems.OMNI_RING.get());
 
-        tag(ModTags.Items.Z_CRYSTAL)
+        tag(MegaShowdownTags.Items.Z_CRYSTAL)
                 .add(MegaShowdownItems.ALORAICHIUM_Z.get())
                 .add(MegaShowdownItems.BUGINIUM_Z.get())
                 .add(MegaShowdownItems.DARKINIUM_Z.get())
@@ -104,7 +104,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaShowdownItems.ULTRANECROZIUM_Z.get())
                 .add(MegaShowdownItems.WATERIUM_Z.get());
 
-        tag(ModTags.Items.MEGA_STONE)
+        tag(MegaShowdownTags.Items.MEGA_STONE)
                 .add(MegaShowdownItems.ABSOLITE.get())
                 .add(MegaShowdownItems.AERODACTYLITE.get())
                 .add(MegaShowdownItems.AGGRONITE.get())
@@ -152,7 +152,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(MegaShowdownItems.TYRANITARITE.get())
                 .add(MegaShowdownItems.VENUSAURITE.get());
 
-        tag(ModTags.Items.TERA_SHARD)
+        tag(MegaShowdownTags.Items.TERA_SHARD)
                 .add(MegaShowdownItems.NORMAL_TERA_SHARD.get())
                 .add(MegaShowdownItems.FIRE_TERA_SHARD.get())
                 .add(MegaShowdownItems.WATER_TERA_SHARD.get())

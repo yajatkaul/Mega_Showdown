@@ -1,4 +1,4 @@
-package com.github.yajatkaul.mega_showdown.neoforge.worldgen;
+package com.github.yajatkaul.mega_showdown.neoforge.datagen.worldgen;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import net.minecraft.core.HolderSet;
@@ -26,12 +26,6 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.MAX_MUSHROOM_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
-
-//        context.register(ADD_GRACIDEA_FLOWER, new BiomeModifiers.AddFeaturesBiomeModifier(
-//                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
-//                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GRACIDEA_FLOWER_PLACED_KEY)),
-//                GenerationStep.Decoration.VEGETAL_DECORATION
-//        ));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

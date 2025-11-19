@@ -1,4 +1,8 @@
 # TODO
 - Fix class names
-- Keldeo and burmy form change
-- Check pedestal in multiplayer
+- Fix advancements parsing
+- Allow datapack items to be obtainable in game
+- Add mega block variants
+
+# Future
+- Datapackable logic like Burmy and Keldeo

@@ -1,6 +1,6 @@
 package com.github.yajatkaul.mega_showdown.render.accessories;
 
-import com.github.yajatkaul.mega_showdown.tag.ModTags;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import io.wispforest.accessories.api.client.AccessoryRenderer;
@@ -35,7 +35,7 @@ public class HighOffHandRenderer implements AccessoryRenderer {
 
         ItemStack handStack = entity.getItemInHand(entity.getUsedItemHand());
 
-        if (handStack.is(ModTags.Items.Z_RING)) {
+        if (handStack.is(MegaShowdownTags.Items.Z_RING)) {
             return;
         }
         poseStack.pushPose();
