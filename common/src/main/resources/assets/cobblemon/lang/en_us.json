@@ -820,5 +820,18 @@
   "cobblemon.move.hardpress.desc": "More power the more HP the target has left.",
 
   "cobblemon.move.dragoncheer": "Dragon Cheer",
-  "cobblemon.move.dragoncheer.desc": "Ally: Crit ratio +1, or +2 if ally is Dragon type."
+  "cobblemon.move.dragoncheer.desc": "Ally: Crit ratio +1, or +2 if ally is Dragon type.",
+  "cobblemon.ui.pokedex.info.form.pikachu-cosplay": "Cosplay",
+  "cobblemon.ui.pokedex.info.form.pikachu-rockstar": "Rock Star",
+  "cobblemon.ui.pokedex.info.form.pikachu-popstar": "Pop Star",
+  "cobblemon.ui.pokedex.info.form.pikachu-phd": "Phd",
+  "cobblemon.ui.pokedex.info.form.pikachu-libre": "Libre",
+  "cobblemon.ui.pokedex.info.form.pikachu-belle": "Belle",
+
+  "cobblemon.species.pikachu-cosplay.desc": "",
+  "cobblemon.species.pikachu-rockstar.desc": "",
+  "cobblemon.species.pikachu-popstar.desc": "",
+  "cobblemon.species.pikachu-phd.desc": "",
+  "cobblemon.species.pikachu-libre.desc": "",
+  "cobblemon.species.pikachu-belle.desc": ""
 }
