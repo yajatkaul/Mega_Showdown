@@ -344,7 +344,6 @@ public class CobbleEvents {
         );
     }
 
-    //TODO Might wanna clean this
     private static void heldItemChange(HeldItemEvent.Pre event) {
         if (event.getPokemon().getPersistentData().getBoolean("form_changing")) {
             event.cancel();
@@ -367,31 +366,20 @@ public class CobbleEvents {
             formChangeItem.apply(pokemon);
         }
 
-        if (itemReturning.getOrDefault(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "null").equals("held_form_change")) {
-            ResourceLocation returningLocation = itemReturning.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
-            HeldItemFormChange heldItemFormChangeReturning = MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.get(returningLocation);
+        HeldItemFormChange heldItemFormChangeReturning = ComponentUtils.getComponent(HeldItemFormChange.class, itemReturning);
 
-            if (heldItemFormChangeReturning != null) {
-                heldItemFormChangeReturning.revert(pokemon);
-            }
-
-        }
-        if (itemReceiving.getOrDefault(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "null").equals("held_form_change")) {
-            ResourceLocation receivingLocation = itemReceiving.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
-            HeldItemFormChange heldItemFormChangeReceiving = MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.get(receivingLocation);
-
-            if (heldItemFormChangeReceiving != null) {
-                heldItemFormChangeReceiving.apply(pokemon);
-            }
+        if (heldItemFormChangeReturning != null) {
+            heldItemFormChangeReturning.revert(pokemon);
         }
 
-        MegaGimmick megaGimmick;
-        if (!itemReturning.getOrDefault(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "null").equals("mega")) {
-            megaGimmick = null;
-        } else {
-            ResourceLocation resourceLocation = itemReturning.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
-            megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(resourceLocation);
+        HeldItemFormChange heldItemFormChangeReceiving = ComponentUtils.getComponent(HeldItemFormChange.class, itemReceiving);
+
+        if (heldItemFormChangeReceiving != null) {
+            heldItemFormChangeReceiving.apply(pokemon);
         }
+
+        MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, itemReturning);
+
         if (megaGimmick != null
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())
                 && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {

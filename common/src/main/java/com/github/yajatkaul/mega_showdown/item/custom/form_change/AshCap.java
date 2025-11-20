@@ -16,48 +16,25 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class AshCap extends PokemonSelectingItem {
-    private final List<String> black_list = List.of(
-            "cosplay",
-            "belle",
-            "libre",
-            "phd",
-            "pop_star",
-            "rock_star"
-    );
-
     public AshCap(Properties arg) {
         super(arg);
     }
 
     @Override
     public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {
-        return pokemon.getSpecies().getName().equals("Pikachu") && !pokemon.getAspects().contains("partner-cap")
-                && pokemon.getAspects().stream().noneMatch(black_list::contains);
+        return pokemon.getSpecies().getName().equals("Greninja") && !pokemon.getAspects().contains("bond");
     }
 
     @Override
     public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
-        if (pokemon.getSpecies().getName().equals("Pikachu") && !pokemon.getAspects().contains("partner-cap")
-                && pokemon.getAspects().stream().noneMatch(black_list::contains)) {
-            if (pokemon.getFriendship() < MegaShowdownConfig.minBondingRequired) {
-                serverPlayer.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
-                        .withStyle(ChatFormatting.RED), true);
-                return InteractionResultHolder.pass(itemStack);
-            }
-
-            Effect.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("league_cap=partner"), null);
-            AdvancementHelper.grantAdvancement(serverPlayer, "bond/ash_cap_bond");
-            itemStack.consume(1, serverPlayer);
-        } else if (pokemon.getSpecies().getName().equals("Greninja") && !pokemon.getAspects().contains("bond")) {
-            if (pokemon.getFriendship() < MegaShowdownConfig.minBondingRequired) {
-                serverPlayer.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
-                        .withStyle(ChatFormatting.RED), true);
-                return InteractionResultHolder.pass(itemStack);
-            }
-            Effect.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("battle_bond=bond"), null);
-            AdvancementHelper.grantAdvancement(serverPlayer, "bond/ash_cap_bond");
-            itemStack.consume(1, serverPlayer);
+        if (pokemon.getFriendship() < MegaShowdownConfig.minBondingRequired) {
+            serverPlayer.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
+                    .withStyle(ChatFormatting.RED), true);
+            return InteractionResultHolder.pass(itemStack);
         }
+        Effect.getEffect("mega_showdown:heart_effect").applyEffects(pokemon, List.of("battle_bond=bond"), null);
+        AdvancementHelper.grantAdvancement(serverPlayer, "bond/ash_cap_bond");
+        itemStack.consume(1, serverPlayer);
         return InteractionResultHolder.success(itemStack);
     }
 }

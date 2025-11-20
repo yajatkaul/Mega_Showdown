@@ -100,6 +100,12 @@
   "tooltip.mega_showdown.venusaurite.tooltip": "Allows Venusaur to Mega Evolve into Mega Venusaur",
   "item.mega_showdown.diancite": "Diancite",
   "block.mega_showdown.mega_meteorid_block": "Mega Meteoroid Block",
+  "block.mega_showdown.pedestal": "Pedestal",
+  "tooltip.mega_showdown.pedestal.tooltip": "A block that can show off a specific Item Placed on it.",
+  "block.mega_showdown.mega_meteorid_brick": "Mega Meteorid Brick",
+  "block.mega_showdown.chiseled_mega_meteorid_block": "Chiseled Mega Meteorid Block",
+  "block.mega_showdown.chiseled_mega_meteorid_brick": "Chiseled Mega Meteorid Brick",
+  "block.mega_showdown.polished_mega_meteorid_block": "Polished Mega Meteorid Block",
   "block.mega_showdown.mega_evo_brick": "Mega Brick",
   "block.mega_showdown.chiseled_mega_evo_brick": "Chiseled Mega Brick",
   "block.mega_showdown.chiseled_mega_evo_block": "Chiseled Mega Block",
@@ -583,5 +589,7 @@
   "cobblemon.battle.mostlyIneffective": "It was mostly ineffective!",
 
   "cobblemon.battle.extremelyEffective_spread": "It was extremely effective on %1$s!!",
-  "cobblemon.battle.mostlyIneffective_spread": "It was mostly ineffective on %1$s!!"
+  "cobblemon.battle.mostlyIneffective_spread": "It was mostly ineffective on %1$s!!",
+
+  "effect.mega_showdown.dynamax": "Dynamax"
 }
