@@ -896,8 +896,10 @@ public class MegaShowdownItems {
 
     private static RegistrySupplier<Item> registerMegaStone(String name) {
         return ITEMS.register(name, () -> new MegaStone(
-                        new Item.Properties().arch$tab(MegaShowdownTabs.MEGA_TAB),
-                        ResourceLocation.tryParse(MegaShowdown.MOD_ID + name)
+                        new Item.Properties()
+                                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "mega")
+                                .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(), ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
+                                .arch$tab(MegaShowdownTabs.MEGA_TAB)
                 )
         );
     }

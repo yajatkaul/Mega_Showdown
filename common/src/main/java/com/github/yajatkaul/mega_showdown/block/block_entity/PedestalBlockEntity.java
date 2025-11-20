@@ -36,13 +36,13 @@ public class PedestalBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put("inventory", NBTInventoryUtils.serializeInventory(inventory, level.registryAccess()));
+        tag.put("inventory", NBTInventoryUtils.serializeInventory(inventory, registries));
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        inventory.setItem(0, NBTInventoryUtils.deserializeInventory(tag.getCompound("inventory"), level.registryAccess()).getItem(0));
+        inventory.setItem(0, NBTInventoryUtils.deserializeInventory(tag.getCompound("inventory"), registries).getItem(0));
     }
 
     @Nullable

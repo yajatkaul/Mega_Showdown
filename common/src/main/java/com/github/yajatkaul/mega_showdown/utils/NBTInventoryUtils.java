@@ -1,6 +1,7 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -11,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Optional;
 
 public class NBTInventoryUtils {
-    public static CompoundTag serializeInventory(SimpleContainer inventory, RegistryAccess registryAccess) {
+    public static CompoundTag serializeInventory(SimpleContainer inventory, HolderLookup.Provider registryAccess) {
         CompoundTag tag = new CompoundTag();
         ListTag itemsList = new ListTag();
 
@@ -32,7 +33,7 @@ public class NBTInventoryUtils {
         return tag;
     }
 
-    public static SimpleContainer deserializeInventory(CompoundTag tag, RegistryAccess registryAccess) {
+    public static SimpleContainer deserializeInventory(CompoundTag tag, HolderLookup.Provider registryAccess) {
         if (registryAccess == null) {
             MegaShowdown.LOGGER.error("Registry Access is null");
         }
