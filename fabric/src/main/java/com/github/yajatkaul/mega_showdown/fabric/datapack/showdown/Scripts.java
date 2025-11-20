@@ -24,21 +24,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Scripts implements DataRegistry {
-    public static final Scripts INSTANCE = new Scripts();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/scripts");
     private static final SimpleObservable<Scripts> OBSERVABLE = new SimpleObservable<>();
     private final Map<String, String> scripts = new HashMap<>();
+    public static final Scripts INSTANCE = new Scripts();
 
     private Scripts() {
         OBSERVABLE.subscribe(Priority.NORMAL, this::scriptsLoad);
     }
 
-    private Unit scriptsLoad(Scripts scripts) {
-        registerScripts();
-        return Unit.INSTANCE;
-    }
-
-    public void registerScripts() {
+    public void scriptsLoad(Scripts scripts) {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveScriptDataFn = service.context.getBindings("js").getMember("receiveScriptData");

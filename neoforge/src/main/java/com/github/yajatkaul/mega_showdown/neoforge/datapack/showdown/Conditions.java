@@ -24,16 +24,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Conditions implements DataRegistry {
-    public static final Conditions INSTANCE = new Conditions();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/conditions");
     private static final SimpleObservable<Conditions> OBSERVABLE = new SimpleObservable<>();
     private final Map<String, String> conditionScripts = new HashMap<>();
+    public static final Conditions INSTANCE = new Conditions();
 
     private Conditions() {
         OBSERVABLE.subscribe(Priority.NORMAL, this::conditionsLoad);
     }
 
-    private Unit conditionsLoad(Conditions condition) {
+    private void conditionsLoad(Conditions condition) {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveConditionDataFn = service.context.getBindings("js").getMember("receiveConditionData");
@@ -45,7 +45,6 @@ public class Conditions implements DataRegistry {
             }
             return Unit.INSTANCE;
         });
-        return Unit.INSTANCE;
     }
 
     public Map<String, String> getConditionScripts() {

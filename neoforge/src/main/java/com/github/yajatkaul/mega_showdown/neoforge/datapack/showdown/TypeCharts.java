@@ -24,21 +24,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TypeCharts implements DataRegistry {
-    public static final TypeCharts INSTANCE = new TypeCharts();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/typecharts");
     private static final SimpleObservable<TypeCharts> OBSERVABLE = new SimpleObservable<>();
     private final Map<String, String> typeChartScripts = new HashMap<>();
+    public static final TypeCharts INSTANCE = new TypeCharts();
 
     private TypeCharts() {
         OBSERVABLE.subscribe(Priority.NORMAL, this::typeChartsLoad);
     }
 
-    private Unit typeChartsLoad(TypeCharts typeChart) {
-        registerTypeCharts();
-        return Unit.INSTANCE;
-    }
-
-    public void registerTypeCharts() {
+    public void typeChartsLoad(TypeCharts typeChart) {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveTypeChartDataFn = service.context.getBindings("js").getMember("receiveTypeChartData");

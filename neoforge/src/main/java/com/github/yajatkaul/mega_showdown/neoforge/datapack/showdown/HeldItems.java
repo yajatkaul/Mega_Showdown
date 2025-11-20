@@ -24,21 +24,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class HeldItems implements DataRegistry {
-    public static final HeldItems INSTANCE = new HeldItems();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/held_items");
     private static final SimpleObservable<HeldItems> OBSERVABLE = new SimpleObservable<>();
     private final Map<String, String> heldItemsScripts = new HashMap<>();
+    public static final HeldItems INSTANCE = new HeldItems();
 
     private HeldItems() {
         OBSERVABLE.subscribe(Priority.NORMAL, this::heldItemsLoad);
     }
 
-    private Unit heldItemsLoad(HeldItems heldItem) {
-        registerItems();
-        return Unit.INSTANCE;
-    }
-
-    public void registerItems() {
+    public void heldItemsLoad(HeldItems heldItem) {
         Cobblemon.INSTANCE.getShowdownThread().queue(showdownService -> {
             if (showdownService instanceof GraalShowdownService service) {
                 Value receiveHeldItemDataFn = service.context.getBindings("js").getMember("receiveHeldItemData");
