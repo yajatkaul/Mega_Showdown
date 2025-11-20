@@ -1,0 +1,73 @@
+{
+  "id": "cobblemon:pikachu",
+  "speciesId": "cobblemon:pikachu",
+  "displayAspects": [],
+  "conditionAspects": [],
+  "forms": [
+    {
+      "displayForm": "Normal",
+      "unlockForms": ["Normal"]
+    },
+    {
+      "displayForm": "Gmax",
+      "unlockForms": ["Gmax"]
+    },
+    {
+      "displayForm": "Partner",
+      "unlockForms": ["Partner"]
+    },
+    {
+      "displayForm": "Original",
+      "unlockForms": ["Original"]
+    },
+    {
+      "displayForm": "Hoenn",
+      "unlockForms": ["Hoenn"]
+    },
+    {
+      "displayForm": "Sinnoh",
+      "unlockForms": ["Sinnoh"]
+    },
+    {
+      "displayForm": "Unova",
+      "unlockForms": ["Unova"]
+    },
+    {
+      "displayForm": "Kalos",
+      "unlockForms": ["Kalos"]
+    },
+    {
+      "displayForm": "Alola",
+      "unlockForms": ["Alola"]
+    },
+    {
+      "displayForm": "World",
+      "unlockForms": ["World"]
+    },
+    {
+      "displayForm": "Cosplay",
+      "unlockForms": ["Cosplay"]
+    },
+    {
+      "displayForm": "RockStar",
+      "unlockForms": ["RockStar"]
+    },
+    {
+      "displayForm": "PopStar",
+      "unlockForms": ["PopStar"]
+    },
+    {
+      "displayForm": "PhD",
+      "unlockForms": ["PhD"]
+    },
+    {
+      "displayForm": "Libre",
+      "unlockForms": ["Libre"]
+    },
+    {
+      "displayForm": "Belle",
+      "unlockForms": ["Belle"]
+    }
+  ],
+  "variations": []
+}

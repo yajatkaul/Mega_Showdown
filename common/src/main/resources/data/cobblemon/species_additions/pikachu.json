@@ -1,13 +1,95 @@
 {
-  "target": "cobblemon:pikachu",
+  "target": "pikachu",
   "forms": [
     {
+      "name": "Partner",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen7"],
+      "aspects": ["cosmetic_item-pewter_crunchies"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "Original",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen1"],
+      "aspects": ["cosmetic_item-rage_candy_bar"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "Hoenn",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen3"],
+      "aspects": ["cosmetic_item-lava_cookie"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "Sinnoh",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen4"],
+      "aspects": ["cosmetic_item-old_gateau"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "Unova",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen5"],
+      "aspects": ["cosmetic_item-casteliacone"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "Kalos",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen6"],
+      "aspects": ["cosmetic_item-lumiose_galette"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "Alola",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen7"],
+      "aspects": ["cosmetic_item-big_malasada"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
+      "name": "World",
+      "primaryType": "electric",
+      "pokedex": ["cobblemon.species.pikachu-partner.desc"],
+      "labels": ["gen7"],
+      "aspects": ["cosmetic_item-smoked_tail_curry"],
+      "eggGroups": ["undiscovered"],
+      "evolutions": [],
+      "battleOnly": false
+    },
+    {
       "name": "Cosplay",
+	  "maleRatio": 0,
       "pokedex": ["cobblemon.species.pikachu-cosplay.desc"],
       "aspects": ["cosplay"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:thundershock",
+        "1:thundershock",
         "1:growl",
         "1:tailwhip",
         "1:quickattack",
@@ -134,12 +216,14 @@
       "battleOnly": false
     },
     {
-      "name": "Rockstar",
+      "name": "Rock-Star",
+	  "maleRatio": 0,
       "pokedex": ["cobblemon.species.pikachu-rockstar.desc"],
       "aspects": ["rock_star"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:meteormash",
+        "1:thundershock",
         "1:growl",
         "1:tailwhip",
         "1:quickattack",
@@ -266,12 +350,14 @@
       "battleOnly": false
     },
     {
-      "name": "Popstar",
+      "name": "Pop-Star",
+	  "maleRatio": 0,
       "pokedex": ["cobblemon.species.pikachu-popstar.desc"],
       "aspects": ["pop_star"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:drainingkiss",
+        "1:thundershock",
         "1:growl",
         "1:tailwhip",
         "1:quickattack",
@@ -399,11 +485,13 @@
     },
     {
       "name": "PhD",
+	  "maleRatio": 0,
       "pokedex": ["cobblemon.species.pikachu-phd.desc"],
       "aspects": ["phd"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:electricterrain",
+        "1:thundershock",
         "1:growl",
         "1:tailwhip",
         "1:quickattack",
@@ -531,11 +619,13 @@
     },
     {
       "name": "Libre",
+	  "maleRatio": 0,
       "pokedex": ["cobblemon.species.pikachu-libre.desc"],
       "aspects": ["libre"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:flyingpress",
+        "1:thundershock",
         "1:growl",
         "1:tailwhip",
         "1:quickattack",
@@ -663,11 +753,13 @@
     },
     {
       "name": "Belle",
+	  "maleRatio": 0,
       "pokedex": ["cobblemon.species.pikachu-belle.desc"],
       "aspects": ["belle"],
       "abilities": ["lightningrod", "h:lightningrod"],
       "moves": [
         "form_change:iciclecrash",
+        "1:thundershock",
         "1:growl",
         "1:tailwhip",
         "1:quickattack",
