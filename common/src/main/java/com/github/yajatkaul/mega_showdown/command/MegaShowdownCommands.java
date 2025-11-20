@@ -9,6 +9,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
 import static net.minecraft.commands.Commands.argument;
@@ -18,6 +19,7 @@ public class MegaShowdownCommands {
     public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context, Commands.CommandSelection environment) {
         dispatcher.register(literal("msd")
                 .then(literal("apply")
+                        .requires(req -> req.hasPermission(4))
                         .then(argument("type", StringArgumentType.string())
                                 .suggests(((cxt, builder) -> {
                                     builder.suggest("solo_fusion");
@@ -67,7 +69,13 @@ public class MegaShowdownCommands {
         String type = StringArgumentType.getString(context, "type");
         String resourceId = StringArgumentType.getString(context, "resource_id");
 
-        ItemStack stack = context.getSource().getPlayer().getMainHandItem();
+        ServerPlayer player = context.getSource().getPlayer();
+
+        if (player == null) {
+            return 1;
+        }
+
+        ItemStack stack = player.getMainHandItem();
 
         switch (type) {
             case "solo_fusion":
