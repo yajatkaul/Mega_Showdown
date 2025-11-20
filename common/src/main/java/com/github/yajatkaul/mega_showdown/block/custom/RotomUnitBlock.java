@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -56,20 +57,19 @@ public class RotomUnitBlock extends Block {
         }
 
         if (entity instanceof PokemonEntity pokemonEntity && pokemonEntity.getPokemon().getSpecies().getName().equals("Rotom") && pokemonEntity.getAspects().stream().noneMatch(rotomAspects::contains)) {
-            new StringSpeciesFeature("appliance", form).apply(pokemonEntity);
-            Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), null);
+            Effect.getEffect("mega_showdown:rotom_"+ form +"_effect").applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), null);
             level.destroyBlock(pos, false);
             level.levelEvent(2001, pos, Block.getId(state));
         }
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Block.box(0.1, 0.0, 0.1, 15.9, 16.0, 15.9); // Slightly smaller than a full cube
     }
 
     @Override
-    protected VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
+    protected @NotNull VoxelShape getShape(BlockState arg, BlockGetter arg2, BlockPos arg3, CollisionContext arg4) {
         return SHAPE;
     }
 }

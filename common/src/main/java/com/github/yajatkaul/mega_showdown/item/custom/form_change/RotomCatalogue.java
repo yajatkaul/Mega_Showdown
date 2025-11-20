@@ -29,6 +29,14 @@ public class RotomCatalogue extends PokemonSelectingItem {
             "appliance=wash",
             "appliance=none"
     );
+    private final List<String> effects_apply_order = List.of(
+            "mega_showdown:rotom_heat_effect",
+            "mega_showdown:rotom_fan_effect",
+            "mega_showdown:rotom_mow_effect",
+            "mega_showdown:rotom_frost_effect",
+            "mega_showdown:rotom_wash_effect",
+            "mega_showdown:rotom_effect"
+    );
 
     public RotomCatalogue(Properties properties) {
         super(properties);
@@ -56,9 +64,9 @@ public class RotomCatalogue extends PokemonSelectingItem {
         }
 
         if (currentIndex + 1 > form_apply_order.size() - 1) {
-            Effect.getEffect("mega_showdown:rotom_change_effect").applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
+            Effect.getEffect(effects_apply_order.getFirst()).applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
         } else {
-            Effect.getEffect("mega_showdown:rotom_change_effect").applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
+            Effect.getEffect(effects_apply_order.get(currentIndex + 1)).applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
         }
         AdvancementHelper.grantAdvancement(serverPlayer, "rotom/rotom_form_change");
 
