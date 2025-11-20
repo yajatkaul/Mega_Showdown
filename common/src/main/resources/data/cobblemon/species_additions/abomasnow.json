@@ -1,29 +1,5 @@
 {
   "target": "cobblemon:abomasnow",
-  "riding": {
-  "behaviours": {
-    "LAND": {
-      "key": "cobblemon:land/horse",
-      "rideSounds": [],
-      "stats": {
-        "ACCELERATION": "30-60",
-        "JUMP": "30-65",
-        "SKILL": "20-50",
-        "SPEED": "20-40",
-        "STAMINA": "30-65"
-      }
-    }
-  },
-  "seats": [
-    {
-      "offset": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      }
-    }
-  ]
-},
   "implemented": true,
   "baseScale": 1,
   "hitbox": {

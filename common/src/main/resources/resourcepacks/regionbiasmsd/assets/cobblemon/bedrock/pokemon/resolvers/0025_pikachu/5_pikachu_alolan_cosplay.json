@@ -1,0 +1,79 @@
+{
+  "species": "cobblemon:pikachu",
+  "order": 5,
+  "variations": [
+	{
+      "aspects": ["region-bias-alola", "cosplay"],
+      "model": "cobblemon:pikachu_cosplay.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": ["region-bias-alola", "belle"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_belle.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_alola_bias.png",
+      "layers": []
+    },
+    {
+      "aspects": ["region-bias-alola", "belle"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_belle.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_alola_bias_shiny.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "belle", "shiny"],
+      "model": "cobblemon:pikachu_belle.geo",
+      "poser": "cobblemon:old_pikachu_poser",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_belle_shiny.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "libre"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_libre.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_libre_alola_bias.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "libre", "shiny"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_libre.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_libre_alola_bias_shiny.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "phd"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_phd.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_phd_alola_bias.png"
+    },
+    {
+      "aspects": ["phd", "shiny"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_phd.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_phd_alola_bias_shiny.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "pop_star"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_popstar.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_popstar_alola_bias.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "pop_star", "shiny"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_popstar.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_popstar_alola_bias_shiny.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "rock_star"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_rockstar.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_rockstar_alola_bias.png"
+    },
+    {
+      "aspects": ["region-bias-alola", "rock_star", "shiny"],
+      "poser": "cobblemon:old_pikachu_poser",
+      "model": "cobblemon:pikachu_rockstar.geo",
+      "texture": "cobblemon:textures/pokemon/0025_pikachu/pikachu_cosplay_rockstar_alola_bias_shiny.png"
+    }
+  ]
+}
