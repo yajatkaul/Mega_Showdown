@@ -24,10 +24,11 @@ public class MegaShowdownCommands {
                                 .suggests(((cxt, builder) -> {
                                     builder.suggest("solo_fusion");
                                     builder.suggest("mega");
-                                    builder.suggest("held_item");
+                                    builder.suggest("showdown_item");
+                                    builder.suggest("held_form_change");
                                     builder.suggest("du_fusion");
-                                    builder.suggest("interact_form_change");
-                                    builder.suggest("toggle_form_change");
+                                    builder.suggest("form_change_interact");
+                                    builder.suggest("form_change_toggle_interact");
                                     return builder.buildFuture();
                                 }))
                                 .then(argument("resource_id", StringArgumentType.greedyString())
@@ -43,7 +44,7 @@ public class MegaShowdownCommands {
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.MEGA_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
-                                                case "held_item":
+                                                case "held_form_change":
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
@@ -51,12 +52,16 @@ public class MegaShowdownCommands {
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.DU_FUSION_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
-                                                case "interact_form_change":
+                                                case "form_change_interact":
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
-                                                case "toggle_form_change":
+                                                case "form_change_toggle_interact":
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY.keySet()) {
+                                                        builder.suggest(String.valueOf(location));
+                                                    }
+                                                case "showdown_item":
+                                                    for (ResourceLocation location : MegaShowdownDatapackRegister.SHOWDOWN_ITEM_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
                                             }
@@ -77,38 +82,8 @@ public class MegaShowdownCommands {
 
         ItemStack stack = player.getMainHandItem();
 
-        switch (type) {
-            case "solo_fusion":
-                stack.set(
-                        MegaShowdownDataComponents.SOLO_FUSION_COMPONENT.get(),
-                        MegaShowdownDatapackRegister.SOLO_FUSION_REGISTRY.get(ResourceLocation.tryParse(resourceId))
-                );
-            case "mega":
-                stack.set(
-                        MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get(),
-                        MegaShowdownDatapackRegister.MEGA_REGISTRY.get(ResourceLocation.tryParse(resourceId))
-                );
-            case "held_item":
-                stack.set(
-                        MegaShowdownDataComponents.HELD_ITEM_FORM_CHANGE_COMPONENT.get(),
-                        MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.get(ResourceLocation.tryParse(resourceId))
-                );
-            case "du_fusion":
-                stack.set(
-                        MegaShowdownDataComponents.DU_FUSION_COMPONENT.get(),
-                        MegaShowdownDatapackRegister.DU_FUSION_REGISTRY.get(ResourceLocation.tryParse(resourceId))
-                );
-            case "interact_form_change":
-                stack.set(
-                        MegaShowdownDataComponents.FORM_CHANGE_INTERACT_COMPONENT.get(),
-                        MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY.get(ResourceLocation.tryParse(resourceId))
-                );
-            case "toggle_form_change":
-                stack.set(
-                        MegaShowdownDataComponents.FORM_CHANGE_TOGGLE_INTERACT_COMPONENT.get(),
-                        MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY.get(ResourceLocation.tryParse(resourceId))
-                );
-        }
+        stack.set(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), type);
+        stack.set(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(), ResourceLocation.tryParse(resourceId));
 
         return 0;
     }

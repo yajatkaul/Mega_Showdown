@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class HeldItems implements DataRegistry {
+    public static final HeldItems INSTANCE = new HeldItems();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/held_items");
     private static final SimpleObservable<HeldItems> OBSERVABLE = new SimpleObservable<>();
-    public static final HeldItems INSTANCE = new HeldItems();
     private final Map<String, String> heldItemsScripts = new HashMap<>();
 
     private HeldItems() {

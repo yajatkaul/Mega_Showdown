@@ -21,5 +21,6 @@
     "animations": {
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 5.9
 }

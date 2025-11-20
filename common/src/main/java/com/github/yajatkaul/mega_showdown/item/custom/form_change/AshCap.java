@@ -16,10 +16,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class AshCap extends PokemonSelectingItem {
-    public AshCap(Properties arg) {
-        super(arg);
-    }
-
     private final List<String> black_list = List.of(
             "cosplay",
             "belle",
@@ -28,6 +24,10 @@ public class AshCap extends PokemonSelectingItem {
             "pop_star",
             "rock_star"
     );
+
+    public AshCap(Properties arg) {
+        super(arg);
+    }
 
     @Override
     public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {

@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class RotomUnitItem extends ToolTipBlockItem {
-    private final String form;
     private static final List<String> rotomAspects = List.of(
             "heat-appliance",
             "wash-appliance",
@@ -25,6 +24,7 @@ public class RotomUnitItem extends ToolTipBlockItem {
             "frost-appliance",
             "fan-appliance"
     );
+    private final String form;
 
     public RotomUnitItem(Block block, Properties properties, String form) {
         super(block, properties);

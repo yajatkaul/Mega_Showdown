@@ -11,7 +11,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 public class MegaShowdownBlockEntities {
     private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(MegaShowdown.MOD_ID, Registries.BLOCK_ENTITY_TYPE);
 
-    public static final RegistrySupplier<BlockEntityType<ReassemblyUnitBlockEntity>> REASSEMBLY_UNIT_ENTITY =
+    public static void register() {
+        BLOCK_ENTITIES.register();
+    }    public static final RegistrySupplier<BlockEntityType<ReassemblyUnitBlockEntity>> REASSEMBLY_UNIT_ENTITY =
             BLOCK_ENTITIES.register("reassembly_unit_entity", () ->
                     BlockEntityType.Builder.of(ReassemblyUnitBlockEntity::new, MegaShowdownBlocks.REASSEMBLY_UNIT.get()).build(null)
             );
@@ -21,7 +23,5 @@ public class MegaShowdownBlockEntities {
                     BlockEntityType.Builder.of(PedestalBlockEntity::new, MegaShowdownBlocks.PEDESTAL.get()).build(null)
             );
 
-    public static void register() {
-        BLOCK_ENTITIES.register();
-    }
+
 }

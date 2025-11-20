@@ -40,8 +40,10 @@ public class ZRing extends ToolTipItem {
         }
 
         if (entity instanceof PokemonEntity pokemonEntity) {
-            if (UltraGimmick.ultraBurst(pokemonEntity.getPokemon()) != 0) {
-                return InteractionResultHolder.success(stack);
+            if (pokemonEntity.getPokemon().getOwnerPlayer() == player) {
+                if (UltraGimmick.ultraBurst(pokemonEntity.getPokemon()) != 0) {
+                    return InteractionResultHolder.success(stack);
+                }
             }
         } else {
             AccessoriesContainer slot = capability.getContainer(SlotTypeLoader.getSlotType(level, "z_slot"));

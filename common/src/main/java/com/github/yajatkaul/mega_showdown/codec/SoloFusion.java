@@ -57,7 +57,7 @@ public record SoloFusion(
             entity = hitResult.getEntity();
         }
 
-        CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+        CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_POKEMON.get());
         Pokemon pokemonStored = null;
         if (compoundTag != null) {
             pokemonStored = new Pokemon().loadFromNBT(level.registryAccess(), compoundTag);
@@ -68,7 +68,11 @@ public record SoloFusion(
         if (entity instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
 
-            if (pokemonEntity.isBattling() || pokemon.getPersistentData().contains("form_changing") || pokemonEntity.getTethering() != null) {
+            if (pokemonEntity.isBattling() ||
+                    pokemon.getOwnerPlayer() != player ||
+                    pokemon.getPersistentData().contains("form_changing") ||
+                    pokemonEntity.getTethering() != null
+            ) {
                 return InteractionResultHolder.pass(stack);
             }
 
@@ -98,7 +102,7 @@ public record SoloFusion(
                 playerPartyStore.add(pokemonInside);
                 pokemon.getPersistentData().remove("fusion_forme");
 
-                stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
+                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
                 if (aspect_conditions.validate_apply(pokemon)) {
@@ -112,18 +116,18 @@ public record SoloFusion(
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(level.registryAccess(), new CompoundTag());
                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
-                stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
+                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored == null && isFusion) {
                 CompoundTag pokemonNBT = pokemon.saveToNBT(level.registryAccess(), new CompoundTag());
-                stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), pokemonNBT);
+                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), pokemonNBT);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
 
                 playerPartyStore.remove(pokemon);
             }
         } else if (pokemonStored != null) {
             playerPartyStore.add(pokemonStored);
-            stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
+            stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
             stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
         }
 
@@ -135,7 +139,7 @@ public record SoloFusion(
     }
 
     public void onDestroyed(ItemEntity itemEntity) {
-        CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+        CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_POKEMON.get());
         Pokemon pokemonStored = null;
         if (compoundTag != null) {
             pokemonStored = new Pokemon().loadFromNBT(itemEntity.level().registryAccess(), compoundTag);

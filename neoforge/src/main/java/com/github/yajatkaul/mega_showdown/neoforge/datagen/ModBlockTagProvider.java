@@ -47,7 +47,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         MegaShowdownBlocks.ROTOM_OVEN.get(),
                         MegaShowdownBlocks.ROTOM_FAN.get(),
                         MegaShowdownBlocks.ROTOM_FRIDGE.get(),
-                        MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get()
+                        MegaShowdownBlocks.ROTOM_WASHING_MACHINE.get(),
+
+                        MegaShowdownBlocks.MEGA_METEOROID_BRICK.get(),
+                        MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BLOCK.get(),
+                        MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BRICK.get(),
+                        MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get(),
+                        MegaShowdownBlocks.KEYSTONE_BLOCK.get()
                 );
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -57,7 +63,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         MegaShowdownBlocks.KEYSTONE_ORE.get(),
                         MegaShowdownBlocks.DEOXYS_METEORITE.get(),
                         MegaShowdownBlocks.POWER_SPOT.get(),
-                        MegaShowdownBlocks.DORMANT_CRYSTAL.get()
+                        MegaShowdownBlocks.DORMANT_CRYSTAL.get(),
+                        MegaShowdownBlocks.KEYSTONE_BLOCK.get()
                 );
 
         tag(MegaShowdownTags.Blocks.POWER_SPOT)

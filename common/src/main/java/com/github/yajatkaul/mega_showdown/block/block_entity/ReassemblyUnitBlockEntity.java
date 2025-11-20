@@ -16,39 +16,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 
 public class ReassemblyUnitBlockEntity extends BlockEntity {
-    public ReassemblyUnitBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(MegaShowdownBlockEntities.REASSEMBLY_UNIT_ENTITY.get(), blockPos, blockState);
-    }
-
-    public enum ReassembleStage implements StringRepresentable {
-        IDLE, COOKING_10, COOKING_50, COOKING_100, FINISHED_10, FINISHED_50, FINISHED_100;
-
-        @Override
-        public @NotNull String getSerializedName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
-    }
-
     private int cookTime = 0;
     private int maxCookTime = -1;
     private ReassembleStage stage = ReassembleStage.IDLE;
-
-    public void startProcess(ReassembleStage stage, int durationTicks) {
-        this.stage = stage;
-        this.cookTime = 0;
-        this.maxCookTime = durationTicks;
-        if (level != null) {
-            BlockPos lowerPos = worldPosition;
-            BlockPos upperPos = lowerPos.above();
-
-            BlockState lowerState = level.getBlockState(lowerPos);
-            level.setBlock(lowerPos, lowerState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
-
-            BlockState upperState = level.getBlockState(upperPos);
-            if (upperState.getBlock() instanceof ReassemblyUnitBlock) {
-                level.setBlock(upperPos, upperState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
-            }
-        }
+    public ReassemblyUnitBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(MegaShowdownBlockEntities.REASSEMBLY_UNIT_ENTITY.get(), blockPos, blockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, ReassemblyUnitBlockEntity be) {
@@ -76,6 +48,24 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
             }
 
             setChanged(level, pos, state);
+        }
+    }
+
+    public void startProcess(ReassembleStage stage, int durationTicks) {
+        this.stage = stage;
+        this.cookTime = 0;
+        this.maxCookTime = durationTicks;
+        if (level != null) {
+            BlockPos lowerPos = worldPosition;
+            BlockPos upperPos = lowerPos.above();
+
+            BlockState lowerState = level.getBlockState(lowerPos);
+            level.setBlock(lowerPos, lowerState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
+
+            BlockState upperState = level.getBlockState(upperPos);
+            if (upperState.getBlock() instanceof ReassemblyUnitBlock) {
+                level.setBlock(upperPos, upperState.setValue(ReassemblyUnitBlock.REASSEMBLE_STAGE, stage), 3);
+            }
         }
     }
 
@@ -131,5 +121,14 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
         this.cookTime = tag.getInt("CookTime");
         this.maxCookTime = tag.getInt("MaxCookTime");
         this.stage = ReassembleStage.valueOf(tag.getString("Stage"));
+    }
+
+    public enum ReassembleStage implements StringRepresentable {
+        IDLE, COOKING_10, COOKING_50, COOKING_100, FINISHED_10, FINISHED_50, FINISHED_100;
+
+        @Override
+        public @NotNull String getSerializedName() {
+            return name().toLowerCase(Locale.ROOT);
+        }
     }
 }

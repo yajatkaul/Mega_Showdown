@@ -17,15 +17,35 @@ import java.util.Optional;
 
 public record Effect(
         Optional<MinecraftParticle> minecraft,
-        Optional<SnowStormParticle> snowStorm
+        Optional<SnowStormParticle> snowStorm,
+        Optional<Float> battle_pause
 ) {
     public static final Codec<Effect> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             MinecraftParticle.CODEC.optionalFieldOf("minecraft").forGetter(Effect::minecraft),
-            SnowStormParticle.CODEC.optionalFieldOf("snowstorm").forGetter(Effect::snowStorm)
+            SnowStormParticle.CODEC.optionalFieldOf("snowstorm").forGetter(Effect::snowStorm),
+            Codec.FLOAT.optionalFieldOf("battle_pause").forGetter(Effect::battle_pause)
     ).apply(instance, Effect::new));
 
     public static Effect empty() {
-        return new Effect(Optional.empty(), Optional.empty());
+        return new Effect(Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    public static Effect getEffect(String effectId) {
+        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId));
+        if (effect == null) {
+            return Effect.empty();
+        } else {
+            return effect;
+        }
+    }
+
+    public static Effect getEffect(ResourceLocation effectId) {
+        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId);
+        if (effect == null) {
+            return Effect.empty();
+        } else {
+            return effect;
+        }
     }
 
     public void applyEffects(Pokemon context, List<String> aspects, @Nullable PokemonEntity other) {
@@ -72,34 +92,16 @@ public record Effect(
         }
         if (this.snowStorm().isPresent() && this.minecraft().isPresent()) {
             this.minecraft.get().apply(context.getEntity());
-            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon);
+            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon, battle_pause.orElse(1f));
         } else if (this.minecraft().isPresent()) {
             this.minecraft.get().apply(context.getEntity());
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.updatePackets(battlePokemon);
         } else if (this.snowStorm().isPresent()) {
-            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon);
+            this.snowStorm.get().applyBattle(context.getEntity(), aspects, other, battlePokemon, battle_pause.orElse(1f));
         } else {
             AspectUtils.applyAspects(context, aspects);
             AspectUtils.updatePackets(battlePokemon);
-        }
-    }
-
-    public static Effect getEffect(String effectId) {
-        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId));
-        if (effect == null) {
-            return Effect.empty();
-        } else {
-            return effect;
-        }
-    }
-
-    public static Effect getEffect(ResourceLocation effectId) {
-        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId);
-        if (effect == null) {
-            return Effect.empty();
-        } else {
-            return effect;
         }
     }
 }

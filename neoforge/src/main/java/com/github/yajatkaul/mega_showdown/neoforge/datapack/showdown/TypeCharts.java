@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TypeCharts implements DataRegistry {
+    public static final TypeCharts INSTANCE = new TypeCharts();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/typecharts");
     private static final SimpleObservable<TypeCharts> OBSERVABLE = new SimpleObservable<>();
-    public static final TypeCharts INSTANCE = new TypeCharts();
     private final Map<String, String> typeChartScripts = new HashMap<>();
 
     private TypeCharts() {

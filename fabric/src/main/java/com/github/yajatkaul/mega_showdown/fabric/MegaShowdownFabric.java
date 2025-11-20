@@ -21,6 +21,13 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 public final class MegaShowdownFabric implements ModInitializer {
+    public static void generateModWorldGen() {
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.LUSH_CAVES),
+                GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE,
+                        ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "max_mushroom_placed_key"))
+        );
+    }
+
     @Override
     public void onInitialize() {
         MegaShowdown.init();
@@ -40,12 +47,5 @@ public final class MegaShowdownFabric implements ModInitializer {
                 return Unit.INSTANCE;
             });
         });
-    }
-
-    public static void generateModWorldGen() {
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.LUSH_CAVES),
-                GenerationStep.Decoration.VEGETAL_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE,
-                        ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "max_mushroom_placed_key"))
-        );
     }
 }

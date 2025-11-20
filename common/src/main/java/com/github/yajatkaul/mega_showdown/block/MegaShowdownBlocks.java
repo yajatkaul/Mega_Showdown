@@ -2,6 +2,7 @@ package com.github.yajatkaul.mega_showdown.block;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.custom.*;
+import com.github.yajatkaul.mega_showdown.block.custom.HorizontalDirectionalBlock;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.dynamax.MaxMushroom;
@@ -88,6 +89,10 @@ public class MegaShowdownBlocks {
 
     public static final RegistrySupplier<Block> MEGA_METEOROID_BLOCK = registerMeteoroidBlock("mega_meteorid_block");
     public static final RegistrySupplier<Block> MEGA_METEOROID_RADIATED_BLOCK = registerMeteoroidBlock("mega_meteorid_radiated_block");
+    public static final RegistrySupplier<Block> MEGA_METEOROID_BRICK = registerMeteoroidBlock("mega_meteorid_brick");
+    public static final RegistrySupplier<Block> CHISELED_MEGA_METEOROID_BLOCK = registerMeteoroidBlock("chiseled_mega_meteorid_block");
+    public static final RegistrySupplier<Block> CHISELED_MEGA_METEOROID_BRICK = registerMeteoroidBlock("chiseled_mega_meteorid_brick");
+    public static final RegistrySupplier<Block> POLISHED_MEGA_METEOROID_BLOCK = registerMeteoroidBlock("polished_mega_meteorid_block");
 
     public static final RegistrySupplier<Block> KEYSTONE_ORE = registerBlock("keystone_ore",
             () -> new DropExperienceBlock(UniformInt.of(6, 9),
@@ -98,6 +103,12 @@ public class MegaShowdownBlocks {
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.AMETHYST)),
             MegaShowdownTabs.MEGA_TAB);
+    public static final RegistrySupplier<Block> KEYSTONE_BLOCK = registerBlock(
+            "keystone_block",
+            () -> new HorizontalDirectionalBlock(BlockBehaviour.Properties.of()
+                    .mapColor(DyeColor.PINK)),
+            MegaShowdownTabs.MEGA_TAB
+    );
 
     public static final RegistrySupplier<Block> MEGA_METEORID_WATER_ORE = registerMeteoroidOre("mega_meteorid_water_ore");
     public static final RegistrySupplier<Block> MEGA_METEORID_DAWN_ORE = registerMeteoroidOre("mega_meteorid_dawn_ore");

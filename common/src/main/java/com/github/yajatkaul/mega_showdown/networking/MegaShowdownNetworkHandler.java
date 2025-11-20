@@ -30,7 +30,9 @@ public class MegaShowdownNetworkHandler {
             }
 
             if (entity instanceof PokemonEntity pokemonEntity) {
-                MegaGimmick.megaToggle(pokemonEntity);
+                if (pokemonEntity.getPokemon().getOwnerPlayer() == player) {
+                    MegaGimmick.megaToggle(pokemonEntity);
+                }
             }
         });
 
@@ -44,7 +46,9 @@ public class MegaShowdownNetworkHandler {
             }
 
             if (entity instanceof PokemonEntity pokemonEntity) {
-                UltraGimmick.ultraBurst(pokemonEntity.getPokemon());
+                if (pokemonEntity.getPokemon().getOwnerPlayer() == player) {
+                    UltraGimmick.ultraBurst(pokemonEntity.getPokemon());
+                }
             }
         });
 

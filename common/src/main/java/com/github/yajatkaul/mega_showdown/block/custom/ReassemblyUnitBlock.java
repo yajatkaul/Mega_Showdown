@@ -31,7 +31,10 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -54,9 +57,17 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
             = EnumProperty.create("reassemble_stage", ReassemblyUnitBlockEntity.ReassembleStage.class);
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-
+    public static final MapCodec<ReassemblyUnitBlock> CODEC = simpleCodec(ReassemblyUnitBlock::new);
     private static final VoxelShape UPPER_SHAPE = Block.box(0, 0, 0, 16, 16, 16);
     private static final VoxelShape LOWER_SHAPE = Block.box(1, 0, 1, 15, 16, 15);
+
+    public ReassemblyUnitBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(HALF, DoubleBlockHalf.LOWER)
+                .setValue(FACING, Direction.NORTH)
+                .setValue(REASSEMBLE_STAGE, ReassemblyUnitBlockEntity.ReassembleStage.IDLE));
+    }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
@@ -113,16 +124,6 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
         }
     }
 
-    public static final MapCodec<ReassemblyUnitBlock> CODEC = simpleCodec(ReassemblyUnitBlock::new);
-
-    public ReassemblyUnitBlock(Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.stateDefinition.any()
-                .setValue(HALF, DoubleBlockHalf.LOWER)
-                .setValue(FACING, Direction.NORTH)
-                .setValue(REASSEMBLE_STAGE, ReassemblyUnitBlockEntity.ReassembleStage.IDLE));
-    }
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, HALF, REASSEMBLE_STAGE);
@@ -145,9 +146,9 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
 
         if (level.getBlockEntity(pos) instanceof ReassemblyUnitBlockEntity blockEntity) {
             if (itemStack.getItem() instanceof ZygardeCube) {
-                CompoundTag tag = itemStack.getOrDefault(MegaShowdownDataComponents.NBT_COMPONENT.get(),
+                CompoundTag tag = itemStack.getOrDefault(MegaShowdownDataComponents.NBT_POKEMON.get(),
                         new CompoundTag());
-                CompoundTag storedTag = itemStack.get(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
+                CompoundTag storedTag = itemStack.get(MegaShowdownDataComponents.NBT_INV.get());
                 Pokemon storedPokemon = null;
                 if (storedTag != null) {
                     storedPokemon = new Pokemon().loadFromNBT(level.registryAccess(), storedTag);
@@ -185,7 +186,7 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                             return ItemInteractionResult.FAIL;
                         }
 
-                        itemStack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), NBTInventoryUtils.serializeInventory(simpleContainer, level.registryAccess()));
+                        itemStack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), NBTInventoryUtils.serializeInventory(simpleContainer, level.registryAccess()));
                     } else {
                         ItemStack cells = new ItemStack(MegaShowdownItems.ZYGARDE_CELL.get());
                         ItemStack cores = new ItemStack(MegaShowdownItems.ZYGARDE_CORE.get());
@@ -208,7 +209,7 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                         level.addFreshEntity(coreDrop);
 
                         itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.empty"));
-                        itemStack.remove(MegaShowdownDataComponents.NBT_2_COMPONENT.get());
+                        itemStack.remove(MegaShowdownDataComponents.NBT_INV.get());
                     }
                     return ItemInteractionResult.SUCCESS;
                 } else {

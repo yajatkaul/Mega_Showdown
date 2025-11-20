@@ -1,22 +1,18 @@
 package com.github.yajatkaul.mega_showdown.gimmick;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.battles.model.PokemonBattle;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
-import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
-import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
+import com.github.yajatkaul.mega_showdown.utils.ComponentUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import kotlin.Unit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,6 +27,11 @@ public record MegaGimmick(
         List<String> pokemons,
         AspectSetCodec aspect_conditions
 ) {
+    public static final Codec<MegaGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.STRING.fieldOf("showdown_id").forGetter(MegaGimmick::showdown_id),
+            Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(MegaGimmick::pokemons),
+            AspectSetCodec.CODEC.fieldOf("aspect").forGetter(MegaGimmick::aspect_conditions)
+    ).apply(instance, MegaGimmick::new));
     private static final Set<String> mega_aspects = new HashSet<>(Set.of("mega", "mega_y", "mega_x"));
 
     public static void appendMegaAspect(String aspect) {
@@ -39,27 +40,6 @@ public record MegaGimmick(
 
     public static Set<String> getMegaAspects() {
         return mega_aspects;
-    }
-
-    public static final Codec<MegaGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.STRING.fieldOf("showdown_id").forGetter(MegaGimmick::showdown_id),
-            Codec.list(Codec.STRING).fieldOf("pokemons").forGetter(MegaGimmick::pokemons),
-            AspectSetCodec.CODEC.fieldOf("aspect").forGetter(MegaGimmick::aspect_conditions)
-    ).apply(instance, MegaGimmick::new));
-
-    public boolean canMega(Pokemon pokemon) {
-        ServerPlayer player = pokemon.getOwnerPlayer();
-        if (player != null && hasMega(player)) {
-            player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
-                    .withStyle(ChatFormatting.RED), true);
-            return false;
-        }
-
-        if (!this.aspect_conditions.validate_apply(pokemon)) {
-            return false;
-        }
-
-        return this.pokemons.contains(pokemon.getSpecies().getName());
     }
 
     public static boolean hasMega(ServerPlayer player) {
@@ -85,18 +65,31 @@ public record MegaGimmick(
         return false;
     }
 
-    public static void megaEvolveInBattle(Pokemon pokemon, BattlePokemon battlePokemon, List<String> aspects, List<String> revertAspects) {
-        PokemonBattle battle = battlePokemon.actor.getBattle();
-        battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
+    public static void megaEvolveInBattle(Pokemon pokemon, BattlePokemon battlePokemon) {
+        ItemStack heldItem = pokemon.heldItem();
+        MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, heldItem);
 
-        AspectUtils.appendRevertDataPokemon(
-                Effect.getEffect("mega_showdown:mega_evolution"),
-                revertAspects,
-                pokemon,
-                "battle_end_revert"
-        );
+        if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
+            if (pokemon.getSpecies().getName().equals("Rayquaza")) {
+                Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, List.of("mega_evolution=mega"), null, battlePokemon);
 
-        Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, aspects, null, battlePokemon);
+                AspectUtils.appendRevertDataPokemon(
+                        Effect.getEffect("mega_showdown:mega_evolution"),
+                        List.of("mega_evolution=none"),
+                        pokemon,
+                        "battle_end_revert"
+                );
+            } else if (megaGimmick.canMega(pokemon)) {
+                Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, megaGimmick.aspect_conditions.apply_aspects(), null, battlePokemon);
+
+                AspectUtils.appendRevertDataPokemon(
+                        Effect.getEffect("mega_showdown:mega_evolution"),
+                        megaGimmick.aspect_conditions.revert_aspects(),
+                        pokemon,
+                        "battle_end_revert"
+                );
+            }
+        }
     }
 
     private static void megaEvolve(Pokemon pokemon, List<String> aspects, List<String> revertAspects) {
@@ -113,18 +106,14 @@ public record MegaGimmick(
     }
 
     public static void megaToggle(PokemonEntity pokemonEntity) {
-        if (!MegaShowdownConfig.outSideMega || pokemonEntity.getPokemon().getPersistentData().getBoolean("form_changing")) {
+        if (!MegaShowdownConfig.outSideMega ||
+                pokemonEntity.getPokemon().getPersistentData().getBoolean("form_changing")
+        ) {
             return;
         }
 
         ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
-        MegaGimmick megaGimmick;
-
-        if (heldItem.getItem() instanceof MegaStone megaStone) {
-            megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(megaStone.getMegaStone());
-        } else {
-            megaGimmick = heldItem.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
-        }
+        MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, heldItem);
 
         Pokemon pokemon = pokemonEntity.getPokemon();
 
@@ -155,5 +144,20 @@ public record MegaGimmick(
                 MegaGimmick.megaEvolve(pokemon, megaGimmick.aspect_conditions.apply_aspects(), megaGimmick.aspect_conditions.revert_aspects());
             }
         }
+    }
+
+    public boolean canMega(Pokemon pokemon) {
+        ServerPlayer player = pokemon.getOwnerPlayer();
+        if (player != null && hasMega(player)) {
+            player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
+                    .withStyle(ChatFormatting.RED), true);
+            return false;
+        }
+
+        if (!this.aspect_conditions.validate_apply(pokemon)) {
+            return false;
+        }
+
+        return this.pokemons.contains(pokemon.getSpecies().getName());
     }
 }

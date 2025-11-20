@@ -106,6 +106,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(MegaShowdownBlocks.ROTOM_FRIDGE.get());
         dropSelf(MegaShowdownBlocks.ROTOM_MOW.get());
         dropSelf(MegaShowdownBlocks.ROTOM_OVEN.get());
+
+        dropSelf(MegaShowdownBlocks.KEYSTONE_BLOCK.get());
+        dropSelf(MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BLOCK.get());
+        dropSelf(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get());
+        dropSelf(MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BRICK.get());
+        dropSelf(MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get());
     }
 
     @Override

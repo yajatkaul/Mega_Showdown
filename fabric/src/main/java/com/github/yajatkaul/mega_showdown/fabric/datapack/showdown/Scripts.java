@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Scripts implements DataRegistry {
+    public static final Scripts INSTANCE = new Scripts();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/scripts");
     private static final SimpleObservable<Scripts> OBSERVABLE = new SimpleObservable<>();
-    public static final Scripts INSTANCE = new Scripts();
     private final Map<String, String> scripts = new HashMap<>();
 
     private Scripts() {

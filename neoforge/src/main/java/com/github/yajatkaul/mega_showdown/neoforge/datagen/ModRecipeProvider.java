@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,7 +18,18 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput recipeOutput) {
+    protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownBlocks.KEYSTONE_BLOCK.get())
+                .pattern("KKK")
+                .pattern("KKK")
+                .pattern("KKK")
+                .define('K', MegaShowdownItems.KEYSTONE.get())
+                .unlockedBy("has_keystone", has(MegaShowdownItems.KEYSTONE.get())).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MegaShowdownItems.KEYSTONE.get(), 9)
+                .requires(MegaShowdownBlocks.KEYSTONE_BLOCK.get())
+                .unlockedBy("has_keystone", has(MegaShowdownItems.KEYSTONE.get())).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.PIKA_CASE.get())
                 .pattern("YYY")
                 .pattern("IEI")
@@ -663,5 +675,100 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('D', MegaShowdownBlocks.DORMANT_CRYSTAL.get())
                 .define('S', Items.STRING)
                 .unlockedBy("has_dormant_crystal", has(MegaShowdownBlocks.DORMANT_CRYSTAL.get())).save(recipeOutput);
+
+// ─────────────────────────────
+// SHAPED CRAFTING RECIPES
+// ─────────────────────────────
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get(), 4)
+                .pattern("MM")
+                .pattern("MM")
+                .define('M', MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get())
+                .unlockedBy("has_megameteoroid", has(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.MEGA_METEOROID_BRICK.get(), 4)
+                .pattern("MM")
+                .pattern("MM")
+                .define('M', MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get())
+                .unlockedBy("has_polished_meteor", has(MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', MegaShowdownBlocks.MEGA_METEOROID_BRICK.get())
+                .unlockedBy("has_meteor_brick", has(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BRICK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', MegaShowdownBlocks.MEGA_METEOROID_BRICK.get())
+                .unlockedBy("has_meteor_brick", has(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()))
+                .save(recipeOutput);
+
+
+// ─────────────────────────────
+// STONECUTTING RECIPES
+// ─────────────────────────────
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get()
+                )
+                .unlockedBy("has_meteor", has(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()))
+                .save(recipeOutput, "polished_meteor_from_block_stonecutting");
+
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()
+                )
+                .unlockedBy("has_polished_meteor", has(MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get()))
+                .save(recipeOutput, "meteor_brick_from_polished_stonecutting");
+
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BLOCK.get()
+                )
+                .unlockedBy("has_bricks", has(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()))
+                .save(recipeOutput, "chiseled_meteor_from_bricks_stonecutting");
+
+        SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BRICK.get()
+                )
+                .unlockedBy("has_bricks", has(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()))
+                .save(recipeOutput, "chiseled_brick_from_bricks_stonecutting");
+
+
+// ─────────────────────────────
+// SMELTING + BLASTING (custom recipe names)
+// ─────────────────────────────
+        SimpleCookingRecipeBuilder.smelting(
+                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get(),
+                        0.1f,
+                        200
+                )
+                .unlockedBy("has_meteor", has(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()))
+                .save(recipeOutput, "polished_meteor_from_smelting");
+
+        SimpleCookingRecipeBuilder.blasting(
+                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        MegaShowdownBlocks.POLISHED_MEGA_METEOROID_BLOCK.get(),
+                        0.1f,
+                        100
+                )
+                .unlockedBy("has_meteor", has(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()))
+                .save(recipeOutput, "polished_meteor_from_blasting");
     }
 }

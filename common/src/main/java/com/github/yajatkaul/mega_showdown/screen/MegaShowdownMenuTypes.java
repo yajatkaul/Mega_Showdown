@@ -13,17 +13,17 @@ public class MegaShowdownMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(MegaShowdown.MOD_ID, Registries.MENU);
 
-    public static final RegistrySupplier<MenuType<ZygardeCubesScreenHandler>> ZYGARDE_CUBE_MENU =
-            registerMenuType("zygade_menu", ZygardeCubesScreenHandler::new);
-
     private static <T extends AbstractContainerMenu> RegistrySupplier<MenuType<T>> registerMenuType(
             String name,
             MenuType.MenuSupplier<T> factory
     ) {
         return MENUS.register(name, () -> new MenuType<T>(factory, FeatureFlags.DEFAULT_FLAGS));
-    }
+    }    public static final RegistrySupplier<MenuType<ZygardeCubesScreenHandler>> ZYGARDE_CUBE_MENU =
+            registerMenuType("zygade_menu", ZygardeCubesScreenHandler::new);
 
     public static void register() {
         MENUS.register();
     }
+
+
 }

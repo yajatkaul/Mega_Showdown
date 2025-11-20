@@ -40,7 +40,9 @@ public class MegaBracelet extends ToolTipItem {
         }
 
         if (entity instanceof PokemonEntity pokemonEntity) {
-            MegaGimmick.megaToggle(pokemonEntity);
+            if (pokemonEntity.getPokemon().getOwnerPlayer() == player) {
+                MegaGimmick.megaToggle(pokemonEntity);
+            }
         } else {
             AccessoriesContainer slot = capability.getContainer(SlotTypeLoader.getSlotType(level, "mega_slot"));
             ExpandedSimpleContainer accessories = slot.getAccessories();

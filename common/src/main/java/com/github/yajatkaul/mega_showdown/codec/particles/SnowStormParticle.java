@@ -50,7 +50,8 @@ public record SnowStormParticle(
         processTransformation(context, aspects, other, null, false);
     }
 
-    public void applyBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon) {
+    public void applyBattle(PokemonEntity context, List<String> aspects, PokemonEntity other, BattlePokemon battlePokemon, float battle_pause) {
+        battlePokemon.actor.getBattle().dispatchWaitingToFront(battle_pause, () -> Unit.INSTANCE);
         processTransformation(context, aspects, other, battlePokemon, true);
     }
 

@@ -19,8 +19,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class ItemRenderingLoader implements ResourceManagerReloadListener {
-    private static final String DIRECTORY = "item_rendering";
     public static final List<ItemRenderingCodec> REGISTRY = new ArrayList<>();
+    private static final String DIRECTORY = "item_rendering";
 
     public static void load() {
         ResourceManager rm = Minecraft.getInstance().getResourceManager();

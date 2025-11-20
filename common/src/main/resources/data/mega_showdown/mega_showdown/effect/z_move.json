@@ -2,7 +2,6 @@
   "snowstorm": {
     "source_apply": ["target"],
     "particle_apply": "cobblemon:z_moves",
-    "apply_after": 4,
     "sound_apply": {
       "sound_id": "mega_showdown:z_move"
     },
@@ -10,5 +9,6 @@
       "apply_delay": 2.5,
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 4
 }

@@ -69,7 +69,7 @@ public class SoloFusion extends ToolTipItem {
             entity = hitResult.getEntity();
         }
 
-        CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+        CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_POKEMON.get());
         Pokemon pokemonStored = null;
         if (compoundTag != null) {
             pokemonStored = new Pokemon().loadFromNBT(level.registryAccess(), compoundTag);
@@ -106,7 +106,7 @@ public class SoloFusion extends ToolTipItem {
                 playerPartyStore.add(pokemonInside);
                 pokemon.getPersistentData().remove("fusion_forme");
 
-                stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
+                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
                 Effect.getEffect(effectId).revertEffects(pokemon, applyAspect, null);
@@ -115,18 +115,18 @@ public class SoloFusion extends ToolTipItem {
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(level.registryAccess(), new CompoundTag());
                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
-                stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
+                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored == null && isFusion) {
                 CompoundTag pokemonNBT = pokemon.saveToNBT(level.registryAccess(), new CompoundTag());
-                stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), pokemonNBT);
+                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), pokemonNBT);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
 
                 playerPartyStore.remove(pokemon);
             }
         } else if (pokemonStored != null) {
             playerPartyStore.add(pokemonStored);
-            stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
+            stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
             stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
         }
 
@@ -139,7 +139,7 @@ public class SoloFusion extends ToolTipItem {
 
     @Override
     public void onDestroyed(ItemEntity itemEntity) {
-        CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+        CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_POKEMON.get());
         Pokemon pokemonStored = null;
         if (compoundTag != null) {
             pokemonStored = new Pokemon().loadFromNBT(itemEntity.level().registryAccess(), compoundTag);

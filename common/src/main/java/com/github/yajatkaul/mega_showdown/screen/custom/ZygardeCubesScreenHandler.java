@@ -28,11 +28,11 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
         this.cube = cube;
         this.level = level;
 
-        CompoundTag compoundTag = cube.get(MegaShowdownDataComponents.NBT_COMPONENT.get());
+        CompoundTag compoundTag = cube.get(MegaShowdownDataComponents.NBT_POKEMON.get());
         if (compoundTag == null) {
             compoundTag = new CompoundTag();
         }
-        cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), compoundTag);
+        cube.set(MegaShowdownDataComponents.NBT_POKEMON.get(), compoundTag);
 
         if (level != null) {
             this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
@@ -93,7 +93,7 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
         super.removed(player);
         if (level != null) {
             CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv, level.registryAccess());
-            this.cube.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), tag);
+            this.cube.set(MegaShowdownDataComponents.NBT_POKEMON.get(), tag);
         }
     }
 

@@ -41,13 +41,13 @@ import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
 import com.github.yajatkaul.mega_showdown.sound.MegaShowdownSounds;
 import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.github.yajatkaul.mega_showdown.utils.*;
 import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.Item;
@@ -338,25 +338,13 @@ public class CobbleEvents {
 
     private static void megaEvolution(MegaEvolutionEvent event) {
         Pokemon pokemon = event.getPokemon().getEntity().getPokemon();
-        MegaGimmick megaGimmick;
-        ItemStack heldItem = pokemon.heldItem();
-        if (heldItem.getItem() instanceof MegaStone megaStone) {
-            megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(megaStone.getMegaStone());
-        } else {
-            megaGimmick = heldItem.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
-        }
-        if (megaGimmick != null) {
-            if (megaGimmick.canMega(pokemon)) {
-                MegaGimmick.megaEvolveInBattle(
-                        pokemon,
-                        event.getPokemon(),
-                        megaGimmick.aspect_conditions().apply_aspects(),
-                        megaGimmick.aspect_conditions().revert_aspects()
-                );
-            }
-        }
+        MegaGimmick.megaEvolveInBattle(
+                pokemon,
+                event.getPokemon()
+        );
     }
 
+    //TODO Might wanna clean this
     private static void heldItemChange(HeldItemEvent.Pre event) {
         if (event.getPokemon().getPersistentData().getBoolean("form_changing")) {
             event.cancel();
@@ -379,22 +367,30 @@ public class CobbleEvents {
             formChangeItem.apply(pokemon);
         }
 
-        HeldItemFormChange heldItemFormChangeReceiving = itemReceiving.get(MegaShowdownDataComponents.HELD_ITEM_FORM_CHANGE_COMPONENT.get());
-        HeldItemFormChange heldItemFormChangeReturning = itemReturning.get(MegaShowdownDataComponents.HELD_ITEM_FORM_CHANGE_COMPONENT.get());
+        if (itemReturning.getOrDefault(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "null").equals("held_form_change")) {
+            ResourceLocation returningLocation = itemReturning.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
+            HeldItemFormChange heldItemFormChangeReturning = MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.get(returningLocation);
 
-        if (heldItemFormChangeReturning != null) {
-            heldItemFormChangeReturning.revert(pokemon);
+            if (heldItemFormChangeReturning != null) {
+                heldItemFormChangeReturning.revert(pokemon);
+            }
+
         }
-        if (heldItemFormChangeReceiving != null) {
-            heldItemFormChangeReceiving.apply(pokemon);
+        if (itemReceiving.getOrDefault(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "null").equals("held_form_change")) {
+            ResourceLocation receivingLocation = itemReceiving.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
+            HeldItemFormChange heldItemFormChangeReceiving = MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.get(receivingLocation);
+
+            if (heldItemFormChangeReceiving != null) {
+                heldItemFormChangeReceiving.apply(pokemon);
+            }
         }
 
         MegaGimmick megaGimmick;
-
-        if (itemReturning.getItem() instanceof MegaStone megaStone) {
-            megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(megaStone.getMegaStone());
+        if (!itemReturning.getOrDefault(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "null").equals("mega")) {
+            megaGimmick = null;
         } else {
-            megaGimmick = itemReturning.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
+            ResourceLocation resourceLocation = itemReturning.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
+            megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(resourceLocation);
         }
         if (megaGimmick != null
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())

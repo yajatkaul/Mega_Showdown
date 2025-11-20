@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Conditions implements DataRegistry {
+    public static final Conditions INSTANCE = new Conditions();
     private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown/conditions");
     private static final SimpleObservable<Conditions> OBSERVABLE = new SimpleObservable<>();
-    public static final Conditions INSTANCE = new Conditions();
     private final Map<String, String> conditionScripts = new HashMap<>();
 
     private Conditions() {

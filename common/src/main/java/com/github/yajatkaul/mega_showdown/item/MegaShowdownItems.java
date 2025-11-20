@@ -27,6 +27,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.item.CreativeModeTab;
@@ -895,9 +896,9 @@ public class MegaShowdownItems {
 
     private static RegistrySupplier<Item> registerMegaStone(String name) {
         return ITEMS.register(name, () -> new MegaStone(
-                new Item.Properties()
-                        .arch$tab(MegaShowdownTabs.MEGA_TAB),
-                name)
+                        new Item.Properties().arch$tab(MegaShowdownTabs.MEGA_TAB),
+                        ResourceLocation.tryParse(MegaShowdown.MOD_ID + name)
+                )
         );
     }
 

@@ -39,16 +39,6 @@ public class AspectUtils {
         }
     }
 
-    public record EffectPair(
-            Effect effect,
-            List<String> aspects
-    ) {
-        public static final Codec<EffectPair> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                Effect.CODEC.fieldOf("effect").forGetter(EffectPair::effect),
-                Codec.STRING.listOf().fieldOf("aspects").forGetter(EffectPair::aspects)
-        ).apply(instance, EffectPair::new));
-    }
-
     public static void appendRevertDataPokemon(Effect effect, List<String> string, Pokemon pokemon, String tagName) {
         EffectPair effectPair = new EffectPair(effect, string);
 
@@ -188,5 +178,15 @@ public class AspectUtils {
                         false);
             }
         }
+    }
+
+    public record EffectPair(
+            Effect effect,
+            List<String> aspects
+    ) {
+        public static final Codec<EffectPair> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Effect.CODEC.fieldOf("effect").forGetter(EffectPair::effect),
+                Codec.STRING.listOf().fieldOf("aspects").forGetter(EffectPair::aspects)
+        ).apply(instance, EffectPair::new));
     }
 }

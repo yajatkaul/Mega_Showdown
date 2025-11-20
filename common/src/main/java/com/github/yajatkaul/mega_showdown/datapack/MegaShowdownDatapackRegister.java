@@ -3,10 +3,9 @@ package com.github.yajatkaul.mega_showdown.datapack;
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.*;
-import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
-import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
+import com.github.yajatkaul.mega_showdown.utils.ComponentUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -70,7 +69,7 @@ public class MegaShowdownDatapackRegister {
         }
 
         CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
-            ShowdownItem showdownItem = stack.get(MegaShowdownDataComponents.SHOWDOWN_ITEM_COMPONENT.get());
+            ShowdownItem showdownItem = ComponentUtils.getComponent(ShowdownItem.class, stack);
 
             if (showdownItem == null) {
                 return null;
@@ -80,13 +79,7 @@ public class MegaShowdownDatapackRegister {
         }));
 
         CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
-            MegaGimmick megaGimmick;
-
-            if (stack.getItem() instanceof MegaStone megaStone) {
-                megaGimmick = MegaShowdownDatapackRegister.MEGA_REGISTRY.get(megaStone.getMegaStone());
-            } else {
-                megaGimmick = stack.get(MegaShowdownDataComponents.MEGA_STONE_COMPONENT.get());
-            }
+            MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, stack);
 
             if (megaGimmick == null) {
                 return null;

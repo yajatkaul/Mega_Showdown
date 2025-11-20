@@ -35,7 +35,11 @@ public record FormChangeInteractItem(
         if (livingEntity instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
 
-            if (!pokemons.contains(pokemon.getSpecies().getName()) || pokemonEntity.isBattling() || pokemonEntity.getTethering() != null || pokemon.getPersistentData().contains("form_changing")) {
+            if (!pokemons.contains(pokemon.getSpecies().getName()) ||
+                    pokemon.getOwnerPlayer() != player ||
+                    pokemonEntity.isBattling() ||
+                    pokemonEntity.getTethering() != null ||
+                    pokemon.getPersistentData().contains("form_changing")) {
                 return InteractionResult.PASS;
             }
 
