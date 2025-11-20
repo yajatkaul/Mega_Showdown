@@ -4,5 +4,5 @@
   "aspects": {
     "apply_aspects": ["meteor_shield=core"]
   },
-  "effect": "mega_showdown:end_rod"
+  "effect": "mega_showdown:minior_effect"
 }

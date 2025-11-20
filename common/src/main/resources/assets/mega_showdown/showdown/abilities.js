@@ -1273,10 +1273,12 @@ const Abilities = {
     num: 194
   },
   fairyaura: {
-      onStart(pokemon) {
+	  onBeforeSwitchIn(pokemon) {
         if (pokemon.species.id === "xerneas") {
           pokemon.formeChange("xerneasactive", this.effect, true);
         }
+	  },
+      onStart(pokemon) {
         if (this.suppressingAbility(pokemon))
           return;
         this.add("-ability", pokemon, "Fairy Aura");

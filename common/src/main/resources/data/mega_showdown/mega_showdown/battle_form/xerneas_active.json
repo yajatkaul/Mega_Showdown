@@ -3,6 +3,6 @@
   "showdown_form_change_id": "active",
   "aspects": {
     "apply_aspects": ["life_mode=active"],
-    "revert_aspects": ["life_mode=inactive"]
+    "revert_aspects": ["life_mode=neutral"]
   }
 }

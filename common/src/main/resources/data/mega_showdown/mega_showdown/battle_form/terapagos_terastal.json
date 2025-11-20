@@ -5,5 +5,5 @@
     "apply_aspects": ["tera_form=terastal"],
     "revert_aspects": ["tera_form=normal"]
   },
-  "effect": "mega_showdown:end_rod"
+  "effect": "mega_showdown:terapagos_effect"
 }

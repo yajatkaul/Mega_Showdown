@@ -4,7 +4,7 @@
   "aspects": {
     "apply_aspects": ["blazing_mode=zen"],
     "revert_aspects": ["blazing_mode=standard"],
-	"blacklist_aspects_apply": [["galarian"]]
+	"required_aspects_apply": [["galarian"]]
   },
-  "effect": "mega_showdown:darmanitan_zen"
+  "effect": "mega_showdown:darmanitan_galar_zen"
 }

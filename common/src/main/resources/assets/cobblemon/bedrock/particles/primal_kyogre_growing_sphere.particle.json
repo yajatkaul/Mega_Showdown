@@ -1,0 +1,47 @@
+{
+	"format_version": "1.10.0",
+	"particle_effect": {
+		"description": {
+			"identifier": "cobblemon:primal_kyogre_growing_sphere",
+			"basic_render_parameters": {
+				"material": "particles_blend",
+				"texture": "textures/particles/statdown_orb"
+			}
+		},
+		"components": {
+			"minecraft:emitter_rate_steady": {
+				"spawn_rate": 400,
+				"max_particles": 1000
+			},
+			"minecraft:emitter_lifetime_looping": {
+				"active_time": 2
+			},
+			"minecraft:emitter_shape_point": {},
+			"minecraft:particle_lifetime_expression": {
+				"max_lifetime": 1
+			},
+			"minecraft:particle_motion_parametric": {
+				"relative_position": ["math.sin(v.particle_random_1*-360)*math.sin(v.particle_random_2*360+v.particle_age*360) * variable.emitter_age*2.5", "math.cos(v.particle_random_1*360) * variable.emitter_age*2.5", "math.sin(v.particle_random_1*360)*math.cos(v.particle_random_2*360+v.particle_age*360) * variable.emitter_age*2.5 + 4"]
+			},
+			"minecraft:particle_appearance_billboard": {
+				"size": [1, 1],
+				"facing_camera_mode": "rotate_xyz",
+				"uv": {
+					"texture_width": 99,
+					"texture_height": 9,
+					"flipbook": {
+						"base_UV": [27, 0],
+						"size_UV": [9, 9],
+						"step_UV": [9, 0],
+						"frames_per_second": 30,
+						"max_frame": 5,
+						"loop": true
+					}
+				}
+			},
+			"minecraft:particle_appearance_tinting": {
+				"color": [0.28235, 0.5098, 1, 1]
+			}
+		}
+	}
+}

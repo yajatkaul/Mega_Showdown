@@ -5,5 +5,5 @@
     "apply_aspects": ["dolphin_form=hero"],
     "revert_aspects": ["dolphin_form=zero"]
   },
-  "effect": "mega_showdown:end_rod"
+  "effect": "mega_showdown:palafin_effect"
 }
