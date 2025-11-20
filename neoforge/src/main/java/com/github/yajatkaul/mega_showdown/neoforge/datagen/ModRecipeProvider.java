@@ -111,37 +111,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('A', CobblemonItems.YELLOW_APRICORN)
                 .unlockedBy("has_keystone", has(MegaShowdownItems.KEYSTONE.get())).save(recipeOutput);
 
-//        SingleItemRecipeBuilder.stonecutting(
-//                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()), // Input item (change this as needed)
-//                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
-//                        MegaShowdownBlocks.MEGA_EVO_BRICK.get() // Output block
-//                ).unlockedBy("has_mega_evo_block", has(MegaShowdownBlocks.MEGA_EVO_BLOCK)) // Unlock condition
-//                .save(recipeOutput);
-//
-//        SingleItemRecipeBuilder.stonecutting(
-//                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()), // Input item (change this as needed)
-//                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
-//                        MegaShowdownBlocks.CHISELED_MEGA_EVO_BLOCK.get() // Output block
-//                ).unlockedBy("has_mega_evo_block", has(MegaShowdownBlocks.MEGA_EVO_BLOCK)) // Unlock condition
-//                .save(recipeOutput);
-//
-//        SingleItemRecipeBuilder.stonecutting(
-//                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()), // Input item (change this as needed)
-//                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
-//                        MegaShowdownBlocks.CHISELED_MEGA_EVO_BRICK.get() // Output block
-//                ).unlockedBy("has_mega_evo_block", has(MegaShowdownBlocks.MEGA_EVO_BLOCK)) // Unlock condition
-//                .save(recipeOutput);
-//
-//
-//        SimpleCookingRecipeBuilder.smelting(
-//                        Ingredient.of(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()), // Input item
-//                        RecipeCategory.BUILDING_BLOCKS, // Recipe category
-//                        MegaShowdownBlocks.POLISHED_MEGA_EVO_BLOCK.get(), // Output item
-//                        0.1f, // Experience gained
-//                        200 // Cooking time in ticks (10 seconds)
-//                ).unlockedBy("has_mega_evo_block", has(MegaShowdownBlocks.MEGA_EVO_BLOCK))
-//                .save(recipeOutput);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.MAXIE_GLASSES.get())
                 .pattern("   ")
                 .pattern("DKD")

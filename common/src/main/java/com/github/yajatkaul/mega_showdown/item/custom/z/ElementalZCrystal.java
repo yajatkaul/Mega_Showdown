@@ -2,8 +2,8 @@ package com.github.yajatkaul.mega_showdown.item.custom.z;
 
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.FormChangeHeldItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
     @Override
     public void apply(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName())) {
-            ParticlesList.getEffect(effectId).applyEffects(pokemon, List.of(String.format("multitype=%s", this.element.getName())), null);
+            Effect.getEffect(effectId).applyEffects(pokemon, List.of(String.format("multitype=%s", this.element.getName())), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -41,7 +41,7 @@ public class ElementalZCrystal extends FormChangeHeldItem {
     @Override
     public void revert(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName())) {
-            ParticlesList.getEffect(effectId).revertEffects(pokemon, List.of("multitype=normal"), null);
+            Effect.getEffect(effectId).revertEffects(pokemon, List.of("multitype=normal"), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

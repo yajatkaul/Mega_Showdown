@@ -4,9 +4,9 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -113,9 +113,9 @@ public class DuFusion extends ToolTipItem {
                 playerPartyStore.add(pokemonInside);
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName())) {
-                    ParticlesList.getEffect(effectId1).revertEffects(pokemon, revertAspect1, null);
+                    Effect.getEffect(effectId1).revertEffects(pokemon, revertAspect1, null);
                 } else {
-                    ParticlesList.getEffect(effectId2).revertEffects(pokemon, revertAspect2, null);
+                    Effect.getEffect(effectId2).revertEffects(pokemon, revertAspect2, null);
                 }
 
                 pokemon.setTradeable(true);
@@ -133,9 +133,9 @@ public class DuFusion extends ToolTipItem {
                 pokemon.setTradeable(false);
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName())) {
-                    ParticlesList.getEffect(effectId1).revertEffects(pokemon, applyAspect1, null);
+                    Effect.getEffect(effectId1).revertEffects(pokemon, applyAspect1, null);
                 } else {
-                    ParticlesList.getEffect(effectId2).revertEffects(pokemon, applyAspect1, null);
+                    Effect.getEffect(effectId2).revertEffects(pokemon, applyAspect1, null);
                 }
 
             } else if (pokemonStored == null &&

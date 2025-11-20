@@ -1,10 +1,8 @@
 package com.github.yajatkaul.mega_showdown.utils;
 
-import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
-import com.github.yajatkaul.mega_showdown.utils.particles.AnimationData;
-import com.github.yajatkaul.mega_showdown.utils.particles.MinecraftParticle;
-import com.github.yajatkaul.mega_showdown.utils.particles.SoundCodec;
-import net.minecraft.resources.ResourceLocation;
+import com.github.yajatkaul.mega_showdown.codec.particles.AnimationData;
+import com.github.yajatkaul.mega_showdown.codec.particles.MinecraftParticle;
+import com.github.yajatkaul.mega_showdown.codec.particles.SoundCodec;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,23 +36,5 @@ public class ParticlesList {
                 Optional.empty(),
                 Optional.of(new AnimationData(List.of("cry"), List.of(), List.of(), List.of(), 0, 0))
         );
-    }
-
-    public static Effect getEffect(String effectId) {
-        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId));
-        if (effect == null) {
-            return Effect.empty();
-        } else {
-            return effect;
-        }
-    }
-
-    public static Effect getEffect(ResourceLocation effectId) {
-        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId);
-        if (effect == null) {
-            return Effect.empty();
-        } else {
-            return effect;
-        }
     }
 }

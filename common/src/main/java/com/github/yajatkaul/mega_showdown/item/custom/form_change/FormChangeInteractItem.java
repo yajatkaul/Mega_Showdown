@@ -1,8 +1,8 @@
 package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemStack;
@@ -44,13 +44,13 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
         if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
             return InteractionResultHolder.pass(itemStack);
         } else if (pokemon.getAspects().contains(form_aspect_name)) {
-            ParticlesList.getEffect(effectId).revertEffects(pokemon, List.of(form_aspect_revert), null);
+            Effect.getEffect(effectId).revertEffects(pokemon, List.of(form_aspect_revert), null);
             itemStack.consume(consume, serverPlayer);
 
             return InteractionResultHolder.success(itemStack);
         }
 
-        ParticlesList.getEffect(effectId).applyEffects(pokemon, List.of(form_aspect_apply), null);
+        Effect.getEffect(effectId).applyEffects(pokemon, List.of(form_aspect_apply), null);
         itemStack.consume(consume, serverPlayer);
 
         return InteractionResultHolder.success(itemStack);

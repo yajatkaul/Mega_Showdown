@@ -7,13 +7,13 @@ import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.item.custom.gimmick.MegaStone;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import kotlin.Unit;
@@ -90,20 +90,20 @@ public record MegaGimmick(
         battle.dispatchWaitingToFront(5.9F, () -> Unit.INSTANCE);
 
         AspectUtils.appendRevertDataPokemon(
-                ParticlesList.getEffect("mega_showdown:mega_evolution"),
+                Effect.getEffect("mega_showdown:mega_evolution"),
                 revertAspects,
                 pokemon,
                 "battle_end_revert"
         );
 
-        ParticlesList.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, aspects, null, battlePokemon);
+        Effect.getEffect("mega_showdown:mega_evolution").applyEffectsBattle(pokemon, aspects, null, battlePokemon);
     }
 
     private static void megaEvolve(Pokemon pokemon, List<String> aspects, List<String> revertAspects) {
-        ParticlesList.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, aspects, null);
+        Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, aspects, null);
 
         AspectUtils.appendRevertDataPokemon(
-                ParticlesList.getEffect("mega_showdown:mega_evolution"),
+                Effect.getEffect("mega_showdown:mega_evolution"),
                 revertAspects,
                 pokemon,
                 "revert_aspects"
@@ -131,9 +131,9 @@ public record MegaGimmick(
         if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
             if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
                 if (pokemon.getSpecies().getName().equals("Rayquaza")) {
-                    ParticlesList.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, List.of("mega_evolution=none"), null);
+                    Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, List.of("mega_evolution=none"), null);
                 } else {
-                    ParticlesList.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, megaGimmick.aspect_conditions.revert_aspects(), null);
+                    Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, megaGimmick.aspect_conditions.revert_aspects(), null);
                 }
                 pokemon.setTradeable(true);
             } else if (pokemonEntity.getPokemon().getSpecies().getName().equals("Rayquaza")) {

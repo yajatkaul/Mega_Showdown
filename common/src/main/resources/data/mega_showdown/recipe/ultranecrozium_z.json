@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " c ",
+    "lcd",
+    " c "
+  ],
+  "key": {
+    "c": {
+      "item": "cobblemon:dragon_gem"
+    },
+    "d": {
+      "item": "mega_showdown:lunalium_z"
+    },
+    "l": {
+      "item": "mega_showdown:solganium_z"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:ultranecrozium_z"
+  }
+}

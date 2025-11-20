@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "mega_showdown:root_sprite",
+      "id": "mega_showdown:omni_ring",
       "count": 1
     },
     "title": {
@@ -12,7 +12,7 @@
       "translate": "advancement.mega_showdown.root.description",
       "fallback": "Let the showdown begin!"
     },
-    "background": "mega_showdown:textures/block/mega_evo_brick.png",
+    "background": "mega_showdown:textures/block/mega_meteorid_block.png",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,

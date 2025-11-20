@@ -1,8 +1,8 @@
 package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class FormChangeHeldItem extends ToolTipItem {
             if (onApplyCallback != null) {
                 onApplyCallback.accept(pokemon);
             }
-            ParticlesList.getEffect(effectId).applyEffects(pokemon, List.of(applyAspect), null);
+            Effect.getEffect(effectId).applyEffects(pokemon, List.of(applyAspect), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -45,7 +45,7 @@ public class FormChangeHeldItem extends ToolTipItem {
             if (onRevertCallback != null) {
                 onRevertCallback.accept(pokemon);
             }
-            ParticlesList.getEffect(effectId).revertEffects(pokemon, List.of(revertAspect), null);
+            Effect.getEffect(effectId).revertEffects(pokemon, List.of(revertAspect), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

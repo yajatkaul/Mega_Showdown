@@ -2,8 +2,8 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,9 +36,9 @@ public class Gracedia extends ToolTipBlockItem {
                 boolean isSkyFormActive = pokemon.getAspects().contains("sky-forme");
 
                 if (isDaytime && !isSkyFormActive) {
-                    ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("gracidea_forme=sky"), null);
+                    Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("gracidea_forme=sky"), null);
                 } else if (!isDaytime && isSkyFormActive) {
-                    ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("gracidea_forme=land"), null);
+                    Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("gracidea_forme=land"), null);
                 }
 
                 return InteractionResult.SUCCESS;

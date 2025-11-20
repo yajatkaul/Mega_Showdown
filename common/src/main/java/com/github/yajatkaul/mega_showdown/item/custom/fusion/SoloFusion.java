@@ -4,9 +4,9 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -94,7 +94,7 @@ public class SoloFusion extends ToolTipItem {
                     return InteractionResultHolder.pass(stack);
                 }
 
-                ParticlesList.getEffect(effectId).revertEffects(pokemon, revertAspect, null);
+                Effect.getEffect(effectId).revertEffects(pokemon, revertAspect, null);
 
                 pokemon.setTradeable(true);
 
@@ -109,7 +109,7 @@ public class SoloFusion extends ToolTipItem {
                 stack.set(MegaShowdownDataComponents.NBT_COMPONENT.get(), null);
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
-                ParticlesList.getEffect(effectId).revertEffects(pokemon, applyAspect, null);
+                Effect.getEffect(effectId).revertEffects(pokemon, applyAspect, null);
                 pokemon.setTradeable(false);
 
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(level.registryAccess(), new CompoundTag());

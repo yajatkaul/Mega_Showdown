@@ -2,7 +2,7 @@ package com.github.yajatkaul.mega_showdown.block.custom;
 
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -57,7 +57,7 @@ public class RotomUnitBlock extends Block {
 
         if (entity instanceof PokemonEntity pokemonEntity && pokemonEntity.getPokemon().getSpecies().getName().equals("Rotom") && pokemonEntity.getAspects().stream().noneMatch(rotomAspects::contains)) {
             new StringSpeciesFeature("appliance", form).apply(pokemonEntity);
-            ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), null);
+            Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemonEntity.getPokemon(), List.of(String.format("appliance=%s", form)), null);
             level.destroyBlock(pos, false);
             level.levelEvent(2001, pos, Block.getId(state));
         }

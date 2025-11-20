@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.codec;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -59,11 +58,11 @@ public record FormChangeToggleInteractItem(
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
                 if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                    ParticlesList.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+                    Effect.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
                 }
             } else {
                 if (aspect_conditions.get(currentIndex + 1).validate_apply(pokemon)) {
-                    ParticlesList.getEffect(effects.get(currentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
+                    Effect.getEffect(effects.get(currentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
                 }
             }
             stack.consume(consume, livingEntity);

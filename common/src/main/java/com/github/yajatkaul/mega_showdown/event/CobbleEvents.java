@@ -30,6 +30,7 @@ import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
 import com.github.yajatkaul.mega_showdown.api.event.UltraBurstCallback;
 import com.github.yajatkaul.mega_showdown.codec.BattleFormChange;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.codec.HeldItemFormChange;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
@@ -90,14 +91,14 @@ public class CobbleEvents {
             if (formeChangeEvent.getFormeName().equals(battleFormChange.showdownFormChangeId())
                     && battleFormChange.pokemons().contains(pokemon.getSpecies().getName())
                     && battleFormChange.aspects().validate_apply(pokemon)) {
-                ParticlesList.getEffect(battleFormChange.effect()).applyEffectsBattle(pokemon,
+                Effect.getEffect(battleFormChange.effect()).applyEffectsBattle(pokemon,
                         battleFormChange.aspects().apply_aspects(),
                         null,
                         battlePokemon
                 );
 
                 AspectUtils.appendRevertDataPokemon(
-                        ParticlesList.getEffect(battleFormChange.effect()),
+                        Effect.getEffect(battleFormChange.effect()),
                         battleFormChange.aspects().revert_aspects(),
                         pokemon,
                         "battle_end_revert"
@@ -255,7 +256,7 @@ public class CobbleEvents {
 
         GlowHandler.applyZGlow(pokemonEntity);
 
-        ParticlesList.getEffect("mega_showdown:z_move").applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
+        Effect.getEffect("mega_showdown:z_move").applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
     }
 
     private static void healedPokemons(PokemonHealedEvent pokemonHealedEvent) {
@@ -277,9 +278,9 @@ public class CobbleEvents {
         AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
 
         if (pokemon.getSpecies().getName().equals("Terapagos")) {
-            ParticlesList.getEffect("mega_showdown:terapagos_stellar").applyEffects(pokemon, List.of("tera_form=stellar"), null);
+            Effect.getEffect("mega_showdown:terapagos_stellar").applyEffects(pokemon, List.of("tera_form=stellar"), null);
         } else if (pokemon.getSpecies().getName().equals("Ogerpon")) {
-            ParticlesList.getEffect("mega_showdown:orgepon_embody").applyEffects(pokemon, List.of("embody-aspect=true"), null);
+            Effect.getEffect("mega_showdown:orgepon_embody").applyEffects(pokemon, List.of("embody-aspect=true"), null);
         }
 
         pokemon.getPersistentData().putBoolean("is_tera", true);

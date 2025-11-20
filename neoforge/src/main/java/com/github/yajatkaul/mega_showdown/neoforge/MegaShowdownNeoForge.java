@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService;
 import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
+import com.github.yajatkaul.mega_showdown.command.MegaShowdownCommands;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.neoforge.datapack.DatapackRegistry;
@@ -16,6 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import org.jetbrains.annotations.NotNull;
@@ -53,5 +55,10 @@ public final class MegaShowdownNeoForge {
             }
             return Unit.INSTANCE;
         });
+    }
+
+    @SubscribeEvent
+    public void onCommandRegistration(RegisterCommandsEvent event) {
+        MegaShowdownCommands.registerCommands(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
     }
 }

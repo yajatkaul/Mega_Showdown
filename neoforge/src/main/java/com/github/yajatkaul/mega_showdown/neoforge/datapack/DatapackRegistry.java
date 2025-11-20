@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.neoforge.datapack;
 import com.github.yajatkaul.mega_showdown.codec.*;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
-import com.github.yajatkaul.mega_showdown.utils.Effect;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 
 import static com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister.*;

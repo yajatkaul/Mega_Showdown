@@ -5,10 +5,10 @@ import com.cobblemon.mod.common.api.pokemon.PokemonProperties;
 import com.cobblemon.mod.common.api.types.tera.TeraTypes;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import io.wispforest.accessories.api.AccessoriesContainer;
 import io.wispforest.accessories.data.SlotTypeLoader;
@@ -134,7 +134,7 @@ public class LikosPendant extends ToolTipItem {
 
             level.addFreshEntity(terapagos);
 
-            ParticlesList.getEffect("mega_showdown:pendant_effect").applyEffects(terapagos.getPokemon(), List.of(), null);
+            Effect.getEffect("mega_showdown:pendant_effect").applyEffects(terapagos.getPokemon(), List.of(), null);
         }
     }
 }

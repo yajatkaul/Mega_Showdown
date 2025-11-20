@@ -2,8 +2,8 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemStack;
@@ -56,9 +56,9 @@ public class RotomCatalogue extends PokemonSelectingItem {
         }
 
         if (currentIndex + 1 > form_apply_order.size() - 1) {
-            ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
+            Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(form_aspect_apply_order.getFirst()), null);
         } else {
-            ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
+            Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(form_aspect_apply_order.get(currentIndex + 1)), null);
         }
         AdvancementHelper.grantAdvancement(serverPlayer, "rotom/rotom_form_change");
 

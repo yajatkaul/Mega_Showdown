@@ -3,7 +3,6 @@ package com.github.yajatkaul.mega_showdown.codec;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -41,11 +40,11 @@ public record FormChangeInteractItem(
             }
 
             if (aspect_conditions.validate_apply(pokemon)) {
-                ParticlesList.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.apply_aspects(), null);
+                Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.apply_aspects(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             } else if (aspect_conditions.validate_revert(pokemon)) {
-                ParticlesList.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.revert_aspects(), null);
+                Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.revert_aspects(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             }

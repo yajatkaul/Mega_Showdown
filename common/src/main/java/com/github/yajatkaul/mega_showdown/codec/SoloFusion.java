@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -84,7 +83,7 @@ public record SoloFusion(
                 }
 
                 if (aspect_conditions.validate_revert(pokemon)) {
-                    ParticlesList.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
+                    Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -103,7 +102,7 @@ public record SoloFusion(
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && isMain) {
                 if (aspect_conditions.validate_apply(pokemon)) {
-                    ParticlesList.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.apply_aspects(), null);
+                    Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.apply_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }

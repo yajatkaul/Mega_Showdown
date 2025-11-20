@@ -2,8 +2,8 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -55,9 +55,9 @@ public class DeoxysMeteoridItem extends ToolTipBlockItem {
             }
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
-                ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+                Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
             } else {
-                ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
+                Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
             }
 
             return InteractionResult.SUCCESS;

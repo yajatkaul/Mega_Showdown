@@ -3,8 +3,8 @@ package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -43,7 +43,7 @@ public class RotomUnitItem extends ToolTipBlockItem {
                 return InteractionResult.PASS;
             }
 
-            ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), null);
+            Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), null);
             itemStack.consume(1, player);
             AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
             return InteractionResult.SUCCESS;

@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown.codec;
 
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -25,7 +24,7 @@ public record HeldItemFormChange(
 
     public void apply(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName()) && aspect_conditions().validate_apply(pokemon)) {
-            ParticlesList.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.apply_aspects(), null);
+            Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.apply_aspects(), null);
             if (!tradable) {
                 pokemon.setTradeable(false);
             }
@@ -34,7 +33,7 @@ public record HeldItemFormChange(
 
     public void revert(Pokemon pokemon) {
         if (pokemons.contains(pokemon.getSpecies().getName()) && aspect_conditions().validate_revert(pokemon)) {
-            ParticlesList.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
+            Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
             if (!tradable) {
                 pokemon.setTradeable(true);
             }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "cobblemon:fairy_gem"
+  },
+  "addition": {
+    "tag": "minecraft:chicken_food"
+  },
+  "template": {
+    "item": "cobblemon:terrain_extender"
+  },
+  "result": {
+    "id": "cobblemon:misty_seed",
+    "count": 1
+  }
+}

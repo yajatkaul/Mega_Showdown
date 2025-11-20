@@ -6,7 +6,6 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -99,9 +98,9 @@ public record DuFusion(
 
                 if (pokemons1.contains(pokemonInside.getSpecies().getName()) &&
                         pokemon_1_aspect_conditions.validate_revert(pokemon)) {
-                    ParticlesList.getEffect(effect1.get()).revertEffects(pokemon, pokemon_1_aspect_conditions.revert_aspects(), null);
+                    Effect.getEffect(effect1.get()).revertEffects(pokemon, pokemon_1_aspect_conditions.revert_aspects(), null);
                 } else if (pokemon_2_aspect_conditions.validate_revert(pokemon)) {
-                    ParticlesList.getEffect(effect2.get()).revertEffects(pokemon, pokemon_2_aspect_conditions.revert_aspects(), null);
+                    Effect.getEffect(effect2.get()).revertEffects(pokemon, pokemon_2_aspect_conditions.revert_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }
@@ -122,9 +121,9 @@ public record DuFusion(
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName()) &&
                         pokemon_1_aspect_conditions.validate_apply(pokemon)) {
-                    ParticlesList.getEffect(effect1.get()).applyEffects(pokemon, pokemon_1_aspect_conditions.apply_aspects(), null);
+                    Effect.getEffect(effect1.get()).applyEffects(pokemon, pokemon_1_aspect_conditions.apply_aspects(), null);
                 } else if (pokemon_2_aspect_conditions.validate_apply(pokemon)) {
-                    ParticlesList.getEffect(effect1.get()).applyEffects(pokemon, pokemon_2_aspect_conditions.apply_aspects(), null);
+                    Effect.getEffect(effect1.get()).applyEffects(pokemon, pokemon_2_aspect_conditions.apply_aspects(), null);
                 } else {
                     return InteractionResultHolder.pass(stack);
                 }

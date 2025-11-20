@@ -5,12 +5,12 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.screen.custom.ZygardeCubesScreenHandler;
 import com.github.yajatkaul.mega_showdown.utils.NBTInventoryUtils;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -110,10 +110,10 @@ public class ZygardeCube extends ToolTipItem {
                 return InteractionResultHolder.success(stack);
             } else {
                 if (pokemon.getAspects().contains("10-percent")) {
-                    ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=50"), null);
+                    Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=50"), null);
                     return InteractionResultHolder.success(stack);
                 } else if (pokemon.getAspects().contains("50-percent")) {
-                    ParticlesList.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=10"), null);
+                    Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=10"), null);
                     return InteractionResultHolder.success(stack);
                 }
             }

@@ -3,12 +3,12 @@ package com.github.yajatkaul.mega_showdown.networking;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.networking.packets.MegaEvo;
 import com.github.yajatkaul.mega_showdown.networking.packets.SecretSwordMoveSwapPacket;
 import com.github.yajatkaul.mega_showdown.networking.packets.UltraBurst;
-import com.github.yajatkaul.mega_showdown.utils.ParticlesList;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -64,9 +64,9 @@ public class MegaShowdownNetworkHandler {
                     boolean isResolute = pokemon.getAspects().contains("resolute-form");
 
                     if (!isResolute && hasSecretSword) {
-                        ParticlesList.getEffect("mega_showdown:keldeo_effect").applyEffects(pokemon, List.of("sword_form=resolute"), null);
+                        Effect.getEffect("mega_showdown:keldeo_effect").applyEffects(pokemon, List.of("sword_form=resolute"), null);
                     } else if (isResolute && !hasSecretSword) {
-                        ParticlesList.getEffect("mega_showdown:keldeo_effect").revertEffects(pokemon, List.of("sword_form=ordinary"), null);
+                        Effect.getEffect("mega_showdown:keldeo_effect").revertEffects(pokemon, List.of("sword_form=ordinary"), null);
                     }
                 }
             }
