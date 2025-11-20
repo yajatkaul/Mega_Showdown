@@ -1,13 +1,13 @@
 {
   "species": "cobblemon:aegislash",
-  "order": 1,
+  "order": 2,
   "variations": [
     {
       "aspects": [
         "blade-forme"
       ],
-      "poser": "cobblemon:aegislash_blade",
-      "model": "cobblemon:aegislash_blade.geo",
+      "poser": "cobblemon:aegislash_blade2",
+      "model": "cobblemon:aegislash.geo",
       "texture": "cobblemon:textures/pokemon/0681_aegislash/aegislash.png",
       "layers": []
     },

@@ -23,7 +23,7 @@
         "isBattle": true,
         "animations": [
           "q.look('head')",
-          "q.bedrock('aegislash', 'battle_idle')"
+          "q.bedrock('aegislash', 'blade_forme')"
         ],
         "quirks": ["q.bedrock_quirk('aegislash', 'blink')"]
       },
