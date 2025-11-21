@@ -1,0 +1,56 @@
+{
+	"format_version": "1.10.0",
+	"particle_effect": {
+		"description": {
+			"identifier": "mega_showdown:hazard_stealth_rock",
+			"basic_render_parameters": {
+				"material": "particles_alpha",
+				"texture": "textures/particles/stealth_rock"
+			}
+		},
+		"curves": {
+			"variable.particle_scale": {
+				"type": "linear",
+				"input": "v.particle_age",
+				"horizontal_range": "v.particle_lifetime",
+				"nodes": [0, 0.5, 0.5, 0.5, 0]
+			}
+		},
+		"components": {
+			"minecraft:emitter_local_space": {
+				"position": true,
+				"rotation": false
+			},
+			"minecraft:emitter_rate_steady": {
+				"spawn_rate": 1,
+				"max_particles": 6
+			},
+			"minecraft:emitter_lifetime_looping": {
+				"active_time": 1
+			},
+			"minecraft:emitter_shape_point": {},
+			"minecraft:particle_lifetime_expression": {
+				"max_lifetime": 3
+			},
+			"minecraft:particle_initial_spin": {
+				"rotation": "math.random(-180, 180)",
+				"rotation_rate": "math.random(-50, 50)"
+			},
+			"minecraft:particle_initial_speed": "math.random(0, 2)",
+			"minecraft:particle_motion_parametric": {
+				"relative_position": ["math.sin(math.mod(v.particle_random_1 * 360 + v.particle_age * 0.75, 360) * 180 / math.pi) * q.entity_radius * 1.5", "v.particle_random_1 * 1.5 + 1", "-math.cos(math.mod(v.particle_random_1 * 360 + v.particle_age * 0.75, 360) * 180 / math.pi) * q.entity_radius * 1.5"]
+			},
+			"minecraft:particle_appearance_billboard": {
+				"size": ["math.lerp(0, 0.75, v.particle_scale)", "math.lerp(0, 0.75, v.particle_scale)"],
+				"facing_camera_mode": "rotate_xyz",
+				"uv": {
+					"texture_width": 64,
+					"texture_height": 16,
+					"uv": ["math.floor(variable.particle_random_2*4)*16", 0],
+					"uv_size": [16, 16]
+				}
+			},
+			"minecraft:particle_appearance_lighting": {}
+		}
+	}
+}

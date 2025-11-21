@@ -23,6 +23,7 @@
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",
     "battle.MoveActionResponseMixin",
+    "battle.PokemonBattleMixin",
     "battle.ShowdownActionRequestMixin",
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
