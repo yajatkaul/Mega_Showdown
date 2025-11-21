@@ -6,15 +6,28 @@
       "aspects": [
         "mega"
       ],
+      "poser": "cobblemon:pinsir_mega",
       "model": "cobblemon:pinsir_mega.geo",
       "texture": "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "wings",
+          "texture": {
+            "frames": [
+              "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega_transparency.png"
+            ]
+          },
+          "emissive": false,
+          "translucent": true
+        }
+      ]
     },
     {
       "aspects": [
         "mega",
         "shiny"
       ],
+      "poser": "cobblemon:pinsir_mega",
       "model": "cobblemon:pinsir_mega.geo",
       "texture": "cobblemon:textures/pokemon/0127_pinsir/pinsir_mega_shiny.png"
     }
