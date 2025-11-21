@@ -364,19 +364,19 @@ public class CobbleEvents {
             formChangeItem.apply(pokemon);
         }
 
-        HeldItemFormChange heldItemFormChangeReturning = ComponentUtils.getComponent(HeldItemFormChange.class, itemReturning);
+        HeldItemFormChange heldItemFormChangeReturning = RegistryLocator.getComponent(HeldItemFormChange.class, itemReturning);
 
         if (heldItemFormChangeReturning != null) {
             heldItemFormChangeReturning.revert(pokemon);
         }
 
-        HeldItemFormChange heldItemFormChangeReceiving = ComponentUtils.getComponent(HeldItemFormChange.class, itemReceiving);
+        HeldItemFormChange heldItemFormChangeReceiving = RegistryLocator.getComponent(HeldItemFormChange.class, itemReceiving);
 
         if (heldItemFormChangeReceiving != null) {
             heldItemFormChangeReceiving.apply(pokemon);
         }
 
-        MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, itemReturning);
+        MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, itemReturning);
 
         if (megaGimmick != null
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())

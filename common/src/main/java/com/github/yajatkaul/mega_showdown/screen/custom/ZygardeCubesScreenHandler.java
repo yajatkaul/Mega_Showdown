@@ -1,9 +1,8 @@
 package com.github.yajatkaul.mega_showdown.screen.custom;
 
+import com.github.yajatkaul.mega_showdown.components.InventoryStorage;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
-import com.github.yajatkaul.mega_showdown.utils.NBTInventoryUtils;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
     private final ItemStack cube;
+    private final InventoryStorage inventoryStorage;
     private final SimpleContainer cubeInv;
     private final Level level;
 
@@ -28,14 +28,10 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
         this.cube = cube;
         this.level = level;
 
-        CompoundTag compoundTag = cube.get(MegaShowdownDataComponents.NBT_INV.get());
-        if (compoundTag == null) {
-            compoundTag = new CompoundTag();
-        }
-        cube.set(MegaShowdownDataComponents.NBT_INV.get(), compoundTag);
+        this.inventoryStorage = cube.getOrDefault(MegaShowdownDataComponents.INVENTORY.get(), InventoryStorage.defaultStorage(2));
 
         if (level != null) {
-            this.cubeInv = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
+            this.cubeInv = inventoryStorage.getInventory(level.registryAccess());
         } else {
             this.cubeInv = new SimpleContainer(2);
         }
@@ -92,8 +88,7 @@ public class ZygardeCubesScreenHandler extends AbstractContainerMenu {
     public void removed(Player player) {
         super.removed(player);
         if (level != null) {
-            CompoundTag tag = NBTInventoryUtils.serializeInventory(this.cubeInv, level.registryAccess());
-            this.cube.set(MegaShowdownDataComponents.NBT_INV.get(), tag);
+            this.cube.set(MegaShowdownDataComponents.INVENTORY.get(), this.inventoryStorage.save(level.registryAccess(), this.cubeInv));
         }
     }
 

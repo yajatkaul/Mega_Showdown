@@ -10,7 +10,7 @@ import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
-import com.github.yajatkaul.mega_showdown.utils.ComponentUtils;
+import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.ChatFormatting;
@@ -67,7 +67,7 @@ public record MegaGimmick(
 
     public static void megaEvolveInBattle(Pokemon pokemon, BattlePokemon battlePokemon) {
         ItemStack heldItem = pokemon.heldItem();
-        MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, heldItem);
+        MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
         if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
             if (pokemon.getSpecies().getName().equals("Rayquaza")) {
@@ -113,7 +113,7 @@ public record MegaGimmick(
         }
 
         ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
-        MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, heldItem);
+        MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
         Pokemon pokemon = pokemonEntity.getPokemon();
 

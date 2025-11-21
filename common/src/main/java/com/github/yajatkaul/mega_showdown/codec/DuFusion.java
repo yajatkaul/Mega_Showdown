@@ -5,11 +5,13 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
+import com.github.yajatkaul.mega_showdown.components.PokemonStorge;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -67,11 +69,9 @@ public record DuFusion(
             entity = hitResult.getEntity();
         }
 
-        CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_POKEMON.get());
-        Pokemon pokemonStored = null;
-        if (compoundTag != null) {
-            pokemonStored = new Pokemon().loadFromNBT(level.registryAccess(), compoundTag);
-        }
+        RegistryAccess registryAccess = level.registryAccess();
+        PokemonStorge pokemonStorge = stack.getOrDefault(MegaShowdownDataComponents.POKEMON_STORAGE.get(), PokemonStorge.defaultStorage());
+        Pokemon pokemonStored = pokemonStorge.getPokemon(registryAccess);
 
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
@@ -110,7 +110,7 @@ public record DuFusion(
 
                 pokemon.setTradeable(true);
 
-                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
+                stack.remove(MegaShowdownDataComponents.POKEMON_STORAGE.get());
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
             } else if (pokemonStored != null && mainPokemons.contains(pokemon.getSpecies().getName())) {
                 pokemon.setTradeable(false);
@@ -118,7 +118,7 @@ public record DuFusion(
                 CompoundTag otherPokemonNbt = pokemonStored.saveToNBT(level.registryAccess(), new CompoundTag());
                 pokemon.getPersistentData().put("fusion_pokemon", otherPokemonNbt);
 
-                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
+                stack.remove(MegaShowdownDataComponents.POKEMON_STORAGE.get());
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
                 pokemon.setTradeable(false);
 
@@ -135,15 +135,14 @@ public record DuFusion(
                     pokemons1.contains(pokemon.getSpecies().getName()) ||
                     pokemons2.contains(pokemon.getSpecies().getName())
             ) {
-                CompoundTag pokemonNBT = pokemon.saveToNBT(level.registryAccess(), new CompoundTag());
-                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), pokemonNBT);
+                stack.set(MegaShowdownDataComponents.POKEMON_STORAGE.get(), pokemonStorge.save(registryAccess, pokemon));
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".charged"));
 
                 playerPartyStore.remove(pokemon);
             }
         } else if (pokemonStored != null) {
             playerPartyStore.add(pokemonStored);
-            stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), null);
+            stack.remove(MegaShowdownDataComponents.POKEMON_STORAGE.get());
             stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown." + namespace + ".inactive"));
         }
 
@@ -155,11 +154,9 @@ public record DuFusion(
     }
 
     public void onDestroyed(ItemEntity itemEntity) {
-        CompoundTag compoundTag = itemEntity.getItem().get(MegaShowdownDataComponents.NBT_POKEMON.get());
-        Pokemon pokemonStored = null;
-        if (compoundTag != null) {
-            pokemonStored = new Pokemon().loadFromNBT(itemEntity.level().registryAccess(), compoundTag);
-        }
+        PokemonStorge pokemonStorge = itemEntity.getItem().getOrDefault(MegaShowdownDataComponents.POKEMON_STORAGE.get(), PokemonStorge.defaultStorage());
+        Pokemon pokemonStored = pokemonStorge.getPokemon(itemEntity.registryAccess());
+
         if (pokemonStored != null) {
             if (itemEntity.getOwner() instanceof ServerPlayer player) {
                 PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);

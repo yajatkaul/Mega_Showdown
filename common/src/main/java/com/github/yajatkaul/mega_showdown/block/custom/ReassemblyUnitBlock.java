@@ -8,16 +8,17 @@ import com.cobblemon.mod.common.item.PokeBallItem;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.block_entity.ReassemblyUnitBlockEntity;
+import com.github.yajatkaul.mega_showdown.components.InventoryStorage;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
+import com.github.yajatkaul.mega_showdown.components.PokemonStorge;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.form_change.ZygardeCube;
-import com.github.yajatkaul.mega_showdown.utils.NBTInventoryUtils;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -146,17 +147,15 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
 
         if (level.getBlockEntity(pos) instanceof ReassemblyUnitBlockEntity blockEntity) {
             if (itemStack.getItem() instanceof ZygardeCube) {
-                CompoundTag tag = itemStack.getOrDefault(MegaShowdownDataComponents.NBT_POKEMON.get(),
-                        new CompoundTag());
-                CompoundTag storedTag = itemStack.get(MegaShowdownDataComponents.NBT_INV.get());
-                Pokemon storedPokemon = null;
-                if (storedTag != null) {
-                    storedPokemon = new Pokemon().loadFromNBT(level.registryAccess(), storedTag);
-                }
+                InventoryStorage inventoryStorage = itemStack.getOrDefault(MegaShowdownDataComponents.INVENTORY.get(), InventoryStorage.defaultStorage(2));
+                RegistryAccess registryAccess = level.registryAccess();
+
+                PokemonStorge pokemonStorge = itemStack.getOrDefault(MegaShowdownDataComponents.POKEMON_STORAGE.get(), PokemonStorge.defaultStorage());
+                Pokemon storedPokemon = pokemonStorge.getPokemon(registryAccess);
 
                 if (blockEntity.isIdle()) {
                     if (storedPokemon == null) {
-                        SimpleContainer simpleContainer = NBTInventoryUtils.deserializeInventory(tag, level.registryAccess());
+                        SimpleContainer simpleContainer = inventoryStorage.getInventory(registryAccess);
                         ItemStack slot0 = simpleContainer.getItem(0);
                         ItemStack slot1 = simpleContainer.getItem(1);
 
@@ -186,7 +185,7 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                             return ItemInteractionResult.FAIL;
                         }
 
-                        itemStack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), NBTInventoryUtils.serializeInventory(simpleContainer, level.registryAccess()));
+                        itemStack.set(MegaShowdownDataComponents.INVENTORY.get(), inventoryStorage.save(registryAccess, simpleContainer));
                     } else {
                         ItemStack cells = new ItemStack(MegaShowdownItems.ZYGARDE_CELL.get());
                         ItemStack cores = new ItemStack(MegaShowdownItems.ZYGARDE_CORE.get());
@@ -209,7 +208,7 @@ public class ReassemblyUnitBlock extends BaseEntityBlock {
                         level.addFreshEntity(coreDrop);
 
                         itemStack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.empty"));
-                        itemStack.remove(MegaShowdownDataComponents.NBT_INV.get());
+                        itemStack.remove(MegaShowdownDataComponents.POKEMON_STORAGE.get());
                     }
                     return ItemInteractionResult.SUCCESS;
                 } else {

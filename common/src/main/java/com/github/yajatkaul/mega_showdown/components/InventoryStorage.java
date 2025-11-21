@@ -1,6 +1,8 @@
-package com.github.yajatkaul.mega_showdown.utils;
+package com.github.yajatkaul.mega_showdown.components;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -10,8 +12,25 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.Optional;
 
-public class NBTInventoryUtils {
-    public static CompoundTag serializeInventory(SimpleContainer inventory, HolderLookup.Provider registryAccess) {
+public record InventoryStorage(
+        CompoundTag tag,
+        int count
+) {
+    public static final Codec<InventoryStorage> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            CompoundTag.CODEC.fieldOf("tag").forGetter(InventoryStorage::tag),
+            Codec.INT.fieldOf("count").forGetter(InventoryStorage::count)
+    ).apply(instance, InventoryStorage::new));
+
+    public static InventoryStorage defaultStorage(int count) {
+        return new InventoryStorage(new CompoundTag(), count);
+    }
+
+    public InventoryStorage save(HolderLookup.Provider registryAccess, SimpleContainer inventory) {
+        if (registryAccess == null) {
+            MegaShowdown.LOGGER.error("Registry Access is null during serialization");
+            return new InventoryStorage(new CompoundTag(), count);
+        }
+
         CompoundTag tag = new CompoundTag();
         ListTag itemsList = new ListTag();
 
@@ -29,14 +48,15 @@ public class NBTInventoryUtils {
         }
 
         tag.put("Items", itemsList);
-        return tag;
+        return new InventoryStorage(tag, count);
     }
 
-    public static SimpleContainer deserializeInventory(CompoundTag tag, HolderLookup.Provider registryAccess) {
+    public SimpleContainer getInventory(HolderLookup.Provider registryAccess) {
         if (registryAccess == null) {
-            MegaShowdown.LOGGER.error("Registry Access is null");
+            MegaShowdown.LOGGER.error("Registry Access is null deserialization");
+            return new SimpleContainer(1);
         }
-        SimpleContainer inventory = new SimpleContainer(2);
+        SimpleContainer inventory = new SimpleContainer(count);
         ListTag itemsList = tag.getList("Items", Tag.TAG_COMPOUND);
 
         for (int i = 0; i < itemsList.size(); i++) {

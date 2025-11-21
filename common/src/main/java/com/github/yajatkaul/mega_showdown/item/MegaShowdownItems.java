@@ -23,6 +23,7 @@ import com.github.yajatkaul.mega_showdown.item.custom.tera.LikosPendant;
 import com.github.yajatkaul.mega_showdown.item.custom.tera.TeraShard;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
 import com.github.yajatkaul.mega_showdown.item.custom.z.SpecialZCrystal;
+import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -897,7 +898,7 @@ public class MegaShowdownItems {
     private static RegistrySupplier<Item> registerMegaStone(String name) {
         return ITEMS.register(name, () -> new MegaStone(
                         new Item.Properties()
-                                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), "mega")
+                                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.MEGA)
                                 .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(), ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
                                 .arch$tab(MegaShowdownTabs.MEGA_TAB)
                 )
@@ -1002,7 +1003,12 @@ public class MegaShowdownItems {
     }
 
     private static RegistrySupplier<Item> registerZElementalCrystals(String name, ElementalType type) {
-        return ITEMS.register(name, () -> new ElementalZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB),
+        return ITEMS.register(name, () -> new ElementalZCrystal(
+                new Item.Properties()
+                        .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.SHOWDOWN_ITEM)
+                        .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(),
+                                ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
+                        .arch$tab(MegaShowdownTabs.Z_TAB),
                 null,
                 null,
                 List.of("Arceus"),
@@ -1013,7 +1019,11 @@ public class MegaShowdownItems {
     }
 
     private static RegistrySupplier<Item> registerZSpecialCrystals(String name, ElementalType type) {
-        return ITEMS.register(name, () -> new SpecialZCrystal(new Item.Properties().arch$tab(MegaShowdownTabs.Z_TAB), type));
+        return ITEMS.register(name, () -> new SpecialZCrystal(new Item.Properties()
+                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.SHOWDOWN_ITEM)
+                .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(),
+                        ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
+                .arch$tab(MegaShowdownTabs.Z_TAB), type));
     }
 
     private static RegistrySupplier<Item> registerFormChangeHeldItems(String name, String revertAspect, String applyAspect, List<String> pokemons, String effectId, boolean tradable) {

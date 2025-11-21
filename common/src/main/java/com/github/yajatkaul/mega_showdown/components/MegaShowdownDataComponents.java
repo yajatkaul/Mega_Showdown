@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import dev.architectury.registry.registries.DeferredRegister;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Supplier;
@@ -14,17 +13,17 @@ public class MegaShowdownDataComponents {
     private static final DeferredRegister<DataComponentType<?>> REGISTRAR =
             DeferredRegister.create(MegaShowdown.MOD_ID, Registries.DATA_COMPONENT_TYPE);
 
-    public static final Supplier<DataComponentType<CompoundTag>> NBT_POKEMON = REGISTRAR.register(
-            "nbt_pokemon",
-            () -> DataComponentType.<CompoundTag>builder()
-                    .persistent(CompoundTag.CODEC)
+    public static final Supplier<DataComponentType<PokemonStorge>> POKEMON_STORAGE = REGISTRAR.register(
+            "pokemon_storage",
+            () -> DataComponentType.<PokemonStorge>builder()
+                    .persistent(PokemonStorge.CODEC)
                     .build()
     );
 
-    public static final Supplier<DataComponentType<CompoundTag>> NBT_INV = REGISTRAR.register(
-            "nbt_inv",
-            () -> DataComponentType.<CompoundTag>builder()
-                    .persistent(CompoundTag.CODEC)
+    public static final Supplier<DataComponentType<InventoryStorage>> INVENTORY = REGISTRAR.register(
+            "inventory",
+            () -> DataComponentType.<InventoryStorage>builder()
+                    .persistent(InventoryStorage.CODEC)
                     .build()
     );
 

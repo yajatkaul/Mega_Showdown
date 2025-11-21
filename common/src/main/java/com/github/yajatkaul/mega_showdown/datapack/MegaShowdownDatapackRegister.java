@@ -5,7 +5,7 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.codec.*;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
-import com.github.yajatkaul.mega_showdown.utils.ComponentUtils;
+import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -69,7 +69,7 @@ public class MegaShowdownDatapackRegister {
         }
 
         CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
-            ShowdownItem showdownItem = ComponentUtils.getComponent(ShowdownItem.class, stack);
+            ShowdownItem showdownItem = RegistryLocator.getComponent(ShowdownItem.class, stack);
 
             if (showdownItem == null) {
                 return null;
@@ -79,7 +79,7 @@ public class MegaShowdownDatapackRegister {
         }));
 
         CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
-            MegaGimmick megaGimmick = ComponentUtils.getComponent(MegaGimmick.class, stack);
+            MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, stack);
 
             if (megaGimmick == null) {
                 return null;

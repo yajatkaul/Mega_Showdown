@@ -22,10 +22,10 @@ public class MegaShowdownMenuTypes {
 
     public static void register() {
         MENUS.register();
-    }    public static final RegistrySupplier<MenuType<ZygardeCubesScreenHandler>> ZYGARDE_CUBE_MENU =
+    }
+
+    public static final RegistrySupplier<MenuType<ZygardeCubesScreenHandler>> ZYGARDE_CUBE_MENU =
             registerMenuType("zygade_menu", ZygardeCubesScreenHandler::new);
-
-
 
 
 }

@@ -5,42 +5,6 @@ import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 
 public class ShowdownItemsLoad {
     public static void load() {
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.ALORAICHIUM_Z.get().asItem(), "aloraichiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.BUGINIUM_Z.get().asItem(), "buginiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.DARKINIUM_Z.get().asItem(), "darkiniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.DECIDIUM_Z.get().asItem(), "decidiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.DRAGONIUM_Z.get().asItem(), "dragoniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.EEVIUM_Z.get().asItem(), "eeviumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.ELECTRIUM_Z.get().asItem(), "electriumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.FAIRIUM_Z.get().asItem(), "fairiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.FIGHTINIUM_Z.get().asItem(), "fightiniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.FIRIUM_Z.get().asItem(), "firiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.FLYINIUM_Z.get().asItem(), "flyiniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.GHOSTIUM_Z.get().asItem(), "ghostiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.GRASSIUM_Z.get().asItem(), "grassiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.GROUNDIUM_Z.get().asItem(), "groundiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.ICIUM_Z.get().asItem(), "iciumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.INCINIUM_Z.get().asItem(), "inciniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.KOMMONIUM_Z.get().asItem(), "kommoniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.LUNALIUM_Z.get().asItem(), "lunaliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.LYCANIUM_Z.get().asItem(), "lycaniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.MARSHADIUM_Z.get().asItem(), "marshadiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.MEWNIUM_Z.get().asItem(), "mewniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.MIMIKIUM_Z.get().asItem(), "mimikiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.NORMALIUM_Z.get().asItem(), "normaliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.PIKANIUM_Z.get().asItem(), "pikaniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.PIKASHUNIUM_Z.get().asItem(), "pikashuniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.POISONIUM_Z.get().asItem(), "poisoniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.PRIMARIUM_Z.get().asItem(), "primariumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.PSYCHIUM_Z.get().asItem(), "psychiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.ROCKIUM_Z.get().asItem(), "rockiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.SNORLIUM_Z.get().asItem(), "snorliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.SOLGANIUM_Z.get().asItem(), "solganiumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.STEELIUM_Z.get().asItem(), "steeliumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.TAPUNIUM_Z.get().asItem(), "tapuniumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.ULTRANECROZIUM_Z.get().asItem(), "ultranecroziumz");
-        CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.WATERIUM_Z.get().asItem(), "wateriumz");
-
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.BUG_MEMORY.get().asItem(), "bugmemory");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.DARK_MEMORY.get().asItem(), "darkmemory");
         CobblemonHeldItemManager.INSTANCE.registerRemap(MegaShowdownItems.DRAGON_MEMORY.get().asItem(), "dragonmemory");

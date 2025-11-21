@@ -5,7 +5,7 @@ import com.github.yajatkaul.mega_showdown.codec.DuFusion;
 import com.github.yajatkaul.mega_showdown.codec.FormChangeInteractItem;
 import com.github.yajatkaul.mega_showdown.codec.FormChangeToggleInteractItem;
 import com.github.yajatkaul.mega_showdown.codec.SoloFusion;
-import com.github.yajatkaul.mega_showdown.utils.ComponentUtils;
+import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -26,11 +26,11 @@ public class ItemStackMixin {
     private void onDestroyed(ItemEntity itemEntity, CallbackInfo ci) {
         ItemStack stack = itemEntity.getItem();
 
-        DuFusion duFusion = ComponentUtils.getComponent(DuFusion.class, stack);
+        DuFusion duFusion = RegistryLocator.getComponent(DuFusion.class, stack);
         if (duFusion != null) {
             duFusion.onDestroyed(itemEntity);
         }
-        SoloFusion soloFusion = ComponentUtils.getComponent(SoloFusion.class, stack);
+        SoloFusion soloFusion = RegistryLocator.getComponent(SoloFusion.class, stack);
         if (soloFusion != null) {
             soloFusion.onDestroyed(itemEntity);
         }
@@ -39,11 +39,11 @@ public class ItemStackMixin {
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void useOnEntity(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         ItemStack stack = player.getItemInHand(interactionHand);
-        DuFusion duFusion = ComponentUtils.getComponent(DuFusion.class, stack);
+        DuFusion duFusion = RegistryLocator.getComponent(DuFusion.class, stack);
         if (duFusion != null) {
             cir.setReturnValue(duFusion.use(level, player, interactionHand));
         }
-        SoloFusion soloFusion = ComponentUtils.getComponent(SoloFusion.class, stack);
+        SoloFusion soloFusion = RegistryLocator.getComponent(SoloFusion.class, stack);
         if (soloFusion != null) {
             cir.setReturnValue(soloFusion.use(level, player, interactionHand));
         }
@@ -53,13 +53,13 @@ public class ItemStackMixin {
     private void useOnEntity(Player player, LivingEntity entity, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
         if (entity instanceof PokemonEntity pokemonEntity) {
             ItemStack stack = player.getItemInHand(interactionHand);
-            FormChangeToggleInteractItem formChangeToggleInteractItem = ComponentUtils.getComponent(FormChangeToggleInteractItem.class, stack);
+            FormChangeToggleInteractItem formChangeToggleInteractItem = RegistryLocator.getComponent(FormChangeToggleInteractItem.class, stack);
 
             if (formChangeToggleInteractItem != null) {
                 cir.setReturnValue(formChangeToggleInteractItem.interactLivingEntity(player, pokemonEntity, stack));
             }
 
-            FormChangeInteractItem formChangeInteractItem = ComponentUtils.getComponent(FormChangeInteractItem.class, stack);
+            FormChangeInteractItem formChangeInteractItem = RegistryLocator.getComponent(FormChangeInteractItem.class, stack);
 
             if (formChangeInteractItem != null) {
                 cir.setReturnValue(formChangeInteractItem.interactLivingEntity(player, pokemonEntity, stack));

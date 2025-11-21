@@ -4,18 +4,18 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
+import com.github.yajatkaul.mega_showdown.components.InventoryStorage;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
+import com.github.yajatkaul.mega_showdown.components.PokemonStorge;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
 import com.github.yajatkaul.mega_showdown.item.custom.ToolTipItem;
 import com.github.yajatkaul.mega_showdown.screen.custom.ZygardeCubesScreenHandler;
-import com.github.yajatkaul.mega_showdown.utils.NBTInventoryUtils;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -52,13 +52,11 @@ public class ZygardeCube extends ToolTipItem {
         if (hitResult != null) {
             entity = hitResult.getEntity();
         }
+        RegistryAccess registryAccess = level.registryAccess();
 
-        CompoundTag storedTag = stack.get(MegaShowdownDataComponents.NBT_POKEMON.get());
-        MegaShowdown.LOGGER.info(String.valueOf(storedTag));
-        Pokemon storedPokemon = null;
-        if (storedTag != null) {
-            storedPokemon = new Pokemon().loadFromNBT(level.registryAccess(), storedTag);
-        }
+        PokemonStorge pokemonStorge = stack.getOrDefault(MegaShowdownDataComponents.POKEMON_STORAGE.get(), PokemonStorge.defaultStorage());
+        Pokemon storedPokemon = pokemonStorge.getPokemon(registryAccess);
+
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty((ServerPlayer) player);
 
         if (entity instanceof PokemonEntity pokemonEntity) {
@@ -69,11 +67,8 @@ public class ZygardeCube extends ToolTipItem {
             }
 
             if (pokemon.getAspects().contains("core-percent")) {
-                CompoundTag compoundTag = stack.get(MegaShowdownDataComponents.NBT_INV.get());
-                if (compoundTag == null) {
-                    compoundTag = new CompoundTag();
-                }
-                SimpleContainer inventory = NBTInventoryUtils.deserializeInventory(compoundTag, level.registryAccess());
+                InventoryStorage inventoryStorage = stack.getOrDefault(MegaShowdownDataComponents.INVENTORY.get(), InventoryStorage.defaultStorage(2));
+                SimpleContainer inventory = inventoryStorage.getInventory(registryAccess);
 
                 if (inventory.getItem(1).getCount() >= 5) {
                     player.displayClientMessage(Component.translatable("message.mega_showdown.cube_core_full")
@@ -84,8 +79,7 @@ public class ZygardeCube extends ToolTipItem {
                 ItemStack newStack = new ItemStack(MegaShowdownItems.ZYGARDE_CORE.get(), count);
                 inventory.setItem(1, newStack);
 
-                CompoundTag updatedTag = NBTInventoryUtils.serializeInventory(inventory, level.registryAccess());
-                stack.set(MegaShowdownDataComponents.NBT_INV.get(), updatedTag);
+                stack.set(MegaShowdownDataComponents.INVENTORY.get(), inventoryStorage.save(registryAccess, inventory));
 
                 if (pokemon.isPlayerOwned()) {
                     Cobblemon.INSTANCE.getStorage().getParty(pokemon.getOwnerPlayer()).remove(pokemon);
@@ -100,34 +94,33 @@ public class ZygardeCube extends ToolTipItem {
                 return InteractionResultHolder.pass(stack);
             }
 
-            if (!pokemon.getAspects().contains("power-construct")) {
-                if (storedPokemon != null) {
-                    player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
-                            .withStyle(ChatFormatting.RED), true);
-                    return InteractionResultHolder.pass(stack);
-                }
-                stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
-                CompoundTag thisPokemon = pokemon.saveToNBT(level.registryAccess(), new CompoundTag());
-                stack.set(MegaShowdownDataComponents.NBT_POKEMON.get(), thisPokemon);
-                playerPartyStore.remove(pokemon);
-                return InteractionResultHolder.success(stack);
-            } else {
-                if (pokemon.getAspects().contains("10-percent")) {
-                    Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=50"), null);
+            if (pokemon.getSpecies().getName().equals("Zygarde")) {
+                if (!pokemon.getAspects().contains("power-construct")) {
+                    if (storedPokemon != null) {
+                        player.displayClientMessage(Component.translatable("message.mega_showdown.cube_full")
+                                .withStyle(ChatFormatting.RED), true);
+                        return InteractionResultHolder.pass(stack);
+                    }
+                    stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.full"));
+                    stack.set(MegaShowdownDataComponents.POKEMON_STORAGE.get(), pokemonStorge.save(registryAccess, pokemon));
+                    playerPartyStore.remove(pokemon);
                     return InteractionResultHolder.success(stack);
-                } else if (pokemon.getAspects().contains("50-percent")) {
-                    Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=10"), null);
-                    return InteractionResultHolder.success(stack);
+                } else {
+                    if (pokemon.getAspects().contains("10-percent")) {
+                        Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=50"), null);
+                        return InteractionResultHolder.success(stack);
+                    } else if (pokemon.getAspects().contains("50-percent")) {
+                        Effect.getEffect("mega_showdown:end_rod").applyEffects(pokemon, List.of("percent_cells=10"), null);
+                        return InteractionResultHolder.success(stack);
+                    }
                 }
             }
-
         } else {
             BlockHitResult blockHitResult = PlayerUtils.getBlockLookingAt(player, 4.5f);
-            MegaShowdown.LOGGER.info(String.valueOf(storedPokemon));
 
             if (storedPokemon != null) {
                 playerPartyStore.add(storedPokemon);
-                stack.remove(MegaShowdownDataComponents.NBT_POKEMON.get());
+                stack.remove(MegaShowdownDataComponents.POKEMON_STORAGE.get());
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.empty"));
 
                 return InteractionResultHolder.success(stack);
