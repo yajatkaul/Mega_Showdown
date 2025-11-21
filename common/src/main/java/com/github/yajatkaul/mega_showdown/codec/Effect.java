@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public record Effect(
@@ -31,21 +32,17 @@ public record Effect(
     }
 
     public static Effect getEffect(String effectId) {
-        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId));
-        if (effect == null) {
+        if (effectId == null){
             return Effect.empty();
-        } else {
-            return effect;
         }
+        return Objects.requireNonNullElseGet(MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId)), Effect::empty);
     }
 
     public static Effect getEffect(ResourceLocation effectId) {
-        Effect effect = MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId);
-        if (effect == null) {
+        if (effectId == null){
             return Effect.empty();
-        } else {
-            return effect;
         }
+        return Objects.requireNonNullElseGet(MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId), Effect::empty);
     }
 
     public void applyEffects(Pokemon context, List<String> aspects, @Nullable PokemonEntity other) {

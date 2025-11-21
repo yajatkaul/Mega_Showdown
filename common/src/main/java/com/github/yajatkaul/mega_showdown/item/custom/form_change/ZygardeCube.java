@@ -128,11 +128,10 @@ public class ZygardeCube extends ToolTipItem {
                 stack.set(DataComponents.CUSTOM_NAME, Component.translatable("item.mega_showdown.zygarde_cube.empty"));
 
                 return InteractionResultHolder.success(stack);
+            } else if (blockHitResult.getType() == HitResult.Type.BLOCK &&
+                    level.getBlockState(blockHitResult.getBlockPos()).is(MegaShowdownBlocks.REASSEMBLY_UNIT.get())) {
+                return InteractionResultHolder.pass(stack);
             } else {
-                if (blockHitResult.getType() == HitResult.Type.BLOCK &&
-                        level.getBlockState(blockHitResult.getBlockPos()).is(MegaShowdownBlocks.REASSEMBLY_UNIT.get())) {
-                    return InteractionResultHolder.pass(stack);
-                }
                 player.openMenu(
                         new SimpleMenuProvider(
                                 (id, playerInventory, playerEntity) ->
@@ -141,6 +140,7 @@ public class ZygardeCube extends ToolTipItem {
                         )
                 );
             }
+
             return InteractionResultHolder.pass(stack);
         }
 

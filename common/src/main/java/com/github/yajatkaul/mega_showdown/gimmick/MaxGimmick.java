@@ -17,8 +17,8 @@ public record MaxGimmick(
         AspectSetCodec aspectSetCodec
 ) {
     public static final Codec<MaxGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.STRING.fieldOf("pokemonShowdownId").forGetter(MaxGimmick::pokemonShowdownId),
-            Codec.STRING.fieldOf("gmaxMove").forGetter(MaxGimmick::gmaxMove),
+            Codec.STRING.fieldOf("pokemon_showdown_id").forGetter(MaxGimmick::pokemonShowdownId),
+            Codec.STRING.fieldOf("gmax_move").forGetter(MaxGimmick::gmaxMove),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MaxGimmick::aspectSetCodec)
     ).apply(instance, MaxGimmick::new));
 
