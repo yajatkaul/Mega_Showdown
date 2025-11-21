@@ -32,14 +32,14 @@ public record Effect(
     }
 
     public static Effect getEffect(String effectId) {
-        if (effectId == null){
+        if (effectId == null) {
             return Effect.empty();
         }
         return Objects.requireNonNullElseGet(MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(ResourceLocation.tryParse(effectId)), Effect::empty);
     }
 
     public static Effect getEffect(ResourceLocation effectId) {
-        if (effectId == null){
+        if (effectId == null) {
             return Effect.empty();
         }
         return Objects.requireNonNullElseGet(MegaShowdownDatapackRegister.EFFECT_REGISTRY.get(effectId), Effect::empty);

@@ -9,9 +9,22 @@ version = "${version}"
 displayName = "Cobblemon:Mega Showdown"
 authors = "Yajat Kaul"
 description = '''
-
+Adding mega evolutions, z-moves, teralization, dynamax, ultra burst and fusions to the game
+Features
+- Cosmetics
+- All form changes
+- Ridding supported
+- All 48 megas
+- Accessories support
+- Adds primal's
+- Adds tera gimmik
+- Adds mega gimmik
+- Adds z moves gimmik
+- Adds dynamax gimmik
+- Adds ultra burst gimmik
+- All fusion mons
 '''
-#logoFile = ""
+logoFile = "assets/mega_showdown/icon.png"
 
 [[dependencies.mega_showdown]]
 modId = "neoforge"
@@ -37,7 +50,14 @@ side = "BOTH"
 [[dependencies.mega_showdown]]
 modId = "cobblemon"
 type = "required"
-versionRange = "[1.6.1, )"
+versionRange = "[1.7, )"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.mega_showdown]]
+modId = "accessories"
+type = "required"
+versionRange = "[1.1.0-beta.52+1.21.1, )"
 ordering = "AFTER"
 side = "BOTH"
 

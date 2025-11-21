@@ -14,7 +14,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class PedestalBlockEntityRenderer implements BlockEntityRenderer<PedestalBlockEntity> {
-    public PedestalBlockEntityRenderer(BlockEntityRendererProvider.Context context) {}
+    public PedestalBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
+    }
 
     @Override
     public void render(PedestalBlockEntity blockEntity, float partialTick, PoseStack poseStack,

@@ -13,7 +13,9 @@ public class MegaShowdownBlockEntities {
 
     public static void register() {
         BLOCK_ENTITIES.register();
-    }    public static final RegistrySupplier<BlockEntityType<ReassemblyUnitBlockEntity>> REASSEMBLY_UNIT_ENTITY =
+    }
+
+    public static final RegistrySupplier<BlockEntityType<ReassemblyUnitBlockEntity>> REASSEMBLY_UNIT_ENTITY =
             BLOCK_ENTITIES.register("reassembly_unit_entity", () ->
                     BlockEntityType.Builder.of(ReassemblyUnitBlockEntity::new, MegaShowdownBlocks.REASSEMBLY_UNIT.get()).build(null)
             );

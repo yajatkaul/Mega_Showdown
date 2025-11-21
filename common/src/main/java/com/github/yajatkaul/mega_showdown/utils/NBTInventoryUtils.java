@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown.utils;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;

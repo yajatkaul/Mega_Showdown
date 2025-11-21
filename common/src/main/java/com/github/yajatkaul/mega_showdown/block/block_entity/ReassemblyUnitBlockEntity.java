@@ -19,6 +19,7 @@ public class ReassemblyUnitBlockEntity extends BlockEntity {
     private int cookTime = 0;
     private int maxCookTime = -1;
     private ReassembleStage stage = ReassembleStage.IDLE;
+
     public ReassemblyUnitBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(MegaShowdownBlockEntities.REASSEMBLY_UNIT_ENTITY.get(), blockPos, blockState);
     }

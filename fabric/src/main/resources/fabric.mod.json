@@ -3,9 +3,9 @@
   "id": "mega_showdown",
   "version": "${version}",
   "name": "Cobblemon:Mega Showdown",
-  "description": "",
+  "description": "Adding mega evolutions, z-moves, teralization, dynamax, ultra burst and fusions to the game\nFeatures\n- Cosmetics\n- All form changes\n- Ridding supported\n- All 48 megas\n- Accessories support\n- Adds primal's\n- Adds tera gimmik\n- Adds mega gimmik\n- Adds z moves gimmik\n- Adds dynamax gimmik\n- Adds ultra burst gimmik\n- All fusion mons",
   "authors": [
-    "Yajat Kaul"
+    "YajatKaul"
   ],
   "contact": {
     "homepage": "https://github.com/yajatkaul"
@@ -26,11 +26,11 @@
     "mega_showdown.fabric.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.17.3",
     "minecraft": "~1.21.1",
     "java": ">=21",
     "architectury": ">=13.0.8",
     "fabric-api": "*",
-    "cobblemon": "=1.7"
+    "cobblemon": "=1.7",
+    "accessories": ">=1.1.0-beta.52+1.21.1"
   }
 }

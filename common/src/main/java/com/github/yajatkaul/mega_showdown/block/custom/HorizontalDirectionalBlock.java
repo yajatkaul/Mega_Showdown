@@ -1,6 +1,5 @@
 package com.github.yajatkaul.mega_showdown.block.custom;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;

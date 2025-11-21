@@ -14,20 +14,17 @@
 
 # **Features**
 
-- Outside megas(can be disabled to only battle megas in config)
-- Cosmetics for mega bracelets
-- Emissive Textures
-- Stats and ability changes when mega
+- Cosmetics
+- All form changes
 - Ridding supported
 - All 48 megas
-- Curios/Trinkets support
+- Accessories support
 - Adds primal's
 - Adds tera gimmik
 - Adds mega gimmik
 - Adds z moves gimmik
 - Adds dynamax gimmik
 - Adds ultra burst gimmik
-- Adds ultra necrozma
 - All fusion mons
 
 ![](https://media.forgecdn.net/attachments/description/1189523/description_f4dfe0bc-0918-49f9-ab83-3277718fa14d.png)

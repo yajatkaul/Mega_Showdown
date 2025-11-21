@@ -18,6 +18,7 @@ public class DormantCrystal extends CrystalBlock {
     private static final VoxelShape SHAPE_SOUTH = Block.box(5, 5, 0, 11, 12, 4);   // south wall
     private static final VoxelShape SHAPE_WEST = Block.box(12, 4, 5, 16, 11, 11);  // west wall
     private static final VoxelShape SHAPE_EAST = Block.box(0, 4, 5, 4, 11, 11);    // east wall
+
     public DormantCrystal(float f, float g, Properties properties, boolean dropExp) {
         super(f, g, properties.strength(3f)
                         .sound(SoundType.MEDIUM_AMETHYST_BUD)
