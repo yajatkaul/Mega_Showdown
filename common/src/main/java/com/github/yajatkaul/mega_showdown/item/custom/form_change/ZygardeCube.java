@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
@@ -53,6 +54,7 @@ public class ZygardeCube extends ToolTipItem {
         }
 
         CompoundTag storedTag = stack.get(MegaShowdownDataComponents.NBT_POKEMON.get());
+        MegaShowdown.LOGGER.info(String.valueOf(storedTag));
         Pokemon storedPokemon = null;
         if (storedTag != null) {
             storedPokemon = new Pokemon().loadFromNBT(level.registryAccess(), storedTag);
@@ -121,6 +123,7 @@ public class ZygardeCube extends ToolTipItem {
 
         } else {
             BlockHitResult blockHitResult = PlayerUtils.getBlockLookingAt(player, 4.5f);
+            MegaShowdown.LOGGER.info(String.valueOf(storedPokemon));
 
             if (storedPokemon != null) {
                 playerPartyStore.add(storedPokemon);
@@ -139,9 +142,8 @@ public class ZygardeCube extends ToolTipItem {
                                 Component.translatable("menu.zygade_cube")
                         )
                 );
+                return InteractionResultHolder.success(stack);
             }
-
-            return InteractionResultHolder.pass(stack);
         }
 
         return InteractionResultHolder.pass(stack);
