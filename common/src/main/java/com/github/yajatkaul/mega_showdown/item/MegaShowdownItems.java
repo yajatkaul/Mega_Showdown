@@ -211,8 +211,8 @@ public class MegaShowdownItems {
             List.of("king_steed=ice"),
             List.of("king_steed=none"),
             List.of("king_steed=none"),
-            "mega_showdown:calyres_shadow",
-            "mega_showdown:calyres_ice"
+            "mega_showdown:calyrex_shadow",
+            "mega_showdown:calyrex_ice"
     );
 
     public static final RegistrySupplier<Item> N_LUNARIZER = registerSoloFusion(

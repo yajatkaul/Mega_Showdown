@@ -135,7 +135,7 @@ public class DuFusion extends ToolTipItem {
                 if (pokemons1.contains(pokemonStored.getSpecies().getName())) {
                     Effect.getEffect(effectId1).revertEffects(pokemon, applyAspect1, null);
                 } else {
-                    Effect.getEffect(effectId2).revertEffects(pokemon, applyAspect1, null);
+                    Effect.getEffect(effectId2).revertEffects(pokemon, applyAspect2, null);
                 }
 
             } else if (pokemonStored == null &&
