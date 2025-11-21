@@ -1,0 +1,21 @@
+# 1.0+1.7
+- 1.7 compatibility
+- Added visual's to weather and battle activites
+- Bunch of remodals and improvements in animations
+- Added riding for some mega's, kyogre, groudon 
+- Made almost everything from mega stones to z crystals overridable
+- Added Aegislash poser fixes 
+- Removed ash cap since that's in base game now
+- Removed abilities/moves datapack since that's in base cobblemon now
+- Added new particle animations from rotom/silvaly/groudon/kyogre and a bunch more
+- Now datapack things such as mega stone's, showdown held items can be applied to any item using /msd apply ...
+- New textures for memories/z-crystals and more
+- Fixed pedestal in multiplayer
+- Switched to accessories from curios/trinkets
+- Now reassembly unit is an entity so it's not buggy anymore
+- Rewrote everything, goated optimization
+- All the particle animations are datapacked so they can be overridden by other datapacks so custom particles for all
+- Fixed all the accessories rendering code
+- Made keldeo form change how it works in cannon
+- Now instead old fusions now we have 2 different datapack features for it, Du_Fusion -> like Kyurem and Solo_Fusion -> Necrozma
+- Major bug fixes

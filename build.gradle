@@ -3,6 +3,8 @@ plugins {
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
     id 'org.jetbrains.kotlin.jvm' version '2.2.10'
+    id 'co.uzzu.dotenv.gradle'
+    id "me.modmuss50.mod-publish-plugin" version "1.1.0"
 }
 
 architectury {
@@ -67,5 +69,61 @@ subprojects {
         repositories {
 
         }
+    }
+}
+
+publishMods {
+    changelog = file("CHANGELOG.md").text
+    type = BETA
+    dryRun = env.MODRINTH_TOKEN.value == null || env.CURSEFORGE_TOKEN.value == null
+
+    def cfOptions = curseforgeOptions {
+        accessToken = env.CURSEFORGE_TOKEN.value
+        projectId = project.curseforge_id
+        clientRequired = true
+        serverRequired = true
+        minecraftVersions.add("1.21.1")
+    }
+
+    def mrOptions = modrinthOptions {
+        accessToken = env.MODRINTH_TOKEN.value
+        projectId = project.modrinth_id
+        minecraftVersions.add("1.21.1")
+    }
+
+    curseforge("curseforgeFabric") {
+        from cfOptions
+        file project(":fabric")
+        modLoaders.add("fabric")
+        requires("fabric-api")
+        requires("cobblemon")
+        requires("accessories")
+        requires("architectury-api")
+    }
+    modrinth("modrinthFabric") {
+        from mrOptions
+        file project(":fabric")
+        modLoaders.add("fabric")
+        requires("fabric-api")
+        requires("cobblemon")
+        requires("accessories")
+        requires("architectury-api")
+    }
+
+    curseforge("curseforgeNeoForge") {
+        from cfOptions
+        file project(":neoforge")
+        modLoaders.add("neoforge")
+        requires("cobblemon")
+        requires("accessories")
+        requires("architectury-api")
+    }
+    modrinth("modrinthNeoForge") {
+        from mrOptions
+        file project(":neoforge")
+        modLoaders.add("neoforge")
+        requires("cobblemon")
+        requires("accessories")
+        requires("architectury-api")
     }
 }

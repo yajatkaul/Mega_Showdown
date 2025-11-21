@@ -5,6 +5,9 @@ pluginManagement {
         maven { url "https://files.minecraftforge.net/maven/" }
         gradlePluginPortal()
     }
+    plugins {
+        id("co.uzzu.dotenv.gradle") version "4.0.0"
+    }
 }
 
 rootProject.name = 'mega_showdown'
