@@ -447,7 +447,31 @@
   "pokemon.pinsir_mega.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon/pinsir_mega_cry",
+        "name": "cobblemon:pokemon/pinsir/pinsir_mega_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.scizor_mega.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/scizor/scizor_mega_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.beedrill_mega.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/beedrill/beedrill_mega_cry",
+        "volume": 0.8
+      }
+    ]
+  },
+  "pokemon.gallade_mega.cry": {
+    "sounds": [
+      {
+        "name": "cobblemon:pokemon/gallade/gallade_mega_cry",
         "volume": 0.8
       }
     ]

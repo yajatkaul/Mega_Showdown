@@ -25,7 +25,7 @@
 				"active_time": 1
 			},
 			"minecraft:emitter_shape_box": {
-				"offset": [-8, 10, 0],
+				"offset": [8, 10, 0],
 				"half_dimensions": [16, 0, 16],
 				"direction": ["2+Math.random(-1, 1)/2 + 20", "-16-math.random(0, 8)", "Math.random(-1, 1)/2"]
 			},
