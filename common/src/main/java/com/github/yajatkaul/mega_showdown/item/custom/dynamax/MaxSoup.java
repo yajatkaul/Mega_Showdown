@@ -23,6 +23,10 @@ public class MaxSoup extends PokemonSelectingItem {
 
     @Override
     public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer player, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
+        }
+
         PokemonEntity pokemonEntity = pokemon.getEntity();
         Vec3 pos;
         pos = Objects.requireNonNullElse(pokemonEntity, player).position();

@@ -22,6 +22,10 @@ public class SweetMaxSoup extends PokemonSelectingItem {
 
     @Override
     public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
+        }
+
         if (pokemon.getGmaxFactor()) {
             pokemon.setGmaxFactor(false);
 

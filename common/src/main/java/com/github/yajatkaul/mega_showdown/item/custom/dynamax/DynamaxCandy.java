@@ -22,6 +22,10 @@ public class DynamaxCandy extends PokemonSelectingItem {
     @Nullable
     @Override
     public InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer player, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
+        }
+
         if (pokemon.getDmaxLevel() < Cobblemon.config.getMaxDynamaxLevel()) {
             pokemon.setDmaxLevel(pokemon.getDmaxLevel() + 1);
 

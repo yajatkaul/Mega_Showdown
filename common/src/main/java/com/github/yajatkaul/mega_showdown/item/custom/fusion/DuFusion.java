@@ -12,10 +12,8 @@ import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -53,7 +51,8 @@ public class DuFusion extends ToolTipItem {
                     List<String> revertAspect1,
                     List<String> revertAspect2,
                     String effectId1,
-                    String effectId2
+                    String effectId2,
+                    String namespace
     ) {
         super(properties);
         this.fusions1 = fusions1;
@@ -68,8 +67,7 @@ public class DuFusion extends ToolTipItem {
         this.effectId1 = effectId1;
         this.effectId2 = effectId2;
 
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(this);
-        this.namespace = id.getNamespace();
+        this.namespace = namespace;
     }
 
     @Override

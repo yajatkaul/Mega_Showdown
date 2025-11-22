@@ -9,13 +9,14 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
-public abstract class PokemonSelectingItem extends ToolTipItem implements com.cobblemon.mod.common.api.item.PokemonSelectingItem {
-    public PokemonSelectingItem(Properties settings) {
-        super(settings);
+public abstract class PokemonSelectingBlockItem extends ToolTipBlockItem implements com.cobblemon.mod.common.api.item.PokemonSelectingItem {
+    public PokemonSelectingBlockItem(Block block, Properties properties) {
+        super(block, properties);
     }
 
     @Nullable

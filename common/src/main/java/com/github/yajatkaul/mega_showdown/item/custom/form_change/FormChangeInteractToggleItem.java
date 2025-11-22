@@ -35,6 +35,10 @@ public class FormChangeInteractToggleItem extends PokemonSelectingItem {
 
     @Override
     public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
+        }
+
         int currentIndex = -1;
         for (int i = 0; i < form_apply_order.size(); i++) {
             String form = form_apply_order.get(i);

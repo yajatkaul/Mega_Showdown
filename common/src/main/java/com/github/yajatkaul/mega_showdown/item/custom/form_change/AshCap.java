@@ -27,6 +27,10 @@ public class AshCap extends PokemonSelectingItem {
 
     @Override
     public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
+        }
+
         if (pokemon.getFriendship() < MegaShowdownConfig.minBondingRequired) {
             serverPlayer.displayClientMessage(Component.translatable("message.mega_showdown.friendship_requirement")
                     .withStyle(ChatFormatting.RED), true);

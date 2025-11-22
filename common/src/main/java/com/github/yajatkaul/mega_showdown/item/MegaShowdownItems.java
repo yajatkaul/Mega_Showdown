@@ -841,12 +841,12 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> REVEAL_GLASS = registerFormChangeInteractItem(
             "reveal_glass",
             "therian-forme",
-            "djinn_state=therian",
-            List.of("Hoopa"),
+            "mirror_forme=therian",
+            List.of("Tornadus", "Thundurus", "Landorus", "Enamorus"),
             "mega_showdown:end_rod",
             0,
             true,
-            "djinn_state=incarnate"
+            "mirror_forme=incarnate"
     );
 
     public static final RegistrySupplier<Item> BOOSTER_ENERGY = registerTooltipItem("booster_energy", MegaShowdownTabs.COMPI_TAB);
@@ -973,7 +973,8 @@ public class MegaShowdownItems {
                 revertAspect1,
                 revertAspect2,
                 effect1,
-                effect2)
+                effect2,
+                name)
         );
     }
 
@@ -994,7 +995,8 @@ public class MegaShowdownItems {
                 pokemonMain,
                 effectId,
                 applyAspect,
-                revertAspect)
+                revertAspect,
+                name)
         );
     }
 

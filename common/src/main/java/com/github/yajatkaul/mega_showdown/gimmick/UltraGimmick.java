@@ -4,13 +4,22 @@ import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
+import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.List;
 
 public class UltraGimmick {
     public static int ultraBurst(Pokemon pokemon) {
         if (MegaShowdownConfig.outSideUltraBurst) {
+            return 0;
+        }
+
+        ServerPlayer player = pokemon.getOwnerPlayer();
+
+        if (player != null && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING)) {
             return 0;
         }
 

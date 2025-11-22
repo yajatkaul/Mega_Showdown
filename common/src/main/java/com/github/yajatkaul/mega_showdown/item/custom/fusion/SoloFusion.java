@@ -12,10 +12,8 @@ import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -43,15 +41,15 @@ public class SoloFusion extends ToolTipItem {
                       List<String> mainPokemons,
                       String effectId,
                       List<String> applyAspect,
-                      List<String> revertAspect
+                      List<String> revertAspect,
+                      String namespace
     ) {
         super(properties);
         this.fusions = fusions;
         this.pokemons = pokemons;
         this.mainPokemons = mainPokemons;
 
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(this);
-        this.namespace = id.getNamespace();
+        this.namespace = namespace;
         this.effectId = effectId;
 
         this.applyAspect = applyAspect;

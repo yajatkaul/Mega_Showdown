@@ -9,6 +9,8 @@ import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.gimmick.codec.AspectSetCodec;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
+import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import com.mojang.serialization.Codec;
@@ -112,6 +114,16 @@ public record MegaGimmick(
             return;
         }
 
+        ServerPlayer player = pokemonEntity.getPokemon().getOwnerPlayer();
+
+        if (player != null &&
+                !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
+                !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
+            player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
+                    .withStyle(ChatFormatting.RED), true);
+            return;
+        }
+
         ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
         MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
@@ -135,7 +147,7 @@ public record MegaGimmick(
                     }
                 }
                 if (!found) {
-                    if (pokemon.getOwnerPlayer() instanceof ServerPlayer player) {
+                    if (player != null) {
                         player.displayClientMessage(Component.translatable("message.mega_showdown.rayquaza_no_dragonascent")
                                 .withStyle(ChatFormatting.RED), true);
                     }
@@ -148,6 +160,7 @@ public record MegaGimmick(
 
     public boolean canMega(Pokemon pokemon) {
         ServerPlayer player = pokemon.getOwnerPlayer();
+
         if (player != null && hasMega(player)) {
             player.displayClientMessage(Component.translatable("message.mega_showdown.mega_limit")
                     .withStyle(ChatFormatting.RED), true);

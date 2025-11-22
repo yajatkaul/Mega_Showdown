@@ -47,7 +47,7 @@ public record SoloFusion(
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        String namespace = BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace();
+        String namespace = BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath();
 
         if (level.isClientSide) {
             return InteractionResultHolder.pass(stack);

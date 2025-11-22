@@ -1,22 +1,19 @@
 package com.github.yajatkaul.mega_showdown.item.custom.form_change;
 
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
-import com.github.yajatkaul.mega_showdown.item.custom.ToolTipBlockItem;
+import com.github.yajatkaul.mega_showdown.item.custom.PokemonSelectingBlockItem;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RotomUnitItem extends ToolTipBlockItem {
+public class RotomUnitItem extends PokemonSelectingBlockItem {
     private static final List<String> rotomAspects = List.of(
             "heat-appliance",
             "wash-appliance",
@@ -32,23 +29,21 @@ public class RotomUnitItem extends ToolTipBlockItem {
     }
 
     @Override
-    public @NotNull InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity livingEntity, InteractionHand interactionHand) {
-        if (player.level().isClientSide || player.isCrouching()) {
-            return InteractionResult.PASS;
+    public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
         }
 
-        if (livingEntity instanceof PokemonEntity pokemonEntity) {
-            Pokemon pokemon = pokemonEntity.getPokemon();
-            if (!pokemon.getSpecies().getName().equals("Rotom") || pokemon.getAspects().stream().anyMatch(rotomAspects::contains)) {
-                return InteractionResult.PASS;
-            }
+        Effect.getEffect("mega_showdown:rotom_" + form + "_effect").applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), null);
+        itemStack.consume(1, serverPlayer);
+        AdvancementHelper.grantAdvancement(serverPlayer, "rotom/rotom_form_change");
+        return InteractionResultHolder.success(itemStack);
+    }
 
-            Effect.getEffect("mega_showdown:rotom_" + form + "_effect").applyEffects(pokemon, List.of(String.format("appliance=%s", this.form)), null);
-            itemStack.consume(1, player);
-            AdvancementHelper.grantAdvancement((ServerPlayer) player, "rotom/rotom_form_change");
-            return InteractionResult.SUCCESS;
-        }
-
-        return InteractionResult.PASS;
+    @Override
+    public boolean canUseOnPokemon(@NotNull ItemStack stack, @NotNull Pokemon pokemon) {
+        return pokemon.getSpecies().getName().equals("Rotom") &&
+                pokemon.getAspects().stream().noneMatch(rotomAspects::contains) &&
+                !pokemon.getPersistentData().contains("form_changing");
     }
 }

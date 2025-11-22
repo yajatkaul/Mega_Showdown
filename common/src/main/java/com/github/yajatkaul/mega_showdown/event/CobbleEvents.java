@@ -232,7 +232,6 @@ public class CobbleEvents {
         if (pokemonEntity != null) {
             MaxGimmick.scaleUpDynamax(pokemon.getEntity());
 
-            //TODO make this a datapack thing
             BlockPos entityPos = pokemon.getEntity().getOnPos();
             pokemonEntity.level().playSound(
                     null, entityPos.getX(), entityPos.getY(), entityPos.getZ(),
@@ -296,8 +295,6 @@ public class CobbleEvents {
             PokemonBehaviourHelper.Companion.playAnimation(pokemonEntity, Set.of("cry"), List.of());
             return Unit.INSTANCE;
         });
-
-        //TODO make this a datapack thing
 
         BlockPos entityPos = pokemonEntity.getOnPos();
         pokemonEntity.level().playSound(

@@ -41,6 +41,10 @@ public class FormChangeInteractItem extends PokemonSelectingItem {
 
     @Override
     public @Nullable InteractionResultHolder<ItemStack> applyToPokemon(@NotNull ServerPlayer serverPlayer, @NotNull ItemStack itemStack, @NotNull Pokemon pokemon) {
+        if (!canUseOnPokemon(itemStack, pokemon)) {
+            return InteractionResultHolder.fail(itemStack);
+        }
+
         if (pokemon.getAspects().contains(form_aspect_name) && !revertable) {
             return InteractionResultHolder.pass(itemStack);
         } else if (pokemon.getAspects().contains(form_aspect_name)) {

@@ -56,11 +56,7 @@ public class GimmickTurnCheck {
                 return false;
             }
 
-            boolean hasDMaxItemAccessory = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.DYNAMAX_BAND);
-
-            return player.getOffhandItem().is(MegaShowdownTags.Items.DYNAMAX_BAND)
-                    || player.getMainHandItem().is(MegaShowdownTags.Items.DYNAMAX_BAND)
-                    || hasDMaxItemAccessory;
+            return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.DYNAMAX_BAND);
         } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
             if (!MegaShowdownConfig.teralization) {
                 return false;
@@ -91,22 +87,14 @@ public class GimmickTurnCheck {
                 return false;
             }
 
-            boolean hasZPowerItemAccessory = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
-
-            return player.getOffhandItem().is(MegaShowdownTags.Items.Z_RING)
-                    || player.getMainHandItem().is(MegaShowdownTags.Items.Z_RING)
-                    || hasZPowerItemAccessory;
+            return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
         } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
             if (!MegaShowdownConfig.mega) {
                 return false;
             }
 
-            boolean hasKeystoneItemAccessory = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET);
-
-            return (player.getOffhandItem().is(MegaShowdownTags.Items.MEGA_BRACELET)
-                    || player.getMainHandItem().is(MegaShowdownTags.Items.MEGA_BRACELET)
-                    || hasKeystoneItemAccessory)
-                    && !MegaGimmick.hasMega(player);
+            return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
+                    !MegaGimmick.hasMega(player);
         }
 
         return false;
