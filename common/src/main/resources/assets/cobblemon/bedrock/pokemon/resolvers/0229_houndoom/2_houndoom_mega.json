@@ -8,7 +8,7 @@
       ],
       "poser": "cobblemon:houndoom_mega",
       "model": "cobblemon:houndoom_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0229_houndoom/megahoundoom.png",
+      "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_mega.png",
       "layers": []
     },
     {
@@ -18,7 +18,7 @@
       ],
       "poser": "cobblemon:houndoom_mega",
       "model": "cobblemon:houndoom_mega.geo",
-      "texture": "cobblemon:textures/pokemon/0229_houndoom/megahoundoom_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_mega_shiny.png"
     }
   ]
 }

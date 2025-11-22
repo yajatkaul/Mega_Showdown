@@ -5,7 +5,7 @@
   "behaviours": {
     "AIR": {
       "speed": "Math.clamp(q.entity.velocity.horizontal_magnitude + 0.33, 0, 1)",
-      "key": "cobblemon:air/jet",
+      "key": "cobblemon:air/bird",
       "rideSounds": [
         {
           "muffleEnabled": true,
@@ -22,7 +22,7 @@
         "JUMP": "30-65",
         "SKILL": "30-65",
         "SPEED": "55-85",
-        "STAMINA": "10-40"
+        "STAMINA": "80-160"
       }
     },
     "LAND": {
@@ -35,6 +35,8 @@
         "0.3*q.jump_strength/50",
         "-1 * 0.5*q.jump_strength/50"
       ],
+      "canJump": false,
+      "canSprint": false,
       "stats": {
         "ACCELERATION": "10-40",
         "JUMP": "55-85",

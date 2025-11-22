@@ -15,11 +15,11 @@
           }
         ],
         "stats": {
-          "SPEED": "25-50",
+          "SPEED": "70-95",
           "ACCELERATION": "20-100",
           "SKILL": "50-100",
           "JUMP": "25-50",
-          "STAMINA": "30-70"
+          "STAMINA": "130-150"
         }
       },
       "LAND": {
@@ -30,6 +30,17 @@
           "SKILL": "15-30",
           "JUMP": "10-20",
           "STAMINA": "15-30"
+        }
+      },
+	  "LIQUID": {
+        "key": "cobblemon:liquid/dolphin",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "55-85",
+          "JUMP": "30-65",
+          "SKILL": "10-40",
+          "SPEED": "55-85",
+          "STAMINA": "80-135"
         }
       }
     },

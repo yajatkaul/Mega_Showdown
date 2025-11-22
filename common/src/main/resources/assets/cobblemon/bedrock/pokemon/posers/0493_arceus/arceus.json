@@ -4,6 +4,17 @@
   "portraitTranslation": [-1.4, 5.6, 0],
   "profileScale": 0.29,
   "profileTranslation": [0.1, 1.39, 0],
+  "firstPersonCameraOffset": {
+    "seat_1": [0, 0.45, 0]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [0, 1.5, 1],
+    "seat_1_reverse": [0, 1, 0]
+  },
+  "thirdPersonCameraOffsetNoViewBobbing": {
+    "seat_1": [0, 1, 1],
+    "seat_1_reverse": [0, 1, 0]
+  },
  "animations": {
    "cry": "q.bedrock_stateful('arceus', 'cry')",
    "recoil": "q.bedrock_stateful('arceus', 'recoil')"
