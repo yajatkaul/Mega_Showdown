@@ -6,8 +6,6 @@ import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
-import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
-import com.github.yajatkaul.mega_showdown.item.custom.z.SpecialZCrystal;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.server.level.ServerLevel;

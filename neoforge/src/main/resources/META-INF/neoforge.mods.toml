@@ -29,7 +29,7 @@ logoFile = "assets/mega_showdown/icon.png"
 [[dependencies.mega_showdown]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21,)"
+versionRange = "[21.1.214,)"
 ordering = "NONE"
 side = "BOTH"
 

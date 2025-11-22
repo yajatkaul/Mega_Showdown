@@ -52,6 +52,7 @@ public class AspectUtils {
                         .getOrThrow();
 
         pokemon.getPersistentData().put(tagName, encoded);
+        pokemon.onChange(null);
     }
 
     public static List<EffectPair> getRevertDataPokemon(Pokemon pokemon, String tagName) {

@@ -3,12 +3,6 @@
     "particle_revert": "minecraft:end_rod",
     "sound_revert": {
       "sound_id": "minecraft:block.amethyst_block.chime"
-    },
-    "animations": {
-      "animations_apply": ["cry"],
-      "expressions_apply": [],
-      "animations_revert": ["cry"],
-      "expressions_revert": []
     }
   },
   "snowstorm": {
@@ -16,9 +10,12 @@
     "particle_apply": "cobblemon:mega_evolution",
     "apply_after": 4.8,
     "sound_apply": {
-      "sound_id": "mega_showdown:mega"
+      "sound_id": "mega_showdown:mega",
+      "vol": 0.2,
+      "pitch": 0.8
     },
     "animations": {
+      "apply_delay": 4.8,
       "animations_apply": ["cry"]
     }
   },

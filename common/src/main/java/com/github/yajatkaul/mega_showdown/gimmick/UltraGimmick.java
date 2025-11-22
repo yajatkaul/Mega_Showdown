@@ -25,10 +25,10 @@ public class UltraGimmick {
 
         if (canUltraBurst(pokemon)) {
             if (pokemon.getAspects().contains("dawn-fusion")) {
-                pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dusk");
+                pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
                 AspectUtils.appendRevertDataPokemon(
                         Effect.getEffect("mega_showdown:ultra_burst"),
-                        List.of("prism_fusion=dusk"),
+                        List.of("prism_fusion=dawn"),
                         pokemon,
                         "revert_aspects"
                 );
