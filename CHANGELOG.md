@@ -1,3 +1,5 @@
-# 1.2+1.7-Beta
-- Fixed commands not working in neoforge
-- Added custom color change for custom z moves
+# 1.3+1.7-Beta
+- Fixed inbuilt rp's missing in neo
+- Fixed mega's timing
+- Fixed ultra burst reversion reversed
+- Fixed rain weather positioning

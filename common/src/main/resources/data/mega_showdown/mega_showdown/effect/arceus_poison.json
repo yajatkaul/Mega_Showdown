@@ -6,9 +6,7 @@
     },
     "animations": {
       "animations_apply": ["cry"],
-      "expressions_apply": [],
-      "animations_revert": ["cry"],
-      "expressions_revert": []
+      "animations_revert": ["cry"]
     }
   },
   "snowstorm": {
@@ -20,9 +18,7 @@
     },
     "animations": {
       "animations_apply": ["cry"],
-      "expressions_apply": [],
-      "animations_revert": ["cry"],
-      "expressions_revert": []
+      "animations_revert": ["cry"]
     }
   }
 }
