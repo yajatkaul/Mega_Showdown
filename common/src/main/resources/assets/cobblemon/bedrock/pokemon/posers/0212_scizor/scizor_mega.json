@@ -16,6 +16,8 @@
     "cry": "q.bedrock_stateful('scizor_mega', 'cry')",
 	"status": "q.bedrock_stateful('scizor_mega', 'cry', q.curve('symmetrical_wide'))",
     "recoil": "q.bedrock_stateful('scizor_mega', 'recoil')",
+	"bulletpunch": "q.bedrock_primary('scizor_mega', 'bulletpunch', q.curve('symmetrical_wide'))",
+	"air_bulletpunch": "q.bedrock_primary('scizor_mega', 'air_bulletpunch', q.curve('symmetrical_wide'))",
 	"physical": "q.bedrock_primary('scizor_mega', 'physical', q.curve('symmetrical_wide'))",
 	"special": "q.bedrock_primary('scizor_mega', 'special', q.curve('symmetrical_wide'))",
 	"air_physical": "q.bedrock_primary('scizor_mega', 'air_physical', q.curve('symmetrical_wide'))",
@@ -43,6 +45,7 @@
         "q.bedrock_quirk('scizor_mega', 'blink')"
       ],
       "namedAnimations": {
+        "bulletpunch": "q.bedrock_primary('scizor_mega', 'air_bulletpunch', q.curve('symmetrical_wide'))",
         "physical": "q.bedrock_primary('scizor_mega', 'air_physical', q.curve('symmetrical'))",
 		"special": "q.bedrock_primary('scizor_mega', 'air_special', q.curve('symmetrical'))"
       }

@@ -22,11 +22,11 @@
         }
       ],
       "stats": {
-        "ACCELERATION": "60-60",
-        "JUMP": "45-75",
-        "SKILL": "35-70",
-        "SPEED": "45-75",
-        "STAMINA": "20-50"
+        "ACCELERATION": "61-68",
+        "JUMP": "41-60",
+        "SKILL": "150-180",
+        "SPEED": "41-75",
+        "STAMINA": "82-120"
       }
     },
     "LAND": {
@@ -125,7 +125,7 @@
 },
   "baseScale": 0.9,
   "hitbox": {
-    "width": 2.2,
+    "width": 1.5,
     "height": 2.5,
     "fixed": false
   },

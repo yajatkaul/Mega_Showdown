@@ -3,20 +3,32 @@
   "target": "cobblemon:latios",
   "riding": {
     "behaviours": {
-      "AIR": {
-        "speed": "Math.clamp(q.entity.velocity.horizontal_magnitude + 0.33, 0, 1)",
-        "key": "cobblemon:air/jet",
-        "rideSounds": [],
-        "gravity": "q.gravity * (0.1 + (q.passenger_count - 1) * 0.1)",
-        "jumpVector": [0, "0.3*q.jump_strength/50", 0],
-        "stats": {
-          "ACCELERATION": "61-80",
-          "JUMP": "41-60",
-          "SKILL": "41-60",
-          "SPEED": "41-60",
-          "STAMINA": "41-60"
+	  "AIR": {
+      "key": "cobblemon:air/jet",
+      "rideSounds": [
+        {
+          "muffleEnabled": true,
+          "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+          "playForNonPassengers": true,
+          "soundLocation": "cobblemon:ride.loop.wind",
+          "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
+        },
+        {
+          "muffleEnabled": true,
+          "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+          "playForNonPassengers": true,
+          "soundLocation": "cobblemon:ride.loop.leather",
+          "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
         }
-      },
+      ],
+      "stats": {
+        "ACCELERATION": "61-68",
+        "JUMP": "41-60",
+        "SKILL": "150-180",
+        "SPEED": "41-75",
+        "STAMINA": "82-120"
+      }
+    },
       "LAND": {
         "speed": "Math.clamp(q.entity.velocity.horizontal_magnitude + 0.33, 0, 1)",
         "key": "cobblemon:land/horse",
@@ -117,7 +129,7 @@
   },
   "baseScale": 1,
   "hitbox": {
-    "width": 2.2,
+    "width": 1.5,
     "height": 2.5,
     "fixed": false
   },

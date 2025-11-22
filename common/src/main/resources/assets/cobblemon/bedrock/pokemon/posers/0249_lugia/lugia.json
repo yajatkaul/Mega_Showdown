@@ -3,6 +3,17 @@
   "portraitTranslation": [-1.17,5.84, 0],
   "profileScale": 0.13,
   "profileTranslation": [0.06, 1.53, -20],
+  "firstPersonCameraOffset": {
+    "seat_1": [0, 0.45, 0]
+  },
+  "thirdPersonCameraOffset": {
+    "seat_1": [0, 1.7, 2],
+    "seat_1_reverse": [0, 1, 0]
+  },
+  "thirdPersonCameraOffsetNoViewBobbing": {
+    "seat_1": [0, 1, 1],
+    "seat_1_reverse": [0, 1, 0]
+  },
   "animations": {
    
   },
