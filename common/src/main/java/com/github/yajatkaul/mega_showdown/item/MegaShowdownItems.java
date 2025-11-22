@@ -1007,7 +1007,7 @@ public class MegaShowdownItems {
     private static RegistrySupplier<Item> registerZElementalCrystals(String name, ElementalType type) {
         return ITEMS.register(name, () -> new ElementalZCrystal(
                 new Item.Properties()
-                        .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.SHOWDOWN_ITEM)
+                        .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.Z_CRYSTAL_ITEM)
                         .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(),
                                 ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
                         .arch$tab(MegaShowdownTabs.Z_TAB),
@@ -1022,7 +1022,7 @@ public class MegaShowdownItems {
 
     private static RegistrySupplier<Item> registerZSpecialCrystals(String name, ElementalType type) {
         return ITEMS.register(name, () -> new SpecialZCrystal(new Item.Properties()
-                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.SHOWDOWN_ITEM)
+                .component(MegaShowdownDataComponents.REGISTRY_TYPE_COMPONENT.get(), RegistryLocator.Z_CRYSTAL_ITEM)
                 .component(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get(),
                         ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, name))
                 .arch$tab(MegaShowdownTabs.Z_TAB), type));

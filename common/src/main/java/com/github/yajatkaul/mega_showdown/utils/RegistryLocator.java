@@ -15,6 +15,7 @@ public class RegistryLocator {
     public static final String HELD_FORM_CHANGE = "held_form_change";
     public static final String MEGA = "mega";
     public static final String SHOWDOWN_ITEM = "showdown_item";
+    public static final String Z_CRYSTAL_ITEM = "z_crystal_item";
 
     public static <T> T getComponent(Class<T> type, ItemStack stack) {
         ResourceLocation resourceLocation = stack.get(MegaShowdownDataComponents.RESOURCE_LOCATION_COMPONENT.get());
@@ -35,6 +36,8 @@ public class RegistryLocator {
                     type.cast(MegaShowdownDatapackRegister.MEGA_REGISTRY.get(resourceLocation)) : null;
             case SHOWDOWN_ITEM -> type == ShowdownItem.class ?
                     type.cast(MegaShowdownDatapackRegister.SHOWDOWN_ITEM_REGISTRY.get(resourceLocation)) : null;
+            case Z_CRYSTAL_ITEM -> type == ZCrystal.class ?
+                    type.cast(MegaShowdownDatapackRegister.Z_CRYSTAL_ITEM_REGISTRY.get(resourceLocation)) : null;
             default -> null;
         };
     }

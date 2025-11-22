@@ -32,6 +32,7 @@ import com.github.yajatkaul.mega_showdown.api.event.UltraBurstCallback;
 import com.github.yajatkaul.mega_showdown.codec.BattleFormChange;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.codec.HeldItemFormChange;
+import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.GimmickTurnCheck;
@@ -251,7 +252,8 @@ public class CobbleEvents {
             AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
-        GlowHandler.applyZGlow(pokemonEntity);
+
+        GlowHandler.applyZGlow(pokemonEntity, RegistryLocator.getComponent(ZCrystal.class, pokemon.heldItem()));
 
         Effect.getEffect("mega_showdown:z_move").applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());
     }

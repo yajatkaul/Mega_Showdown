@@ -31,6 +31,8 @@ public class MegaShowdownDatapackRegister {
             ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "mega"));
     public static final ResourceKey<Registry<ShowdownItem>> SHOWDOWN_ITEM_REGISTRY_KEY =
             ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "showdown_item"));
+    public static final ResourceKey<Registry<ZCrystal>> Z_CRYSTAL_ITEM_REGISTRY_KEY =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "z_crystal_item"));
     public static final ResourceKey<Registry<BattleFormChange>> BATTLE_FORM_CHANGE_REGISTRY_KEY =
             ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "battle_form"));
 
@@ -44,6 +46,7 @@ public class MegaShowdownDatapackRegister {
     public static Registry<BattleFormChange> BATTLE_FORM_CHANGE_REGISTRY;
     public static Registry<Effect> EFFECT_REGISTRY;
     public static Registry<FormChangeInteractItem> FORM_CHANGE_INTERACT_REGISTRY;
+    public static Registry<ZCrystal> Z_CRYSTAL_ITEM_REGISTRY;
 
     public static void registerShowdownDatapackItems(MinecraftServer server) {
         EFFECT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.EFFECT_REGISTRY_KEY);
@@ -56,6 +59,7 @@ public class MegaShowdownDatapackRegister {
         FORM_CHANGE_TOGGLE_INTERACT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY_KEY);
         BATTLE_FORM_CHANGE_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.BATTLE_FORM_CHANGE_REGISTRY_KEY);
         FORM_CHANGE_INTERACT_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY_KEY);
+        Z_CRYSTAL_ITEM_REGISTRY = server.registryAccess().registryOrThrow(MegaShowdownDatapackRegister.Z_CRYSTAL_ITEM_REGISTRY_KEY);
 
         for (MegaGimmick megaGimmick : MEGA_REGISTRY) {
             for (String aspect : megaGimmick.aspect_conditions().apply_aspects()) {
@@ -68,24 +72,23 @@ public class MegaShowdownDatapackRegister {
             }
         }
 
-        CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
+        CobblemonHeldItemManager.INSTANCE.registerStackRemap(stack -> {
             ShowdownItem showdownItem = RegistryLocator.getComponent(ShowdownItem.class, stack);
-
-            if (showdownItem == null) {
-                return null;
+            if (showdownItem != null) {
+                return showdownItem.showdown_item_id();
             }
 
-            return showdownItem.showdown_item_id();
-        }));
-
-        CobblemonHeldItemManager.INSTANCE.registerStackRemap((stack -> {
             MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, stack);
-
-            if (megaGimmick == null) {
-                return null;
+            if (megaGimmick != null) {
+                return megaGimmick.showdown_id();
             }
 
-            return megaGimmick.showdown_id();
-        }));
+            ZCrystal zCrystal = RegistryLocator.getComponent(ZCrystal.class, stack);
+            if (zCrystal != null) {
+                return zCrystal.showdown_item_id();
+            }
+
+            return null;
+        });
     }
 }

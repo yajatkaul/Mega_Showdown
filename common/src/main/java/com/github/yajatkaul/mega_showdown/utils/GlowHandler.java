@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.types.ElementalTypes;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
+import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
 import com.github.yajatkaul.mega_showdown.item.custom.z.ElementalZCrystal;
 import com.github.yajatkaul.mega_showdown.item.custom.z.SpecialZCrystal;
 import net.minecraft.ChatFormatting;
@@ -59,24 +60,15 @@ public class GlowHandler {
         }
     }
 
-    public static void applyZGlow(PokemonEntity pokemon) {
-        ElementalType type;
-        if (pokemon.getPokemon().heldItem().getItem() instanceof ElementalZCrystal crystal) {
-            type = crystal.getElement();
-        } else if (pokemon.getPokemon().heldItem().getItem() instanceof SpecialZCrystal crystal) {
-            type = crystal.getElement();
-        } else {
-            type = pokemon.getPokemon().getPrimaryType();
-        }
-
+    public static void applyZGlow(PokemonEntity pokemon, ZCrystal zCrystal) {
         if (pokemon.level() instanceof ServerLevel serverLevel) {
             pokemon.addEffect(new MobEffectInstance(MobEffects.GLOWING, 140, 0, false, false));
             ServerScoreboard scoreboard = serverLevel.getScoreboard();
-            String teamName = "glow_type_" + type.getName().toLowerCase(Locale.ROOT);
+            String teamName = "glow_type_" + zCrystal.color().toLowerCase(Locale.ROOT);
 
             PlayerTeam team = scoreboard.getPlayerTeam(teamName);
 
-            ChatFormatting color = getGlowForElemental(type);
+            ChatFormatting color = getGlowForColor(zCrystal.color());
             if (team == null) {
                 team = scoreboard.addPlayerTeam(teamName);
                 team.setColor(color);
@@ -94,24 +86,47 @@ public class GlowHandler {
     }
 
     private static ChatFormatting getGlowForElemental(ElementalType type) {
-        if (type.equals(ElementalTypes.INSTANCE.getBUG())) return ChatFormatting.DARK_GREEN;
-        if (type.equals(ElementalTypes.INSTANCE.getDARK())) return ChatFormatting.BLACK;
-        if (type.equals(ElementalTypes.INSTANCE.getDRAGON())) return ChatFormatting.DARK_BLUE;
-        if (type.equals(ElementalTypes.INSTANCE.getELECTRIC())) return ChatFormatting.YELLOW;
-        if (type.equals(ElementalTypes.INSTANCE.getFAIRY())) return ChatFormatting.LIGHT_PURPLE;
-        if (type.equals(ElementalTypes.INSTANCE.getFIGHTING())) return ChatFormatting.DARK_RED;
-        if (type.equals(ElementalTypes.INSTANCE.getFIRE())) return ChatFormatting.RED;
-        if (type.equals(ElementalTypes.INSTANCE.getFLYING())) return ChatFormatting.GRAY;
-        if (type.equals(ElementalTypes.INSTANCE.getGHOST())) return ChatFormatting.DARK_PURPLE;
-        if (type.equals(ElementalTypes.INSTANCE.getGRASS())) return ChatFormatting.GREEN;
-        if (type.equals(ElementalTypes.INSTANCE.getGROUND())) return ChatFormatting.DARK_RED;
-        if (type.equals(ElementalTypes.INSTANCE.getICE())) return ChatFormatting.AQUA;
-        if (type.equals(ElementalTypes.INSTANCE.getNORMAL())) return ChatFormatting.WHITE;
-        if (type.equals(ElementalTypes.INSTANCE.getPOISON())) return ChatFormatting.DARK_PURPLE;
-        if (type.equals(ElementalTypes.INSTANCE.getPSYCHIC())) return ChatFormatting.LIGHT_PURPLE;
-        if (type.equals(ElementalTypes.INSTANCE.getROCK())) return ChatFormatting.DARK_GRAY;
-        if (type.equals(ElementalTypes.INSTANCE.getSTEEL())) return ChatFormatting.GRAY;
-        if (type.equals(ElementalTypes.INSTANCE.getWATER())) return ChatFormatting.BLUE;
+        if (type.equals(ElementalTypes.BUG)) return ChatFormatting.DARK_GREEN;
+        if (type.equals(ElementalTypes.DARK)) return ChatFormatting.BLACK;
+        if (type.equals(ElementalTypes.DRAGON)) return ChatFormatting.DARK_BLUE;
+        if (type.equals(ElementalTypes.ELECTRIC)) return ChatFormatting.YELLOW;
+        if (type.equals(ElementalTypes.FAIRY)) return ChatFormatting.LIGHT_PURPLE;
+        if (type.equals(ElementalTypes.FIGHTING)) return ChatFormatting.DARK_RED;
+        if (type.equals(ElementalTypes.FIRE)) return ChatFormatting.RED;
+        if (type.equals(ElementalTypes.FLYING)) return ChatFormatting.GRAY;
+        if (type.equals(ElementalTypes.GHOST)) return ChatFormatting.DARK_PURPLE;
+        if (type.equals(ElementalTypes.GRASS)) return ChatFormatting.GREEN;
+        if (type.equals(ElementalTypes.GROUND)) return ChatFormatting.DARK_RED;
+        if (type.equals(ElementalTypes.ICE)) return ChatFormatting.AQUA;
+        if (type.equals(ElementalTypes.NORMAL)) return ChatFormatting.WHITE;
+        if (type.equals(ElementalTypes.POISON)) return ChatFormatting.DARK_PURPLE;
+        if (type.equals(ElementalTypes.PSYCHIC)) return ChatFormatting.LIGHT_PURPLE;
+        if (type.equals(ElementalTypes.ROCK)) return ChatFormatting.DARK_GRAY;
+        if (type.equals(ElementalTypes.STEEL)) return ChatFormatting.GRAY;
+        if (type.equals(ElementalTypes.WATER)) return ChatFormatting.BLUE;
         return ChatFormatting.WHITE;
+    }
+
+    private static ChatFormatting getGlowForColor(String color) {
+        if (color == null) return ChatFormatting.WHITE;
+
+        return switch (color.toLowerCase()) {
+            case "black" -> ChatFormatting.BLACK;
+            case "dark_blue" -> ChatFormatting.DARK_BLUE;
+            case "dark_green" -> ChatFormatting.DARK_GREEN;
+            case "dark_aqua" -> ChatFormatting.DARK_AQUA;
+            case "dark_red" -> ChatFormatting.DARK_RED;
+            case "dark_purple" -> ChatFormatting.DARK_PURPLE;
+            case "gold" -> ChatFormatting.GOLD;
+            case "gray" -> ChatFormatting.GRAY;
+            case "dark_gray" -> ChatFormatting.DARK_GRAY;
+            case "blue" -> ChatFormatting.BLUE;
+            case "green" -> ChatFormatting.GREEN;
+            case "aqua" -> ChatFormatting.AQUA;
+            case "red" -> ChatFormatting.RED;
+            case "light_purple" -> ChatFormatting.LIGHT_PURPLE;
+            case "yellow" -> ChatFormatting.YELLOW;
+            default -> ChatFormatting.WHITE;
+        };
     }
 }

@@ -30,6 +30,7 @@ public class MegaShowdownCommands {
                                     builder.suggest(RegistryLocator.DU_FUSION);
                                     builder.suggest(RegistryLocator.FORM_CHANGE_INTERACT);
                                     builder.suggest(RegistryLocator.FORM_CHANGE_TOGGLE_INTERACT);
+                                    builder.suggest(RegistryLocator.Z_CRYSTAL_ITEM);
                                     return builder.buildFuture();
                                 }))
                                 .then(argument("resource_id", StringArgumentType.greedyString())
@@ -41,30 +42,42 @@ public class MegaShowdownCommands {
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.SOLO_FUSION_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
                                                 case RegistryLocator.MEGA:
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.MEGA_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
                                                 case RegistryLocator.HELD_FORM_CHANGE:
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.HELD_ITEM_FORM_CHANGE_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
                                                 case RegistryLocator.DU_FUSION:
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.DU_FUSION_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
                                                 case RegistryLocator.FORM_CHANGE_INTERACT:
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.FORM_CHANGE_INTERACT_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
                                                 case RegistryLocator.FORM_CHANGE_TOGGLE_INTERACT:
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.FORM_CHANGE_TOGGLE_INTERACT_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
                                                 case RegistryLocator.SHOWDOWN_ITEM:
                                                     for (ResourceLocation location : MegaShowdownDatapackRegister.SHOWDOWN_ITEM_REGISTRY.keySet()) {
                                                         builder.suggest(String.valueOf(location));
                                                     }
+                                                    break;
+                                                case RegistryLocator.Z_CRYSTAL_ITEM:
+                                                    for (ResourceLocation location : MegaShowdownDatapackRegister.Z_CRYSTAL_ITEM_REGISTRY.keySet()) {
+                                                        builder.suggest(String.valueOf(location));
+                                                    }
+                                                    break;
                                             }
                                             return builder.buildFuture();
                                         })))))

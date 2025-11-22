@@ -59,5 +59,10 @@ public class DatapackRegistry {
                 BattleFormChange.CODEC,
                 BattleFormChange.CODEC
         );
+        event.dataPackRegistry(
+                Z_CRYSTAL_ITEM_REGISTRY_KEY,
+                ZCrystal.CODEC,
+                ZCrystal.CODEC
+        );
     }
 }

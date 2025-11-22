@@ -17,6 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
@@ -29,6 +30,8 @@ public final class MegaShowdownNeoForge {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::datapackRegistryEvent);
+
+        NeoForge.EVENT_BUS.register(this);
     }
 
     private void datapackRegistryEvent(DataPackRegistryEvent.NewRegistry event) {
