@@ -6,7 +6,7 @@
 
 **![](https://media.forgecdn.net/attachments/description/1189523/description_97ed6f11-026f-449b-97ee-86e1500c2794.png)**
 
-# **Trinket/Curios Integration**
+# **Accessories Integration**
 
 ![](https://media.forgecdn.net/attachments/description/1189523/description_b8f1e56c-7f90-47dd-948c-e096d5b53918.png)
 

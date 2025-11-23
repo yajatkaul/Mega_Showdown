@@ -1,4 +1,4 @@
-package com.github.yajatkaul.mega_showdown.networking.packets;
+package com.github.yajatkaul.mega_showdown.networking.server.packet;
 
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import io.netty.buffer.ByteBuf;

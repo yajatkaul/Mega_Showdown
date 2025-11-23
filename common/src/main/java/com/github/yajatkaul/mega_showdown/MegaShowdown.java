@@ -8,7 +8,7 @@ import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.event.EventRegister;
 import com.github.yajatkaul.mega_showdown.item.MegaShowdownItems;
-import com.github.yajatkaul.mega_showdown.networking.MegaShowdownNetworkHandler;
+import com.github.yajatkaul.mega_showdown.networking.server.MegaShowdownNetworkHandlerServer;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.sound.MegaShowdownSounds;
 import com.github.yajatkaul.mega_showdown.status.MegaShowdownStatusEffects;
@@ -35,7 +35,7 @@ public final class MegaShowdown {
         MegaShowdownTabs.register();
         MegaShowdownStatusEffects.register();
 
-        MegaShowdownNetworkHandler.register();
+        MegaShowdownNetworkHandlerServer.register();
 
         MegaShowdownMenuTypes.register();
 

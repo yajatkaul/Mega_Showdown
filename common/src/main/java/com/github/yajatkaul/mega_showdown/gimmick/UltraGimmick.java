@@ -3,24 +3,27 @@ package com.github.yajatkaul.mega_showdown.gimmick;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
+import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
+import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
 public class UltraGimmick {
-    public static int ultraBurst(Pokemon pokemon) {
+    public static void ultraBurstToggle(Pokemon pokemon) {
         if (MegaShowdownConfig.outSideUltraBurst) {
-            return 0;
+            return;
         }
 
         ServerPlayer player = pokemon.getOwnerPlayer();
 
         if (player != null && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING)) {
-            return 0;
+            return;
         }
 
         if (canUltraBurst(pokemon)) {
@@ -44,17 +47,14 @@ public class UltraGimmick {
             Effect.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
             pokemon.setTradeable(false);
 
-            return -1;
-        } else if (pokemon.getAspects().contains("ultra")) {
+        } else if (pokemon.getAspects().contains("ultra-fusion")) {
             String org_form = pokemon.getPersistentData().getString("necrozma_form");
             pokemon.getPersistentData().remove("necrozma_form");
 
             Effect.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), null);
             pokemon.setTradeable(true);
 
-            return 1;
         }
-        return 0;
     }
 
     public static void ultraBurstInBattle(Pokemon pokemon, BattlePokemon battlePokemon) {
@@ -77,8 +77,12 @@ public class UltraGimmick {
         Effect.getEffect("mega_showdown:ultra_burst").applyEffectsBattle(pokemon, List.of("prism_fusion=ultra"), null, battlePokemon);
     }
 
-    private static boolean canUltraBurst(Pokemon pokemon) {
-        if (pokemon.getSpecies().getName().equals("Necrozma")) {
+    public static boolean canUltraBurst(Pokemon pokemon) {
+        ItemStack heldItem = pokemon.heldItem();
+        ZCrystal zCrystal = RegistryLocator.getComponent(ZCrystal.class, heldItem);
+        if (zCrystal == null) return false;
+
+        if (pokemon.getSpecies().getName().equals("Necrozma") && zCrystal.showdown_item_id().equals("ultranecroziumz")) {
             return pokemon.getAspects().contains("dawn-fusion") || pokemon.getAspects().contains("dusk-fusion");
         }
         return false;

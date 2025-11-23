@@ -109,6 +109,7 @@ public record MegaGimmick(
 
     public static void megaToggle(PokemonEntity pokemonEntity) {
         if (!MegaShowdownConfig.outSideMega ||
+                pokemonEntity == null ||
                 pokemonEntity.getPokemon().getPersistentData().getBoolean("form_changing")
         ) {
             return;

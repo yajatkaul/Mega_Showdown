@@ -17,6 +17,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.UUID;
+
 public class PlayerUtils {
     public static EntityHitResult getEntityLookingAt(Player player, float distance) {
         Vec3 eyePos = player.getEyePosition();
@@ -74,11 +76,24 @@ public class PlayerUtils {
     public static boolean hasPokemon(ServerPlayer player, String pokemon) {
         if (player == null) return true;
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-        for (Pokemon pokemonParty : playerPartyStore) {
-            if (pokemonParty.getSpecies().getName().equals(pokemon)) {
+        for (Pokemon partyPokemon : playerPartyStore) {
+            if (partyPokemon.getSpecies().getName().equals(pokemon)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static Pokemon getPartyPokemonFromUUID(ServerPlayer player, UUID uuid) {
+        if (player == null) return null;
+        PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
+        for (Pokemon partyPokemon : playerPartyStore) {
+            if (partyPokemon.getEntity() != null) {
+                if (partyPokemon.getEntity().getUUID().equals(uuid)) {
+                    return partyPokemon;
+                }
+            }
+        }
+        return null;
     }
 }

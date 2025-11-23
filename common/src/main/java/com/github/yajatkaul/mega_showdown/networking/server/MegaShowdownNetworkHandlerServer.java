@@ -1,54 +1,37 @@
-package com.github.yajatkaul.mega_showdown.networking;
+package com.github.yajatkaul.mega_showdown.networking.server;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
-import com.github.yajatkaul.mega_showdown.networking.packets.MegaEvo;
-import com.github.yajatkaul.mega_showdown.networking.packets.SecretSwordMoveSwapPacket;
-import com.github.yajatkaul.mega_showdown.networking.packets.UltraBurst;
+import com.github.yajatkaul.mega_showdown.networking.server.packet.MegaEvoPacket;
+import com.github.yajatkaul.mega_showdown.networking.server.packet.SecretSwordMoveSwapPacket;
+import com.github.yajatkaul.mega_showdown.networking.server.packet.UltraBurstPacket;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.List;
 
-public class MegaShowdownNetworkHandler {
+public class MegaShowdownNetworkHandlerServer {
     public static void register() {
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, MegaEvo.TYPE, MegaEvo.STREAM_CODEC, (buf, context) -> {
-            Player player = context.getPlayer();
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, MegaEvoPacket.TYPE, MegaEvoPacket.STREAM_CODEC, (buf, context) -> {
+            ServerPlayer player = (ServerPlayer) context.getPlayer();
+            Pokemon pokemon = PlayerUtils.getPartyPokemonFromUUID(player, buf.pokemonId());
 
-            EntityHitResult hitResult = PlayerUtils.getEntityLookingAt(player, 4.5f);
-            Entity entity = null;
-            if (hitResult != null) {
-                entity = hitResult.getEntity();
-            }
-
-            if (entity instanceof PokemonEntity pokemonEntity) {
-                if (pokemonEntity.getPokemon().getOwnerPlayer() == player) {
-                    MegaGimmick.megaToggle(pokemonEntity);
-                }
+            if (pokemon != null) {
+                MegaGimmick.megaToggle(pokemon.getEntity());
             }
         });
 
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, UltraBurst.TYPE, UltraBurst.STREAM_CODEC, (buf, context) -> {
-            Player player = context.getPlayer();
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, UltraBurstPacket.TYPE, UltraBurstPacket.STREAM_CODEC, (buf, context) -> {
+            ServerPlayer player = (ServerPlayer) context.getPlayer();
+            Pokemon pokemon = PlayerUtils.getPartyPokemonFromUUID(player, buf.pokemonId());
 
-            EntityHitResult hitResult = PlayerUtils.getEntityLookingAt(player, 4.5f);
-            Entity entity = null;
-            if (hitResult != null) {
-                entity = hitResult.getEntity();
-            }
-
-            if (entity instanceof PokemonEntity pokemonEntity) {
-                if (pokemonEntity.getPokemon().getOwnerPlayer() == player) {
-                    UltraGimmick.ultraBurst(pokemonEntity.getPokemon());
-                }
+            if (pokemon != null) {
+                UltraGimmick.ultraBurstToggle(pokemon);
             }
         });
 
