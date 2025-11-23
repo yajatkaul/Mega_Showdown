@@ -6,9 +6,9 @@
 				"identifier": "geometry.pinsir",
 				"texture_width": 128,
 				"texture_height": 128,
-				"visible_bounds_width": 5,
-				"visible_bounds_height": 4.5,
-				"visible_bounds_offset": [0, 1.75, 0]
+				"visible_bounds_width": 9,
+				"visible_bounds_height": 5.5,
+				"visible_bounds_offset": [0, 2.25, 0]
 			},
 			"bones": [
 				{
