@@ -32,12 +32,6 @@ public class LoadShowdown {
                 if (!Files.exists(showdown_mod_data.resolve("items.js"))) {
                     yoink("/assets/mega_showdown/showdown/mods/items.js", showdown_mod_data.resolve("items.js"));
                 }
-                if (!Files.exists(showdown_mod_data.resolve("abilities.js"))) {
-                    yoink("/assets/mega_showdown/showdown/mods/abilities.js", showdown_mod_data.resolve("abilities.js"));
-                }
-                if (!Files.exists(showdown_mod_data.resolve("moves.js"))) {
-                    yoink("/assets/mega_showdown/showdown/mods/moves.js", showdown_mod_data.resolve("moves.js"));
-                }
                 if (!Files.exists(showdown_mod_data.resolve("conditions.js"))) {
                     yoink("/assets/mega_showdown/showdown/mods/conditions.js", showdown_mod_data.resolve("conditions.js"));
                 }
