@@ -15,7 +15,7 @@
       "pitch": 0.8
     },
     "animations": {
-      "apply_delay": 4.8,
+      "apply_delay": 5.2,
       "animations_apply": ["cry"]
     }
   },
