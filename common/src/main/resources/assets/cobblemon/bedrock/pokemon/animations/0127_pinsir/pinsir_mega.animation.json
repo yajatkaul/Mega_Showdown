@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.pinsir.ground_idle": {
+		"animation.pinsir_mega.ground_idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -207,7 +207,7 @@
 				}
 			}
 		},
-		"animation.pinsir.air_fly": {
+		"animation.pinsir_mega.air_fly": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -416,7 +416,7 @@
 				}
 			}
 		},
-		"animation.pinsir.physical": {
+		"animation.pinsir_mega.physical": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 4,
 			"bones": {
@@ -1860,7 +1860,7 @@
 				}
 			}
 		},
-		"animation.pinsir.special": {
+		"animation.pinsir_mega.special": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 4,
 			"bones": {
@@ -3334,7 +3334,7 @@
 				}
 			}
 		},
-		"animation.pinsir.faint": {
+		"animation.pinsir_mega.faint": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 3.25,
 			"bones": {
@@ -4885,7 +4885,7 @@
 				}
 			}
 		},
-		"animation.pinsir.cry": {
+		"animation.pinsir_mega.cry": {
 			"animation_length": 3,
 			"bones": {
 				"torso": {
@@ -5266,7 +5266,7 @@
 				"body": {
 					"rotation": {
 						"0.0": [0, 0, 0],
-						"0.75": ["0-36*math.sin(q.anim_time*90*2-90)", 0, "0-24*math.sin(q.anim_time*90*2-)"],
+						"0.75": ["0-36*math.sin(q.anim_time*90*2-90)", 0, "0-24*math.sin(q.anim_time*90*2)"],
 						"2.0": [0, 0, 0],
 						"3.0": [0, 0, 0]
 					},
@@ -5283,7 +5283,7 @@
 				}
 			}
 		},
-		"animation.pinsir.blink": {
+		"animation.pinsir_mega.blink": {
 			"animation_length": 0.1667,
 			"bones": {
 				"eyelid_left": {
@@ -5302,7 +5302,7 @@
 				}
 			}
 		},
-		"animation.pinsir.sleep": {
+		"animation.pinsir_mega.sleep": {
 			"loop": true,
 			"animation_length": 8,
 			"bones": {
@@ -5475,7 +5475,7 @@
 				}
 			}
 		},
-		"animation.pinsir.recoil": {
+		"animation.pinsir_mega.recoil": {
 			"animation_length": 1.05,
 			"bones": {
 				"body": {
@@ -6124,7 +6124,7 @@
 				}
 			}
 		},
-		"animation.pinsir.pinch_quirk": {
+		"animation.pinsir_mega.pinch_quirk": {
 			"animation_length": 0.95,
 			"bones": {
 				"pincer_left": {
