@@ -62,15 +62,7 @@ public class GimmickTurnCheck {
                 return false;
             }
 
-            PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
-
-            boolean hasTerapagos = false;
-            for (Pokemon pokemon : playerPartyStore) {
-                if (pokemon.getSpecies().getName().equals("Terapagos")) {
-                    hasTerapagos = true;
-                    break;
-                }
-            }
+            boolean hasTerapagos = PlayerUtils.hasPokemon(player, "Terapagos");
 
             ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
             if (teraOrb == ItemStack.EMPTY) {
