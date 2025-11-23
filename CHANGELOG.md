@@ -7,3 +7,12 @@
 - Fixed msd spawnpools
 - Fixed pedestal block look direction in structures
 - Fixed mega pinsir crashing
+
+# Trey's Edits
+- Fixed Charizard Mega Riding
+- Fix Venusaur Mega Riding
+- Fix Blastoise Mega Riding
+- Adjusted Blastoise's locator to match origin model
+- Added seta locator to mega heracross
+- Added seat locator to mega sharpedo
+- Added seat locator to mega salamence
