@@ -16,3 +16,4 @@
 - Added seta locator to mega heracross
 - Added seat locator to mega sharpedo
 - Added seat locator to mega salamence
+- Synced Z-Move music Timing
