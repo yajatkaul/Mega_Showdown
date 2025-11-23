@@ -5266,7 +5266,7 @@
 				"body": {
 					"rotation": {
 						"0.0": [0, 0, 0],
-						"0.75": ["0-36*math.sin(q.anim_time*90*2-90)", 0, "0-24*math.sin(q.anim_time*90*2-)"],
+						"0.75": ["0-36*math.sin(q.anim_time*90*2-90)", 0, "0-24*math.sin(q.anim_time*90*2)"],
 						"2.0": [0, 0, 0],
 						"3.0": [0, 0, 0]
 					},

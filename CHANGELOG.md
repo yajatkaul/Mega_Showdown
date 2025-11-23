@@ -6,3 +6,4 @@
 - Dynamax level is not hardcoded anymore for the summary screen
 - Fixed msd spawnpools
 - Fixed pedestal block look direction in structures
+- Fixed mega pinsir crashing

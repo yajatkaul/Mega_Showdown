@@ -5,10 +5,7 @@
       "sound_id": "minecraft:block.amethyst_block.chime"
     },
     "animations": {
-      "animations_apply": ["cry"],
-      "expressions_apply": [],
-      "animations_revert": ["cry"],
-      "expressions_revert": []
+      "animations_revert": ["cry"]
     }
   },
   "snowstorm": {
@@ -19,10 +16,7 @@
       "sound_id": "minecraft:block.amethyst_block.chime"
     },
     "animations": {
-      "animations_apply": ["cry"],
-      "expressions_apply": [],
-      "animations_revert": ["cry"],
-      "expressions_revert": []
+      "animations_apply": ["cry"]
     }
   }
 }
