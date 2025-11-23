@@ -37,6 +37,14 @@
 						{"origin": [-4.5, 3.78709, -13.25], "size": [0, 2, 4], "inflate": 0.001, "pivot": [-4.5, 4.78709, -13.25], "rotation": [0, -7.5, 0], "uv": [8, 0]}
 					]
 				},
+                                {
+					"name": "locator_seat_1",
+					"parent": "body",
+					"pivot": [0, 15, 10],
+					"locators": {
+						"seat_1": [0, 15, 10]
+					}
+				},
 				{
 					"name": "gills_right",
 					"parent": "body",
