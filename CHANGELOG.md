@@ -19,3 +19,4 @@
 - Synced Z-Move music Timing
 - Fixed Mega Banette root
 - Added sounds to Rain Dance Particles
+- Adjusted Latias/Latios Ride Stats
