@@ -592,5 +592,7 @@
   "cobblemon.battle.mostlyIneffective_spread": "It was mostly ineffective on %1$s!!",
 
   "effect.mega_showdown.dynamax": "Dynamax",
-  "accessories.slot_group.mega_showdown_group": "MegaShowdown"
+  "accessories.slot_group.mega_showdown_group": "MegaShowdown",
+  "mega_showdown.ui.ultra_burst": "Ultra Burst",
+  "mega_showdown.ui.mega_evolve": "Mega Evolve"
 }

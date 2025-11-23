@@ -2,6 +2,7 @@ package com.github.yajatkaul.mega_showdown;
 
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
+import com.github.yajatkaul.mega_showdown.cobblemon.features.GlobalFeatureManager;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;

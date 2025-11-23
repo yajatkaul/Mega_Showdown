@@ -15,6 +15,7 @@
     "minecraft.ItemInHandRendererMixin"
   ],
   "mixins": [
+    "CobblemonInitialiserMixin",
     "GraalShowdownUnbundlerMixin",
     "PlayerPartyStoreMixin",
     "PokemonClientDelegateMixin",
