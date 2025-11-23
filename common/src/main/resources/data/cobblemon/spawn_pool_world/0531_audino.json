@@ -10,7 +10,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "rare",
       "level": "19-47",
       "weight": 5.0,

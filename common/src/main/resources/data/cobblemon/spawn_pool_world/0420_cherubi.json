@@ -7,7 +7,7 @@
       "id": "cherubi-1",
       "pokemon": "cherubi",
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "common",
       "level": "4-25",
       "weight": 2.0,

@@ -7,7 +7,7 @@
       "id": "rotom-1",
       "pokemon": "rotom",
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "rare",
       "level": "20-75",
       "weight": 7.0,

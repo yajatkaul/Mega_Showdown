@@ -4,3 +4,4 @@
 - Should be more optimal since now the packets are much simpler
 - Mega Pinsir animations! & Scizor bullet punch animation changes
 - Dynamax level is not hardcoded anymore for the summary screen
+- Fixed msd spawnpools

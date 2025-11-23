@@ -10,7 +10,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "rare",
       "level": "20-30",
       "weight": 9.0,
@@ -29,7 +29,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
@@ -48,7 +48,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
@@ -67,7 +67,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
@@ -86,7 +86,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
@@ -105,7 +105,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
@@ -124,7 +124,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
@@ -143,7 +143,7 @@
         "natural"
       ],
       "type": "pokemon",
-      "context": "grounded",
+      "spawnablePositionType": "grounded",
       "bucket": "uncommon",
       "level": "20-30",
       "weight": 5.0,
