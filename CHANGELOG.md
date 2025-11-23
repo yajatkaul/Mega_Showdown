@@ -20,3 +20,4 @@
 - Fixed Mega Banette root
 - Added sounds to Rain Dance Particles
 - Adjusted Latias/Latios Ride Stats
+- Removed Old Mega Houndoom Animations
