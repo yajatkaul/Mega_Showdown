@@ -252,7 +252,6 @@ public class CobbleEvents {
             AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "bond/ash_pikachu");
         }
 
-
         GlowHandler.applyZGlow(pokemonEntity, RegistryLocator.getComponent(ZCrystal.class, pokemon.heldItem()));
 
         Effect.getEffect("mega_showdown:z_move").applyEffectsBattle(pokemon, List.of(), null, event.getPokemon());

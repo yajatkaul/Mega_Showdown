@@ -72,9 +72,10 @@ public class PlayerUtils {
     }
 
     public static boolean hasPokemon(ServerPlayer player, String pokemon) {
+        if (player == null) return true;
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
         for (Pokemon pokemonParty : playerPartyStore) {
-            if (pokemonParty.getSpecies().getName().equals("Terapagos")) {
+            if (pokemonParty.getSpecies().getName().equals(pokemon)) {
                 return true;
             }
         }

@@ -39,56 +39,28 @@ public class PedestalBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put("inventory", save(registries));
+
+        ItemStack stack = inventory.getItem(0);
+        if (!stack.isEmpty()) {
+            Tag encodedStack = stack.save(registries);
+            tag.put("Item", encodedStack);
+        }
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        inventory.setItem(0, getInventory(registries, tag).getItem(0));
-    }
 
-    public Tag save(HolderLookup.Provider registryAccess) {
-        CompoundTag tag = new CompoundTag();
-        ListTag itemsList = new ListTag();
-
-        for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack stack = inventory.getItem(i);
-            if (!stack.isEmpty()) {
-                CompoundTag entry = new CompoundTag();
-                entry.putByte("Slot", (byte) i);
-
-                Tag encodedStack = stack.save(registryAccess);
-                entry.put("Item", encodedStack);
-
-                itemsList.add(entry);
-            }
-        }
-
-        tag.put("Items", itemsList);
-        return tag;
-    }
-
-    public SimpleContainer getInventory(HolderLookup.Provider registryAccess, CompoundTag tag) {
-        SimpleContainer inventory = new SimpleContainer(1);
-        ListTag itemsList = tag.getList("Items", Tag.TAG_COMPOUND);
-
-        for (int i = 0; i < itemsList.size(); i++) {
-            CompoundTag entry = itemsList.getCompound(i);
-            int slot = entry.getByte("Slot") & 255;
-
-            CompoundTag itemTag = entry.getCompound("Item");
-
-            Optional<ItemStack> optionalStack = ItemStack.parse(registryAccess, itemTag);
+        if (tag.contains("Item")) {
+            CompoundTag itemTag = tag.getCompound("Item");
+            Optional<ItemStack> optionalStack = ItemStack.parse(registries, itemTag);
 
             optionalStack.ifPresent(stack -> {
-                if (!stack.isEmpty() && slot < inventory.getContainerSize()) {
-                    inventory.setItem(slot, stack);
+                if (!stack.isEmpty()) {
+                    inventory.setItem(0, stack);
                 }
             });
         }
-
-        return inventory;
     }
 
     @Nullable

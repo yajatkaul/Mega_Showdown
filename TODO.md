@@ -1,5 +1,4 @@
 # TODO
-- Need rain to be fixed
 - MORE RIDING
 - More data on battle screen
 

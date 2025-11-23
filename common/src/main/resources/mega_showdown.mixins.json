@@ -9,6 +9,7 @@
     "client.ItemRendererMixin",
     "client.MinecraftMixin",
     "client.ModeBakeryMixin",
+    "client.ui.BattleOverlayMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",

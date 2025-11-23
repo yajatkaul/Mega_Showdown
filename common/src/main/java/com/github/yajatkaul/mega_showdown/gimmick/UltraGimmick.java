@@ -61,14 +61,14 @@ public class UltraGimmick {
         if (pokemon.getAspects().contains("dawn-fusion")) {
             AspectUtils.appendRevertDataPokemon(
                     Effect.getEffect("mega_showdown:ultra_burst"),
-                    List.of("prism_fusion=dusk"),
+                    List.of("prism_fusion=dawn"),
                     pokemon,
                     "battle_end_revert"
             );
         } else {
             AspectUtils.appendRevertDataPokemon(
                     Effect.getEffect("mega_showdown:ultra_burst"),
-                    List.of("prism_fusion=dawn"),
+                    List.of("prism_fusion=dusk"),
                     pokemon,
                     "battle_end_revert"
             );

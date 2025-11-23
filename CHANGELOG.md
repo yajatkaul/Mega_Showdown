@@ -1,5 +1,2 @@
-# 1.3+1.7-Beta
-- Fixed inbuilt rp's missing in neo
-- Fixed mega's timing
-- Fixed ultra burst reversion reversed
-- Fixed rain weather positioning
+# 1.4+1.7-Beta
+- Fixed ultraburst fr this time

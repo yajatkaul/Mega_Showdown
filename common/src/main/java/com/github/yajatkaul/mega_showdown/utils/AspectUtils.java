@@ -68,6 +68,7 @@ public class AspectUtils {
     }
 
     public static void revertPokemonsIfRequired(ServerPlayer player) {
+        if (player == null) return;
         PlayerPartyStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getParty(player);
         for (Pokemon pokemon : playerPartyStore) {
             AspectUtils.revertPokemonsIfRequired(pokemon);
