@@ -6,14 +6,14 @@
 				"identifier": "geometry.banette",
 				"texture_width": 128,
 				"texture_height": 128,
-				"visible_bounds_width": 4,
+				"visible_bounds_width": 5,
 				"visible_bounds_height": 4.5,
 				"visible_bounds_offset": [0, 1.75, 0]
 			},
 			"bones": [
 				{
 					"name": "banette",
-					"pivot": [0, 17.5, 0]
+					"pivot": [0, 0, 0]
 				},
 				{
 					"name": "locator_root",

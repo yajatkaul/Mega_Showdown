@@ -17,3 +17,4 @@
 - Added seat locator to mega sharpedo
 - Added seat locator to mega salamence
 - Synced Z-Move music Timing
+- Fixed Mega Banette root
