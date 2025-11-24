@@ -16,6 +16,7 @@
       "sound_id": "mega_showdown:kyurem_fusion"
     },
     "animations": {
+      "apply_delay": 4,
       "animations_apply": ["cry"]
     }
   }

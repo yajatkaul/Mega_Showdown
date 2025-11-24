@@ -92,7 +92,7 @@ public class DuFusion extends ToolTipItem {
         if (entity instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
 
-            if (pokemonEntity.isBattling() || pokemon.getPersistentData().contains("form_changing") || pokemonEntity.getTethering() != null) {
+            if (pokemon.getOwnerPlayer() != player || pokemonEntity.isBattling() || pokemon.getPersistentData().contains("form_changing") || pokemonEntity.getTethering() != null) {
                 return InteractionResultHolder.pass(stack);
             }
 
@@ -131,9 +131,9 @@ public class DuFusion extends ToolTipItem {
                 pokemon.setTradeable(false);
 
                 if (pokemons1.contains(pokemonStored.getSpecies().getName())) {
-                    Effect.getEffect(effectId1).revertEffects(pokemon, applyAspect1, null);
+                    Effect.getEffect(effectId1).applyEffects(pokemon, applyAspect1, null);
                 } else {
-                    Effect.getEffect(effectId2).revertEffects(pokemon, applyAspect2, null);
+                    Effect.getEffect(effectId2).applyEffects(pokemon, applyAspect2, null);
                 }
 
             } else if (pokemonStored == null &&

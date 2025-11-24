@@ -14,7 +14,9 @@
     },
     "animations": {
       "animations_apply": ["cry"],
-      "animations_revert": ["cry"]
+      "apply_delay": 3.8,
+      "animations_revert": ["cry"],
+      "revert_delay": 3.8
     }
   }
 }

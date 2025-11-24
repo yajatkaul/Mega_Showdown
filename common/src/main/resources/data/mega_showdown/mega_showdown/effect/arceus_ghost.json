@@ -12,11 +12,14 @@
     "source_apply": ["target"],
     "particle_apply": "cobblemon:arceus_ghost",
     "apply_after": 3,
-     "sound_apply": {
-      "sound_id": "mega_showdown:arceus_multitype"
+    "sound_apply": {
+      "sound_id": "mega_showdown:arceus_multitype",
+      "pitch": 1.2
     },
     "animations": {
+      "apply_delay": 3.2,
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 3.5
 }

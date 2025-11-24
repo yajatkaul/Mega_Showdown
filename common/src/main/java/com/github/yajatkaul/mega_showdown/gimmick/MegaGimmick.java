@@ -117,14 +117,6 @@ public record MegaGimmick(
 
         ServerPlayer player = pokemonEntity.getPokemon().getOwnerPlayer();
 
-        if (player != null &&
-                !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
-                !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
-            player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
-                    .withStyle(ChatFormatting.RED), true);
-            return;
-        }
-
         ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
         MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
 
@@ -139,6 +131,14 @@ public record MegaGimmick(
                 }
                 pokemon.setTradeable(true);
             } else if (pokemonEntity.getPokemon().getSpecies().getName().equals("Rayquaza")) {
+                if (player != null &&
+                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
+                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
+                            .withStyle(ChatFormatting.RED), true);
+                    return;
+                }
+
                 boolean found = false;
                 for (int i = 0; i < 4; i++) {
                     if (pokemon.getMoveSet().getMoves().get(i).getName().equals("dragonascent")) {
@@ -154,8 +154,19 @@ public record MegaGimmick(
                     }
                 }
             } else if (megaGimmick.canMega(pokemon)) {
+                if (player != null &&
+                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
+                        !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
+                    player.displayClientMessage(Component.translatable("message.mega_showdown.no_mega_bracelet")
+                            .withStyle(ChatFormatting.RED), true);
+                    return;
+                }
+
                 MegaGimmick.megaEvolve(pokemon, megaGimmick.aspect_conditions.apply_aspects(), megaGimmick.aspect_conditions.revert_aspects());
             }
+        } else {
+            player.displayClientMessage(Component.translatable("message.mega_showdown.no_or_incorrect_mega_stone")
+                    .withStyle(ChatFormatting.RED), true);
         }
     }
 

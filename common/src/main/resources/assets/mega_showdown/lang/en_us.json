@@ -594,5 +594,10 @@
   "effect.mega_showdown.dynamax": "Dynamax",
   "accessories.slot_group.mega_showdown_group": "MegaShowdown",
   "mega_showdown.ui.ultra_burst": "Ultra Burst",
-  "mega_showdown.ui.mega_evolve": "Mega Evolve"
+  "mega_showdown.ui.mega_evolve": "Mega Evolve",
+  "message.mega_showdown.no_or_incorrect_mega_stone": "Incorrect/No MegaStone",
+  "message.mega_showdown.no_ultranecroziumz": "No Ultranecrozium-Z held",
+
+  "message.mega_showdown.no_mega_bracelet": "No mega bracelet",
+  "message.mega_showdown.no_z_ring": "No Z-ring"
 }

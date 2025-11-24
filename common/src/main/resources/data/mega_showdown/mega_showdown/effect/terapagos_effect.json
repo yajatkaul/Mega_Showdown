@@ -12,8 +12,15 @@
     "source_apply": ["target"],
     "particle_apply": "cobblemon:terapagos_effect",
     "apply_after": 3,
+    "sound_apply": {
+      "sound_id": "mega_showdown:form_change_basic",
+      "vol": 0.2,
+      "pitch": 1.7
+    },
     "animations": {
+      "apply_after": 3.2,
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 2
 }

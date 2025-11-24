@@ -14,6 +14,7 @@
     "particle_apply": "cobblemon:primal_kyogre",
     "apply_after": 4.8,
     "animations": {
+      "apply_delay": 4.8,
       "animations_apply": ["cry"]
     }
   }

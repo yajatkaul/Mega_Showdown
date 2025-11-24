@@ -9,7 +9,6 @@
       "sound_id": "minecraft:block.amethyst_block.chime"
     },
     "particle_apply_amplifier": 4,
-    "particle_revert_amplifier": 1,
     "animations": {
       "animations_apply": ["cry"],
       "animations_revert": ["cry"]

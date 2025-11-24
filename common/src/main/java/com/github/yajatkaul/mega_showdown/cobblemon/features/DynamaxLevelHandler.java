@@ -35,11 +35,11 @@ public class DynamaxLevelHandler {
         }
     }
 
-    public static void register () {
+    public static void register() {
         GlobalSpeciesFeatures.register(KEY, DynamaxLevel);
     }
 
-    public static void update (Pokemon pokemon) {
+    public static void update(Pokemon pokemon) {
         IntSpeciesFeature feature = DynamaxLevel.get(pokemon);
         if (feature == null) return;
 

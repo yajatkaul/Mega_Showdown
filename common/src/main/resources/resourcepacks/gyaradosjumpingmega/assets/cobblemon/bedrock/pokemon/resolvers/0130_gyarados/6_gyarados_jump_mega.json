@@ -4,6 +4,14 @@
   "variations": [
     {
       "aspects": [
+        "magikarp-jump-standard",
+        "mega",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0130_gyarados/gyarados_mega_shiny.png"
+    },
+    {
+      "aspects": [
         "magikarp-jump-apricot-stripes",
         "mega"
       ],

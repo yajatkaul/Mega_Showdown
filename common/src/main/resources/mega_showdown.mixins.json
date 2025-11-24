@@ -15,7 +15,6 @@
     "minecraft.ItemInHandRendererMixin"
   ],
   "mixins": [
-    "CobblemonInitialiserMixin",
     "GraalShowdownUnbundlerMixin",
     "PlayerPartyStoreMixin",
     "PokemonClientDelegateMixin",
@@ -29,6 +28,8 @@
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
     "battle.StartInstructionMixin",
+    "battle.BattleGimmickButtonMixin",
+    "battle.ClientBattleMixin",
     "minecraft.ItemStackMixin"
   ],
   "injectors": {

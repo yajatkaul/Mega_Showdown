@@ -47,44 +47,43 @@ public class GimmickTurnCheck {
 
     public static boolean hasGimmick(ShowdownMoveset.Gimmick gimmick, ServerPlayer player) {
         boolean hasOmniRing = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
-        if (hasOmniRing) {
-            return true;
-        } else if (gimmick == ShowdownMoveset.Gimmick.DYNAMAX) {
-            if (!MegaShowdownConfig.dynamax) {
-                return false;
+
+        switch (gimmick) {
+            case DYNAMAX -> {
+                if (!MegaShowdownConfig.dynamax) return false;
+                if (hasOmniRing) return true;
+
+                return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.DYNAMAX_BAND);
             }
+            case TERASTALLIZATION -> {
+                if (!MegaShowdownConfig.teralization) return false;
+                if (hasOmniRing) return true;
 
-            return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.DYNAMAX_BAND);
-        } else if (gimmick == ShowdownMoveset.Gimmick.TERASTALLIZATION) {
-            if (!MegaShowdownConfig.teralization) {
-                return false;
+                boolean hasTerapagos = PlayerUtils.hasPokemon(player, "Terapagos");
+                ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
+
+                if (teraOrb.isEmpty()) return false;
+
+                if (hasTerapagos) {
+                    teraOrb.setDamageValue(0);
+                }
+
+                return teraOrb.getDamageValue() < 100;
             }
+            case Z_POWER -> {
+                if (!MegaShowdownConfig.zMoves) return false;
+                if (hasOmniRing) return true;
 
-            boolean hasTerapagos = PlayerUtils.hasPokemon(player, "Terapagos");
-
-            ItemStack teraOrb = AccessoriesUtils.findFirstItemWithTag(player, MegaShowdownTags.Items.TERA_ORB);
-            if (teraOrb == ItemStack.EMPTY) {
-                return false;
+                return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
             }
+            case MEGA_EVOLUTION -> {
+                if (!MegaShowdownConfig.mega) return false;
 
-            if (hasTerapagos) {
-                teraOrb.setDamageValue(0);
+                boolean hasMegaAccess = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET)
+                        || hasOmniRing;
+
+                return hasMegaAccess && !MegaGimmick.hasMega(player);
             }
-
-            return teraOrb.getDamageValue() < 100;
-        } else if (gimmick == ShowdownMoveset.Gimmick.Z_POWER) {
-            if (!MegaShowdownConfig.zMoves) {
-                return false;
-            }
-
-            return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
-        } else if (gimmick == ShowdownMoveset.Gimmick.MEGA_EVOLUTION) {
-            if (!MegaShowdownConfig.mega) {
-                return false;
-            }
-
-            return AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
-                    !MegaGimmick.hasMega(player);
         }
 
         return false;

@@ -5,7 +5,7 @@
   ],
   "default": 0,
   "min": 0,
-  "max": 75,
+  "max": 1000,
   "visible": true,
   "display": {
     "name": "cobblemon.ui.stash.meltan",
@@ -18,6 +18,7 @@
     "overlay": "cobblemon:textures/gui/summary/summary_stats_meltan_overlay.png"
   },
   "itemPoints": {
-    "mega_showdown:meltan": 1
+    "minecraft:iron_ingot": 1,
+    "minecraft:iron_block": 9
   }
 }

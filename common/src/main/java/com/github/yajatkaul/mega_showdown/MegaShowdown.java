@@ -2,7 +2,6 @@ package com.github.yajatkaul.mega_showdown;
 
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
-import com.github.yajatkaul.mega_showdown.cobblemon.features.GlobalFeatureManager;
 import com.github.yajatkaul.mega_showdown.components.MegaShowdownDataComponents;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.creative.MegaShowdownTabs;
@@ -25,8 +24,8 @@ public final class MegaShowdown {
     public static final Logger LOGGER = LoggerFactory.getLogger("MegaShowdown");
 
     public static void init() {
-        MegaShowdownConfig.register();
-
+        MegaShowdownConfig.load();
+        MegaShowdownStatusEffects.register();
         MegaShowdownDataComponents.register();
         MegaShowdownBlocks.register();
         MegaShowdownBlockEntities.register();
@@ -34,7 +33,6 @@ public final class MegaShowdown {
         MegaShowdownSounds.register();
 
         MegaShowdownTabs.register();
-        MegaShowdownStatusEffects.register();
 
         MegaShowdownNetworkHandlerServer.register();
 

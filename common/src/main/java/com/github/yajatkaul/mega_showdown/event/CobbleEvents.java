@@ -219,6 +219,8 @@ public class CobbleEvents {
     private static void dynamaxStarted(PokemonBattle battle, BattlePokemon battlePokemon, Boolean gmax) {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
         if (gmax) {
+            new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon);
+            AspectUtils.updatePackets(battlePokemon);
             AspectUtils.appendRevertDataPokemon(
                     Effect.empty(),
                     List.of("dynamax_form=none"),
@@ -226,11 +228,7 @@ public class CobbleEvents {
                     "battle_end_revert"
             );
 
-            battle.dispatchToFront(() -> {
-                new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon);
-                AspectUtils.updatePackets(battlePokemon);
-                return new UntilDispatch(() -> true);
-            });
+            battle.dispatchToFront(() -> new UntilDispatch(() -> true));
         }
 
         pokemon.getPersistentData().putBoolean("is_max", true);
@@ -388,6 +386,14 @@ public class CobbleEvents {
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())
                 && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
             MegaGimmick.megaToggle(pokemon.getEntity());
+        }
+
+        if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra-fusion")) {
+            ZCrystal zCrystal = RegistryLocator.getComponent(ZCrystal.class, itemReturning);
+
+            if (zCrystal != null && zCrystal.showdown_item_id().equals("ultranecroziumz")) {
+                UltraGimmick.ultraBurstToggle(pokemon);
+            }
         }
     }
 }

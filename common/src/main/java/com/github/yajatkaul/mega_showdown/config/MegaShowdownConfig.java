@@ -15,6 +15,7 @@ import java.nio.file.Path;
 
 public class MegaShowdownConfig {
     private static final String FILE_PATH = "./config/mega_showdown/config.json";
+    public static boolean loaded = false;
 
     public static int teraShardRequired = 50;
     public static boolean outSideMega = true;
@@ -37,10 +38,6 @@ public class MegaShowdownConfig {
 
     public static int minBondingRequired = 200;
 
-    public static void register() {
-        load();
-    }
-
     private static void save() {
         JsonObject json = getJsonObject();
 
@@ -60,7 +57,6 @@ public class MegaShowdownConfig {
         json.addProperty("teraShardRequired", teraShardRequired);
         json.addProperty("multipleMegas", multipleMegas);
         json.addProperty("showdownFilesLoading", showdownFilesLoading);
-
         json.addProperty("mega", mega);
         json.addProperty("zMoves", zMoves);
         json.addProperty("teralization", teralization);
@@ -77,7 +73,7 @@ public class MegaShowdownConfig {
         return json;
     }
 
-    private static void load() {
+    public static void load() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
             MegaShowdown.LOGGER.info("MegaShowdown config not found, creating default.");
@@ -140,6 +136,7 @@ public class MegaShowdownConfig {
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);
         }
+        loaded = true;
     }
 
     public static int getDynamaxScaleDuration() {

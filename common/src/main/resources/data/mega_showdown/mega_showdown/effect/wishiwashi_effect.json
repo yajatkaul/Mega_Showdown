@@ -11,15 +11,16 @@
   "snowstorm": {
     "source_apply": ["target"],
     "particle_apply": "cobblemon:wishiwashi_effect",
-    "apply_after": 4.5,
+    "apply_after": 4.1,
     "sound_apply": {
       "sound_id": "mega_showdown:form_change_basic",
       "vol": 0.2,
       "pitch": 1.3
     },
     "animations": {
-      "apply_delay": 0.5,
+      "apply_after": 4.3,
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 5
 }

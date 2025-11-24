@@ -11,12 +11,16 @@
   "snowstorm": {
     "source_apply": ["root"],
     "particle_apply": "cobblemon:power_construct_event",
-    "apply_after": 4,
+    "apply_after": 3.4,
     "sound_apply": {
-      "sound_id": "mega_showdown:form_change_basic"
+      "sound_id": "mega_showdown:form_change_basic",
+      "vol": 0.2,
+      "pitch": 1.3
     },
     "animations": {
+      "apply_after": 3.6,
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 4
 }

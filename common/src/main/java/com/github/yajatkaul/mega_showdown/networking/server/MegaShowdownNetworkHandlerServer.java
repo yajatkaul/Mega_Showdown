@@ -3,13 +3,17 @@ package com.github.yajatkaul.mega_showdown.networking.server;
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
+import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.MegaEvoPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.SecretSwordMoveSwapPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.UltraBurstPacket;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
+import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import dev.architectury.networking.NetworkManager;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
@@ -29,8 +33,12 @@ public class MegaShowdownNetworkHandlerServer {
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, UltraBurstPacket.TYPE, UltraBurstPacket.STREAM_CODEC, (buf, context) -> {
             ServerPlayer player = (ServerPlayer) context.getPlayer();
             Pokemon pokemon = PlayerUtils.getPartyPokemonFromUUID(player, buf.pokemonId());
+            ZCrystal zCrystal = RegistryLocator.getComponent(ZCrystal.class, pokemon.heldItem());
 
-            if (pokemon != null) {
+            if (zCrystal == null || !zCrystal.showdown_item_id().equals("ultranecroziumz")) {
+                player.displayClientMessage(Component.translatable("message.mega_showdown.no_ultranecroziumz")
+                        .withStyle(ChatFormatting.RED), true);
+            } else {
                 UltraGimmick.ultraBurstToggle(pokemon);
             }
         });

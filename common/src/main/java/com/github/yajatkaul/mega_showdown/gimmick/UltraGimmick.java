@@ -9,6 +9,8 @@ import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
 import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.AspectUtils;
 import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -22,12 +24,12 @@ public class UltraGimmick {
 
         ServerPlayer player = pokemon.getOwnerPlayer();
 
-        if (player != null && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING)) {
-            return;
-        }
-
         if (canUltraBurst(pokemon)) {
-            if (pokemon.getAspects().contains("dawn-fusion")) {
+            if (player != null && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING) && !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {
+                player.displayClientMessage(Component.translatable("message.mega_showdown.no_z_ring")
+                        .withStyle(ChatFormatting.RED), true);
+                return;
+            } else if (pokemon.getAspects().contains("dawn-fusion")) {
                 pokemon.getPersistentData().putString("necrozma_form", "prism_fusion=dawn");
                 AspectUtils.appendRevertDataPokemon(
                         Effect.getEffect("mega_showdown:ultra_burst"),
@@ -53,7 +55,6 @@ public class UltraGimmick {
 
             Effect.getEffect("mega_showdown:ultra_burst").revertEffects(pokemon, List.of(org_form), null);
             pokemon.setTradeable(true);
-
         }
     }
 

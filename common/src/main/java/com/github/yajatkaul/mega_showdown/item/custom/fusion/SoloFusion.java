@@ -78,7 +78,7 @@ public class SoloFusion extends ToolTipItem {
         if (entity instanceof PokemonEntity pokemonEntity) {
             Pokemon pokemon = pokemonEntity.getPokemon();
 
-            if (pokemonEntity.isBattling() || pokemon.getPersistentData().contains("form_changing") || pokemonEntity.getTethering() != null) {
+            if (pokemon.getOwnerPlayer() != player || pokemonEntity.isBattling() || pokemon.getPersistentData().contains("form_changing") || pokemonEntity.getTethering() != null) {
                 return InteractionResultHolder.pass(stack);
             }
 

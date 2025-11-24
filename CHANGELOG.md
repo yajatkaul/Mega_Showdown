@@ -1,2 +1,7 @@
-# 1.1+1.7-release
-- Fixed crashing when mega evolving and riding
+# 1.2+1.7-release
+- Fixed showdown files load config not working properly
+- Fixed gyrados-jump textures
+- Fixed kyurem effects
+- Fixed gimmicks in mulit/doubles/triples CUZ COBBLEMON DECIDED NOT TO
+- Fixed pinsir cry
+- Mega charizard/blastoise/venasaur are not flyable

@@ -11,7 +11,6 @@
   "snowstorm": {
     "source_apply": ["root"],
     "particle_apply": "cobblemon:minior_effect",
-    "apply_after": 0,
     "animations": {
       "animations_apply": ["cry"]
     }
