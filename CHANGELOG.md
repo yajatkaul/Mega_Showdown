@@ -1,23 +1,2 @@
-# 1.0+1.7-release
-- Fixed ultra necrozma only having one move
-- Removed keybinds for applying outside gimmicks rather Pokémon interaction wheel will be used
-- Should be more optimal since now the packets are much simpler
-- Mega Pinsir animations! & Scizor bullet punch animation changes
-- Dynamax level is not hardcoded anymore for the summary screen
-- Fixed msd spawnpools
-- Fixed pedestal block look direction in structures
-- Fixed mega pinsir crashing
-- Rain weather now plays rain sounds
-- Fixed Charizard Mega Riding
-- Fix Venusaur Mega Riding
-- Fix Blastoise Mega Riding
-- Adjusted Blastoise's locator to match origin model
-- Added seta locator to mega heracross
-- Added seat locator to mega sharpedo
-- Added seat locator to mega salamence
-- Synced Z-Move music Timing
-- Fixed Mega Banette root
-- Adjusted Latias/Latios Ride Stats
-- Removed Old Mega Houndoom Animations
-- Mega Pinsir model edited, Sherbet's request.
-- Mega Scizor bullet punch animation resync, also the cry animations should contain a sound effect too.
+# 1.1+1.7-release
+- Fixed crashing when mega evolving and riding

@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.api.events.pokeball.ThrownPokeballHitEvent;
 import com.cobblemon.mod.common.api.events.pokemon.HeldItemEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent;
 import com.cobblemon.mod.common.api.events.pokemon.PokemonSentEvent;
+import com.cobblemon.mod.common.api.events.pokemon.RidePokemonEvent;
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent;
 import com.cobblemon.mod.common.api.item.HealingSource;
 import com.cobblemon.mod.common.api.pokemon.feature.StringSpeciesFeature;
@@ -72,10 +73,17 @@ public class CobbleEvents {
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CobbleEvents::fixTera);
         CobblemonEvents.LOOT_DROPPED.subscribe(Priority.NORMAL, CobbleEvents::dropShardPokemon);
         CobblemonEvents.FORME_CHANGE.subscribe(Priority.NORMAL, CobbleEvents::formChanged);
+        CobblemonEvents.RIDE_EVENT_PRE.subscribe(Priority.NORMAL, CobbleEvents::ridePre);
 
         DynamaxStartCallback.EVENT.register(CobbleEvents::dynamaxStarted);
         DynamaxEndCallback.EVENT.register(CobbleEvents::dynamaxEnded);
         UltraBurstCallback.EVENT.register(CobbleEvents::ultraBurst);
+    }
+
+    private static void ridePre(RidePokemonEvent.Pre event) {
+        if (event.getPokemon().getPokemon().getPersistentData().getBoolean("form_changing")) {
+            event.cancel();
+        }
     }
 
     private static void formChanged(FormeChangeEvent formeChangeEvent) {
