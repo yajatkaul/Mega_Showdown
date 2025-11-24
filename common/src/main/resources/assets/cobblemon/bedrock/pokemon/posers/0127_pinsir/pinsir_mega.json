@@ -17,7 +17,7 @@
       "poseName": "battle-standing",
       "poseTypes": ["STAND"],
       "isBattle": true,
-      "animations": ["q.look('head')", "q.bedrock('pinsir_mega', 'ground_idle')"],
+      "animations": ["q.look('body')", "q.bedrock('pinsir_mega', 'ground_idle')"],
       "quirks": [
 	  "q.bedrock_quirk('pinsir_mega', 'blink')",
 	  "q.bedrock_quirk('pinsir_mega', 'pinch_quirk', 6, 32, 1)"]
@@ -26,7 +26,7 @@
       "poseTypes": ["HOVER", "FLOAT"],
       "isBattle": true,
       "animations": [
-        "q.look('head')",
+        "q.look('body')",
         "q.bedrock('pinsir_mega', 'ground_idle')"
       ],
       "quirks": [
@@ -41,7 +41,7 @@
       ],
       "isTouchingWater": false,
       "animations": [
-        "q.look('head')",
+        "q.look('body')",
         "q.bedrock('pinsir_mega', 'ground_idle')"
       ],
       "quirks": [
@@ -55,7 +55,7 @@
         "WALK"
       ],
       "animations": [
-	    "q.look('head')",
+	    "q.look('body')",
         "q.bedrock('pinsir_mega', 'air_fly')"
       ],
       "quirks": [
@@ -69,7 +69,7 @@
         "HOVER"
       ],
       "animations": [
-        "q.look('head')",
+        "q.look('body')",
         "q.bedrock('pinsir_mega', 'ground_idle')"
       ],
       "quirks": [
@@ -83,7 +83,7 @@
         "FLY"
       ],
       "animations": [
-        "q.look('head')",
+        "q.look('body')",
         "q.bedrock('pinsir_mega', 'air_fly')"
       ],
       "quirks": [
@@ -97,7 +97,7 @@
         "FLOAT"
       ],
       "animations": [
-        "q.look('head')",
+        "q.look('body')",
         "q.bedrock('pinsir_mega', 'ground_idle')"
       ],
       "quirks": [
@@ -107,7 +107,7 @@
 	"swim": {
      "poseTypes": ["SWIM"],
      "animations": [
-       "q.look('head')",
+       "q.look('body')",
        "q.bedrock('pinsir_mega', 'air_fly')"
      ],
      "quirks": ["q.bedrock_quirk('pinsir_mega', 'blink')"]
