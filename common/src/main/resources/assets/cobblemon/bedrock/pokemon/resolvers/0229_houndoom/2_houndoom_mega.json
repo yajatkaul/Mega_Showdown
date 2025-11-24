@@ -6,7 +6,6 @@
       "aspects": [
         "mega"
       ],
-      "poser": "cobblemon:houndoom_mega",
       "model": "cobblemon:houndoom_mega.geo",
       "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_mega.png",
       "layers": []
@@ -16,7 +15,6 @@
         "mega",
         "shiny"
       ],
-      "poser": "cobblemon:houndoom_mega",
       "model": "cobblemon:houndoom_mega.geo",
       "texture": "cobblemon:textures/pokemon/0229_houndoom/houndoom_mega_shiny.png"
     }

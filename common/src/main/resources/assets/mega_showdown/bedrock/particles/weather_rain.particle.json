@@ -14,6 +14,11 @@
 					"effect": "mega_showdown:weather_raindrop",
 					"type": "particle"
 				}
+			},
+			"Rain": {
+				"sound_effect": {
+					"event_name": "mega_showdown:raindance"
+				}
 			}
 		},
 		"components": {
@@ -33,6 +38,7 @@
 				"max_lifetime": 3
 			},
 			"minecraft:particle_lifetime_events": {
+				"creation_event": "Rain",
 				"expiration_event": "drop"
 			},
 			"minecraft:particle_initial_spin": {
