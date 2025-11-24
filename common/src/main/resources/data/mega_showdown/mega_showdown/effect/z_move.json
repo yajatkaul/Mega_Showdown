@@ -12,5 +12,6 @@
       "apply_delay": 2.5,
       "animations_apply": ["cry"]
     }
-  }
+  },
+  "battle_pause": 4
 }
