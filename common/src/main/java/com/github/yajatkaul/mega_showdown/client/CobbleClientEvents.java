@@ -12,10 +12,13 @@ import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.MegaEvoPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.UltraBurstPacket;
+import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
+import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import dev.architectury.networking.NetworkManager;
 import kotlin.Unit;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Vector3f;
@@ -37,10 +40,11 @@ public class CobbleClientEvents {
         if (pokemon == null) return;
 
         ItemStack heldItem = pokemon.heldItem();
+        LocalPlayer player = Minecraft.getInstance().player;
 
         if (MegaShowdownConfig.outSideMega) {
             MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
-            boolean canMega = megaGimmick != null;
+            boolean canMega = megaGimmick != null && AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET);
 
             InteractWheelOption wheelOption = new InteractWheelOption(
                     ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/interact/mega_evolve_wheel.png"),
@@ -59,7 +63,8 @@ public class CobbleClientEvents {
         }
         if (MegaShowdownConfig.outSideUltraBurst
                 && pokemon.getSpecies().getName().equals("Necrozma")) {
-            boolean canUltraBurst = UltraGimmick.canUltraBurst(pokemon) || pokemon.getAspects().contains("ultra-fusion");
+            boolean canUltraBurst = (UltraGimmick.canUltraBurst(pokemon) || pokemon.getAspects().contains("ultra-fusion"))
+                    && AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING);
             InteractWheelOption wheelOption = new InteractWheelOption(
                     ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/interact/ultra_burst_wheel.png"),
                     null,
