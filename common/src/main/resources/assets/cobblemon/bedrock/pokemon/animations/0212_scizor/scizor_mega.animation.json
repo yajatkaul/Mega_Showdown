@@ -8539,6 +8539,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.25": {
+					"effect": "pokemon.scizor_mega.cry"
+				}
 			}
 		},
 		"animation.scizor_mega.recoil": {
