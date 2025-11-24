@@ -21,3 +21,7 @@
 - Added sounds to Rain Dance Particles
 - Adjusted Latias/Latios Ride Stats
 - Removed Old Mega Houndoom Animations
+
+# Skieye's Edits
+- Mega Pinsir model edited, Sherbet's request.
+- Mega Scizor bullet punch animation resync, also the cry animations should contain a sound effect too.
