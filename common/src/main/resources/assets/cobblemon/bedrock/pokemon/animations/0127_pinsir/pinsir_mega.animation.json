@@ -5279,7 +5279,7 @@
 			},
 			"sound_effects": {
 				"0.2083": {
-					"effect": "pokemon.pinsir.cry"
+					"effect": "pokemon.pinsir_mega.cry"
 				}
 			}
 		},
