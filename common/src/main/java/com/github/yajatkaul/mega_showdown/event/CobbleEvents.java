@@ -26,7 +26,6 @@ import com.cobblemon.mod.common.battles.dispatch.UntilDispatch;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
@@ -380,7 +379,7 @@ public class CobbleEvents {
         if (megaGimmick != null
                 && megaGimmick.pokemons().contains(pokemon.getSpecies().getName())
                 && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
-            MegaGimmick.megaToggle(pokemon.getEntity());
+            MegaGimmick.megaToggle(pokemon);
         }
 
         if (pokemon.getSpecies().getName().equals("Necrozma") && pokemon.getAspects().contains("ultra-fusion")) {

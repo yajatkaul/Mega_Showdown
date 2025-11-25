@@ -7,6 +7,7 @@ import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.MegaEvoPacket;
+import com.github.yajatkaul.mega_showdown.networking.server.packet.PartyToPCInterruptPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.SecretSwordMoveSwapPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.UltraBurstPacket;
 import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
@@ -26,7 +27,7 @@ public class MegaShowdownNetworkHandlerServer {
             Pokemon pokemon = PlayerUtils.getPartyPokemonFromUUID(player, buf.pokemonId());
 
             if (pokemon != null) {
-                MegaGimmick.megaToggle(pokemon.getEntity());
+                MegaGimmick.megaToggle(pokemon);
             }
         });
 
@@ -64,6 +65,15 @@ public class MegaShowdownNetworkHandlerServer {
                         Effect.getEffect("mega_showdown:keldeo_effect").revertEffects(pokemon, List.of("sword_form=ordinary"), null);
                     }
                 }
+            }
+        });
+
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, PartyToPCInterruptPacket.TYPE, PartyToPCInterruptPacket.STREAM_CODEC, (buf, context) -> {
+            ServerPlayer player = (ServerPlayer) context.getPlayer();
+            Pokemon pokemon = PlayerUtils.getPCPokemonFromUUID(player, buf.pokemonId());
+
+            if (pokemon != null && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
+                MegaGimmick.megaToggle(pokemon);
             }
         });
     }

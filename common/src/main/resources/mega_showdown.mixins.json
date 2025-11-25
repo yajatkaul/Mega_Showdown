@@ -20,6 +20,8 @@
     "PokemonClientDelegateMixin",
     "PokemonEntityMixin",
     "battle.BattleGimmickButtonCompanionMixin",
+    "battle.BattleGimmickButtonMixin",
+    "battle.ClientBattleMixin",
     "battle.EndInstructionMixin",
     "battle.GimmickTileMixin",
     "battle.MoveActionResponseMixin",
@@ -28,8 +30,7 @@
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
     "battle.StartInstructionMixin",
-    "battle.BattleGimmickButtonMixin",
-    "battle.ClientBattleMixin",
+    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "minecraft.ItemStackMixin"
   ],
   "injectors": {

@@ -4,7 +4,6 @@ import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.github.yajatkaul.mega_showdown.codec.Effect;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
@@ -107,20 +106,18 @@ public record MegaGimmick(
         pokemon.setTradeable(false);
     }
 
-    public static void megaToggle(PokemonEntity pokemonEntity) {
+    public static void megaToggle(Pokemon pokemon) {
         if (!MegaShowdownConfig.outSideMega ||
-                pokemonEntity == null ||
-                pokemonEntity.getPokemon().getPersistentData().getBoolean("form_changing")
+                pokemon == null ||
+                pokemon.getPersistentData().getBoolean("form_changing")
         ) {
             return;
         }
 
-        ServerPlayer player = pokemonEntity.getPokemon().getOwnerPlayer();
+        ServerPlayer player = pokemon.getOwnerPlayer();
 
-        ItemStack heldItem = pokemonEntity.getPokemon().heldItem();
+        ItemStack heldItem = pokemon.heldItem();
         MegaGimmick megaGimmick = RegistryLocator.getComponent(MegaGimmick.class, heldItem);
-
-        Pokemon pokemon = pokemonEntity.getPokemon();
 
         if (megaGimmick != null || pokemon.getSpecies().getName().equals("Rayquaza")) {
             if (pokemon.getAspects().stream().anyMatch(mega_aspects::contains)) {
@@ -130,7 +127,7 @@ public record MegaGimmick(
                     Effect.getEffect("mega_showdown:mega_evolution").revertEffects(pokemon, megaGimmick.aspect_conditions.revert_aspects(), null);
                 }
                 pokemon.setTradeable(true);
-            } else if (pokemonEntity.getPokemon().getSpecies().getName().equals("Rayquaza")) {
+            } else if (pokemon.getSpecies().getName().equals("Rayquaza")) {
                 if (player != null &&
                         !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) &&
                         !AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING)) {

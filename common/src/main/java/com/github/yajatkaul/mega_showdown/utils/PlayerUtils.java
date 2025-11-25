@@ -2,6 +2,7 @@ package com.github.yajatkaul.mega_showdown.utils;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
+import com.cobblemon.mod.common.api.storage.pc.PCStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -92,6 +93,17 @@ public class PlayerUtils {
                 if (partyPokemon.getEntity().getUUID().equals(uuid)) {
                     return partyPokemon;
                 }
+            }
+        }
+        return null;
+    }
+
+    public static Pokemon getPCPokemonFromUUID(ServerPlayer player, UUID uuid) {
+        if (player == null) return null;
+        PCStore playerPartyStore = Cobblemon.INSTANCE.getStorage().getPC(player);
+        for (Pokemon partyPokemon : playerPartyStore) {
+            if (partyPokemon.getUuid().equals(uuid)) {
+                return partyPokemon;
             }
         }
         return null;
