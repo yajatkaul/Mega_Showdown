@@ -625,5 +625,15 @@
   "message.mega_showdown.no_ultranecroziumz": "No Ultranecrozium-Z held",
 
   "message.mega_showdown.no_mega_bracelet": "No mega bracelet",
-  "message.mega_showdown.no_z_ring": "No Z-ring"
+  "message.mega_showdown.no_z_ring": "No Z-ring",
+  
+  "cobblemon.ui.pokedex.info.form.kyogre": "",
+  "cobblemon.ui.pokedex.info.form.groudon": "",
+  "cobblemon.ui.pokedex.info.form.kyurem": "",
+  "cobblemon.ui.pokedex.info.form.genesect": "",
+  "cobblemon.ui.pokedex.info.form.zygarde-10%": "10% Forme",
+  "cobblemon.ui.pokedex.info.form.ogerpon-tealtera": "Teal Mask Tera",
+  "cobblemon.ui.pokedex.info.form.ogerpon-wellspringtera": "Wellspring Mask Tera",
+  "cobblemon.ui.pokedex.info.form.ogerpon-hearthflametera": "Hearthflame Mask Tera",
+  "cobblemon.ui.pokedex.info.form.ogerpon-cornerstonetera": "Cornerstone Mask Tera"
 }
