@@ -5,6 +5,7 @@
       "sound_id": "minecraft:block.amethyst_block.chime"
     },
     "animations": {
+	  "revert_delay": 0.5,
       "animations_revert": ["cry"]
     }
   },
@@ -16,7 +17,7 @@
       "sound_id": "mega_showdown:kyurem_fusion"
     },
     "animations": {
-      "apply_delay": 4,
+      "apply_delay": 4.4,
       "animations_apply": ["cry"]
     }
   }
