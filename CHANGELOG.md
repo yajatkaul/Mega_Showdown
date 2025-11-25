@@ -5,3 +5,7 @@
 - Fixed gimmicks in mulit/doubles/triples CUZ COBBLEMON DECIDED NOT TO
 - Fixed pinsir cry
 - Mega charizard/blastoise/venasaur are not flyable
+- Fixed Mega Camerupt Locator
+- Fixed Mega Metagross Riding
+- Readjusted Latias/Latios Stats
+- Added Extra Anim's and Poser fixes to Latias/Latios

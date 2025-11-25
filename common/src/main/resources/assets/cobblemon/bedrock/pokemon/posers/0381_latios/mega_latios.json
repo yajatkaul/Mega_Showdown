@@ -17,12 +17,11 @@
   },
   "poses": {
     "battle-standing": {
-      "poseTypes": [
-        "STAND"
-      ],
+      "poseTypes": ["STAND"],
       "isBattle": true,
+      "isTouchingWater": false,
       "animations": [
-        "q.look('head')",
+        "q.look('head_ai')",
         "q.bedrock('mega_latios', 'battle_idle')"
       ],
       "quirks": [
@@ -30,16 +29,12 @@
       ]
     },
     "standing": {
-      "poseTypes": [
-        "STAND",
-        "NONE",
-        "PORTRAIT",
-        "PROFILE",
-        "HOVER"
-      ],
+      "poseTypes": ["STAND", "NONE"],
       "isBattle": false,
+      "isTouchingWater": false,
+      "condition": "!q.in_air",
       "animations": [
-        "q.look('head')",
+        "q.look('head_ai')",
         "q.bedrock('mega_latios', 'ground_idle')"
       ],
       "quirks": [
@@ -47,17 +42,53 @@
       ]
     },
     "walking": {
-      "poseTypes": [
-        "WALK",
-        "FLY"
-      ],
+      "poseTypes": ["WALK"],
+      "isBattle": false,
+      "isTouchingWater": false,
+      "condition": "!q.in_air && !q.is_sprinting",
       "animations": [
-        "q.look('head')",
+        "q.look('head_ai')",
         "q.bedrock('mega_latios', 'ground_walk')"
       ],
       "quirks": [
         "q.bedrock_quirk('mega_latios', 'blink')"
       ]
+    },
+    "hover": {
+      "poseTypes": ["HOVER"],
+      "isBattle": false,
+	  "isTouchingWater": false,
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('mega_latios', 'ground_idle')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('mega_latios', 'blink')"
+      ]
+    },
+    "fly": {
+      "poseTypes": ["FLY"],
+      "isBattle": false,
+	  "isTouchingWater": false,
+      "condition": "!q.is_gliding",
+      "animations": [
+        "q.look('head_ai')",
+        "q.bedrock('mega_latios', 'air_sprint')"
+      ],
+      "quirks": [
+        "q.bedrock_quirk('mega_latios', 'blink')"
+      ]
+    },
+	"swimming": {
+      "poseName": "swimming",
+      "isBattle": false,
+      "isTouchingWater": true,
+      "poseTypes": ["STAND","WALK","SWIM"],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('mega_latios', 'air_sprint')"
+      ],
+      "quirks": ["q.bedrock_quirk('mega_latios', 'blink')"]
     }
   }
 }

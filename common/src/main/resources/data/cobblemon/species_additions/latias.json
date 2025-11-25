@@ -22,25 +22,43 @@
         }
       ],
       "stats": {
-        "ACCELERATION": "61-68",
+        "ACCELERATION": "70-90",
         "JUMP": "41-60",
         "SKILL": "100-130",
-        "SPEED": "41-75",
+        "SPEED": "75-85",
         "STAMINA": "82-120"
       }
     },
-    "LAND": {
-      "key": "cobblemon:land/horse",
-      "rideSounds": [],
-      "stats": {
-        "ACCELERATION": "55-75",
-        "JUMP": "15-30",
-        "SKILL": "15-45",
-        "SPEED": "10-20",
-        "STAMINA": "20-45"
+      "LAND": {
+        "speed": "Math.clamp(q.entity.velocity.horizontal_magnitude + 0.33, 0, 1)",
+        "key": "cobblemon:land/horse",
+        "rideSounds": [],
+        "gravity": "q.gravity * (0.1 + (q.passenger_count - 1) * 0.1)",
+        "jumpVector": [
+          0,
+          "0.3*q.jump_strength/50",
+          "-1 * 0.5*q.jump_strength/50"
+        ],
+        "stats": {
+          "ACCELERATION": "41-60",
+          "JUMP": "41-60",
+          "SKILL": "21-40",
+          "SPEED": "21-40",
+          "STAMINA": "61-80"
+        }
+      },
+      "LIQUID": {
+        "key": "cobblemon:liquid/dolphin",
+        "rideSounds": [],
+        "stats": {
+          "ACCELERATION": "0-20",
+          "JUMP": "41-60",
+          "SKILL": "60-80",
+          "SPEED": "41-60",
+          "STAMINA": "60-90"
+        }
       }
-    }
-  },
+    },
   "seats": [
     {
       "offset": {
@@ -126,7 +144,7 @@
   "baseScale": 0.9,
   "hitbox": {
     "width": 1.5,
-    "height": 2.5,
+    "height": 2.2,
     "fixed": false
   },
   "behaviour": {
@@ -137,6 +155,9 @@
       "fly": {
         "canFly": true,
         "flySpeedHorizontal": 0.7
+      },
+	  "swim": {
+        "canBreatheUnderwater": true
       }
     }
   }

@@ -172,18 +172,18 @@
       }
     ]
   },
-  "pokemon.latias.cry": {
+  "pokemon.mega_latias.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon/latias_cry",
+        "name": "cobblemon:pokemon/latias/mega_latias_cry",
         "volume": 0.8
       }
     ]
   },
-  "pokemon.latios.cry": {
+  "pokemon.mega_latios.cry": {
     "sounds": [
       {
-        "name": "cobblemon:pokemon/latios_cry",
+        "name": "cobblemon:pokemon/latios/mega_latios_cry",
         "volume": 0.8
       }
     ]
