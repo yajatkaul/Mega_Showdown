@@ -9,3 +9,4 @@
 - Fixed Mega Metagross Riding
 - Readjusted Latias/Latios Stats
 - Added Extra Anim's and Poser fixes to Latias/Latios
+- Lang Update EN_US (Zayden)
