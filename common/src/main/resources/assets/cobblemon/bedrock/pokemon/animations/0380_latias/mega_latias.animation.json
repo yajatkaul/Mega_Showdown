@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.mega_latios.pose": {
+		"animation.mega_latias.pose": {
 			"loop": true,
 			"bones": {
 				"body": {
@@ -79,7 +79,7 @@
 				}
 			}
 		},
-		"animation.mega_latios.ground_idle": {
+		"animation.mega_latias.ground_idle": {
 			"loop": true,
 			"bones": {
 				"body": {
@@ -150,7 +150,7 @@
 				}
 			}
 		},
-		"animation.mega_latios.battle_idle": {
+		"animation.mega_latias.battle_idle": {
 			"loop": true,
 			"bones": {
 				"body": {
@@ -221,7 +221,7 @@
 				}
 			}
 		},
-		"animation.mega_latios.ground_walk": {
+		"animation.mega_latias.ground_walk": {
 			"loop": true,
 			"bones": {
 				"body": {
@@ -284,7 +284,7 @@
 				}
 			}
 		},
-		"animation.mega_latios.blink": {
+		"animation.mega_latias.blink": {
 			"animation_length": 0.1667,
 			"bones": {
 				"eye_left": {
@@ -317,7 +317,7 @@
 				}
 			}
 		},
-		"animation.mega_latios.cry": {
+		"animation.mega_latias.cry": {
 			"animation_length": 2.875,
 			"bones": {
 				"body": {
@@ -577,11 +577,11 @@
 			},
 			"sound_effects": {
 				"0.625": {
-					"effect": "pokemon.mega_latios.cry"
+					"effect": "pokemon.mega_latias.cry"
 				}
 			}
 		},
-		"animation.mega_latios.air_sprint": {
+		"animation.mega_latias.air_sprint": {
 			"loop": true,
 			"bones": {
 				"body": {

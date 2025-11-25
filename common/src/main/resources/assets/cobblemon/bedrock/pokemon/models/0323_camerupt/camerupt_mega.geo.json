@@ -885,6 +885,59 @@
           ]
         },
         {
+					"name": "locator_seat_1",
+					"parent": "torso",
+					"pivot": [0, 28, -12],
+					"locators": {
+						"seat_1": [0, 28, -12]
+					}
+				},
+				{
+					"name": "locator_seat_2",
+					"parent": "torso",
+					"pivot": [8, 28, -5],
+					"rotation": [0, -75, 0],
+					"locators": {
+						"seat_2": [8, 28, -5]
+					}
+				},
+				{
+					"name": "locator_seat_3",
+					"parent": "torso",
+					"pivot": [-8, 28, -5],
+					"rotation": [0, 75, 0],
+					"locators": {
+						"seat_3": [-8, 28, -5]
+					}
+				},
+				{
+					"name": "locator_seat_4",
+					"parent": "torso",
+					"pivot": [8, 28, 8],
+					"rotation": [0, -105, 0],
+					"locators": {
+						"seat_4": [8, 28, 8]
+					}
+				},
+				{
+					"name": "locator_seat_5",
+					"parent": "torso",
+					"pivot": [-8, 28, 8],
+					"rotation": [0, 105, 0],
+					"locators": {
+						"seat_5": [-8, 28, 8]
+					}
+				},
+				{
+					"name": "locator_seat_6",
+					"parent": "torso",
+					"pivot": [0, 28, 15],
+					"rotation": [0, 180, 0],
+					"locators": {
+						"seat_6": [0, 28, 15]
+					}
+				},
+        {
           "name": "tail",
           "parent": "torso",
           "pivot": [

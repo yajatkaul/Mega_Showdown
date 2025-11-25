@@ -1,8 +1,8 @@
 {
-  "portraitScale": 1.25,
+  "portraitScale": 1.22,
   "portraitTranslation": [
     -1,
-    1,
+    1.41,
     0
   ],
   "profileScale": 0.35,
@@ -11,9 +11,9 @@
     1.15,
     0
   ],
-  "rootBone": "latias",
+  "rootBone": "mega_latias",
   "animations": {
-    "cry": "q.bedrock_stateful('latias2', 'cry')"
+    "cry": "q.bedrock_stateful('mega_latias', 'cry')"
   },
   "poses": {
     "battle-standing": {
@@ -22,10 +22,10 @@
       "isTouchingWater": false,
       "animations": [
         "q.look('head_ai')",
-        "q.bedrock('latias2', 'battle_idle')"
+        "q.bedrock('mega_latias', 'battle_idle')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latias2', 'blink')"
+        "q.bedrock_quirk('mega_latias', 'blink')"
       ]
     },
     "standing": {
@@ -35,10 +35,10 @@
       "condition": "!q.in_air",
       "animations": [
         "q.look('head_ai')",
-        "q.bedrock('latias2', 'ground_idle')"
+        "q.bedrock('mega_latias', 'ground_idle')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latias2', 'blink')"
+        "q.bedrock_quirk('mega_latias', 'blink')"
       ]
     },
     "walking": {
@@ -48,10 +48,10 @@
       "condition": "!q.in_air && !q.is_sprinting",
       "animations": [
         "q.look('head_ai')",
-        "q.bedrock('latias2', 'ground_walk')"
+        "q.bedrock('mega_latias', 'ground_walk')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latias2', 'blink')"
+        "q.bedrock_quirk('mega_latias', 'blink')"
       ]
     },
     "hover": {
@@ -60,10 +60,10 @@
 	  "isTouchingWater": false,
       "animations": [
         "q.look('head_ai')",
-        "q.bedrock('latias2', 'ground_idle')"
+        "q.bedrock('mega_latias', 'ground_idle')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latias2', 'blink')"
+        "q.bedrock_quirk('mega_latias', 'blink')"
       ]
     },
     "fly": {
@@ -73,10 +73,10 @@
       "condition": "!q.is_gliding",
       "animations": [
         "q.look('head_ai')",
-        "q.bedrock('latias2', 'air_sprint')"
+        "q.bedrock('mega_latias', 'air_sprint')"
       ],
       "quirks": [
-        "q.bedrock_quirk('latias2', 'blink')"
+        "q.bedrock_quirk('mega_latias', 'blink')"
       ]
     },
 	"swimming": {
@@ -86,9 +86,9 @@
       "poseTypes": ["STAND","WALK","SWIM"],
       "animations": [
         "q.look('head')",
-        "q.bedrock('latias2', 'air_sprint')"
+        "q.bedrock('mega_latias', 'air_sprint')"
       ],
-      "quirks": ["q.bedrock_quirk('latias2', 'blink')"]
+      "quirks": ["q.bedrock_quirk('mega_latias', 'blink')"]
     }
   }
 }

@@ -22,10 +22,10 @@
         }
       ],
       "stats": {
-        "ACCELERATION": "61-68",
+        "ACCELERATION": "70-90",
         "JUMP": "41-60",
         "SKILL": "100-130",
-        "SPEED": "41-75",
+        "SPEED": "85-95",
         "STAMINA": "82-120"
       }
     },
@@ -48,14 +48,14 @@
         }
       },
       "LIQUID": {
-        "key": "cobblemon:liquid/boat",
+        "key": "cobblemon:liquid/dolphin",
         "rideSounds": [],
         "stats": {
           "ACCELERATION": "0-20",
           "JUMP": "41-60",
-          "SKILL": "21-40",
+          "SKILL": "60-80",
           "SPEED": "41-60",
-          "STAMINA": "0-20"
+          "STAMINA": "60-90"
         }
       }
     },
@@ -130,7 +130,7 @@
   "baseScale": 1,
   "hitbox": {
     "width": 1.5,
-    "height": 2.5,
+    "height": 2.2,
     "fixed": false
   },
   "behaviour": {
@@ -141,6 +141,9 @@
       "fly": {
         "canFly": true,
         "flySpeedHorizontal": 0.7
+      },
+	  "swim": {
+        "canBreatheUnderwater": true
       }
     }
   }
