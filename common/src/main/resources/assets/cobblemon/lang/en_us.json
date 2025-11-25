@@ -636,5 +636,6 @@
   "cobblemon.ui.pokedex.info.form.ogerpon-tealtera": "Teal Mask Tera",
   "cobblemon.ui.pokedex.info.form.ogerpon-wellspringtera": "Wellspring Mask Tera",
   "cobblemon.ui.pokedex.info.form.ogerpon-hearthflametera": "Hearthflame Mask Tera",
-  "cobblemon.ui.pokedex.info.form.ogerpon-cornerstonetera": "Cornerstone Mask Tera"
+  "cobblemon.ui.pokedex.info.form.ogerpon-cornerstonetera": "Cornerstone Mask Tera",
+  "message.mega_showdown.friendship_requirement": "Not enough friendship!"
 }
