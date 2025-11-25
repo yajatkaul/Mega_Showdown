@@ -414,19 +414,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('B', CobblemonItems.BLUE_APRICORN)
                 .unlockedBy("has_wishing_star", has(MegaShowdownItems.WISHING_STAR.get())).save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownItems.MAX_SOUP.get())
-                .pattern("MMM")
-                .pattern(" B ")
-                .pattern("   ")
-                .define('M', MegaShowdownBlocks.MAX_MUSHROOM.get())
-                .define('B', Items.BOWL)
-                .unlockedBy("has_max_mushroom", has(MegaShowdownBlocks.MAX_MUSHROOM.get())).save(recipeOutput);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MegaShowdownItems.SWEET_MAX_SOUP.get())
-                .requires(MegaShowdownItems.MAX_HONEY.get())
-                .requires(MegaShowdownItems.MAX_SOUP.get())
-                .unlockedBy("has_max_soup", has(MegaShowdownItems.MAX_SOUP.get())).save(recipeOutput);
-
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MegaShowdownBlocks.POWER_SPOT.get())
                 .pattern("RMR")
                 .pattern("RWR")

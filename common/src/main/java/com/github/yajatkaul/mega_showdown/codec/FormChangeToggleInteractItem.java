@@ -12,10 +12,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.Optional;
 
 public record FormChangeToggleInteractItem(
         List<String> form_apply_order,
-        List<AspectSetCodec> aspect_conditions,
+        Optional<List<AspectSetCodec>> aspect_conditions,
         List<List<String>> form_aspect_apply_order,
         List<String> pokemons,
         List<ResourceLocation> effects,
@@ -23,7 +24,7 @@ public record FormChangeToggleInteractItem(
 ) {
     public static final Codec<FormChangeToggleInteractItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.listOf().fieldOf("form_apply_order").forGetter(FormChangeToggleInteractItem::form_apply_order),
-            AspectSetCodec.CODEC.listOf().fieldOf("aspect_conditions").forGetter(FormChangeToggleInteractItem::aspect_conditions),
+            AspectSetCodec.CODEC.listOf().optionalFieldOf("aspect_conditions").forGetter(FormChangeToggleInteractItem::aspect_conditions),
             Codec.STRING.listOf().listOf().fieldOf("form_aspect_apply_order").forGetter(FormChangeToggleInteractItem::form_aspect_apply_order),
             Codec.STRING.listOf().fieldOf("pokemons").forGetter(FormChangeToggleInteractItem::pokemons),
             ResourceLocation.CODEC.listOf().fieldOf("effects").forGetter(FormChangeToggleInteractItem::effects),
@@ -61,13 +62,20 @@ public record FormChangeToggleInteractItem(
             }
 
             if (currentIndex + 1 > form_apply_order.size() - 1) {
-                if (aspect_conditions.getFirst().validate_apply(pokemon)) {
-                    Effect.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
-                }
+                aspect_conditions.ifPresentOrElse((aspect_conditions -> {
+                    if (aspect_conditions.getFirst().validate_apply(pokemon)) {
+                        Effect.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null);
+                    }
+                }), () -> Effect.getEffect(effects.getFirst()).applyEffects(pokemon, form_aspect_apply_order.getFirst(), null));
             } else {
-                if (aspect_conditions.get(currentIndex + 1).validate_apply(pokemon)) {
-                    Effect.getEffect(effects.get(currentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(currentIndex + 1), null);
-                }
+                int finalCurrentIndex = currentIndex;
+                aspect_conditions.ifPresentOrElse((aspect_conditions) -> {
+                    if (aspect_conditions.get(finalCurrentIndex + 1).validate_apply(pokemon)) {
+                        Effect.getEffect(effects.get(finalCurrentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(finalCurrentIndex + 1), null);
+                    }
+                }, () -> {
+                    Effect.getEffect(effects.get(finalCurrentIndex + 1)).applyEffects(pokemon, form_aspect_apply_order.get(finalCurrentIndex + 1), null);
+                });
             }
             stack.consume(consume, livingEntity);
 
