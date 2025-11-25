@@ -26,6 +26,7 @@ import com.cobblemon.mod.common.battles.dispatch.UntilDispatch;
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.advancement.AdvancementHelper;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxEndCallback;
 import com.github.yajatkaul.mega_showdown.api.event.DynamaxStartCallback;
@@ -88,7 +89,7 @@ public class CobbleEvents {
 
     private static void formChanged(FormeChangeEvent formeChangeEvent) {
         if (formeChangeEvent.getFormeName().equals("x") || formeChangeEvent.getFormeName().equals("y")
-                || formeChangeEvent.getFormeName().equals("mega") || formeChangeEvent.getFormeName().equals("tera")) {
+                || formeChangeEvent.getFormeName().equals("mega")) {
             return;
         }
         BattlePokemon battlePokemon = formeChangeEvent.getPokemon();
@@ -280,12 +281,6 @@ public class CobbleEvents {
         Pokemon pokemon = pokemonEntity.getPokemon();
 
         AdvancementHelper.grantAdvancement(pokemon.getOwnerPlayer(), "tera/terastallized");
-
-        if (pokemon.getSpecies().getName().equals("Terapagos")) {
-            Effect.getEffect("mega_showdown:terapagos_stellar").applyEffects(pokemon, List.of("tera_form=stellar"), null);
-        } else if (pokemon.getSpecies().getName().equals("Ogerpon")) {
-            Effect.getEffect("mega_showdown:orgepon_embody").applyEffects(pokemon, List.of("embody-aspect=true"), null);
-        }
 
         pokemon.getPersistentData().putBoolean("is_tera", true);
         GlowHandler.applyTeraGlow(pokemonEntity);

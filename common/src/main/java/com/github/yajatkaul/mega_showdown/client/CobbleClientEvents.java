@@ -23,10 +23,10 @@ import java.util.Objects;
 
 public class CobbleClientEvents {
     public static void register() {
-        CobblemonEvents.POKEMON_INTERACTION_GUI_CREATION.subscribe(Priority.NORMAL, CobbleClientEvents::addMegaButton);
+        CobblemonEvents.POKEMON_INTERACTION_GUI_CREATION.subscribe(Priority.NORMAL, CobbleClientEvents::addGimmickButtons);
     }
 
-    private static void addMegaButton(PokemonInteractionGUICreationEvent event) {
+    private static void addGimmickButtons(PokemonInteractionGUICreationEvent event) {
         Pokemon pokemon = CobblemonClient.INSTANCE.getStorage().getParty().getSlots().stream()
                 .filter(Objects::nonNull)
                 .filter(slot -> slot.getEntity() != null && slot.getEntity().getUUID().equals(event.getPokemonID()))
@@ -38,8 +38,7 @@ public class CobbleClientEvents {
         LocalPlayer player = Minecraft.getInstance().player;
 
         if (MegaShowdownConfig.outSideMega) {
-            boolean isMegaAble = pokemon.getSpecies().getForms().stream().anyMatch(formData -> formData.getLabels().contains("gmax"));
-            boolean canMega = isMegaAble && AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) || AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
+            boolean canMega = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) || AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
 
             InteractWheelOption wheelOption = new InteractWheelOption(
                     ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/interact/mega_evolve_wheel.png"),

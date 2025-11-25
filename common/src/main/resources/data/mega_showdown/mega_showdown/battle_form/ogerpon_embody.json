@@ -1,0 +1,9 @@
+{
+  "pokemons": ["Ogerpon"],
+  "showdown_form_change_id": "tera",
+  "aspects": {
+    "apply_aspects": ["embody-aspect=true"],
+    "revert_aspects": ["embody-aspect=false"]
+  },
+  "effect": "mega_showdown:end_rod"
+}

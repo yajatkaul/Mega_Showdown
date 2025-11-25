@@ -46,9 +46,9 @@ public class UltraGimmick {
                         "revert_aspects"
                 );
             }
+
             Effect.getEffect("mega_showdown:ultra_burst").applyEffects(pokemon, List.of("prism_fusion=ultra"), null);
             pokemon.setTradeable(false);
-
         } else if (pokemon.getAspects().contains("ultra-fusion")) {
             String org_form = pokemon.getPersistentData().getString("necrozma_form");
             pokemon.getPersistentData().remove("necrozma_form");

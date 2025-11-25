@@ -1,12 +1,8 @@
-# 1.2+1.7-release
-- Fixed showdown files load config not working properly
-- Fixed gyrados-jump textures
-- Fixed kyurem effects
-- Fixed gimmicks in mulit/doubles/triples CUZ COBBLEMON DECIDED NOT TO
-- Fixed pinsir cry
-- Mega charizard/blastoise/venasaur are not flyable
+# 1.3+1.7-release
 - Fixed Mega Camerupt Locator
 - Fixed Mega Metagross Riding
 - Readjusted Latias/Latios Stats
 - Added Extra Anim's and Poser fixes to Latias/Latios
 - Lang Update EN_US (Zayden)
+- Fixed interaction wheel only working with omni ring
+- Fixed ogerpon not reverting
