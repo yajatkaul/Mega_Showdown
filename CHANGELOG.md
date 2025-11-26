@@ -9,3 +9,5 @@ Fixed Form Headers for:
 - Genesect
 - Zygarde 10%
 - Ogerpon Tera's
+- Added Spanish Translation(Zayden)
+- Fixed Ogerpon Heartflame shiny textures

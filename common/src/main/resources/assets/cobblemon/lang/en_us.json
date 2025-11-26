@@ -49,6 +49,7 @@
   "item.mega_showdown.venusaurite": "Venusaurite",
   "item.mega_showdown.red_orb": "Red Orb",
   "item.mega_showdown.blue_orb": "Blue Orb",
+  "item.mega_showdown.zygarde_cube.empty": "Zygarde Cube (Empty)",
 
   "tooltip.mega_showdown.red_orb.tooltip": "§7Allows Groudon to turn into a Primal",
   "tooltip.mega_showdown.blue_orb.tooltip": "§7Allows Kyogre to turn into a Primal",
@@ -635,5 +636,6 @@
   "cobblemon.ui.pokedex.info.form.ogerpon-tealtera": "Teal Mask Tera",
   "cobblemon.ui.pokedex.info.form.ogerpon-wellspringtera": "Wellspring Mask Tera",
   "cobblemon.ui.pokedex.info.form.ogerpon-hearthflametera": "Hearthflame Mask Tera",
-  "cobblemon.ui.pokedex.info.form.ogerpon-cornerstonetera": "Cornerstone Mask Tera"
+  "cobblemon.ui.pokedex.info.form.ogerpon-cornerstonetera": "Cornerstone Mask Tera",
+  "message.mega_showdown.friendship_requirement": "Not enough friendship!"
 }
