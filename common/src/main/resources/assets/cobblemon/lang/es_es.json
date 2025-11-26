@@ -629,5 +629,15 @@
   "message.mega_showdown.gmax_not_possible": "¡Tu Pokémon ya no puede usar Factor Gigamax!",
   "message.mega_showdown.gmax_possible": "¡Tu Pokémon ahora puede usar el Factor Gigamax!",
   "message.mega_showdown.dmax_level_cap": "¡Tu Pokémon tiene el nivel máximo de dinamax!",
-  "cobblemon.ui.stats.dynamax_level": "Nivel Dinamax"
+  "cobblemon.ui.stats.dynamax_level": "Nivel Dinamax",
+
+  "accessories.slot.mega_slot": "Ranura Mega",
+  "accessories.slot.z_slot": "Ranura Z",
+  "accessories.slot.tera_slot": "Ranura Tera",
+  "accessories.slot.dynamax_slot": "Ranura Dinamax",
+
+  "item.mega_showdown.likos_pendant": "Colgante de Liko",
+  "tooltip.mega_showdown.likos_pendant.tooltip": "§7Un colgante que, según se dice, resuena con energías ancestrales. Silenciosamente, fortalece el corazón de un verdadero entrenador",
+  "block.mega_showdown.dormant_crystal": "Cristal Inactivo",
+  "tooltip.mega_showdown.dormant_crystal.tooltip": "§7Un misterioso cristal que irradia un tenue resplandor. Se dice que despierta bajo el vínculo entre el entrenador y el Pokémon"
 }
