@@ -13,3 +13,4 @@
 - Added Spanish Translation(Zayden)
 - Fixed Ogerpon Heartflame shiny textures
 - Added Audinite File
+- Added "castform_normal" file
