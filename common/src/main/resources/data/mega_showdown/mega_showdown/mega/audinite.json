@@ -1,0 +1,8 @@
+{
+  "showdown_id": "audinite",
+  "pokemons": ["Audino"],
+  "aspect": {
+    "apply_aspects": ["mega_evolution=mega"],
+    "revert_aspects": ["mega_evolution=none"]
+  }
+}
