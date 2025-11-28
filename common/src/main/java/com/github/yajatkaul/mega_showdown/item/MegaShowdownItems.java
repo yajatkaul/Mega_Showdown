@@ -918,6 +918,7 @@ public class MegaShowdownItems {
         return ITEMS.register(name, () -> new OmniRing(
                 new Item.Properties()
                         .stacksTo(1)
+                        .fireResistant()
                         .arch$tab(MegaShowdownTabs.KEY_TAB))
         );
     }

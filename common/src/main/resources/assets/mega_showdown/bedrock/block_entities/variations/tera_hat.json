@@ -1,0 +1,17 @@
+{
+  "name": "mega_showdown:tera_hat",
+  "order": 1,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "mega_showdown:tera_hat",
+      "model": "mega_showdown:water_tera_hat.geo",
+      "texture": "mega_showdown:textures/tera_hat/water_tera_hat.png"
+    },
+    {
+      "aspects": ["msd:tera_steel"],
+      "model": "mega_showdown:steel_tera_hat.geo",
+      "texture": "mega_showdown:textures/tera_hat/steel_tera_hat.png"
+    }
+  ]
+}

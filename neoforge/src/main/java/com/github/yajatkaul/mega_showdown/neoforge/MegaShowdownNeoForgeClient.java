@@ -20,15 +20,13 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, value = Dist.CLIENT)
 public class MegaShowdownNeoForgeClient {
-    @SubscribeEvent
-    public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
+    public MegaShowdownNeoForgeClient() {
         MegaShowdownClient.init();
     }
 
     @SubscribeEvent
-    public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(MegaShowdownBlockEntities.PEDESTAL_BLOCK_ENTITY.get(), PedestalBlockEntityRenderer::new);
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(MegaShowdownMenuTypes.ZYGARDE_CUBE_MENU.get(), ZygardeCubeScreen::new);
     }
 
     @SubscribeEvent

@@ -24,6 +24,4 @@ public class MegaShowdownBlockEntities {
             BLOCK_ENTITIES.register("pedestal_block_entity", () ->
                     BlockEntityType.Builder.of(PedestalBlockEntity::new, MegaShowdownBlocks.PEDESTAL.get()).build(null)
             );
-
-
 }

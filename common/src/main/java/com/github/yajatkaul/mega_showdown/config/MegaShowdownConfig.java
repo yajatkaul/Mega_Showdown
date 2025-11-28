@@ -33,6 +33,7 @@ public class MegaShowdownConfig {
 
     public static double teraShardDropRate = 10.0;
     public static double stellarShardDropRate = 1.0;
+    public static boolean teraHats = true;
 
     public static int likoPendentDuration = 72000;
 
@@ -70,6 +71,7 @@ public class MegaShowdownConfig {
         json.addProperty("minBondingRequired", minBondingRequired);
         json.addProperty("outSideMega", outSideMega);
         json.addProperty("outSideUltraBurst", outSideUltraBurst);
+        json.addProperty("teraHats", teraHats);
         return json;
     }
 
@@ -132,6 +134,9 @@ public class MegaShowdownConfig {
             }
             if (json.has("outSideUltraBurst")) {
                 outSideUltraBurst = json.get("outSideUltraBurst").getAsBoolean();
+            }
+            if (json.has("teraHats")) {
+                teraHats = json.get("teraHats").getAsBoolean();
             }
         } catch (Exception e) {
             MegaShowdown.LOGGER.error("Failed to load MegaShowdown config:", e);

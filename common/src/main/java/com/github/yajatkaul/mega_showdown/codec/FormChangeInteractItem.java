@@ -48,7 +48,7 @@ public record FormChangeInteractItem(
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             } else if (aspect_conditions.validate_revert(pokemon)) {
-                Effect.getEffect(effect.get()).applyEffects(pokemon, aspect_conditions.revert_aspects(), null);
+                Effect.getEffect(effect.get()).revertEffects(pokemon, aspect_conditions.revert_aspects(), null);
                 stack.consume(consume, livingEntity);
                 return InteractionResult.SUCCESS;
             }

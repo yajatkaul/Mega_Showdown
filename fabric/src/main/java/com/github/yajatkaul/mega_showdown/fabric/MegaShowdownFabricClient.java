@@ -29,8 +29,6 @@ public final class MegaShowdownFabricClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.REASSEMBLY_UNIT.get(), RenderType.translucent());
         BlockRenderLayerMap.INSTANCE.putBlock(MegaShowdownBlocks.WISHING_STAR_CRYSTAL.get(), RenderType.translucent());
 
-        BlockEntityRenderers.register(MegaShowdownBlockEntities.PEDESTAL_BLOCK_ENTITY.get(), PedestalBlockEntityRenderer::new);
-
         ResourceManagerHelper.registerBuiltinResourcePack(
                 ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "gyaradosjumpingmega"),
                 FabricLoader.getInstance().getModContainer(MegaShowdown.MOD_ID).orElseThrow(),

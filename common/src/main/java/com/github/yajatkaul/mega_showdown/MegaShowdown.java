@@ -17,12 +17,17 @@ import com.github.yajatkaul.mega_showdown.utils.DelayedTicker;
 import com.github.yajatkaul.mega_showdown.utils.ShowdownItemsLoad;
 import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.event.events.common.TickEvent;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class MegaShowdown {
     public static final String MOD_ID = "mega_showdown";
     public static final Logger LOGGER = LoggerFactory.getLogger("MegaShowdown");
+
+    public static ResourceLocation msdResource(String id) {
+        return ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, id);
+    }
 
     public static void init() {
         MegaShowdownConfig.load();

@@ -1,9 +1,8 @@
-package com.github.yajatkaul.mega_showdown.entitiy;
+package com.github.yajatkaul.mega_showdown.entitiy.custom;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class TeraHatEntity extends Entity {
