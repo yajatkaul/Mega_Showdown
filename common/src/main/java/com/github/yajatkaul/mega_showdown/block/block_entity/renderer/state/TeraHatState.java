@@ -7,13 +7,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TeraHatState extends PosableState {
+    public TeraHatState() {
+        setPose("idle");
+    }
+
     @Override
     public @Nullable Entity getEntity() {
         return null;
-    }
-
-    public TeraHatState() {
-        setPose("idle");
     }
 
     @Override

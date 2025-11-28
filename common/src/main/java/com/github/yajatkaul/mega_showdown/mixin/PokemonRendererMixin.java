@@ -8,7 +8,6 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.Varyi
 import com.cobblemon.mod.common.client.render.pokemon.PokemonRenderer;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.state.TeraHatState;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -20,7 +19,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,7 +35,7 @@ public class PokemonRendererMixin {
     @Unique
     private final RenderContext mega_showdown$context = new RenderContext();
     @Unique
-    private final ResourceLocation mega_showdown$poserId = ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "tera_hat");
+    private final ResourceLocation mega_showdown$poserId = ResourceLocation.fromNamespaceAndPath("cobblemon", "tera_hat");
     @Unique
     private final TeraHatState mega_showdown$teraHatState = new TeraHatState();
     @Unique
@@ -66,7 +64,8 @@ public class PokemonRendererMixin {
 
             poseStack.pushPose();
             poseStack.mulPose(headLocator.getMatrix());
-            poseStack.translate(0, 0.55f, 0);
+            poseStack.mulPose(Axis.XP.rotationDegrees(180));
+            poseStack.mulPose(Axis.YP.rotationDegrees(180));
 
             // Update state BEFORE getting model
             mega_showdown$aspects.clear(); // Clear and re-add
@@ -78,17 +77,11 @@ public class PokemonRendererMixin {
             PosableModel model = VaryingModelRepository.INSTANCE.getPoser(mega_showdown$poserId, mega_showdown$teraHatState);
             ResourceLocation texture = VaryingModelRepository.INSTANCE.getTexture(mega_showdown$poserId, mega_showdown$teraHatState);
 
-            // Initialize model if needed (first time or model changed)
-            if (mega_showdown$teraHatState.getCurrentModel() != model) {
-                mega_showdown$teraHatState.setCurrentModel(model);
-                // Initialize to a default pose if your model has one
-                if (model.getPoses().containsKey("idle")) {
-                    model.moveToPose(mega_showdown$teraHatState, model.getPoses().get("idle"));
-                }
-            }
+            model.context = mega_showdown$context;
+            model.setBufferProvider(buffer);
+            mega_showdown$teraHatState.setCurrentModel(model);
 
             // Setup context
-            model.context = mega_showdown$context;
             mega_showdown$context.put(RenderContext.Companion.getASPECTS(), mega_showdown$aspects);
             mega_showdown$context.put(RenderContext.Companion.getTEXTURE(), texture);
             mega_showdown$context.put(RenderContext.Companion.getSPECIES(), mega_showdown$poserId);
@@ -107,7 +100,6 @@ public class PokemonRendererMixin {
 
             // Render
             VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutout(texture));
-            model.setBufferProvider(buffer);
             model.render(mega_showdown$context, poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, -0x1);
 
             model.withLayerContext(
