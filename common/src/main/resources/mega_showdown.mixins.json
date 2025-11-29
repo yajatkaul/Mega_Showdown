@@ -5,7 +5,7 @@
   "minVersion": "0.8",
   "client": [
     "MoveSlotWidgetMixin",
-    "PokemonRendererMixin",
+    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
     "client.MinecraftMixin",
@@ -31,7 +31,6 @@
     "battle.ShowdownInterpreterMixin",
     "battle.ShowdownSpeciesMixin",
     "battle.StartInstructionMixin",
-    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "minecraft.ItemStackMixin"
   ],
   "injectors": {
