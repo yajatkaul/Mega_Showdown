@@ -79,8 +79,7 @@ public class GimmickTurnCheck {
             case MEGA_EVOLUTION -> {
                 if (!MegaShowdownConfig.mega) return false;
 
-                boolean hasMegaAccess = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET)
-                        || hasOmniRing;
+                boolean hasMegaAccess = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET);
 
                 return hasMegaAccess && !MegaGimmick.hasMega(player);
             }

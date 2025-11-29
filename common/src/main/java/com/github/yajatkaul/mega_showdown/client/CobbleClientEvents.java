@@ -10,12 +10,9 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.MegaEvoPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.UltraBurstPacket;
-import com.github.yajatkaul.mega_showdown.tag.MegaShowdownTags;
-import com.github.yajatkaul.mega_showdown.utils.AccessoriesUtils;
 import dev.architectury.networking.NetworkManager;
 import kotlin.Unit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Vector3f;
 
@@ -35,19 +32,15 @@ public class CobbleClientEvents {
 
         if (pokemon == null) return;
 
-        LocalPlayer player = Minecraft.getInstance().player;
-
-        if (MegaShowdownConfig.outSideMega) {
-            boolean canMega = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET) || AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
-
+        if (MegaShowdownConfig.outSideMega && WheelDataClient.shouldMega) {
             InteractWheelOption wheelOption = new InteractWheelOption(
                     ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/interact/mega_evolve_wheel.png"),
                     null,
-                    canMega,
+                    WheelDataClient.canMega,
                     "mega_showdown.ui.mega_evolve",
                     () -> new Vector3f(1),
                     () -> {
-                        if (canMega) {
+                        if (WheelDataClient.canMega) {
                             NetworkManager.sendToServer(new MegaEvoPacket(event.getPokemonID()));
                             closeGUI();
                         }
@@ -55,17 +48,15 @@ public class CobbleClientEvents {
                     });
             event.addFillingOption(wheelOption);
         }
-        if (MegaShowdownConfig.outSideUltraBurst
-                && pokemon.getSpecies().getName().equals("Necrozma")) {
-            boolean canUltraBurst = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.Z_RING) || AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.OMNI_RING);
+        if (MegaShowdownConfig.outSideUltraBurst && WheelDataClient.shouldUltra) {
             InteractWheelOption wheelOption = new InteractWheelOption(
                     ResourceLocation.fromNamespaceAndPath(MegaShowdown.MOD_ID, "textures/gui/interact/ultra_burst_wheel.png"),
                     null,
-                    canUltraBurst,
+                    WheelDataClient.canUltra,
                     "mega_showdown.ui.ultra_burst",
                     () -> new Vector3f(1),
                     () -> {
-                        if (canUltraBurst) {
+                        if (WheelDataClient.canUltra) {
                             NetworkManager.sendToServer(new UltraBurstPacket(event.getPokemonID()));
                             closeGUI();
                         }

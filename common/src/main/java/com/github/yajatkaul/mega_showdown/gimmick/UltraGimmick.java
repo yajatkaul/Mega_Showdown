@@ -18,7 +18,7 @@ import java.util.List;
 
 public class UltraGimmick {
     public static void ultraBurstToggle(Pokemon pokemon) {
-        if (MegaShowdownConfig.outSideUltraBurst) {
+        if (!MegaShowdownConfig.outSideUltraBurst) {
             return;
         }
 

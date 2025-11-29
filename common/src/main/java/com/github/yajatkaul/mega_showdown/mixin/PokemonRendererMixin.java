@@ -59,13 +59,14 @@ public class PokemonRendererMixin {
             if (pokemon.getSpecies().getName().equals("Terapagos")) return;
 
             Map<String, MatrixWrapper> locatorStates = clientDelegate.getLocatorStates();
-            MatrixWrapper headLocator = locatorStates.get("tera_hat");
+            MatrixWrapper headLocator = locatorStates.get("head");
             if (headLocator == null) return;
 
             poseStack.pushPose();
             poseStack.mulPose(headLocator.getMatrix());
             poseStack.mulPose(Axis.XP.rotationDegrees(180));
             poseStack.mulPose(Axis.YP.rotationDegrees(180));
+            poseStack.translate(0.08, 0.0, 0.0);
 
             // Update state BEFORE getting model
             mega_showdown$aspects.clear(); // Clear and re-add

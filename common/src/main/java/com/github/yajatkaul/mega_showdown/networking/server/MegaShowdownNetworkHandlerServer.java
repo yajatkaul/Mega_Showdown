@@ -1,80 +1,41 @@
 package com.github.yajatkaul.mega_showdown.networking.server;
 
-import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.github.yajatkaul.mega_showdown.codec.Effect;
-import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
-import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
-import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
+import com.github.yajatkaul.mega_showdown.networking.client.packet.InteractionWheelPacket;
+import com.github.yajatkaul.mega_showdown.networking.server.handler.MegaEvoHandler;
+import com.github.yajatkaul.mega_showdown.networking.server.handler.PartyToPCInterruptHandler;
+import com.github.yajatkaul.mega_showdown.networking.server.handler.SecretSwordMoveSwapHandler;
+import com.github.yajatkaul.mega_showdown.networking.server.handler.UltraBurstHandler;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.MegaEvoPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.PartyToPCInterruptPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.SecretSwordMoveSwapPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.packet.UltraBurstPacket;
-import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
-import com.github.yajatkaul.mega_showdown.utils.RegistryLocator;
 import dev.architectury.networking.NetworkManager;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
-
-import java.util.List;
+import dev.architectury.platform.Platform;
+import net.fabricmc.api.EnvType;
 
 public class MegaShowdownNetworkHandlerServer {
     public static void register() {
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, MegaEvoPacket.TYPE, MegaEvoPacket.STREAM_CODEC, (buf, context) -> {
-            ServerPlayer player = (ServerPlayer) context.getPlayer();
-            Pokemon pokemon = PlayerUtils.getPartyPokemonFromUUID(player, buf.pokemonId());
+        if (Platform.getEnv() == EnvType.SERVER) {
+            registerServerOnly();
+        }
 
-            if (pokemon != null) {
-                MegaGimmick.megaToggle(pokemon);
-            }
-        });
+        registerCommon();
+    }
 
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, UltraBurstPacket.TYPE, UltraBurstPacket.STREAM_CODEC, (buf, context) -> {
-            ServerPlayer player = (ServerPlayer) context.getPlayer();
-            Pokemon pokemon = PlayerUtils.getPartyPokemonFromUUID(player, buf.pokemonId());
-            ZCrystal zCrystal = RegistryLocator.getComponent(ZCrystal.class, pokemon.heldItem());
+    public static void registerServerOnly() {
+        NetworkManager.registerS2CPayloadType(
+                InteractionWheelPacket.TYPE,
+                InteractionWheelPacket.STREAM_CODEC
+        );
+    }
 
-            if (zCrystal == null || !zCrystal.showdown_item_id().equals("ultranecroziumz")) {
-                player.displayClientMessage(Component.translatable("message.mega_showdown.no_ultranecroziumz")
-                        .withStyle(ChatFormatting.RED), true);
-            } else {
-                UltraGimmick.ultraBurstToggle(pokemon);
-            }
-        });
+    public static void registerCommon() {
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, MegaEvoPacket.TYPE, MegaEvoPacket.STREAM_CODEC, MegaEvoHandler::handle);
 
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, SecretSwordMoveSwapPacket.TYPE, SecretSwordMoveSwapPacket.STREAM_CODEC, (buf, context) -> {
-            Player player = context.getPlayer();
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, UltraBurstPacket.TYPE, UltraBurstPacket.STREAM_CODEC, UltraBurstHandler::handle);
 
-            if (player instanceof ServerPlayer serverPlayer) {
-                for (Pokemon pokemon : Cobblemon.INSTANCE.getStorage().getParty(serverPlayer)) {
-                    if (!pokemon.getSpecies().getName().equals("Keldeo")) {
-                        continue;
-                    }
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, SecretSwordMoveSwapPacket.TYPE, SecretSwordMoveSwapPacket.STREAM_CODEC, SecretSwordMoveSwapHandler::handle);
 
-                    boolean hasSecretSword = pokemon.getMoveSet()
-                            .getMoves()
-                            .stream()
-                            .anyMatch(move -> move.getTemplate().getName().equals("secretsword"));
-                    boolean isResolute = pokemon.getAspects().contains("resolute-form");
-
-                    if (!isResolute && hasSecretSword) {
-                        Effect.getEffect("mega_showdown:keldeo_effect").applyEffects(pokemon, List.of("sword_form=resolute"), null);
-                    } else if (isResolute && !hasSecretSword) {
-                        Effect.getEffect("mega_showdown:keldeo_effect").revertEffects(pokemon, List.of("sword_form=ordinary"), null);
-                    }
-                }
-            }
-        });
-
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, PartyToPCInterruptPacket.TYPE, PartyToPCInterruptPacket.STREAM_CODEC, (buf, context) -> {
-            ServerPlayer player = (ServerPlayer) context.getPlayer();
-            Pokemon pokemon = PlayerUtils.getPCPokemonFromUUID(player, buf.pokemonId());
-
-            if (pokemon != null && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
-                MegaGimmick.megaToggle(pokemon);
-            }
-        });
+        NetworkManager.registerReceiver(NetworkManager.Side.C2S, PartyToPCInterruptPacket.TYPE, PartyToPCInterruptPacket.STREAM_CODEC, PartyToPCInterruptHandler::handle);
     }
 }
