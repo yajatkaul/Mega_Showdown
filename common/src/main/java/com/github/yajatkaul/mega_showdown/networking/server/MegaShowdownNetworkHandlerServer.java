@@ -1,5 +1,6 @@
 package com.github.yajatkaul.mega_showdown.networking.server;
 
+import com.github.yajatkaul.mega_showdown.networking.client.packet.ConfigSyncPacket;
 import com.github.yajatkaul.mega_showdown.networking.client.packet.InteractionWheelPacket;
 import com.github.yajatkaul.mega_showdown.networking.server.handler.MegaEvoHandler;
 import com.github.yajatkaul.mega_showdown.networking.server.handler.PartyToPCInterruptHandler;
@@ -27,15 +28,16 @@ public class MegaShowdownNetworkHandlerServer {
                 InteractionWheelPacket.TYPE,
                 InteractionWheelPacket.STREAM_CODEC
         );
+        NetworkManager.registerS2CPayloadType(
+                ConfigSyncPacket.TYPE,
+                ConfigSyncPacket.STREAM_CODEC
+        );
     }
 
     public static void registerCommon() {
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, MegaEvoPacket.TYPE, MegaEvoPacket.STREAM_CODEC, MegaEvoHandler::handle);
-
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, UltraBurstPacket.TYPE, UltraBurstPacket.STREAM_CODEC, UltraBurstHandler::handle);
-
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, SecretSwordMoveSwapPacket.TYPE, SecretSwordMoveSwapPacket.STREAM_CODEC, SecretSwordMoveSwapHandler::handle);
-
         NetworkManager.registerReceiver(NetworkManager.Side.C2S, PartyToPCInterruptPacket.TYPE, PartyToPCInterruptPacket.STREAM_CODEC, PartyToPCInterruptHandler::handle);
     }
 }

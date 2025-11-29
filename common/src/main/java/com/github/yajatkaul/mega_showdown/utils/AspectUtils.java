@@ -112,19 +112,6 @@ public class AspectUtils {
             pokemon.getPersistentData().remove("battle_end_revert");
         }
 
-        if (pokemon.getPersistentData().contains("revert_aspects")) {
-            List<EffectPair> aspects = AspectUtils.getRevertDataPokemon(
-                    pokemon,
-                    "revert_aspects"
-            );
-
-            for (EffectPair effectPair : aspects) {
-                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
-            }
-
-            pokemon.getPersistentData().remove("revert_aspects");
-        }
-
         if (pokemon.getPersistentData().contains("apply_aspects")) {
             List<EffectPair> aspects = AspectUtils.getRevertDataPokemon(
                     pokemon,
@@ -136,6 +123,19 @@ public class AspectUtils {
             }
 
             pokemon.getPersistentData().remove("apply_aspects");
+        }
+
+        if (pokemon.getPersistentData().contains("revert_aspects")) {
+            List<EffectPair> aspects = AspectUtils.getRevertDataPokemon(
+                    pokemon,
+                    "revert_aspects"
+            );
+
+            for (EffectPair effectPair : aspects) {
+                effectPair.effect.revertEffects(pokemon, effectPair.aspects, null);
+            }
+
+            pokemon.getPersistentData().remove("revert_aspects");
         }
 
         if (pokemon.getPersistentData().getBoolean("is_tera")) {
@@ -151,7 +151,7 @@ public class AspectUtils {
         if (pokemon.getPersistentData().getBoolean("is_max")) {
             pokemon.getPersistentData().putBoolean("is_max", false);
             if (pokemon.getEntity() != null) {
-                MaxGimmick.scaleDownDynamax(pokemon.getEntity());
+                MaxGimmick.startGradualScalingDown(pokemon.getEntity());
             }
         }
 

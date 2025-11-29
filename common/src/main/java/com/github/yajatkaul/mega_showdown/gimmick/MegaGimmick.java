@@ -94,14 +94,14 @@ public record MegaGimmick(
     }
 
     private static void megaEvolve(Pokemon pokemon, List<String> aspects, List<String> revertAspects) {
-        Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, aspects, null);
-
         AspectUtils.appendRevertDataPokemon(
                 Effect.getEffect("mega_showdown:mega_evolution"),
                 revertAspects,
                 pokemon,
                 "revert_aspects"
         );
+
+        Effect.getEffect("mega_showdown:mega_evolution").applyEffects(pokemon, aspects, null);
 
         pokemon.setTradeable(false);
     }

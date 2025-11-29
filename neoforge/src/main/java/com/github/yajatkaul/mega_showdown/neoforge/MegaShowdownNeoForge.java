@@ -6,7 +6,6 @@ import com.cobblemon.mod.relocations.graalvm.polyglot.Value;
 import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlocks;
 import com.github.yajatkaul.mega_showdown.cobblemon.features.GlobalFeatureManager;
-import com.github.yajatkaul.mega_showdown.command.MegaShowdownCommands;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.neoforge.datapack.DatapackRegistry;
@@ -15,18 +14,15 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
-import org.jetbrains.annotations.NotNull;
 
 @Mod(MegaShowdown.MOD_ID)
 public final class MegaShowdownNeoForge {
-    public MegaShowdownNeoForge(IEventBus modEventBus, @NotNull ModContainer modContainer) {
+    public MegaShowdownNeoForge(IEventBus modEventBus) {
         GlobalFeatureManager.registerEarly();
         MegaShowdown.init();
 
@@ -41,12 +37,10 @@ public final class MegaShowdownNeoForge {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
-                    MegaShowdownBlocks.GRACIDEA_FLOWER.getId(),
-                    MegaShowdownBlocks.POTTED_GRACIDEA
-            );
-        });
+        event.enqueueWork(() -> ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
+                MegaShowdownBlocks.GRACIDEA_FLOWER.getId(),
+                MegaShowdownBlocks.POTTED_GRACIDEA
+        ));
     }
 
     @SubscribeEvent
@@ -60,10 +54,5 @@ public final class MegaShowdownNeoForge {
             }
             return Unit.INSTANCE;
         });
-    }
-
-    @SubscribeEvent
-    public void onCommandRegistration(RegisterCommandsEvent event) {
-        MegaShowdownCommands.registerCommands(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
     }
 }

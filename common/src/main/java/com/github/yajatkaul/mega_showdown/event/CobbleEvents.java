@@ -194,7 +194,7 @@ public class CobbleEvents {
         if (pokemon.getPersistentData().getBoolean("is_max")) {
             pokemon.getPersistentData().putBoolean("is_max", false);
             if (pokemon.getEntity() != null) {
-                MaxGimmick.scaleDownDynamax(pokemon.getEntity());
+                MaxGimmick.startGradualScalingDown(pokemon.getEntity());
             }
         }
     }
@@ -206,7 +206,7 @@ public class CobbleEvents {
 
     private static void dynamaxEnded(PokemonBattle battle, BattlePokemon battlePokemon) {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
-        MaxGimmick.scaleDownDynamax(pokemon.getEntity());
+        MaxGimmick.startGradualScalingDown(pokemon.getEntity());
 
         if (battlePokemon.getEntity().getPokemon().getAspects().contains("gmax")) {
             battle.dispatchToFront(() -> {
@@ -233,12 +233,12 @@ public class CobbleEvents {
         }
 
         pokemon.getPersistentData().putBoolean("is_max", true);
-        battle.dispatchWaitingToFront(MegaShowdownConfig.getDynamaxScaleDuration() / 20f, () -> Unit.INSTANCE);
+        battle.dispatchWaitingToFront(3, () -> Unit.INSTANCE);
 
         PokemonEntity pokemonEntity = pokemon.getEntity();
 
         if (pokemonEntity != null) {
-            MaxGimmick.scaleUpDynamax(pokemon.getEntity());
+            MaxGimmick.startGradualScaling(pokemon.getEntity(), MegaShowdownConfig.dynamaxScaleFactor);
 
             BlockPos entityPos = pokemon.getEntity().getOnPos();
             pokemonEntity.level().playSound(

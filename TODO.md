@@ -1,6 +1,6 @@
 # TODO
-- Send client the configs from the server especially outside mega/ultra burst
-- Fix outside ultra burst
+- Clean the config class
+- Dynamax first get in pokeball then throw
 
 # Future
 - Make custom weather datapackable

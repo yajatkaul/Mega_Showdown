@@ -143,8 +143,4 @@ public class MegaShowdownConfig {
         }
         loaded = true;
     }
-
-    public static int getDynamaxScaleDuration() {
-        return (int) (MegaShowdownConfig.dynamaxScaleFactor / 0.1f);
-    }
 }

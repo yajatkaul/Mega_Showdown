@@ -7,6 +7,9 @@
 - Fixed kubfu evolution using any item
 - Improved interaction wheel behaviour
 - Fixed some lang
+- Bug fixes
+- Config syncs between server and client
+- Fixed dynamax crashes
 
 Fixed Form Headers for:
 - Kyogre

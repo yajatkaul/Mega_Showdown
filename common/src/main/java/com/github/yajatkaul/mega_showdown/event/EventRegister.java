@@ -4,5 +4,6 @@ public class EventRegister {
     public static void register() {
         CobbleEvents.register();
         AccessoriesEvent.register();
+        MinecraftEvents.register();
     }
 }
