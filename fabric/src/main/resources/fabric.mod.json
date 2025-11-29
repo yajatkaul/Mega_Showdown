@@ -30,7 +30,7 @@
     "java": ">=21",
     "architectury": ">=13.0.8",
     "fabric-api": "*",
-    "cobblemon": "=1.7",
+    "cobblemon": "=1.7.1",
     "accessories": ">=1.1.0-beta.52+1.21.1"
   }
 }
