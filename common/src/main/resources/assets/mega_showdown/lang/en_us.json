@@ -447,7 +447,6 @@
   "item.mega_showdown.soul_dew": "Soul Dew",
   "tooltip.mega_showdown.soul_dew.tooltip": "A mysterious orb that boosts Latios and Latias' power.",
   "item.mega_showdown.dynamax_band": "Dynamax Band",
-  "cobblemon.ui.stats.dynamax_level": "Dynamax Level",
   "tooltip.mega_showdown.dynamax_band.tooltip": "A special band that allows Pokémon to Dynamax during battle.",
   "item.mega_showdown.dynamax_candy": "Dynamax Candy",
   "tooltip.mega_showdown.dynamax_candy.tooltip": "A candy that increases a Pokémon's Dynamax Level, enhancing its strength when Dynamaxed.",
@@ -470,6 +469,7 @@
   "tooltip.mega_showdown.sparkling_stone_dark.tooltip": "A mysterious stone that emits a faint shadowy glow. It resonates with Z-Power.",
   "item.mega_showdown.zygarde_cube": "Zygarde Cube",
   "item.mega_showdown.zygarde_cube.full": "Zygarde Cube (Filled)",
+  "item.mega_showdown.zygarde_cube.empty": "Zygarde Cube (Empty)",
   "tooltip.mega_showdown.zygarde_cube.tooltip": "A cube that collects Zygarde Cells and Cores. It pulses faintly with energy from deep underground.",
   "item.mega_showdown.zygarde_cell": "Zygarde Cell",
   "tooltip.mega_showdown.zygarde_cell.tooltip": "A component of Zygarde. It's said to be one of many living cells scattered across the world.",
@@ -600,5 +600,7 @@
   "message.mega_showdown.no_ultranecroziumz": "No Ultranecrozium-Z held",
 
   "message.mega_showdown.no_mega_bracelet": "No mega bracelet",
-  "message.mega_showdown.no_z_ring": "No Z-ring"
+  "message.mega_showdown.no_z_ring": "No Z-ring",
+
+  "cobblemon.ui.stats.dynamax_level": "Dynamax Level"
 }
