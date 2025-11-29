@@ -5,11 +5,12 @@
   "minVersion": "0.8",
   "client": [
     "MoveSlotWidgetMixin",
-    "client.packet.MovePartyPokemonToPCHandlerMixin",
+    "PokemonRendererMixin",
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
     "client.MinecraftMixin",
     "client.ModeBakeryMixin",
+    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",
