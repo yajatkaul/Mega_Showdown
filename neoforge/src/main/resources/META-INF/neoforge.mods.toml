@@ -50,7 +50,7 @@ side = "BOTH"
 [[dependencies.mega_showdown]]
 modId = "cobblemon"
 type = "required"
-versionRange = "[1.7.1, )"
+versionRange = "[1.7.0, )"
 ordering = "AFTER"
 side = "BOTH"
 

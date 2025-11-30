@@ -37,7 +37,6 @@ import com.github.yajatkaul.mega_showdown.codec.HeldItemFormChange;
 import com.github.yajatkaul.mega_showdown.codec.ZCrystal;
 import com.github.yajatkaul.mega_showdown.config.MegaShowdownConfig;
 import com.github.yajatkaul.mega_showdown.datapack.MegaShowdownDatapackRegister;
-import com.github.yajatkaul.mega_showdown.gimmick.GimmickTurnCheck;
 import com.github.yajatkaul.mega_showdown.gimmick.MaxGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
 import com.github.yajatkaul.mega_showdown.gimmick.UltraGimmick;
@@ -326,8 +325,6 @@ public class CobbleEvents {
     }
 
     private static void hookBattleStarted(BattleStartedEvent.Post event) {
-        event.getBattle().getPlayers().forEach(GimmickTurnCheck::check);
-
         event.getBattle().getOnEndHandlers().add((battle -> {
             battle.getPlayers().forEach(AspectUtils::revertPokemonsIfRequired);
             return Unit.INSTANCE;

@@ -4,9 +4,10 @@ import com.github.yajatkaul.mega_showdown.MegaShowdown;
 import com.github.yajatkaul.mega_showdown.MegaShowdownClient;
 import com.github.yajatkaul.mega_showdown.block.MegaShowdownBlockEntities;
 import com.github.yajatkaul.mega_showdown.block.block_entity.renderer.PedestalBlockEntityRenderer;
+import com.github.yajatkaul.mega_showdown.render.ItemRenderingLoader;
 import com.github.yajatkaul.mega_showdown.screen.MegaShowdownMenuTypes;
 import com.github.yajatkaul.mega_showdown.screen.custom.ZygardeCubeScreen;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import dev.architectury.registry.ReloadListenerRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -19,7 +20,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 @EventBusSubscriber(modid = MegaShowdown.MOD_ID, value = Dist.CLIENT)
 public class MegaShowdownNeoForgeClient {
@@ -40,6 +40,7 @@ public class MegaShowdownNeoForgeClient {
 
     @SubscribeEvent
     public static void onAddPackFinders(AddPackFindersEvent event) {
+        ReloadListenerRegistry.register(PackType.CLIENT_RESOURCES, new ItemRenderingLoader());
         if (event.getPackType() != PackType.CLIENT_RESOURCES)
             return;
 

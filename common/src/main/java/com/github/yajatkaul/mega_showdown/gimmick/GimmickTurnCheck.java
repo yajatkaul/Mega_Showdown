@@ -81,7 +81,7 @@ public class GimmickTurnCheck {
 
                 boolean hasMegaAccess = AccessoriesUtils.checkTagInAccessories(player, MegaShowdownTags.Items.MEGA_BRACELET);
 
-                return hasMegaAccess && !MegaGimmick.hasMega(player);
+                return (hasMegaAccess || hasOmniRing) && !MegaGimmick.hasMega(player);
             }
         }
 

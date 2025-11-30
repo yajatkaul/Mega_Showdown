@@ -20,14 +20,13 @@ public record MaxGimmick(
         String gmaxMove,
         AspectSetCodec aspectSetCodec
 ) {
-    private static final Map<LivingEntity, ScalingData> ACTIVE_SCALING_ANIMATIONS = new HashMap<>();
-    private static final int DEFAULT_SCALING_DURATION = 60;
-
     public static final Codec<MaxGimmick> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("pokemon_showdown_id").forGetter(MaxGimmick::pokemonShowdownId),
             Codec.STRING.fieldOf("gmax_move").forGetter(MaxGimmick::gmaxMove),
             AspectSetCodec.CODEC.fieldOf("aspect_conditions").forGetter(MaxGimmick::aspectSetCodec)
     ).apply(instance, MaxGimmick::new));
+    private static final Map<LivingEntity, ScalingData> ACTIVE_SCALING_ANIMATIONS = new HashMap<>();
+    private static final int DEFAULT_SCALING_DURATION = 60;
 
     public static void startGradualScaling(PokemonEntity entity, float targetScale) {
         if (entity == null) return;
