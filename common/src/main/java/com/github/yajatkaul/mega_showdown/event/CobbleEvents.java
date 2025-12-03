@@ -218,6 +218,7 @@ public class CobbleEvents {
 
     private static void dynamaxStarted(PokemonBattle battle, BattlePokemon battlePokemon, Boolean gmax) {
         Pokemon pokemon = battlePokemon.getEffectedPokemon();
+
         if (gmax) {
             new StringSpeciesFeature("dynamax_form", "gmax").apply(pokemon);
             AspectUtils.updatePackets(battlePokemon);

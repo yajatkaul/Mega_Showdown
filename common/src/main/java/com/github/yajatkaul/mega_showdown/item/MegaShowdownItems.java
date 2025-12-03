@@ -725,7 +725,7 @@ public class MegaShowdownItems {
     public static final RegistrySupplier<Item> BURN_DRIVE = registerFormChangeHeldItems(
             "burn_drive",
             "techno_drive=none",
-            "techno_drive=water",
+            "techno_drive=fire",
             List.of("Genesect"),
             null,
             true
