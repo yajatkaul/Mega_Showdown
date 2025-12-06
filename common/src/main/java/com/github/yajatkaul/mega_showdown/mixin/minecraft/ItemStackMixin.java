@@ -24,45 +24,51 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemStackMixin {
     @Inject(method = "onDestroyed", at = @At("HEAD"))
     private void onDestroyed(ItemEntity itemEntity, CallbackInfo ci) {
-        ItemStack stack = itemEntity.getItem();
+        if (!itemEntity.level().isClientSide) {
+            ItemStack stack = itemEntity.getItem();
 
-        DuFusion duFusion = RegistryLocator.getComponent(DuFusion.class, stack);
-        if (duFusion != null) {
-            duFusion.onDestroyed(itemEntity);
-        }
-        SoloFusion soloFusion = RegistryLocator.getComponent(SoloFusion.class, stack);
-        if (soloFusion != null) {
-            soloFusion.onDestroyed(itemEntity);
+            DuFusion duFusion = RegistryLocator.getComponent(DuFusion.class, stack);
+            if (duFusion != null) {
+                duFusion.onDestroyed(itemEntity);
+            }
+            SoloFusion soloFusion = RegistryLocator.getComponent(SoloFusion.class, stack);
+            if (soloFusion != null) {
+                soloFusion.onDestroyed(itemEntity);
+            }
         }
     }
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void useOnEntity(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
-        ItemStack stack = player.getItemInHand(interactionHand);
-        DuFusion duFusion = RegistryLocator.getComponent(DuFusion.class, stack);
-        if (duFusion != null) {
-            cir.setReturnValue(duFusion.use(level, player, interactionHand));
-        }
-        SoloFusion soloFusion = RegistryLocator.getComponent(SoloFusion.class, stack);
-        if (soloFusion != null) {
-            cir.setReturnValue(soloFusion.use(level, player, interactionHand));
+        if (!level.isClientSide) {
+            ItemStack stack = player.getItemInHand(interactionHand);
+            DuFusion duFusion = RegistryLocator.getComponent(DuFusion.class, stack);
+            if (duFusion != null) {
+                cir.setReturnValue(duFusion.use(level, player, interactionHand));
+            }
+            SoloFusion soloFusion = RegistryLocator.getComponent(SoloFusion.class, stack);
+            if (soloFusion != null) {
+                cir.setReturnValue(soloFusion.use(level, player, interactionHand));
+            }
         }
     }
 
     @Inject(method = "interactLivingEntity", at = @At("HEAD"), cancellable = true)
     private void useOnEntity(Player player, LivingEntity entity, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
-        if (entity instanceof PokemonEntity pokemonEntity) {
-            ItemStack stack = player.getItemInHand(interactionHand);
-            FormChangeToggleInteractItem formChangeToggleInteractItem = RegistryLocator.getComponent(FormChangeToggleInteractItem.class, stack);
+        if (!player.level().isClientSide) {
+            if (entity instanceof PokemonEntity pokemonEntity) {
+                ItemStack stack = player.getItemInHand(interactionHand);
+                FormChangeToggleInteractItem formChangeToggleInteractItem = RegistryLocator.getComponent(FormChangeToggleInteractItem.class, stack);
 
-            if (formChangeToggleInteractItem != null) {
-                cir.setReturnValue(formChangeToggleInteractItem.interactLivingEntity(player, pokemonEntity, stack));
-            }
+                if (formChangeToggleInteractItem != null) {
+                    cir.setReturnValue(formChangeToggleInteractItem.interactLivingEntity(player, pokemonEntity, stack));
+                }
 
-            FormChangeInteractItem formChangeInteractItem = RegistryLocator.getComponent(FormChangeInteractItem.class, stack);
+                FormChangeInteractItem formChangeInteractItem = RegistryLocator.getComponent(FormChangeInteractItem.class, stack);
 
-            if (formChangeInteractItem != null) {
-                cir.setReturnValue(formChangeInteractItem.interactLivingEntity(player, pokemonEntity, stack));
+                if (formChangeInteractItem != null) {
+                    cir.setReturnValue(formChangeInteractItem.interactLivingEntity(player, pokemonEntity, stack));
+                }
             }
         }
     }

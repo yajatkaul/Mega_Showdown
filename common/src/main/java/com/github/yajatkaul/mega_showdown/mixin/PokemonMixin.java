@@ -17,7 +17,7 @@ public class PokemonMixin {
         Pokemon self = (Pokemon) (Object) this;
         LearnsetQuery query = LearnsetQuery.Companion.getANY();
 
-        for (int i=0; i < MoveSet.MOVE_COUNT; i++) {
+        for (int i = 0; i < MoveSet.MOVE_COUNT; i++) {
             Move moveSet = self.getMoveSet().get(i);
             if (moveSet != null && !query.canLearn(moveSet.getTemplate(), self.getForm().getMoves())) {
                 self.getMoveSet().setMove(i, null);

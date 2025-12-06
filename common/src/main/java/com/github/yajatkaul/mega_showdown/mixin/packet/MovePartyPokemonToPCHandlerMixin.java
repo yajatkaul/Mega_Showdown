@@ -1,9 +1,10 @@
-package com.github.yajatkaul.mega_showdown.mixin.client.packet;
+package com.github.yajatkaul.mega_showdown.mixin.packet;
 
 import com.cobblemon.mod.common.net.messages.server.storage.pc.MovePartyPokemonToPCPacket;
 import com.cobblemon.mod.common.net.serverhandling.storage.pc.MovePartyPokemonToPCHandler;
-import com.github.yajatkaul.mega_showdown.networking.server.packet.PartyToPCInterruptPacket;
-import dev.architectury.networking.NetworkManager;
+import com.cobblemon.mod.common.pokemon.Pokemon;
+import com.github.yajatkaul.mega_showdown.gimmick.MegaGimmick;
+import com.github.yajatkaul.mega_showdown.utils.PlayerUtils;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +19,10 @@ public class MovePartyPokemonToPCHandlerMixin {
             at = @At("TAIL")
     )
     private void onMove(MovePartyPokemonToPCPacket packet, MinecraftServer server, ServerPlayer player, CallbackInfo ci) {
-        NetworkManager.sendToServer(new PartyToPCInterruptPacket(packet.getPokemonID()));
+        Pokemon pokemon = PlayerUtils.getPCPokemonFromUUID(player, packet.getPokemonID());
+
+        if (pokemon != null && pokemon.getAspects().stream().anyMatch(MegaGimmick.getMegaAspects()::contains)) {
+            MegaGimmick.megaToggle(pokemon);
+        }
     }
 }

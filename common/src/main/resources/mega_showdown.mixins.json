@@ -9,13 +9,13 @@
     "battle.BattleMoveSelectionMixin",
     "client.ItemRendererMixin",
     "client.ModeBakeryMixin",
-    "client.packet.MovePartyPokemonToPCHandlerMixin",
     "client.ui.PCGUIMixin",
     "client.ui.SummaryCompanionMixin",
     "client.ui.SummaryMixin",
     "minecraft.ItemInHandRendererMixin"
   ],
   "mixins": [
+    "packet.MovePartyPokemonToPCHandlerMixin",
     "GraalShowdownUnbundlerMixin",
     "PlayerPartyStoreMixin",
     "PokemonClientDelegateMixin",
