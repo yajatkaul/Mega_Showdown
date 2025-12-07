@@ -151,6 +151,7 @@ public class AspectUtils {
         if (pokemon.getPersistentData().getBoolean("is_max")) {
             pokemon.getPersistentData().putBoolean("is_max", false);
             if (pokemon.getEntity() != null) {
+                Effect.getEffect("mega_showdown:dynamax_end").applyEffects(pokemon, List.of("dynamax_form=none"), null);
                 MaxGimmick.startGradualScalingDown(pokemon.getEntity());
             }
         }

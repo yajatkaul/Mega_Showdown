@@ -20,7 +20,6 @@
     "PlayerPartyStoreMixin",
     "PokemonClientDelegateMixin",
     "PokemonEntityMixin",
-    "PokemonMixin",
     "battle.BattleGimmickButtonCompanionMixin",
     "battle.BattleGimmickButtonMixin",
     "battle.ClientBattleMixin",
