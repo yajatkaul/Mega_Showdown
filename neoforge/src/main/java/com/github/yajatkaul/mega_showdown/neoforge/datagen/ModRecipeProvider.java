@@ -686,8 +686,8 @@ public class ModRecipeProvider extends RecipeProvider {
                         MegaShowdownBlocks.CHISELED_MEGA_METEOROID_BLOCK.get())
                 .pattern("#")
                 .pattern("#")
-                .define('#', MegaShowdownBlocks.MEGA_METEOROID_BRICK.get())
-                .unlockedBy("has_meteor_brick", has(MegaShowdownBlocks.MEGA_METEOROID_BRICK.get()))
+                .define('#', MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get())
+                .unlockedBy("has_meteor_brock", has(MegaShowdownBlocks.MEGA_METEOROID_BLOCK.get()))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,
